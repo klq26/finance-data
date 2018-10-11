@@ -40,7 +40,7 @@ def fundUseUnitValueScope(code):
 	return code in scope
 
 # 且慢估值，需要先 Charles 抓包查到 x-sign 放入请求 header 否则无数据
-def fundEval(xsign = '1538173923334BAC74D101BE0DC7A565BFDA96063B0B9'):
+def fundEval(xsign = '153921653864274EF0A62EA8A7CDC00391ACD128213E3'):
 	"""
 	# 指导格式
 	"date": 1535385600000,
