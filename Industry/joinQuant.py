@@ -5,14 +5,15 @@ import os
 
 auth('13810650842','123456a')
 
-# index = '000016.XSHG'
+index = '000905.XSHG'
+
 date = '2018-09-30'
 industry_codes = ['HY001','HY002','HY003','HY004','HY005','HY006','HY007','HY008','HY009','HY010','HY011']
 industry_names = ['能源','材料','工业','可选消费','必选消费','医药卫生','金融','信息技术','电信服务','公用事业','地产']
 # chuangyeban = get_index_weights('399006.XSHE',date=date)
 
 # 初始化行业信息（有缓存）
-def initIndustryData(data='2018-09-30'):
+def initIndustryData(data):
     if os.path.exists('IndustryData\JoinQuaintIndustry.txt'):
         return DataFrame.from_csv('IndustryData\JoinQuaintIndustry.txt',sep='\t',encoding='utf-8')
     df = DataFrame(data=None,columns=['code','name','HY_CODE','HY_NAME'])
@@ -35,7 +36,7 @@ def initIndustryData(data='2018-09-30'):
     return df
 
 # 获取指数权重（有缓存）
-def indexWeights(code,date='2018-09-30'):
+def indexWeights(code,date):
     path = 'indexWeights\code_{0}.txt'.format(code)
     if os.path.exists(path):
         print('weight for {0} from cache.'.format(code))
@@ -46,7 +47,8 @@ def indexWeights(code,date='2018-09-30'):
 
 # ★运行★
 industrys = initIndustryData(date)
-weights = indexWeights('399006.XSHE')  # https://www.joinquant.com/help/api/help?name=index 查询指数
+print(index)
+weights = indexWeights(index)  # https://www.joinquant.com/help/api/help?name=index 查询指数
 
 hycodes = []    # 按指数顺序，取股票行业分类
 hynames = []    # 按指数顺序，取股票行业分类
