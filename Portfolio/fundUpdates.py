@@ -40,7 +40,7 @@ def fundUseUnitValueScope(code):
 	return code in scope
 
 # 且慢估值，需要先 Charles 抓包查到 x-sign 放入请求 header 否则无数据
-def fundEval(xsign = '1539312519715F56A31741DE42773BF6CA3A2A7AB00D1'):
+def fundEval(xsign = '1539648008814D32918D4F38C8FF589E49EAD0F81144D'):
 	"""
 	# 指导格式
 	"date": 1535385600000,
@@ -80,7 +80,7 @@ def fundEval(xsign = '1539312519715F56A31741DE42773BF6CA3A2A7AB00D1'):
 		for item in scopes:
 			for x in json_data['idxEvalList']:
 				if item in x['indexName']:
-					results.append('{0}\t{1}\t{2}'.format(x['indexName'],x['pe'],x['pb']))
+					results.append('{0}\t{1}\t{2}\t{3}'.format(x['indexName'],x['pe'],x['pb'],x['roe']))
 					break
 		if len(results) > 0:
 			return results
@@ -111,7 +111,7 @@ def main():
 	# # 且慢估值
 	results = fundEval()
 	if results != None and len(results) > 0:
-		print('名称\tPE\tPB')
+		print('名称\tPE\tPB\tROE')
 		[print(x) for x in results]
 	print('\n')
 	# # ETF 计划基金
