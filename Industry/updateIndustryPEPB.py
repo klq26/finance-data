@@ -21,7 +21,7 @@ for code in industry_codes:
         for day in days:
             stocks = get_industry_stocks(code, date=day)
             if code == 'HY007':
-                dichan = get_industry_stocks('HY010', date=day)
+                dichan = get_industry_stocks('HY011', date=day)
                 stocks.extend(dichan)
             is_industry = True
             count = len(stocks)
