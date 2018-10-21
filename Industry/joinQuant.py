@@ -5,7 +5,7 @@ import os
 
 auth('13810650842','123456a')
 
-index = '000905.XSHG'
+index = '000002.XSHG'   # 注意：如果算上证指数，需要传入 000002.XSHG。因为 000001 包含 B 股，如 900923，900929 等
 
 date = '2018-10-15'
 industry_codes = ['HY001','HY002','HY003','HY004','HY005','HY006','HY007','HY008','HY009','HY010','HY011']
@@ -23,7 +23,11 @@ def initIndustryData(data=date):
         print('整理行业：' + hyname)
         stockcodes = get_industry_stocks(hycode, date=date)
         stocknames = []
+        print('成分股个数：{0}'.format(len(stockcodes)))
+        count = 0
         for code in stockcodes:
+            count += 1
+            print('{0} 进度：{1}%'.format(hyname,round(count/len(stockcodes)*100,2)))
             stocknames.append(get_security_info(code).display_name)
         indexs = range(0,len(stockcodes))
         hy = DataFrame(data=None,index=indexs,columns=['code','name','HY_CODE','HY_NAME'])
@@ -54,6 +58,9 @@ hycodes = []    # 按指数顺序，取股票行业分类
 hynames = []    # 按指数顺序，取股票行业分类
 for code in weights.index.values:
     hy_info = industrys.loc[industrys['code'] == code]   # Series
+    if len(hy_info) == 0:
+        print(code)
+        continue
     hycodes.append(hy_info.HY_CODE.values[0])
     hynames.append(hy_info.HY_NAME.values[0])
 # 补充行业信息
