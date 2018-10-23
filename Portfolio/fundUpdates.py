@@ -40,7 +40,7 @@ def fundUseUnitValueScope(code):
 	return code in scope
 
 # 且慢估值，需要先 Charles 抓包查到 x-sign 放入请求 header 否则无数据
-def fundEval(xsign = '1540083455169850ECB36714E99F7BEC95760E7D93477'):
+def fundEval(xsign = '1540249839604B4DECDDB3C2AA4C9D5A5CAAA14290AC7'):
 	"""
 	# 指导格式
 	"date": 1535385600000,
@@ -101,24 +101,50 @@ def HKEval():
 	return str(pe).replace(":","").replace("<","")
 	pass
 
+# 根据 code 转换汉字名称
+def indexToName(index):
+	data = {'000922':'中证红利','000016':'上证50','000300':'沪深300','000905':'中证500','000852':'中证1000',\
+	'399006':'创业板','000991':'全指医药','399812':'养老产业','399975':'证券公司','000827':'中证环保',\
+	'399971':'中证传媒','000992':'金融场外','GDAXI_UI':'德国30','HSI5':'恒生指数'}
+	return data[index] if index in data.keys() else None
+	pass
+
+def indexValue(code):
+
+	url = 'http://pdfm2.eastmoney.com/EM_UBG_PDTI_Fast/api/js?id={0}'.format(code)	# eastmoney 接口有点意思，指数后面加了1 代表上证，加 2 代表深证
+	# print(url)
+	response = urllib.request.urlopen(url)
+	lines = response.readlines()
+	index = code
+	if code != 'HSI5' and code != 'GDAXI_UI':
+		index = code[0:len(code)-1]
+	name = indexToName(index)
+	print('{0}\t{1}\t{2}'.format(name,code[0:len(code)-1],str(lines[-1]).split(',')[1]))
+	pass
+
 def main():
-	# # 自由基金
+	# 自由基金
 	fundlist = ['100032','510050','510300','510500','512100','159915','159938','001180','000968','512880','512580','001064','512980'\
 	,'001051','000478','001052','161017','002903','100038','000051','004752'\
 	,'001469','000614','000071','003376','001061','340001','518880']
 	[fundValue(x) for x in fundlist]
 	print('\n')
-	# # 且慢估值
+	# 且慢估值
 	results = fundEval()
 	if results != None and len(results) > 0:
 		print('名称\tPE\tPB\tROE')
 		[print(x) for x in results]
 	print('\n')
-	# # ETF 计划基金
-	# etfPlanList = ['001051','000478','001052','161017','002903','100038','000051','004752']
-	# [fundValue(x) for x in etfPlanList]
+	# ETF 计划基金
+	etfPlanList = ['001051','000478','001052','161017','002903','100038','000051','004752']
+	[fundValue(x) for x in etfPlanList]
 	# 恒生估值
 	HKEval()
+
+	# 指数点数
+	indexlist = ['0009221','0000161','0003001','0009051','0008521','3990062','0009911','3998122','3999752','0008271','3999712','HSI5','GDAXI_UI'\
+	]	# , 恒生和 DAX30
+	[indexValue(x) for x in indexlist]
 	pass
 
 if __name__ == '__main__':
