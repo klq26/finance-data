@@ -1,6 +1,13 @@
 import matplotlib.pyplot as plt
+import matplotlib
 import sys
 import os
+
+#指定默认字体
+matplotlib.rcParams['font.sans-serif'] = ['SimHei']
+matplotlib.rcParams['font.family']='sans-serif'
+#解决负号'-'显示为方块的问题
+matplotlib.rcParams['axes.unicode_minus'] = False
 
 # 命令行参数获取，非必选
 chengben = 0
@@ -62,9 +69,9 @@ for index in range(0,10):
     如果numRows = 3，numCols = 2，那整个绘制图表样式为3X2的图片区域，用坐标表示为（1，1），（1，2），（1，3），（2，1），（2，2），（2，3）。这时，当plotNum = 1时，表示的坐标为（1，1），即第一行第一列的子图；
     '''
     #第一行第一列图形
-    if 1 + index >= 3 * 4:
+    if 1 + index >= 2 * 6:
         continue
-    ax = plt.subplot(3,4, 1 + index)
+    ax = plt.subplot(6,2, 1 + index)
     #选择 ax
     plt.sca(ax)
 
@@ -78,14 +85,14 @@ for index in range(0,10):
     group_labels = indexDates
 
     length = len(name) # 计算标题
-    plt.title(name[(length - 10):(length - 10) + 6])
+    plt.title('中文测试')
     # plt.xlabel('date')
     plt.ylabel('value')
 
-    plt.plot(x1, y1,'b', label='Index Value')
+    plt.plot(x1, y1,'#649BD4', label='Index Value')	# 蓝色 #649BD4
     # plt.xticks(x1, group_labels, rotation=0)
-    plt.plot(x2, y2,'g',label='My Value')
-    plt.plot(x3, y3,'r',label='expect Mininum Value')
+    plt.plot(x2, y2,'#70BF41',label='My Value')	# 绿：#70BF41
+    plt.plot(x3, y3,'#EC5D57',label='expect Mininum Value')	# 红：#EC5D57
 
     # plt.legend(bbox_to_anchor=[0.3, 1])
 # plt.grid()
