@@ -5,7 +5,7 @@ import json
 import re
 
 # 获取基金的单位净值和累积净值
-def fundValue(code):
+def fundValue(code,outputfile):
 	url = 'http://fund.eastmoney.com/f10/F10DataApi.aspx?type=lsjz&code={0}&page=1&per=1'.format(code)
 	response = urllib.request.urlopen(url)
 	string = response.read().decode("utf-8")
@@ -21,7 +21,10 @@ def fundValue(code):
 	value2 = raw_value[1].replace(leftTag2,'').replace(rightTag,'') if len(raw_value) > 1 else 'NA'
 
 	value = value1 if fundUseUnitValueScope(code) else value2
-	print('{0}\t{1}\t{2}\t{3}'.format(date,codeToName(code),code,value))
+	result = '{0}\t{1}\t{2}\t{3}'.format(date,codeToName(code),code,value)
+	print(result)
+	outputfile.write(result + '\n')
+	outputfile.flush()
 	pass
 
 # 根据 code 转换汉字名称
@@ -30,7 +33,7 @@ def codeToName(code):
 	'159915':'创业板','159938':'医药ETF','001180':'医药场外','000968':'养老场外','512880':'证券ETF','512580':'环保ETF',\
 	'001064':'环保场外','512980':'传媒ETF','001469':'金融场外','000614':'德国30','000071':'恒生','003376':'7-10国债',\
 	'001061':'海外债','340001':'可转债','518880':'黄金ETF','001051':'华夏50场外','000478':'建信500场外','001052':'华夏500场外',\
-	'161017':'富国500场外','002903':'广发500场外C','100038':'富国300场外','000051':'华夏300场外','004752':'广发传媒场外','110022':'易方达消费场外','110026':'易方达创业板场外'}
+	'161017':'富国500场外','002903':'广发500场外C','100038':'富国300场外','000051':'华夏300场外','004752':'广发传媒场外','110022':'易方达消费场外','110026':'易方达创业板场外','003765':'广发创业板场外'}
 	return data[code] if code in data.keys() else None
 	pass
 
@@ -40,7 +43,7 @@ def fundUseUnitValueScope(code):
 	return code in scope
 
 # 且慢估值，需要先 Charles 抓包查到 x-sign 放入请求 header 否则无数据
-def fundEval(xsign = '154094125261022527DF628934625B2752F0214C000D5'):
+def fundEval(xsign = '1541302262881B4B5B8BD19FA47475F8AE9A5762E0EE3'):
 	"""
 	# 指导格式
 	"date": 1535385600000,
@@ -109,7 +112,7 @@ def indexToName(index):
 	return data[index] if index in data.keys() else None
 	pass
 
-def indexValue(code):
+def indexValue(code,outputfile):
 
 	url = 'http://pdfm2.eastmoney.com/EM_UBG_PDTI_Fast/api/js?id={0}'.format(code)	# eastmoney 接口有点意思，指数后面加了1 代表上证，加 2 代表深证
 	# print(url)
@@ -119,21 +122,28 @@ def indexValue(code):
 	if code != 'HSI5' and code != 'GDAXI_UI':
 		index = code[0:len(code)-1]
 	name = indexToName(index)
-	print('{0}\t{1}\t{2}'.format(name,code[0:len(code)-1],str(lines[-1]).split(',')[1]))
+	result = '{0}\t{1}\t{2}'.format(name,code[0:len(code)-1],str(lines[-1]).split(',')[1])
+	print(result)
+	outputfile.write(result + '\n')
+	outputfile.flush()
 	pass
 
 def main():
+
+	outputfile = open('result.txt','w',encoding='utf-8')
+
 	# 自由基金
 	fundlist = ['100032','510050','510300','510500','512100','159915','159938','001180','000968','512880','512580','001064','512980'\
-	,'001051','000478','001052','161017','002903','100038','000051','004752','110022','110026'\
+	,'001051','000478','001052','161017','002903','100038','000051','004752','110022','110026','003765'\
 	,'001469','000614','000071','003376','001061','340001','518880']
-	[fundValue(x) for x in fundlist]
+	[fundValue(x,outputfile) for x in fundlist]
 	print('\n')
 	# 且慢估值
 	results = fundEval()
 	if results != None and len(results) > 0:
 		print('名称\tPE\tPB\tROE')
 		[print(x) for x in results]
+		[outputfile.write(x + '\n') for x in results]
 	print('\n')
 	# 恒生估值
 	HKEval()
@@ -141,7 +151,7 @@ def main():
 	# 指数点数
 	indexlist = ['0009221','0000011','0000161','0003001','0009051','0008521','0009921','3999752','3999712','0009911','3998122','0008271','3990062','0009901','HSI5','GDAXI_UI'\
 	]	# , 恒生和 DAX30
-	[indexValue(x) for x in indexlist]
+	[indexValue(x,outputfile) for x in indexlist]
 	pass
 
 if __name__ == '__main__':
