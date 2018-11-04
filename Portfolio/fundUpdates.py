@@ -43,7 +43,7 @@ def fundUseUnitValueScope(code):
 	return code in scope
 
 # 且慢估值，需要先 Charles 抓包查到 x-sign 放入请求 header 否则无数据
-def fundEval(xsign = '1541302262881B4B5B8BD19FA47475F8AE9A5762E0EE3'):
+def fundEval(xsign = '1541314696651B112477D29EB72C620C9DD32017B2529'):
 	"""
 	# 指导格式
 	"date": 1535385600000,
@@ -91,7 +91,7 @@ def fundEval(xsign = '1541302262881B4B5B8BD19FA47475F8AE9A5762E0EE3'):
 
 # 且慢估值的提取范围和顺序范围
 def fundEvalScope():
-	return ['中证红利','上证50','沪深300','中证500','中证1000','创业板指','全指医药','全指医药','养老产业','证券公司','中证环保','中证环保','中证传媒','上证50','中证500','中证500','中证500','中证500','沪深300','沪深300','中证传媒']
+	return ['中证红利','上证50','沪深300','中证500','中证1000','创业板指','全指医药','全指医药','养老产业','证券公司','中证环保','中证环保','中证传媒','上证50','中证500','中证500','中证500','中证500','沪深300','沪深300','中证传媒','中证消费','创业板指','创业板指']
 	pass
 
 # 恒生估值
@@ -138,6 +138,7 @@ def main():
 	,'001469','000614','000071','003376','001061','340001','518880']
 	[fundValue(x,outputfile) for x in fundlist]
 	print('\n')
+	outputfile.write('\n')
 	# 且慢估值
 	results = fundEval()
 	if results != None and len(results) > 0:
@@ -145,6 +146,7 @@ def main():
 		[print(x) for x in results]
 		[outputfile.write(x + '\n') for x in results]
 	print('\n')
+	outputfile.write('\n')
 	# 恒生估值
 	HKEval()
 
