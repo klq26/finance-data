@@ -6,8 +6,8 @@ import os
 
 auth('13810650842','123456a')
 
-start_date = '2018-10-24'
-end_date = '2018-11-01'
+start_date = '2018-11-02'
+end_date = '2018-11-26'
 
 df = DataFrame()
 
@@ -19,8 +19,9 @@ count = len(days)
 array = list()
 
 for code in industry_codes:
-    if os.path.exists('IndustryData\{0}.csv'.format(code)):
-        df = DataFrame.from_csv('IndustryData\{0}.csv'.format(code),sep='\t',encoding='utf-8')
+    path = os.getcwd() + '/IndustryData/{0}.csv'.format(code)
+    if os.path.exists(path):
+        df = DataFrame.from_csv(path, sep='\t',encoding='utf-8')
         array.append(df.tail(count))
 
 file = open('result.txt','a+')

@@ -11,8 +11,11 @@ df = DataFrame()
 industry_codes = ['HY001','HY002','HY003','HY004','HY005','HY006','HY007','HY008','HY010']  # HY007 + HY010 = 金融地产，HY009 基本没有公司
 
 for code in industry_codes:
-    if os.path.exists('IndustryData\{0}.csv'.format(code)):
-        df = DataFrame.from_csv('IndustryData\{0}.csv'.format(code),sep='\t',encoding='utf-8')
+    # os.getcwd() 可以打印当前路径，建议在 updateIndustryPEPB.py 所在的文件夹下运行脚本
+
+    path = os.getcwd() + '/IndustryData/{0}.csv'.format(code)
+    if os.path.exists(path):
+        df = DataFrame.from_csv(path,sep='\t',encoding='utf-8')
         days = get_trade_days(start_date=df.date.values[-1].replace('/',''), end_date=datetime.date.today())
         days = list(days)
         days.remove(days[0])    # 去掉第一个交易日（因为来自 dataframe 说明有数据）
@@ -68,4 +71,7 @@ for code in industry_codes:
             series = pandas.Series([day.strftime('%Y/%m/%d'),value,round(pe_index,2),round(pb_index,2)], index=['date','value','pe','pb'])
             print(series)
             df = df.append(series,ignore_index=True)
-    df.to_csv('IndustryData\{0}.csv'.format(code),sep='\t',columns=['date','value','pe','pb'],encoding='utf-8')
+    else:
+        print('{0} 无数据'.format(code))
+    if len(df) > 0:
+        df.to_csv(path, sep='\t',columns=['date','value','pe','pb'],encoding='utf-8')
