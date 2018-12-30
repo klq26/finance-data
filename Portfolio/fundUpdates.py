@@ -1,4 +1,4 @@
-# coding=utf-8
+﻿# coding=utf-8
 
 import urllib.request
 import json
@@ -43,7 +43,7 @@ def fundUseUnitValueScope(code):
 	return code in scope
 
 # 且慢估值，需要先 Charles 抓包查到 x-sign 放入请求 header 否则无数据
-def fundEval(xsign = '1544076757648D56FAEA107EA1B9ECC179F49D924BFB7'):
+def fundEval(xsign = '15461371589378B6B745FBD203F537DDEF90033EBCF5D'):
 	"""
 	# 指导格式
 	"date": 1535385600000,
