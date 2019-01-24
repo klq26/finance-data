@@ -2,20 +2,22 @@ from jqdatasdk import *
 from pandas import *
 import numpy
 import os
+import sys
 
 auth('13810650842','123456a')
 
-index = '000002.XSHG'   # 注意：如果算上证指数，需要传入 000002.XSHG。因为 000001 包含 B 股，如 900923，900929 等
+index = '000016.XSHG'   # 注意：如果算上证指数，需要传入 000002.XSHG。因为 000001 包含 B 股，如 900923，900929 等
 
-date = '2018-10-15'
+date = '2019-01-21'
 industry_codes = ['HY001','HY002','HY003','HY004','HY005','HY006','HY007','HY008','HY009','HY010','HY011']
 industry_names = ['能源','材料','工业','可选消费','必选消费','医药卫生','金融','信息技术','电信服务','公用事业','地产']
 # chuangyeban = get_index_weights('399006.XSHE',date=date)
 
 # 初始化行业信息（有缓存）
 def initIndustryData(data=date):
-    if os.path.exists('IndustryData\JoinQuaintIndustry.txt'):
-        return DataFrame.from_csv('IndustryData\JoinQuaintIndustry.txt',sep='\t',encoding='utf-8')
+    path = os.getcwd()+ '/IndustryData/JoinQuaintIndustry.txt'
+    if os.path.exists(path):
+        return DataFrame.from_csv(path,sep='\t',encoding='utf-8')
     df = DataFrame(data=None,columns=['code','name','HY_CODE','HY_NAME'])
     for i in range(0,len(industry_codes)):
         hycode = industry_codes[i]
@@ -36,20 +38,25 @@ def initIndustryData(data=date):
         hy['HY_CODE'] = hycode
         hy['HY_NAME'] = hyname
         df = df.append(hy,ignore_index=True)
-    df.to_csv('IndustryData\JoinQuaintIndustry.txt',sep='\t',columns=['code','name','HY_CODE','HY_NAME'],encoding='utf-8')
+    df.to_csv(path, sep='\t',columns=['code','name','HY_CODE','HY_NAME'],encoding='utf-8')
     return df
 
 # 获取指数权重（有缓存）
 def indexWeights(code,date):
-    path = 'indexWeights\code_{0}.txt'.format(code)
+    path = os.getcwd()+'/indexWeights/code_{0}.txt'.format(code)
     if os.path.exists(path):
         print('weight for {0} from cache.'.format(code))
         return DataFrame.from_csv(path,sep='\t',encoding='utf-8')
     df = get_index_weights(code,date=date)
-    df.to_csv('indexWeights\code_{0}.txt'.format(code),sep='\t',columns=['display_name','date','weight'],encoding='utf-8')
+    df.to_csv(path, sep='\t',columns=['display_name','date','weight'],encoding='utf-8')
     return df
 
 # ★运行★
+
+if len(sys.argv) > 1:
+    index = sys.argv[1]
+    print(index)
+
 industrys = initIndustryData(date)
 print(index)
 weights = indexWeights(index,date)  # https://www.joinquant.com/help/api/help?name=index 查询指数
