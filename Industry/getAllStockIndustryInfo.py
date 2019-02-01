@@ -14,7 +14,7 @@ industry_codes = ['HY001','HY002','HY003','HY004','HY005','HY006','HY007','HY008
 industry_names = ['能源','材料','工业','可选消费','必选消费','医药卫生','金融','信息技术','电信服务','公用事业','地产']
 
 # 用来复制粘贴到命令行去使用的 code 值参考
-indexs_list = ['000002.XSHG','000016.XSHG','000300.XSHG','000905.XSHG','000827.XSHG','000852.XSHG','000922.XSHG','000991.XSHG','000992.XSHG','399006.XSHE','399812.XSHE','399971.XSHE','399975.XSHE']
+indexs_list = ['000002.XSHG','000016.XSHG','000300.XSHG','000905.XSHG','000852.XSHG','399006.XSHE','000922.XSHG','000991.XSHG','000992.XSHG','000827.XSHG','399812.XSHE','399971.XSHE','399975.XSHE']
 
 # 初始化行业信息（有缓存）
 def initIndustryData(date=today):
