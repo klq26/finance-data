@@ -1,4 +1,4 @@
-# coding=utf-8
+﻿# coding=utf-8
 
 import urllib.request
 import json
@@ -43,7 +43,7 @@ def fundUseUnitValueScope(code):
 	return code in scope
 
 # 且慢估值，需要先 Charles 抓包查到 x-sign 放入请求 header 否则无数据
-def fundEval(xsign = '155350536251023B64BEF3149D4BB61A770F22D0E0688'):
+def fundEval(xsign = '15536461335300C879BA7729022E9DCB5775D954D5E3D'):
 	"""
 	# 指导格式
 	"date": 1535385600000,
@@ -151,7 +151,7 @@ def main():
 	HKEval()
 
 	# 指数点数
-	indexlist = ['0009221','0000011','0000161','0003001','0009051','0008521','0009921','3999752','3999712','0009911','3998122','0008271','3990062','0009901','HSI5','GDAXI_UI'\
+	indexlist = ['0000161','0003001','0009051','0008521','3990062','0009221','3998122','0009911','3999712','0008271','0009901','0009921','3999752','HSI5','GDAXI_UI'\
 	]	# , 恒生和 DAX30
 	[indexValue(x,outputfile) for x in indexlist]
 	pass
