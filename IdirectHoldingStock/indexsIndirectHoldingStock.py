@@ -53,9 +53,9 @@ def allUniqueStocks(indexs,indexnames):
         print(code + ' ' + indexnames[count] + ' 入池股票数：' + str(total))
         count = count + 1
         total = 0
-    print('入池股票总数:\t{0}'.format(len(stocks_pool)))
     # 股票代码排序
-    stocks_pool = sorted(stocks_pool) 
+    stocks_pool = sorted(stocks_pool)
+    print('入池股票总数:\t{0}'.format(len(stocks_pool)))
     # 市值
     q = query(
         valuation.market_cap,
@@ -65,8 +65,9 @@ def allUniqueStocks(indexs,indexnames):
     ).filter(
         valuation.code.in_(stocks_pool),
     )
-    marketcap = get_fundamentals(q,statDate=datetime.now())
+    marketcap = get_fundamentals(q)
     marketcap = marketcap.sort_values(by="code",ascending= True)
+    print('市值数据总数：\t{0}'.format(len(marketcap)))
     # 名字
     names = []
     for code in stocks_pool:
@@ -79,12 +80,23 @@ def allUniqueStocks(indexs,indexnames):
     df = df.sort_values(by="code",ascending= True)
     path = os.getcwd() + 'holdingStocks.csv'
     df.to_csv(path, sep='\t',encoding='utf-8')
-    
-    
-# run
-indexnames = ['上证50','沪深300','中证500','中证1000','创业板','中证红利','养老产业','全指医药','中证传媒','中证环保','全指消费','金融地产','证券公司']
-indexs = ['000016.XSHG','000300.XSHG','000905.XSHG','000852.XSHG','399006.XSHE','000922.XSHG', \
+
+
+# 确定品种
+
+# ETF 计划
+ETFNames = ['上证50','沪深300','中证500','中证1000','创业板','中证红利','养老产业','全指医药','中证传媒','中证环保','全指消费','金融地产','证券公司']
+ETFIndexs = ['000016.XSHG','000300.XSHG','000905.XSHG','000852.XSHG','399006.XSHE','000922.XSHG', \
         '399812.XSHE','000991.XSHG','399971.XSHE','000827.XSHG','000990.XSHG','000992.XSHG','399975.XSHE']
+
+# 螺丝钉计划
+NailNames = ['基本面50','300价值','深证基本面60','深证基本面120']
+NailIndexs = ['000925.XSHG','000919.XSHG','399701.XSHE','399702.XSHE']
+
+# 开始运行
+
+indexnames = NailNames
+indexs = NailIndexs
 
 allUniqueStocks(indexs,indexnames)
 
