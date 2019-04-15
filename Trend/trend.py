@@ -11,7 +11,7 @@ class trend(Enum):
     fall   = 3		# 下跌
 
 # 加载数据
-df = pandas.read_csv('../MockTradeSystem/000300.csv',sep=',', names=['date','value'],encoding='utf-8')
+df = pandas.read_csv('../MockTradeSystem/DAX30.csv',sep=',', names=['date','value'],encoding='utf-8')
 
 # 初始化
 trend = trend.unknown
