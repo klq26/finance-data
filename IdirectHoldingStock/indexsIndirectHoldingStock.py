@@ -8,8 +8,6 @@ import os
 
 auth('13810650842','123456a')
 
-index = '000016.XSHG'
-
 def indexWeightsAndMarketCap(index):
     # 取出成分股
     stocks = get_index_stocks(index)
@@ -36,7 +34,7 @@ def indexWeightsAndMarketCap(index):
     order = ['code','name','market_cap','weight']
     df = df[order]
     print(df)
-    path = os.getcwd() + '{0}.csv'.format(index)
+    path = os.path.join(os.getcwd(),'ETF计划持股','{0}.csv'.format(index))
     df.to_csv(path,columns=['code','name','market_cap','weight'], sep='\t',encoding='utf-8')
 
 def allUniqueStocks(indexs,indexnames):
@@ -95,8 +93,8 @@ NailIndexs = ['000925.XSHG','000919.XSHG','399701.XSHE','399702.XSHE']
 
 # 开始运行
 
-indexnames = NailNames
-indexs = NailIndexs
+indexnames = ETFNames
+indexs = ETFIndexs
 
 allUniqueStocks(indexs,indexnames)
 

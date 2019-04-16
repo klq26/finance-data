@@ -3,6 +3,7 @@
 import urllib.request
 import json
 import re
+import os
 
 # 获取基金的单位净值和累积净值
 def fundValue(code,outputfile):
