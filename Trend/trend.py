@@ -1,4 +1,4 @@
-#encoding = utf-8
+#encoding=utf-8
 
 from pandas import *
 from enum import Enum
@@ -57,7 +57,7 @@ def printTrend(name):
 				# 行情确认下跌
 				#print('{0} 行情下跌确认'.format(today))
 				trend = trendType.fall
-		
+
 		# 行情反转
 		if trend == trendType.rise and current / newHigh <= 1 - waveThreshold:
 			# 上涨趋势转型为下降趋势
@@ -85,7 +85,7 @@ def printTrend(name):
 			newLow = current
 			newLowDate = today
 			trend = trendType.rise
-		
+
 	# 收尾判断最新一日的情况
 	print('收盘区间: {0} ~ {1}\t开始:{2}\t结束:{3}\t幅度:{4}%\t持有期 {5} 天'.format(startDate.strftime('%Y/%m/%d'), today.strftime('%Y/%m/%d'), round(start,2),round(current,2),round((current/start-1)*100,2),(today - startDate).days))
 	result.append('{0}\t{1}\t{2}\t{3}\t{4}%\t{5}\n'.format(startDate.strftime('%Y/%m/%d'), today.strftime('%Y/%m/%d'), round(start,2),round(current,2),round((current/start-1)*100,2),(today - startDate).days))
@@ -131,6 +131,3 @@ while shouldContinue:
 		#print('\n')
 		outputfile.flush()
 		outputfile.close()
-
-		
-		
