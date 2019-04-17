@@ -22,4 +22,4 @@ print(df_rise.幅度.median())	# 中位数
 print(df_rise.持有期.mean())	# 平均数
 
 count = len(df_rise.loc[df_rise['持有期'] > 150])/len(df_rise)
-print(count)
+df.to_html('test.html')

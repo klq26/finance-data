@@ -20,7 +20,7 @@ def indexToName(index):
 	return data[index] if index in data.keys() else '未知'
 	pass
 
-def printTrend(name):
+def printTrend(name,rate):
 	# 返回结果集合
 	result = []
 	result.append('开始日期\t结束日期\t开始\t结束\t幅度\t持有期\n')
@@ -34,7 +34,9 @@ def printTrend(name):
 	trend = trendType.unknown
 	money = 10000	# 初始资金
 	cash = money
-	waveThreshold = 0.15	# ±15% 的变化标记为行情反转的阈值
+	waveThreshold = rate * 0.01
+	if waveThreshold == 0:
+		waveThreshold = 0.15	# ±15% 的变化标记为行情反转的阈值
 	current = df.value.values[0]
 	today = datetime.strptime(df.date.values[0],'%Y/%m/%d')
 	start = df.value.values[0]
@@ -125,13 +127,15 @@ while shouldContinue:
 	print('{0}\t{1}'.format(9999,'全部'))
 	# 等待用户操作
 	choice = int(input())
+	print('预期幅度是？例如 15 表示 ±15%')
+	rate = float(input())
 	if choice == 9999:
 		for name in datanames:
-			results = printTrend(name)
+			results = printTrend(name, rate)
 			# 输出到文件
 			code = name.split('.')[0]
 			name = indexToName(code)
-			outputfile = open(os.path.join(os.getcwd(),'trend_{0}_{1}.txt'.format(name,code)),'w+',encoding='utf-8')
+			outputfile = open(os.path.join(os.getcwd(),'趋势_{0}_{1}_幅度_{2}.txt'.format(name,code,rate)),'w+',encoding='utf-8')
 			if results != None and len(results) > 0:
 				#[print(x) for x in results]
 				[outputfile.write(x) for x in results]
@@ -147,11 +151,11 @@ while shouldContinue:
 		shouldContinue = False
 	else:
 		print(datanames[choice] + os.linesep)
-		results = printTrend(datanames[choice])
+		results = printTrend(datanames[choice],rate)
 		# 输出到文件
 		code = datanames[choice].split('.')[0]
 		name = indexToName(code)
-		outputfile = open(os.path.join(os.getcwd(),'trend_{0}_{1}.txt'.format(name,code)),'w+',encoding='utf-8')
+		outputfile = open(os.path.join(os.getcwd(),'trend_{0}_{1}_幅度_{2}.txt'.format(name,code,rate)),'w+',encoding='utf-8')
 		if results != None and len(results) > 0:
 			#[print(x) for x in results]
 			[outputfile.write(x) for x in results]
