@@ -11,6 +11,15 @@ class trendType(Enum):
     rise   = 2 		# 上涨
     fall   = 3		# 下跌
 
+# 根据 code 转换汉字名称
+def indexToName(index):
+	data = {'000001':'上证指数','399106':'深证综指','000016':'上证50','000300':'沪深300','399905':'中证500','000852':'中证1000',\
+	'399006':'创业板','000922':'中证红利','399812':'养老产业','000991':'全指医药','399971':'中证传媒',\
+	'000827':'中证环保','000990':'中证消费','000992':'全指金融','399975':'证券公司','HSI':'恒生指数','HSCEI':'恒生国企指数','DAX30':'德国30',\
+	'FTSE100':'英国富时100','CAC40':'法国CAC40','DJI':'道琼斯工业','NASDAQ':'纳斯达克','SPX500':'标普500','USDI':'美元指数','10YEAR':'10年期国债'}
+	return data[index] if index in data.keys() else '未知'
+	pass
+
 def printTrend(name):
 	# 返回结果集合
 	result = []
@@ -113,9 +122,25 @@ while shouldContinue:
 		name = datanames[i]
 		print('{0}\t{1}'.format(i,name))
 	print('{0}\t{1}'.format(-1,'退出'))
+	print('{0}\t{1}'.format(9999,'全部'))
 	# 等待用户操作
 	choice = int(input())
-	if (choice < 0 and choice != -1) or choice >= len(datanames):
+	if choice == 9999:
+		for name in datanames:
+			results = printTrend(name)
+			# 输出到文件
+			code = name.split('.')[0]
+			name = indexToName(code)
+			outputfile = open(os.path.join(os.getcwd(),'trend_{0}_{1}.txt'.format(name,code)),'w+',encoding='utf-8')
+			if results != None and len(results) > 0:
+				#[print(x) for x in results]
+				[outputfile.write(x) for x in results]
+			#print('\n')
+			outputfile.flush()
+			outputfile.close()
+		# 全部刷新之后退出
+		exit()
+	elif (choice < 0 and choice != -1) or choice >= len(datanames):
 		print('索引越界，请重新数据' + os.linesep)
 	elif choice == -1:
 		print('退出程序')
@@ -124,7 +149,9 @@ while shouldContinue:
 		print(datanames[choice] + os.linesep)
 		results = printTrend(datanames[choice])
 		# 输出到文件
-		outputfile = open(os.path.join(os.getcwd(),'{0}_result.txt'.format(datanames[choice])),'w+',encoding='utf-8')
+		code = datanames[choice].split('.')[0]
+		name = indexToName(code)
+		outputfile = open(os.path.join(os.getcwd(),'trend_{0}_{1}.txt'.format(name,code)),'w+',encoding='utf-8')
 		if results != None and len(results) > 0:
 			#[print(x) for x in results]
 			[outputfile.write(x) for x in results]
