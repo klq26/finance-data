@@ -16,7 +16,7 @@ def indexToName(index):
 	data = {'000001':'上证指数','399106':'深证综指','000016':'上证50','000300':'沪深300','399905':'中证500','000852':'中证1000',\
 	'399006':'创业板','000922':'中证红利','399812':'养老产业','000991':'全指医药','399971':'中证传媒',\
 	'000827':'中证环保','000990':'中证消费','000992':'全指金融','399975':'证券公司','HSI':'恒生指数','HSCEI':'恒生国企指数','DAX30':'德国30',\
-	'FTSE100':'英国富时100','CAC40':'法国CAC40','DJI':'道琼斯工业','NASDAQ':'纳斯达克','SPX500':'标普500','USDI':'美元指数','10YEAR':'10年期国债'}
+	'FTSE100':'英国富时100','CAC40':'法国CAC40','DJI':'道琼斯工业','NASDAQ':'纳斯达克','SPX500':'标普500','USDI':'美元指数','10YEAR':'10年期国债','SPSIOPTR':'英为标普油气TR'}
 	return data[index] if index in data.keys() else '未知'
 	pass
 
@@ -123,19 +123,30 @@ while shouldContinue:
 	for i in range(0,len(datanames)):
 		name = datanames[i]
 		print('{0}\t{1}'.format(i,name))
-	print('{0}\t{1}'.format(-1,'退出'))
-	print('{0}\t{1}'.format(9999,'全部'))
+	print('{0}\t{1}'.format('q','退出'))
+	print('{0}\t{1}'.format('all','全部'))
 	# 等待用户操作
-	choice = int(input())
+	str = input()
+	choice = 0
+	if str.isdigit(): # 是否为数字
+		choice = int(str)
+	elif str == 'all':
+		choice = 99999
+	elif str == 'q':
+		exit()
 	print('预期幅度是？例如 15 表示 ±15%')
 	rate = float(input())
-	if choice == 9999:
+	if choice == 99999:
+		# 文件夹
+		dirpath = os.path.join(os.getcwd(),'{0}'.format(round(rate,0)))
+		if not os.path.exists(dirpath):
+			os.mkdir(dirpath)
 		for name in datanames:
 			results = printTrend(name, rate)
 			# 输出到文件
 			code = name.split('.')[0]
 			name = indexToName(code)
-			outputfile = open(os.path.join(os.getcwd(),'趋势_{0}_{1}_幅度_{2}.txt'.format(name,code,rate)),'w+',encoding='utf-8')
+			outputfile = open(os.path.join(dirpath,'{0}_{1}.txt'.format(name,code,rate)),'w+',encoding='utf-8')
 			if results != None and len(results) > 0:
 				#[print(x) for x in results]
 				[outputfile.write(x) for x in results]
@@ -144,7 +155,7 @@ while shouldContinue:
 			outputfile.close()
 		# 全部刷新之后退出
 		exit()
-	elif (choice < 0 and choice != -1) or choice >= len(datanames):
+	elif choice < 0 or choice >= len(datanames):
 		print('索引越界，请重新数据' + os.linesep)
 	elif choice == -1:
 		print('退出程序')
@@ -155,10 +166,15 @@ while shouldContinue:
 		# 输出到文件
 		code = datanames[choice].split('.')[0]
 		name = indexToName(code)
-		outputfile = open(os.path.join(os.getcwd(),'trend_{0}_{1}_幅度_{2}.txt'.format(name,code,rate)),'w+',encoding='utf-8')
+		# 文件夹
+		dirpath = os.path.join(os.getcwd(),'{0}'.format(round(rate,0)))
+		if not os.path.exists(dirpath):
+			os.mkdir(dirpath)
+		outputfile = open(os.path.join(dirpath,'{0}_{1}.txt'.format(name,code,rate)),'w+',encoding='utf-8')
 		if results != None and len(results) > 0:
 			#[print(x) for x in results]
 			[outputfile.write(x) for x in results]
 		#print('\n')
 		outputfile.flush()
 		outputfile.close()
+
