@@ -8,7 +8,7 @@
 	<script src="data.js"></script>
 </head>
 <body bgcolor='#333333'>
-    <div id="main" style="width:1280px;height:1680px;"></div>
+    <div id="main" style="width:1680px;height:1680px;"></div>
     <script>
 		var myChart = echarts.init(document.getElementById('main'));
 		var data = getPortfolioData();
@@ -37,14 +37,14 @@
 						borderWidth: 2
 					},
 					label: {
-						rotate: 'tangential',
+						align : 'center',
 						fontSize : 20,
 					}
 				}, {
 					r0: '35%',
 					r: '70%',
 					label: {
-						align: 'right',
+						align: 'center',
 						fontSize : 20,
 					}
 				}, {
