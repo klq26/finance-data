@@ -7,23 +7,22 @@
     <script src="lib/echarts.min.js"></script>
 	<script src="data.js"></script>
 </head>
-<body>
-    <div id="main" style="width: 1280px;height:1280px;"></div>
+<body bgcolor='#333333'>
+    <div id="main" style="width:1280px;height:1680px;"></div>
     <script>
 		var myChart = echarts.init(document.getElementById('main'));
 		var data = getPortfolioData();
 		option = {
 			title: {
 				text: '康力泉个人资产配置',
-				subtext: 'Source: https://worldcoffeeresearch.org/work/sensory-lexicon/',
 				textStyle: {
-					fontSize: 14,
+					fontSize: 36,
+					color: '#FFFFFF',
 					align: 'center'
 				},
 				subtextStyle: {
 					align: 'center'
 				},
-				sublink: 'https://worldcoffeeresearch.org/work/sensory-lexicon/'
 			},
 			series: {
 				type: 'sunburst',
@@ -38,13 +37,15 @@
 						borderWidth: 2
 					},
 					label: {
-						rotate: 'tangential'
+						rotate: 'tangential',
+						fontSize : 20,
 					}
 				}, {
 					r0: '35%',
 					r: '70%',
 					label: {
-						align: 'right'
+						align: 'right',
+						fontSize : 20,
 					}
 				}, {
 					r0: '70%',
@@ -52,6 +53,7 @@
 					label: {
 						position: 'outside',
 						padding: 3,
+						fontSize : 20,
 						silent: false
 					},
 					itemStyle: {
