@@ -4,7 +4,7 @@ var outSideMatureColor = {color: '#ebb40f'};	// 海外成熟（德国）
 var universalGoodsColor = {color: '#dd4c51'};	// 商品（黄金，白银，原油）
 var bondColor = {color: '#be8663'};				// 债券（可转债，美元债）
 var cashColor = {color: '#f7a128'};				// 低风险理财（货币基金，地产项目）
-var nailPortfolioColor = {color: '#8b8c90'};	// 螺丝钉投资组合
+var nailPortfolioColor = {color: '#009ad6'};	// 螺丝钉投资组合
 
 /* 金融品种 */
 function financeKind(name, value, itemStyle, children)
@@ -26,36 +26,37 @@ function sumFinanceKindValue(array)
 function getAStock()
 {
 	// 大盘股
-	var a1 = new financeKind('上证50',0.60,aStockColor,null);
-	var a2 = new financeKind('沪深300',5.36,aStockColor,null);
+	var a1 = new financeKind('上证50',1.57,aStockColor,null);
+	var a2 = new financeKind('沪深300',5.58,aStockColor,null);
 	// 中小盘股
-	var b1 = new financeKind('中证500',17.18,aStockColor,null);
-	var b2 = new financeKind('中证1000',1.1,aStockColor,null);
-	var b3 = new financeKind('创业板',3.13,aStockColor,null);
+	var b1 = new financeKind('中证500',15.57,aStockColor,null);
+	var b2 = new financeKind('中证1000',1.45,aStockColor,null);
+	var b3 = new financeKind('创业板',2.79,aStockColor,null);
 	// 红利价值
-	var c1 = new financeKind('中证红利',9.84,aStockColor,null);
+	var c1 = new financeKind('中证红利',11.38,aStockColor,null);
 	// 行业股
-	var d1 = new financeKind('养老产业',7.36,aStockColor,null);
-	var d2 = new financeKind('全指医药',6.74,aStockColor,null);
-	var d3 = new financeKind('中证传媒',4.46,aStockColor,null);
-	var d4 = new financeKind('中证环保',4.42,aStockColor,null);
-	var d5 = new financeKind('全指消费',0.76,aStockColor,null);
-	var d6 = new financeKind('金融地产',1.21,aStockColor,null);
-	var d7 = new financeKind('证券公司',0.68,aStockColor,null);
+	var d1 = new financeKind('养老产业',6.74,aStockColor,null);
+	var d2 = new financeKind('全指医药',6.06,aStockColor,null);
+	var d3 = new financeKind('中证传媒',3.95,aStockColor,null);
+	var d4 = new financeKind('中证环保',4.01,aStockColor,null);
+	var d5 = new financeKind('全指消费',0.00,aStockColor,null);
+	var d6 = new financeKind('金融地产',1.17,aStockColor,null);
+	var d7 = new financeKind('证券公司',0.60,aStockColor,null);
 	// 螺丝钉组合定投
-	var e1 = new financeKind('短融债',0.43,nailPortfolioColor,null);
-	var e2 = new financeKind('香港中小',0.44,nailPortfolioColor,null);
-	var e3 = new financeKind('上证50AH',0.32,nailPortfolioColor,null);
-	var e4 = new financeKind('中证红利',0.36,nailPortfolioColor,null);
-	var e5 = new financeKind('500低波动',0.04,nailPortfolioColor,null);
-	var e6 = new financeKind('300价值',0.19,nailPortfolioColor,null);
-	var e7 = new financeKind('基本面120',0.05,nailPortfolioColor,null);
+	var e1 = new financeKind('短融债',0.00,nailPortfolioColor,null);
+	var e2 = new financeKind('医药100',0.09,nailPortfolioColor,null);
+	var e3 = new financeKind('香港中小',1.12,nailPortfolioColor,null);
+	var e4 = new financeKind('上证50AH',0.31,nailPortfolioColor,null);
+	var e5 = new financeKind('中证红利',1.60,nailPortfolioColor,null);
+	var e6 = new financeKind('500低波动',0.62,nailPortfolioColor,null);
+	var e7 = new financeKind('300价值',0.96,nailPortfolioColor,null);
+	var e8 = new financeKind('基本面120',0.71,nailPortfolioColor,null);
 
 	var A1_subKind = [a1,a2];
 	var B1_subKind = [b1,b2,b3];
 	var C1_subKind = [c1];
 	var D1_subKind = [d1,d2,d3,d4,d5,d6,d7];
-	var E1_subKind = [e1,e2,e3,e4,e5,e6,e7];
+	var E1_subKind = [e1,e2,e3,e4,e5,e6,e7,e8];
 	var A1 = new financeKind('大盘股',sumFinanceKindValue(A1_subKind),aStockColor,A1_subKind);
 	var B1 = new financeKind('中小盘股',sumFinanceKindValue(B1_subKind),aStockColor,B1_subKind);
 	var C1 = new financeKind('红利价值',sumFinanceKindValue(C1_subKind),aStockColor,C1_subKind);
@@ -71,9 +72,9 @@ function getAStock()
 function getOutsideNew()
 {
 	// 香港
-	var e1 = new financeKind('恒生',0.53,outSideNewColor,null);
+	var e1 = new financeKind('恒生',0.52,outSideNewColor,null);
 	// 海外互联
-	var f1 = new financeKind('海外互联网',1.09,outSideNewColor,null);
+	var f1 = new financeKind('海外互联网',1.97,outSideNewColor,null);
 
 	var E1_subKind = [e1];
 	var F1_subKind = [f1];
@@ -88,7 +89,7 @@ function getOutsideNew()
 /** 海外成熟 */
 function getOutsideMature()
 {
-	var g1 = new financeKind('德国30',2.59,outSideMatureColor,null);
+	var g1 = new financeKind('德国30',2.65,outSideMatureColor,null);
 
 	var G1_subKind = [g1];
 	var G1 = new financeKind('海外成熟',sumFinanceKindValue(G1_subKind),outSideMatureColor,G1_subKind);
@@ -101,8 +102,8 @@ function getOutsideMature()
 /** 商品 */
 function getUniversalGoods()
 {
-	var h1 = new financeKind('原油',1.54,universalGoodsColor,null);
-	var h2 = new financeKind('黄金',0.48,universalGoodsColor,null);
+	var h1 = new financeKind('原油',1.32,universalGoodsColor,null);
+	var h2 = new financeKind('黄金',0.53,universalGoodsColor,null);
 
 	var H1_subKind = [h1,h2];
 	var H1 = new financeKind('商品',sumFinanceKindValue(H1_subKind),universalGoodsColor,H1_subKind);
@@ -116,7 +117,7 @@ function getUniversalGoods()
 function getBond()
 {
 	// 国内债券
-	var i1 = new financeKind('可转债',3.25,bondColor,null);
+	var i1 = new financeKind('可转债',4.7,bondColor,null);
 
 	var I1_subKind = [i1];
 	var I1 = new financeKind('国内债券',sumFinanceKindValue(I1_subKind),bondColor,I1_subKind);
@@ -130,7 +131,7 @@ function getBond()
 function getCash()
 {
 	// 货币基金
-	var k1 = new financeKind('货币基金',25.86,cashColor,null);
+	var k1 = new financeKind('货币基金',22.04,cashColor,null);
 
 	var K1_subKind = [k1];
 	var K1 = new financeKind('低风险理财',sumFinanceKindValue(K1_subKind),cashColor,K1_subKind);
