@@ -44,7 +44,7 @@ def fundUseUnitValueScope(code):
 	return code in scope
 
 # 且慢估值，需要先 Charles 抓包查到 x-sign 放入请求 header 否则无数据
-def fundEval(xsign = '15563237701159AA2424EBC13739C43D7B16575ABB049'):
+def fundEval(xsign = '1560049840629AE123791B6F5FA57FAE773036A4648AF'):
 	"""
 	# 指导格式
 	"date": 1535385600000,
@@ -133,7 +133,7 @@ def main():
 
 	outputfile = open('result.txt','w',encoding='utf-8')
 
-	# 自由基金
+	# 自有基金
 	fundlist = ['100032','510050','510300','100038','510500','161017','512100','159915','110026','159938','001180','000968','512880','512580','001064','512980'\
 	,'004752','110022','001469','000614','000071','164906','003376','001061','340001','519977','110027','162411','518880']
 	[fundValue(x,outputfile) for x in fundlist]
