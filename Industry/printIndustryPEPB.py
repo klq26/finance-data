@@ -6,8 +6,8 @@ import os
 
 auth('13810650842','123456a')
 
-start_date = '2019-01-30'
-end_date = '2019-03-04'
+start_date = '2019-07-01'
+end_date = '2019-09-30'
 
 df = DataFrame()
 
