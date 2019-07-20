@@ -1,3 +1,5 @@
+# coding=utf-8
+
 import os
 import sys
 
@@ -10,14 +12,14 @@ def is_number(s):
         return False
 
 # 打开代码源文件
-rawfile = open('./KLQPortfolioData.js')
+rawfile = open('./KLQPortfolioData.js',encoding='utf-8')
 # 读取所有代码行
 rawLines = rawfile.readlines()
 # 关闭代码源文件
 rawfile.close()
 
 # 打开数据文件
-datafile = open('./KLQData.txt')
+datafile = open('./KLQData.txt',encoding='utf-8')
 # 读取数据
 dataLines = datafile.readlines()
 dataArray = []
@@ -40,6 +42,7 @@ for line in rawLines:
 		elements = line.split(',')
 		# 如果有数值，说明是人工更新的部分
 		if is_number(elements[1]):
+			result = ''
 			# 查找匹配仓位数据
 			for data in dataArray:
 				if data[0] in line:
