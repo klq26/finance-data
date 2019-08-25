@@ -1,18 +1,18 @@
-ï»¿var aStockColor = {color: '#0aa3b5'};			// A è‚¡ï¼ˆå¤§ç›˜è‚¡ï¼Œä¸­å°ç›˜è‚¡ï¼Œçº¢åˆ©ä»·å€¼ï¼Œè¡Œä¸šè‚¡ï¼‰
-var outSideNewColor = {color: '#187a2f'};		// æµ·å¤–æ–°å…´ï¼ˆé¦™æ¸¯ï¼Œæµ·å¤–äº’è”ç½‘ï¼‰
-var outSideMatureColor = {color: '#ebb40f'};	// æµ·å¤–æˆç†Ÿï¼ˆå¾·å›½ï¼‰
-var universalGoodsColor = {color: '#dd4c51'};	// å•†å“ï¼ˆé»„é‡‘ï¼Œç™½é“¶ï¼ŒåŸæ²¹ï¼‰
-var bondColor = {color: '#be8663'};				// å€ºåˆ¸ï¼ˆå¯è½¬å€ºï¼Œç¾å…ƒå€ºï¼‰
-var cashColor = {color: '#f7a128'};				// ä½é£é™©ç†è´¢ï¼ˆè´§å¸åŸºé‡‘ï¼Œåœ°äº§é¡¹ç›®ï¼‰
-var nailPortfolioColor = {color: '#009ad6'};	// èºä¸é’‰æŠ•èµ„ç»„åˆ
+var aStockColor = {color: '#0aa3b5'};			// A ¹É£¨´óÅÌ¹É£¬ÖĞĞ¡ÅÌ¹É£¬ºìÀû¼ÛÖµ£¬ĞĞÒµ¹É£©
+var outSideNewColor = {color: '#187a2f'};		// º£ÍâĞÂĞË£¨Ïã¸Û£¬º£Íâ»¥ÁªÍø£©
+var outSideMatureColor = {color: '#ebb40f'};	// º£Íâ³ÉÊì£¨µÂ¹ú£©
+var universalGoodsColor = {color: '#dd4c51'};	// ÉÌÆ·£¨»Æ½ğ£¬°×Òø£¬Ô­ÓÍ£©
+var bondColor = {color: '#be8663'};				// Õ®È¯£¨¿É×ªÕ®£¬ÃÀÔªÕ®£©
+var cashColor = {color: '#f7a128'};				// µÍ·çÏÕÀí²Æ£¨»õ±Ò»ù½ğ£¬µØ²úÏîÄ¿£©
+var nailPortfolioColor = {color: '#009ad6'};	// ÂİË¿¶¤Í¶×Ê×éºÏ
 
-/* é‡‘èå“ç§ */
+/* ½ğÈÚÆ·ÖÖ */
 function financeKind(name, value, itemStyle, children)
 {
 	return {name : name + ' , ' + value + '%', value : value, itemStyle : itemStyle, children : children};
 }
 
-/* æ•´åˆä»“ä½å æ¯”æ•°æ® */
+/* ÕûºÏ²ÖÎ»Õ¼±ÈÊı¾İ */
 function sumFinanceKindValue(array)
 {
 	total = 0.0;
@@ -22,136 +22,136 @@ function sumFinanceKindValue(array)
 	return Math.round(total * 100) / 100;
 }
 
-/** A è‚¡ */
+/** A ¹É */
 function getAStock()
 {
-	// å¤§ç›˜è‚¡
-	var a1 = new financeKind('ä¸Šè¯50',1.59,aStockColor,null);
-	var a2 = new financeKind('æ²ªæ·±300',5.72,aStockColor,null);
-	// ä¸­å°ç›˜è‚¡
-	var b1 = new financeKind('ä¸­è¯500',16.10,aStockColor,null);
-	var b2 = new financeKind('ä¸­è¯1000',1.43,aStockColor,null);
-	var b3 = new financeKind('åˆ›ä¸šæ¿',2.86,aStockColor,null);
-	// çº¢åˆ©ä»·å€¼
-	var c1 = new financeKind('ä¸­è¯çº¢åˆ©',11.15,aStockColor,null);
-	// è¡Œä¸šè‚¡
-	var d1 = new financeKind('å…»è€äº§ä¸š',6.68,aStockColor,null);
-	var d2 = new financeKind('å…¨æŒ‡åŒ»è¯',6.20,aStockColor,null);
-	var d3 = new financeKind('ä¸­è¯ä¼ åª’',3.81,aStockColor,null);
-	var d4 = new financeKind('ä¸­è¯ç¯ä¿',3.90,aStockColor,null);
-	var d5 = new financeKind('å…¨æŒ‡æ¶ˆè´¹',0.00,aStockColor,null);
-	var d6 = new financeKind('é‡‘èåœ°äº§',1.18,aStockColor,null);
-	var d7 = new financeKind('è¯åˆ¸å…¬å¸',0.62,aStockColor,null);
-	// èºä¸é’‰ç»„åˆå®šæŠ•
-	var e1 = new financeKind('å¤§ç›˜è‚¡',2.28,nailPortfolioColor,null);
-	var e2 = new financeKind('ä¸­ç›˜è‚¡',2.46,nailPortfolioColor,null);
-	var e3 = new financeKind('èºä¸é’‰çº¢åˆ©',2.11,nailPortfolioColor,null);
-	var e4 = new financeKind('åŒ»è¯100',0.27,nailPortfolioColor,null);
-	var e5 = new financeKind('æµ·å¤–æ–°å…´',1.72,nailPortfolioColor,null);
+	// ´óÅÌ¹É
+	var a1 = new financeKind('ÉÏÖ¤50',1.51,aStockColor,null);
+	var a2 = new financeKind('»¦Éî300',5.45,aStockColor,null);
+	// ÖĞĞ¡ÅÌ¹É
+	var b1 = new financeKind('ÖĞÖ¤500',15.23,aStockColor,null);
+	var b2 = new financeKind('ÖĞÖ¤1000',1.34,aStockColor,null);
+	var b3 = new financeKind('´´Òµ°å',2.80,aStockColor,null);
+	// ºìÀû¼ÛÖµ
+	var c1 = new financeKind('ÖĞÖ¤ºìÀû',10.29,aStockColor,null);
+	// ĞĞÒµ¹É
+	var d1 = new financeKind('ÑøÀÏ²úÒµ',6.50,aStockColor,null);
+	var d2 = new financeKind('È«Ö¸Ò½Ò©',6.23,aStockColor,null);
+	var d3 = new financeKind('ÖĞÖ¤´«Ã½',3.65,aStockColor,null);
+	var d4 = new financeKind('ÖĞÖ¤»·±£',3.68,aStockColor,null);
+	var d5 = new financeKind('È«Ö¸Ïû·Ñ',3.27,aStockColor,null);
+	var d6 = new financeKind('½ğÈÚµØ²ú',1.09,aStockColor,null);
+	var d7 = new financeKind('Ö¤È¯¹«Ë¾',0.56,aStockColor,null);
+	// ÂİË¿¶¤×éºÏ¶¨Í¶
+	var e1 = new financeKind('´óÅÌ¹É',2.97,nailPortfolioColor,null);
+	var e2 = new financeKind('ÖĞÅÌ¹É',3.49,nailPortfolioColor,null);
+	var e3 = new financeKind('ÂİË¿¶¤ºìÀû',2.39,nailPortfolioColor,null);
+	var e4 = new financeKind('Ò½Ò©100',0.36,nailPortfolioColor,null);
+	var e5 = new financeKind('º£ÍâĞÂĞË',1.53,nailPortfolioColor,null);
 
 	var A1_subKind = [a1,a2];
 	var B1_subKind = [b1,b2,b3];
 	var C1_subKind = [c1];
 	var D1_subKind = [d1,d2,d3,d4,d5,d6,d7];
 	var E1_subKind = [e1,e2,e3,e4,e5];
-	var A1 = new financeKind('å¤§ç›˜è‚¡',sumFinanceKindValue(A1_subKind),aStockColor,A1_subKind);
-	var B1 = new financeKind('ä¸­å°ç›˜è‚¡',sumFinanceKindValue(B1_subKind),aStockColor,B1_subKind);
-	var C1 = new financeKind('çº¢åˆ©ä»·å€¼',sumFinanceKindValue(C1_subKind),aStockColor,C1_subKind);
-	var D1 = new financeKind('è¡Œä¸šè‚¡',sumFinanceKindValue(D1_subKind),aStockColor,D1_subKind);
-	var E1 = new financeKind('èºä¸é’‰å®šæŠ•',sumFinanceKindValue(E1_subKind),nailPortfolioColor,E1_subKind);
+	var A1 = new financeKind('´óÅÌ¹É',sumFinanceKindValue(A1_subKind),aStockColor,A1_subKind);
+	var B1 = new financeKind('ÖĞĞ¡ÅÌ¹É',sumFinanceKindValue(B1_subKind),aStockColor,B1_subKind);
+	var C1 = new financeKind('ºìÀû¼ÛÖµ',sumFinanceKindValue(C1_subKind),aStockColor,C1_subKind);
+	var D1 = new financeKind('ĞĞÒµ¹É',sumFinanceKindValue(D1_subKind),aStockColor,D1_subKind);
+	var E1 = new financeKind('ÂİË¿¶¤¶¨Í¶',sumFinanceKindValue(E1_subKind),nailPortfolioColor,E1_subKind);
 
 	var aStock_subKind = [A1,B1,C1,D1,E1];
-	var aStock = new financeKind('Aè‚¡',sumFinanceKindValue(aStock_subKind),aStockColor,aStock_subKind);
+	var aStock = new financeKind('A¹É',sumFinanceKindValue(aStock_subKind),aStockColor,aStock_subKind);
 	return aStock;
 }
 
-/** æµ·å¤–æ–°å…´ */
+/** º£ÍâĞÂĞË */
 function getOutsideNew()
 {
-	// é¦™æ¸¯
-	var e1 = new financeKind('æ’ç”Ÿ',0.52,outSideNewColor,null);
-	// æµ·å¤–äº’è”
-	var f1 = new financeKind('æµ·å¤–äº’è”ç½‘',1.96,outSideNewColor,null);
+	// Ïã¸Û
+	var e1 = new financeKind('ºãÉú',0.46,outSideNewColor,null);
+	// º£Íâ»¥Áª
+	var f1 = new financeKind('º£Íâ»¥ÁªÍø',1.84,outSideNewColor,null);
 
 	var E1_subKind = [e1];
 	var F1_subKind = [f1];
-	var E1 = new financeKind('é¦™æ¸¯',sumFinanceKindValue(E1_subKind),outSideNewColor,E1_subKind);
-	var F1 = new financeKind('æµ·å¤–äº’è”',sumFinanceKindValue(F1_subKind),outSideNewColor,F1_subKind);
+	var E1 = new financeKind('Ïã¸Û',sumFinanceKindValue(E1_subKind),outSideNewColor,E1_subKind);
+	var F1 = new financeKind('º£Íâ»¥Áª',sumFinanceKindValue(F1_subKind),outSideNewColor,F1_subKind);
 
 	var outsideNew_subKind = [E1,F1];
-	var outsideNew = new financeKind('æµ·å¤–æ–°å…´',sumFinanceKindValue(outsideNew_subKind),outSideNewColor,outsideNew_subKind);
+	var outsideNew = new financeKind('º£ÍâĞÂĞË',sumFinanceKindValue(outsideNew_subKind),outSideNewColor,outsideNew_subKind);
 	return outsideNew;
 }
 
-/** æµ·å¤–æˆç†Ÿ */
+/** º£Íâ³ÉÊì */
 function getOutsideMature()
 {
-	var g1 = new financeKind('å¾·å›½30',2.56,outSideMatureColor,null);
+	var g1 = new financeKind('µÂ¹ú30',2.33,outSideMatureColor,null);
 
 	var G1_subKind = [g1];
-	var G1 = new financeKind('æµ·å¤–æˆç†Ÿ',sumFinanceKindValue(G1_subKind),outSideMatureColor,G1_subKind);
+	var G1 = new financeKind('º£Íâ³ÉÊì',sumFinanceKindValue(G1_subKind),outSideMatureColor,G1_subKind);
 
 	var outsideNew_subKind = [G1];
-	var outsideMature = new financeKind('æµ·å¤–æˆç†Ÿ',sumFinanceKindValue(outsideNew_subKind),outSideMatureColor,outsideNew_subKind);
+	var outsideMature = new financeKind('º£Íâ³ÉÊì',sumFinanceKindValue(outsideNew_subKind),outSideMatureColor,outsideNew_subKind);
 	return outsideMature;
 }
 
-/** å•†å“ */
+/** ÉÌÆ· */
 function getUniversalGoods()
 {
-	var h1 = new financeKind('åŸæ²¹',1.19,universalGoodsColor,null);
-	var h2 = new financeKind('é»„é‡‘',1.04,universalGoodsColor,null);
+	var h1 = new financeKind('Ô­ÓÍ',1.03,universalGoodsColor,null);
+	var h2 = new financeKind('»Æ½ğ',1.04,universalGoodsColor,null);
 
 	var H1_subKind = [h1,h2];
-	var H1 = new financeKind('å•†å“',sumFinanceKindValue(H1_subKind),universalGoodsColor,H1_subKind);
+	var H1 = new financeKind('ÉÌÆ·',sumFinanceKindValue(H1_subKind),universalGoodsColor,H1_subKind);
 
 	var universalGoods_subKind = [H1];
-	var universalGoods = new financeKind('å•†å“',sumFinanceKindValue(universalGoods_subKind),universalGoodsColor,universalGoods_subKind);
+	var universalGoods = new financeKind('ÉÌÆ·',sumFinanceKindValue(universalGoods_subKind),universalGoodsColor,universalGoods_subKind);
 	return universalGoods;
 }
 
-/** å€ºåˆ¸ */
+/** Õ®È¯ */
 function getBond()
 {
-	// å›½å†…å€ºåˆ¸
-	var i1 = new financeKind('å¯è½¬å€º',5.11,bondColor,null);
+	// ¹úÄÚÕ®È¯
+	var i1 = new financeKind('¿É×ªÕ®',5.85,bondColor,null);
 
 	var I1_subKind = [i1];
-	var I1 = new financeKind('å›½å†…å€ºåˆ¸',sumFinanceKindValue(I1_subKind),bondColor,I1_subKind);
+	var I1 = new financeKind('¹úÄÚÕ®È¯',sumFinanceKindValue(I1_subKind),bondColor,I1_subKind);
 
 	var bond_subKind = [I1];
-	var bond = new financeKind('å€ºåˆ¸',sumFinanceKindValue(bond_subKind),bondColor,bond_subKind);
+	var bond = new financeKind('Õ®È¯',sumFinanceKindValue(bond_subKind),bondColor,bond_subKind);
 	return bond;
 }
 
-/** ç°é‡‘ */
+/** ÏÖ½ğ */
 function getCash()
 {
-	// è´§å¸åŸºé‡‘
-	var k1 = new financeKind('è´§å¸åŸºé‡‘',17.53,cashColor,null);
+	// »õ±Ò»ù½ğ
+	var k1 = new financeKind('»õ±Ò»ù½ğ',15.10,cashColor,null);
 
 	var K1_subKind = [k1];
-	var K1 = new financeKind('ä½é£é™©ç†è´¢',sumFinanceKindValue(K1_subKind),cashColor,K1_subKind);
+	var K1 = new financeKind('µÍ·çÏÕÀí²Æ',sumFinanceKindValue(K1_subKind),cashColor,K1_subKind);
 
 	var cash_subKind = [K1];
-	var cash = new financeKind('ç°é‡‘',sumFinanceKindValue(cash_subKind),cashColor,cash_subKind);
+	var cash = new financeKind('ÏÖ½ğ',sumFinanceKindValue(cash_subKind),cashColor,cash_subKind);
 	return cash;
 }
 
-/* è·å–æŠ•èµ„ç»„åˆæ•°æ® */
+/* »ñÈ¡Í¶×Ê×éºÏÊı¾İ */
 function getPortfolioData()
 {
-	// A è‚¡
+	// A ¹É
 	var aStock = getAStock();
-	// æµ·å¤–æ–°å…´
+	// º£ÍâĞÂĞË
 	var outsideNew = getOutsideNew();
-	// æµ·å¤–æˆç†Ÿ
+	// º£Íâ³ÉÊì
 	var outsideMature = getOutsideMature();
-	// å•†å“
+	// ÉÌÆ·
 	var universalGoods = getUniversalGoods();
-	// å€ºåˆ¸
+	// Õ®È¯
 	var bond = getBond();
-	// ç°é‡‘
+	// ÏÖ½ğ
 	var cash = getCash();
 
 	data = [aStock, outsideNew, outsideMature, universalGoods, bond, cash];
