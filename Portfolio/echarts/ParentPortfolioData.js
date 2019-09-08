@@ -46,7 +46,7 @@ function getAStock()
 	var e1 = new financeKind('大盘股',2.97,nailPortfolioColor,null);
 	var e2 = new financeKind('中盘股',3.49,nailPortfolioColor,null);
 	var e3 = new financeKind('螺丝钉红利',2.39,nailPortfolioColor,null);
-	var e4 = new financeKind('医药100',0.36,nailPortfolioColor,null);
+	var e4 = new financeKind('医药养老',0.36,nailPortfolioColor,null);
 	var e5 = new financeKind('海外新兴',1.53,nailPortfolioColor,null);
 
 	var A1_subKind = [a1,a2];
