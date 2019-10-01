@@ -56,7 +56,7 @@ for line in rawLines:
 		targetLines.append(line)
 
 # 以写入模式重新打开之前文件，写入修改结果
-targetfile = open('./KLQPortfolioData.js','w+')
+targetfile = open('./KLQPortfolioData.js','w+',encoding='utf-8')
 targetfile.writelines(targetLines)
 targetfile.flush()
 targetfile.close()
