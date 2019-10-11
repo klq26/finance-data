@@ -13,10 +13,10 @@ class trendType(Enum):
 
 # 根据 code 转换汉字名称
 def indexToName(index):
-	data = {'000001':'上证指数','399106':'深证综指','000016':'上证50','000300':'沪深300','399905':'中证500','000852':'中证1000',\
+	data = {'000001':'上证指数','399106':'深证综指','000016':'上证50','000300':'沪深300','000905':'中证500','000852':'中证1000',\
 	'399006':'创业板','000922':'中证红利','399812':'养老产业','000991':'全指医药','399971':'中证传媒',\
-	'000827':'中证环保','000990':'中证消费','000992':'全指金融','399975':'证券公司','HSI':'恒生指数','HSCEI':'恒生国企指数','DAX30':'德国30',\
-	'FTSE100':'英国富时100','CAC40':'法国CAC40','DJI':'道琼斯工业','NASDAQ':'纳斯达克','SPX500':'标普500','USDI':'美元指数','10YEAR':'10年期国债','SPSIOPTR':'英为标普油气TR'}
+	'000827':'中证环保','000990':'中证消费','000992':'全指金融','399975':'证券公司','HSI5':'恒生指数','HSCEI5':'恒生国企指数','GDAXI_UI':'德国30',\
+	'FTSE_UI':'英国富时100','FCHI_UI':'法国CAC40','DJIA_UI':'道琼斯工业','NDX_UI':'纳斯达克','SPX_UI':'标普500','UDI0':'美元指数','10YEAR':'10年期国债','SPSIOPTR':'英为标普油气TR'}
 	return data[index] if index in data.keys() else '未知'
 	pass
 
@@ -28,7 +28,7 @@ def printTrend(name,rate):
 	dataname = name
 	datapath = os.path.join(datadir,dataname)
 
-	df = pandas.read_csv(datapath, sep=',', names=['date','value'],encoding='utf-8')
+	df = pandas.read_csv(datapath, sep='\t', names=['date','value'],encoding='utf-8')
 
 	# 初始化
 	trend = trendType.unknown
@@ -111,6 +111,8 @@ datanames = []
 datapaths = []
 for root, dirs, files in os.walk(datadir, topdown=True):
 	for name in files:
+		if name == 'getIndexValues.py':
+			continue
 		datanames.append(name)
 		datapaths.append(os.path.join(root, name))
 
@@ -142,6 +144,7 @@ while shouldContinue:
 		if not os.path.exists(dirpath):
 			os.mkdir(dirpath)
 		for name in datanames:
+			print(name)
 			results = printTrend(name, rate)
 			# 输出到文件
 			code = name.split('.')[0]
