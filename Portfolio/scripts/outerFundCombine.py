@@ -113,7 +113,8 @@ class outerFundCombine:
         # 统计环节
         calculator = calculateFundCategoryData()
         # 开始计算并输出
-        calculator.calculate(self.fundModelArray)
+        #calculator.calculate(self.fundModelArray)
+        calculator.generateEchartsJson(self.fundModelArray)
         # 保存文件
         outwb.save(self.resultPath)
     

@@ -1,0 +1,274 @@
+[{
+	"name": "1",
+	"value": 1,
+	"itemStyle": {
+		"color": "#0aa3b5"
+	},
+	"children": [{
+		"name": "1",
+		"value": 1,
+		"itemStyle": {
+			"color": "#0aa3b5"
+		},
+		"children": [{
+			"name": "1",
+			"value": 1,
+			"itemStyle": {
+				"color": "#0aa3b5"
+			},
+			"children": []
+		}, {
+			"name": "2",
+			"value": 2,
+			"itemStyle": {
+				"color": "#0aa3b5"
+			},
+			"children": []
+		}, {
+			"name": "3",
+			"value": 3,
+			"itemStyle": {
+				"color": "#0aa3b5"
+			},
+			"children": []
+		}]
+	}, {
+		"name": "2",
+		"value": 2,
+		"itemStyle": {
+			"color": "#0aa3b5"
+		},
+		"children": [{
+			"name": "1",
+			"value": 1,
+			"itemStyle": {
+				"color": "#0aa3b5"
+			},
+			"children": []
+		}, {
+			"name": "2",
+			"value": 2,
+			"itemStyle": {
+				"color": "#0aa3b5"
+			},
+			"children": []
+		}, {
+			"name": "3",
+			"value": 3,
+			"itemStyle": {
+				"color": "#0aa3b5"
+			},
+			"children": []
+		}]
+	}, {
+		"name": "3",
+		"value": 3,
+		"itemStyle": {
+			"color": "#0aa3b5"
+		},
+		"children": [{
+			"name": "1",
+			"value": 1,
+			"itemStyle": {
+				"color": "#0aa3b5"
+			},
+			"children": []
+		}, {
+			"name": "2",
+			"value": 2,
+			"itemStyle": {
+				"color": "#0aa3b5"
+			},
+			"children": []
+		}, {
+			"name": "3",
+			"value": 3,
+			"itemStyle": {
+				"color": "#0aa3b5"
+			},
+			"children": []
+		}]
+	}]
+}, {
+	"name": "2",
+	"value": 2,
+	"itemStyle": {
+		"color": "#0aa3b5"
+	},
+	"children": [{
+		"name": "1",
+		"value": 1,
+		"itemStyle": {
+			"color": "#0aa3b5"
+		},
+		"children": [{
+			"name": "1",
+			"value": 1,
+			"itemStyle": {
+				"color": "#0aa3b5"
+			},
+			"children": []
+		}, {
+			"name": "2",
+			"value": 2,
+			"itemStyle": {
+				"color": "#0aa3b5"
+			},
+			"children": []
+		}, {
+			"name": "3",
+			"value": 3,
+			"itemStyle": {
+				"color": "#0aa3b5"
+			},
+			"children": []
+		}]
+	}, {
+		"name": "2",
+		"value": 2,
+		"itemStyle": {
+			"color": "#0aa3b5"
+		},
+		"children": [{
+			"name": "1",
+			"value": 1,
+			"itemStyle": {
+				"color": "#0aa3b5"
+			},
+			"children": []
+		}, {
+			"name": "2",
+			"value": 2,
+			"itemStyle": {
+				"color": "#0aa3b5"
+			},
+			"children": []
+		}, {
+			"name": "3",
+			"value": 3,
+			"itemStyle": {
+				"color": "#0aa3b5"
+			},
+			"children": []
+		}]
+	}, {
+		"name": "3",
+		"value": 3,
+		"itemStyle": {
+			"color": "#0aa3b5"
+		},
+		"children": [{
+			"name": "1",
+			"value": 1,
+			"itemStyle": {
+				"color": "#0aa3b5"
+			},
+			"children": []
+		}, {
+			"name": "2",
+			"value": 2,
+			"itemStyle": {
+				"color": "#0aa3b5"
+			},
+			"children": []
+		}, {
+			"name": "3",
+			"value": 3,
+			"itemStyle": {
+				"color": "#0aa3b5"
+			},
+			"children": []
+		}]
+	}]
+}, {
+	"name": "3",
+	"value": 3,
+	"itemStyle": {
+		"color": "#0aa3b5"
+	},
+	"children": [{
+		"name": "1",
+		"value": 1,
+		"itemStyle": {
+			"color": "#0aa3b5"
+		},
+		"children": [{
+			"name": "1",
+			"value": 1,
+			"itemStyle": {
+				"color": "#0aa3b5"
+			},
+			"children": []
+		}, {
+			"name": "2",
+			"value": 2,
+			"itemStyle": {
+				"color": "#0aa3b5"
+			},
+			"children": []
+		}, {
+			"name": "3",
+			"value": 3,
+			"itemStyle": {
+				"color": "#0aa3b5"
+			},
+			"children": []
+		}]
+	}, {
+		"name": "2",
+		"value": 2,
+		"itemStyle": {
+			"color": "#0aa3b5"
+		},
+		"children": [{
+			"name": "1",
+			"value": 1,
+			"itemStyle": {
+				"color": "#0aa3b5"
+			},
+			"children": []
+		}, {
+			"name": "2",
+			"value": 2,
+			"itemStyle": {
+				"color": "#0aa3b5"
+			},
+			"children": []
+		}, {
+			"name": "3",
+			"value": 3,
+			"itemStyle": {
+				"color": "#0aa3b5"
+			},
+			"children": []
+		}]
+	}, {
+		"name": "3",
+		"value": 3,
+		"itemStyle": {
+			"color": "#0aa3b5"
+		},
+		"children": [{
+			"name": "1",
+			"value": 1,
+			"itemStyle": {
+				"color": "#0aa3b5"
+			},
+			"children": []
+		}, {
+			"name": "2",
+			"value": 2,
+			"itemStyle": {
+				"color": "#0aa3b5"
+			},
+			"children": []
+		}, {
+			"name": "3",
+			"value": 3,
+			"itemStyle": {
+				"color": "#0aa3b5"
+			},
+			"children": []
+		}]
+	}]
+}]

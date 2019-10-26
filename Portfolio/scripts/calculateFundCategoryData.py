@@ -4,6 +4,9 @@
 from functools import reduce
 # model
 from model.fundModel import fundModel
+from model.echartsModel import echartsModel
+# output
+from echartsJson import echartsJson
 
 class calculateFundCategoryData:
 
@@ -54,3 +57,21 @@ class calculateFundCategoryData:
             gain = reduce(lambda x,y: x+y, totalGains)
             
             print(u'{0} 市值：{1}\t占比：{2}%\t盈亏：{3}'.format(category, self.beautify(marketCap), self.beautify(marketCap / totalMarketCap * 100), self.beautify(gain)))
+
+    def generateEchartsJson(self,modelArray):
+		# 资产配置总市值
+        allMarketCaps = [x.marketCap for x in modelArray]
+        totalMarketCap = reduce(lambda x,y: x+y, allMarketCaps)
+        totalMarketCap = self.beautify(totalMarketCap)
+		# 一级分类
+        for category in self.category1Array:
+            category1MarketCaps = [x.marketCap for x in modelArray if x.category1 == category]
+			# 一级分类市值
+			category1MarketCap = reduce(lambda x,y: x+y, category1MarketCaps)
+			category1Models = [x for x in modelArray if x.category1 == category]
+			for i in category1Models:
+				print(i)
+			# 一级分类市值
+			#category1MarketCap = reduce(lambda x,y: x+y, category1MarketCaps)
+			print('\n')
+            
