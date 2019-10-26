@@ -9,20 +9,30 @@ from openpyxl.styles import Alignment
 # for reduce method of lambda
 from functools import reduce
 # 统计
-from calculateFundCategoryData import calculateFundCategoryData
+from assetAllocationInfoCalculator import assetAllocationInfoCalculator
+from assetAllocationJSObjectParser import assetAllocationJSObjectParser
+
 from model.fundModel import fundModel
 
-class outerFundCombine:
+class assetAllocationCombine:
     """
     把天天基金，且慢，螺丝钉计划的数据整合到一张 Excel 表
     """
-    def __init__(self):
-        self.filenames = [u'danjuan_螺丝钉定投.txt',u'qieman_10万补充ETF计划.txt',u'qieman_我的S定投计划.txt', u'tiantian_康力泉.txt',u'huatai_康力泉.txt',u'guangfa_支付宝.txt']
+    def __init__(self, strategy='a'):
+        self.strategy = strategy # 默认 A 策略，即康力泉
+        if self.strategy == 'a':
+            self.filenames = [u'danjuan_螺丝钉定投.txt',u'qieman_10万补充ETF计划.txt',u'qieman_我的S定投计划.txt', u'tiantian_康力泉.txt',u'huatai_康力泉.txt',u'guangfa_支付宝.txt']
+            self.filePathExt = u'康力泉'
+            self.echartsFile = u'KLQPortfolio.html'
+        elif self.strategy == 'b':
+            self.filenames = [u'danjuan_李淑云.txt',u'danjuan_康世海.txt',u'tiantian_李淑云.txt']
+            self.filePathExt = u'父母'
+            self.echartsFile = u'ParentPortfolio.html'
         self.fundCategorys = self.getFundCategorys()
         
         self.filepaths = []
         # 结果文件路径
-        self.resultPath = os.path.join(os.getcwd(), u'output', u'场外基金汇总.xlsx')
+        self.resultPath = os.path.join(os.getcwd(), u'output', u'{0}资产配置.xlsx'.format(self.filePathExt))
         # 先删除旧文件
         if os.path.exists(self.resultPath):
             os.remove(self.resultPath)
@@ -34,14 +44,78 @@ class outerFundCombine:
         
         # 数据模型集合
         self.fundModelArray = []
+
+    # 获取资产旭日图分类配置文件
+    def getFundCategorys(self):
+        path = os.path.join(os.getcwd(),u'config',u'fundCategory.json')
+        if not os.path.exists(path):
+            print(u'[ERROR] 缺少资产配置分类文件：{0}'.format(path))
+            exit()
+        with open(path,'r',encoding='utf-8') as jsonFile:
+            data = json.loads(jsonFile.read())
+            fundCategorys = data['data']
+            return fundCategorys
+            #for category in fundCategorys:
+            #    print(category)
+    
+    # 根据基金代码，获取资产旭日图分类数据
+    def getFundCategoryByCode(self,code):
+        for fundCategory in self.fundCategorys:
+            if code == fundCategory['code']:
+                return fundCategory
+        return ''
+    
+    # 根据基金文件，获取 APP 持仓来源
+    def getFundAppSourceByFilePath(self,filepath):
+        if u'螺丝钉定投' in filepath:
+            return u'螺丝钉定投'
+        elif u'danjuan_李淑云' in filepath:
+            return u'李淑云螺丝钉'
+        elif u'danjuan_康世海' in filepath:
+            return u'康世海螺丝钉'
+        elif u'10万补充ETF计划' in filepath:
+            return u'且慢补充 150 份'
+        elif u'我的S定投计划' in filepath:
+            return u'且慢 S 定投'       
+        elif u'tiantian_康力泉' in filepath:
+            return u'天天基金'
+        elif u'tiantian_李淑云' in filepath:
+            return u'天天基金'
+        elif u'guangfa' in filepath:
+            return u'支付宝'
+        elif u'huatai_康力泉' in filepath:
+            return u'股票账户'
+        return '未知'
         
-        #print(self.filepaths)
+    # 不同 APP 配色
+    def colorOfFileName(self, name):
+        # 色值转换 https://www.sioe.cn/yingyong/yanse-rgb-16/
+        if 'danjuan' in name:
+            # 242,195,0
+            return 'F2C300'
+        elif 'qieman' in name:
+            # 0,176,204
+            return '00B1CC'
+        elif 'tiantian' in name:
+            # 233,80,26
+            return 'E9501A'
+        elif 'guangfa' in name:
+            # 0,161,233
+            return '00A1E9'
+        elif 'huatai' in name:
+            # 222,48,49
+            return 'DE3031'
+        else:
+            return 'FFFFFF'
+    
+    # 读取 txt，生成 fundModel 基金数据集合，输出到 xlsx 文件
+    def generateExcel(self):
         outwb = openpyxl.Workbook() # 打开一个将写的文件并创建 sheet 表单
         # 上面的构造函数默认生成一个叫 sheet 的表单，直接 active 属性获取它，并改名就好，不要在单独创建了
         #outws = outwb.create_sheet(title=u'基金持仓')#在将写的文件创建sheet
+        #outwb._active_sheet_index = 1
         outws = outwb.active
         outws.title = u'基金持仓'
-        #outwb._active_sheet_index = 1
         # 字体
         font = openpyxl.styles.Font(u'Arial', size = 10, color='000000')
         self.font = font
@@ -105,76 +179,45 @@ class outerFundCombine:
                                 setattr(model,u'category{0}'.format(col-6),category[u'category{0}'.format(col-6)])
                         # 来源
                         elif col == 11:
-                            outws.cell(rowCursor, col).value = self.getAppSourceByFilePath(filepath)
+                            outws.cell(rowCursor, col).value = self.getFundAppSourceByFilePath(filepath)
                             align = Alignment(horizontal='center') # ,vertical='center',wrap_text=True
                             outws.cell(rowCursor, col).alignment = align
                     self.fundModelArray.append(model)
                     rowCursor = rowCursor + 1
-        # 统计环节
-        calculator = calculateFundCategoryData()
-        # 开始计算并输出
-        #calculator.calculate(self.fundModelArray)
-        calculator.generateEchartsJson(self.fundModelArray)
         # 保存文件
         outwb.save(self.resultPath)
-    
-    # 获取资产旭日图分类配置文件
-    def getFundCategorys(self):
-        path = os.path.join(os.getcwd(),u'config',u'fundCategory.json')
-        if not os.path.exists(path):
-            print(u'[ERROR] 缺少资产配置分类文件：{0}'.format(path))
-            exit()
-        
-        with open(path,'r',encoding='utf-8') as jsonFile:
-            data = json.loads(jsonFile.read())
-            fundCategorys = data['data']
-            return fundCategorys
-            #for category in fundCategorys:
-            #    print(category)
-    
-    # 根据基金代码，获取资产旭日图分类数据
-    def getFundCategoryByCode(self,code):
-        for fundCategory in self.fundCategorys:
-            if code == fundCategory['code']:
-                return fundCategory
-        return ''
-    
-    # 根据基金文件，获取 APP 持仓来源
-    def getAppSourceByFilePath(self,filepath):
-        if u'螺丝钉定投' in filepath:
-            return u'螺丝钉定投'
-        elif u'10万补充ETF计划' in filepath:
-            return u'且慢补充 150 份'
-        elif u'我的S定投计划' in filepath:
-            return u'且慢 S 定投'       
-        elif u'tiantian' in filepath:
-            return u'天天基金'
-        elif u'guangfa' in filepath:
-            return u'支付宝'
-        elif u'huatai_康力泉' in filepath:
-            return u'股票账户'
-        return '未知'
-        
-    # 不同 APP 配色
-    def colorOfFileName(self, name):
-        # 色值转换 https://www.sioe.cn/yingyong/yanse-rgb-16/
-        if 'danjuan' in name:
-            # 242,195,0
-            return 'F2C300'
-        elif 'qieman' in name:
-            # 0,176,204
-            return '00B1CC'
-        elif 'tiantian' in name:
-            # 233,80,26
-            return 'E9501A'
-        elif 'guangfa' in name:
-            # 0,161,233
-            return '00A1E9'
-        elif 'huatai' in name:
-            # 222,48,49
-            return 'DE3031'
-        else:
-            return 'FFFFFF'
-            
+        print()
 
-outerFundCombine = outerFundCombine()
+    # 控制台输出可视化信息
+    def showAssetAllocationInfo(self,modelArray):
+        calculator = assetAllocationInfoCalculator()
+        calculator.showInfo(modelArray)
+    
+    # 生成 echarts 可视化组件能用 data.js 文件
+    def generateJSObject(self,modelArray):
+        fileParser = assetAllocationJSObjectParser()
+        fileParser.generateEchartsJsonFile(modelArray)
+        fileParser.generateJSObjectFile(modelArray,self.filePathExt)
+        print()
+
+if len(sys.argv) <= 1:
+    print(u'[ERROR] 参数不足。需要键入策略编号。a：康力泉 b：父母')
+    exit()
+strategy = sys.argv[1]
+combine = None
+if strategy == 'a':
+    combine = assetAllocationCombine('a')
+elif strategy == 'b':
+    combine = assetAllocationCombine('b')
+else:
+    print(u'[ERROR] 参数错误，不支持的策略编号。')
+    exit()
+
+# 读取 txt，生成 fundModel 基金数据集合，输出到 xlsx 文件
+combine.generateExcel()
+# 打印资产配置详情
+combine.showAssetAllocationInfo(combine.fundModelArray)
+# 生成 js 数据对象供 echarts 使用
+combine.generateJSObject(combine.fundModelArray)
+# 打开资产配置旭日图
+os.startfile(os.path.join(os.getcwd(),'..','echarts',combine.echartsFile))
