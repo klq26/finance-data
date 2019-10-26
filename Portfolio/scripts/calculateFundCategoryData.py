@@ -2,6 +2,9 @@
 
 # for reduce method of lambda
 from functools import reduce
+# groupby & itemgetter
+from itertools import groupby
+from operator import itemgetter
 # model
 from model.fundModel import fundModel
 from model.echartsModel import echartsModel
@@ -59,19 +62,51 @@ class calculateFundCategoryData:
             print(u'{0} 市值：{1}\t占比：{2}%\t盈亏：{3}'.format(category, self.beautify(marketCap), self.beautify(marketCap / totalMarketCap * 100), self.beautify(gain)))
 
     def generateEchartsJson(self,modelArray):
-		# 资产配置总市值
-        allMarketCaps = [x.marketCap for x in modelArray]
-        totalMarketCap = reduce(lambda x,y: x+y, allMarketCaps)
+        # 内部排序函数，按 category id 升序排列
+        #def fundModelSortFunc(item):
+        #    return item.category4
+        # 排序
+        #modelArray.sort(key=fundModelSortFunc)
+        # 按对象的 category4 字段升序排序
+        modelArray.sort(key=itemgetter('category4'))
+        # 资产配置总市值
+        totalMarketCap = 0.0
+        for item in modelArray:
+            totalMarketCap = totalMarketCap + item.marketCap
+            #print(item.__dict__)
         totalMarketCap = self.beautify(totalMarketCap)
-		# 一级分类
+        #print(totalMarketCap)
+        
+        # 一级分类
         for category in self.category1Array:
-            category1MarketCaps = [x.marketCap for x in modelArray if x.category1 == category]
-			# 一级分类市值
-			category1MarketCap = reduce(lambda x,y: x+y, category1MarketCaps)
-			category1Models = [x for x in modelArray if x.category1 == category]
-			for i in category1Models:
-				print(i)
-			# 一级分类市值
-			#category1MarketCap = reduce(lambda x,y: x+y, category1MarketCaps)
-			print('\n')
+            echart1 = echartsModel()
+            category1Models = [x for x in modelArray if x.category1 == category]
             
+            for category2, category2Array in groupby(category1Models,key=itemgetter('category2')):
+                print(category2)
+                for category3, category3Array in groupby(category1Models,key=itemgetter('category3')):
+                    
+                    for j in category3Array:
+                        if j.category2 == category2:
+                            print('\t' + category3)
+                    #print(len(list(category2Array)))
+                    for i in category3Array:
+                        if i.category2 == category2:
+                            print('\t\t{0}'.format(i.__dict__))
+            print('\n\n\n')
+            
+            
+            # 一级分类市值
+            #category1MarketCap = 0.0
+            #for cate1 in category1Models:
+            #    category1MarketCap = category1MarketCap + cate1.marketCap
+            #    echart1.name = cate1.category1
+            #    echart1.value = 0.0
+            #    echart1.itemStyle['color'] = '#0AA3B5'
+                
+                #for cate2 in category1Models:
+                    
+                #echart1.children.append(cate2)
+                
+            #print(category1MarketCap)
+            #print('\n')
