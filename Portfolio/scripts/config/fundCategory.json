@@ -337,10 +337,38 @@
 		},
 		{
 			"code": "002086",
-			"category1": "现金类",
+			"category1": "现金",
 			"category2": "保本理财",
-			"category3": "短融债券",
-			"category4": "999"
+			"category3": "货币基金",
+			"category4": "990"
+		},
+		{
+			"code": "999990",
+			"category1": "现金",
+			"category2": "保本理财",
+			"category3": "货币基金",
+			"category4": "990"
+		},
+		{
+			"code": "999991",
+			"category1": "现金",
+			"category2": "中等风险理财",
+			"category3": "房地产P2P",
+			"category4": "991"
+		},
+		{
+			"code": "899990",
+			"category1": "冻结资金",
+			"category2": "冻结资金",
+			"category3": "住房公积金",
+			"category4": "890"
+		},
+		{
+			"code": "899991",
+			"category1": "冻结资金",
+			"category2": "冻结资金",
+			"category3": "无息外借款",
+			"category4": "891"
 		}
 	]
 }

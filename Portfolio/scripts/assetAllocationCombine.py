@@ -19,20 +19,26 @@ class assetAllocationCombine:
     把天天基金，且慢，螺丝钉计划的数据整合到一张 Excel 表
     """
     def __init__(self, strategy='a'):
-        self.strategy = strategy # 默认 A 策略，即康力泉
+        self.strategy = strategy # 默认 A 策略，即康力泉（不含现金和冻结资金）
         if self.strategy == 'a':
             self.filenames = [u'danjuan_螺丝钉定投.txt',u'qieman_10万补充ETF计划.txt',u'qieman_我的S定投计划.txt', u'tiantian_康力泉.txt',u'huatai_康力泉.txt',u'guangfa_支付宝.txt']
-            self.filePathExt = u'康力泉'
+            self.excelFilePathExt = u'康力泉权益类'
+            self.jsFilePathExt = u'康力泉'
             self.echartsFile = u'KLQPortfolio.html'
         elif self.strategy == 'b':
             self.filenames = [u'danjuan_李淑云.txt',u'danjuan_康世海.txt',u'tiantian_李淑云.txt']
-            self.filePathExt = u'父母'
+            self.excelFilePathExt = u'父母'
             self.echartsFile = u'ParentPortfolio.html'
+        elif self.strategy == 'c':
+            self.filenames = [u'danjuan_螺丝钉定投.txt',u'qieman_10万补充ETF计划.txt',u'qieman_我的S定投计划.txt', u'tiantian_康力泉.txt',u'huatai_康力泉.txt',u'guangfa_支付宝.txt',u'cash_康力泉.txt',u'freeze_康力泉.txt']
+            self.excelFilePathExt = u'康力泉整体'
+            self.jsFilePathExt = u'康力泉'
+            self.echartsFile = u'KLQPortfolio.html'
         self.fundCategorys = self.getFundCategorys()
         
         self.filepaths = []
         # 结果文件路径
-        self.resultPath = os.path.join(os.getcwd(), u'output', u'{0}资产配置.xlsx'.format(self.filePathExt))
+        self.resultPath = os.path.join(os.getcwd(), u'output', u'{0}资产配置.xlsx'.format(self.excelFilePathExt))
         # 先删除旧文件
         if os.path.exists(self.resultPath):
             os.remove(self.resultPath)
@@ -85,6 +91,10 @@ class assetAllocationCombine:
             return u'支付宝'
         elif u'huatai_康力泉' in filepath:
             return u'股票账户'
+        elif u'cash_康力泉' in filepath:
+            return u'现金账户'
+        elif u'freeze_康力泉' in filepath:
+            return u'冻结资金'
         return '未知'
         
     # 不同 APP 配色
@@ -105,6 +115,12 @@ class assetAllocationCombine:
         elif 'huatai' in name:
             # 222,48,49
             return 'DE3031'
+        elif 'cash' in name:
+            # 0,161,233
+            return 'F7A128'
+        elif 'freeze' in name:
+            # 222,48,49
+            return '8B8C90'
         else:
             return 'FFFFFF'
     
@@ -115,7 +131,7 @@ class assetAllocationCombine:
         #outws = outwb.create_sheet(title=u'基金持仓')#在将写的文件创建sheet
         #outwb._active_sheet_index = 1
         outws = outwb.active
-        outws.title = u'基金持仓'
+        outws.title = u'资产配置情况'
         # 字体
         font = openpyxl.styles.Font(u'Arial', size = 10, color='000000')
         self.font = font
@@ -197,11 +213,11 @@ class assetAllocationCombine:
     def generateJSObject(self,modelArray):
         fileParser = assetAllocationJSObjectParser()
         fileParser.generateEchartsJsonFile(modelArray)
-        fileParser.generateJSObjectFile(modelArray,self.filePathExt)
+        fileParser.generateJSObjectFile(modelArray,self.jsFilePathExt)
         print()
 
 if len(sys.argv) <= 1:
-    print(u'[ERROR] 参数不足。需要键入策略编号。a：康力泉 b：父母')
+    print(u'[ERROR] 参数不足。需要键入策略编号。a：康力泉股票情况 b：父母 c：康力泉整体资产配置情况')
     exit()
 strategy = sys.argv[1]
 combine = None
@@ -209,6 +225,8 @@ if strategy == 'a':
     combine = assetAllocationCombine('a')
 elif strategy == 'b':
     combine = assetAllocationCombine('b')
+elif strategy == 'c':
+    combine = assetAllocationCombine('c')
 else:
     print(u'[ERROR] 参数错误，不支持的策略编号。')
     exit()

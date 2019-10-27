@@ -37,8 +37,8 @@ class assetAllocationJSObjectParser:
         #var outSideMatureColor = {color: '#ebb40f'};	// 海外成熟（德国）
         #var universalGoodsColor = {color: '#dd4c51'};	// 商品（黄金，白银，原油）
         #var bondColor = {color: '#be8663'};				// 债券（可转债，美元债）
-        #var cashColor = {color: '#f7a128'};				// 低风险理财（货币基金，地产项目）
-        #var frozenCashColor = {color: '#8b8c90'};		// 冻结资金（公积金）
+        #var cashColor = {color: '#f7a128'};				// 低风险理财（货币基金，地产P2P）
+        #var frozenCashColor = {color: '#8b8c90'};		// 冻结资金（公积金，外借款）
         
         if category1 == self.category1Array[0]:
             return '#0AA3B5'
@@ -50,6 +50,10 @@ class assetAllocationJSObjectParser:
             return '#BE8663'
         elif category1 == self.category1Array[4]:
             return '#DD4C51'
+        elif category1 == self.category1Array[5]:
+            return '#F7A128'
+        elif category1 == self.category1Array[6]:
+            return '#8B8C90'
         else:
             return 'FFFFFF'
 

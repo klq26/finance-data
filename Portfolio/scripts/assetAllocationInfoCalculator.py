@@ -37,12 +37,15 @@ class assetAllocationInfoCalculator:
         print('\n一级分类：\n')
         for category in self.category1Array:
             marketCaps = [x.marketCap for x in modelArray if x.category1 == category]
+            # 有些组合没有部分一级分类，应该忽略该级别的循环
+            if len(marketCaps) == 0:
+                continue
             marketCap = reduce(lambda x,y: x+y, marketCaps)
             
             totalGains = [x.totalGain for x in modelArray if x.category1 == category]
             gain = reduce(lambda x,y: x+y, totalGains)
             
-            print(u'{0} 市值：{1}\t占比：{2}%\t盈亏：{3}'.format(category, self.beautify(marketCap), self.beautify(marketCap / totalMarketCap * 100), self.beautify(gain)))
+            print(u'{0} 市值：{1}\t占比：{2}%\t盈亏：{3}\t占比：{4}%'.format(category, self.beautify(marketCap), self.beautify(marketCap / totalMarketCap * 100), self.beautify(gain), self.beautify(gain / totalGain * 100)))
         print('\n二级分类：\n')
         for category in self.category2Array:
             #print(category)
@@ -55,7 +58,7 @@ class assetAllocationInfoCalculator:
             totalGains = [x.totalGain for x in modelArray if x.category2 == category]
             gain = reduce(lambda x,y: x+y, totalGains)
             
-            print(u'{0} 市值：{1}\t占比：{2}%\t盈亏：{3}'.format(category, self.beautify(marketCap), self.beautify(marketCap / totalMarketCap * 100), self.beautify(gain)))
+            print(u'{0} 市值：{1}\t占比：{2}%\t盈亏：{3}\t占比：{4}%'.format(category, self.beautify(marketCap), self.beautify(marketCap / totalMarketCap * 100), self.beautify(gain), self.beautify(gain / totalGain * 100)))
         print('\n三级分类：\n')
         for category in self.category3Array:
             marketCaps = [x.marketCap for x in modelArray if x.category3 == category]
@@ -67,5 +70,5 @@ class assetAllocationInfoCalculator:
             totalGains = [x.totalGain for x in modelArray if x.category3 == category]
             gain = reduce(lambda x,y: x+y, totalGains)
             
-            print(u'{0} 市值：{1}\t占比：{2}%\t盈亏：{3}'.format(category, self.beautify(marketCap), self.beautify(marketCap / totalMarketCap * 100), self.beautify(gain)))
+            print(u'{0} 市值：{1}\t占比：{2}%\t盈亏：{3}\t占比：{4}%'.format(category, self.beautify(marketCap), self.beautify(marketCap / totalMarketCap * 100), self.beautify(gain), self.beautify(gain / totalGain * 100)))
 
