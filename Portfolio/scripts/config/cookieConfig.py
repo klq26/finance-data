@@ -6,10 +6,15 @@ class cookieConfig:
     之后抓取前，仅需要更新这一个文件即可
     """
     def __init__(self):
+        # 雪球 Cookie。主要是为了查询场内基金净值信息
+        self.xueqiuCookie = u'Cookie: device_id=24700f9f1986800ab4fcc880530dd0ed; s=bu12f52zv3; bid=6e97accacf189cc998bcde7951604689_k04m5ssh; snbim_minify=true; Hm_lvt_1db88642e346389874251b5a1eded6e3=1569827043,1570625764,1570625774; remember=1; xq_a_token=c0c9fa4a3b3bba0c9b2409ae44e6af75bb464a9f; xqat=c0c9fa4a3b3bba0c9b2409ae44e6af75bb464a9f; xq_r_token=d1896db710adc144921c6f81cb73e4fe2d5b2813; xq_is_login=1; u=2812376209; Hm_lpvt_1db88642e346389874251b5a1eded6e3=1572263932'
+        
+        
         # 天天基金
         self.tiantianCookieKLQ = u'Cookie: https://trade.1234567.com.cn/MyAssets/bankcardtb-banktbb=0; st_si=48193464463530; ASP.NET_SessionId=rvw2hcfyyuwbsm4h1zg2vw4j; st_asi=delete; b_p_log_key=UXRF8fAgsvU1SArYSDZb1vNi/JgRlELFdZEJcyP6AshghN+GTGQZhKJmUzB8WTAY5eYgy3QDKWSkjTh6709wxqrYbnqGW8s/gMglTQ0MCnP4PcCtIi4=; b_pl_bq=de9612a5f90c4a9bab2a853807e9822c; FundTradeLoginTab=0; FundTradeLoginCard=0; st_pvi=69416177127426; st_sp=2019-08-25%2008%3A06%3A30; st_inirUrl=https%3A%2F%2Ftrade7.1234567.com.cn%2FQuery%2Fbill; st_sn=20; st_psi=20191026065644909-112200304021-4233583121; cp_token=ab89bd25736f4305b7d19e1f10c79eec; FundTradeLoginUser=HMhBYUSroghdVSqY57eBBeqyPe81Oc7ImX3zg18+2Dx4Yv+qN2/SHyJxLApgsAp9f67b1QNM; fund_trade_cn=HUSRPA3SdB2od5gk1dLm5arbLx7+edszEkwNMc0mJ+1xjQcFL53NgdvtgSJSMcki4hI8e5v/YTfj+FPuD6dgJq4n/6wSgN/mbK97dxGzeWsWJAIrlr0=; fund_trade_name=HtKCBFB3igtQ8IQgK1eNvUPqUJF1joI1Bi5ggUNGTqpYlvtwXMLU1QJ6OEQLU8e9Wi/sv3EK; fund_trade_visitor=HiKjwrAHcgM6HuKT5Xeu/zwl61Y1EOq5ThvvgzsTW7LqNvQHwvZy30J0HBm4ax29Fu9mQTZg; fund_trade_risk=HRC7/r3lagWVk7JLGAeOvYIAfXc1eahNmplagcw9KvyEyvODjJ/p9nJY1J6LOki9vw4voeSe; fund_trade_gps=6; VipLevel=1; TradeLoginToken=615668015c66452289031b631a7d9710; UTOKEN=HUSRPA3SdB2od5gk1dLm5arbLx7+edszEkwNMc0mJ+1xjQcFL53NgdvtgSJSMcki4hI8emvnicdze09EO3SqJOBAPNWI8CFxQT9zRYBn/+MeZ4WWUZY=; LToken=0dd8a54a5bfa4264869cca04392ae7dd; fund_trade_trackid=l3Jz95v70op6jqul9QqcMaoTxvqLAircTVgbl4KsCmh/ojZ/fmAoy/VIaPe+y2pe9dqzXN8PwkYcraRpiGnARQ=='
-        
-        
+
+
+
         self.tiantianCookieMother = u'Cookie: st_si=48193464463530; ASP.NET_SessionId=hqkpy1axbawl4t5dpyxap44r; st_asi=delete; b_p_log_key=UXRF8fAgsvU1SArYSDZb1vNi/JgRlELFdZEJcyP6AshghN+GTGQZhKJmUzB8WTAY5eYgy3QDKWSkjTh6709wxqrYbnqGW8s/gMglTQ0MCnP4PcCtIi4=; b_pl_bq=de9612a5f90c4a9bab2a853807e9822c; FundTradeLoginTab=0; FundTradeLoginCard=0; st_pvi=69416177127426; st_sp=2019-08-25%2008%3A06%3A30; st_inirUrl=https%3A%2F%2Ftrade7.1234567.com.cn%2FQuery%2Fbill; st_sn=22; st_psi=20191026181215414-112200304021-4218660324; cp_token=1117a16e9ce14d4b8df09846140e9b40; FundTradeLoginUser=PI07xSOJ5lMM6nu8lSAW7ZZrr5+Q3uk7RyeRsVFWtZPpHoZ7iJuWzUIToTk/IPeU4fLNpPz3; fund_trade_cn=PYJ5c18gH4JEEflNeq1aJm5Rd+c3Az3mmVDVoJE1Z4QwHeyXCiaDQobysiBqK7pzAvP52io+JYNk5g2QSET2IalOKS3gAjdqomUPM0nTzskVfXxksJs=; fund_trade_name=Petz5uNrGl13ZMDb4HAGNWOUnXiQ93Sdwe7fsMP2VkBk2oOXSDvX2yIpGjLSE0tUSxzkn3Ca; fund_trade_visitor=Pxo+GVWLwluGAuxZFPAaQmxL1bEQpxQTAXI5s19sZnqGookf63CqMsIUvHH2NwgUz/OmvYXY; fund_trade_risk=P5qOPnvBtl140zsw5VAhjEo/DhJQQw1Nitbcs7bZn9O+VoajYaQF7gIandV/05bUtLuwtg6e; fund_trade_gps=7; VipLevel=1; TradeLoginToken=6103d95b9dcb417ebef22a9a9e7a9b77; UTOKEN=PYJ5c18gH4JEEflNeq1aJm5Rd+c3Az3mmVDVoJE1Z4QwHeyXCiaDQobysiBqK7pzAvP52doPpeQ4UJVm05CWIqM6JxJqQKjWkEUP0XZoW047AJ4JP5E=; LToken=1bfdfc393a8847f5a1518be8b5b153cd; fund_trade_trackid=Kq6ljAT0tmZAzQ50QNHghigFM4h/artgpsOvff7gK5M2C72DWASM8iFY53346OQ2AdzzbzQxHB7MaUc8I8dtsQ=='
         
         

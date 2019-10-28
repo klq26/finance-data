@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
+
 import os
 import sys
-import openpyxl
 import json
+import time
 
-from openpyxl.styles import numbers
-from openpyxl.styles import Alignment
-# for reduce method of lambda
-from functools import reduce
-# 统计
-from assetAllocationInfoCalculator import assetAllocationInfoCalculator
-from assetAllocationJSObjectParser import assetAllocationJSObjectParser
-
+# 多种统计输出
+from assetAllocationExcelParser import assetAllocationExcelParser               # 输出资产配置信息到 Excel 表
+from assetAllocationConsoleParser import assetAllocationConsoleParser           # 输出资产配置信息到控制台
+from assetAllocationJSObjectParser import assetAllocationJSObjectParser         # 输出资产配置信息到 echarts 专用 data.js 对象
+from assetAllocationEstimateExcelParser import assetAllocationEstimateExcelParser   # 输出当日收盘后的估算净值及预测涨跌金额
+# model
 from model.fundModel import fundModel
+from model.assetModel import assetModel
 
 class assetAllocationCombine:
     """
@@ -20,36 +20,87 @@ class assetAllocationCombine:
     """
     def __init__(self, strategy='a'):
         self.strategy = strategy # 默认 A 策略，即康力泉（不含现金和冻结资金）
+        # 根据策略生成对于的变量配置参数
         if self.strategy == 'a':
             self.filenames = [u'danjuan_螺丝钉定投.txt',u'qieman_10万补充ETF计划.txt',u'qieman_我的S定投计划.txt', u'tiantian_康力泉.txt',u'huatai_康力泉.txt',u'guangfa_支付宝.txt']
             self.excelFilePathExt = u'康力泉权益类'
-            self.jsFilePathExt = u'康力泉'
+            self.echartsJSFilePathExt = u'康力泉'
             self.echartsFile = u'KLQPortfolio.html'
         elif self.strategy == 'b':
             self.filenames = [u'danjuan_李淑云.txt',u'danjuan_康世海.txt',u'tiantian_李淑云.txt']
             self.excelFilePathExt = u'父母'
+            self.echartsJSFilePathExt = u'父母'
             self.echartsFile = u'ParentPortfolio.html'
         elif self.strategy == 'c':
             self.filenames = [u'danjuan_螺丝钉定投.txt',u'qieman_10万补充ETF计划.txt',u'qieman_我的S定投计划.txt', u'tiantian_康力泉.txt',u'huatai_康力泉.txt',u'guangfa_支付宝.txt',u'cash_康力泉.txt',u'freeze_康力泉.txt']
             self.excelFilePathExt = u'康力泉整体'
-            self.jsFilePathExt = u'康力泉'
+            self.echartsJSFilePathExt = u'康力泉'
             self.echartsFile = u'KLQPortfolio.html'
+        # 持仓基金数据的本地保存路径标识
+        self.fundJsonFilePathExt = self.excelFilePathExt
+
         self.fundCategorys = self.getFundCategorys()
-        
         self.filepaths = []
-        # 结果文件路径
-        self.resultPath = os.path.join(os.getcwd(), u'output', u'{0}资产配置.xlsx'.format(self.excelFilePathExt))
-        # 先删除旧文件
-        if os.path.exists(self.resultPath):
-            os.remove(self.resultPath)
-        
         for root, dirs, files in os.walk(os.getcwd(), topdown=False):
             for name in files:
                 if name in self.filenames:
                     self.filepaths.append(os.path.join(root,name))
         
-        # 数据模型集合
+        # 基金数据模型集合
         self.fundModelArray = []
+        # 资产配置对象模型集合
+        self.assetModelArray = []
+        # 开始生成
+        self.generateJsonFiles()
+
+    # 根据 txt 文件集合，生成基金模型数组 fundModelArray 以及资产配置模型数组 assetModelArray
+    def generateJsonFiles(self):
+        for filepath in self.filepaths:
+            with open(filepath,'r',encoding='utf-8') as file:
+                lines = file.readlines()
+                # 一行，二行过滤
+                for i in range(2,len(lines)):
+                    values = lines[i].replace('\n','').split('\t')
+                    # 生成 fundModel
+                    fund = fundModel()
+                    fund.fundName = values[0]                                   # 基金名称
+                    fund.fundCode = values[1]                                   # 基金净值
+                    fund.holdNetValue = round(float(values[2]),4)               # 持仓成本
+                    fund.holdShareCount = round(float(values[3]),2)             # 持仓份额
+                    fund.holdMarketCap = round(float(values[4]),2)              # 持仓市值
+                    fund.holdTotalGain = round(float(values[5]),2)              # 持仓盈亏
+                    fund.estimateNetValue = 0.0000                              # 估算净值
+                    fund.estimateTime = u'估算时间'                             # 估算时间
+                    fund.estimateRate = 0.0000                                  # 估算涨跌幅
+                    category = self.getFundCategoryByCode(fund.fundCode)
+                    fund.category1 = category[u'category1']                    # 一级分类
+                    fund.category2 = category[u'category2']                    # 二级分类
+                    fund.category3 = category[u'category3']                    # 三级分类
+                    fund.category4 = category[u'category4']                    # 分类 ID
+                    fund.appSource = self.getFundAppSourceByFilePath(filepath)  # APP 来源
+                    # 生成 assetModel
+                    asset = assetModel()
+                    asset.fundName = values[0]                                  # 基金名称
+                    asset.fundCode = values[1]                                  # 基金净值
+                    asset.holdNetValue = round(float(values[2]),4)              # 持仓成本
+                    asset.holdShareCount = round(float(values[3]),2)            # 持仓份额
+                    asset.holdMarketCap = round(float(values[4]),2)             # 持仓市值
+                    asset.holdTotalGain = round(float(values[5]),2)             # 持仓盈亏
+                    asset.category1 = category[u'category1']                    # 一级分类
+                    asset.category2 = category[u'category2']                    # 二级分类
+                    asset.category3 = category[u'category3']                    # 三级分类
+                    asset.category4 = category[u'category4']                    # 分类 ID
+                    asset.appSource = fund.appSource
+                    
+                    self.fundModelArray.append(fund.__dict__)
+                    self.assetModelArray.append(asset.__dict__)
+        # 输出文件
+        fundJsonPath = os.path.join(os.getcwd(), u'output', u'{0}fund.json'.format(self.fundJsonFilePathExt))
+        with open(fundJsonPath,'w',encoding=u'utf-8') as fundJsonFile:
+            fundJsonFile.write(json.dumps(self.fundModelArray, ensure_ascii=False, sort_keys = True, indent = 4, separators=(',', ':')))
+        assetJsonPath = os.path.join(os.getcwd(), u'output', u'{0}asset.json'.format(self.fundJsonFilePathExt))
+        with open(assetJsonPath,'w',encoding=u'utf-8') as assetJsonFile:
+            assetJsonFile.write(json.dumps(self.assetModelArray, ensure_ascii=False, sort_keys = True, indent = 4, separators=(',', ':')))
 
     # 获取资产旭日图分类配置文件
     def getFundCategorys(self):
@@ -61,8 +112,6 @@ class assetAllocationCombine:
             data = json.loads(jsonFile.read())
             fundCategorys = data['data']
             return fundCategorys
-            #for category in fundCategorys:
-            #    print(category)
     
     # 根据基金代码，获取资产旭日图分类数据
     def getFundCategoryByCode(self,code):
@@ -96,125 +145,26 @@ class assetAllocationCombine:
         elif u'freeze_康力泉' in filepath:
             return u'冻结资金'
         return '未知'
-        
-    # 不同 APP 配色
-    def colorOfFileName(self, name):
-        # 色值转换 https://www.sioe.cn/yingyong/yanse-rgb-16/
-        if 'danjuan' in name:
-            # 242,195,0
-            return 'F2C300'
-        elif 'qieman' in name:
-            # 0,176,204
-            return '00B1CC'
-        elif 'tiantian' in name:
-            # 233,80,26
-            return 'E9501A'
-        elif 'guangfa' in name:
-            # 0,161,233
-            return '00A1E9'
-        elif 'huatai' in name:
-            # 222,48,49
-            return 'DE3031'
-        elif 'cash' in name:
-            # 0,161,233
-            return 'F7A128'
-        elif 'freeze' in name:
-            # 222,48,49
-            return '8B8C90'
-        else:
-            return 'FFFFFF'
-    
-    # 读取 txt，生成 fundModel 基金数据集合，输出到 xlsx 文件
-    def generateExcel(self):
-        outwb = openpyxl.Workbook() # 打开一个将写的文件并创建 sheet 表单
-        # 上面的构造函数默认生成一个叫 sheet 的表单，直接 active 属性获取它，并改名就好，不要在单独创建了
-        #outws = outwb.create_sheet(title=u'基金持仓')#在将写的文件创建sheet
-        #outwb._active_sheet_index = 1
-        outws = outwb.active
-        outws.title = u'资产配置情况'
-        # 字体
-        font = openpyxl.styles.Font(u'Arial', size = 10, color='000000')
-        self.font = font
-        # 行游标
-        rowCursor = 1
-        # 写入标题行
-        headerLine = u'基金名称\t基金代码\t持仓成本\t持仓份额\t持仓市值\t累计收益'
-        headers = headerLine.split('\t')
-        # 加入资产配置分类标签
-        headers.append(u'一级分类')
-        headers.append(u'二级分类')
-        headers.append(u'三级分类')
-        headers.append(u'分类 ID')
-        # 加入 APP 来源标签
-        headers.append(u'来源')
-        for i in range(1,len(headers)+1): 
-            outws.cell(rowCursor, i).value = headers[i-1]
-            outws.cell(rowCursor, i).font = self.font
-            align = Alignment(horizontal='center') # ,vertical='center',wrap_text=True
-            outws.cell(rowCursor, i).alignment = align
-        rowCursor = rowCursor + 1
-        # 写入基金持仓数据
-        for filepath in self.filepaths:
-            with open(filepath,'r',encoding='utf-8') as file:
-                lines = file.readlines()
-                color = self.colorOfFileName(filepath)
-                for i in range(2,len(lines)): 
-                    values = lines[i].replace('\n','').split('\t')
-                    # 加入 model 模型以备统计
-                    model = fundModel()
-                    #if len(values) == 1:   # 跳过空行
-                    #    continue
-                    # 基金代码，第二列
-                    fundCode = values[1]
-                    # 写入基本数据 1 ~ len(values)+1 与资产配置分类数据 +4 与 APP 来源 + 1
-                    for col in range(1,len(values)+1 + 4 + 1):
-                        outws.cell(rowCursor, col).font = self.font
-                        outws.cell(rowCursor, col).fill = openpyxl.styles.PatternFill(fill_type='solid',fgColor=color)
-                        if col == 3:    # 持仓净值，保留小数点后 4 位
-                            outws.cell(rowCursor,col).number_format = '0.0000'
-                            outws.cell(rowCursor, col).value = float(values[col-1])
-                        elif col in [4,5,6]:    # 除基金代码，其他数字保留小数点后 2 位
-                            outws.cell(rowCursor,col).number_format = '0.00'
-                            outws.cell(rowCursor, col).value = float(values[col-1])
-                            if col == 5:
-                                model.marketCap = float(values[col-1])
-                            if col == 6:
-                                model.totalGain = float(values[col-1])
-                        elif col in [1,2]:
-                            outws.cell(rowCursor, col).value = values[col-1]
-                        # 分类标签数据
-                        elif col in [7,8,9,10]:
-                            category = self.getFundCategoryByCode(fundCode)
-                            #print(category)
-                            if category != '':
-                                # col - 6 表示把第七列转化为 category1 即 7 - 6 = 1
-                                outws.cell(rowCursor, col).value = category[u'category{0}'.format(col-6)]
-                                align = Alignment(horizontal='center') # ,vertical='center',wrap_text=True
-                                outws.cell(rowCursor, col).alignment = align
-                                # model 赋值
-                                setattr(model,u'category{0}'.format(col-6),category[u'category{0}'.format(col-6)])
-                        # 来源
-                        elif col == 11:
-                            outws.cell(rowCursor, col).value = self.getFundAppSourceByFilePath(filepath)
-                            align = Alignment(horizontal='center') # ,vertical='center',wrap_text=True
-                            outws.cell(rowCursor, col).alignment = align
-                    self.fundModelArray.append(model)
-                    rowCursor = rowCursor + 1
-        # 保存文件
-        outwb.save(self.resultPath)
-        print()
 
-    # 控制台输出可视化信息
-    def showAssetAllocationInfo(self,modelArray):
-        calculator = assetAllocationInfoCalculator()
-        calculator.showInfo(modelArray)
+    # 读取本地 fundModel 数据
+    def loadFundModelArrayFromJson(self):
+        # 读取文件
+        fundJsonPath = os.path.join(os.getcwd(), u'output', u'{0}fund.json'.format(self.fundJsonFilePathExt))
+        with open(fundJsonPath,'r',encoding=u'utf-8') as fundJsonFile:
+            # object_hook 配合 init 传入 self.__dict__ = dictData 实现 json 字符串转 python 自定义对象
+            contentList = json.loads(fundJsonFile.read(),object_hook=fundModel)
+            return contentList
+   
+    # 读取本地 assetModel 数据
+    def loadAssetModelArrayFromJson(self):
+        # 读取文件
+        assetJsonPath = os.path.join(os.getcwd(), u'output', u'{0}asset.json'.format(self.fundJsonFilePathExt))
+        with open(assetJsonPath,'r',encoding=u'utf-8') as assetJsonFile:
+            # object_hook 配合 init 传入 self.__dict__ = dictData 实现 json 字符串转 python 自定义对象
+            contentList = json.loads(assetJsonFile.read(),object_hook=assetModel)
+            return contentList
     
-    # 生成 echarts 可视化组件能用 data.js 文件
-    def generateJSObject(self,modelArray):
-        fileParser = assetAllocationJSObjectParser()
-        fileParser.generateEchartsJsonFile(modelArray)
-        fileParser.generateJSObjectFile(modelArray,self.jsFilePathExt)
-        print()
+
 
 if len(sys.argv) <= 1:
     print(u'[ERROR] 参数不足。需要键入策略编号。a：康力泉股票情况 b：父母 c：康力泉整体资产配置情况')
@@ -231,11 +181,26 @@ else:
     print(u'[ERROR] 参数错误，不支持的策略编号。')
     exit()
 
-# 读取 txt，生成 fundModel 基金数据集合，输出到 xlsx 文件
-combine.generateExcel()
-# 打印资产配置详情
-combine.showAssetAllocationInfo(combine.fundModelArray)
-# 生成 js 数据对象供 echarts 使用
-combine.generateJSObject(combine.fundModelArray)
+# 从 json 文件读取数据
+assetModelArray = combine.loadAssetModelArrayFromJson()
+fundModelArray = combine.loadFundModelArrayFromJson()
+
+# 输出 Excel 资产配置
+assetExcel = assetAllocationExcelParser()
+assetExcel.generateExcelFile(assetModelArray,path=os.path.join(os.getcwd(), u'output', u'{0}资产配置.xlsx'.format(combine.excelFilePathExt)))
+
+# 输出 控制台 统计信息
+console = assetAllocationConsoleParser()
+console.showInfo(assetModelArray)
+
+# 输出 echarts.json 和 data.json
+jsObject = assetAllocationJSObjectParser()
+jsObject.generateEchartsJsonFile(assetModelArray)
+jsObject.generateJSObjectFile(assetModelArray,combine.echartsJSFilePathExt)
+
+# 生成实时估值信息
+estimateExcel = assetAllocationEstimateExcelParser()
+estimateExcel.generateEstimateExcelFile(fundModelArray, path=os.path.join(os.getcwd(), u'output', u'{0}收益估算.xlsx'.format(combine.excelFilePathExt)))
+
 # 打开资产配置旭日图
-os.startfile(os.path.join(os.getcwd(),'..','echarts',combine.echartsFile))
+#os.startfile(os.path.join(os.getcwd(),'..','echarts',combine.echartsFile))

@@ -11,7 +11,7 @@ class echartsModel:
     def __init__(self):
         self.name = ''		# A股 , 48.34%
         self.value = ''		# 48.34 注意不是 0.4834
-        self.itemStyle = {}	# "color": "#0aa3b5"
+        self.itemStyle = {}	# "color": "#0AA3b5"
         self.children = []	# list(echartModel)
         
     def __getitem__(self, key):

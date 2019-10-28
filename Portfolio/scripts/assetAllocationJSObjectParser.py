@@ -7,7 +7,7 @@ from functools import reduce
 from itertools import groupby
 from operator import itemgetter
 # model
-from model.fundModel import fundModel
+from model.assetModel import assetModel
 from model.echartsModel import echartsModel
 # config
 from config.assetCategoryConstants import assetCategoryConstants
@@ -64,7 +64,7 @@ class assetAllocationJSObjectParser:
         # 资产配置总市值
         totalMarketCap = 0.0
         for item in modelArray:
-            totalMarketCap = totalMarketCap + item.marketCap
+            totalMarketCap = totalMarketCap + item.holdMarketCap
             #print(item.__dict__)
         totalMarketCap = self.beautify(totalMarketCap)
         #print(totalMarketCap)
@@ -97,7 +97,7 @@ class assetAllocationJSObjectParser:
                     echart3.itemStyle['color'] = echart1.itemStyle['color']
                     for model in category3Array:
                         #print('----- {0}'.format(model.__dict__))
-                        echart3.value = echart3.value + round(float(model.marketCap),2)
+                        echart3.value = echart3.value + round(float(model.holdMarketCap),2)
                     echart2.value = echart2.value + echart3.value   # 变成百分比之前，存入上级分类，下同
                     echart3.value = round(float(echart3.value / totalMarketCap * 100),2)
                     echart3.name = u'{0} , {1}%'.format(echart3.name,echart3.value)
@@ -112,8 +112,8 @@ class assetAllocationJSObjectParser:
             #print(echart1.__dict__)
             self.echarts.append(echart1.__dict__)
         # 写入文件
-        with open(os.path.join(os.getcwd(),'config','echarts.json'),'w',encoding='utf-8') as jsonFile:
-            jsonFile.write(json.dumps(self.echarts))
+        with open(os.path.join(os.getcwd(),u'output','echarts.json'),'w',encoding='utf-8') as jsonFile:
+            jsonFile.write(json.dumps(self.echarts, ensure_ascii=False, sort_keys = True, indent = 4, separators=(',', ':')))
     
     # 生成直接可用的 data.js 文件
     def generateJSObjectFile(self,modelArray,name):
@@ -122,6 +122,6 @@ class assetAllocationJSObjectParser:
             # print(jsPath)
             jsFile.write('function getData()\n')
             jsFile.write('{\n')
-            jsFile.write('\t' + r'return {0}'.format(json.dumps(self.echarts)))
+            jsFile.write('\t' + r'return {0}'.format(json.dumps(self.echarts, ensure_ascii=False, sort_keys = True, indent = 4, separators=(',', ':'))))
             jsFile.write('\n}')
         

@@ -7,12 +7,12 @@ from functools import reduce
 from itertools import groupby
 from operator import itemgetter
 # model
-from model.fundModel import fundModel
+from model.assetModel import assetModel
 from model.echartsModel import echartsModel
 # config
 from config.assetCategoryConstants import assetCategoryConstants
 
-class assetAllocationInfoCalculator:
+class assetAllocationConsoleParser:
 
     def __init__(self):
         categoryConstants = assetCategoryConstants()
@@ -26,48 +26,48 @@ class assetAllocationInfoCalculator:
     
     def showInfo(self,modelArray):
         # 总市值
-        allMarketCaps = [x.marketCap for x in modelArray]
+        allMarketCaps = [x.holdMarketCap for x in modelArray]
         totalMarketCap = reduce(lambda x,y: x+y, allMarketCaps)
         print(u'总市值：{0}'.format(self.beautify(totalMarketCap)))
         # 总盈亏
-        allTotalGains = [x.totalGain for x in modelArray]
+        allTotalGains = [x.holdTotalGain for x in modelArray]
         totalGain = reduce(lambda x,y: x+y, allTotalGains)
         print(u'总盈亏：{0}'.format(self.beautify(totalGain)))
         print(u'组合收益率：{0}%'.format(self.beautify(totalGain/totalMarketCap * 100)))
         print('\n一级分类：\n')
         for category in self.category1Array:
-            marketCaps = [x.marketCap for x in modelArray if x.category1 == category]
+            marketCaps = [x.holdMarketCap for x in modelArray if x.category1 == category]
             # 有些组合没有部分一级分类，应该忽略该级别的循环
             if len(marketCaps) == 0:
                 continue
             marketCap = reduce(lambda x,y: x+y, marketCaps)
             
-            totalGains = [x.totalGain for x in modelArray if x.category1 == category]
+            totalGains = [x.holdTotalGain for x in modelArray if x.category1 == category]
             gain = reduce(lambda x,y: x+y, totalGains)
             
             print(u'{0} 市值：{1}\t占比：{2}%\t盈亏：{3}\t占比：{4}%'.format(category, self.beautify(marketCap), self.beautify(marketCap / totalMarketCap * 100), self.beautify(gain), self.beautify(gain / totalGain * 100)))
         print('\n二级分类：\n')
         for category in self.category2Array:
             #print(category)
-            marketCaps = [x.marketCap for x in modelArray if x.category2 == category]
+            marketCaps = [x.holdMarketCap for x in modelArray if x.category2 == category]
             # 有些组合没有部分二级分类，应该忽略该级别的循环
             if len(marketCaps) == 0:
                 continue
             marketCap = reduce(lambda x,y: x+y, marketCaps)
             
-            totalGains = [x.totalGain for x in modelArray if x.category2 == category]
+            totalGains = [x.holdTotalGain for x in modelArray if x.category2 == category]
             gain = reduce(lambda x,y: x+y, totalGains)
             
             print(u'{0} 市值：{1}\t占比：{2}%\t盈亏：{3}\t占比：{4}%'.format(category, self.beautify(marketCap), self.beautify(marketCap / totalMarketCap * 100), self.beautify(gain), self.beautify(gain / totalGain * 100)))
         print('\n三级分类：\n')
         for category in self.category3Array:
-            marketCaps = [x.marketCap for x in modelArray if x.category3 == category]
+            marketCaps = [x.holdMarketCap for x in modelArray if x.category3 == category]
             # 有些组合没有部分三级分类，应该忽略该级别的循环
             if len(marketCaps) == 0:
                 continue
             marketCap = reduce(lambda x,y: x+y, marketCaps)
             
-            totalGains = [x.totalGain for x in modelArray if x.category3 == category]
+            totalGains = [x.holdTotalGain for x in modelArray if x.category3 == category]
             gain = reduce(lambda x,y: x+y, totalGains)
             
             print(u'{0} 市值：{1}\t占比：{2}%\t盈亏：{3}\t占比：{4}%'.format(category, self.beautify(marketCap), self.beautify(marketCap / totalMarketCap * 100), self.beautify(gain), self.beautify(gain / totalGain * 100)))
