@@ -9,12 +9,14 @@ from openpyxl.styles import numbers
 from openpyxl.styles import Alignment
 
 from estimateFundManager import estimateFundManager
+from model.fundModel import fundModel
 
 class assetAllocationEstimateExcelParser:
 
     def __init__(self):
         self.fundCategorys = self.getFundCategorys()
-    
+        self.fundJsonFilePathExt = ''
+        
         # 获取资产旭日图分类配置文件
     def getFundCategorys(self):
         path = os.path.join(os.getcwd(),u'config',u'fundCategory.json')
@@ -187,3 +189,19 @@ class assetAllocationEstimateExcelParser:
         print(u'今日预估收益：{0}\t今日场外预估收益：{1}\t今日场内预估收益：{2}'.format(round(estimateTotalGainToday,2), round(outerFundEstimateTotalGainToday,2),round(estimateTotalGainToday - outerFundEstimateTotalGainToday,2)))
         print(u'之前组合总市值：{0}\t组合预估涨跌幅：{1}%'.format(round(currentTotalMarketCap,2),round(estimateTotalGainToday/currentTotalMarketCap * 100, 2)))
         print(u'之前权益类总市值：{0}\t权益类预估涨跌幅：{1}%'.format(round(currentTotalStockMarketCap,2),round(estimateTotalGainToday/currentTotalStockMarketCap * 100, 2)))
+
+    # 读取本地 fundModel 数据
+    def loadFundModelArrayFromJson(self):
+        # 读取文件
+        fundJsonPath = os.path.join(os.getcwd(), u'output', u'{0}fund.json'.format(self.fundJsonFilePathExt))
+        with open(fundJsonPath,'r',encoding=u'utf-8') as fundJsonFile:
+            # object_hook 配合 init 传入 self.__dict__ = dictData 实现 json 字符串转 python 自定义对象
+            contentList = json.loads(fundJsonFile.read(),object_hook=fundModel)
+            return contentList
+
+if __name__ == '__main__':
+    estimateExcel = assetAllocationEstimateExcelParser()
+    # 实时估值就只保留自己的就好，单独运行时，身份标识写死
+    estimateExcel.fundJsonFilePathExt = u'康力泉整体'
+    path=os.path.join(os.getcwd(), u'output', u'{0}收益估算.xlsx'.format(estimateExcel.fundJsonFilePathExt))
+    estimateExcel.generateEstimateExcelFile(estimateExcel.loadFundModelArrayFromJson(),path)

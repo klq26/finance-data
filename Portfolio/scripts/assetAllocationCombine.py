@@ -203,4 +203,4 @@ estimateExcel = assetAllocationEstimateExcelParser()
 estimateExcel.generateEstimateExcelFile(fundModelArray, path=os.path.join(os.getcwd(), u'output', u'{0}收益估算.xlsx'.format(combine.excelFilePathExt)))
 
 # 打开资产配置旭日图
-#os.startfile(os.path.join(os.getcwd(),'..','echarts',combine.echartsFile))
+os.startfile(os.path.join(os.getcwd(),'..','echarts',combine.echartsFile))
