@@ -34,17 +34,18 @@ class danjuanSpider:
                 print(u'\t'.join(seq))
                 f.write(u'\t'.join(seq) + '\n')
             print('\n')
-            
-spider = danjuanSpider()
-cookie = cookieConfig()
-Cookies = {}
-# 康力泉 Cookie
-Cookies['kangliquan'] = cookie.danjuanCookieKLQ
-# 老妈 Cookie
-Cookies['mother'] = cookie.danjuanCookieMother
-# 老爸 Cookie
-Cookies['father'] = cookie.danjuanCookieFather
 
-spider.fetchWithCookie(name=u'螺丝钉定投', cookie=Cookies['kangliquan'])
-spider.fetchWithCookie(name=u'李淑云', cookie=Cookies['mother'])
-spider.fetchWithCookie(name=u'康世海', cookie=Cookies['father'])
+if __name__ == '__main__':
+    spider = danjuanSpider()
+    cookie = cookieConfig()
+    Cookies = {}
+    # 康力泉 Cookie
+    Cookies['kangliquan'] = cookie.danjuanCookieKLQ
+    # 老妈 Cookie
+    Cookies['mother'] = cookie.danjuanCookieMother
+    # 老爸 Cookie
+    Cookies['father'] = cookie.danjuanCookieFather
+
+    spider.fetchWithCookie(name=u'螺丝钉定投', cookie=Cookies['kangliquan'])
+    spider.fetchWithCookie(name=u'李淑云', cookie=Cookies['mother'])
+    spider.fetchWithCookie(name=u'康世海', cookie=Cookies['father'])

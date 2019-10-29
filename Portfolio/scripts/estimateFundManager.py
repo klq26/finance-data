@@ -74,6 +74,7 @@ class estimateFundManager:
         return (round(float(quote['last_close']),4),netValueDate,round(float(quote['current']),4),round(float(quote['current'])/float(quote['last_close'])-1,4),esitmateValueDate)
         
 
-#manager = estimateFundManager()
-#print(manager.estimate(u'510500'))
+if __name__ == '__main__':
+    manager = estimateFundManager()
+    print(manager.estimate(u'510500'))
 

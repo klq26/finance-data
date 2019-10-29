@@ -52,8 +52,9 @@ class qiemanSpider:
                     print(u'\t'.join(seq))
                     f.write(u'\t'.join(seq) + '\n')
             print('\n')
-    
-spider = qiemanSpider()
 
-spider.fetchWithCookie(name=u'10万补充ETF计划',url=spider.urlForPlan150)
-spider.fetchWithCookie(name=u'我的S定投计划',url=spider.urlForPlanS)
+if __name__ == '__main__':
+    spider = qiemanSpider()
+    spider.fetchWithCookie(name=u'10万补充ETF计划',url=spider.urlForPlan150)
+    spider.fetchWithCookie(name=u'我的S定投计划',url=spider.urlForPlanS)
+    

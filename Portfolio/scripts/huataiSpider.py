@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+from estimateFundManager import estimateFundManager
 
 class huataiSpider:
     
@@ -34,9 +35,16 @@ class huataiSpider:
             # 读取并暂存数据（inputfile.readline() 已经让内部游标 +1 了，所以 readlines() 将是从第一行数据开始）
             for line in inputfile.readlines():
                 data = line.replace('\n','').split('\t')
+                # 用雪球获取场内净值
+                manager = estimateFundManager()
+                innerMarketData = manager.estimateInnerMarketETF(data[self.neededColumnIndexs[1]])
+                lastNetValue = float(innerMarketData[2])
+                print(lastNetValue)
+                lastMarketCap = round(lastNetValue * float(data[self.neededColumnIndexs[3]]),2)  # 最新净值 * 仓位
+                lastTotalGain = round((lastNetValue - float(data[self.neededColumnIndexs[2]])) * float(data[self.neededColumnIndexs[3]]),2)
                 # 名称，代码，持仓成本，持仓份额，持仓市值，累计收益
                 seq = (data[self.neededColumnIndexs[0]],data[self.neededColumnIndexs[1]],data[self.neededColumnIndexs[2]],\
-                        data[self.neededColumnIndexs[3]],data[self.neededColumnIndexs[4]],data[self.neededColumnIndexs[5]])
+                        data[self.neededColumnIndexs[3]],str(lastMarketCap), str(lastTotalGain))
                 self.totalMarketCap = self.totalMarketCap + round(float(data[self.neededColumnIndexs[4]]),2)
                 self.totalGain = self.totalGain + round(float(data[self.neededColumnIndexs[5]]),2)
                 self.results.append(u'\t'.join(seq))
@@ -54,8 +62,9 @@ class huataiSpider:
                 print(item)
                 outfile.write(item + '\n')
             print('\n')
-            
-spider = huataiSpider()
-# huatai.txt 本来就是从 xls 文件中拷贝出来的。重组后，重新生成该文件，所以叫 dataFormat
-# 因为华泰生成的 xls 文件格式有问题，用 xlrd 读取会崩溃，所以才出此折衷办法
-spider.dataFormat()
+
+if __name__ == '__main__':
+    spider = huataiSpider()
+    # huatai.txt 本来就是从 xls 文件中拷贝出来的。重组后，重新生成该文件，所以叫 dataFormat
+    # 因为华泰生成的 xls 文件格式有问题，用 xlrd 读取会崩溃，所以才出此折衷办法
+    spider.dataFormat()

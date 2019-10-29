@@ -45,15 +45,16 @@ class guangfaSpider:
                             break
                     break
                 print('\n')
-            
-spider = guangfaSpider()
-cookie = cookieConfig()
-Cookies = {}
 
-# 复制 Chrome 的 UA 可用正则“^(.*?): (.*?)$” 替换成 “'\1': '\2',” 就可以
-# http://www.gffunds.com.cn/
+if __name__ == '__main__':
+    spider = guangfaSpider()
+    cookie = cookieConfig()
+    Cookies = {}
 
-# 康力泉 Cookie
-Cookies['kangliquan'] = cookie.guangfaCookie
+    # 复制 Chrome 的 UA 可用正则“^(.*?): (.*?)$” 替换成 “'\1': '\2',” 就可以
+    # http://www.gffunds.com.cn/
 
-spider.fetchWithCookie(name=u'支付宝', cookie=Cookies['kangliquan'])
+    # 康力泉 Cookie
+    Cookies['kangliquan'] = cookie.guangfaCookie
+
+    spider.fetchWithCookie(name=u'支付宝', cookie=Cookies['kangliquan'])

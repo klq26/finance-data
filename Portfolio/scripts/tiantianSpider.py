@@ -87,22 +87,23 @@ class tiantianSpider:
                 f.write(string + '\n')
             print('\n')
 
-if len(sys.argv) <= 1:
-    print(u'[ERROR] 参数不足。需要键入策略编号。a：康力泉 b：父母')
-    exit()
-strategy = sys.argv[1]
-spider = tiantianSpider()
-cookie = cookieConfig()
-Cookies = {}
-# 康力泉 Cookie
-Cookies['kangliquan'] = cookie.tiantianCookieKLQ
-Cookies['mother'] = cookie.tiantianCookieMother
+if __name__ == '__main__':
+    strategy = 'a'
+    if len(sys.argv) >= 2:
+        #print(u'[ERROR] 参数不足。需要键入策略编号。a：康力泉 b：父母')
+        strategy = sys.argv[1]
+        
+    spider = tiantianSpider()
+    cookie = cookieConfig()
+    Cookies = {}
+    # 康力泉 Cookie
+    Cookies['kangliquan'] = cookie.tiantianCookieKLQ
+    Cookies['mother'] = cookie.tiantianCookieMother
 
-if strategy == 'a':
-    spider.fetchWithCookie(name=u'康力泉', cookie=Cookies['kangliquan'])
-elif strategy == 'b':
-    spider.fetchWithCookie(name=u'李淑云', cookie=Cookies['mother'])
-else:
-    print(u'[ERROR] 参数错误，不支持的策略编号。')
-    exit()
-
+    if strategy == 'a':
+        spider.fetchWithCookie(name=u'康力泉', cookie=Cookies['kangliquan'])
+    elif strategy == 'b':
+        spider.fetchWithCookie(name=u'李淑云', cookie=Cookies['mother'])
+    else:
+        print(u'[ERROR] 参数错误，不支持的策略编号。')
+        exit()
