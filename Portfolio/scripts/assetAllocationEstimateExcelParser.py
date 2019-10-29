@@ -10,6 +10,8 @@ from openpyxl.styles import Alignment
 
 from estimateFundManager import estimateFundManager
 from model.fundModel import fundModel
+# pretty table output
+from prettytable import PrettyTable
 
 class assetAllocationEstimateExcelParser:
 
@@ -61,7 +63,7 @@ class assetAllocationEstimateExcelParser:
         else:
             return 'FFFFFF'
 
-    def generateEstimateExcelFile(self,fundModelArray,path=''):
+    def generateEstimateExcelFile(self, fundModelArray, path=''):
         if len(fundModelArray) == 0:
             return
         # 天天基金获取估算净值
@@ -88,10 +90,11 @@ class assetAllocationEstimateExcelParser:
             outws.cell(rowCursor, i).alignment = align
         rowCursor = rowCursor + 1
         # 统计
-        currentTotalMarketCap = 0.0
-        currentTotalStockMarketCap = 0.0
-        estimateTotalGainToday = 0.0
-        outerFundEstimateTotalGainToday = 0.0
+        currentTotalMarketCap = 0.0             # 当前资产整体市值
+        currentTotalStockMarketCap = 0.0        # 当前股票市值
+        estimateTotalGainToday = 0.0            # 今日涨跌额估值
+        outerFundEstimateTotalGainToday = 0.0   # 今日场外涨跌额估值
+        gainByAppSource = {}                    # 分 APP 涨跌幅统计
         # 写入基金持仓数据
         for fundModel in fundModelArray:
             # 即便是现金，也计入总体市值，为了看投资组合的整体收益情况
@@ -167,6 +170,13 @@ class assetAllocationEstimateExcelParser:
                         # 仅计入场外基金部分（因为场内有情绪涨跌溢价，收盘价不能用净值估算代表）
                         outerFundEstimateTotalGainToday = outerFundEstimateTotalGainToday + changeValue
                     estimateTotalGainToday = estimateTotalGainToday + changeValue
+                    # 按 APP 来源统计收支
+                    if fundModel.appSource not in gainByAppSource.keys():
+                        gainByAppSource[fundModel.appSource] = round(changeValue,2)
+                    else:
+                        gainOfCurrentAppSource = gainByAppSource[fundModel.appSource]
+                        gainByAppSource[fundModel.appSource] = round(gainOfCurrentAppSource + changeValue,2)
+                    
                 if col == 12:
                     outws.cell(rowCursor, col).value = fundModel.estimateTime
                     outws.cell(rowCursor, col).alignment = Alignment(horizontal='center')
@@ -186,9 +196,20 @@ class assetAllocationEstimateExcelParser:
         outwb.save(path)
         # 输出统计
         print('\n场外基金持仓估值结果：\n')
-        print(u'今日预估收益：{0}\t今日场外预估收益：{1}\t今日场内预估收益：{2}'.format(round(estimateTotalGainToday,2), round(outerFundEstimateTotalGainToday,2),round(estimateTotalGainToday - outerFundEstimateTotalGainToday,2)))
-        print(u'之前组合总市值：{0}\t组合预估涨跌幅：{1}%'.format(round(currentTotalMarketCap,2),round(estimateTotalGainToday/currentTotalMarketCap * 100, 2)))
-        print(u'之前权益类总市值：{0}\t权益类预估涨跌幅：{1}%'.format(round(currentTotalStockMarketCap,2),round(estimateTotalGainToday/currentTotalStockMarketCap * 100, 2)))
+        #print(u'今日预估收益：{0}\t今日场外预估收益：{1}\t今日场内预估收益：{2}'.format(round(estimateTotalGainToday,2), round(outerFundEstimateTotalGainToday,2),round(estimateTotalGainToday - outerFundEstimateTotalGainToday,2)))
+        #print(u'之前组合总市值：{0}\t组合预估涨跌幅：{1}%'.format(round(currentTotalMarketCap,2),round(estimateTotalGainToday/currentTotalMarketCap * 100, 2)))
+        #print(u'之前权益类总市值：{0}\t权益类预估涨跌幅：{1}%'.format(round(currentTotalStockMarketCap,2),round(estimateTotalGainToday/currentTotalStockMarketCap * 100, 2)))
+        # 输出估算整体情况
+        tb1 = PrettyTable()
+        tb1.field_names = [u'今日收益估算',u'场内估算',u'场外估算',u'权益类涨跌',u'组合涨跌']
+        tb1.add_row([round(estimateTotalGainToday,2),round(estimateTotalGainToday - outerFundEstimateTotalGainToday,2),round(outerFundEstimateTotalGainToday,2),u'{0}%'.format(round(estimateTotalGainToday/currentTotalStockMarketCap * 100, 2)),u'{0}%'.format(round(estimateTotalGainToday/currentTotalMarketCap * 100, 2))])
+        print(tb1)
+        print('\n')
+        # 输出分账户情况
+        tb2 = PrettyTable()
+        tb2.field_names = gainByAppSource.keys()
+        tb2.add_row(gainByAppSource.values())
+        print(tb2)
 
     # 读取本地 fundModel 数据
     def loadFundModelArrayFromJson(self):
