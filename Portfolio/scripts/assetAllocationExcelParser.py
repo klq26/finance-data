@@ -57,7 +57,7 @@ class assetAllocationExcelParser:
 
     # 获取资产旭日图分类配置文件
     def getFundCategorys(self):
-        path = os.path.join(os.getcwd(),u'config',u'fundCategory.json')
+        path = os.path.join(self.pm.configPath,u'fundCategory.json')
         if not os.path.exists(path):
             print(u'[ERROR] 缺少资产配置分类文件：{0}'.format(path))
             exit()

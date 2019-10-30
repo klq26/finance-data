@@ -8,6 +8,7 @@ import json
 from bs4 import BeautifulSoup
 
 from config.cookieConfig import cookieConfig
+from config.pathManager import pathManager
 
 class tiantianSpider:
     
@@ -40,7 +41,8 @@ class tiantianSpider:
         soup = BeautifulSoup(html, 'lxml')
         # 取出条目列表
         contentList = soup.find_all('tr')
-        with open(os.path.join(os.getcwd(),u'output','tiantian_{}.txt'.format(name)),'w',encoding='utf-8') as f:
+        pm = pathManager()
+        with open(os.path.join(pm.outputPath,'tiantian_{}.txt'.format(name)),'w',encoding='utf-8') as f:
             for item in contentList:
                 # 取出所有 td
                 tds = item.find_all('td')            

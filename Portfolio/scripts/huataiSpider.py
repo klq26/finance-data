@@ -2,12 +2,14 @@
 
 import os
 from estimateFundManager import estimateFundManager
+from config.pathManager import pathManager
 
 class huataiSpider:
     
     # 初始化构造函数
     def __init__(self):
-        self.path = os.path.join(os.getcwd(),u'input',u'huatai.txt')
+        pm = pathManager()
+        self.path = os.path.join(pm.inputPath,u'huatai.txt')
         self.results = []
         self.neededColumnNames = [u'证券名称',u'证券代码',u'成本价',u'证券数量',u'最新市值',u'浮动盈亏']
         self.neededColumnIndexs = []
@@ -50,7 +52,8 @@ class huataiSpider:
                 self.results.append(u'\t'.join(seq))
         
         # 写入输出文件
-        with open(os.path.join(os.getcwd(),u'output',u'huatai_康力泉.txt'),'w',encoding='utf-8') as outfile:
+        pm = pathManager()
+        with open(os.path.join(pm.outputPath,u'huatai_康力泉.txt'),'w',encoding='utf-8') as outfile:
             titleLine = u'{0}\t总市值\t{1}\t累计收益\t{2}'.format(u'股票账户',round(self.totalMarketCap,2),round(self.totalGain,2))
             print(titleLine)
             outfile.write(titleLine + '\n')

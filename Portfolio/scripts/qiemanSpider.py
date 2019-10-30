@@ -4,6 +4,7 @@ import requests
 import json
 
 from config.cookieConfig import cookieConfig
+from config.pathManager import pathManager
 
 class qiemanSpider:
     
@@ -25,8 +26,8 @@ class qiemanSpider:
         'User-Agent':'Mozilla/5.0(Macintosh;intel Mac OS 10_11_4)Applewebkit/537.36(KHTML,like Gecko)Chrome/52.0.2743.116 Safari/537.36'
         }
         response = requests.get(url, headers = headers)
-        
-        with open(os.path.join(os.getcwd(),u'output','qieman_{}.txt'.format(name)),'w',encoding='utf-8') as f:
+        pm = pathManager()
+        with open(os.path.join(pm.outputPath,'qieman_{}.txt'.format(name)),'w',encoding='utf-8') as f:
             #print(response.text)
             data = json.loads(response.text)
             # "totalAsset": 34074.8509,   # 总资产

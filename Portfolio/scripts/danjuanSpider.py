@@ -5,6 +5,7 @@ import json
 import requests
 
 from config.cookieConfig import cookieConfig
+from config.pathManager import pathManager
 
 class danjuanSpider:
     
@@ -18,8 +19,8 @@ class danjuanSpider:
         'User-Agent':'Mozilla/5.0(Macintosh;intel Mac OS 10_11_4)Applewebkit/537.36(KHTML,like Gecko)Chrome/52.0.2743.116 Safari/537.36'
         }
         response = requests.get(self.url, headers = headers)
-        
-        with open(os.path.join(os.getcwd(),u'output',u'danjuan_{}.txt'.format(name)),'w',encoding='utf-8') as f:
+        pm = pathManager()
+        with open(os.path.join(pm.outputPath,u'danjuan_{}.txt'.format(name)),'w',encoding='utf-8') as f:
             data = json.loads(response.text)['data']
             titleLine = u'{0}\t总市值\t{1}\t累计收益\t{2}'.format(name,round(data['total_assets'],2),round(data['total_gain'],2))
             print(titleLine)

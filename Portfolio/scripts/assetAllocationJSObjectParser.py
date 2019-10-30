@@ -11,6 +11,7 @@ from model.assetModel import assetModel
 from model.echartsModel import echartsModel
 # config
 from config.assetCategoryConstants import assetCategoryConstants
+from config.pathManager import pathManager
 
 class assetAllocationJSObjectParser:
 
@@ -22,6 +23,7 @@ class assetAllocationJSObjectParser:
         self.modelArray = []
         self.jsonStr = u''
         self.echarts = []
+        self.pm = pathManager()
     
     # 格式化浮点数
     def beautify(self,num):
@@ -112,12 +114,12 @@ class assetAllocationJSObjectParser:
             #print(echart1.__dict__)
             self.echarts.append(echart1.__dict__)
         # 写入文件
-        with open(os.path.join(os.getcwd(),u'output','echarts.json'),'w',encoding='utf-8') as jsonFile:
+        with open(os.path.join(self.pm.outputPath,'echarts.json'),'w',encoding='utf-8') as jsonFile:
             jsonFile.write(json.dumps(self.echarts, ensure_ascii=False, sort_keys = True, indent = 4, separators=(',', ':')))
     
     # 生成直接可用的 data.js 文件
     def generateJSObjectFile(self,modelArray,name):
-        jsPath = os.path.join(os.getcwd(),'..','echarts',u'data_{0}.js'.format(name))
+        jsPath = os.path.join(self.pm.echartsPath',u'data_{0}.js'.format(name))
         with open(jsPath,'w',encoding='utf-8') as jsFile:
             # print(jsPath)
             jsFile.write('function getData()\n')

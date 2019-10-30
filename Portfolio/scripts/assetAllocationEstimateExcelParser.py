@@ -8,6 +8,7 @@ import openpyxl
 from openpyxl.styles import numbers
 from openpyxl.styles import Alignment
 
+from config.pathManager import pathManager
 from estimateFundManager import estimateFundManager
 from model.fundModel import fundModel
 # pretty table output
@@ -17,11 +18,12 @@ class assetAllocationEstimateExcelParser:
 
     def __init__(self):
         self.fundCategorys = self.getFundCategorys()
+        self.pm = pathManager()
         self.fundJsonFilePathExt = ''
         
         # 获取资产旭日图分类配置文件
     def getFundCategorys(self):
-        path = os.path.join(os.getcwd(),u'config',u'fundCategory.json')
+        path = os.path.join(self.pm.configPath,u'fundCategory.json')
         if not os.path.exists(path):
             print(u'[ERROR] 缺少资产配置分类文件：{0}'.format(path))
             exit()
@@ -214,7 +216,7 @@ class assetAllocationEstimateExcelParser:
     # 读取本地 fundModel 数据
     def loadFundModelArrayFromJson(self):
         # 读取文件
-        fundJsonPath = os.path.join(os.getcwd(), u'output', u'{0}fund.json'.format(self.fundJsonFilePathExt))
+        fundJsonPath = os.path.join(self.pm.outputPath, u'{0}fund.json'.format(self.fundJsonFilePathExt))
         with open(fundJsonPath,'r',encoding=u'utf-8') as fundJsonFile:
             # object_hook 配合 init 传入 self.__dict__ = dictData 实现 json 字符串转 python 自定义对象
             contentList = json.loads(fundJsonFile.read(),object_hook=fundModel)
@@ -224,5 +226,5 @@ if __name__ == '__main__':
     estimateExcel = assetAllocationEstimateExcelParser()
     # 实时估值就只保留自己的就好，单独运行时，身份标识写死
     estimateExcel.fundJsonFilePathExt = u'康力泉整体'
-    path=os.path.join(os.getcwd(), u'output', u'{0}收益估算.xlsx'.format(estimateExcel.fundJsonFilePathExt))
+    path=os.path.join(self.pm.outputPath, u'{0}收益估算.xlsx'.format(estimateExcel.fundJsonFilePathExt))
     estimateExcel.generateEstimateExcelFile(estimateExcel.loadFundModelArrayFromJson(),path)

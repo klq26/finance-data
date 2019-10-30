@@ -5,6 +5,7 @@ import requests
 import json
 
 from config.cookieConfig import cookieConfig
+from config.pathManager import pathManager
 
 class guangfaSpider:
     
@@ -23,7 +24,8 @@ class guangfaSpider:
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36'
         }
         response = requests.get(self.url, headers = headers)
-        with open(os.path.join(os.getcwd(),u'output',u'guangfa_{}.txt'.format(name)),'w',encoding='utf-8') as f:
+        pm = pathManager()
+        with open(os.path.join(pm.outputPath,u'guangfa_{}.txt'.format(name)),'w',encoding='utf-8') as f:
             jsonData = json.loads(response.text)['data']
             contentList = jsonData['fundPositionGainList']
             for data in contentList:

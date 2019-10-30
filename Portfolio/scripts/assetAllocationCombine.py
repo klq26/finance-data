@@ -5,6 +5,7 @@ import sys
 import json
 import time
 
+from config.pathManager import pathManager
 # 多种统计输出
 from assetAllocationExcelParser import assetAllocationExcelParser               # 输出资产配置信息到 Excel 表
 from assetAllocationConsoleParser import assetAllocationConsoleParser           # 输出资产配置信息到控制台
@@ -38,7 +39,7 @@ class assetAllocationCombine:
             self.echartsFile = u'KLQPortfolio.html'
         # 持仓基金数据的本地保存路径标识
         self.fundJsonFilePathExt = self.excelFilePathExt
-
+        self.pm = pathManager()
         self.fundCategorys = self.getFundCategorys()
         self.filepaths = []
         for root, dirs, files in os.walk(os.getcwd(), topdown=False):
@@ -95,16 +96,16 @@ class assetAllocationCombine:
                     self.fundModelArray.append(fund.__dict__)
                     self.assetModelArray.append(asset.__dict__)
         # 输出文件
-        fundJsonPath = os.path.join(os.getcwd(), u'output', u'{0}fund.json'.format(self.fundJsonFilePathExt))
+        fundJsonPath = os.path.join(self.pm.outputPath, u'{0}fund.json'.format(self.fundJsonFilePathExt))
         with open(fundJsonPath,'w',encoding=u'utf-8') as fundJsonFile:
             fundJsonFile.write(json.dumps(self.fundModelArray, ensure_ascii=False, sort_keys = True, indent = 4, separators=(',', ':')))
-        assetJsonPath = os.path.join(os.getcwd(), u'output', u'{0}asset.json'.format(self.fundJsonFilePathExt))
+        assetJsonPath = os.path.join(self.pm.outputPath, u'{0}asset.json'.format(self.fundJsonFilePathExt))
         with open(assetJsonPath,'w',encoding=u'utf-8') as assetJsonFile:
             assetJsonFile.write(json.dumps(self.assetModelArray, ensure_ascii=False, sort_keys = True, indent = 4, separators=(',', ':')))
 
     # 获取资产旭日图分类配置文件
     def getFundCategorys(self):
-        path = os.path.join(os.getcwd(),u'config',u'fundCategory.json')
+        path = os.path.join(self.pm.configPath,u'fundCategory.json')
         if not os.path.exists(path):
             print(u'[ERROR] 缺少资产配置分类文件：{0}'.format(path))
             exit()
@@ -149,7 +150,7 @@ class assetAllocationCombine:
     # 读取本地 fundModel 数据
     def loadFundModelArrayFromJson(self):
         # 读取文件
-        fundJsonPath = os.path.join(os.getcwd(), u'output', u'{0}fund.json'.format(self.fundJsonFilePathExt))
+        fundJsonPath = os.path.join(self.pm.outputPath, u'{0}fund.json'.format(self.fundJsonFilePathExt))
         with open(fundJsonPath,'r',encoding=u'utf-8') as fundJsonFile:
             # object_hook 配合 init 传入 self.__dict__ = dictData 实现 json 字符串转 python 自定义对象
             contentList = json.loads(fundJsonFile.read(),object_hook=fundModel)
@@ -158,7 +159,7 @@ class assetAllocationCombine:
     # 读取本地 assetModel 数据
     def loadAssetModelArrayFromJson(self):
         # 读取文件
-        assetJsonPath = os.path.join(os.getcwd(), u'output', u'{0}asset.json'.format(self.fundJsonFilePathExt))
+        assetJsonPath = os.path.join(self.pm.outputPath, u'{0}asset.json'.format(self.fundJsonFilePathExt))
         with open(assetJsonPath,'r',encoding=u'utf-8') as assetJsonFile:
             # object_hook 配合 init 传入 self.__dict__ = dictData 实现 json 字符串转 python 自定义对象
             contentList = json.loads(assetJsonFile.read(),object_hook=assetModel)
@@ -187,7 +188,7 @@ fundModelArray = combine.loadFundModelArrayFromJson()
 
 # 输出 Excel 资产配置
 assetExcel = assetAllocationExcelParser()
-assetExcel.generateExcelFile(assetModelArray,path=os.path.join(os.getcwd(), u'output', u'{0}资产配置.xlsx'.format(combine.excelFilePathExt)))
+assetExcel.generateExcelFile(assetModelArray,path=os.path.join(self.pm.outputPath, u'{0}资产配置.xlsx'.format(combine.excelFilePathExt)))
 
 # 输出 控制台 统计信息
 console = assetAllocationConsoleParser()
@@ -200,7 +201,7 @@ jsObject.generateJSObjectFile(assetModelArray,combine.echartsJSFilePathExt)
 
 # 生成实时估值信息
 estimateExcel = assetAllocationEstimateExcelParser()
-estimateExcel.generateEstimateExcelFile(fundModelArray, path=os.path.join(os.getcwd(), u'output', u'{0}收益估算.xlsx'.format(combine.excelFilePathExt)))
+estimateExcel.generateEstimateExcelFile(fundModelArray, path=os.path.join(self.pm.outputPath, u'{0}收益估算.xlsx'.format(combine.excelFilePathExt)))
 
 # 打开资产配置旭日图
-os.startfile(os.path.join(os.getcwd(),'..','echarts',combine.echartsFile))
+os.startfile(os.path.join(self.pm.echartsPath,combine.echartsFile))
