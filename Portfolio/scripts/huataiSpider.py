@@ -41,7 +41,6 @@ class huataiSpider:
                 manager = estimateFundManager()
                 innerMarketData = manager.estimateInnerMarketETF(data[self.neededColumnIndexs[1]])
                 lastNetValue = float(innerMarketData[2])
-                print(lastNetValue)
                 lastMarketCap = round(lastNetValue * float(data[self.neededColumnIndexs[3]]),2)  # 最新净值 * 仓位
                 lastTotalGain = round((lastNetValue - float(data[self.neededColumnIndexs[2]])) * float(data[self.neededColumnIndexs[3]]),2)
                 # 名称，代码，持仓成本，持仓份额，持仓市值，累计收益

@@ -17,8 +17,8 @@ from prettytable import PrettyTable
 class assetAllocationEstimateExcelParser:
 
     def __init__(self):
-        self.fundCategorys = self.getFundCategorys()
         self.pm = pathManager()
+        self.fundCategorys = self.getFundCategorys()
         self.fundJsonFilePathExt = ''
         
         # 获取资产旭日图分类配置文件
@@ -97,6 +97,8 @@ class assetAllocationEstimateExcelParser:
         estimateTotalGainToday = 0.0            # 今日涨跌额估值
         outerFundEstimateTotalGainToday = 0.0   # 今日场外涨跌额估值
         gainByAppSource = {}                    # 分 APP 涨跌幅统计
+        # esitmate 暂存区，如果一个代码查过了，就不要二次出现浪费时间了
+        estimateCache = {}
         # 写入基金持仓数据
         for fundModel in fundModelArray:
             # 即便是现金，也计入总体市值，为了看投资组合的整体收益情况
@@ -107,7 +109,11 @@ class assetAllocationEstimateExcelParser:
             currentTotalStockMarketCap = currentTotalStockMarketCap + fundModel.holdMarketCap
             #print(fundModel.__dict__)
             color = self.getFundColorByAppSourceName(fundModel.appSource)
-            estimateValues = manager.estimate(fundModel.fundCode)
+            if fundModel.fundCode in estimateCache.keys():
+                estimateValues = estimateCache[fundModel.fundCode]
+            else:
+                estimateValues = manager.estimate(fundModel.fundCode)
+                estimateCache[fundModel.fundCode] = estimateValues
             #print(estimateValues)  # 元组数据
             time.sleep(0.25)
             if estimateValues:

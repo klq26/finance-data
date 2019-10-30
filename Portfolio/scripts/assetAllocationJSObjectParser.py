@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import json
+import shutil
 # for reduce method of lambda
 from functools import reduce
 # groupby & itemgetter
@@ -15,7 +16,7 @@ from config.pathManager import pathManager
 
 class assetAllocationJSObjectParser:
 
-    def __init__(self):
+    def __init__(self, strategy = 'a'):
         categoryConstants = assetCategoryConstants()
         self.category1Array = categoryConstants.category1Array
         self.category2Array = categoryConstants.category2Array
@@ -23,7 +24,11 @@ class assetAllocationJSObjectParser:
         self.modelArray = []
         self.jsonStr = u''
         self.echarts = []
-        self.pm = pathManager()
+        self.strategy = strategy
+        if strategy == 'a':
+            self.pm = pathManager(strategyName='康力泉')
+        elif strategy == 'b':
+            self.pm = pathManager(strategyName='父母')
     
     # 格式化浮点数
     def beautify(self,num):
@@ -119,11 +124,13 @@ class assetAllocationJSObjectParser:
     
     # 生成直接可用的 data.js 文件
     def generateJSObjectFile(self,modelArray,name):
-        jsPath = os.path.join(self.pm.echartsPath',u'data_{0}.js'.format(name))
+        fileName = u'data_{0}.js'.format(name)
+        jsPath = os.path.join(self.pm.echartsPath,fileName)
         with open(jsPath,'w',encoding='utf-8') as jsFile:
             # print(jsPath)
             jsFile.write('function getData()\n')
             jsFile.write('{\n')
             jsFile.write('\t' + r'return {0}'.format(json.dumps(self.echarts, ensure_ascii=False, sort_keys = True, indent = 4, separators=(',', ':'))))
             jsFile.write('\n}')
-        
+        # 输出目录留存备份
+        shutil.copy(jsPath,os.path.join(self.pm.outputPath,fileName))

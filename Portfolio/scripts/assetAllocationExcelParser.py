@@ -11,10 +11,12 @@ from model.assetModel import assetModel
 from model.echartsModel import echartsModel
 # config
 from config.assetCategoryConstants import assetCategoryConstants
+from config.pathManager import pathManager
 
 class assetAllocationExcelParser:
 
     def __init__(self):
+        self.pm = pathManager()
         self.fundCategorys = self.getFundCategorys()
         categoryConstants = assetCategoryConstants()
         self.category1Array = categoryConstants.category1Array

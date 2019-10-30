@@ -13,12 +13,17 @@ from config.pathManager import pathManager
 class tiantianSpider:
     
     # 初始化构造函数
-    def __init__(self):
+    def __init__(self, strategy = 'a'):
         self.url = u'https://trade.1234567.com.cn/MyAssets/do.aspx/GetHoldAssetsNew?1571906547481'
         self.urlPrefix = u'https://trade.1234567.com.cn'
         self.totalMarketCap = 0.0
         self.totalGain = 0.0
         self.results = []
+        self.strategy = strategy
+        if strategy == 'a':
+            self.pm = pathManager(strategyName='康力泉')
+        elif strategy == 'b':
+            self.pm = pathManager(strategyName='父母')
         
     def fetchWithCookie(self,name,cookie):
         """
@@ -42,7 +47,7 @@ class tiantianSpider:
         # 取出条目列表
         contentList = soup.find_all('tr')
         pm = pathManager()
-        with open(os.path.join(pm.outputPath,'tiantian_{}.txt'.format(name)),'w',encoding='utf-8') as f:
+        with open(os.path.join(self.pm.outputPath,'tiantian_{}.txt'.format(name)),'w',encoding='utf-8') as f:
             for item in contentList:
                 # 取出所有 td
                 tds = item.find_all('td')            

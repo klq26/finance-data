@@ -10,8 +10,13 @@ from config.pathManager import pathManager
 class danjuanSpider:
     
     # 初始化构造函数
-    def __init__(self):
+    def __init__(self, strategy = 'a'):
         self.url = u'https://danjuanapp.com/djapi/holding/plan/CSI666'
+        self.strategy = strategy
+        if strategy == 'a':
+            self.pm = pathManager(strategyName='康力泉')
+        elif strategy == 'b':
+            self.pm = pathManager(strategyName='父母')
 
     def fetchWithCookie(self,name,cookie):
         headers={
@@ -20,7 +25,7 @@ class danjuanSpider:
         }
         response = requests.get(self.url, headers = headers)
         pm = pathManager()
-        with open(os.path.join(pm.outputPath,u'danjuan_{}.txt'.format(name)),'w',encoding='utf-8') as f:
+        with open(os.path.join(self.pm.outputPath,u'danjuan_{}.txt'.format(name)),'w',encoding='utf-8') as f:
             data = json.loads(response.text)['data']
             titleLine = u'{0}\t总市值\t{1}\t累计收益\t{2}'.format(name,round(data['total_assets'],2),round(data['total_gain'],2))
             print(titleLine)

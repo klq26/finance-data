@@ -26,23 +26,25 @@ class assetAllocationCombine:
             self.filenames = [u'danjuan_螺丝钉定投.txt',u'qieman_10万补充ETF计划.txt',u'qieman_我的S定投计划.txt', u'tiantian_康力泉.txt',u'huatai_康力泉.txt',u'guangfa_支付宝.txt']
             self.excelFilePathExt = u'康力泉权益类'
             self.echartsJSFilePathExt = u'康力泉'
+            self.pm = pathManager(strategyName=u'康力泉')
             self.echartsFile = u'KLQPortfolio.html'
         elif self.strategy == 'b':
             self.filenames = [u'danjuan_李淑云.txt',u'danjuan_康世海.txt',u'tiantian_李淑云.txt']
             self.excelFilePathExt = u'父母'
             self.echartsJSFilePathExt = u'父母'
+            self.pm = pathManager(strategyName=u'父母')
             self.echartsFile = u'ParentPortfolio.html'
         elif self.strategy == 'c':
             self.filenames = [u'danjuan_螺丝钉定投.txt',u'qieman_10万补充ETF计划.txt',u'qieman_我的S定投计划.txt', u'tiantian_康力泉.txt',u'huatai_康力泉.txt',u'guangfa_支付宝.txt',u'cash_康力泉.txt',u'freeze_康力泉.txt']
             self.excelFilePathExt = u'康力泉整体'
             self.echartsJSFilePathExt = u'康力泉'
+            self.pm = pathManager(strategyName=u'康力泉')
             self.echartsFile = u'KLQPortfolio.html'
         # 持仓基金数据的本地保存路径标识
         self.fundJsonFilePathExt = self.excelFilePathExt
-        self.pm = pathManager()
         self.fundCategorys = self.getFundCategorys()
         self.filepaths = []
-        for root, dirs, files in os.walk(os.getcwd(), topdown=False):
+        for root, dirs, files in os.walk(self.pm.outputPath, topdown=False):
             for name in files:
                 if name in self.filenames:
                     self.filepaths.append(os.path.join(root,name))
@@ -188,20 +190,23 @@ fundModelArray = combine.loadFundModelArrayFromJson()
 
 # 输出 Excel 资产配置
 assetExcel = assetAllocationExcelParser()
-assetExcel.generateExcelFile(assetModelArray,path=os.path.join(self.pm.outputPath, u'{0}资产配置.xlsx'.format(combine.excelFilePathExt)))
+assetExcel.generateExcelFile(assetModelArray,path=os.path.join(combine.pm.outputPath, u'{0}资产配置.xlsx'.format(combine.excelFilePathExt)))
 
 # 输出 控制台 统计信息
 console = assetAllocationConsoleParser()
 console.showInfo(assetModelArray)
 
 # 输出 echarts.json 和 data.json
-jsObject = assetAllocationJSObjectParser()
+if strategy == 'a' or strategy == 'c':
+    jsObject = assetAllocationJSObjectParser()
+elif strategy == 'b':
+    jsObject = assetAllocationJSObjectParser('b')
 jsObject.generateEchartsJsonFile(assetModelArray)
 jsObject.generateJSObjectFile(assetModelArray,combine.echartsJSFilePathExt)
 
 # 生成实时估值信息
 estimateExcel = assetAllocationEstimateExcelParser()
-estimateExcel.generateEstimateExcelFile(fundModelArray, path=os.path.join(self.pm.outputPath, u'{0}收益估算.xlsx'.format(combine.excelFilePathExt)))
+estimateExcel.generateEstimateExcelFile(fundModelArray, path=os.path.join(combine.pm.outputPath, u'{0}收益估算.xlsx'.format(combine.excelFilePathExt)))
 
 # 打开资产配置旭日图
-os.startfile(os.path.join(self.pm.echartsPath,combine.echartsFile))
+os.startfile(os.path.join(combine.pm.echartsPath,combine.echartsFile))
