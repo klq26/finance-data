@@ -4,6 +4,8 @@ class tiantianTradeInfoModel:
 
     def __init__(self, data=None):
         self.date = ''
+        self.year = ''
+        self.quarter = ''
         self.name = ''
         self.code = ''
         self.operate = ''
@@ -16,7 +18,7 @@ class tiantianTradeInfoModel:
             self.__dict__ = data
 
     def __str__(self):
-        seq = u'\t'.join((self.date, self.name, self.code, self.operate, self.cost, self.costUnit, self.gain, self.gainUnit, self.url))
+        seq = u'\t'.join((self.date, self.year, self.quarter, self.name, self.code, self.operate, self.cost, self.costUnit, self.gain, self.gainUnit, self.url))
         return seq
         
     def __getitem__(self, key):
