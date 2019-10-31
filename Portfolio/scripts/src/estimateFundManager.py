@@ -6,14 +6,15 @@ import requests
 import datetime
 import time
 
-from config.cookieConfig import cookieConfig
+fundCodeConstantsfrom config.cookieConfig import cookieConfig
+from config.fundCodeConstants import cookieConfig
 
 class estimateFundManager:
     
     # 初始化构造函数
     def __init__(self):
         # 场内代码
-        self.innerMarketCodes = [u'510050',u'510300',u'510500',u'512580',u'512880',u'512980',u'518880',u'159902',u'159915',u'159938']
+        self.innerMarketCodes = fundCodeConstants().innerMarketCodes.values()
 
     def estimate(self, code):
         if code == '' or code == u'000000':

@@ -14,7 +14,7 @@ sys.path.append(srcDir)
 from config.pathManager import pathManager
 from config.cookieConfig import cookieConfig
 
-class tianTianTradeInfosSpider:
+class tiantianTradeInfosSpider:
 
     def __init__(self, strategy='a'):
         self.cookieConfig = cookieConfig()
@@ -143,7 +143,7 @@ if __name__ == "__main__":
     # 传入配置，开始流程
     if strategy == 'debug':
         # 测试代码
-        spider = tianTianTradeInfosSpider('a')
+        spider = tiantianTradeInfosSpider('a')
         spider.getTradeInfosData()
     else:
-        spider = tianTianTradeInfosSpider(strategy)
+        spider = tiantianTradeInfosSpider(strategy)
