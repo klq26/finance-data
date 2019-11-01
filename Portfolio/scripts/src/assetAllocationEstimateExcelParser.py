@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import sys
 import time
 import json
 
@@ -16,8 +17,11 @@ from prettytable import PrettyTable
 
 class assetAllocationEstimateExcelParser:
 
-    def __init__(self):
-        self.pm = pathManager()
+    def __init__(self, strategy):
+        if strategy == 'a':
+            self.pm = pathManager(strategyName='康力泉')
+        elif strategy == 'b':
+            self.pm = pathManager(strategyName='父母')
         self.fundCategorys = self.getFundCategorys()
         self.fundJsonFilePathExt = ''
         
@@ -229,8 +233,16 @@ class assetAllocationEstimateExcelParser:
             return contentList
 
 if __name__ == '__main__':
-    estimateExcel = assetAllocationEstimateExcelParser()
-    # 实时估值就只保留自己的就好，单独运行时，身份标识写死
-    estimateExcel.fundJsonFilePathExt = u'康力泉整体'
-    path=os.path.join(self.pm.holdingOutputPath, u'{0}收益估算.xlsx'.format(estimateExcel.fundJsonFilePathExt))
-    estimateExcel.generateEstimateExcelFile(estimateExcel.loadFundModelArrayFromJson(),path)
+    strategy = 'a'
+    if len(sys.argv) >= 2:
+        #print(u'[ERROR] 参数不足。需要键入策略编号。a：康力泉 b：父母')
+        strategy = sys.argv[1]
+    if strategy == 'a':
+        estimateExcel = assetAllocationEstimateExcelParser('a')
+        estimateExcel.fundJsonFilePathExt = u'康力泉整体'
+    elif strategy == 'b':
+        estimateExcel = assetAllocationEstimateExcelParser('b')
+        estimateExcel.fundJsonFilePathExt = u'父母'
+        path=os.path.join(estimateExcel.pm.holdingOutputPath, u'{0}收益估算.xlsx'.format(estimateExcel.fundJsonFilePathExt))
+        estimateExcel.generateEstimateExcelFile(estimateExcel.loadFundModelArrayFromJson(),path)
+    
