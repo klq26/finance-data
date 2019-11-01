@@ -4,9 +4,11 @@ import os
 import sys
 import json
 import requests
+import ssl
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
-from config.cookieConfig import cookieConfig
 from config.pathManager import pathManager
+from config.requestHeaderManager import requestHeaderManager
 
 class danjuanSpider:
     
@@ -18,13 +20,22 @@ class danjuanSpider:
             self.pm = pathManager(strategyName='康力泉')
         elif strategy == 'b':
             self.pm = pathManager(strategyName='父母')
+        self.headerManager = requestHeaderManager()
 
-    def fetchWithCookie(self,name,cookie):
-        headers={
-        'Cookie': cookie,
-        'User-Agent':'Mozilla/5.0(Macintosh;intel Mac OS 10_11_4)Applewebkit/537.36(KHTML,like Gecko)Chrome/52.0.2743.116 Safari/537.36'
-        }
-        response = requests.get(self.url, headers = headers)
+    def getKLQ(self):
+        self.requestWithName('螺丝钉定投',self.headerManager.getDanjuanKLQ())
+    
+    def getLSY(self):
+        self.requestWithName('李淑云',self.headerManager.getDanjuanLSY())
+        
+    def getKSH(self):
+        self.requestWithName('康世海',self.headerManager.getDanjuanKSH())
+        
+    def requestWithName(self,name,header):
+        headers=header
+        ssl._create_default_https_context = ssl._create_unverified_context
+        requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+        response = requests.get(self.url, headers = headers,verify=False)
         pm = pathManager()
         with open(os.path.join(self.pm.holdingOutputPath,u'danjuan_{}.txt'.format(name)),'w',encoding='utf-8') as f:
             data = json.loads(response.text)['data']
@@ -44,25 +55,16 @@ class danjuanSpider:
 
 if __name__ == '__main__':
     spider = danjuanSpider()
-    cookie = cookieConfig()
-    Cookies = {}
-    # 康力泉 Cookie
-    Cookies['kangliquan'] = cookie.danjuanCookieKLQ
-    # 老妈 Cookie
-    Cookies['mother'] = cookie.danjuanCookieMother
-    # 老爸 Cookie
-    Cookies['father'] = cookie.danjuanCookieFather
-
     strategy = 'a'
     if len(sys.argv) >= 2:
         #print(u'[ERROR] 参数不足。需要键入策略编号。a：康力泉 b：父母')
         strategy = sys.argv[1]
     if strategy == 'a':
-        spider.fetchWithCookie(name=u'螺丝钉定投', cookie=Cookies['kangliquan'])
+        spider.getKLQ()
         os.startfile(spider.pm.holdingOutputPath)
     elif strategy == 'b':
-        spider.fetchWithCookie(name=u'李淑云', cookie=Cookies['mother'])
-        spider.fetchWithCookie(name=u'康世海', cookie=Cookies['father'])
+        spider.getLSY()
+        spider.getKSH()
         os.startfile(spider.pm.holdingOutputPath)
     elif strategy == 'debug':
         print('debug')

@@ -1,0 +1,12 @@
+	GET /v5/stock/realtime/quotec.json?symbol=SH000001,SZ399001,SZ399006&_=1572589633610 HTTP/1.1
+Host	stock.xueqiu.com
+Connection	keep-alive
+Accept	application/json, text/plain, */*
+Origin	https://xueqiu.com
+User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36
+Sec-Fetch-Site	same-site
+Sec-Fetch-Mode	cors
+Referer	https://xueqiu.com/
+Accept-Encoding	gzip, deflate, br
+Accept-Language	zh-CN,zh;q=0.9
+Cookie	device_id=24700f9f1986800ab4fcc880530dd0ed; s=bu12f52zv3; bid=6e97accacf189cc998bcde7951604689_k04m5ssh; snbim_minify=true; Hm_lvt_1db88642e346389874251b5a1eded6e3=1570625764,1570625774; xq_a_token=87993a504d5d350e6271c337ad8e9ec8809acb79; xq_r_token=2b9912fb63f07c0f11e94985018ad64e78cca498; u=651572589618430; Hm_lpvt_1db88642e346389874251b5a1eded6e3=1572589619

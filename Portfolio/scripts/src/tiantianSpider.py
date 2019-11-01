@@ -4,11 +4,13 @@ import sys
 import re
 import requests
 import json
+import ssl
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
 from bs4 import BeautifulSoup
 
-from config.cookieConfig import cookieConfig
 from config.pathManager import pathManager
+from config.requestHeaderManager import requestHeaderManager
 
 class tiantianSpider:
     
@@ -24,22 +26,27 @@ class tiantianSpider:
             self.pm = pathManager(strategyName='康力泉')
         elif strategy == 'b':
             self.pm = pathManager(strategyName='父母')
-        
-    def fetchWithCookie(self,name,cookie):
+        self.headerManager = requestHeaderManager()
+
+    def getKLQ(self):
+        self.requestWithName('康力泉')
+    
+    def getLSY(self):
+        self.requestWithName('李淑云')
+    
+    def requestWithName(self,name):
         """
         天天基金的爬虫略麻烦：
         1）请求为 POST 记得附带参数
         2）持仓摊薄成本和持仓份额需要进行二次查询，去 detail 页面解析
         3）需要通过解析 html 标签取值，接口返回的是 html 代码
         """
-        headers={
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36',
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Cookie': cookie
-        }
+        headers = self.headerManager.getTiantianKLQ()
         # 天天基金 Post 请求的配置参数
         postData = json.dumps({'type':'0','sorttype':'5','isNeedTotal':'true'})
-        response = requests.post(self.url, headers = headers, data = postData)
+        ssl._create_default_https_context = ssl._create_unverified_context
+        requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+        response = requests.post(self.url, verify=False, headers = headers, data = postData)
         
         data = json.loads(response.text)
         html = json.loads(data['d'])['content']
@@ -55,7 +62,9 @@ class tiantianSpider:
                 # 拼接详情页 URL
                 detailUrl = self.urlPrefix + a.get('href')
                 # 从持仓详情页，取出品种的 摊薄单价 & 持仓份额
-                detailResponse = requests.get(detailUrl,headers = headers)
+                ssl._create_default_https_context = ssl._create_unverified_context
+                requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+                detailResponse = requests.get(detailUrl,headers = headers, verify=False)
                 # e.g.
                 # <span id="tanbaodanjia">摊薄单价(元)：<span class="number14">1.0193</span></span>
                 # <div class="h20"><span class="ft w220">持仓份额(份)：<span class="numbergray14">65064.33</span></span></div>
@@ -101,16 +110,10 @@ if __name__ == '__main__':
         strategy = sys.argv[1]
         
     spider = tiantianSpider()
-    cookie = cookieConfig()
-    Cookies = {}
-    # 康力泉 Cookie
-    Cookies['kangliquan'] = cookie.tiantianCookieKLQ
-    Cookies['mother'] = cookie.tiantianCookieMother
-
     if strategy == 'a':
-        spider.fetchWithCookie(name=u'康力泉', cookie=Cookies['kangliquan'])
+        spider.getKLQ()
     elif strategy == 'b':
-        spider.fetchWithCookie(name=u'李淑云', cookie=Cookies['mother'])
+        spider.getLSY()
     else:
         print(u'[ERROR] 参数错误，不支持的策略编号。')
         exit()

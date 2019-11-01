@@ -4,6 +4,8 @@ import sys
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urlencode
+import ssl
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
 # 把父路径加入到 sys.path 供 import 搜索
 currentDir = os.path.abspath(os.path.dirname(__file__))
@@ -12,13 +14,13 @@ sys.path.append(srcDir)
 #for p in sys.path:
 #    print(p)
 from config.pathManager import pathManager
-from config.cookieConfig import cookieConfig
+from config.requestHeaderManager import requestHeaderManager
 
 class tiantianTradeInfosSpider:
 
     def __init__(self, strategy='a'):
-        self.cookieConfig = cookieConfig()
         self.pm = pathManager()
+        self.headerManager = requestHeaderManager()
         self.urlPrefix = u'https://query.1234567.com.cn/Query/DelegateList?'
         self.endYear = 2019
         self.endMonth = 11
@@ -32,21 +34,21 @@ class tiantianTradeInfosSpider:
             self.hasHistory = True
             self.startYear = 2017
             self.startMonth = 1
-            self.cookie = self.cookieConfig.tiantianCookieKLQ
+            self.header = self.headerManager.getTiantianKLQ()
             self.dataFolder = os.path.join(self.pm.outputPath,u'tiantianTradeInfos',u'htmls','康力泉')
         if strategy == 'b':
             # 2018年1月 创建账户
             self.hasHistory = False
             self.startYear = 2018
             self.startMonth = 1
-            self.cookie = self.cookieConfig.tiantianCookieMother
+            self.header = self.headerManager.getTiantianLSY()
             self.dataFolder = os.path.join(self.pm.outputPath,u'tiantianTradeInfos',u'htmls','李淑云')
         if strategy == 'c':
             # 2018年2月 创建账户
             self.hasHistory = False
             self.startYear = 2018
             self.startMonth = 2
-            self.cookie = self.cookieConfig.tiantianCookieFather
+            self.header = self.headerManager.getTiantianKSH()
             self.dataFolder = os.path.join(self.pm.outputPath,u'tiantianTradeInfos',u'htmls','康世海')
         if not os.path.exists(self.dataFolder):
             os.makedirs(self.dataFolder)
@@ -71,8 +73,9 @@ class tiantianTradeInfosSpider:
         return self.urlPrefix + encodedParams
 
     def getTradeInfosDataByUrl(self, url):
-        headers = {'Cookie' : self.cookie}
-        response = requests.post(url, headers = headers)
+        headers = self.header
+        ssl._create_default_https_context = ssl._create_unverified_context
+        response = requests.post(url, headers = headers, verify=False)
         if response.status_code == 200:
             return response.text
         else:

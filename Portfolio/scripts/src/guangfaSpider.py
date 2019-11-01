@@ -3,8 +3,10 @@
 import os
 import requests
 import json
-
-from config.cookieConfig import cookieConfig
+import ssl
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+ 
+from config.requestHeaderManager import requestHeaderManager
 from config.pathManager import pathManager
 
 class guangfaSpider:
@@ -15,15 +17,16 @@ class guangfaSpider:
         #self.url = u'https://trade.gffunds.com.cn/mapi/acco_hold_detail?fund_code=001064'
         #self.url = u'https://trade.gffunds.com.cn/mapi/account/assets/position-gains?tttt=0.7061572339183033'
         self.url = u'https://trade.gffunds.com.cn/mapi/account/assets/position-gains?tttt=0.5490600043154694'
-
-    def fetchWithCookie(self,name,cookie):
-        headers={
-        'Cookie': cookie,
-        'GFF-Charset': 'UTF-8', # 建议参数，否则字符不正确
-        'GFF-NetNo': '9999',    # 必须参数，否则无法返回数据
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36'
-        }
-        response = requests.get(self.url, headers = headers)
+        self.headerManager = requestHeaderManager()
+        
+    def getKLQ(self):
+        self.requestWithName(u'支付宝')
+    
+    def requestWithName(self,name):
+        headers=self.headerManager.getGuangfaKLQ()
+        ssl._create_default_https_context = ssl._create_unverified_context
+        requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+        response = requests.get(self.url, headers = headers, verify=False)
         pm = pathManager()
         with open(os.path.join(pm.holdingOutputPath,u'guangfa_{}.txt'.format(name)),'w',encoding='utf-8') as f:
             jsonData = json.loads(response.text)['data']
@@ -50,13 +53,4 @@ class guangfaSpider:
 
 if __name__ == '__main__':
     spider = guangfaSpider()
-    cookie = cookieConfig()
-    Cookies = {}
-
-    # 复制 Chrome 的 UA 可用正则“^(.*?): (.*?)$” 替换成 “'\1': '\2',” 就可以
-    # http://www.gffunds.com.cn/
-
-    # 康力泉 Cookie
-    Cookies['kangliquan'] = cookie.guangfaCookie
-
-    spider.fetchWithCookie(name=u'支付宝', cookie=Cookies['kangliquan'])
+    spider.getKLQ()

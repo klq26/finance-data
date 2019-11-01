@@ -7,7 +7,6 @@ import json
 import requests
 import subprocess
 
-from config.cookieConfig import cookieConfig
 from config.pathManager import pathManager
 
 from tiantianSpider import tiantianSpider
@@ -20,20 +19,17 @@ class allFundSpider:
     def __init__(self):
         self.strategy = ''
 
-    def doFetchKLQ(self):
-        cookie = cookieConfig()
-        
+    def getKLQ(self):
         tt = tiantianSpider()
-        tt.fetchWithCookie(name=u'康力泉', cookie=cookie.tiantianCookieKLQ)
+        tt.getKLQ()
         gf = guangfaSpider()
-        gf.fetchWithCookie(name=u'支付宝', cookie=cookie.guangfaCookie)
+        gf.getKLQ()
         qm = qiemanSpider()
-        qm.fetchWithCookie(name=u'10万补充ETF计划',url=qm.urlForPlan150)
-        qm.fetchWithCookie(name=u'我的S定投计划',url=qm.urlForPlanS)
+        qm.getKLQ()
         ht = huataiSpider()
         ht.dataFormat()
         dj = danjuanSpider()
-        dj.fetchWithCookie(name=u'螺丝钉定投', cookie=cookie.danjuanCookieKLQ)
+        dj.getKLQ()
         # 拷贝文件
         fileNameExt = u'康力泉'
         self.pm = pathManager(strategyName=fileNameExt)
@@ -42,15 +38,14 @@ class allFundSpider:
         fileName = u'freeze_{0}.txt'.format(fileNameExt)
         shutil.copy(os.path.join(self.pm.inputPath,fileName),os.path.join(self.pm.holdingOutputPath,fileName))
     
-    def doFetchParent(self):
-        cookie = cookieConfig()
+    def getParent(self):
         fileNameExt = u'父母'
         self.pm = pathManager(strategyName=fileNameExt)
         tt = tiantianSpider('b')
-        tt.fetchWithCookie(name=u'李淑云', cookie=cookie.tiantianCookieMother)
+        tt.getLSY()
         dj = danjuanSpider('b')
-        dj.fetchWithCookie(name=u'李淑云', cookie=cookie.danjuanCookieMother)
-        dj.fetchWithCookie(name=u'康世海', cookie=cookie.danjuanCookieFather)
+        dj.getLSY()
+        dj.getKSH()
         
 if __name__ == '__main__':
     strategy = 'a'
@@ -59,10 +54,10 @@ if __name__ == '__main__':
         strategy = sys.argv[1]
     spider = allFundSpider()
     if strategy == 'a':
-        spider.doFetchKLQ()
+        spider.getKLQ()
         os.startfile(spider.pm.holdingOutputPath)
     elif strategy == 'b':
-        spider.doFetchParent()
+        spider.getParent()
         os.startfile(spider.pm.holdingOutputPath)
     elif strategy == 'debug':
         print('debug')

@@ -5,8 +5,10 @@ import json
 import requests
 import datetime
 import time
-
-from config.cookieConfig import cookieConfig
+import ssl
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+ 
+from config.requestHeaderManager import requestHeaderManager
 from config.fundCodeConstants import fundCodeConstants
 
 class estimateFundManager:
@@ -15,7 +17,8 @@ class estimateFundManager:
     def __init__(self):
         # 场内代码
         self.innerMarketCodes = fundCodeConstants().innerMarketCodes.values()
-
+        self.headerManager = requestHeaderManager()
+        
     def estimate(self, code):
         if code == '' or code == u'000000':
             return(0,'NA',0,0.0000,'NA')
@@ -29,10 +32,7 @@ class estimateFundManager:
     # 获取场外基金的估值数据
     def estimateOuterMarketFund(self, code):
         url = u'http://fundgz.1234567.com.cn/js/{0}.js'
-        headers={
-        'User-Agent':'Mozilla/5.0(Macintosh;intel Mac OS 10_11_4)Applewebkit/537.36(KHTML,like Gecko)Chrome/52.0.2743.116 Safari/537.36'
-        }
-        response = requests.get(url.format(code), headers = headers)
+        response = requests.get(url.format(code))
         # 粗略去掉一些字符，因为简单所以没有使用正则表达式
         text = response.text.replace('jsonpgz(','').replace(';','').replace(')','')
         #print(u'[URL]:{0}'.format(self.url.format(code)))
@@ -47,18 +47,17 @@ class estimateFundManager:
 
     # 获取场内 ETF 的实时数据
     def estimateInnerMarketETF(self,code):
-        cookie = cookieConfig()
+        
         url = 'https://stock.xueqiu.com/v5/stock/quote.json?symbol={0}{1}&extend=detail'
-        headers={
-        'User-Agent':'Mozilla/5.0(Macintosh;intel Mac OS 10_11_4)Applewebkit/537.36(KHTML,like Gecko)Chrome/52.0.2743.116 Safari/537.36',
-        'Cookie' : cookie.xueqiuCookie
-        }
+        headers=self.headerManager.getXueqiuKLQ()
+        requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+        ssl._create_default_https_context = ssl._create_unverified_context
         marketSign = ''
         if code.startswith(u'15'):
             marketSign = u'SZ'
         else:
             marketSign = u'SH'
-        response = requests.get(url.format(marketSign,code), headers = headers)
+        response = requests.get(url.format(marketSign,code), headers = headers, verify=False)
         data = json.loads(response.text)
         # data.quote.last_close & data.quote.nav_date & data.quote.current & current/last_close & timestamp
         quote = data['data']['quote']

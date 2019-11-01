@@ -1,15 +1,15 @@
-	GET /pmdj/v2/messages/unread-count HTTP/1.1
+	GET /pmdj/v2/uma/10209/detail HTTP/1.1
 Host	qieman.com
 Connection	keep-alive
 Accept	application/json
 x-aid	A.8E975B001DK31V1CWJ905XECNHRDCWSN3
-x-sign	1572573577475A2698FC2EC2D8804B4B6CEADC6405DD2
+x-sign	15725854026472578A1F4E3E6A02864FB408D4E7E1E1B
 Authorization	Bearer eyJ2ZXIiOiJ2MSIsImFsZyI6IkhTNTEyIn0.eyJzdWIiOiI3OTQ1NDkiLCJpc3MiOiJzc28ucWllbWFuLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJleHAiOjE1NzM4Njk1NzksImlhdCI6MTU3MjU3MzU3OSwianRpIjoiZjgyMjRjMTktODFkYy00Y2FkLTliNmUtN2ZlYjJjYWU1NjdlIn0.aU924d2ZRxcn8H7XQ_u0N1ewagzyBmd4VuHNF9s6i8eVlvMKD3OuwQjXsjkfU-cOSwbmR1UFkovbn-3s5NR8Yg
 User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36
-x-request-id	albus.B620908DDD8E883F09A2
+x-request-id	albus.9F7E7732BA2E8BFC7130
 Sec-Fetch-Site	same-origin
 Sec-Fetch-Mode	cors
-Referer	https://qieman.com/user/login
+Referer	https://qieman.com/umas/10209/profit/latest
 Accept-Encoding	gzip, deflate, br
 Accept-Language	zh-CN,zh;q=0.9
-If-None-Match	W/"1f-XdSIovmViU7LCw4ZLFQ7A8E+tZs"
+If-None-Match	W/"7e1-xUUBAscLxB9eVCUtkbImNwdc8dM"

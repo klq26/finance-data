@@ -2,8 +2,10 @@
 import os
 import requests
 import json
+import ssl
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
-from config.cookieConfig import cookieConfig
+from config.requestHeaderManager import requestHeaderManager
 from config.pathManager import pathManager
 
 class qiemanSpider:
@@ -15,17 +17,17 @@ class qiemanSpider:
         # S 定投
         self.urlForPlanS = u'https://qieman.com/pmdj/v2/long-win/ca/assets-summary?capitalAccountId=CA8FCJKFPANTP2&useV2OrderApi=true&classify=true'
         # ★ 填写验证必须参数
-        cookie = cookieConfig()
-        self.authorization = cookie.qiemanAuthorization
-        self.xSign = cookie.qiemanXSign
-        
-    def fetchWithCookie(self, name, url):
-        headers={
-        'Authorization': self.authorization,
-        'x-sign': self.xSign,
-        'User-Agent':'Mozilla/5.0(Macintosh;intel Mac OS 10_11_4)Applewebkit/537.36(KHTML,like Gecko)Chrome/52.0.2743.116 Safari/537.36'
-        }
-        response = requests.get(url, headers = headers)
+        self.headerManager = requestHeaderManager()
+    
+    def getKLQ(self):
+        self.requestWithName(name=u'10万补充ETF计划',url=self.urlForPlan150)
+        self.requestWithName(name=u'我的S定投计划',url=self.urlForPlanS)
+    
+    def requestWithName(self, name, url):
+        headers=self.headerManager.getQiemanKLQ()
+        ssl._create_default_https_context = ssl._create_unverified_context
+        requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+        response = requests.get(url, headers = headers, verify=False)
         pm = pathManager()
         with open(os.path.join(pm.holdingOutputPath,'qieman_{}.txt'.format(name)),'w',encoding='utf-8') as f:
             #print(response.text)
@@ -56,6 +58,5 @@ class qiemanSpider:
 
 if __name__ == '__main__':
     spider = qiemanSpider()
-    spider.fetchWithCookie(name=u'10万补充ETF计划',url=spider.urlForPlan150)
-    spider.fetchWithCookie(name=u'我的S定投计划',url=spider.urlForPlanS)
+    spider.getKLQ()
     
