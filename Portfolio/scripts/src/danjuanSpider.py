@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import sys
 import json
 import requests
 
@@ -52,6 +53,18 @@ if __name__ == '__main__':
     # 老爸 Cookie
     Cookies['father'] = cookie.danjuanCookieFather
 
-    spider.fetchWithCookie(name=u'螺丝钉定投', cookie=Cookies['kangliquan'])
-    spider.fetchWithCookie(name=u'李淑云', cookie=Cookies['mother'])
-    spider.fetchWithCookie(name=u'康世海', cookie=Cookies['father'])
+    strategy = 'a'
+    if len(sys.argv) >= 2:
+        #print(u'[ERROR] 参数不足。需要键入策略编号。a：康力泉 b：父母')
+        strategy = sys.argv[1]
+    if strategy == 'a':
+        spider.fetchWithCookie(name=u'螺丝钉定投', cookie=Cookies['kangliquan'])
+        os.startfile(spider.pm.holdingOutputPath)
+    elif strategy == 'b':
+        spider.fetchWithCookie(name=u'李淑云', cookie=Cookies['mother'])
+        spider.fetchWithCookie(name=u'康世海', cookie=Cookies['father'])
+        os.startfile(spider.pm.holdingOutputPath)
+    elif strategy == 'debug':
+        print('debug')
+    else:
+        print('[ERROR] 无法识别的参数：{0}'.format(strategy))

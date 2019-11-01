@@ -44,7 +44,8 @@ class allFundSpider:
     
     def doFetchParent(self):
         cookie = cookieConfig()
-        
+        fileNameExt = u'父母'
+        self.pm = pathManager(strategyName=fileNameExt)
         tt = tiantianSpider('b')
         tt.fetchWithCookie(name=u'李淑云', cookie=cookie.tiantianCookieMother)
         dj = danjuanSpider('b')

@@ -6,8 +6,8 @@ import requests
 import datetime
 import time
 
-fundCodeConstantsfrom config.cookieConfig import cookieConfig
-from config.fundCodeConstants import cookieConfig
+from config.cookieConfig import cookieConfig
+from config.fundCodeConstants import fundCodeConstants
 
 class estimateFundManager:
     
@@ -68,7 +68,7 @@ class estimateFundManager:
         netValueDateArray = datetime.datetime.fromtimestamp(netValueDateTimeStamp)
         esitmateValueDateArray = datetime.datetime.fromtimestamp(esitmateValueDateTimeStamp)
         
-        netValueDate = netValueDateArray.strftime("%Y-%m-%d %H:%M")
+        netValueDate = netValueDateArray.strftime("%Y-%m-%d")
         esitmateValueDate = esitmateValueDateArray.strftime("%Y-%m-%d %H:%M")
         
         # 当前净值，当前净值日期，估算净值，估算增长率，估算时间戳

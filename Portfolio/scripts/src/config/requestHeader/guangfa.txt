@@ -1,0 +1,15 @@
+	GET /mapi/account/assets/summary?tttt=0.45889291409653654 HTTP/1.1
+Host	trade.gffunds.com.cn
+Connection	keep-alive
+Accept	application/json, text/plain, */*
+GFF-Client	web v2.0
+GFF-Charset	UTF-8
+formToken	4be2f87f-5dd7-4046-970a-164a474e70b0
+GFF-NetNo	9999
+User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36
+Sec-Fetch-Site	same-origin
+Sec-Fetch-Mode	cors
+Referer	https://trade.gffunds.com.cn/account/my-asset
+Accept-Encoding	gzip, deflate, br
+Accept-Language	zh-CN,zh;q=0.9
+Cookie	_ga=GA1.3.2121823865.1572009211; BIGipServerpool_trade_web_ids_weixin=43472906.22811.0000; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%225073100%22%2C%22%24device_id%22%3A%2216e030cf28193-079d692a99b32d-7711439-3686400-16e030cf282884%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_referrer%22%3A%22%22%2C%22%24latest_referrer_host%22%3A%22%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%7D%2C%22first_id%22%3A%2216e030cf28193-079d692a99b32d-7711439-3686400-16e030cf282884%22%7D; _gid=GA1.3.507395004.1572561890; JSESSIONID=node01l21kl6wzhbqh1jakktqtxwai974722.node0; SSO_TOKEN_KEY=TGT-9e30ce2a-4fcc-4984-80cc-8d12007432fd
