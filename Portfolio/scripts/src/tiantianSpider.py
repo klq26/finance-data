@@ -23,32 +23,32 @@ class tiantianSpider:
         self.results = []
         self.strategy = strategy
         if strategy == 'a':
-            self.pm = pathManager(strategyName='康力泉')
+            self.pm = pathManager(strategyName=u'康力泉')
         elif strategy == 'b':
-            self.pm = pathManager(strategyName='父母')
+            self.pm = pathManager(strategyName=u'父母')
         self.headerManager = requestHeaderManager()
 
     def getKLQ(self):
-        self.requestWithName('康力泉')
+        self.requestWithName(u'康力泉',self.headerManager.getTiantianKLQ())
     
     def getLSY(self):
-        self.requestWithName('李淑云')
+        self.requestWithName(u'李淑云',self.headerManager.getTiantianLSY())
     
-    def requestWithName(self,name):
+    def requestWithName(self,name,header):
         """
         天天基金的爬虫略麻烦：
         1）请求为 POST 记得附带参数
         2）持仓摊薄成本和持仓份额需要进行二次查询，去 detail 页面解析
         3）需要通过解析 html 标签取值，接口返回的是 html 代码
         """
-        headers = self.headerManager.getTiantianKLQ()
+        headers = header
         # 天天基金 Post 请求的配置参数
         postData = json.dumps({'type':'0','sorttype':'5','isNeedTotal':'true'})
         ssl._create_default_https_context = ssl._create_unverified_context
         requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
         response = requests.post(self.url, verify=False, headers = headers, data = postData)
-        
         data = json.loads(response.text)
+        
         html = json.loads(data['d'])['content']
         soup = BeautifulSoup(html, 'lxml')
         # 取出条目列表

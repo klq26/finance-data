@@ -18,10 +18,11 @@ class requestHeaderManager:
         ]
         self.parentsHeaderfiles = \
         [\
-            os.path.join(self.folder,u'danjuan_lsy.txt'),\
+            os.path.join(self.folder,u'tiantian_ksh.txt'),\
             os.path.join(self.folder,u'danjuan_ksh.txt'),\
-            os.path.join(self.folder,u'tiantian_lsy.txt'),
-            os.path.join(self.folder,u'tiantian_ksh.txt')\
+            os.path.join(self.folder,u'danjuan_lsy.txt'),\
+            os.path.join(self.folder,u'tiantian_lsy.txt'),\
+            
         ]
 
     def getDanjuanKLQ(self):

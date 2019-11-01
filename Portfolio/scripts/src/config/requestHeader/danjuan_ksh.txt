@@ -1,11 +1,9 @@
-	GET /djapi/account/user_info_check HTTP/1.1
-Host	danjuanapp.com
-Connection	keep-alive
-Accept	application/json, text/plain, */*
-User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36
-Sec-Fetch-Site	same-origin
-Sec-Fetch-Mode	cors
+	GET /djapi/account HTTP/1.1
 Referer	https://danjuanapp.com/
+User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/18.17763
+Accept	application/json, text/plain, */*
+Accept-Language	zh-Hans-CN,zh-Hans;q=0.8,en-US;q=0.5,en;q=0.3
 Accept-Encoding	gzip, deflate, br
-Accept-Language	zh-CN,zh;q=0.9
-Cookie	device_id=web_ByL9-IyHH; _ga=GA1.2.1578122713.1566691726; gr_user_id=07a8b8b8-e04f-4bfa-b6bd-3492bb42b3a6; thirdparty_token=; thirdparty_source=; thirdparty_nickname=; thirdparty_avatar=; xq_a_token=489a94320ff7bc390513c200bc41187b51db60d2; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%22203274561%22%2C%22%24device_id%22%3A%2216cc61a9198303-0a4b8d7e767657-7373e61-3686400-16cc61a9199311%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_referrer%22%3A%22%22%2C%22%24latest_referrer_host%22%3A%22%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%7D%2C%22first_id%22%3A%2216cc61a9198303-0a4b8d7e767657-7373e61-3686400-16cc61a9199311%22%7D; _gid=GA1.2.495550505.1572512385; Hm_lvt_b53ede02df3afea0608038748f4c9f36=1572512586; channel=1300100141; gr_session_id_94b96c7a661bf17a=70425baf-369a-4241-8bc4-ce0bce3eb537; gr_session_id_94b96c7a661bf17a_70425baf-369a-4241-8bc4-ce0bce3eb537=true; accesstoken=24002000044084327ac204d6b9759b4331bba0cb995965fbd; uid=194897199; refreshtoken=240020000e085adf5202568b98a9eb2d03fb7399755ca84dd; Hm_lpvt_b53ede02df3afea0608038748f4c9f36=1572574052; _gat_gtag_UA_16079156_7=1; timestamp=1572574054713
+Host	danjuanapp.com
+Connection	Keep-Alive
+Cookie	channel=1300100141; xq_a_token=489a94320ff7bc390513c200bc41187b51db60d2; Hm_lpvt_b53ede02df3afea0608038748f4c9f36=1572601546; device_id=web_HJNlWdbFV; refreshtoken=2400200009298cd46784d85ceb8cf6aaecb19c333aee9e001; gr_session_id_94b96c7a661bf17a_03ffda5b-d273-42a4-8bb6-bd0778b409c5=true; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%22194897199%22%2C%22%24device_id%22%3A%22169e0651e85186-02ac97ccb8377e-784a5935-1440000-169e0651e8612b%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_referrer%22%3A%22%22%2C%22%24latest_referrer_host%22%3A%22%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%7D%2C%22first_id%22%3A%22169e0651e85186-02ac97ccb8377e-784a5935-1440000-169e0651e8612b%22%7D; _gid=GA1.2.1935763380.1572601510; gr_user_id=e0a365c3-526f-4cfe-b33a-35edaf1b7799; _gat_gtag_UA_16079156_7=1; _ga=GA1.2.1335555080.1554247917; Hm_lvt_b53ede02df3afea0608038748f4c9f36=1572601509; accesstoken=240020000d176abe5f5153802ff08f4dc9a1b43462cc8ea53; gr_session_id_94b96c7a661bf17a=03ffda5b-d273-42a4-8bb6-bd0778b409c5; timestamp=1572601545377; uid=576923716
