@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import sys
 import requests
 import json
 import ssl
@@ -52,5 +53,12 @@ class guangfaSpider:
                 print('\n')
 
 if __name__ == '__main__':
-    spider = guangfaSpider()
-    spider.getKLQ()
+    strategy = 'a'
+    if len(sys.argv) >= 2:
+        #print(u'[ERROR] 参数不足。需要键入策略编号。a：康力泉 b：父母')
+        strategy = sys.argv[1]
+    if strategy == 'debug':
+        print('[DEBUG] {0}'.format(__file__))
+    else:
+        spider = guangfaSpider()
+        spider.getKLQ()

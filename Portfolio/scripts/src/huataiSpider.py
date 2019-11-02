@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import os
+import sys
+
 from estimateFundManager import estimateFundManager
 from config.pathManager import pathManager
 
@@ -66,7 +68,14 @@ class huataiSpider:
             print('\n')
 
 if __name__ == '__main__':
-    spider = huataiSpider()
-    # huatai.txt 本来就是从 xls 文件中拷贝出来的。重组后，重新生成该文件，所以叫 dataFormat
-    # 因为华泰生成的 xls 文件格式有问题，用 xlrd 读取会崩溃，所以才出此折衷办法
-    spider.dataFormat()
+    strategy = 'a'
+    if len(sys.argv) >= 2:
+        #print(u'[ERROR] 参数不足。需要键入策略编号。a：康力泉 b：父母')
+        strategy = sys.argv[1]
+    if strategy == 'debug':
+        print('[DEBUG] {0}'.format(__file__))
+    else:
+        spider = huataiSpider()
+        # huatai.txt 本来就是从 xls 文件中拷贝出来的。重组后，重新生成该文件，所以叫 dataFormat
+        # 因为华泰生成的 xls 文件格式有问题，用 xlrd 读取会崩溃，所以才出此折衷办法
+        spider.dataFormat()

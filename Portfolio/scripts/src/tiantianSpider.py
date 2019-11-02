@@ -114,6 +114,8 @@ if __name__ == '__main__':
         spider.getKLQ()
     elif strategy == 'b':
         spider.getLSY()
+    elif strategy == 'debug':
+        print('[DEBUG] {0}'.format(__file__))
     else:
         print(u'[ERROR] 参数错误，不支持的策略编号。')
         exit()

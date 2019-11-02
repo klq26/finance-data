@@ -68,6 +68,6 @@ if __name__ == '__main__':
         spider.getKSH()
         os.startfile(spider.pm.holdingOutputPath)
     elif strategy == 'debug':
-        print('debug')
+        print('[DEBUG] {0}'.format(__file__))
     else:
         print('[ERROR] 无法识别的参数：{0}'.format(strategy))
