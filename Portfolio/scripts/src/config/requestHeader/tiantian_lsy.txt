@@ -1,15 +1,14 @@
 	POST /do.aspx/CheckLogin HTTP/1.1
-Host	trade.1234567.com.cn
-Connection	keep-alive
-Content-Length	0
+Origin	https://trade7.1234567.com.cn
+Referer	https://trade7.1234567.com.cn/MyAssets/default
+User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/18.17763
 Accept	application/json, text/javascript, */*; q=0.01
-Origin	https://trade.1234567.com.cn
-X-Requested-With	XMLHttpRequest
-User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36
+Accept-Language	zh-CN
 Content-Type	application/json; charset=utf-8
-Sec-Fetch-Site	same-origin
-Sec-Fetch-Mode	cors
-Referer	https://trade.1234567.com.cn/MyAssets/Default
+X-Requested-With	XMLHttpRequest
 Accept-Encoding	gzip, deflate, br
-Accept-Language	zh-CN,zh;q=0.9
-Cookie	st_si=16011911173883; st_asi=delete; ASP.NET_SessionId=hrum14ihhpbovjfdoimkovkt; FundTradeLoginTab=0; FundTradeLoginCard=0; b_pl_bq=64426f78593444f6be248502d1a2c0c1; st_pvi=58108632980853; st_sp=2019-10-29%2016%3A44%3A03; st_inirUrl=http%3A%2F%2F1234567.com.cn%2F; st_sn=24; st_psi=20191101190310183-112200304021-4477568469; cp_token=79ab97db4da84395a347c3a663674e57; FundTradeLoginUser=LwcPc+tYxBMgz4jhrMOh1da1a7cM7xVk2eGlPnDqrhLHDQ9s06GuvWwSiljGVTddusGvOkOg; fund_trade_cn=Lm1mqbDB0Q7FgQBGnkUXHCJJk0AxOelNdclKJgH5bcM/CVLOkdJoyr66P4yjU4ch8L6UOMQLs6atRNszL2D/wJwtI9A/4yhCoSda9lsSsGLyMoJkQM0=; fund_trade_name=LjVaVuU1vBIIkjDCsqOn0viuBtEMjLDZpCDxP2EKx/hz2Q6SvyFVPFwyfFblk1Ud7SypJOCo; fund_trade_visitor=Lx421bMK8BPPyFDD2mO9wuyxvWMMIF/zCPY8Pj+KKG0NSQul7k1MCNwG+ua//2CdWV2uza4b; fund_trade_risk=LooNnbSqZB8J8h7+QfOv590BYWuMLyCmHy/GPxh34NLvyQsCyChkyUwnxxNcP0Md8zU++4a6; fund_trade_gps=7; VipLevel=1; TradeLoginToken=5828255e759246099f3c6db3446cb73c; UTOKEN=Lm1mqbDB0Q7FgQBGnkUXHCJJk0AxOelNdclKJgH5bcM/CVLOkdJoyr66P4yjU4ch8L6UO2QCq+v5dcW3vK+Uw/wMKYwPSx/5gRd4B1hsNfgR5inxbNw=; LToken=36e518b5d4dd460589dcfaa1c9d647b5; fund_trade_trackid=r9aIplR+fqzgUhJdxBo/Vz5v5NSg6MaJZepFCL54vIR2rYIDDx98vpEGDSEUaVF0SIm35TY6pLNuwtcBNiVmFQ==
+Host	trade7.1234567.com.cn
+Content-Length	0
+Connection	Keep-Alive
+Cache-Control	no-cache
+Cookie	st_si=39715703031048; st_sn=2; st_psi=20191102091812863-0-6057515082; st_asi=delete; VerifyCode=key=1Tk/hwQo8M57r6dBmATUVktN9v0tWEmI&gps=6oLwjmpHllMKYdhf7jFvox==&validate=704F7F78A3928254; TradeLoginToken=dfc957b0d51648e2aef67197f6d2fa78; cp_token=9906e46cd25e43428c2bc0a1f6a7bc71; FundTradeLoginUser=beEymfBS2ZLlDXDLF4TByO2cfuHlL0L1Jsb4rjLW+8EPCbOhyKGQekplbyyCtwtX3RKCfEiB; fund_trade_cn=bCSICyrlotuNseZqbB3hHyvIF6vLTfiNnrrINEXpr6l6M5ARHVw3iwaErkixDoRt0kqHTxbgJrEvR5BqbecopQwNqUTQIZgEdUXzwN2mvkny4pNvAmg=; fund_trade_name=b6KaJoy+WZFc9M5OQ8TiuXYSZEolx0BCE6Dpr1ydfS4MGblb/aYgE3pmNwL0mKNX9V+Rf1Iy; fund_trade_visitor=blgU7pXA4ZQiSL1a+9TxoaG0dUklon1lL6VerRoO68yl5bwDSBajnBpg7YmpCp7XWgxMz0w9; fund_trade_risk=bbP3QrXH4ZwYZsa2q9TMbYXdKjnl1XUkqzGGrkcJf0vdyb2YUfsKobpmfFwzq3QX3FOCAXFQ; fund_trade_gps=7; VipLevel=1; UTOKEN=bCSICyrlotuNseZqbB3hHyvIF6vLTfiNnrrINEXpr6l6M5ARHVw3iwaErkixDoRt0kqHTAbYZ6nk91+WQLRZpKWK+jtzwV9XrKXG+HZ4Bzo1wu7Uf8c=; LToken=96885c8bbea54a51bbd502faf01c8dc5; fund_trade_trackid=ZDmImNnRhc/uVFWbJCyM6cqfIZtqWfbE3AM1pr8aXP90udxNkgQDDLETZ5WWB1V6XseAPmf+Cxvw5tYDwsDFdw==; FundTradeLoginTab=0; FundTradeLoginCard=0; st_pvi=63202041791645; st_sp=2019-11-02%2009%3A17%3A35; st_inirUrl=https%3A%2F%2Fwww.baidu.com%2Flink; ASP.NET_SessionId=j5aff4bwagdnca2gphcubgbf

@@ -17,7 +17,7 @@ from prettytable import PrettyTable
 
 class assetAllocationEstimateExcelParser:
 
-    def __init__(self, strategy):
+    def __init__(self, strategy='a'):
         if strategy == 'a':
             self.pm = pathManager(strategyName='康力泉')
         elif strategy == 'b':
