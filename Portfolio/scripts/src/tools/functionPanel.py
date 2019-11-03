@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import os
+import sys
 import time
 
 # 子线程监听剪切板
@@ -8,6 +10,12 @@ import threading
 from tkinter import *
 import tkinter as tk
 import tkinter.messagebox
+
+# 把父路径加入到 sys.path 供 import 搜索
+currentDir = os.path.abspath(os.path.dirname(__file__))
+srcDir = os.path.dirname(currentDir)
+sys.path.append(srcDir)
+from config.pathManager import pathManager
 
 thread_key_window = 'window'
 thread_key_clipboard_text_callback = 'callback'
@@ -46,7 +54,7 @@ class functionPanel:
         # 窗口标题
         self.window.title('Https Header Saver')
         # 窗口尺寸
-        self.window.geometry('640x480')
+        self.window.geometry('640x480+120+800') # +{0} = origin.x 80 +{1} = origin.y
         self.clipboardValue = StringVar()
         self.clipboardValue.set(self.window.clipboard_get())
         self.createWidgets()
@@ -59,38 +67,76 @@ class functionPanel:
         
     def createWidgets(self):
         klqHeaderRows = [u'tiantian_klq.txt',u'guangfa_klq.txt',u'qieman_klq.txt',u'danjuan_klq.txt',u'xueqiu_klq.txt']
-        parentsHeadersRows = [u'tiantian_lsy.txt',u'danjuan_lsy.txt',u'danjuan_ksh.txt']
-        operations = [u'抓取所有基金持仓',u'资产配置组合',u'持仓市值估计']
+        parentsHeadersRows = [u'tiantian_lsy.txt',u'tiantian_ksh.txt', u'danjuan_lsy.txt',u'danjuan_ksh.txt']
+        operations = [u'抓取所有基金持仓',u'资产配置组合',u'持仓市值估计',u'一键开启相关网站']
         col = 0
         tk.Label(self.window,text=u'康力泉 Headers',width=15,height=1).grid(row=0, column=col, padx=10, pady=10)
         for i in range(1,len(klqHeaderRows)+1):
             row = klqHeaderRows[i-1]
-            tk.Button(self.window, text=row,width=15,height=1, bg="#F7A128", command = self.saveHeaderToFile(row)).grid(row=i, column=col, padx=10, pady=10)
+            # tkinter 要求由按钮（或者其它的插件）触发的控制器函数不能含有参数，如果有，需要 lambda，下同
+            button = tk.Button(self.window, text=row,width=15,height=1, bg="#F7A128")
+            button.grid(row=i, column=col, padx=10, pady=10)
+            # 为左键单击事件绑定处理方法
+            button.bind(u'<Button>', self.saveHeaderToFile)
+            # 为左键双击事件绑定处理方法
+            #bn.bind('<Double-1>', self.double)
         col = 1
         tk.Label(self.window,text=u'父母 Headers',width=15,height=1).grid(row=0, column=col, padx=10, pady=10)
         for i in range(1, len(parentsHeadersRows)+1):
             row = parentsHeadersRows[i-1]
-            tk.Button(self.window, text=row,width=15,height=1, bg="#F2C300", command = self.saveHeaderToFile(row)).grid(row=i, column=col, padx=10, pady=10)
+            button = tk.Button(self.window, text=row,width=15,height=1, bg="#F2C300")
+            button.grid(row=i, column=col, padx=10, pady=10)
+            # 为左键单击事件绑定处理方法
+            button.bind(u'<Button>', self.saveHeaderToFile)
         col = 2
         tk.Label(self.window,text=u'操作',width=15,height=1).grid(row=0, column=col, padx=10, pady=10)
         for i in range(1, len(operations)+1):
             row = operations[i-1]
-            tk.Button(self.window, text=row,width=15,height=1, bg="#00B1CC").grid(row=i, column=col, padx=10, pady=10)
-        
-        tk.Label(self.window,textvariable=self.clipboardValue,width=55,height=9,bg="#00B1CC").grid(row=6, column=0,columnspan=3, padx=10, pady=10)
+            button = tk.Button(self.window, text=row,width=15,height=1, bg="#00B1CC")
+            button.grid(row=i, column=col, padx=10, pady=10)
+            # 为左键单击事件绑定处理方法
+            button.bind(u'<Button>', self.functionSelect)
+            
+        tk.Label(self.window,textvariable=self.clipboardValue,width=55,height=8,bg="#00B1CC").grid(row=6, column=0,columnspan=3, padx=10, pady=10)
     
-    def intelligentMatchHeader(self,text):
-        if text == '' or text == None:
+    def saveHeaderToFile(self, event):
+        #print("左键单击:%s" % event.widget['text'])
+        clipboardText = self.clipboardValue.get()
+        if not self.isSupposeToBeHeaderText(clipboardText):
+            result = tkinter.messagebox.showerror(u'错误', u'剪切板信息不像是 Header（不包含 User-Agent）')
             return
-        if u'User-Agent' in text:
+        else:
+            pm = pathManager()
+            filename = event.widget['text']
+            filepath = os.path.join(pm.configPath,u'requestHeader',filename)
+            print(f'保存文件：{filepath}')
+            with open(filepath,'w',encoding='utf-8') as f:
+                f.write(clipboardText)
+            result = tkinter.messagebox.showinfo('', u'保存成功')
+    
+    def functionSelect(self,event):
+        print("功能选择：%s" % event.widget['text'])
+    
+    def isSupposeToBeHeaderText(self,text):
+        if text == '' or text == None:
+            return False
+        if u'User-Agent' in text or u'user-agent' in text:
+            return True
+        else:
+            return False
+            
+    def intelligentMatchHeader(self,text):
+        if self.isSupposeToBeHeaderText(text):
             print(u'\n\n[Attention] 监测到疑似 Header 数据')
+        pm = pathManager()
         # 尝试匹配且慢
         if u'x-sign' in text:
             print(u'[Success] 成功匹配到网站 Header：且慢')
             result = tkinter.messagebox.askokcancel('成功匹配“且慢”', '要把剪切板上的内容覆盖到 qieman_klq.txt 吗？')
             if result == True:
-                print(result)
-                with open('qieman_klq.txt','w',encoding=u'utf-8') as f:
+                filepath = os.path.join(pm.configPath,u'requestHeader',u'qieman_klq.txt')
+                print(filepath)
+                with open(filepath,'w',encoding=u'utf-8') as f:
                     f.write(text)
             else:
                 print(result)
@@ -100,8 +146,9 @@ class functionPanel:
             print(u'[Success] 成功匹配到网站 Header：广发基金')
             result = tkinter.messagebox.askokcancel('成功匹配“广发基金”', '要把剪切板上的内容覆盖到 guangfa_klq.txt 吗？')
             if result == True:
-                print(result)
-                with open('guangfa_klq.txt','w',encoding=u'utf-8') as f:
+                filepath = os.path.join(pm.configPath,u'requestHeader',u'guangfa_klq.txt')
+                print(filepath)
+                with open(filepath,'w',encoding=u'utf-8') as f:
                     f.write(text)
             else:
                 print(result)
@@ -111,8 +158,9 @@ class functionPanel:
             print(u'[Success] 成功匹配到网站 Header：雪球')
             result = tkinter.messagebox.askokcancel('成功匹配“雪球”', '要把剪切板上的内容覆盖到 xueqiu_klq.txt 吗？')
             if result == True:
-                print(result)
-                with open('xueqiu_klq.txt','w',encoding=u'utf-8') as f:
+                filepath = os.path.join(pm.configPath,u'requestHeader',u'xueqiu_klq.txt')
+                print(filepath)
+                with open(filepath,'w',encoding=u'utf-8') as f:
                     f.write(text)
             else:
                 print(result)
@@ -122,8 +170,9 @@ class functionPanel:
             print(u'[Success] 成功匹配到网站 Header：蛋卷基金 - 康力泉')
             result = tkinter.messagebox.askokcancel('成功匹配“蛋卷基金 - 康力泉”', '要把剪切板上的内容覆盖到 danjuan_klq.txt 吗？')
             if result == True:
-                print(result)
-                with open('danjuan_klq.txt','w',encoding=u'utf-8') as f:
+                filepath = os.path.join(pm.configPath,u'requestHeader',u'danjuan_klq.txt')
+                print(filepath)
+                with open(filepath,'w',encoding=u'utf-8') as f:
                     f.write(text)
             else:
                 print(result)
@@ -148,9 +197,6 @@ class functionPanel:
     
     def show(self):
         self.window.mainloop()
-    
-    def saveHeaderToFile(self,filename):
-        print(f'save {filename}')
 
 if __name__ == "__main__":
     app = functionPanel()
