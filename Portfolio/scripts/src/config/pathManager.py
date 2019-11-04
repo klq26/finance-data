@@ -11,6 +11,8 @@ class pathManager:
         self.parentDir = os.path.dirname(currentDir)
         # 输入路径
         self.inputPath = os.path.join(os.path.dirname(self.parentDir), u'input')
+        # 工具路径
+        self.toolsPath = os.path.join(os.path.dirname(self.parentDir), u'tools')
         #if not os.path.exists(self.inputPath):
         #    os.makedirs(self.inputPath)
         # 持仓数据输出路径
@@ -26,13 +28,6 @@ class pathManager:
         #    os.makedirs(self.configPath)
         # echarts 的 data.js 文件路径
         self.echartsPath = os.path.join(self.parentDir,'echarts')
-        #if not os.path.exists(self.echartsPath):
-        #    os.makedirs(self.echartsPath)
-        #print(self.inputPath)
-        #print(self.holdingOutputPath)
-        #print(self.configPath)
-        #print(self.echartsPath)
-        
 
 if __name__ == "__main__":
     pathManager()

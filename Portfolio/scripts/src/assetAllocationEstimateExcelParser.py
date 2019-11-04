@@ -10,10 +10,13 @@ from openpyxl.styles import numbers
 from openpyxl.styles import Alignment
 
 from config.pathManager import pathManager
+from tools.dingtalk import dingtalk
 from estimateFundManager import estimateFundManager
 from model.fundModel import fundModel
 # pretty table output
 from prettytable import PrettyTable
+# tools
+from tools.dingtalk import dingtalk
 
 class assetAllocationEstimateExcelParser:
 
@@ -24,6 +27,7 @@ class assetAllocationEstimateExcelParser:
             self.pm = pathManager(strategyName='父母')
         self.fundCategorys = self.getFundCategorys()
         self.fundJsonFilePathExt = ''
+        self.dingtalk = dingtalk()
         
         # 获取资产旭日图分类配置文件
     def getFundCategorys(self):
@@ -207,7 +211,8 @@ class assetAllocationEstimateExcelParser:
         # 保存文件
         outwb.save(path)
         # 输出统计
-        print('\n场外基金持仓估值结果：\n')
+        title = u'基金持仓估值结果：\n'
+        print('\n'+title)
         #print(u'今日预估收益：{0}\t今日场外预估收益：{1}\t今日场内预估收益：{2}'.format(round(estimateTotalGainToday,2), round(outerFundEstimateTotalGainToday,2),round(estimateTotalGainToday - outerFundEstimateTotalGainToday,2)))
         #print(u'之前组合总市值：{0}\t组合预估涨跌幅：{1}%'.format(round(currentTotalMarketCap,2),round(estimateTotalGainToday/currentTotalMarketCap * 100, 2)))
         #print(u'之前权益类总市值：{0}\t权益类预估涨跌幅：{1}%'.format(round(currentTotalStockMarketCap,2),round(estimateTotalGainToday/currentTotalStockMarketCap * 100, 2)))
@@ -217,12 +222,23 @@ class assetAllocationEstimateExcelParser:
         tb1.add_row([round(estimateTotalGainToday,2),round(estimateTotalGainToday - outerFundEstimateTotalGainToday,2),round(outerFundEstimateTotalGainToday,2),u'{0}%'.format(round(estimateTotalGainToday/currentTotalStockMarketCap * 100, 2)),u'{0}%'.format(round(estimateTotalGainToday/currentTotalMarketCap * 100, 2))])
         print(tb1)
         print('\n')
+        # 钉钉消息
+        self.dingtalk.sendMessage(u'{0}\n今日收益估算：{1}\n场内估算：{2}\n场外估算：{3}\n权益类涨跌：{4}\n组合涨跌：{5}'.format(\
+            title, round(estimateTotalGainToday,2),round(estimateTotalGainToday - outerFundEstimateTotalGainToday,2),round(outerFundEstimateTotalGainToday,2),u'{0}%'.format(round(estimateTotalGainToday/currentTotalStockMarketCap * 100, 2)),u'{0}%'.format(round(estimateTotalGainToday/currentTotalMarketCap * 100, 2))
+        ))
+        
         # 输出分账户情况
         tb2 = PrettyTable()
         tb2.field_names = gainByAppSource.keys()
         tb2.add_row(gainByAppSource.values())
         print(tb2)
-
+        # 钉钉消息
+        str = '\n'
+        for key in gainByAppSource.keys():
+            str = str + u'{0}：{1}\n'.format(key,gainByAppSource[key])
+        str = str[0:-1] # 去掉最后一个 \n
+        self.dingtalk.sendMessage(u'分账户收益估算：\n{0}'.format(str))
+        
     # 读取本地 fundModel 数据
     def loadFundModelArrayFromJson(self):
         # 读取文件

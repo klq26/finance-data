@@ -13,6 +13,8 @@ from model.assetModel import assetModel
 from model.echartsModel import echartsModel
 # config
 from config.assetCategoryConstants import assetCategoryConstants
+# tools
+from tools.dingtalk import dingtalk
 
 class assetAllocationConsoleParser:
 
@@ -21,6 +23,7 @@ class assetAllocationConsoleParser:
         self.category1Array = categoryConstants.category1Array
         self.category2Array = categoryConstants.category2Array
         self.category3Array = categoryConstants.category3Array
+        self.dingtalk = dingtalk()
     
     # 格式化浮点数
     def beautify(self,num):
@@ -35,10 +38,16 @@ class assetAllocationConsoleParser:
         totalGain = reduce(lambda x,y: x+y, allTotalGains)
         # 总投资额
         allInvest = self.beautify(totalMarketCap - totalGain)
-        print(u'\n总投入：{0}'.format(allInvest))
-        print(u'总盈亏：{0}'.format(self.beautify(totalGain)))
-        print(u'总市值：{0}'.format(self.beautify(totalMarketCap)))
-        print(u'组合收益率：{0}%'.format(self.beautify(totalGain/allInvest * 100)))
+        outStr1 = u'\n总投入：{0}'.format(allInvest)
+        outStr2 = u'总盈亏：{0}'.format(self.beautify(totalGain))
+        outStr3 = u'总市值：{0}'.format(self.beautify(totalMarketCap))
+        outStr4 = u'组合收益率：{0}%'.format(self.beautify(totalGain/allInvest * 100))
+        print(outStr1)
+        print(outStr2)
+        print(outStr3)
+        print(outStr4)
+        # 给钉钉发消息
+        self.dingtalk.sendMessage(f'当前市值情况：\n{outStr1}\n{outStr2}\n{outStr3}\n{outStr4}\n')
         print('\n一级分类：\n')
         tb = PrettyTable()
         tb.field_names = [u"名称", u"分类市值", u"占比", u"盈亏（元）", u"盈亏占比"]
