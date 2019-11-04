@@ -8,6 +8,7 @@ import json
 import openpyxl
 from openpyxl.styles import numbers
 from openpyxl.styles import Alignment
+from openpyxl.utils import get_column_letter    # 列宽
 
 from config.pathManager import pathManager
 from tools.dingtalk import dingtalk
@@ -208,6 +209,38 @@ class assetAllocationEstimateExcelParser:
                     align = Alignment(horizontal='center') # ,vertical='center',wrap_text=True
                     outws.cell(rowCursor, col).alignment = align
             rowCursor = rowCursor + 1
+        # 自动列宽
+        # 获取每一列的内容的最大宽度
+        i = 0
+        col_width = []
+        # 每列
+        for column in outws.columns:
+            # 每行
+            for row in range(len(column)):
+                if row == 0:
+                    # 数组增加第一个元素 
+                    # 注意：这里应该将 str 字符串 decode 成 bytes，因为汉字双字节，ascii 单字节，转成 bytes 才知道谁最长
+                    # 所以下面有 encode('utf-8') 就是 unicode -> bytes 的操作
+                    col_width.append(len(str(column[row].value).encode('utf-8')))
+                else:
+                    # 获得每列中的内容的最大宽度
+                    if col_width[i] < len(str(column[row].value).encode('utf-8')):
+                        col_width[i] = len(str(column[row].value).encode('utf-8'))
+            i = i + 1
+            
+        #设置列宽
+        for i in range(len(col_width)):
+            # 根据列的数字返回字母
+            col_letter = get_column_letter(i+1)
+            # 当宽度大于100，宽度设置为100
+            if col_width[i] > 100:
+                outws.column_dimensions[col_letter].width = 100
+            # 只有当宽度大于10，才设置列宽
+            elif col_width[i] > 10:
+                if col_letter == 'A':
+                    outws.column_dimensions[col_letter].width = col_width[i] * 0.75 # 75% 系数是人为视觉调整
+                else:
+                    outws.column_dimensions[col_letter].width = col_width[i] * 0.80 # 80% 系数是人为视觉调整
         # 保存文件
         outwb.save(path)
         # 输出统计
@@ -233,11 +266,11 @@ class assetAllocationEstimateExcelParser:
         tb2.add_row(gainByAppSource.values())
         print(tb2)
         # 钉钉消息
-        str = '\n'
+        msg = '\n'
         for key in gainByAppSource.keys():
-            str = str + u'{0}：{1}\n'.format(key,gainByAppSource[key])
-        str = str[0:-1] # 去掉最后一个 \n
-        self.dingtalk.sendMessage(u'分账户收益估算：\n{0}'.format(str))
+            msg = msg + u'{0}：{1}\n'.format(key,gainByAppSource[key])
+        msg = msg[0:-1] # 去掉最后一个 \n
+        self.dingtalk.sendMessage(u'分账户收益估算：\n{0}'.format(msg))
         
     # 读取本地 fundModel 数据
     def loadFundModelArrayFromJson(self):
@@ -259,6 +292,6 @@ if __name__ == '__main__':
     elif strategy == 'b':
         estimateExcel = assetAllocationEstimateExcelParser('b')
         estimateExcel.fundJsonFilePathExt = u'父母'
-        path=os.path.join(estimateExcel.pm.holdingOutputPath, u'{0}收益估算.xlsx'.format(estimateExcel.fundJsonFilePathExt))
-        estimateExcel.generateEstimateExcelFile(estimateExcel.loadFundModelArrayFromJson(),path)
+    path=os.path.join(estimateExcel.pm.holdingOutputPath, u'{0}收益估算.xlsx'.format(estimateExcel.fundJsonFilePathExt))
+    estimateExcel.generateEstimateExcelFile(estimateExcel.loadFundModelArrayFromJson(),path)
     

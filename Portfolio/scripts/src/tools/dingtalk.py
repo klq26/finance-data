@@ -15,7 +15,7 @@ class dingtalk:
 
     def sendMessage(self,text):
         dict = {'msgtype':'text'}
-        print(text)
+        #print(text)
         assert u'市值' in text or u'估值' in text or u'账户' in text, '钉钉机器人文案信息中必须包含对应的“标签”，否则服务器验证失败'
         dict['text'] = {'content':text}
         data = json.dumps(dict)

@@ -5,6 +5,7 @@ import json
 import openpyxl
 from openpyxl.styles import numbers
 from openpyxl.styles import Alignment
+from openpyxl.utils import get_column_letter    # 列宽
 
 # model
 from model.assetModel import assetModel
@@ -146,5 +147,44 @@ class assetAllocationExcelParser:
                     align = Alignment(horizontal='center') # ,vertical='center',wrap_text=True
                     outws.cell(rowCursor, col).alignment = align
             rowCursor = rowCursor + 1
+        # 自动列宽
+        # 获取每一列的内容的最大宽度
+        i = 0
+        col_width = []
+        # 每列
+        for column in outws.columns:
+            # 每行
+            for row in range(len(column)):
+                if row == 0:
+                    # 数组增加第一个元素 
+                    # 注意：这里应该将 str 字符串 decode 成 bytes，因为汉字双字节，ascii 单字节，转成 bytes 才知道谁最长
+                    # 所以下面有 encode('utf-8') 就是 unicode -> bytes 的操作
+                    col_width.append(len(str(column[row].value).encode('utf-8')))
+                else:
+                    # 获得每列中的内容的最大宽度
+                    if col_width[i] < len(str(column[row].value).encode('utf-8')):
+                        col_width[i] = len(str(column[row].value).encode('utf-8'))
+            i = i + 1
+        #设置列宽
+        for i in range(len(col_width)):
+            # 根据列的数字返回字母
+            col_letter = get_column_letter(i+1)
+            # 当宽度大于100，宽度设置为100
+            if col_width[i] > 100:
+                outws.column_dimensions[col_letter].width = 100
+            # 只有当宽度大于10，才设置列宽
+            elif col_width[i] > 10:
+                outws.column_dimensions[col_letter].width = col_width[i] * 0.75
         # 保存文件
         outwb.save(path)
+
+if __name__ == "__main__":
+    assetExcel = assetAllocationExcelParser()
+    # 读取文件
+    assetModelArray = list
+    assetJsonPath = os.path.join(assetExcel.pm.holdingOutputPath, u'{0}asset.json'.format(u'康力泉整体'))
+    with open(assetJsonPath,'r',encoding=u'utf-8') as assetJsonFile:
+        # object_hook 配合 init 传入 self.__dict__ = dictData 实现 json 字符串转 python 自定义对象
+        assetModelArray = json.loads(assetJsonFile.read(),object_hook=assetModel)
+    
+    assetExcel.generateExcelFile(assetModelArray,path=os.path.join(assetExcel.pm.holdingOutputPath, u'{0}资产配置.xlsx'.format(u'康力泉整体')))
