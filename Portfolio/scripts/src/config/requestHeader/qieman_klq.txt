@@ -3,13 +3,13 @@ Host	qieman.com
 Connection	keep-alive
 Accept	application/json
 x-aid	A.8E975B001DK31V1CWJ905XECNHRDCWSN3
-x-sign	15726569693653EE28CD8E65A2AEAFF2E30E87005F9D9
+x-sign	15728282753195678D8DD7FA964AD88573EA764217A3B
 Authorization	Bearer eyJ2ZXIiOiJ2MSIsImFsZyI6IkhTNTEyIn0.eyJzdWIiOiI3OTQ1NDkiLCJpc3MiOiJzc28ucWllbWFuLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJleHAiOjE1NzM4Njk1NzksImlhdCI6MTU3MjU3MzU3OSwianRpIjoiZjgyMjRjMTktODFkYy00Y2FkLTliNmUtN2ZlYjJjYWU1NjdlIn0.aU924d2ZRxcn8H7XQ_u0N1ewagzyBmd4VuHNF9s6i8eVlvMKD3OuwQjXsjkfU-cOSwbmR1UFkovbn-3s5NR8Yg
 User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36
-x-request-id	albus.F12714AF21AA5DB5707F
+x-request-id	albus.271F0DC5DCF34BE5A5E5
 Sec-Fetch-Site	same-origin
 Sec-Fetch-Mode	cors
 Referer	https://qieman.com/umas/10209/profit/latest
 Accept-Encoding	gzip, deflate, br
 Accept-Language	zh-CN,zh;q=0.9
-If-None-Match	W/"7e1-xUUBAscLxB9eVCUtkbImNwdc8dM"
+If-None-Match	W/"7da-O/ul3q8NyBXTVdouKP+Xo09mqP8"
