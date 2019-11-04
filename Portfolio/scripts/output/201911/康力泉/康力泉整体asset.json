@@ -228,10 +228,10 @@
         "category4":"111",
         "fundCode":"510050",
         "fundName":"50ETF",
-        "holdMarketCap":8240.4,
+        "holdMarketCap":8280.9,
         "holdNetValue":2.337,
         "holdShareCount":2700.0,
-        "holdTotalGain":1930.5
+        "holdTotalGain":1971.0
     },
     {
         "appSource":"股票账户",
@@ -241,10 +241,10 @@
         "category4":"113",
         "fundCode":"510300",
         "fundName":"300ETF",
-        "holdMarketCap":36636.6,
+        "holdMarketCap":36773.1,
         "holdNetValue":3.447,
         "holdShareCount":9100.0,
-        "holdTotalGain":5268.9
+        "holdTotalGain":5405.4
     },
     {
         "appSource":"股票账户",
@@ -254,10 +254,10 @@
         "category4":"121",
         "fundCode":"510500",
         "fundName":"500ETF",
-        "holdMarketCap":204981.2,
+        "holdMarketCap":206432.8,
         "holdNetValue":5.606,
         "holdShareCount":38200.0,
-        "holdTotalGain":-9168.0
+        "holdTotalGain":-7716.4
     },
     {
         "appSource":"股票账户",
@@ -267,10 +267,10 @@
         "category4":"143",
         "fundCode":"512580",
         "fundName":"环保ETF",
-        "holdMarketCap":24336.0,
+        "holdMarketCap":24538.8,
         "holdNetValue":0.877,
         "holdShareCount":33800.0,
-        "holdTotalGain":-5306.6
+        "holdTotalGain":-5103.8
     },
     {
         "appSource":"股票账户",
@@ -280,10 +280,10 @@
         "category4":"145",
         "fundCode":"512880",
         "fundName":"证券ETF",
-        "holdMarketCap":30509.1,
+        "holdMarketCap":30705.3,
         "holdNetValue":0.783,
         "holdShareCount":32700.0,
-        "holdTotalGain":4905.0
+        "holdTotalGain":5101.2
     },
     {
         "appSource":"股票账户",
@@ -293,10 +293,10 @@
         "category4":"144",
         "fundCode":"512980",
         "fundName":"传媒ETF",
-        "holdMarketCap":25779.6,
+        "holdMarketCap":25916.0,
         "holdNetValue":0.869,
         "holdShareCount":34100.0,
-        "holdTotalGain":-3853.3
+        "holdTotalGain":-3716.9
     },
     {
         "appSource":"股票账户",
@@ -306,10 +306,10 @@
         "category4":"511",
         "fundCode":"518880",
         "fundName":"黄金ETF",
-        "holdMarketCap":15241.5,
+        "holdMarketCap":15237.0,
         "holdNetValue":2.856,
         "holdShareCount":4500.0,
-        "holdTotalGain":2389.5
+        "holdTotalGain":2385.0
     },
     {
         "appSource":"股票账户",
@@ -319,10 +319,10 @@
         "category4":"117",
         "fundCode":"159902",
         "fundName":"中 小 板",
-        "holdMarketCap":3658.8,
+        "holdMarketCap":3692.4,
         "holdNetValue":2.95,
         "holdShareCount":1200.0,
-        "holdTotalGain":118.8
+        "holdTotalGain":152.4
     },
     {
         "appSource":"股票账户",
@@ -332,10 +332,10 @@
         "category4":"124",
         "fundCode":"159915",
         "fundName":"创业板",
-        "holdMarketCap":14950.0,
+        "holdMarketCap":15097.2,
         "holdNetValue":1.399,
         "holdShareCount":9200.0,
-        "holdTotalGain":2079.2
+        "holdTotalGain":2226.4
     },
     {
         "appSource":"股票账户",
@@ -345,10 +345,10 @@
         "category4":"142",
         "fundCode":"159938",
         "fundName":"广发医药",
-        "holdMarketCap":20016.0,
+        "holdMarketCap":20304.0,
         "holdNetValue":1.271,
         "holdShareCount":14400.0,
-        "holdTotalGain":1713.6
+        "holdTotalGain":2001.6
     },
     {
         "appSource":"且慢补充 150 份",
@@ -535,6 +535,19 @@
     {
         "appSource":"且慢 S 定投",
         "category1":"A 股",
+        "category2":"红利价值",
+        "category3":"中证红利",
+        "category4":"131",
+        "fundCode":"100032",
+        "fundName":"富国中证红利指数增强",
+        "holdMarketCap":2030.4,
+        "holdNetValue":1.0954,
+        "holdShareCount":1825.9,
+        "holdTotalGain":30.4
+    },
+    {
+        "appSource":"且慢 S 定投",
+        "category1":"A 股",
         "category2":"大盘股",
         "category3":"上证50",
         "category4":"111",
@@ -548,15 +561,15 @@
     {
         "appSource":"且慢 S 定投",
         "category1":"A 股",
-        "category2":"红利价值",
-        "category3":"中证红利",
-        "category4":"131",
-        "fundCode":"100032",
-        "fundName":"富国中证红利指数增强",
-        "holdMarketCap":1031.9,
-        "holdNetValue":1.0776,
-        "holdShareCount":927.97,
-        "holdTotalGain":31.9
+        "category2":"中小盘股",
+        "category3":"中证500",
+        "category4":"121",
+        "fundCode":"001052",
+        "fundName":"华夏中证500ETF联接A",
+        "holdMarketCap":998.8,
+        "holdNetValue":0.5517,
+        "holdShareCount":1812.7,
+        "holdTotalGain":-1.2
     },
     {
         "appSource":"且慢 S 定投",
@@ -709,10 +722,10 @@
         "category4":"311",
         "fundCode":"000614",
         "fundName":"华安德国30(DAX)联接",
-        "holdMarketCap":24694.22,
+        "holdMarketCap":24673.5,
         "holdNetValue":1.091,
         "holdShareCount":20716.63,
-        "holdTotalGain":2094.22
+        "holdTotalGain":2073.5
     },
     {
         "appSource":"天天基金",

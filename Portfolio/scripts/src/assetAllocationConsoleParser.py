@@ -30,12 +30,15 @@ class assetAllocationConsoleParser:
         # 总市值
         allMarketCaps = [x.holdMarketCap for x in modelArray]
         totalMarketCap = reduce(lambda x,y: x+y, allMarketCaps)
-        print(u'\n总市值：{0}'.format(self.beautify(totalMarketCap)))
         # 总盈亏
         allTotalGains = [x.holdTotalGain for x in modelArray]
         totalGain = reduce(lambda x,y: x+y, allTotalGains)
+        # 总投资额
+        allInvest = self.beautify(totalMarketCap - totalGain)
+        print(u'\n总投入：{0}'.format(allInvest))
         print(u'总盈亏：{0}'.format(self.beautify(totalGain)))
-        print(u'组合收益率：{0}%'.format(self.beautify(totalGain/totalMarketCap * 100)))
+        print(u'总市值：{0}'.format(self.beautify(totalMarketCap)))
+        print(u'组合收益率：{0}%'.format(self.beautify(totalGain/allInvest * 100)))
         print('\n一级分类：\n')
         tb = PrettyTable()
         tb.field_names = [u"名称", u"分类市值", u"占比", u"盈亏（元）", u"盈亏占比"]

@@ -81,7 +81,9 @@ class tiantianSpider:
                 # 代码
                 fundCode = re_get[0][1]
                 # 持仓市值
-                marketValue = tds[1].text.replace(',','')
+                partent2 = re.compile(u'([0-9]+.[0-9]+)')   # 123.45 排除“有在途交易”
+                re_get2 = re.findall(partent2, tds[1].text.replace(',',''))
+                marketValue = re_get2[0]
                 # 累计收益
                 totalGain = tds[2].span.text.replace(',','')
                 seq = (re_get[0][0],re_get[0][1],price,\
