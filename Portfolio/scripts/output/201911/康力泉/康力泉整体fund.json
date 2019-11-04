@@ -318,10 +318,10 @@
         "estimateTime":"估算时间",
         "fundCode":"510050",
         "fundName":"50ETF",
-        "holdMarketCap":8280.9,
+        "holdMarketCap":8286.3,
         "holdNetValue":2.337,
         "holdShareCount":2700.0,
-        "holdTotalGain":1971.0
+        "holdTotalGain":1976.4
     },
     {
         "appSource":"股票账户",
@@ -336,10 +336,10 @@
         "estimateTime":"估算时间",
         "fundCode":"510300",
         "fundName":"300ETF",
-        "holdMarketCap":36773.1,
+        "holdMarketCap":36754.9,
         "holdNetValue":3.447,
         "holdShareCount":9100.0,
-        "holdTotalGain":5405.4
+        "holdTotalGain":5387.2
     },
     {
         "appSource":"股票账户",
@@ -354,10 +354,10 @@
         "estimateTime":"估算时间",
         "fundCode":"510500",
         "fundName":"500ETF",
-        "holdMarketCap":206432.8,
+        "holdMarketCap":205554.2,
         "holdNetValue":5.606,
         "holdShareCount":38200.0,
-        "holdTotalGain":-7716.4
+        "holdTotalGain":-8595.0
     },
     {
         "appSource":"股票账户",
@@ -372,10 +372,10 @@
         "estimateTime":"估算时间",
         "fundCode":"512580",
         "fundName":"环保ETF",
-        "holdMarketCap":24538.8,
+        "holdMarketCap":24471.2,
         "holdNetValue":0.877,
         "holdShareCount":33800.0,
-        "holdTotalGain":-5103.8
+        "holdTotalGain":-5171.4
     },
     {
         "appSource":"股票账户",
@@ -390,10 +390,10 @@
         "estimateTime":"估算时间",
         "fundCode":"512880",
         "fundName":"证券ETF",
-        "holdMarketCap":30705.3,
+        "holdMarketCap":30541.8,
         "holdNetValue":0.783,
         "holdShareCount":32700.0,
-        "holdTotalGain":5101.2
+        "holdTotalGain":4937.7
     },
     {
         "appSource":"股票账户",
@@ -408,10 +408,10 @@
         "estimateTime":"估算时间",
         "fundCode":"512980",
         "fundName":"传媒ETF",
-        "holdMarketCap":25916.0,
+        "holdMarketCap":25745.5,
         "holdNetValue":0.869,
         "holdShareCount":34100.0,
-        "holdTotalGain":-3716.9
+        "holdTotalGain":-3887.4
     },
     {
         "appSource":"股票账户",
@@ -426,10 +426,10 @@
         "estimateTime":"估算时间",
         "fundCode":"518880",
         "fundName":"黄金ETF",
-        "holdMarketCap":15237.0,
+        "holdMarketCap":15223.5,
         "holdNetValue":2.856,
         "holdShareCount":4500.0,
-        "holdTotalGain":2385.0
+        "holdTotalGain":2371.5
     },
     {
         "appSource":"股票账户",
@@ -444,10 +444,10 @@
         "estimateTime":"估算时间",
         "fundCode":"159902",
         "fundName":"中 小 板",
-        "holdMarketCap":3692.4,
+        "holdMarketCap":3681.6,
         "holdNetValue":2.95,
         "holdShareCount":1200.0,
-        "holdTotalGain":152.4
+        "holdTotalGain":141.6
     },
     {
         "appSource":"股票账户",
@@ -462,10 +462,10 @@
         "estimateTime":"估算时间",
         "fundCode":"159915",
         "fundName":"创业板",
-        "holdMarketCap":15097.2,
+        "holdMarketCap":15032.8,
         "holdNetValue":1.399,
         "holdShareCount":9200.0,
-        "holdTotalGain":2226.4
+        "holdTotalGain":2162.0
     },
     {
         "appSource":"股票账户",
@@ -480,10 +480,10 @@
         "estimateTime":"估算时间",
         "fundCode":"159938",
         "fundName":"广发医药",
-        "holdMarketCap":20304.0,
+        "holdMarketCap":20275.2,
         "holdNetValue":1.271,
         "holdShareCount":14400.0,
-        "holdTotalGain":2001.6
+        "holdTotalGain":1972.8
     },
     {
         "appSource":"且慢补充 150 份",
