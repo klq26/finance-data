@@ -8,9 +8,11 @@ import time
 from config.pathManager import pathManager
 # 多种统计输出
 from assetAllocationExcelParser import assetAllocationExcelParser               # 输出资产配置信息到 Excel 表
+from assetAllocationHtmlParser import assetAllocationHtmlParser               # 输出资产配置信息到 Html
 from assetAllocationConsoleParser import assetAllocationConsoleParser           # 输出资产配置信息到控制台
 from assetAllocationJSObjectParser import assetAllocationJSObjectParser         # 输出资产配置信息到 echarts 专用 data.js 对象
 from assetAllocationEstimateExcelParser import assetAllocationEstimateExcelParser   # 输出当日收盘后的估算净值及预测涨跌金额
+from assetAllocationEstimateHtmlParser import assetAllocationEstimateHtmlParser   # 输出当日收盘后的估算净值及预测涨跌金额
 # model
 from model.fundModel import fundModel
 from model.assetModel import assetModel
@@ -192,6 +194,10 @@ fundModelArray = combine.loadFundModelArrayFromJson()
 assetExcel = assetAllocationExcelParser()
 assetExcel.generateExcelFile(assetModelArray,path=os.path.join(combine.pm.holdingOutputPath, u'{0}资产配置.xlsx'.format(combine.excelFilePathExt)))
 
+# 输出 Html 资产配置
+assetHtml = assetAllocationHtmlParser()
+assetHtml.generateHtmlFile(assetModelArray,title=u'{0}资产配置'.format(combine.excelFilePathExt), path=os.path.join(combine.pm.holdingOutputPath, u'{0}资产配置.html'.format(combine.excelFilePathExt)))
+
 # 输出 控制台 统计信息
 console = assetAllocationConsoleParser()
 console.showInfo(assetModelArray)
@@ -204,11 +210,16 @@ elif strategy == 'b':
 jsObject.generateEchartsJsonFile(assetModelArray)
 jsObject.generateJSObjectFile(assetModelArray,combine.echartsJSFilePathExt)
 
-# 生成实时估值信息
+# 生成 Excel 实时估值信息
 estimateExcel = assetAllocationEstimateExcelParser()
 estimateExcel.generateEstimateExcelFile(fundModelArray, path=os.path.join(combine.pm.holdingOutputPath, u'{0}收益估算.xlsx'.format(combine.excelFilePathExt)))
+
+# 生成 Html 实时估值信息
+estimateHtml = assetAllocationEstimateHtmlParser()
+estimateHtml.generateHtmlFile(fundModelArray, title=u'{0}收益估算'.format(combine.excelFilePathExt),  path=os.path.join(combine.pm.holdingOutputPath, u'{0}收益估算.html'.format(combine.excelFilePathExt)))
 
 # 打开资产配置旭日图
 os.startfile(os.path.join(combine.pm.echartsPath,combine.echartsFile))
 # 打开输出文件夹
 os.startfile(combine.pm.holdingOutputPath)
+

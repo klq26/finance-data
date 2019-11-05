@@ -1,0 +1,53 @@
+<meta http-equiv="Content-Type"content="text/html;charset=gbk">
+<html align='left'>
+<h1>{{ name }}</h1>
+    <body>
+    <h2>整体情况</h2> 
+    <p><b>场内盈亏 : <font color={{ innerColor }}>{{innerFundEstimateTotalGainToday}}</font></b>&nbsp;&nbsp;<b>场外盈亏 : <font color={{ outerColor }}>{{outerFundEstimateTotalGainToday}}</font></b>&nbsp;&nbsp;<b>整体盈亏 : <font color={{ totalColor }}>{{estimateTotalGainToday}}</font></b></p>
+    <table border="1" cellspacing='0' cellpadding='4' align='left'>
+    <tr align='center'>
+        <th align='center'>基金名称</th>
+        <th align='center'>基金代码</th>
+        <th align='center'>持仓成本</th>
+        <th align='center'>持仓份额</th>
+        <th align='center'>持仓市值</th>
+        <th align='center'>累计收益</th>
+        <!-- 接口查询 -->
+        <th align='center'>当前净值</th>
+        <th align='center'>净值日期</th>
+        <th align='center'>估算净值</th>
+        <th align='center'>估算涨跌幅</th>
+        <th align='center'>估算日收益</th>
+        <th align='center'>估算时间</th>
+        <!-- 接口查询 结束 -->
+        <th align='center'>一级分类</th>
+        <th align='center'>二级分类</th>
+        <th align='center'>三级分类</th>
+        <th align='center'>分类 ID</th>
+        <th align='center'>来源</th>
+    </tr>
+ 
+    {% for item in data %}
+    <tr align='center'>
+        <td bgcolor={{ item.color }}>{{ item.fundName }}</td>
+        <td bgcolor={{ item.color }}>{{ item.fundCode }}</td>
+        <td align='right' bgcolor={{ item.color }}>{{ item.holdNetValue }}</td>
+        <td align='right' bgcolor={{ item.color }}>{{ item.holdShareCount }}</td>
+        <td align='right' bgcolor={{ item.color }}>{{ item.holdMarketCap }}</td>
+        <td align='right' bgcolor={{ item.color }}>{{ item.holdTotalGain }}</td>
+        <td align='right' bgcolor={{ item.color }}>{{ item.currentNetValue }}</td>
+        <td bgcolor={{ item.color }}>{{ item.currentNetValueDate }}</td>
+        <td align='right' bgcolor={{ item.color }}>{{ item.estimateNetValue }}</td>
+        <td align='right' bgcolor={{ item.color }}>{{ item.estimateRate }}</td>
+        <td align='right' bgcolor={{ item.changeValueColor }}><font color="FFFFFF" ><b>{{ item.changeValue | round(2,'common') }}</b></font></td>
+        <td bgcolor={{ item.color }}>{{ item.estimateTime }}</td>
+        <td bgcolor={{ item.color }}>{{ item.category1 }}</td>
+        <td bgcolor={{ item.color }}>{{ item.category2 }}</td>
+        <td bgcolor={{ item.color }}>{{ item.category3 }}</td>
+        <td bgcolor={{ item.color }}>{{ item.category4 }}</td>
+        <td bgcolor={{ item.color }}>{{ item.appSource }}</td>
+    </tr>
+    {% endfor%}
+    </table>
+    </body>
+</html>

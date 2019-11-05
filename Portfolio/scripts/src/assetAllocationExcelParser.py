@@ -9,7 +9,6 @@ from openpyxl.utils import get_column_letter    # 列宽
 
 # model
 from model.assetModel import assetModel
-from model.echartsModel import echartsModel
 # config
 from config.assetCategoryConstants import assetCategoryConstants
 from config.pathManager import pathManager
@@ -24,8 +23,6 @@ class assetAllocationExcelParser:
         self.category2Array = categoryConstants.category2Array
         self.category3Array = categoryConstants.category3Array
         self.modelArray = []
-        self.jsonStr = u''
-        self.echarts = []
 
     # 格式化浮点数
     def beautify(self,num):

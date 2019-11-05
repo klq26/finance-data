@@ -1,0 +1,40 @@
+<meta http-equiv="Content-Type"content="text/html;charset=gbk">
+<html align='left'>
+<h1>{{ name }}</h1>
+    <body>
+	<h2>整体情况</h2> 
+	<p><b>持仓市值 : </b>{{ totalMarketCap }}&nbsp;&nbsp;<b>权益类市值 : </b>{{totalStockMarketCap}}&nbsp;&nbsp;<b>保本类市值 : </b>{{totalCashMarketCap}}</p>
+	<p><b>持仓盈亏 : <font color={{ totalGainColor }}>{{totalGain}}</b></font>&nbsp;&nbsp;<b>权益类盈亏 : <font color={{ totalStockGainColor }}>{{totalStockGain}}</b></font>&nbsp;&nbsp;<b>保本类盈亏 : <font color={{ totalCashGainColor }}>{{totalCashGain}}</font></b></p>
+    <table border="1" cellspacing='0' cellpadding='4' align='left'>
+    <tr align='center'>
+        <th>基金名称</th>
+        <th>基金代码</th>
+        <th>持仓成本</th>
+        <th>持仓份额</th>
+        <th>持仓市值</th>
+        <th>累计收益</th>
+        <th>一级分类</th>
+        <th>二级分类</th>
+        <th>三级分类</th>
+        <th>分类 ID</th>
+        <th>来源</th>
+    </tr>
+ 
+    {% for item in data %}
+    <tr align='center'>
+        <td bgcolor={{ item.color }}>{{ item.fundName }}</td>
+        <td bgcolor={{ item.color }}>{{ item.fundCode }}</td>
+        <td align='right' bgcolor={{ item.color }}>{{ item.holdNetValue }}</td>
+        <td align='right' bgcolor={{ item.color }}>{{ item.holdShareCount }}</td>
+        <td align='right' bgcolor={{ item.color }}>{{ item.holdMarketCap }}</td>
+        <td align='right' bgcolor={{ item.color }}>{{ item.holdTotalGain }}</td>
+        <td bgcolor={{ item.color }}>{{ item.category1 }}</td>
+        <td bgcolor={{ item.color }}>{{ item.category2 }}</td>
+        <td bgcolor={{ item.color }}>{{ item.category3 }}</td>
+        <td bgcolor={{ item.color }}>{{ item.category4 }}</td>
+        <td bgcolor={{ item.color }}>{{ item.appSource }}</td>
+    </tr>
+    {% endfor%}
+    </table>
+    </body>
+</html>
