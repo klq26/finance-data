@@ -12,6 +12,7 @@ from model.assetModel import assetModel
 # config
 from config.assetCategoryConstants import assetCategoryConstants
 from config.pathManager import pathManager
+from config.colorConstants import colorConstants
 
 class assetAllocationExcelParser:
 
@@ -23,6 +24,7 @@ class assetAllocationExcelParser:
         self.category2Array = categoryConstants.category2Array
         self.category3Array = categoryConstants.category3Array
         self.modelArray = []
+        self.colorConstants = colorConstants()
 
     # 格式化浮点数
     def beautify(self,num):
@@ -30,30 +32,7 @@ class assetAllocationExcelParser:
 
     # 不同 APP 配色
     def getFundColorByAppSourceName(self, name):
-        # 色值转换 https://www.sioe.cn/yingyong/yanse-rgb-16/
-        if name in [u'螺丝钉定投',u'李淑云螺丝钉',u'康世海螺丝钉']:
-            # 242,195,0
-            return 'F2C300'
-        elif name in [u'且慢补充 150 份',u'且慢 S 定投']:
-            # 0,176,204
-            return '00B1CC'
-        elif u'天天基金' in name:
-            # 233,80,26
-            return 'E9501A'
-        elif u'支付宝' in name:
-            # 0,161,233
-            return '00A1E9'
-        elif u'股票账户' in name:
-            # 222,48,49
-            return 'DE3031'
-        elif u'现金账户' in name:
-            # 0,161,233
-            return 'F7A128'
-        elif u'冻结资金' in name:
-            # 222,48,49
-            return '8B8C90'
-        else:
-            return 'FFFFFF'
+        return self.colorConstants.getFundColorByAppSourceName(name)
 
     # 获取资产旭日图分类配置文件
     def getFundCategorys(self):
@@ -86,7 +65,7 @@ class assetAllocationExcelParser:
         outws = outwb.active
         outws.title = u'资产配置情况'
         # 字体
-        font = openpyxl.styles.Font(u'Arial', size = 10, color='000000')
+        font = openpyxl.styles.Font(u'Arial', size = 10, color='333333')
         self.font = font
         # 行游标
         rowCursor = 1

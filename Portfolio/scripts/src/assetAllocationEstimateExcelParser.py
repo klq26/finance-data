@@ -18,6 +18,8 @@ from model.fundModel import fundModel
 from prettytable import PrettyTable
 # tools
 from tools.dingtalk import dingtalk
+# config
+from config.colorConstants import colorConstants
 
 class assetAllocationEstimateExcelParser:
 
@@ -27,6 +29,7 @@ class assetAllocationEstimateExcelParser:
         elif strategy == 'b':
             self.pm = pathManager(strategyName='父母')
         self.fundCategorys = self.getFundCategorys()
+        self.colorConstants = colorConstants()
         self.fundJsonFilePathExt = ''
         self.dingtalk = dingtalk()
         
@@ -49,30 +52,7 @@ class assetAllocationEstimateExcelParser:
         return ''
     
     def getFundColorByAppSourceName(self, name):
-        # 色值转换 https://www.sioe.cn/yingyong/yanse-rgb-16/
-        if name in [u'螺丝钉定投',u'李淑云螺丝钉',u'康世海螺丝钉']:
-            # 242,195,0
-            return 'F2C300'
-        elif name in [u'且慢补充 150 份',u'且慢 S 定投']:
-            # 0,176,204
-            return '00B1CC'
-        elif u'天天基金' in name:
-            # 233,80,26
-            return 'E9501A'
-        elif u'支付宝' in name:
-            # 0,161,233
-            return '00A1E9'
-        elif u'股票账户' in name:
-            # 222,48,49
-            return 'DE3031'
-        elif u'现金账户' in name:
-            # 0,161,233
-            return 'F7A128'
-        elif u'冻结资金' in name:
-            # 222,48,49
-            return '8B8C90'
-        else:
-            return 'FFFFFF'
+        return self.colorConstants.getFundColorByAppSourceName(name)
 
     def generateEstimateExcelFile(self, fundModelArray, path=''):
         if len(fundModelArray) == 0:
@@ -88,7 +68,7 @@ class assetAllocationEstimateExcelParser:
         outws = outwb.active
         outws.title = u'基金估算情况'
         # 字体
-        font = openpyxl.styles.Font(u'Arial', size = 10, color='000000')
+        font = openpyxl.styles.Font(u'Arial', size = 10, color='333333')
         self.font = font
         # 行游标
         rowCursor = 1
@@ -172,13 +152,7 @@ class assetAllocationEstimateExcelParser:
                     changeValue = round((fundModel.estimateNetValue - fundModel.currentNetValue)*fundModel.holdShareCount,2)
                     font = openpyxl.styles.Font(u'Arial', size = 10,bold = True, color='FFFFFF')
                     # http://www.yuangongju.com/color
-                    changeValueColor = 'DD2200'
-                    if changeValue >= 0:
-                        # 221,34,0
-                        changeValueColor = 'DD2200'
-                    else:
-                        # 0,153,51
-                        changeValueColor = '009933'
+                    changeValueColor = self.colorConstants.getGainColor(changeValue)
                     outws.cell(rowCursor, col).fill = openpyxl.styles.PatternFill(fill_type='solid',fgColor=changeValueColor)
                     outws.cell(rowCursor, col).font = font
                     outws.cell(rowCursor, col).value = changeValue
