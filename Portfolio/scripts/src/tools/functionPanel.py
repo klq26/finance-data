@@ -168,7 +168,7 @@ class functionPanel:
         params = event.widget['text'].split(' ')
         pm = pathManager()
         if params[0] == u'allFundSpider':
-            pyFile = os.path.join(pm.parentDir,u'allFundSpider.py')
+            pyFile = os.path.join(pm.parentDir,u'allFundSpiderMultiProcess.py') # 切换到多线程并发的版本
             args = [r"powershell","python",pyFile,params[1]]
             print('[Executing] {0} ...'.format(pyFile))
             p = subprocess.Popen(args)

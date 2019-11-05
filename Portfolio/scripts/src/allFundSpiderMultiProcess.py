@@ -2,15 +2,55 @@
 
 import os
 import sys
+import shutil
+import json
+import requests
 import subprocess
 
-klqSpiderArray = ['tiantianSpider.py','guangfaSpider.py','qiemanSpider.py','danjuanSpider.py','huataiSpider.py']
-parentSpidersArray = ['tiantianSpider.py','danjuanSpider.py']
+from config.pathManager import pathManager
 
-for pyFile in klqSpiderArray:
-    args = [r"powershell","python",pyFile,"a"]
-    print('[Executing] {0}...'.format(pyFile))
-    p = subprocess.Popen(args)#, stdout=subprocess.PIPE)
-    #out = p.stdout.readlines()
-    #for line in out:
-    #    print(line.strip().decode('utf-8'))
+class allFundSpiderMultiProcess:
+    def __init__(self):
+        self.strategy = ''
+        self.klqSpiderArray = ['tiantianSpider.py','guangfaSpider.py','qiemanSpider.py','danjuanSpider.py','huataiSpider.py']
+        self.parentSpidersArray = ['tiantianSpider.py','danjuanSpider.py']
+
+    def getKLQ(self):
+        # 多线程并发（都传策略 a）
+        for pyFile in self.klqSpiderArray:
+            args = [r"powershell","python",pyFile,"a"]
+            print('[Executing] {0}...'.format(pyFile))
+            p = subprocess.Popen(args)
+        # 拷贝文件
+        fileNameExt = u'康力泉'
+        self.pm = pathManager(strategyName=fileNameExt)
+        fileName = u'cash_{0}.txt'.format(fileNameExt)
+        shutil.copy(os.path.join(self.pm.inputPath,fileName),os.path.join(self.pm.holdingOutputPath,fileName))
+        fileName = u'freeze_{0}.txt'.format(fileNameExt)
+        shutil.copy(os.path.join(self.pm.inputPath,fileName),os.path.join(self.pm.holdingOutputPath,fileName))
+    
+    def getParent(self):
+        # 多线程并发（都传策略 b）
+        for pyFile in self.parentSpidersArray:
+            args = [r"powershell","python",pyFile,"b"]
+            print('[Executing] {0}...'.format(pyFile))
+            p = subprocess.Popen(args)
+        fileNameExt = u'父母'
+        self.pm = pathManager(strategyName=fileNameExt)
+
+if __name__ == '__main__':
+    strategy = 'a'
+    if len(sys.argv) >= 2:
+        #print(u'[ERROR] 参数不足。需要键入策略编号。a：康力泉 b：父母')
+        strategy = sys.argv[1]
+    spider = allFundSpiderMultiProcess()
+    if strategy == 'a':
+        spider.getKLQ()
+        os.startfile(spider.pm.holdingOutputPath)
+    elif strategy == 'b':
+        spider.getParent()
+        os.startfile(spider.pm.holdingOutputPath)
+    elif strategy == 'debug':
+        print('debug')
+    else:
+        print('[ERROR] 无法识别的参数：{0}'.format(strategy))
