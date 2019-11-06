@@ -47,6 +47,7 @@ class guangfaSpider:
                             seq = (data['fundName'],data['fundCode'],str(round(float(buyInfo['purchasePrice']),4)),\
                             str(round(float(buyInfo['currentShares']),2)),str(round(float(buyInfo['totalBalance']),2)),str(round(float(buyInfo['positionGain']),2)))
                             print(u'\t'.join(seq))
+                            print(u'\n\n')
                             f.write(u'\t'.join(seq) + '\n')
                             break
                     break

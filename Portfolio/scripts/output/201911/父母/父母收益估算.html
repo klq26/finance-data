@@ -1,166 +1,359 @@
 <meta http-equiv="Content-Type"content="text/html;charset=gbk">
 <html align='left'>
+<head>
+<script type="text/javascript">
+    // 点击筛选
+    function sort(object)
+    {
+        var type = object.attributes['type'].nodeValue
+        console.log(type)
+        var sortFunction = object.className;
+        var index = object.id.substr(2,2);
+        var tableNode = document.getElementById("table");
+        var trs = tableNode.rows;
+        // 取出所有的 row
+        var arr = new Array;
+        for ( var x = 1; x < trs.length; x++)
+        {
+            arr.push(trs[x]);
+        }
+        // className 做升降序标识
+        if (sortFunction == 'asc') {
+            object.className = 'desc'
+            if (type == 'number') {
+                numAscSort(arr,index);
+            } else {
+                strAscSort(arr,index);
+            }
+            
+        } else {
+            object.className = 'asc'
+            if (type == 'number') {
+                numDescSort(arr,index);
+            } else {
+                strDescSort(arr,index);
+            }
+        }
+        
+        for ( var x = 0; x < arr.length; x++)
+        {
+            tableNode.tBodies[0].appendChild(arr[x]);
+        }
+    }
+    
+    // 升序冒泡
+    function numAscSort (arr, index)
+    {
+        console.log('numAscSort')
+        for ( var x = 0; x < arr.length; x++)
+        {
+            for ( var y = x + 1; y < arr.length; y++)
+            {
+                if (parseFloat(arr[x].cells[index].childNodes[0].nodeValue) >= parseFloat(arr[y].cells[index].childNodes[0].nodeValue))
+                {
+                    var tmp = arr[x];
+                    arr[x] = arr[y];
+                    arr[y] = tmp;
+                }
+            }
+        }
+    }
+    
+    // 升序冒泡
+    function strAscSort (arr, index)
+    {
+        for ( var x = 0; x < arr.length; x++)
+        {
+            for ( var y = x + 1; y < arr.length; y++)
+            {
+                if (arr[x].cells[index].childNodes[0].nodeValue.localeCompare(arr[y].cells[index].childNodes[0].nodeValue) >= 0)
+                {
+                    var tmp = arr[x];
+                    arr[x] = arr[y];
+                    arr[y] = tmp;
+                }
+            }
+        }
+    }
+    
+    // 降序冒泡
+    function numDescSort (arr, index)
+    {
+        console.log('numDescSort')
+        for ( var x = 0; x < arr.length; x++)
+        {
+            for ( var y = x + 1; y < arr.length; y++)
+            {
+                if (parseFloat(arr[x].cells[index].childNodes[0].nodeValue) <= parseFloat(arr[y].cells[index].childNodes[0].nodeValue))
+                {
+                    var tmp = arr[x];
+                    arr[x] = arr[y];
+                    arr[y] = tmp;
+                }
+            }
+        }
+    }
+    
+    // 降序冒泡
+    function strDescSort (arr, index)
+    {
+        console.log('strDescSort')
+        for ( var x = 0; x < arr.length; x++)
+        {
+            for ( var y = x + 1; y < arr.length; y++)
+            {
+                if (arr[x].cells[index].childNodes[0].nodeValue.localeCompare(arr[y].cells[index].childNodes[0].nodeValue) <= 0)
+                {
+                    var tmp = arr[x];
+                    arr[x] = arr[y];
+                    arr[y] = tmp;
+                }
+            }
+        }
+    }
+</script>
+</head>
 <h1>父母收益估算</h1>
     <body>
     <h2>整体情况</h2> 
-    <p><b>场内盈亏 : <font color=DD2200>0.0</font></b>&nbsp;&nbsp;<b>场外盈亏 : <font color=DD2200>340.14</font></b>&nbsp;&nbsp;<b>整体盈亏 : <font color=DD2200>340.14</font></b></p>
-    <table border="1" cellspacing='0' cellpadding='4' align='left'>
+    <p><b>场内盈亏 : <font color=DD2200>0.0</font></b>&nbsp;&nbsp;<b>场外盈亏 : <font color=009933>-450.44</font></b>&nbsp;&nbsp;<b>整体盈亏 : <font color=009933>-450.44</font></b></p>
+    <table id='table' border="1" cellspacing='0' cellpadding='4' align='left'>
     <tr align='center'>
-        <th align='center'>基金名称</th>
-        <th align='center'>基金代码</th>
-        <th align='center'>持仓成本</th>
-        <th align='center'>持仓份额</th>
-        <th align='center'>持仓市值</th>
-        <th align='center'>累计收益</th>
+        <th id='th0' class='asc' type='string' onclick='sort(this)' align='center'>基金名称</th>
+        <th id='th1' class='asc' type='number' onclick='sort(this)' align='center'>基金代码</th>
+        <th id='th2' class='asc' type='number' onclick='sort(this)' align='center'>持仓成本</th>
+        <th id='th3' class='asc' type='number' onclick='sort(this)' align='center'>持仓份额</th>
+        <th id='th4' class='asc' type='number' onclick='sort(this)' align='center'>持仓市值</th>
+        <th id='th5' class='asc' type='number' onclick='sort(this)' align='center'>累计收益</th>
         <!-- 接口查询 -->
-        <th align='center'>当前净值</th>
-        <th align='center'>净值日期</th>
-        <th align='center'>估算净值</th>
-        <th align='center'>估算涨跌幅</th>
-        <th align='center'>估算日收益</th>
-        <th align='center'>估算时间</th>
+        <th id='th6' class='asc' type='number' onclick='sort(this)' align='center'>当前净值</th>
+        <th id='th7' class='asc' type='number' onclick='sort(this)' align='center'>净值日期</th>
+        <th id='th8' class='asc' type='number' onclick='sort(this)' align='center'>估算净值</th>
+        <th id='th9' class='asc' type='number' onclick='sort(this)' align='center'>估算涨跌幅</th>
+        <th id='th10' class='asc' type='number' onclick='sort(this)' align='center'>估算日收益</th>
+        <th id='th11' class='asc' type='number' onclick='sort(this)' align='center'>估算时间</th>
         <!-- 接口查询 结束 -->
-        <th align='center'>一级分类</th>
-        <th align='center'>二级分类</th>
-        <th align='center'>三级分类</th>
-        <th align='center'>分类 ID</th>
-        <th align='center'>来源</th>
+        <th id='th12' class='asc' type='string' onclick='sort(this)' align='center'>一级分类</th>
+        <th id='th13' class='asc' type='string' onclick='sort(this)' align='center'>二级分类</th>
+        <th id='th14' class='asc' type='string' onclick='sort(this)' align='center'>三级分类</th>
+        <th id='th15' class='asc' type='number' onclick='sort(this)' align='center'>分类 ID</th>
+        <th id='th16' class='asc' type='string' onclick='sort(this)' align='center'>来源</th>
     </tr>
  
     
     <tr align='center'>
-        <td bgcolor=FF8361>广发中证500ETF联接A</td>
-        <td bgcolor=FF8361>162711</td>
-        <td align='right' bgcolor=FF8361>1.0503</td>
-        <td align='right' bgcolor=FF8361>9331.14</td>
-        <td align='right' bgcolor=FF8361>10573.74</td>
-        <td align='right' bgcolor=FF8361>373.74</td>
-        <td align='right' bgcolor=FF8361>1.0954</td>
-        <td bgcolor=FF8361>2019-11-04</td>
-        <td align='right' bgcolor=FF8361>1.1021</td>
-        <td align='right' bgcolor=FF8361>0.61%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>62.52</b></font></td>
-        <td bgcolor=FF8361>2019-11-05 14:30</td>
-        <td bgcolor=FF8361>A 股</td>
-        <td bgcolor=FF8361>中小盘股</td>
-        <td bgcolor=FF8361>中证500</td>
-        <td bgcolor=FF8361>121</td>
+        <td bgcolor=FF8361>华安黄金易ETF联接A</td>
+        <td bgcolor=FF8361>000216</td>
+        <td align='right' bgcolor=FF8361>1.0903</td>
+        <td align='right' bgcolor=FF8361>733.79</td>
+        <td align='right' bgcolor=FF8361>902.48</td>
+        <td align='right' bgcolor=FF8361>102.48</td>
+        <td align='right' bgcolor=FF8361>1.2299</td>
+        <td bgcolor=FF8361>2019-11-06</td>
+        <td align='right' bgcolor=FF8361>1.2341</td>
+        <td align='right' bgcolor=FF8361>0.34%</td>
+        <td align='right' bgcolor=DD2200>3.08</td>
+        <td bgcolor=FF8361>2019-11-07 02:29</td>
+        <td bgcolor=FF8361>商品</td>
+        <td bgcolor=FF8361>商品</td>
+        <td bgcolor=FF8361>黄金</td>
+        <td bgcolor=FF8361>511</td>
         <td bgcolor=FF8361>天天基金</td>
     </tr>
     
     <tr align='center'>
-        <td bgcolor=FF8361>富国中证红利指数增强</td>
-        <td bgcolor=FF8361>100032</td>
-        <td align='right' bgcolor=FF8361>1.0099</td>
-        <td align='right' bgcolor=FF8361>8677.6</td>
-        <td align='right' bgcolor=FF8361>9649.49</td>
-        <td align='right' bgcolor=FF8361>850.09</td>
-        <td align='right' bgcolor=FF8361>1.114</td>
-        <td bgcolor=FF8361>2019-11-04</td>
-        <td align='right' bgcolor=FF8361>1.1184</td>
-        <td align='right' bgcolor=FF8361>0.4%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>38.18</b></font></td>
-        <td bgcolor=FF8361>2019-11-05 14:30</td>
-        <td bgcolor=FF8361>A 股</td>
-        <td bgcolor=FF8361>红利价值</td>
-        <td bgcolor=FF8361>中证红利</td>
-        <td bgcolor=FF8361>131</td>
+        <td bgcolor=F0DC5A>华宝香港中小</td>
+        <td bgcolor=F0DC5A>501021</td>
+        <td align='right' bgcolor=F0DC5A>1.3485</td>
+        <td align='right' bgcolor=F0DC5A>898.04</td>
+        <td align='right' bgcolor=F0DC5A>1330.99</td>
+        <td align='right' bgcolor=F0DC5A>120.02</td>
+        <td align='right' bgcolor=F0DC5A>1.4923</td>
+        <td bgcolor=F0DC5A>2019-11-05</td>
+        <td align='right' bgcolor=F0DC5A>1.4926</td>
+        <td align='right' bgcolor=F0DC5A>0.02%</td>
+        <td align='right' bgcolor=DD2200>0.27</td>
+        <td bgcolor=F0DC5A>2019-11-06 16:00</td>
+        <td bgcolor=F0DC5A>海外新兴</td>
+        <td bgcolor=F0DC5A>香港</td>
+        <td bgcolor=F0DC5A>香港中小</td>
+        <td bgcolor=F0DC5A>212</td>
+        <td bgcolor=F0DC5A>康世海螺丝钉</td>
+    </tr>
+    
+    <tr align='center'>
+        <td bgcolor=F0DC5A>华宝香港中小</td>
+        <td bgcolor=F0DC5A>501021</td>
+        <td align='right' bgcolor=F0DC5A>1.3514</td>
+        <td align='right' bgcolor=F0DC5A>915.97</td>
+        <td align='right' bgcolor=F0DC5A>1357.56</td>
+        <td align='right' bgcolor=F0DC5A>119.72</td>
+        <td align='right' bgcolor=F0DC5A>1.4923</td>
+        <td bgcolor=F0DC5A>2019-11-05</td>
+        <td align='right' bgcolor=F0DC5A>1.4926</td>
+        <td align='right' bgcolor=F0DC5A>0.02%</td>
+        <td align='right' bgcolor=DD2200>0.27</td>
+        <td bgcolor=F0DC5A>2019-11-06 16:00</td>
+        <td bgcolor=F0DC5A>海外新兴</td>
+        <td bgcolor=F0DC5A>香港</td>
+        <td bgcolor=F0DC5A>香港中小</td>
+        <td bgcolor=F0DC5A>212</td>
+        <td bgcolor=F0DC5A>李淑云螺丝钉</td>
+    </tr>
+    
+    <tr align='center'>
+        <td bgcolor=FF8361>华夏恒生ETF联接A</td>
+        <td bgcolor=FF8361>000071</td>
+        <td align='right' bgcolor=FF8361>1.452</td>
+        <td align='right' bgcolor=FF8361>275.49</td>
+        <td align='right' bgcolor=FF8361>425.32</td>
+        <td align='right' bgcolor=FF8361>25.32</td>
+        <td align='right' bgcolor=FF8361>1.5482</td>
+        <td bgcolor=FF8361>2019-11-05</td>
+        <td align='right' bgcolor=FF8361>1.5485</td>
+        <td align='right' bgcolor=FF8361>0.02%</td>
+        <td align='right' bgcolor=DD2200>0.08</td>
+        <td bgcolor=FF8361>2019-11-06 16:00</td>
+        <td bgcolor=FF8361>海外新兴</td>
+        <td bgcolor=FF8361>香港</td>
+        <td bgcolor=FF8361>恒生</td>
+        <td bgcolor=FF8361>211</td>
         <td bgcolor=FF8361>天天基金</td>
     </tr>
     
     <tr align='center'>
-        <td bgcolor=FF8361>广发中证环保ETF联接A</td>
-        <td bgcolor=FF8361>001064</td>
-        <td align='right' bgcolor=FF8361>0.5379</td>
-        <td align='right' bgcolor=FF8361>5949.77</td>
-        <td align='right' bgcolor=FF8361>3225.96</td>
-        <td align='right' bgcolor=FF8361>25.96</td>
-        <td align='right' bgcolor=FF8361>0.5438</td>
+        <td bgcolor=F0DC5A>申万菱信沪深300价值指数</td>
+        <td bgcolor=F0DC5A>310398</td>
+        <td align='right' bgcolor=F0DC5A>1.5297</td>
+        <td align='right' bgcolor=F0DC5A>24.24</td>
+        <td align='right' bgcolor=F0DC5A>36.03</td>
+        <td align='right' bgcolor=F0DC5A>-1.05</td>
+        <td align='right' bgcolor=F0DC5A>1.4886</td>
+        <td bgcolor=F0DC5A>2019-11-05</td>
+        <td align='right' bgcolor=F0DC5A>1.4861</td>
+        <td align='right' bgcolor=F0DC5A>-0.17%</td>
+        <td align='right' bgcolor=009933>-0.06</td>
+        <td bgcolor=F0DC5A>2019-11-06 15:00</td>
+        <td bgcolor=F0DC5A>A 股</td>
+        <td bgcolor=F0DC5A>大盘股</td>
+        <td bgcolor=F0DC5A>300价值</td>
+        <td bgcolor=F0DC5A>114</td>
+        <td bgcolor=F0DC5A>康世海螺丝钉</td>
+    </tr>
+    
+    <tr align='center'>
+        <td bgcolor=F0DC5A>申万菱信沪深300价值指数</td>
+        <td bgcolor=F0DC5A>310398</td>
+        <td align='right' bgcolor=F0DC5A>1.5297</td>
+        <td align='right' bgcolor=F0DC5A>24.24</td>
+        <td align='right' bgcolor=F0DC5A>36.03</td>
+        <td align='right' bgcolor=F0DC5A>-1.05</td>
+        <td align='right' bgcolor=F0DC5A>1.4886</td>
+        <td bgcolor=F0DC5A>2019-11-05</td>
+        <td align='right' bgcolor=F0DC5A>1.4861</td>
+        <td align='right' bgcolor=F0DC5A>-0.17%</td>
+        <td align='right' bgcolor=009933>-0.06</td>
+        <td bgcolor=F0DC5A>2019-11-06 15:00</td>
+        <td bgcolor=F0DC5A>A 股</td>
+        <td bgcolor=F0DC5A>大盘股</td>
+        <td bgcolor=F0DC5A>300价值</td>
+        <td bgcolor=F0DC5A>114</td>
+        <td bgcolor=F0DC5A>李淑云螺丝钉</td>
+    </tr>
+    
+    <tr align='center'>
+        <td bgcolor=FF8361>交银中证海外中国互联网指数</td>
+        <td bgcolor=FF8361>164906</td>
+        <td align='right' bgcolor=FF8361>1.137</td>
+        <td align='right' bgcolor=FF8361>1407.29</td>
+        <td align='right' bgcolor=FF8361>1837.92</td>
+        <td align='right' bgcolor=FF8361>237.92</td>
+        <td align='right' bgcolor=FF8361>1.313</td>
         <td bgcolor=FF8361>2019-11-04</td>
-        <td align='right' bgcolor=FF8361>0.5485</td>
-        <td align='right' bgcolor=FF8361>0.86%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>27.96</b></font></td>
-        <td bgcolor=FF8361>2019-11-05 14:30</td>
-        <td bgcolor=FF8361>A 股</td>
-        <td bgcolor=FF8361>行业股</td>
-        <td bgcolor=FF8361>中证环保</td>
-        <td bgcolor=FF8361>143</td>
+        <td align='right' bgcolor=FF8361>1.3129</td>
+        <td align='right' bgcolor=FF8361>-0.01%</td>
+        <td align='right' bgcolor=009933>-0.14</td>
+        <td bgcolor=FF8361>2019-11-07 05:00</td>
+        <td bgcolor=FF8361>海外新兴</td>
+        <td bgcolor=FF8361>海外互联</td>
+        <td bgcolor=FF8361>海外互联网</td>
+        <td bgcolor=FF8361>213</td>
         <td bgcolor=FF8361>天天基金</td>
     </tr>
     
     <tr align='center'>
-        <td bgcolor=FF8361>富国沪深300指数增强</td>
-        <td bgcolor=FF8361>100038</td>
-        <td align='right' bgcolor=FF8361>1.3043</td>
-        <td align='right' bgcolor=FF8361>2760.12</td>
-        <td align='right' bgcolor=FF8361>4554.19</td>
-        <td align='right' bgcolor=FF8361>954.19</td>
-        <td align='right' bgcolor=FF8361>1.659</td>
+        <td bgcolor=F0DC5A>华夏上证50AH优选指数</td>
+        <td bgcolor=F0DC5A>501050</td>
+        <td align='right' bgcolor=F0DC5A>1.2891</td>
+        <td align='right' bgcolor=F0DC5A>62.09</td>
+        <td align='right' bgcolor=F0DC5A>84.01</td>
+        <td align='right' bgcolor=F0DC5A>3.97</td>
+        <td align='right' bgcolor=F0DC5A>1.359</td>
+        <td bgcolor=F0DC5A>2019-11-05</td>
+        <td align='right' bgcolor=F0DC5A>1.3565</td>
+        <td align='right' bgcolor=F0DC5A>-0.18%</td>
+        <td align='right' bgcolor=009933>-0.16</td>
+        <td bgcolor=F0DC5A>2019-11-06 15:00</td>
+        <td bgcolor=F0DC5A>A 股</td>
+        <td bgcolor=F0DC5A>大盘股</td>
+        <td bgcolor=F0DC5A>50AH</td>
+        <td bgcolor=F0DC5A>112</td>
+        <td bgcolor=F0DC5A>康世海螺丝钉</td>
+    </tr>
+    
+    <tr align='center'>
+        <td bgcolor=FF8361>华宝标普油气上游股票</td>
+        <td bgcolor=FF8361>162411</td>
+        <td align='right' bgcolor=FF8361>0.4776</td>
+        <td align='right' bgcolor=FF8361>3350.7</td>
+        <td align='right' bgcolor=FF8361>1360.38</td>
+        <td align='right' bgcolor=FF8361>-239.62</td>
+        <td align='right' bgcolor=FF8361>0.406</td>
         <td bgcolor=FF8361>2019-11-04</td>
-        <td align='right' bgcolor=FF8361>1.6686</td>
-        <td align='right' bgcolor=FF8361>0.58%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>26.5</b></font></td>
-        <td bgcolor=FF8361>2019-11-05 14:30</td>
-        <td bgcolor=FF8361>A 股</td>
-        <td bgcolor=FF8361>大盘股</td>
-        <td bgcolor=FF8361>沪深300</td>
-        <td bgcolor=FF8361>113</td>
+        <td align='right' bgcolor=FF8361>0.4059</td>
+        <td align='right' bgcolor=FF8361>-0.02%</td>
+        <td align='right' bgcolor=009933>-0.34</td>
+        <td bgcolor=FF8361>2019-11-07 05:00</td>
+        <td bgcolor=FF8361>商品</td>
+        <td bgcolor=FF8361>商品</td>
+        <td bgcolor=FF8361>原油</td>
+        <td bgcolor=FF8361>512</td>
         <td bgcolor=FF8361>天天基金</td>
     </tr>
     
     <tr align='center'>
-        <td bgcolor=FF8361>富国中证500指数(LOF)</td>
-        <td bgcolor=FF8361>161017</td>
-        <td align='right' bgcolor=FF8361>1.325</td>
-        <td align='right' bgcolor=FF8361>2046.97</td>
-        <td align='right' bgcolor=FF8361>3295.62</td>
-        <td align='right' bgcolor=FF8361>583.51</td>
-        <td align='right' bgcolor=FF8361>1.616</td>
-        <td bgcolor=FF8361>2019-11-04</td>
-        <td align='right' bgcolor=FF8361>1.6258</td>
-        <td align='right' bgcolor=FF8361>0.61%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>20.06</b></font></td>
-        <td bgcolor=FF8361>2019-11-05 14:30</td>
-        <td bgcolor=FF8361>A 股</td>
-        <td bgcolor=FF8361>中小盘股</td>
-        <td bgcolor=FF8361>中证500</td>
-        <td bgcolor=FF8361>121</td>
-        <td bgcolor=FF8361>天天基金</td>
+        <td bgcolor=F0DC5A>华夏上证50AH优选指数</td>
+        <td bgcolor=F0DC5A>501050</td>
+        <td align='right' bgcolor=F0DC5A>1.284</td>
+        <td align='right' bgcolor=F0DC5A>142.1</td>
+        <td align='right' bgcolor=F0DC5A>192.26</td>
+        <td align='right' bgcolor=F0DC5A>9.81</td>
+        <td align='right' bgcolor=F0DC5A>1.359</td>
+        <td bgcolor=F0DC5A>2019-11-05</td>
+        <td align='right' bgcolor=F0DC5A>1.3565</td>
+        <td align='right' bgcolor=F0DC5A>-0.18%</td>
+        <td align='right' bgcolor=009933>-0.36</td>
+        <td bgcolor=F0DC5A>2019-11-06 15:00</td>
+        <td bgcolor=F0DC5A>A 股</td>
+        <td bgcolor=F0DC5A>大盘股</td>
+        <td bgcolor=F0DC5A>50AH</td>
+        <td bgcolor=F0DC5A>112</td>
+        <td bgcolor=F0DC5A>李淑云螺丝钉</td>
     </tr>
     
     <tr align='center'>
-        <td bgcolor=FF8361>广发养老指数A</td>
-        <td bgcolor=FF8361>000968</td>
-        <td align='right' bgcolor=FF8361>0.853</td>
-        <td align='right' bgcolor=FF8361>6096.21</td>
-        <td align='right' bgcolor=FF8361>5827.97</td>
-        <td align='right' bgcolor=FF8361>627.97</td>
-        <td align='right' bgcolor=FF8361>0.9614</td>
-        <td bgcolor=FF8361>2019-11-04</td>
-        <td align='right' bgcolor=FF8361>0.9641</td>
-        <td align='right' bgcolor=FF8361>0.29%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>16.46</b></font></td>
-        <td bgcolor=FF8361>2019-11-05 14:30</td>
-        <td bgcolor=FF8361>A 股</td>
-        <td bgcolor=FF8361>行业股</td>
-        <td bgcolor=FF8361>养老产业</td>
-        <td bgcolor=FF8361>141</td>
-        <td bgcolor=FF8361>天天基金</td>
-    </tr>
-    
-    <tr align='center'>
-        <td bgcolor=FF8361>易方达安心回报债券A</td>
-        <td bgcolor=FF8361>110027</td>
-        <td align='right' bgcolor=FF8361>1.6007</td>
-        <td align='right' bgcolor=FF8361>1743.65</td>
-        <td align='right' bgcolor=FF8361>2931.07</td>
-        <td align='right' bgcolor=FF8361>140.07</td>
-        <td align='right' bgcolor=FF8361>1.685</td>
-        <td bgcolor=FF8361>2019-11-04</td>
-        <td align='right' bgcolor=FF8361>1.6944</td>
-        <td align='right' bgcolor=FF8361>0.56%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>16.39</b></font></td>
-        <td bgcolor=FF8361>2019-11-05 14:30</td>
+        <td bgcolor=FF8361>长信可转债债券A</td>
+        <td bgcolor=FF8361>519977</td>
+        <td align='right' bgcolor=FF8361>1.2011</td>
+        <td align='right' bgcolor=FF8361>333.04</td>
+        <td align='right' bgcolor=FF8361>454.29</td>
+        <td align='right' bgcolor=FF8361>54.29</td>
+        <td align='right' bgcolor=FF8361>1.3664</td>
+        <td bgcolor=FF8361>2019-11-05</td>
+        <td align='right' bgcolor=FF8361>1.3651</td>
+        <td align='right' bgcolor=FF8361>-0.09%</td>
+        <td align='right' bgcolor=009933>-0.43</td>
+        <td bgcolor=FF8361>2019-11-06 15:00</td>
         <td bgcolor=FF8361>债券</td>
         <td bgcolor=FF8361>国内债券</td>
         <td bgcolor=FF8361>可转债</td>
@@ -169,18 +362,238 @@
     </tr>
     
     <tr align='center'>
-        <td bgcolor=FF8361>易方达创业板ETF联接A</td>
-        <td bgcolor=FF8361>110026</td>
-        <td align='right' bgcolor=FF8361>1.319</td>
-        <td align='right' bgcolor=FF8361>1213.09</td>
-        <td align='right' bgcolor=FF8361>2120.48</td>
-        <td align='right' bgcolor=FF8361>520.48</td>
-        <td align='right' bgcolor=FF8361>1.7606</td>
-        <td bgcolor=FF8361>2019-11-04</td>
-        <td align='right' bgcolor=FF8361>1.7721</td>
-        <td align='right' bgcolor=FF8361>0.66%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>13.95</b></font></td>
-        <td bgcolor=FF8361>2019-11-05 14:30</td>
+        <td bgcolor=F0DC5A>华宝红利基金</td>
+        <td bgcolor=F0DC5A>501029</td>
+        <td align='right' bgcolor=F0DC5A>0.9829</td>
+        <td align='right' bgcolor=F0DC5A>214.89</td>
+        <td align='right' bgcolor=F0DC5A>201.61</td>
+        <td align='right' bgcolor=F0DC5A>-9.61</td>
+        <td align='right' bgcolor=F0DC5A>0.9422</td>
+        <td bgcolor=F0DC5A>2019-11-05</td>
+        <td align='right' bgcolor=F0DC5A>0.9384</td>
+        <td align='right' bgcolor=F0DC5A>-0.41%</td>
+        <td align='right' bgcolor=009933>-0.82</td>
+        <td bgcolor=F0DC5A>2019-11-06 15:00</td>
+        <td bgcolor=F0DC5A>A 股</td>
+        <td bgcolor=F0DC5A>红利价值</td>
+        <td bgcolor=F0DC5A>标普红利</td>
+        <td bgcolor=F0DC5A>132</td>
+        <td bgcolor=F0DC5A>康世海螺丝钉</td>
+    </tr>
+    
+    <tr align='center'>
+        <td bgcolor=F0DC5A>华宝红利基金</td>
+        <td bgcolor=F0DC5A>501029</td>
+        <td align='right' bgcolor=F0DC5A>0.9824</td>
+        <td align='right' bgcolor=F0DC5A>227.52</td>
+        <td align='right' bgcolor=F0DC5A>213.46</td>
+        <td align='right' bgcolor=F0DC5A>-10.05</td>
+        <td align='right' bgcolor=F0DC5A>0.9422</td>
+        <td bgcolor=F0DC5A>2019-11-05</td>
+        <td align='right' bgcolor=F0DC5A>0.9384</td>
+        <td align='right' bgcolor=F0DC5A>-0.41%</td>
+        <td align='right' bgcolor=009933>-0.86</td>
+        <td bgcolor=F0DC5A>2019-11-06 15:00</td>
+        <td bgcolor=F0DC5A>A 股</td>
+        <td bgcolor=F0DC5A>红利价值</td>
+        <td bgcolor=F0DC5A>标普红利</td>
+        <td bgcolor=F0DC5A>132</td>
+        <td bgcolor=F0DC5A>李淑云螺丝钉</td>
+    </tr>
+    
+    <tr align='center'>
+        <td bgcolor=F0DC5A>天弘中证医药100A</td>
+        <td bgcolor=F0DC5A>001550</td>
+        <td align='right' bgcolor=F0DC5A>0.6708</td>
+        <td align='right' bgcolor=F0DC5A>212.74</td>
+        <td align='right' bgcolor=F0DC5A>169.13</td>
+        <td align='right' bgcolor=F0DC5A>26.43</td>
+        <td align='right' bgcolor=F0DC5A>0.7992</td>
+        <td bgcolor=F0DC5A>2019-11-05</td>
+        <td align='right' bgcolor=F0DC5A>0.795</td>
+        <td align='right' bgcolor=F0DC5A>-0.52%</td>
+        <td align='right' bgcolor=009933>-0.89</td>
+        <td bgcolor=F0DC5A>2019-11-06 15:00</td>
+        <td bgcolor=F0DC5A>A 股</td>
+        <td bgcolor=F0DC5A>行业股</td>
+        <td bgcolor=F0DC5A>全指医药</td>
+        <td bgcolor=F0DC5A>142</td>
+        <td bgcolor=F0DC5A>康世海螺丝钉</td>
+    </tr>
+    
+    <tr align='center'>
+        <td bgcolor=F0DC5A>天弘中证医药100A</td>
+        <td bgcolor=F0DC5A>001550</td>
+        <td align='right' bgcolor=F0DC5A>0.6708</td>
+        <td align='right' bgcolor=F0DC5A>212.74</td>
+        <td align='right' bgcolor=F0DC5A>169.13</td>
+        <td align='right' bgcolor=F0DC5A>26.43</td>
+        <td align='right' bgcolor=F0DC5A>0.7992</td>
+        <td bgcolor=F0DC5A>2019-11-05</td>
+        <td align='right' bgcolor=F0DC5A>0.795</td>
+        <td align='right' bgcolor=F0DC5A>-0.52%</td>
+        <td align='right' bgcolor=009933>-0.89</td>
+        <td bgcolor=F0DC5A>2019-11-06 15:00</td>
+        <td bgcolor=F0DC5A>A 股</td>
+        <td bgcolor=F0DC5A>行业股</td>
+        <td bgcolor=F0DC5A>全指医药</td>
+        <td bgcolor=F0DC5A>142</td>
+        <td bgcolor=F0DC5A>李淑云螺丝钉</td>
+    </tr>
+    
+    <tr align='center'>
+        <td bgcolor=F0DC5A>广发中证养老</td>
+        <td bgcolor=F0DC5A>000968</td>
+        <td align='right' bgcolor=F0DC5A>0.9587</td>
+        <td align='right' bgcolor=F0DC5A>249.29</td>
+        <td align='right' bgcolor=F0DC5A>239.14</td>
+        <td align='right' bgcolor=F0DC5A>0.14</td>
+        <td align='right' bgcolor=F0DC5A>0.9644</td>
+        <td bgcolor=F0DC5A>2019-11-05</td>
+        <td align='right' bgcolor=F0DC5A>0.9592</td>
+        <td align='right' bgcolor=F0DC5A>-0.54%</td>
+        <td align='right' bgcolor=009933>-1.3</td>
+        <td bgcolor=F0DC5A>2019-11-06 15:00</td>
+        <td bgcolor=F0DC5A>A 股</td>
+        <td bgcolor=F0DC5A>行业股</td>
+        <td bgcolor=F0DC5A>养老产业</td>
+        <td bgcolor=F0DC5A>141</td>
+        <td bgcolor=F0DC5A>李淑云螺丝钉</td>
+    </tr>
+    
+    <tr align='center'>
+        <td bgcolor=F0DC5A>广发中证养老</td>
+        <td bgcolor=F0DC5A>000968</td>
+        <td align='right' bgcolor=F0DC5A>0.9605</td>
+        <td align='right' bgcolor=F0DC5A>284.05</td>
+        <td align='right' bgcolor=F0DC5A>272.49</td>
+        <td align='right' bgcolor=F0DC5A>-0.34</td>
+        <td align='right' bgcolor=F0DC5A>0.9644</td>
+        <td bgcolor=F0DC5A>2019-11-05</td>
+        <td align='right' bgcolor=F0DC5A>0.9592</td>
+        <td align='right' bgcolor=F0DC5A>-0.54%</td>
+        <td align='right' bgcolor=009933>-1.48</td>
+        <td bgcolor=F0DC5A>2019-11-06 15:00</td>
+        <td bgcolor=F0DC5A>A 股</td>
+        <td bgcolor=F0DC5A>行业股</td>
+        <td bgcolor=F0DC5A>养老产业</td>
+        <td bgcolor=F0DC5A>141</td>
+        <td bgcolor=F0DC5A>康世海螺丝钉</td>
+    </tr>
+    
+    <tr align='center'>
+        <td bgcolor=FF8361>华夏沪深300ETF联接A</td>
+        <td bgcolor=FF8361>000051</td>
+        <td align='right' bgcolor=FF8361>1.2285</td>
+        <td align='right' bgcolor=FF8361>325.61</td>
+        <td align='right' bgcolor=FF8361>434.36</td>
+        <td align='right' bgcolor=FF8361>34.36</td>
+        <td align='right' bgcolor=FF8361>1.339</td>
+        <td bgcolor=FF8361>2019-11-05</td>
+        <td align='right' bgcolor=FF8361>1.3333</td>
+        <td align='right' bgcolor=FF8361>-0.43%</td>
+        <td align='right' bgcolor=009933>-1.86</td>
+        <td bgcolor=FF8361>2019-11-06 15:00</td>
+        <td bgcolor=FF8361>A 股</td>
+        <td bgcolor=FF8361>大盘股</td>
+        <td bgcolor=FF8361>沪深300</td>
+        <td bgcolor=FF8361>113</td>
+        <td bgcolor=FF8361>天天基金</td>
+    </tr>
+    
+    <tr align='center'>
+        <td bgcolor=F0DC5A>银河沪深300价值指数</td>
+        <td bgcolor=F0DC5A>519671</td>
+        <td align='right' bgcolor=F0DC5A>1.4221</td>
+        <td align='right' bgcolor=F0DC5A>897.58</td>
+        <td align='right' bgcolor=F0DC5A>1323.93</td>
+        <td align='right' bgcolor=F0DC5A>47.51</td>
+        <td align='right' bgcolor=F0DC5A>1.478</td>
+        <td bgcolor=F0DC5A>2019-11-05</td>
+        <td align='right' bgcolor=F0DC5A>1.4755</td>
+        <td align='right' bgcolor=F0DC5A>-0.17%</td>
+        <td align='right' bgcolor=009933>-2.24</td>
+        <td bgcolor=F0DC5A>2019-11-06 15:00</td>
+        <td bgcolor=F0DC5A>A 股</td>
+        <td bgcolor=F0DC5A>大盘股</td>
+        <td bgcolor=F0DC5A>300价值</td>
+        <td bgcolor=F0DC5A>114</td>
+        <td bgcolor=F0DC5A>李淑云螺丝钉</td>
+    </tr>
+    
+    <tr align='center'>
+        <td bgcolor=FF8361>兴全可转债混合</td>
+        <td bgcolor=FF8361>340001</td>
+        <td align='right' bgcolor=FF8361>0.9816</td>
+        <td align='right' bgcolor=FF8361>1630.08</td>
+        <td align='right' bgcolor=FF8361>1883.23</td>
+        <td align='right' bgcolor=FF8361>283.23</td>
+        <td align='right' bgcolor=FF8361>1.1574</td>
+        <td bgcolor=FF8361>2019-11-05</td>
+        <td align='right' bgcolor=FF8361>1.156</td>
+        <td align='right' bgcolor=FF8361>-0.12%</td>
+        <td align='right' bgcolor=009933>-2.28</td>
+        <td bgcolor=FF8361>2019-11-06 15:00</td>
+        <td bgcolor=FF8361>债券</td>
+        <td bgcolor=FF8361>国内债券</td>
+        <td bgcolor=FF8361>可转债</td>
+        <td bgcolor=FF8361>411</td>
+        <td bgcolor=FF8361>天天基金</td>
+    </tr>
+    
+    <tr align='center'>
+        <td bgcolor=FF8361>广发中证500ETF联接C</td>
+        <td bgcolor=FF8361>002903</td>
+        <td align='right' bgcolor=FF8361>0.829</td>
+        <td align='right' bgcolor=FF8361>275.96</td>
+        <td align='right' bgcolor=FF8361>240.88</td>
+        <td align='right' bgcolor=FF8361>12.12</td>
+        <td align='right' bgcolor=FF8361>0.8812</td>
+        <td bgcolor=FF8361>2019-11-05</td>
+        <td align='right' bgcolor=FF8361>0.8727</td>
+        <td align='right' bgcolor=FF8361>-0.96%</td>
+        <td align='right' bgcolor=009933>-2.35</td>
+        <td bgcolor=FF8361>2019-11-06 15:00</td>
+        <td bgcolor=FF8361>A 股</td>
+        <td bgcolor=FF8361>中小盘股</td>
+        <td bgcolor=FF8361>中证500</td>
+        <td bgcolor=FF8361>121</td>
+        <td bgcolor=FF8361>天天基金</td>
+    </tr>
+    
+    <tr align='center'>
+        <td bgcolor=F0DC5A>银河沪深300价值指数</td>
+        <td bgcolor=F0DC5A>519671</td>
+        <td align='right' bgcolor=F0DC5A>1.4248</td>
+        <td align='right' bgcolor=F0DC5A>949.05</td>
+        <td align='right' bgcolor=F0DC5A>1399.85</td>
+        <td align='right' bgcolor=F0DC5A>47.68</td>
+        <td align='right' bgcolor=F0DC5A>1.478</td>
+        <td bgcolor=F0DC5A>2019-11-05</td>
+        <td align='right' bgcolor=F0DC5A>1.4755</td>
+        <td align='right' bgcolor=F0DC5A>-0.17%</td>
+        <td align='right' bgcolor=009933>-2.37</td>
+        <td bgcolor=F0DC5A>2019-11-06 15:00</td>
+        <td bgcolor=F0DC5A>A 股</td>
+        <td bgcolor=F0DC5A>大盘股</td>
+        <td bgcolor=F0DC5A>300价值</td>
+        <td bgcolor=F0DC5A>114</td>
+        <td bgcolor=F0DC5A>康世海螺丝钉</td>
+    </tr>
+    
+    <tr align='center'>
+        <td bgcolor=FF8361>广发创业板ETF联接A</td>
+        <td bgcolor=FF8361>003765</td>
+        <td align='right' bgcolor=FF8361>0.8121</td>
+        <td align='right' bgcolor=FF8361>492.57</td>
+        <td align='right' bgcolor=FF8361>472.32</td>
+        <td align='right' bgcolor=FF8361>72.32</td>
+        <td align='right' bgcolor=FF8361>0.9645</td>
+        <td bgcolor=FF8361>2019-11-05</td>
+        <td align='right' bgcolor=FF8361>0.959</td>
+        <td align='right' bgcolor=FF8361>-0.57%</td>
+        <td align='right' bgcolor=009933>-2.71</td>
+        <td bgcolor=FF8361>2019-11-06 15:00</td>
         <td bgcolor=FF8361>A 股</td>
         <td bgcolor=FF8361>中小盘股</td>
         <td bgcolor=FF8361>创业板</td>
@@ -193,14 +606,14 @@
         <td bgcolor=FF8361>001469</td>
         <td align='right' bgcolor=FF8361>0.8886</td>
         <td align='right' bgcolor=FF8361>900.35</td>
-        <td align='right' bgcolor=FF8361>1001.36</td>
-        <td align='right' bgcolor=FF8361>201.36</td>
-        <td align='right' bgcolor=FF8361>1.1162</td>
-        <td bgcolor=FF8361>2019-11-04</td>
-        <td align='right' bgcolor=FF8361>1.1266</td>
-        <td align='right' bgcolor=FF8361>0.93%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>9.36</b></font></td>
-        <td bgcolor=FF8361>2019-11-05 14:29</td>
+        <td align='right' bgcolor=FF8361>1011.18</td>
+        <td align='right' bgcolor=FF8361>211.18</td>
+        <td align='right' bgcolor=FF8361>1.1261</td>
+        <td bgcolor=FF8361>2019-11-05</td>
+        <td align='right' bgcolor=FF8361>1.123</td>
+        <td align='right' bgcolor=FF8361>-0.28%</td>
+        <td align='right' bgcolor=009933>-2.79</td>
+        <td bgcolor=FF8361>2019-11-06 15:00</td>
         <td bgcolor=FF8361>A 股</td>
         <td bgcolor=FF8361>行业股</td>
         <td bgcolor=FF8361>金融地产</td>
@@ -209,58 +622,18 @@
     </tr>
     
     <tr align='center'>
-        <td bgcolor=F0DC5A>银河沪深300价值指数</td>
-        <td bgcolor=F0DC5A>519671</td>
-        <td align='right' bgcolor=F0DC5A>1.4229</td>
-        <td align='right' bgcolor=F0DC5A>918.59</td>
-        <td align='right' bgcolor=F0DC5A>1342.06</td>
-        <td align='right' bgcolor=F0DC5A>34.96</td>
-        <td align='right' bgcolor=F0DC5A>1.468</td>
-        <td bgcolor=F0DC5A>2019-11-04</td>
-        <td align='right' bgcolor=F0DC5A>1.478</td>
-        <td align='right' bgcolor=F0DC5A>0.68%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>9.19</b></font></td>
-        <td bgcolor=F0DC5A>2019-11-05 14:30</td>
-        <td bgcolor=F0DC5A>A 股</td>
-        <td bgcolor=F0DC5A>大盘股</td>
-        <td bgcolor=F0DC5A>300价值</td>
-        <td bgcolor=F0DC5A>114</td>
-        <td bgcolor=F0DC5A>康世海螺丝钉</td>
-    </tr>
-    
-    <tr align='center'>
-        <td bgcolor=F0DC5A>银河沪深300价值指数</td>
-        <td bgcolor=F0DC5A>519671</td>
-        <td align='right' bgcolor=F0DC5A>1.42</td>
-        <td align='right' bgcolor=F0DC5A>867.12</td>
-        <td align='right' bgcolor=F0DC5A>1266.86</td>
-        <td align='right' bgcolor=F0DC5A>35.51</td>
-        <td align='right' bgcolor=F0DC5A>1.468</td>
-        <td bgcolor=F0DC5A>2019-11-04</td>
-        <td align='right' bgcolor=F0DC5A>1.478</td>
-        <td align='right' bgcolor=F0DC5A>0.68%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>8.67</b></font></td>
-        <td bgcolor=F0DC5A>2019-11-05 14:30</td>
-        <td bgcolor=F0DC5A>A 股</td>
-        <td bgcolor=F0DC5A>大盘股</td>
-        <td bgcolor=F0DC5A>300价值</td>
-        <td bgcolor=F0DC5A>114</td>
-        <td bgcolor=F0DC5A>李淑云螺丝钉</td>
-    </tr>
-    
-    <tr align='center'>
         <td bgcolor=FF8361>华夏上证50ETF联接A</td>
         <td bgcolor=FF8361>001051</td>
         <td align='right' bgcolor=FF8361>0.8966</td>
         <td align='right' bgcolor=FF8361>1338.46</td>
-        <td align='right' bgcolor=FF8361>1375.93</td>
-        <td align='right' bgcolor=FF8361>175.93</td>
-        <td align='right' bgcolor=FF8361>1.034</td>
-        <td bgcolor=FF8361>2019-11-04</td>
-        <td align='right' bgcolor=FF8361>1.0402</td>
-        <td align='right' bgcolor=FF8361>0.6%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>8.3</b></font></td>
-        <td bgcolor=FF8361>2019-11-05 14:29</td>
+        <td align='right' bgcolor=FF8361>1387.98</td>
+        <td align='right' bgcolor=FF8361>187.98</td>
+        <td align='right' bgcolor=FF8361>1.04</td>
+        <td bgcolor=FF8361>2019-11-05</td>
+        <td align='right' bgcolor=FF8361>1.0376</td>
+        <td align='right' bgcolor=FF8361>-0.23%</td>
+        <td align='right' bgcolor=009933>-3.21</td>
+        <td bgcolor=FF8361>2019-11-06 15:00</td>
         <td bgcolor=FF8361>A 股</td>
         <td bgcolor=FF8361>大盘股</td>
         <td bgcolor=FF8361>上证50</td>
@@ -269,18 +642,98 @@
     </tr>
     
     <tr align='center'>
+        <td bgcolor=FF8361>易方达安心回报债券A</td>
+        <td bgcolor=FF8361>110027</td>
+        <td align='right' bgcolor=FF8361>1.6007</td>
+        <td align='right' bgcolor=FF8361>1743.65</td>
+        <td align='right' bgcolor=FF8361>2951.99</td>
+        <td align='right' bgcolor=FF8361>160.99</td>
+        <td align='right' bgcolor=FF8361>1.695</td>
+        <td bgcolor=FF8361>2019-11-05</td>
+        <td align='right' bgcolor=FF8361>1.6929</td>
+        <td align='right' bgcolor=FF8361>-0.12%</td>
+        <td align='right' bgcolor=009933>-3.66</td>
+        <td bgcolor=FF8361>2019-11-06 15:00</td>
+        <td bgcolor=FF8361>债券</td>
+        <td bgcolor=FF8361>国内债券</td>
+        <td bgcolor=FF8361>可转债</td>
+        <td bgcolor=FF8361>411</td>
+        <td bgcolor=FF8361>天天基金</td>
+    </tr>
+    
+    <tr align='center'>
+        <td bgcolor=F0DC5A>建信深证基本面60ETF联接A</td>
+        <td bgcolor=F0DC5A>530015</td>
+        <td align='right' bgcolor=F0DC5A>2.1136</td>
+        <td align='right' bgcolor=F0DC5A>320.47</td>
+        <td align='right' bgcolor=F0DC5A>704.71</td>
+        <td align='right' bgcolor=F0DC5A>27.36</td>
+        <td align='right' bgcolor=F0DC5A>2.2129</td>
+        <td bgcolor=F0DC5A>2019-11-05</td>
+        <td align='right' bgcolor=F0DC5A>2.199</td>
+        <td align='right' bgcolor=F0DC5A>-0.63%</td>
+        <td align='right' bgcolor=009933>-4.45</td>
+        <td bgcolor=F0DC5A>2019-11-06 15:00</td>
+        <td bgcolor=F0DC5A>A 股</td>
+        <td bgcolor=F0DC5A>大盘股</td>
+        <td bgcolor=F0DC5A>基本面60</td>
+        <td bgcolor=F0DC5A>115</td>
+        <td bgcolor=F0DC5A>李淑云螺丝钉</td>
+    </tr>
+    
+    <tr align='center'>
+        <td bgcolor=FF8361>广发中证环保ETF联接A</td>
+        <td bgcolor=FF8361>001064</td>
+        <td align='right' bgcolor=FF8361>0.5379</td>
+        <td align='right' bgcolor=FF8361>5949.77</td>
+        <td align='right' bgcolor=FF8361>3255.71</td>
+        <td align='right' bgcolor=FF8361>55.71</td>
+        <td align='right' bgcolor=FF8361>0.5481</td>
+        <td bgcolor=FF8361>2019-11-05</td>
+        <td align='right' bgcolor=FF8361>0.5473</td>
+        <td align='right' bgcolor=FF8361>-0.15%</td>
+        <td align='right' bgcolor=009933>-4.76</td>
+        <td bgcolor=FF8361>2019-11-06 15:00</td>
+        <td bgcolor=FF8361>A 股</td>
+        <td bgcolor=FF8361>行业股</td>
+        <td bgcolor=FF8361>中证环保</td>
+        <td bgcolor=FF8361>143</td>
+        <td bgcolor=FF8361>天天基金</td>
+    </tr>
+    
+    <tr align='center'>
+        <td bgcolor=F0DC5A>建信深证基本面60ETF联接A</td>
+        <td bgcolor=F0DC5A>530015</td>
+        <td align='right' bgcolor=F0DC5A>2.1157</td>
+        <td align='right' bgcolor=F0DC5A>355.05</td>
+        <td align='right' bgcolor=F0DC5A>780.75</td>
+        <td align='right' bgcolor=F0DC5A>29.57</td>
+        <td align='right' bgcolor=F0DC5A>2.2129</td>
+        <td bgcolor=F0DC5A>2019-11-05</td>
+        <td align='right' bgcolor=F0DC5A>2.199</td>
+        <td align='right' bgcolor=F0DC5A>-0.63%</td>
+        <td align='right' bgcolor=009933>-4.94</td>
+        <td bgcolor=F0DC5A>2019-11-06 15:00</td>
+        <td bgcolor=F0DC5A>A 股</td>
+        <td bgcolor=F0DC5A>大盘股</td>
+        <td bgcolor=F0DC5A>基本面60</td>
+        <td bgcolor=F0DC5A>115</td>
+        <td bgcolor=F0DC5A>康世海螺丝钉</td>
+    </tr>
+    
+    <tr align='center'>
         <td bgcolor=FF8361>易方达证券公司分级</td>
         <td bgcolor=FF8361>502010</td>
         <td align='right' bgcolor=FF8361>0.8063</td>
         <td align='right' bgcolor=FF8361>496.13</td>
-        <td align='right' bgcolor=FF8361>495.08</td>
-        <td align='right' bgcolor=FF8361>95.08</td>
-        <td align='right' bgcolor=FF8361>0.999</td>
-        <td bgcolor=FF8361>2019-11-04</td>
-        <td align='right' bgcolor=FF8361>1.0113</td>
-        <td align='right' bgcolor=FF8361>1.24%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>6.1</b></font></td>
-        <td bgcolor=FF8361>2019-11-05 14:30</td>
+        <td align='right' bgcolor=FF8361>497.12</td>
+        <td align='right' bgcolor=FF8361>97.12</td>
+        <td align='right' bgcolor=FF8361>1.0119</td>
+        <td bgcolor=FF8361>2019-11-05</td>
+        <td align='right' bgcolor=FF8361>1.0013</td>
+        <td align='right' bgcolor=FF8361>-1.05%</td>
+        <td align='right' bgcolor=009933>-5.26</td>
+        <td bgcolor=FF8361>2019-11-06 15:00</td>
         <td bgcolor=FF8361>A 股</td>
         <td bgcolor=FF8361>行业股</td>
         <td bgcolor=FF8361>证券公司</td>
@@ -289,323 +742,103 @@
     </tr>
     
     <tr align='center'>
-        <td bgcolor=F0DC5A>景顺长城中证500低波动</td>
-        <td bgcolor=F0DC5A>003318</td>
-        <td align='right' bgcolor=F0DC5A>0.9345</td>
-        <td align='right' bgcolor=F0DC5A>1171.5</td>
-        <td align='right' bgcolor=F0DC5A>1085.51</td>
-        <td align='right' bgcolor=F0DC5A>-9.27</td>
-        <td align='right' bgcolor=F0DC5A>0.9282</td>
-        <td bgcolor=F0DC5A>2019-11-04</td>
-        <td align='right' bgcolor=F0DC5A>0.9331</td>
-        <td align='right' bgcolor=F0DC5A>0.53%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>5.74</b></font></td>
-        <td bgcolor=F0DC5A>2019-11-05 14:30</td>
+        <td bgcolor=F0DC5A>嘉实深证基本面120联接</td>
+        <td bgcolor=F0DC5A>070023</td>
+        <td align='right' bgcolor=F0DC5A>1.7901</td>
+        <td align='right' bgcolor=F0DC5A>444.49</td>
+        <td align='right' bgcolor=F0DC5A>837.69</td>
+        <td align='right' bgcolor=F0DC5A>42.01</td>
+        <td align='right' bgcolor=F0DC5A>1.8968</td>
+        <td bgcolor=F0DC5A>2019-11-05</td>
+        <td align='right' bgcolor=F0DC5A>1.8844</td>
+        <td align='right' bgcolor=F0DC5A>-0.66%</td>
+        <td align='right' bgcolor=009933>-5.51</td>
+        <td bgcolor=F0DC5A>2019-11-06 15:00</td>
         <td bgcolor=F0DC5A>A 股</td>
-        <td bgcolor=F0DC5A>中小盘股</td>
-        <td bgcolor=F0DC5A>500低波动</td>
-        <td bgcolor=F0DC5A>122</td>
+        <td bgcolor=F0DC5A>大盘股</td>
+        <td bgcolor=F0DC5A>基本面120</td>
+        <td bgcolor=F0DC5A>116</td>
         <td bgcolor=F0DC5A>康世海螺丝钉</td>
+    </tr>
+    
+    <tr align='center'>
+        <td bgcolor=F0DC5A>嘉实深证基本面120联接</td>
+        <td bgcolor=F0DC5A>070023</td>
+        <td align='right' bgcolor=F0DC5A>1.7891</td>
+        <td align='right' bgcolor=F0DC5A>452.05</td>
+        <td align='right' bgcolor=F0DC5A>851.93</td>
+        <td align='right' bgcolor=F0DC5A>43.18</td>
+        <td align='right' bgcolor=F0DC5A>1.8968</td>
+        <td bgcolor=F0DC5A>2019-11-05</td>
+        <td align='right' bgcolor=F0DC5A>1.8844</td>
+        <td align='right' bgcolor=F0DC5A>-0.66%</td>
+        <td align='right' bgcolor=009933>-5.61</td>
+        <td bgcolor=F0DC5A>2019-11-06 15:00</td>
+        <td bgcolor=F0DC5A>A 股</td>
+        <td bgcolor=F0DC5A>大盘股</td>
+        <td bgcolor=F0DC5A>基本面120</td>
+        <td bgcolor=F0DC5A>116</td>
+        <td bgcolor=F0DC5A>李淑云螺丝钉</td>
+    </tr>
+    
+    <tr align='center'>
+        <td bgcolor=F0DC5A>大成中证红利指数A</td>
+        <td bgcolor=F0DC5A>090010</td>
+        <td align='right' bgcolor=F0DC5A>1.6551</td>
+        <td align='right' bgcolor=F0DC5A>803.24</td>
+        <td align='right' bgcolor=F0DC5A>1313.3</td>
+        <td align='right' bgcolor=F0DC5A>-16.15</td>
+        <td align='right' bgcolor=F0DC5A>1.646</td>
+        <td bgcolor=F0DC5A>2019-11-05</td>
+        <td align='right' bgcolor=F0DC5A>1.6346</td>
+        <td align='right' bgcolor=F0DC5A>-0.69%</td>
+        <td align='right' bgcolor=009933>-9.16</td>
+        <td bgcolor=F0DC5A>2019-11-06 15:00</td>
+        <td bgcolor=F0DC5A>A 股</td>
+        <td bgcolor=F0DC5A>红利价值</td>
+        <td bgcolor=F0DC5A>中证红利</td>
+        <td bgcolor=F0DC5A>131</td>
+        <td bgcolor=F0DC5A>康世海螺丝钉</td>
+    </tr>
+    
+    <tr align='center'>
+        <td bgcolor=F0DC5A>大成中证红利指数A</td>
+        <td bgcolor=F0DC5A>090010</td>
+        <td align='right' bgcolor=F0DC5A>1.6619</td>
+        <td align='right' bgcolor=F0DC5A>833.05</td>
+        <td align='right' bgcolor=F0DC5A>1362.04</td>
+        <td align='right' bgcolor=F0DC5A>-22.4</td>
+        <td align='right' bgcolor=F0DC5A>1.646</td>
+        <td bgcolor=F0DC5A>2019-11-05</td>
+        <td align='right' bgcolor=F0DC5A>1.6346</td>
+        <td align='right' bgcolor=F0DC5A>-0.69%</td>
+        <td align='right' bgcolor=009933>-9.5</td>
+        <td bgcolor=F0DC5A>2019-11-06 15:00</td>
+        <td bgcolor=F0DC5A>A 股</td>
+        <td bgcolor=F0DC5A>红利价值</td>
+        <td bgcolor=F0DC5A>中证红利</td>
+        <td bgcolor=F0DC5A>131</td>
+        <td bgcolor=F0DC5A>李淑云螺丝钉</td>
     </tr>
     
     <tr align='center'>
         <td bgcolor=F0DC5A>景顺长城中证500低波动</td>
         <td bgcolor=F0DC5A>003318</td>
         <td align='right' bgcolor=F0DC5A>0.9362</td>
-        <td align='right' bgcolor=F0DC5A>1131.8</td>
-        <td align='right' bgcolor=F0DC5A>1048.73</td>
-        <td align='right' bgcolor=F0DC5A>-10.89</td>
-        <td align='right' bgcolor=F0DC5A>0.9282</td>
-        <td bgcolor=F0DC5A>2019-11-04</td>
-        <td align='right' bgcolor=F0DC5A>0.9331</td>
-        <td align='right' bgcolor=F0DC5A>0.53%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>5.55</b></font></td>
-        <td bgcolor=F0DC5A>2019-11-05 14:30</td>
+        <td align='right' bgcolor=F0DC5A>1177.08</td>
+        <td align='right' bgcolor=F0DC5A>1089.62</td>
+        <td align='right' bgcolor=F0DC5A>-12.34</td>
+        <td align='right' bgcolor=F0DC5A>0.9338</td>
+        <td bgcolor=F0DC5A>2019-11-05</td>
+        <td align='right' bgcolor=F0DC5A>0.9254</td>
+        <td align='right' bgcolor=F0DC5A>-0.9%</td>
+        <td align='right' bgcolor=009933>-9.89</td>
+        <td bgcolor=F0DC5A>2019-11-06 15:00</td>
         <td bgcolor=F0DC5A>A 股</td>
         <td bgcolor=F0DC5A>中小盘股</td>
         <td bgcolor=F0DC5A>500低波动</td>
         <td bgcolor=F0DC5A>122</td>
         <td bgcolor=F0DC5A>李淑云螺丝钉</td>
-    </tr>
-    
-    <tr align='center'>
-        <td bgcolor=F0DC5A>华宝香港中小</td>
-        <td bgcolor=F0DC5A>501021</td>
-        <td align='right' bgcolor=F0DC5A>1.3514</td>
-        <td align='right' bgcolor=F0DC5A>915.97</td>
-        <td align='right' bgcolor=F0DC5A>1332.1</td>
-        <td align='right' bgcolor=F0DC5A>94.26</td>
-        <td align='right' bgcolor=F0DC5A>1.4844</td>
-        <td bgcolor=F0DC5A>2019-11-04</td>
-        <td align='right' bgcolor=F0DC5A>1.4902</td>
-        <td align='right' bgcolor=F0DC5A>0.39%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>5.31</b></font></td>
-        <td bgcolor=F0DC5A>2019-11-05 14:32</td>
-        <td bgcolor=F0DC5A>海外新兴</td>
-        <td bgcolor=F0DC5A>香港</td>
-        <td bgcolor=F0DC5A>香港中小</td>
-        <td bgcolor=F0DC5A>212</td>
-        <td bgcolor=F0DC5A>李淑云螺丝钉</td>
-    </tr>
-    
-    <tr align='center'>
-        <td bgcolor=F0DC5A>大成中证红利指数A</td>
-        <td bgcolor=F0DC5A>090010</td>
-        <td align='right' bgcolor=F0DC5A>1.6624</td>
-        <td align='right' bgcolor=F0DC5A>806.22</td>
-        <td align='right' bgcolor=F0DC5A>1318.98</td>
-        <td align='right' bgcolor=F0DC5A>-21.24</td>
-        <td align='right' bgcolor=F0DC5A>1.639</td>
-        <td bgcolor=F0DC5A>2019-11-04</td>
-        <td align='right' bgcolor=F0DC5A>1.6455</td>
-        <td align='right' bgcolor=F0DC5A>0.4%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>5.24</b></font></td>
-        <td bgcolor=F0DC5A>2019-11-05 14:30</td>
-        <td bgcolor=F0DC5A>A 股</td>
-        <td bgcolor=F0DC5A>红利价值</td>
-        <td bgcolor=F0DC5A>中证红利</td>
-        <td bgcolor=F0DC5A>131</td>
-        <td bgcolor=F0DC5A>李淑云螺丝钉</td>
-    </tr>
-    
-    <tr align='center'>
-        <td bgcolor=F0DC5A>华宝香港中小</td>
-        <td bgcolor=F0DC5A>501021</td>
-        <td align='right' bgcolor=F0DC5A>1.3485</td>
-        <td align='right' bgcolor=F0DC5A>898.04</td>
-        <td align='right' bgcolor=F0DC5A>1306.02</td>
-        <td align='right' bgcolor=F0DC5A>95.05</td>
-        <td align='right' bgcolor=F0DC5A>1.4844</td>
-        <td bgcolor=F0DC5A>2019-11-04</td>
-        <td align='right' bgcolor=F0DC5A>1.4902</td>
-        <td align='right' bgcolor=F0DC5A>0.39%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>5.21</b></font></td>
-        <td bgcolor=F0DC5A>2019-11-05 14:32</td>
-        <td bgcolor=F0DC5A>海外新兴</td>
-        <td bgcolor=F0DC5A>香港</td>
-        <td bgcolor=F0DC5A>香港中小</td>
-        <td bgcolor=F0DC5A>212</td>
-        <td bgcolor=F0DC5A>康世海螺丝钉</td>
-    </tr>
-    
-    <tr align='center'>
-        <td bgcolor=FF8361>交银中证海外中国互联网指数</td>
-        <td bgcolor=FF8361>164906</td>
-        <td align='right' bgcolor=FF8361>1.137</td>
-        <td align='right' bgcolor=FF8361>1407.29</td>
-        <td align='right' bgcolor=FF8361>1773.18</td>
-        <td align='right' bgcolor=FF8361>173.18</td>
-        <td align='right' bgcolor=FF8361>1.273</td>
-        <td bgcolor=FF8361>2019-11-01</td>
-        <td align='right' bgcolor=FF8361>1.2766</td>
-        <td align='right' bgcolor=FF8361>0.28%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>5.07</b></font></td>
-        <td bgcolor=FF8361>2019-11-05 05:00</td>
-        <td bgcolor=FF8361>海外新兴</td>
-        <td bgcolor=FF8361>海外互联</td>
-        <td bgcolor=FF8361>海外互联网</td>
-        <td bgcolor=FF8361>213</td>
-        <td bgcolor=FF8361>天天基金</td>
-    </tr>
-    
-    <tr align='center'>
-        <td bgcolor=F0DC5A>大成中证红利指数A</td>
-        <td bgcolor=F0DC5A>090010</td>
-        <td align='right' bgcolor=F0DC5A>1.6553</td>
-        <td align='right' bgcolor=F0DC5A>776.41</td>
-        <td align='right' bgcolor=F0DC5A>1270.21</td>
-        <td align='right' bgcolor=F0DC5A>-15.02</td>
-        <td align='right' bgcolor=F0DC5A>1.639</td>
-        <td bgcolor=F0DC5A>2019-11-04</td>
-        <td align='right' bgcolor=F0DC5A>1.6455</td>
-        <td align='right' bgcolor=F0DC5A>0.4%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>5.05</b></font></td>
-        <td bgcolor=F0DC5A>2019-11-05 14:30</td>
-        <td bgcolor=F0DC5A>A 股</td>
-        <td bgcolor=F0DC5A>红利价值</td>
-        <td bgcolor=F0DC5A>中证红利</td>
-        <td bgcolor=F0DC5A>131</td>
-        <td bgcolor=F0DC5A>康世海螺丝钉</td>
-    </tr>
-    
-    <tr align='center'>
-        <td bgcolor=F0DC5A>嘉实深证基本面120联接</td>
-        <td bgcolor=F0DC5A>070023</td>
-        <td align='right' bgcolor=F0DC5A>1.7845</td>
-        <td align='right' bgcolor=F0DC5A>434.07</td>
-        <td align='right' bgcolor=F0DC5A>814.14</td>
-        <td align='right' bgcolor=F0DC5A>39.55</td>
-        <td align='right' bgcolor=F0DC5A>1.8845</td>
-        <td bgcolor=F0DC5A>2019-11-04</td>
-        <td align='right' bgcolor=F0DC5A>1.8956</td>
-        <td align='right' bgcolor=F0DC5A>0.59%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>4.82</b></font></td>
-        <td bgcolor=F0DC5A>2019-11-05 14:30</td>
-        <td bgcolor=F0DC5A>A 股</td>
-        <td bgcolor=F0DC5A>大盘股</td>
-        <td bgcolor=F0DC5A>基本面120</td>
-        <td bgcolor=F0DC5A>116</td>
-        <td bgcolor=F0DC5A>李淑云螺丝钉</td>
-    </tr>
-    
-    <tr align='center'>
-        <td bgcolor=F0DC5A>嘉实深证基本面120联接</td>
-        <td bgcolor=F0DC5A>070023</td>
-        <td align='right' bgcolor=F0DC5A>1.7855</td>
-        <td align='right' bgcolor=F0DC5A>426.51</td>
-        <td align='right' bgcolor=F0DC5A>799.96</td>
-        <td align='right' bgcolor=F0DC5A>38.44</td>
-        <td align='right' bgcolor=F0DC5A>1.8845</td>
-        <td bgcolor=F0DC5A>2019-11-04</td>
-        <td align='right' bgcolor=F0DC5A>1.8956</td>
-        <td align='right' bgcolor=F0DC5A>0.59%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>4.73</b></font></td>
-        <td bgcolor=F0DC5A>2019-11-05 14:30</td>
-        <td bgcolor=F0DC5A>A 股</td>
-        <td bgcolor=F0DC5A>大盘股</td>
-        <td bgcolor=F0DC5A>基本面120</td>
-        <td bgcolor=F0DC5A>116</td>
-        <td bgcolor=F0DC5A>康世海螺丝钉</td>
-    </tr>
-    
-    <tr align='center'>
-        <td bgcolor=F0DC5A>建信深证基本面60ETF联接A</td>
-        <td bgcolor=F0DC5A>530015</td>
-        <td align='right' bgcolor=F0DC5A>2.1109</td>
-        <td align='right' bgcolor=F0DC5A>338.92</td>
-        <td align='right' bgcolor=F0DC5A>742.81</td>
-        <td align='right' bgcolor=F0DC5A>27.37</td>
-        <td align='right' bgcolor=F0DC5A>2.2008</td>
-        <td bgcolor=F0DC5A>2019-11-04</td>
-        <td align='right' bgcolor=F0DC5A>2.2123</td>
-        <td align='right' bgcolor=F0DC5A>0.52%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>3.9</b></font></td>
-        <td bgcolor=F0DC5A>2019-11-05 14:30</td>
-        <td bgcolor=F0DC5A>A 股</td>
-        <td bgcolor=F0DC5A>大盘股</td>
-        <td bgcolor=F0DC5A>基本面60</td>
-        <td bgcolor=F0DC5A>115</td>
-        <td bgcolor=F0DC5A>康世海螺丝钉</td>
-    </tr>
-    
-    <tr align='center'>
-        <td bgcolor=F0DC5A>建信深证基本面60ETF联接A</td>
-        <td bgcolor=F0DC5A>530015</td>
-        <td align='right' bgcolor=F0DC5A>2.1082</td>
-        <td align='right' bgcolor=F0DC5A>304.34</td>
-        <td align='right' bgcolor=F0DC5A>667.02</td>
-        <td align='right' bgcolor=F0DC5A>25.41</td>
-        <td align='right' bgcolor=F0DC5A>2.2008</td>
-        <td bgcolor=F0DC5A>2019-11-04</td>
-        <td align='right' bgcolor=F0DC5A>2.2123</td>
-        <td align='right' bgcolor=F0DC5A>0.52%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>3.5</b></font></td>
-        <td bgcolor=F0DC5A>2019-11-05 14:30</td>
-        <td bgcolor=F0DC5A>A 股</td>
-        <td bgcolor=F0DC5A>大盘股</td>
-        <td bgcolor=F0DC5A>基本面60</td>
-        <td bgcolor=F0DC5A>115</td>
-        <td bgcolor=F0DC5A>李淑云螺丝钉</td>
-    </tr>
-    
-    <tr align='center'>
-        <td bgcolor=FF8361>华宝标普油气上游股票</td>
-        <td bgcolor=FF8361>162411</td>
-        <td align='right' bgcolor=FF8361>0.5152</td>
-        <td align='right' bgcolor=FF8361>2329.22</td>
-        <td align='right' bgcolor=FF8361>1280.44</td>
-        <td align='right' bgcolor=FF8361>-319.56</td>
-        <td align='right' bgcolor=FF8361>0.391</td>
-        <td bgcolor=FF8361>2019-11-01</td>
-        <td align='right' bgcolor=FF8361>0.3925</td>
-        <td align='right' bgcolor=FF8361>0.38%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>3.49</b></font></td>
-        <td bgcolor=FF8361>2019-11-05 05:00</td>
-        <td bgcolor=FF8361>商品</td>
-        <td bgcolor=FF8361>商品</td>
-        <td bgcolor=FF8361>原油</td>
-        <td bgcolor=FF8361>512</td>
-        <td bgcolor=FF8361>天天基金</td>
-    </tr>
-    
-    <tr align='center'>
-        <td bgcolor=FF8361>广发创业板ETF联接A</td>
-        <td bgcolor=FF8361>003765</td>
-        <td align='right' bgcolor=FF8361>0.8121</td>
-        <td align='right' bgcolor=FF8361>492.57</td>
-        <td align='right' bgcolor=FF8361>468.87</td>
-        <td align='right' bgcolor=FF8361>68.87</td>
-        <td align='right' bgcolor=FF8361>0.9578</td>
-        <td bgcolor=FF8361>2019-11-04</td>
-        <td align='right' bgcolor=FF8361>0.9641</td>
-        <td align='right' bgcolor=FF8361>0.66%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>3.1</b></font></td>
-        <td bgcolor=FF8361>2019-11-05 14:30</td>
-        <td bgcolor=FF8361>A 股</td>
-        <td bgcolor=FF8361>中小盘股</td>
-        <td bgcolor=FF8361>创业板</td>
-        <td bgcolor=FF8361>124</td>
-        <td bgcolor=FF8361>天天基金</td>
-    </tr>
-    
-    <tr align='center'>
-        <td bgcolor=FF8361>长信可转债债券A</td>
-        <td bgcolor=FF8361>519977</td>
-        <td align='right' bgcolor=FF8361>1.2011</td>
-        <td align='right' bgcolor=FF8361>333.04</td>
-        <td align='right' bgcolor=FF8361>450.4</td>
-        <td align='right' bgcolor=FF8361>50.4</td>
-        <td align='right' bgcolor=FF8361>1.3573</td>
-        <td bgcolor=FF8361>2019-11-04</td>
-        <td align='right' bgcolor=FF8361>1.3665</td>
-        <td align='right' bgcolor=FF8361>0.68%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>3.06</b></font></td>
-        <td bgcolor=FF8361>2019-11-05 14:30</td>
-        <td bgcolor=FF8361>债券</td>
-        <td bgcolor=FF8361>国内债券</td>
-        <td bgcolor=FF8361>可转债</td>
-        <td bgcolor=FF8361>411</td>
-        <td bgcolor=FF8361>天天基金</td>
-    </tr>
-    
-    <tr align='center'>
-        <td bgcolor=FF8361>兴全可转债混合</td>
-        <td bgcolor=FF8361>340001</td>
-        <td align='right' bgcolor=FF8361>0.9816</td>
-        <td align='right' bgcolor=FF8361>1630.08</td>
-        <td align='right' bgcolor=FF8361>1869.53</td>
-        <td align='right' bgcolor=FF8361>269.53</td>
-        <td align='right' bgcolor=FF8361>1.1518</td>
-        <td bgcolor=FF8361>2019-11-04</td>
-        <td align='right' bgcolor=FF8361>1.1536</td>
-        <td align='right' bgcolor=FF8361>0.16%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>2.93</b></font></td>
-        <td bgcolor=FF8361>2019-11-05 14:30</td>
-        <td bgcolor=FF8361>债券</td>
-        <td bgcolor=FF8361>国内债券</td>
-        <td bgcolor=FF8361>可转债</td>
-        <td bgcolor=FF8361>411</td>
-        <td bgcolor=FF8361>天天基金</td>
-    </tr>
-    
-    <tr align='center'>
-        <td bgcolor=FF8361>华夏沪深300ETF联接A</td>
-        <td bgcolor=FF8361>000051</td>
-        <td align='right' bgcolor=FF8361>1.2285</td>
-        <td align='right' bgcolor=FF8361>325.61</td>
-        <td align='right' bgcolor=FF8361>430.78</td>
-        <td align='right' bgcolor=FF8361>30.78</td>
-        <td align='right' bgcolor=FF8361>1.331</td>
-        <td bgcolor=FF8361>2019-11-04</td>
-        <td align='right' bgcolor=FF8361>1.3387</td>
-        <td align='right' bgcolor=FF8361>0.58%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>2.51</b></font></td>
-        <td bgcolor=FF8361>2019-11-05 14:29</td>
-        <td bgcolor=FF8361>A 股</td>
-        <td bgcolor=FF8361>大盘股</td>
-        <td bgcolor=FF8361>沪深300</td>
-        <td bgcolor=FF8361>113</td>
-        <td bgcolor=FF8361>天天基金</td>
     </tr>
     
     <tr align='center'>
@@ -613,14 +846,14 @@
         <td bgcolor=FF8361>162413</td>
         <td align='right' bgcolor=FF8361>0.8027</td>
         <td align='right' bgcolor=FF8361>1495.03</td>
-        <td align='right' bgcolor=FF8361>1214.26</td>
-        <td align='right' bgcolor=FF8361>14.26</td>
-        <td align='right' bgcolor=FF8361>0.8169</td>
-        <td bgcolor=FF8361>2019-11-04</td>
-        <td align='right' bgcolor=FF8361>0.8183</td>
-        <td align='right' bgcolor=FF8361>0.17%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>2.09</b></font></td>
-        <td bgcolor=FF8361>2019-11-05 14:30</td>
+        <td align='right' bgcolor=FF8361>1214.41</td>
+        <td align='right' bgcolor=FF8361>14.41</td>
+        <td align='right' bgcolor=FF8361>0.8191</td>
+        <td bgcolor=FF8361>2019-11-05</td>
+        <td align='right' bgcolor=FF8361>0.8123</td>
+        <td align='right' bgcolor=FF8361>-0.84%</td>
+        <td align='right' bgcolor=009933>-10.17</td>
+        <td bgcolor=FF8361>2019-11-06 15:00</td>
         <td bgcolor=FF8361>A 股</td>
         <td bgcolor=FF8361>中小盘股</td>
         <td bgcolor=FF8361>中证1000</td>
@@ -629,18 +862,78 @@
     </tr>
     
     <tr align='center'>
+        <td bgcolor=F0DC5A>景顺长城中证500低波动</td>
+        <td bgcolor=F0DC5A>003318</td>
+        <td align='right' bgcolor=F0DC5A>0.9345</td>
+        <td align='right' bgcolor=F0DC5A>1216.78</td>
+        <td align='right' bgcolor=F0DC5A>1126.37</td>
+        <td align='right' bgcolor=F0DC5A>-10.75</td>
+        <td align='right' bgcolor=F0DC5A>0.9338</td>
+        <td bgcolor=F0DC5A>2019-11-05</td>
+        <td align='right' bgcolor=F0DC5A>0.9254</td>
+        <td align='right' bgcolor=F0DC5A>-0.9%</td>
+        <td align='right' bgcolor=009933>-10.22</td>
+        <td bgcolor=F0DC5A>2019-11-06 15:00</td>
+        <td bgcolor=F0DC5A>A 股</td>
+        <td bgcolor=F0DC5A>中小盘股</td>
+        <td bgcolor=F0DC5A>500低波动</td>
+        <td bgcolor=F0DC5A>122</td>
+        <td bgcolor=F0DC5A>康世海螺丝钉</td>
+    </tr>
+    
+    <tr align='center'>
+        <td bgcolor=FF8361>易方达创业板ETF联接A</td>
+        <td bgcolor=FF8361>110026</td>
+        <td align='right' bgcolor=FF8361>1.319</td>
+        <td align='right' bgcolor=FF8361>1213.09</td>
+        <td align='right' bgcolor=FF8361>2139.16</td>
+        <td align='right' bgcolor=FF8361>539.16</td>
+        <td align='right' bgcolor=FF8361>1.7736</td>
+        <td bgcolor=FF8361>2019-11-05</td>
+        <td align='right' bgcolor=FF8361>1.7635</td>
+        <td align='right' bgcolor=FF8361>-0.57%</td>
+        <td align='right' bgcolor=009933>-12.25</td>
+        <td bgcolor=FF8361>2019-11-06 15:00</td>
+        <td bgcolor=FF8361>A 股</td>
+        <td bgcolor=FF8361>中小盘股</td>
+        <td bgcolor=FF8361>创业板</td>
+        <td bgcolor=FF8361>124</td>
+        <td bgcolor=FF8361>天天基金</td>
+    </tr>
+    
+    <tr align='center'>
+        <td bgcolor=FF8361>富国沪深300指数增强</td>
+        <td bgcolor=FF8361>100038</td>
+        <td align='right' bgcolor=FF8361>1.3043</td>
+        <td align='right' bgcolor=FF8361>2760.12</td>
+        <td align='right' bgcolor=FF8361>4587.31</td>
+        <td align='right' bgcolor=FF8361>987.31</td>
+        <td align='right' bgcolor=FF8361>1.67</td>
+        <td bgcolor=FF8361>2019-11-05</td>
+        <td align='right' bgcolor=FF8361>1.6629</td>
+        <td align='right' bgcolor=FF8361>-0.43%</td>
+        <td align='right' bgcolor=009933>-19.6</td>
+        <td bgcolor=FF8361>2019-11-06 15:00</td>
+        <td bgcolor=FF8361>A 股</td>
+        <td bgcolor=FF8361>大盘股</td>
+        <td bgcolor=FF8361>沪深300</td>
+        <td bgcolor=FF8361>113</td>
+        <td bgcolor=FF8361>天天基金</td>
+    </tr>
+    
+    <tr align='center'>
         <td bgcolor=FF8361>广发医药卫生联接A</td>
         <td bgcolor=FF8361>001180</td>
         <td align='right' bgcolor=FF8361>0.7111</td>
         <td align='right' bgcolor=FF8361>6750.28</td>
-        <td align='right' bgcolor=FF8361>5858.56</td>
-        <td align='right' bgcolor=FF8361>1058.56</td>
-        <td align='right' bgcolor=FF8361>0.8778</td>
-        <td bgcolor=FF8361>2019-11-04</td>
-        <td align='right' bgcolor=FF8361>0.8781</td>
-        <td align='right' bgcolor=FF8361>0.04%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>2.03</b></font></td>
-        <td bgcolor=FF8361>2019-11-05 14:30</td>
+        <td align='right' bgcolor=FF8361>5901.09</td>
+        <td align='right' bgcolor=FF8361>1101.09</td>
+        <td align='right' bgcolor=FF8361>0.8784</td>
+        <td bgcolor=FF8361>2019-11-05</td>
+        <td align='right' bgcolor=FF8361>0.8742</td>
+        <td align='right' bgcolor=FF8361>-0.48%</td>
+        <td align='right' bgcolor=009933>-28.35</td>
+        <td bgcolor=FF8361>2019-11-06 15:00</td>
         <td bgcolor=FF8361>A 股</td>
         <td bgcolor=FF8361>行业股</td>
         <td bgcolor=FF8361>全指医药</td>
@@ -649,38 +942,38 @@
     </tr>
     
     <tr align='center'>
-        <td bgcolor=FF8361>华夏恒生ETF联接A</td>
-        <td bgcolor=FF8361>000071</td>
-        <td align='right' bgcolor=FF8361>1.452</td>
-        <td align='right' bgcolor=FF8361>275.49</td>
-        <td align='right' bgcolor=FF8361>418.55</td>
-        <td align='right' bgcolor=FF8361>18.55</td>
-        <td align='right' bgcolor=FF8361>1.5413</td>
-        <td bgcolor=FF8361>2019-11-04</td>
-        <td align='right' bgcolor=FF8361>1.5483</td>
-        <td align='right' bgcolor=FF8361>0.45%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>1.93</b></font></td>
-        <td bgcolor=FF8361>2019-11-05 14:30</td>
-        <td bgcolor=FF8361>海外新兴</td>
-        <td bgcolor=FF8361>香港</td>
-        <td bgcolor=FF8361>恒生</td>
-        <td bgcolor=FF8361>211</td>
+        <td bgcolor=FF8361>广发养老指数A</td>
+        <td bgcolor=FF8361>000968</td>
+        <td align='right' bgcolor=FF8361>0.853</td>
+        <td align='right' bgcolor=FF8361>6096.21</td>
+        <td align='right' bgcolor=FF8361>5848.09</td>
+        <td align='right' bgcolor=FF8361>648.09</td>
+        <td align='right' bgcolor=FF8361>0.9644</td>
+        <td bgcolor=FF8361>2019-11-05</td>
+        <td align='right' bgcolor=FF8361>0.9592</td>
+        <td align='right' bgcolor=FF8361>-0.54%</td>
+        <td align='right' bgcolor=009933>-31.7</td>
+        <td bgcolor=FF8361>2019-11-06 15:00</td>
+        <td bgcolor=FF8361>A 股</td>
+        <td bgcolor=FF8361>行业股</td>
+        <td bgcolor=FF8361>养老产业</td>
+        <td bgcolor=FF8361>141</td>
         <td bgcolor=FF8361>天天基金</td>
     </tr>
     
     <tr align='center'>
-        <td bgcolor=FF8361>广发中证500ETF联接C</td>
-        <td bgcolor=FF8361>002903</td>
-        <td align='right' bgcolor=FF8361>0.829</td>
-        <td align='right' bgcolor=FF8361>275.96</td>
-        <td align='right' bgcolor=FF8361>240.44</td>
-        <td align='right' bgcolor=FF8361>11.68</td>
-        <td align='right' bgcolor=FF8361>0.8753</td>
-        <td bgcolor=FF8361>2019-11-04</td>
-        <td align='right' bgcolor=FF8361>0.8806</td>
-        <td align='right' bgcolor=FF8361>0.61%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>1.46</b></font></td>
-        <td bgcolor=FF8361>2019-11-05 14:30</td>
+        <td bgcolor=FF8361>富国中证500指数(LOF)</td>
+        <td bgcolor=FF8361>161017</td>
+        <td align='right' bgcolor=FF8361>1.325</td>
+        <td align='right' bgcolor=FF8361>2046.97</td>
+        <td align='right' bgcolor=FF8361>3297.66</td>
+        <td align='right' bgcolor=FF8361>585.55</td>
+        <td align='right' bgcolor=FF8361>1.627</td>
+        <td bgcolor=FF8361>2019-11-05</td>
+        <td align='right' bgcolor=FF8361>1.6114</td>
+        <td align='right' bgcolor=FF8361>-0.96%</td>
+        <td align='right' bgcolor=009933>-31.93</td>
+        <td bgcolor=FF8361>2019-11-06 15:00</td>
         <td bgcolor=FF8361>A 股</td>
         <td bgcolor=FF8361>中小盘股</td>
         <td bgcolor=FF8361>中证500</td>
@@ -689,218 +982,18 @@
     </tr>
     
     <tr align='center'>
-        <td bgcolor=F0DC5A>华夏上证50AH优选指数</td>
-        <td bgcolor=F0DC5A>501050</td>
-        <td align='right' bgcolor=F0DC5A>1.284</td>
-        <td align='right' bgcolor=F0DC5A>142.1</td>
-        <td align='right' bgcolor=F0DC5A>188.99</td>
-        <td align='right' bgcolor=F0DC5A>6.54</td>
-        <td align='right' bgcolor=F0DC5A>1.348</td>
-        <td bgcolor=F0DC5A>2019-11-04</td>
-        <td align='right' bgcolor=F0DC5A>1.3568</td>
-        <td align='right' bgcolor=F0DC5A>0.66%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>1.25</b></font></td>
-        <td bgcolor=F0DC5A>2019-11-05 14:30</td>
-        <td bgcolor=F0DC5A>A 股</td>
-        <td bgcolor=F0DC5A>大盘股</td>
-        <td bgcolor=F0DC5A>50AH</td>
-        <td bgcolor=F0DC5A>112</td>
-        <td bgcolor=F0DC5A>李淑云螺丝钉</td>
-    </tr>
-    
-    <tr align='center'>
-        <td bgcolor=F0DC5A>华宝红利基金</td>
-        <td bgcolor=F0DC5A>501029</td>
-        <td align='right' bgcolor=F0DC5A>0.9824</td>
-        <td align='right' bgcolor=F0DC5A>227.52</td>
-        <td align='right' bgcolor=F0DC5A>212.94</td>
-        <td align='right' bgcolor=F0DC5A>-10.57</td>
-        <td align='right' bgcolor=F0DC5A>0.9377</td>
-        <td bgcolor=F0DC5A>2019-11-04</td>
-        <td align='right' bgcolor=F0DC5A>0.9423</td>
-        <td align='right' bgcolor=F0DC5A>0.49%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>1.05</b></font></td>
-        <td bgcolor=F0DC5A>2019-11-05 14:30</td>
-        <td bgcolor=F0DC5A>A 股</td>
-        <td bgcolor=F0DC5A>红利价值</td>
-        <td bgcolor=F0DC5A>标普红利</td>
-        <td bgcolor=F0DC5A>132</td>
-        <td bgcolor=F0DC5A>李淑云螺丝钉</td>
-    </tr>
-    
-    <tr align='center'>
-        <td bgcolor=F0DC5A>华宝红利基金</td>
-        <td bgcolor=F0DC5A>501029</td>
-        <td align='right' bgcolor=F0DC5A>0.9829</td>
-        <td align='right' bgcolor=F0DC5A>214.89</td>
-        <td align='right' bgcolor=F0DC5A>201.12</td>
-        <td align='right' bgcolor=F0DC5A>-10.1</td>
-        <td align='right' bgcolor=F0DC5A>0.9377</td>
-        <td bgcolor=F0DC5A>2019-11-04</td>
-        <td align='right' bgcolor=F0DC5A>0.9423</td>
-        <td align='right' bgcolor=F0DC5A>0.49%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>0.99</b></font></td>
-        <td bgcolor=F0DC5A>2019-11-05 14:30</td>
-        <td bgcolor=F0DC5A>A 股</td>
-        <td bgcolor=F0DC5A>红利价值</td>
-        <td bgcolor=F0DC5A>标普红利</td>
-        <td bgcolor=F0DC5A>132</td>
-        <td bgcolor=F0DC5A>康世海螺丝钉</td>
-    </tr>
-    
-    <tr align='center'>
-        <td bgcolor=F0DC5A>广发中证养老</td>
-        <td bgcolor=F0DC5A>000968</td>
-        <td align='right' bgcolor=F0DC5A>0.9598</td>
-        <td align='right' bgcolor=F0DC5A>249.28</td>
-        <td align='right' bgcolor=F0DC5A>238.31</td>
-        <td align='right' bgcolor=F0DC5A>-0.95</td>
-        <td align='right' bgcolor=F0DC5A>0.9614</td>
-        <td bgcolor=F0DC5A>2019-11-04</td>
-        <td align='right' bgcolor=F0DC5A>0.9641</td>
-        <td align='right' bgcolor=F0DC5A>0.29%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>0.67</b></font></td>
-        <td bgcolor=F0DC5A>2019-11-05 14:30</td>
-        <td bgcolor=F0DC5A>A 股</td>
-        <td bgcolor=F0DC5A>行业股</td>
-        <td bgcolor=F0DC5A>养老产业</td>
-        <td bgcolor=F0DC5A>141</td>
-        <td bgcolor=F0DC5A>康世海螺丝钉</td>
-    </tr>
-    
-    <tr align='center'>
-        <td bgcolor=F0DC5A>广发中证养老</td>
-        <td bgcolor=F0DC5A>000968</td>
-        <td align='right' bgcolor=F0DC5A>0.9576</td>
-        <td align='right' bgcolor=F0DC5A>214.52</td>
-        <td align='right' bgcolor=F0DC5A>205.08</td>
-        <td align='right' bgcolor=F0DC5A>-0.35</td>
-        <td align='right' bgcolor=F0DC5A>0.9614</td>
-        <td bgcolor=F0DC5A>2019-11-04</td>
-        <td align='right' bgcolor=F0DC5A>0.9641</td>
-        <td align='right' bgcolor=F0DC5A>0.29%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>0.58</b></font></td>
-        <td bgcolor=F0DC5A>2019-11-05 14:30</td>
-        <td bgcolor=F0DC5A>A 股</td>
-        <td bgcolor=F0DC5A>行业股</td>
-        <td bgcolor=F0DC5A>养老产业</td>
-        <td bgcolor=F0DC5A>141</td>
-        <td bgcolor=F0DC5A>李淑云螺丝钉</td>
-    </tr>
-    
-    <tr align='center'>
-        <td bgcolor=F0DC5A>华夏上证50AH优选指数</td>
-        <td bgcolor=F0DC5A>501050</td>
-        <td align='right' bgcolor=F0DC5A>1.2891</td>
-        <td align='right' bgcolor=F0DC5A>62.09</td>
-        <td align='right' bgcolor=F0DC5A>82.58</td>
-        <td align='right' bgcolor=F0DC5A>2.54</td>
-        <td align='right' bgcolor=F0DC5A>1.348</td>
-        <td bgcolor=F0DC5A>2019-11-04</td>
-        <td align='right' bgcolor=F0DC5A>1.3568</td>
-        <td align='right' bgcolor=F0DC5A>0.66%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>0.55</b></font></td>
-        <td bgcolor=F0DC5A>2019-11-05 14:30</td>
-        <td bgcolor=F0DC5A>A 股</td>
-        <td bgcolor=F0DC5A>大盘股</td>
-        <td bgcolor=F0DC5A>50AH</td>
-        <td bgcolor=F0DC5A>112</td>
-        <td bgcolor=F0DC5A>康世海螺丝钉</td>
-    </tr>
-    
-    <tr align='center'>
-        <td bgcolor=F0DC5A>申万菱信沪深300价值指数</td>
-        <td bgcolor=F0DC5A>310398</td>
-        <td align='right' bgcolor=F0DC5A>1.5297</td>
-        <td align='right' bgcolor=F0DC5A>24.24</td>
-        <td align='right' bgcolor=F0DC5A>35.67</td>
-        <td align='right' bgcolor=F0DC5A>-1.41</td>
-        <td align='right' bgcolor=F0DC5A>1.4788</td>
-        <td bgcolor=F0DC5A>2019-11-04</td>
-        <td align='right' bgcolor=F0DC5A>1.4889</td>
-        <td align='right' bgcolor=F0DC5A>0.68%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>0.24</b></font></td>
-        <td bgcolor=F0DC5A>2019-11-05 14:30</td>
-        <td bgcolor=F0DC5A>A 股</td>
-        <td bgcolor=F0DC5A>大盘股</td>
-        <td bgcolor=F0DC5A>300价值</td>
-        <td bgcolor=F0DC5A>114</td>
-        <td bgcolor=F0DC5A>康世海螺丝钉</td>
-    </tr>
-    
-    <tr align='center'>
-        <td bgcolor=F0DC5A>申万菱信沪深300价值指数</td>
-        <td bgcolor=F0DC5A>310398</td>
-        <td align='right' bgcolor=F0DC5A>1.5297</td>
-        <td align='right' bgcolor=F0DC5A>24.24</td>
-        <td align='right' bgcolor=F0DC5A>35.67</td>
-        <td align='right' bgcolor=F0DC5A>-1.41</td>
-        <td align='right' bgcolor=F0DC5A>1.4788</td>
-        <td bgcolor=F0DC5A>2019-11-04</td>
-        <td align='right' bgcolor=F0DC5A>1.4889</td>
-        <td align='right' bgcolor=F0DC5A>0.68%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>0.24</b></font></td>
-        <td bgcolor=F0DC5A>2019-11-05 14:30</td>
-        <td bgcolor=F0DC5A>A 股</td>
-        <td bgcolor=F0DC5A>大盘股</td>
-        <td bgcolor=F0DC5A>300价值</td>
-        <td bgcolor=F0DC5A>114</td>
-        <td bgcolor=F0DC5A>李淑云螺丝钉</td>
-    </tr>
-    
-    <tr align='center'>
-        <td bgcolor=F0DC5A>天弘中证医药100A</td>
-        <td bgcolor=F0DC5A>001550</td>
-        <td align='right' bgcolor=F0DC5A>0.6708</td>
-        <td align='right' bgcolor=F0DC5A>212.74</td>
-        <td align='right' bgcolor=F0DC5A>166.98</td>
-        <td align='right' bgcolor=F0DC5A>24.28</td>
-        <td align='right' bgcolor=F0DC5A>0.7984</td>
-        <td bgcolor=F0DC5A>2019-11-04</td>
-        <td align='right' bgcolor=F0DC5A>0.7986</td>
-        <td align='right' bgcolor=F0DC5A>0.03%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>0.04</b></font></td>
-        <td bgcolor=F0DC5A>2019-11-05 14:30</td>
-        <td bgcolor=F0DC5A>A 股</td>
-        <td bgcolor=F0DC5A>行业股</td>
-        <td bgcolor=F0DC5A>全指医药</td>
-        <td bgcolor=F0DC5A>142</td>
-        <td bgcolor=F0DC5A>康世海螺丝钉</td>
-    </tr>
-    
-    <tr align='center'>
-        <td bgcolor=F0DC5A>天弘中证医药100A</td>
-        <td bgcolor=F0DC5A>001550</td>
-        <td align='right' bgcolor=F0DC5A>0.6708</td>
-        <td align='right' bgcolor=F0DC5A>212.74</td>
-        <td align='right' bgcolor=F0DC5A>166.98</td>
-        <td align='right' bgcolor=F0DC5A>24.28</td>
-        <td align='right' bgcolor=F0DC5A>0.7984</td>
-        <td bgcolor=F0DC5A>2019-11-04</td>
-        <td align='right' bgcolor=F0DC5A>0.7986</td>
-        <td align='right' bgcolor=F0DC5A>0.03%</td>
-        <td align='right' bgcolor=DD2200><font color="FFFFFF" ><b>0.04</b></font></td>
-        <td bgcolor=F0DC5A>2019-11-05 14:30</td>
-        <td bgcolor=F0DC5A>A 股</td>
-        <td bgcolor=F0DC5A>行业股</td>
-        <td bgcolor=F0DC5A>全指医药</td>
-        <td bgcolor=F0DC5A>142</td>
-        <td bgcolor=F0DC5A>李淑云螺丝钉</td>
-    </tr>
-    
-    <tr align='center'>
         <td bgcolor=FF8361>广发中证传媒ETF联接A</td>
         <td bgcolor=FF8361>004752</td>
         <td align='right' bgcolor=FF8361>0.7235</td>
         <td align='right' bgcolor=FF8361>4423.48</td>
-        <td align='right' bgcolor=FF8361>3360.07</td>
-        <td align='right' bgcolor=FF8361>160.07</td>
-        <td align='right' bgcolor=FF8361>0.7592</td>
-        <td bgcolor=FF8361>2019-11-04</td>
-        <td align='right' bgcolor=FF8361>0.7591</td>
-        <td align='right' bgcolor=FF8361>-0.02%</td>
-        <td align='right' bgcolor=009933><font color="FFFFFF" ><b>-0.44</b></font></td>
-        <td bgcolor=FF8361>2019-11-05 14:30</td>
+        <td align='right' bgcolor=FF8361>3313.62</td>
+        <td align='right' bgcolor=FF8361>113.62</td>
+        <td align='right' bgcolor=FF8361>0.7598</td>
+        <td bgcolor=FF8361>2019-11-05</td>
+        <td align='right' bgcolor=FF8361>0.7487</td>
+        <td align='right' bgcolor=FF8361>-1.46%</td>
+        <td align='right' bgcolor=009933>-49.1</td>
+        <td bgcolor=FF8361>2019-11-06 15:00</td>
         <td bgcolor=FF8361>A 股</td>
         <td bgcolor=FF8361>行业股</td>
         <td bgcolor=FF8361>中证传媒</td>
@@ -909,22 +1002,42 @@
     </tr>
     
     <tr align='center'>
-        <td bgcolor=FF8361>华安黄金易ETF联接A</td>
-        <td bgcolor=FF8361>000216</td>
-        <td align='right' bgcolor=FF8361>1.0903</td>
-        <td align='right' bgcolor=FF8361>733.79</td>
-        <td align='right' bgcolor=FF8361>921.86</td>
-        <td align='right' bgcolor=FF8361>121.86</td>
-        <td align='right' bgcolor=FF8361>1.2536</td>
-        <td bgcolor=FF8361>2019-11-04</td>
-        <td align='right' bgcolor=FF8361>1.2462</td>
-        <td align='right' bgcolor=FF8361>-0.59%</td>
-        <td align='right' bgcolor=009933><font color="FFFFFF" ><b>-5.43</b></font></td>
-        <td bgcolor=FF8361>2019-11-05 14:30</td>
-        <td bgcolor=FF8361>商品</td>
-        <td bgcolor=FF8361>商品</td>
-        <td bgcolor=FF8361>黄金</td>
-        <td bgcolor=FF8361>511</td>
+        <td bgcolor=FF8361>富国中证红利指数增强</td>
+        <td bgcolor=FF8361>100032</td>
+        <td align='right' bgcolor=FF8361>1.0142</td>
+        <td align='right' bgcolor=FF8361>8677.6</td>
+        <td align='right' bgcolor=FF8361>9658.16</td>
+        <td align='right' bgcolor=FF8361>858.16</td>
+        <td align='right' bgcolor=FF8361>1.119</td>
+        <td bgcolor=FF8361>2019-11-05</td>
+        <td align='right' bgcolor=FF8361>1.1112</td>
+        <td align='right' bgcolor=FF8361>-0.69%</td>
+        <td align='right' bgcolor=009933>-67.69</td>
+        <td bgcolor=FF8361>2019-11-06 15:00</td>
+        <td bgcolor=FF8361>A 股</td>
+        <td bgcolor=FF8361>红利价值</td>
+        <td bgcolor=FF8361>中证红利</td>
+        <td bgcolor=FF8361>131</td>
+        <td bgcolor=FF8361>天天基金</td>
+    </tr>
+    
+    <tr align='center'>
+        <td bgcolor=FF8361>广发中证500ETF联接A</td>
+        <td bgcolor=FF8361>162711</td>
+        <td align='right' bgcolor=FF8361>1.0519</td>
+        <td align='right' bgcolor=FF8361>9697.57</td>
+        <td align='right' bgcolor=FF8361>10594.59</td>
+        <td align='right' bgcolor=FF8361>394.59</td>
+        <td align='right' bgcolor=FF8361>1.1028</td>
+        <td bgcolor=FF8361>2019-11-05</td>
+        <td align='right' bgcolor=FF8361>1.0922</td>
+        <td align='right' bgcolor=FF8361>-0.96%</td>
+        <td align='right' bgcolor=009933>-102.79</td>
+        <td bgcolor=FF8361>2019-11-06 15:00</td>
+        <td bgcolor=FF8361>A 股</td>
+        <td bgcolor=FF8361>中小盘股</td>
+        <td bgcolor=FF8361>中证500</td>
+        <td bgcolor=FF8361>121</td>
         <td bgcolor=FF8361>天天基金</td>
     </tr>
     

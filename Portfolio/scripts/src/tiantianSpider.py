@@ -111,7 +111,7 @@ if __name__ == '__main__':
         #print(u'[ERROR] 参数不足。需要键入策略编号。a：康力泉 b：父母')
         strategy = sys.argv[1]
         
-    spider = tiantianSpider()
+    spider = tiantianSpider(strategy)
     if strategy == 'a':
         spider.getKLQ()
     elif strategy == 'b':

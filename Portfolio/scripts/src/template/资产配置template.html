@@ -1,6 +1,8 @@
 <meta http-equiv="Content-Type"content="text/html;charset=gbk">
 <html align='left'>
 <head>
+<style type="text/css">
+</style>
 <script type="text/javascript">
     // 点击筛选
     function sort(object)
@@ -142,7 +144,7 @@
         <td align='right' bgcolor={{ item.color }}>{{ item.holdNetValue }}</td>
         <td align='right' bgcolor={{ item.color }}>{{ item.holdShareCount }}</td>
         <td align='right' bgcolor={{ item.color }}>{{ item.holdMarketCap }}</td>
-        <td align='right' bgcolor={{ item.color }}>{{ item.holdTotalGain }}</td>
+        <td align='right' bgcolor={{ item.color }} style='color: {{item.changeValueColor}};'>{{ item.holdTotalGain }}</td>
         <td bgcolor={{ item.color }}>{{ item.category1 }}</td>
         <td bgcolor={{ item.color }}>{{ item.category2 }}</td>
         <td bgcolor={{ item.color }}>{{ item.category3 }}</td>

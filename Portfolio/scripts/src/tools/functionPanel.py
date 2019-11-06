@@ -158,7 +158,7 @@ class functionPanel:
             os.startfile(u'http://www.danjuanapp.com/')
             os.startfile(u'http://www.xueqiu.com/')
             # 把 Charles Filter 字符串写入剪切板和控制台
-            text = u'(gffunds.com.cn/mapi/account/assets/summary)|(https://qieman.com/pmdj/v2/uma/(.*?)/detail)|(https://danjuanapp.com/djapi/account/user_info_check)|(https://trade.1234567.com.cn/do.aspx/CheckLogin)'
+            text = u'(gffunds.com.cn/mapi/account/assets/summary)|(https://qieman.com/pmdj/v2/uma/(.*?)/detail)|(https://danjuanapp.com/djapi/account/user_info_check)|(https://trade(.*?).1234567.com.cn/do.aspx/CheckLogin)'
             print(u'Charles Filter Text:\n\n\{0}\n\n已经自动写入剪切板'.format(text))
             self.window.clipboard_clear() # 清除剪贴板内容
             self.window.clipboard_append(text) # 向剪贴板追加内容

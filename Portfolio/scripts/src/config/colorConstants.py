@@ -18,7 +18,8 @@ class colorConstants:
         elif u'天天基金' in name:
             return 'FF8361'
         elif u'支付宝' in name:
-            return '5587F0'
+            return 'DBB6AC'
+            #return '5587F0' # 绍鹏给的颜色，和绿色太撞色，看不清楚
         elif u'股票账户' in name:
             return 'FF7C9E'
         elif u'现金账户' in name:

@@ -1,12 +1,15 @@
 	GET /pmdj/v2/uma/10209/detail HTTP/1.1
-Referer	https://qieman.com/umas/10209/profit/latest
-User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/18.17763
-accept	application/json
-Accept-Language	zh-Hans-CN,zh-Hans;q=0.8,en-US;q=0.5,en;q=0.3
-authorization	Bearer eyJ2ZXIiOiJ2MSIsImFsZyI6IkhTNTEyIn0.eyJzdWIiOiI3OTQ1NDkiLCJpc3MiOiJzc28ucWllbWFuLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJleHAiOjE1NzQxMzgxMTcsImlhdCI6MTU3Mjg0MjExNywianRpIjoiODc4NmZmMDUtYjUxOS00YTljLWIyODctY2Q2NzBiNTZlYmE4In0.7Mo2PQ5-6X4A8rC5eiHRlfDKY6qPCeQ9sgHpVHlzhRFpxFs8DyfrokZLoDYzkyLF8vrFX1NPvSI4of3cabCPFg
-x-aid	A.3BD9A2401D4D6N4D9QCF27HEMHRZFA49S
-x-request-id	albus.DF83805EA9775219E18C
-x-sign	1573033983393B39B722457F4EBC657A5302F8B4B7CD9
-Accept-Encoding	gzip, deflate, br
 Host	qieman.com
-Connection	Keep-Alive
+Connection	keep-alive
+Accept	application/json
+x-aid	A.8E975B001DK31V1CWJ905XECNHRDCWSN3
+x-sign	157308141117238AD79CF3C913CA083BAFFC6834C1695
+Authorization	Bearer eyJ2ZXIiOiJ2MSIsImFsZyI6IkhTNTEyIn0.eyJzdWIiOiI3OTQ1NDkiLCJpc3MiOiJzc28ucWllbWFuLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJleHAiOjE1NzM4Njk1NzksImlhdCI6MTU3MjU3MzU3OSwianRpIjoiZjgyMjRjMTktODFkYy00Y2FkLTliNmUtN2ZlYjJjYWU1NjdlIn0.aU924d2ZRxcn8H7XQ_u0N1ewagzyBmd4VuHNF9s6i8eVlvMKD3OuwQjXsjkfU-cOSwbmR1UFkovbn-3s5NR8Yg
+User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.87 Safari/537.36
+x-request-id	albus.F502804819C2EE2021BD
+Sec-Fetch-Site	same-origin
+Sec-Fetch-Mode	cors
+Referer	https://qieman.com/umas/10209/profit/latest
+Accept-Encoding	gzip, deflate, br
+Accept-Language	zh-CN,zh;q=0.9
+If-None-Match	W/"7da-O/ul3q8NyBXTVdouKP+Xo09mqP8"
