@@ -120,10 +120,10 @@ class colorConstants:
         changeValueColor = 'DD2200'
         if value >= 0:
             # 221,34,0
-            changeValueColor = 'DD2200'
+            changeValueColor = 'FE0002'
         else:
             # 0,153,51
-            changeValueColor = '009933'
+            changeValueColor = '009900'
         return changeValueColor
 
 if __name__ == "__main__":
