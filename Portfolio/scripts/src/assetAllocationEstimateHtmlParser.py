@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import sys
 import time
 import json
 from operator import itemgetter
@@ -7,7 +8,7 @@ from operator import itemgetter
 import jinja2
 from jinja2 import Environment, FileSystemLoader
 # model
-from model.assetModel import assetModel
+from model.fundModel import fundModel
 # config
 from config.assetCategoryConstants import assetCategoryConstants
 from config.colorConstants import colorConstants
@@ -29,6 +30,7 @@ class assetAllocationEstimateHtmlParser:
         self.category3Array = categoryConstants.category3Array
         self.modelArray = []
         self.colorConstants = colorConstants()
+        self.fundJsonFilePathExt = ''
 
     # 格式化浮点数
     def beautify(self,num):
@@ -56,7 +58,7 @@ class assetAllocationEstimateHtmlParser:
                 return fundCategory
         return ''
 
-    # 读取 txt，生成 assetModel 基金数据集合，输出到 xlsx 文件
+    # 读取 txt，生成 fundModel 基金数据集合，输出到 xlsx 文件
     def generateHtmlFile(self,fundModelArray, title, path=''):
         if len(fundModelArray) == 0:
             return
@@ -135,12 +137,25 @@ class assetAllocationEstimateHtmlParser:
         # 打开文件
         os.startfile(path)
 
+    # 读取本地 fundModel 数据
+    def loadFundModelArrayFromJson(self):
+        # 读取文件
+        fundJsonPath = os.path.join(self.pm.holdingOutputPath, u'{0}fund.json'.format(self.fundJsonFilePathExt))
+        with open(fundJsonPath,'r',encoding=u'utf-8') as fundJsonFile:
+            # object_hook 配合 init 传入 self.__dict__ = dictData 实现 json 字符串转 python 自定义对象
+            contentList = json.loads(fundJsonFile.read(),object_hook=fundModel)
+            return contentList
+
 if __name__ == "__main__":
-    assetHtml = assetAllocationEstimateHtmlParser()
+    strategy = 'a'
+    if len(sys.argv) >= 2:
+        #print(u'[ERROR] 参数不足。需要键入策略编号。a：康力泉 b：父母')
+        strategy = sys.argv[1]
+    assetHtml = assetAllocationEstimateHtmlParser(strategy)
+    if strategy == 'a':
+        assetHtml.fundJsonFilePathExt = u'康力泉整体'
+    elif strategy == 'b':
+        assetHtml.fundJsonFilePathExt = u'父母'
     # 读取文件
-    assetModelArray = list
-    assetJsonPath = os.path.join(assetHtml.pm.holdingOutputPath, u'{0}fund.json'.format(u'康力泉整体'))
-    with open(assetJsonPath,'r',encoding=u'utf-8') as assetJsonFile:
-        assetModelArray = json.loads(assetJsonFile.read(),object_hook=assetModel)
-    
-    assetHtml.generateHtmlFile(assetModelArray,title=u'康力泉整体收益估算',path=os.path.join(assetHtml.pm.holdingOutputPath, u'{0}收益估算.html'.format(u'康力泉整体')))
+    path=os.path.join(assetHtml.pm.holdingOutputPath, u'{0}收益估算.xlsx'.format(assetHtml.fundJsonFilePathExt))
+    assetHtml.generateHtmlFile(assetHtml.loadFundModelArrayFromJson(),title=u'{0}收益估算'.format(assetHtml.fundJsonFilePathExt),path=os.path.join(assetHtml.pm.holdingOutputPath, u'{0}收益估算.html'.format(assetHtml.fundJsonFilePathExt)))
