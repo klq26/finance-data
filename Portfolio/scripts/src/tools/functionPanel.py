@@ -170,17 +170,23 @@ class functionPanel:
         if params[0] == u'allFundSpider':
             pyFile = os.path.join(pm.parentDir,u'allFundSpiderMultiProcess.py') # 切换到多线程并发的版本
             args = [r"powershell","python",pyFile,params[1]]
-            print('[Executing] {0} ...'.format(pyFile))
+            print('[Executing] {0} {1} ...'.format(pyFile, params[1]))
             p = subprocess.Popen(args)
         if params[0] == u'assetCombine':
             pyFile = os.path.join(pm.parentDir,u'assetAllocationCombine.py')
             args = [r"powershell","python",pyFile,params[1]]
-            print('[Executing] {0} ...'.format(pyFile))
+            print('[Executing] {0} {1} ...'.format(pyFile, params[1]))
             p = subprocess.Popen(args)
         if params[0] == u'estimateExcel':
+            # html
+            pyFile = os.path.join(pm.parentDir,u'assetAllocationEstimateHtmlParser.py')
+            args = [r"powershell","python",pyFile,params[1]]
+            print('[Executing] {0} {1} ...'.format(pyFile, params[1]))
+            p = subprocess.Popen(args)
+            # excel
             pyFile = os.path.join(pm.parentDir,u'assetAllocationEstimateExcelParser.py')
             args = [r"powershell","python",pyFile,params[1]]
-            print('[Executing] {0} ...'.format(pyFile))
+            print('[Executing] {0} {1} ...'.format(pyFile, params[1]))
             p = subprocess.Popen(args)
         
     def isSupposeToBeHeaderText(self,text):
