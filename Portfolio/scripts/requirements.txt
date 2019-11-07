@@ -1,0 +1,10 @@
+# Html 解析
+import bs4
+# 按 template 框架生成 html
+import jinja2
+# 操作 xlsx 文件
+import openpyxl
+# Console 输出格式化表格
+import prettytable
+# 简化网络请求
+import requests
