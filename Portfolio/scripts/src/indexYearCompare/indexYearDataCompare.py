@@ -1,10 +1,27 @@
 # coding=utf-8
-import requests
 import os
+import sys
+import time
 
-class indexYearCompare:
+import requests
+import openpyxl
+from openpyxl.styles import numbers
+from openpyxl.styles import Alignment
+from openpyxl.utils import get_column_letter    # 列宽
+
+# 把父路径加入到 sys.path 供 import 搜索
+currentDir = os.path.abspath(os.path.dirname(__file__))
+srcDir = os.path.dirname(currentDir)
+sys.path.append(srcDir)
+from config.pathManager import pathManager
+
+"""
+获取和对比所有观察品种的年 K 数据，横向对比各年份更好的权益类品种选择
+"""
+class indexYearDataCompare:
 
     def __init__(self):
+        # 需要比对年线的品种
         self.indexInfos = [ \
             {u"category1":u"A 股",u"category2":u"大盘股",u"category3":u"上证50",u"indexCode":u"000016",u"requestCode":u"0000161",u"categoryId":u"111"}, \
             {u"category1":u"A 股",u"category2":u"大盘股",u"category3":u"50AH",u"indexCode":u"000170",u"requestCode":u"0001701",u"categoryId":u"112"}, \
@@ -33,23 +50,28 @@ class indexYearCompare:
             {u"category1":u"海外成熟",u"category2":u"海外成熟",u"category3":u"道琼斯",u"indexCode":u"DJIA_UI",u"requestCode":u"DJIA_UI",u"categoryId":u"314"}, \
             {u"category1":u"海外成熟",u"category2":u"海外成熟",u"category3":u"纳斯达克",u"indexCode":u"NDX_UI",u"requestCode":u"NDX_UI",u"categoryId":u"315"}, \
             {u"category1":u"海外成熟",u"category2":u"海外成熟",u"category3":u"标普500",u"indexCode":u"SPX_UI",u"requestCode":u"SPX_UI",u"categoryId":u"316"}, \
+            {u"category1":u"债券",u"category2":u"国内债券",u"category3":u"可转债",u"indexCode":u"000832",u"requestCode":u"0008321",u"categoryId":u"411"}, \
             {u"category1":u"商品",u"category2":u"商品",u"category3":u"黄金",u"indexCode":u"GC00Y",u"requestCode":u"GC00Y0",u"categoryId":u"511"}, \
             {u"category1":u"商品",u"category2":u"商品",u"category3":u"原油",u"indexCode":u"CL00Y",u"requestCode":u"CL00Y0",u"categoryId":u"512"}, \
             {u"category1":u"商品",u"category2":u"商品",u"category3":u"白银",u"indexCode":u"SI00Y",u"requestCode":u"SI00Y0",u"categoryId":u"513"} \
         ]
+        self.pm = pathManager()
+        self.outputDir = os.path.join(self.pm.outputPath,u'indexYearDataCompare')
+        if not os.path.exists(self.outputDir):
+            os.makedirs(self.outputDir)
 
-        self.filePaths = ['D:\\github\\finance-data\\Portfolio\\scripts\\test\\111_上证50_000016.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\112_50AH_000170.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\113_沪深300_000300.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\114_300价值_000919.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\115_基本面60_399701.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\116_基本面120_399702.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\117_中小板_399005.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\121_中证500_000905.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\123_中证1000_000852.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\124_创业板_399006.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\131_中证红利_000922.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\141_养老产业_399812.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\142_全指医药_000991.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\143_中证环保_000827.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\144_中证传媒_399971.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\145_证券公司_399975.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\146_金融地产_000992.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\147_全指消费_000990.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\211_恒生_HSI5.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\213_台湾加权_TWII_UI.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\214_日经225_N225_UI.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\311_德国30_GDAXI_UI.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\312_富时100_FTSE_UI.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\313_法国40_FCHI_UI.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\314_道琼斯_DJIA_UI.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\315_纳斯达克_NDX_UI.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\316_标普500_SPX_UI.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\511_黄金_GC00Y.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\512_原油_CL00Y.txt', 'D:\\github\\finance-data\\Portfolio\\scripts\\test\\513_白银_SI00Y.txt']
-        
-        self.filePrefix = u'D:\\github\\finance-data\\Portfolio\\scripts\\test\\'
-        
-    def getData(self):
+    # 获取所有观察指数的年 K 数据
+    def fetchIndexYearData(self):
         for indexInfo in self.indexInfos:
             code = indexInfo['requestCode']
             url = 'http://pdfm2.eastmoney.com/EM_UBG_PDTI_Fast/api/js?id={0}&TYPE=yk'.format(code)
             response = requests.get(url)
             dataList = response.text.split('\r\n')
-            filePath = os.path.join(os.getcwd(),'test','{0}_{1}_{2}.txt'.format(indexInfo['categoryId'],indexInfo['category3'],indexInfo['indexCode']))
-            self.filePaths.append(filePath)
+            indexDir = os.path.join(self.outputDir,u'indexDataOfYear')
+            if not os.path.exists(indexDir):
+                os.makedirs(indexDir)
+            filePath = os.path.join(indexDir,'{0}_{1}_{2}.txt'.format(indexInfo['categoryId'],indexInfo['category3'],indexInfo['indexCode']))
+
             with open(filePath,'w',encoding='utf-8') as f:
                 print(indexInfo['category3'])
                 for data in dataList:
@@ -60,31 +82,102 @@ class indexYearCompare:
                     print(result)
                     f.write(result + '\n')
                 print('\n')
-        print(self.filePaths)
+            time.sleep(2)
     
-    def showByYear(self):
-        years = [x for x in range(1990,2020)]
+    # 按年度横向比较所有观察指数年 K 的收益表现
+    def showIndexYearDataCompare(self, begin=1990):
+        # 结束年份 + 1
+        endYear = int(time.strftime("%Y", time.localtime())) + 1
+        # 年份区间
+        years = [x for x in range(begin, endYear)]
+        # 文件集合
+        filePaths = []
+        for root, dirs, files in os.walk(self.outputDir, topdown=False):
+            for name in files:
+                if '.txt' in name:
+                    filePaths.append(os.path.join(root, name))
+        compareDir = os.path.join(self.outputDir,u'indexCompareOfYear')
+        if not os.path.exists(compareDir):
+            os.makedirs(compareDir)
         for year in years:
             print(year)
-            for filePath in self.filePaths:
-                with open(filePath,'r',encoding='utf-8') as f:
-                    allText = f.read()
-                    # 包含对应年份
-                    if '{0}-'.format(year) in allText:
-                        f.seek(0)
-                        lines = f.readlines()
-                        name = filePath.replace(self.filePrefix,'').replace('.txt','')
-                        for line in lines:
-                            if '{0}-'.format(year) in line:
-                                values = line.replace('\n','').split('\t')
-                                print('{0} {1}'.format(name,values[3]))
-                                break
-                    else:
-                        #print('{0} has no year {1}'.format(filePath,year))
-                        continue
+            with open(os.path.join(compareDir,u'{0}.txt'.format(year)),'w',encoding='utf-8') as outputFile:
+                idx = 0
+                for filePath in filePaths:
+                    with open(filePath,'r',encoding='utf-8') as f:
+                        allText = f.read()
+                        # 包含对应年份，如 1990-
+                        if '{0}-'.format(year) in allText:
+                            # 游标回到最开始
+                            f.seek(0)
+                            lines = f.readlines()
+                            name = os.path.basename(filePath).replace('.txt','').split('_')[1]
+                            idx = idx + 1
+                            for line in lines:
+                                if '{0}-'.format(year) in line:
+                                    values = line.replace('\n','').split('\t')
+                                    print('{0}\t{1}'.format(name,values[3]))
+                                    outputFile.write('{0}\t{1}\t{2}'.format(idx, name,values[3]) + '\n')
+                                    break
+                        else:
+                            #print('{0} has no year {1}'.format(filePath,year))
+                            continue
             print('\n')
-        
+    
+    def generateExcelForIndexYearDataCompare(self, begin=1990):
+        # 需要先调用 showIndexYearDataCompare 来生成诸如 2005.txt ~ 2019.txt 之类的数据
+        compareDir = os.path.join(self.outputDir,u'indexCompareOfYear')
+        filePaths = []
+        for root, dirs, files in os.walk(compareDir, topdown=False):
+            for name in files:
+                if '.txt' in name:
+                    filePaths.append(os.path.join(root, name))
+        # Excel
+        outwb = openpyxl.Workbook()
+        outws = outwb.active
+        # 字体
+        font = openpyxl.styles.Font(u'Arial', size = 10, color='333333')
+
+        for filepath in filePaths:
+            #print(filepath)
+            # worksheet 命名
+            name = os.path.basename(filepath)
+            outws.title = u'{0}'.format(name.replace('.txt',''))
+            # 行游标
+            rowCursor = 1
+            # 标题
+            headers = '序号\t名称\t年涨跌幅'.split('\t')
+            for col in range(1,len(headers)+1):
+                outws.cell(rowCursor, col).font = font
+                outws.cell(rowCursor, col).value = headers[col-1]
+            rowCursor = rowCursor + 1
+            # 数据
+            with open(filepath,'r',encoding='utf-8') as f:
+                for line in f.readlines():
+                    values = line.split('\t')
+                    for col in range(1,len(values)+1):
+                        outws.cell(rowCursor, col).font = font
+                        if col == 1:
+                            outws.cell(rowCursor, col).value = int(values[col-1])
+                            outws.cell(rowCursor, col).number_format = '0'
+                        if col == 3:
+                            outws.cell(rowCursor, col).value = float(values[col-1].replace('\n','').replace('%',''))/100
+                            outws.cell(rowCursor, col).number_format = '0.00%'
+                        else:
+                            outws.cell(rowCursor, col).value = values[col-1]
+                    rowCursor = rowCursor + 1
+            # 新 worksheet
+            outws = outwb.create_sheet(u'new sheet')
+            outwb._active_sheet_index = outwb._active_sheet_index + 1
+        # 选中第一个
+        outwb._active_sheet_index = 0
+        # 删除最后一个多于的 sheet
+        del outwb[u'new sheet']
+        outwb.save(os.path.join(compareDir,'indexYearDataCompare.xlsx'))
+
 if __name__ == "__main__":
-    obj = indexYearCompare()
-    #obj.getData()
-    obj.showByYear()
+    obj = indexYearDataCompare()
+    #obj.fetchIndexYearData()
+    begin = 1990
+    #obj.showIndexYearDataCompare(begin=begin)
+    obj.generateExcelForIndexYearDataCompare(begin=begin)
