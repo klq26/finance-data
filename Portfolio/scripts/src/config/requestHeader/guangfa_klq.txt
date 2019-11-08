@@ -1,15 +1,13 @@
-	GET /mapi/account/assets/summary?tttt=0.4163116693361095 HTTP/1.1
-Host	trade.gffunds.com.cn
-Connection	keep-alive
-Accept	application/json, text/plain, */*
-GFF-Client	web v2.0
-GFF-Charset	UTF-8
-formToken	f68754ca-ee49-4695-98e5-40f232d083ca
-GFF-NetNo	9999
-User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.87 Safari/537.36
-Sec-Fetch-Site	same-origin
-Sec-Fetch-Mode	cors
+	GET /mapi/account/assets/summary?tttt=0.25855478732584203 HTTP/1.1
 Referer	https://trade.gffunds.com.cn/account/my-asset
+User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/18.17763
+Accept	application/json, text/plain, */*
+Accept-Language	zh-CN
+formToken	10f11bbb-96a3-4be7-a885-493154010c2a
+GFF-Charset	UTF-8
+GFF-Client	web v2.0
+GFF-NetNo	9999
 Accept-Encoding	gzip, deflate, br
-Accept-Language	zh-CN,zh;q=0.9
-Cookie	_ga=GA1.3.2121823865.1572009211; BIGipServerpool_trade_web_ids_weixin=43472906.22811.0000; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%225073100%22%2C%22%24device_id%22%3A%2216e030cf28193-079d692a99b32d-7711439-3686400-16e030cf282884%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_referrer%22%3A%22%22%2C%22%24latest_referrer_host%22%3A%22%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%7D%2C%22first_id%22%3A%2216e030cf28193-079d692a99b32d-7711439-3686400-16e030cf282884%22%7D; _gid=GA1.3.1099739011.1573081183; JSESSIONID=node01nzewad1tt8y31f3u5ldslbd0j135376.node0; SSO_TOKEN_KEY=TGT-d884e411-cf1d-4ffa-8f32-58ddff88848e
+Host	trade.gffunds.com.cn
+Connection	Keep-Alive
+Cookie	sajssdk_2015_cross_new_user=1; _gat=1; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%225073100%22%2C%22%24device_id%22%3A%2216e48cc80928d5-01233a3ab6d7ab-784a5935-2359296-16e48cc8093ec%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E4%BB%98%E8%B4%B9%E5%B9%BF%E5%91%8A%E6%B5%81%E9%87%8F%22%2C%22%24latest_referrer%22%3A%22http%3A%2F%2Fwww.baidu.com%2Fbaidu.php%3Fsc.0f00000uEDLSpLgiCbOv5dYNCJSNaj8BTp2_SIDljlMVB8nSq_bKH20lvPNrlJVHZAFtzh68XixYuktzfJZy2MxROd5iihWIYxiwytK2lfY-bWRjXK3GF1L5LmC4HmHIYtrR7q3vODEa5IPEo7nwDZaTr--5CCb-eYkepR%22%2C%22%24latest_referrer_host%22%3A%22www.baidu.com%22%2C%22%24latest_search_keyword%22%3A%22gffunds%22%2C%22%24latest_utm_medium%22%3A%22%E7%99%BE%E5%BA%A6PC%22%2C%22%24latest_utm_campaign%22%3A%22%E7%99%BE%E5%BA%A6%E5%93%81%E7%89%8C%E6%8A%95%E6%94%BE%22%2C%22%24latest_utm_content%22%3A%22gffunds%22%7D%2C%22first_id%22%3A%2216e48cc80928d5-01233a3ab6d7ab-784a5935-2359296-16e48cc8093ec%22%7D; _gid=GA1.3.1782990544.1573179392; _ga=GA1.3.1409605608.1573179392; JSESSIONID=node0acmvi1t32odt10acs69k500p1513059.node0; BIGipServerpool_trade_web_ids_weixin=77027338.22811.0000; SSO_TOKEN_KEY=TGT-1deee572-fd0c-4df6-9ca8-9f386d75f0c5

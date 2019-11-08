@@ -3,23 +3,25 @@
 # config
 from config.assetCategoryConstants import assetCategoryConstants
 
+
 class colorConstants:
 
     def __init__(self):
         categoryConstants = assetCategoryConstants()
         self.category1Array = categoryConstants.category1Array
-        
+
+    # 不同 APP 配色
     def getFundColorByAppSourceName(self, name):
         # 色值转换 https://www.sioe.cn/yingyong/yanse-rgb-16/
-        if name in [u'螺丝钉定投',u'李淑云螺丝钉',u'康世海螺丝钉']:
+        if name in [u'螺丝钉定投', u'李淑云螺丝钉', u'康世海螺丝钉']:
             return 'F0DC5A'
-        elif name in [u'且慢补充 150 份',u'且慢 S 定投']:
+        elif name in [u'且慢补充 150 份', u'且慢 S 定投']:
             return '6EB5FF'
         elif u'天天基金' in name:
             return 'FF8361'
         elif u'支付宝' in name:
             return 'DBB6AC'
-            #return '5587F0' # 绍鹏给的颜色，和绿色太撞色，看不清楚
+            # return '5587F0' # 绍鹏给的颜色，和绿色太撞色，看不清楚
         elif u'股票账户' in name:
             return 'FF7C9E'
         elif u'现金账户' in name:
@@ -32,10 +34,10 @@ class colorConstants:
     # 不同 APP 配色
     def getFundColorByAppSourceNameOld(self, name):
         # 色值转换 https://www.sioe.cn/yingyong/yanse-rgb-16/
-        if name in [u'螺丝钉定投',u'李淑云螺丝钉',u'康世海螺丝钉']:
+        if name in [u'螺丝钉定投', u'李淑云螺丝钉', u'康世海螺丝钉']:
             # 242,195,0
             return 'F2C300'
-        elif name in [u'且慢补充 150 份',u'且慢 S 定投']:
+        elif name in [u'且慢补充 150 份', u'且慢 S 定投']:
             # 0,176,204
             return '00B1CC'
         elif u'天天基金' in name:
@@ -57,17 +59,17 @@ class colorConstants:
             return 'FFFFFF'
 
     # 资产分类的 echarts 背景色
-    def colorForCategory1(self,category1):
+    def colorForCategory1(self, category1):
         #self.category1Array = [u'A 股',u'海外新兴',u'海外成熟',u'债券',u'商品']
-        
+
         # js code
-        #var aStockColor = {color: '#0aa3b5'};			// A 股（大盘股，中小盘股，红利价值，行业股）
-        #var outSideNewColor = {color: '#187a2f'};		// 海外新兴（香港，海外互联网）
-        #var outSideMatureColor = {color: '#ebb40f'};	// 海外成熟（德国）
-        #var universalGoodsColor = {color: '#dd4c51'};	// 商品（黄金，白银，原油）
-        #var bondColor = {color: '#be8663'};				// 债券（可转债，美元债）
-        #var cashColor = {color: '#f7a128'};				// 低风险理财（货币基金，地产P2P）
-        #var frozenCashColor = {color: '#8b8c90'};		// 冻结资金（公积金，外借款）
+        # var aStockColor = {color: '#0aa3b5'};			// A 股（大盘股，中小盘股，红利价值，行业股）
+        # var outSideNewColor = {color: '#187a2f'};		// 海外新兴（香港，海外互联网）
+        # var outSideMatureColor = {color: '#ebb40f'};	// 海外成熟（德国）
+        # var universalGoodsColor = {color: '#dd4c51'};	// 商品（黄金，白银，原油）
+        # var bondColor = {color: '#be8663'};				// 债券（可转债，美元债）
+        # var cashColor = {color: '#f7a128'};				// 低风险理财（货币基金，地产P2P）
+        # var frozenCashColor = {color: '#8b8c90'};		// 冻结资金（公积金，外借款）
         if category1 == self.category1Array[0]:
             return '#0AA3B5'
         elif category1 == self.category1Array[1]:
@@ -86,17 +88,17 @@ class colorConstants:
             return 'FFFFFF'
 
     # 资产分类的 echarts 背景色
-    def colorForCategory1Old(self,category1):
+    def colorForCategory1Old(self, category1):
         #self.category1Array = [u'A 股',u'海外新兴',u'海外成熟',u'债券',u'商品']
-        
+
         # js code
-        #var aStockColor = {color: '#0aa3b5'};			// A 股（大盘股，中小盘股，红利价值，行业股）
-        #var outSideNewColor = {color: '#187a2f'};		// 海外新兴（香港，海外互联网）
-        #var outSideMatureColor = {color: '#ebb40f'};	// 海外成熟（德国）
-        #var universalGoodsColor = {color: '#dd4c51'};	// 商品（黄金，白银，原油）
-        #var bondColor = {color: '#be8663'};				// 债券（可转债，美元债）
-        #var cashColor = {color: '#f7a128'};				// 低风险理财（货币基金，地产P2P）
-        #var frozenCashColor = {color: '#8b8c90'};		// 冻结资金（公积金，外借款）
+        # var aStockColor = {color: '#0aa3b5'};			// A 股（大盘股，中小盘股，红利价值，行业股）
+        # var outSideNewColor = {color: '#187a2f'};		// 海外新兴（香港，海外互联网）
+        # var outSideMatureColor = {color: '#ebb40f'};	// 海外成熟（德国）
+        # var universalGoodsColor = {color: '#dd4c51'};	// 商品（黄金，白银，原油）
+        # var bondColor = {color: '#be8663'};				// 债券（可转债，美元债）
+        # var cashColor = {color: '#f7a128'};				// 低风险理财（货币基金，地产P2P）
+        # var frozenCashColor = {color: '#8b8c90'};		// 冻结资金（公积金，外借款）
         if category1 == self.category1Array[0]:
             return '#0AA3B5'
         elif category1 == self.category1Array[1]:
@@ -115,16 +117,48 @@ class colorConstants:
             return 'FFFFFF'
 
     # 根据涨跌，返回颜色
-    def getGainColor(self,value):
+    def getGainColor(self, value):
         # http://www.yuangongju.com/color
         changeValueColor = 'DD2200'
         if value >= 0:
             # 221,34,0
-            changeValueColor = 'FE0002'
+            # changeValueColor = 'FE0002'
+            return self.getGradationColorForRise(1.0)
         else:
             # 0,153,51
-            changeValueColor = '009900'
+            # changeValueColor = '009900'
+            return self.getGradationColorForFail(1.0)
         return changeValueColor
 
+    # 10 进制色值转 16 进制
+    def hexColorString(self, r=255, g=255, b=255):
+        stringR = str(hex(int(r)))[2:4].upper()
+        stringG = str(hex(int(g)))[2:4].upper()
+        stringB = str(hex(int(b)))[2:4].upper()
+        colorString = stringR + stringG + stringB
+        return colorString
+
+    # 获取上涨级别色阶，取值范围 0 ~ 1.0，1.0是最红，0 是最浅色
+    def getGradationColorForRise(self, rate):
+        assert rate >= 0 and rate <= 1.0, u'{0} 超出 getGradationColorForRise 取值范围'.format(
+            rate)
+        redMin = (252,252,255)
+        redMax = (248,105,107)
+        return self.hexColorString(redMin[0]-(redMin[0]-redMax[0]) * rate, \
+                                   redMin[1]-(redMin[1]-redMax[1]) * rate, \
+                                   redMin[2]-(redMin[2]-redMax[2]) * rate)
+
+    # 获取下跌级别色阶，取值范围 0 ~ 1.0，1.0是最绿，0 是最浅色
+    def getGradationColorForFail(self, rate):
+        assert rate >= 0 and rate <= 1.0, u'{0} 超出 getGradationColorForRise 取值范围'.format(
+            rate)
+        redMin = (252,252,255)
+        redMax = (99,190,123)
+        return self.hexColorString(redMin[0]-(redMin[0]-redMax[0]) * rate, \
+                                   redMin[1]-(redMin[1]-redMax[1]) * rate, \
+                                   redMin[2]-(redMin[2]-redMax[2]) * rate)
+
 if __name__ == "__main__":
-    colorConstants()
+    color = colorConstants()
+    #for rate in range(0,11):
+    #    print('#'+color.getGradationColorForFail(rate/10))

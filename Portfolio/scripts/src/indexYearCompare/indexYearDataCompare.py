@@ -2,6 +2,9 @@
 import os
 import sys
 import time
+# groupby & itemgetter
+from itertools import groupby
+from operator import itemgetter
 
 import requests
 import openpyxl
@@ -14,6 +17,28 @@ currentDir = os.path.abspath(os.path.dirname(__file__))
 srcDir = os.path.dirname(currentDir)
 sys.path.append(srcDir)
 from config.pathManager import pathManager
+from config.colorConstants import colorConstants
+
+class indexYearModel:
+
+    def __init__(self, data = None):
+        self.index = -1 # 序号
+        self.name = 'NA'
+        self.changeRate = 0.0
+        # Excel Properties
+        self.fillColor = 'FFFFFF'
+        # 支持了一个简易的 json 字符串转 fundModel 对象的逻辑
+        if data:
+            self.__dict__ = data
+
+    def __str__(self):
+        return u'{0}\t{1}\t{2}\t{3}'.format(self.index,self.name,self.changeRate,self.fillColor)
+
+    def __getitem__(self, key):
+        return getattr(self, key)
+    
+    def __setitem__(self, key, value):
+        setattr(self,key,value)
 
 """
 获取和对比所有观察品种的年 K 数据，横向对比各年份更好的权益类品种选择
@@ -55,6 +80,9 @@ class indexYearDataCompare:
             {u"category1":u"商品",u"category2":u"商品",u"category3":u"原油",u"indexCode":u"CL00Y",u"requestCode":u"CL00Y0",u"categoryId":u"512"}, \
             {u"category1":u"商品",u"category2":u"商品",u"category3":u"白银",u"indexCode":u"SI00Y",u"requestCode":u"SI00Y0",u"categoryId":u"513"} \
         ]
+
+        self.colorConstants = colorConstants()
+
         self.pm = pathManager()
         self.outputDir = os.path.join(self.pm.outputPath,u'indexYearDataCompare')
         if not os.path.exists(self.outputDir):
@@ -139,9 +167,53 @@ class indexYearDataCompare:
         font = openpyxl.styles.Font(u'Arial', size = 10, color='333333')
 
         for filepath in filePaths:
+            # 模型数组，用来决定颜色输出
+            indexYearModels = []
             #print(filepath)
             # worksheet 命名
             name = os.path.basename(filepath)
+            year = int(u'{0}'.format(name.replace('.txt','')))
+            if year < begin:
+                continue
+            #print(year)
+            # 文件转 models
+            with open(filepath,'r',encoding='utf-8') as f:
+                for line in f.readlines():
+                    values = line.replace('\n','').replace('%','').split('\t')
+                    indexModel = indexYearModel()
+                    indexModel.index = int(values[0])
+                    indexModel.name = values[1]
+                    indexModel.changeRate = round(float(values[2])/100,4)
+                    indexYearModels.append(indexModel)
+            #数据排序（从高到低）
+            indexYearModels.sort(key=itemgetter('changeRate'),reverse=True)
+            raiseModels = [x for x in indexYearModels if x.changeRate >= 0]
+            failModels = [x for x in indexYearModels if x.changeRate < 0]
+            raiseCount = len(raiseModels)
+            failCount = len(failModels)
+            # 填写上涨品种的颜色值
+            if raiseCount > 0:
+                step = round((float(100) / raiseCount) / 100,4)
+                #print('上涨步进',step)
+                current = 1.0
+                # 上涨颜色
+                for i in range(0,raiseCount):
+                    indexYear = indexYearModels[i]
+                    indexYear.fillColor = '{0}'.format(self.colorConstants.getGradationColorForRise(current))
+                    current = current - step
+                    #print(indexYear)
+            if failCount > 0:
+                step = round((float(100) / failCount) / 100,4)
+                #print('下跌步进',step)
+                current = 0.0
+                # 上涨颜色
+                for i in range(raiseCount, len(indexYearModels)):
+                    indexYear = indexYearModels[i]
+                    indexYear.fillColor = '{0}'.format(self.colorConstants.getGradationColorForFail(current))
+                    current = current + step
+                    #print(indexYear)
+            # 恢复索引排序
+            indexYearModels.sort(key=itemgetter('index'))
             outws.title = u'{0}'.format(name.replace('.txt',''))
             # 行游标
             rowCursor = 1
@@ -150,22 +222,21 @@ class indexYearDataCompare:
             for col in range(1,len(headers)+1):
                 outws.cell(rowCursor, col).font = font
                 outws.cell(rowCursor, col).value = headers[col-1]
-            rowCursor = rowCursor + 1
-            # 数据
-            with open(filepath,'r',encoding='utf-8') as f:
-                for line in f.readlines():
-                    values = line.split('\t')
-                    for col in range(1,len(values)+1):
-                        outws.cell(rowCursor, col).font = font
-                        if col == 1:
-                            outws.cell(rowCursor, col).value = int(values[col-1])
-                            outws.cell(rowCursor, col).number_format = '0'
-                        if col == 3:
-                            outws.cell(rowCursor, col).value = float(values[col-1].replace('\n','').replace('%',''))/100
-                            outws.cell(rowCursor, col).number_format = '0.00%'
-                        else:
-                            outws.cell(rowCursor, col).value = values[col-1]
-                    rowCursor = rowCursor + 1
+            rowCursor = rowCursor + 1            
+            # 写入数据
+            for model in indexYearModels:
+                for col in range(1,4):
+                    outws.cell(rowCursor, col).font = font
+                    if col == 1:
+                        outws.cell(rowCursor, col).value = model.index
+                        outws.cell(rowCursor, col).number_format = '0'
+                    if col == 2:
+                        outws.cell(rowCursor, col).value = model.name
+                    if col == 3:
+                        outws.cell(rowCursor, col).value = float(model.changeRate)
+                        outws.cell(rowCursor, col).number_format = '0.00%'
+                        outws.cell(rowCursor, col).fill = openpyxl.styles.PatternFill(fill_type='solid',fgColor=model.fillColor)
+                rowCursor = rowCursor + 1
             # 新 worksheet
             outws = outwb.create_sheet(u'new sheet')
             outwb._active_sheet_index = outwb._active_sheet_index + 1
@@ -179,5 +250,5 @@ if __name__ == "__main__":
     obj = indexYearDataCompare()
     #obj.fetchIndexYearData()
     begin = 1990
-    #obj.showIndexYearDataCompare(begin=begin)
+    obj.showIndexYearDataCompare(begin=begin)
     obj.generateExcelForIndexYearDataCompare(begin=begin)
