@@ -123,11 +123,11 @@ class colorConstants:
         if value >= 0:
             # 221,34,0
             # changeValueColor = 'FE0002'
-            return self.getGradationColorForRise(1.0)
+            return self.getGradationColorForRaise(1.0)
         else:
             # 0,153,51
             # changeValueColor = '009900'
-            return self.getGradationColorForFail(1.0)
+            return self.getGradationColorForFall(1.0)
         return changeValueColor
 
     # 10 进制色值转 16 进制
@@ -139,7 +139,7 @@ class colorConstants:
         return colorString
 
     # 获取上涨级别色阶，取值范围 0 ~ 1.0，1.0是最红，0 是最浅色
-    def getGradationColorForRise(self, rate):
+    def getGradationColorForRaise(self, rate):
         assert rate >= 0 and rate <= 1.0, u'{0} 超出 getGradationColorForRise 取值范围'.format(
             rate)
         redMin = (252,252,255)
@@ -149,7 +149,7 @@ class colorConstants:
                                    redMin[2]-(redMin[2]-redMax[2]) * rate)
 
     # 获取下跌级别色阶，取值范围 0 ~ 1.0，1.0是最绿，0 是最浅色
-    def getGradationColorForFail(self, rate):
+    def getGradationColorForFall(self, rate):
         assert rate >= 0 and rate <= 1.0, u'{0} 超出 getGradationColorForRise 取值范围'.format(
             rate)
         redMin = (252,252,255)

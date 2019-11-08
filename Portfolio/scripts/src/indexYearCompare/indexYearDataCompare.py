@@ -188,28 +188,25 @@ class indexYearDataCompare:
             #数据排序（从高到低）
             indexYearModels.sort(key=itemgetter('changeRate'),reverse=True)
             raiseModels = [x for x in indexYearModels if x.changeRate >= 0]
-            failModels = [x for x in indexYearModels if x.changeRate < 0]
+            fallModels = [x for x in indexYearModels if x.changeRate < 0]
             raiseCount = len(raiseModels)
-            failCount = len(failModels)
+            fallCount = len(fallModels)
+            maxRaiseValue = indexYearModels[0].changeRate
+            maxFallValue = indexYearModels[-1].changeRate
             # 填写上涨品种的颜色值
             if raiseCount > 0:
-                step = round((float(100) / raiseCount) / 100,4)
-                #print('上涨步进',step)
-                current = 1.0
                 # 上涨颜色
                 for i in range(0,raiseCount):
                     indexYear = indexYearModels[i]
-                    indexYear.fillColor = '{0}'.format(self.colorConstants.getGradationColorForRise(current))
-                    current = current - step
-                    #print(indexYear)
-            if failCount > 0:
-                step = round((float(100) / failCount) / 100,4)
+                    indexYear.fillColor = '{0}'.format(self.colorConstants.getGradationColorForRaise(indexYear.changeRate/maxRaiseValue))
+            if fallCount > 0:
+                step = round((float(100) / fallCount) / 100,4)
                 #print('下跌步进',step)
                 current = 0.0
                 # 上涨颜色
                 for i in range(raiseCount, len(indexYearModels)):
                     indexYear = indexYearModels[i]
-                    indexYear.fillColor = '{0}'.format(self.colorConstants.getGradationColorForFail(current))
+                    indexYear.fillColor = '{0}'.format(self.colorConstants.getGradationColorForFall(indexYear.changeRate/maxFallValue))
                     current = current + step
                     #print(indexYear)
             # 恢复索引排序
