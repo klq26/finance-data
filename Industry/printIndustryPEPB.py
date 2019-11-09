@@ -3,11 +3,12 @@ from pandas import *
 import datetime
 import numpy
 import os
+import time
 
 auth('13810650842','123456a')
 
-start_date = '2019-07-01'
-end_date = '2019-09-30'
+start_date = '2019-08-05'
+end_date = time.strftime("%Y-%m-%d", time.localtime())
 
 df = DataFrame()
 
@@ -19,7 +20,7 @@ count = len(days)
 array = list()
 
 for code in industry_codes:
-    path = os.getcwd() + '/IndustryData/{0}.csv'.format(code)
+    path = os.path.join(os.getcwd(),u'Industry', u'IndustryData', u'{0}.csv'.format(code))
     if os.path.exists(path):
         df = DataFrame.from_csv(path, sep='\t',encoding='utf-8')
         array.append(df.tail(count))

@@ -13,14 +13,14 @@ industry_codes = ['HY001','HY002','HY003','HY004','HY005','HY006','HY007','HY008
 for code in industry_codes:
     # os.getcwd() 可以打印当前路径，建议在 updateIndustryPEPB.py 所在的文件夹下运行脚本
 
-    path = os.getcwd() + '/IndustryData/{0}.csv'.format(code)
+    path = os.path.join(os.getcwd(),u'Industry', u'IndustryData', u'{0}.csv'.format(code))
     if os.path.exists(path):
         df = DataFrame.from_csv(path,sep='\t',encoding='utf-8')
         days = get_trade_days(start_date=df.date.values[-1].replace('/',''), end_date=datetime.date.today())
         days = list(days)
         days.remove(days[0])    # 去掉第一个交易日（因为来自 dataframe 说明有数据）
         days.remove(days[-1])   # 去掉最新一个交易日（因为数据库没更新）
-
+        print(u'历史数据最新一天：{0}'.format(df.date.values[-1]))
         for day in days:
             stocks = get_industry_stocks(code, date=day)
             if code == 'HY007':
@@ -72,6 +72,6 @@ for code in industry_codes:
             print(series)
             df = df.append(series,ignore_index=True)
     else:
-        print('{0} 无数据'.format(code))
+        print('{0} 无数据'.format(path))
     if len(df) > 0:
         df.to_csv(path, sep='\t',columns=['date','value','pe','pb'],encoding='utf-8')

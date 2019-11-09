@@ -3,12 +3,13 @@ from pandas import *
 import numpy
 import os
 import sys
+import time
 
 auth('13810650842','123456a')
 
 index = '000016.XSHG'   # 注意：如果算上证指数，需要传入 000002.XSHG。因为 000001 包含 B 股，如 900923，900929 等
 
-today = '2019-08-06'
+today = time.strftime("%Y-%m-%d", time.localtime())
 
 industry_codes = ['HY001','HY002','HY003','HY004','HY005','HY006','HY007','HY008','HY009','HY010','HY011']
 industry_names = ['能源','材料','工业','可选消费','必选消费','医药卫生','金融','信息技术','电信服务','公用事业','地产']
@@ -18,7 +19,10 @@ indexs_list = ['000002.XSHG','000016.XSHG','000300.XSHG','000905.XSHG','000852.X
 
 # 初始化行业信息（有缓存）
 def initIndustryData(date=today):
-    path = os.getcwd()+ '/IndustryData/JoinQuaintIndustry.txt'
+    folder = os.path.join(os.getcwd(), u'Industry', u'IndustryData')
+    if not os.path.exists(folder):
+        os.makedirs(folder)
+    path = os.path.join(folder, u'JoinQuaintIndustry.txt')
     if os.path.exists(path):
         print('A股行业信息缓存文件存在..')
         return DataFrame.from_csv(path,sep='\t',encoding='utf-8')
@@ -50,7 +54,10 @@ def initIndustryData(date=today):
 
 # 获取指数权重（有缓存）
 def indexWeights(code,date=today):
-    path = os.getcwd()+'/indexWeights/weight_{0}.txt'.format(code)
+    folder = os.path.join(os.getcwd(), u'Industry', u'indexWeights')
+    if not os.path.exists(folder):
+        os.makedirs(folder)
+    path = os.path.join(folder, u'weight_{0}.txt'.format(code))
     if os.path.exists(path):
         print('{0} 权重信息缓存文件存在..'.format(code))
         return DataFrame.from_csv(path,sep='\t',encoding='utf-8')
@@ -65,29 +72,30 @@ if len(sys.argv) > 1:
     print(index)
 
 industrys = initIndustryData(date=today)
-print(index)
-weights = indexWeights(index,date=today)  # https://www.joinquant.com/help/api/help?name=index 查询指数
-#
-hycodes = []    # 按指数顺序，取股票行业分类
-hynames = []    # 按指数顺序，取股票行业分类
-for code in weights.index.values:
-    hy_info = industrys.loc[industrys['code'] == code]   # Series
-    if len(hy_info) == 0:
-        print('{0} 未找到行业数据'.format(code))
-        hycodes.append('NA')
-        hynames.append('NA')
-        continue
-    else:
-        hycodes.append(hy_info.HY_CODE.values[0])
-        hynames.append(hy_info.HY_NAME.values[0])
-# 补充行业信息
-weights['HY_CODE'] = hycodes
-weights['HY_NAME'] = hynames
-weights = weights.sort_values(by=['HY_CODE'])
-#
-for name in industry_names:
-    hy_group = weights.loc[weights['HY_NAME'] == name]
-    if len(hy_group) > 0:
-        print('{0}\t{1}'.format(name,round(hy_group.weight.sum()/100,4)))
-    else:
-        print('{0}\t0'.format(name))
+#print(index)
+for index in indexs_list:
+    weights = indexWeights(index,date=today)  # https://www.joinquant.com/help/api/help?name=index 查询指数
+    #
+    hycodes = []    # 按指数顺序，取股票行业分类
+    hynames = []    # 按指数顺序，取股票行业分类
+    for code in weights.index.values:
+        hy_info = industrys.loc[industrys['code'] == code]   # Series
+        if len(hy_info) == 0:
+            print('{0} 未找到行业数据'.format(code))
+            hycodes.append('NA')
+            hynames.append('NA')
+            continue
+        else:
+            hycodes.append(hy_info.HY_CODE.values[0])
+            hynames.append(hy_info.HY_NAME.values[0])
+    # 补充行业信息
+    weights['HY_CODE'] = hycodes
+    weights['HY_NAME'] = hynames
+    weights = weights.sort_values(by=['HY_CODE'])
+    #
+    for name in industry_names:
+        hy_group = weights.loc[weights['HY_NAME'] == name]
+        if len(hy_group) > 0:
+            print('{0}\t{1}'.format(name,round(hy_group.weight.sum()/100,4)))
+        else:
+            print('{0}\t0'.format(name))

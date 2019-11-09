@@ -1,5 +1,7 @@
 # Html 解析
 import bs4
+# 配合 bs4 做 Html 解析
+import lxml
 # 按 template 框架生成 html
 import jinja2
 # 操作 xlsx 文件
