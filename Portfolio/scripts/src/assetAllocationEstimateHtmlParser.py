@@ -101,7 +101,7 @@ class assetAllocationEstimateHtmlParser:
             # 格式化
             fundModel.currentNetValue = round(fundModel.currentNetValue,4)
             fundModel.estimateNetValue = round(fundModel.estimateNetValue,4)
-            fundModel.estimateRate = str(round(fundModel.estimateRate * 100,4)) + u'%'
+            fundModel.estimateRate = '{:.2f}%'.format(round(fundModel.estimateRate * 100,4))
             dict['color'] = color
             # 红涨绿跌
             changeValue = round((fundModel.estimateNetValue - fundModel.currentNetValue)*fundModel.holdShareCount,2)
@@ -118,6 +118,14 @@ class assetAllocationEstimateHtmlParser:
             else:
                 gainOfCurrentAppSource = gainByAppSource[fundModel.appSource]
                 gainByAppSource[fundModel.appSource] = round(gainOfCurrentAppSource + changeValue,2)
+            # 输出格式化（保留小数点后 4 或 2 位）
+            dict['holdNetValue'] = '{:.4f}'.format(dict['holdNetValue'])
+            dict['holdShareCount'] = '{:.2f}'.format(dict['holdShareCount'])
+            dict['holdMarketCap'] = '{:.2f}'.format(dict['holdMarketCap'])
+            dict['holdTotalGain'] = '{:.2f}'.format(dict['holdTotalGain'])
+            dict['currentNetValue'] = '{:.4f}'.format(dict['currentNetValue'])
+            dict['estimateNetValue'] = '{:.4f}'.format(dict['estimateNetValue'])
+            dict['changeValue'] = '{:.2f}'.format(dict['changeValue'])
             data.append(dict)
         # 按收益降序排序
         data.sort(key=itemgetter('changeValue'),reverse=True)

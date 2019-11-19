@@ -192,7 +192,8 @@ class functionPanel:
     def isSupposeToBeHeaderText(self,text):
         if text == '' or text == None:
             return False
-        if u'User-Agent' in text or u'user-agent' in text:
+        lowerText = text.lower()
+        if u'user-agent' in lowerText:
             return True
         else:
             return False

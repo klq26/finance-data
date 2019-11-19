@@ -86,8 +86,17 @@ class assetAllocationHtmlParser:
             color = self.getFundColorByAppSourceName(assetModel.appSource)
             dict = assetModel.__dict__
             dict['color'] = color
-            dict['holdTotalGainRate'] = str(self.beautify(assetModel.holdTotalGain / (assetModel.holdMarketCap - assetModel.holdTotalGain) * 100))+'%'
+            # 计算收益率特殊处理已经平仓的品种
+            if assetModel.holdMarketCap == 0:
+                dict['holdTotalGainRate'] = '0.00%'
+            else:
+                dict['holdTotalGainRate'] = '{:.2f}%'.format(self.beautify(assetModel.holdTotalGain / (assetModel.holdMarketCap - assetModel.holdTotalGain) * 100))
             dict['changeValueColor'] = self.getGainColor(assetModel.holdTotalGain)
+            # 输出格式化（保留小数点后 4 或 2 位）
+            dict['holdNetValue'] = '{:.4f}'.format(dict['holdNetValue'])
+            dict['holdShareCount'] = '{:.2f}'.format(dict['holdShareCount'])
+            dict['holdMarketCap'] = '{:.2f}'.format(dict['holdMarketCap'])
+            dict['holdTotalGain'] = '{:.2f}'.format(dict['holdTotalGain'])
             data.append(dict)
             
         totalMarketCap = self.beautify(totalMarketCap)
