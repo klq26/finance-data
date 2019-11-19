@@ -13,6 +13,7 @@ from model.assetModel import assetModel
 from model.echartsModel import echartsModel
 # config
 from config.assetCategoryConstants import assetCategoryConstants
+from config.xueqiuIndexValue import xueqiuIndexValue
 # tools
 from tools.dingtalk import dingtalk
 
@@ -23,6 +24,7 @@ class assetAllocationConsoleParser:
         self.category1Array = categoryConstants.category1Array
         self.category2Array = categoryConstants.category2Array
         self.category3Array = categoryConstants.category3Array
+        self.xueqiuIndexValue = xueqiuIndexValue()
         self.dingtalk = dingtalk()
     
     # 格式化浮点数
@@ -85,7 +87,7 @@ class assetAllocationConsoleParser:
         print(tb)
         print('\n三级分类：\n')
         tb = PrettyTable()
-        tb.field_names = [u"名称", u"分类市值", u"盈亏（元）", u"分类盈亏率", u"组合占比", u"组合盈亏贡献"]
+        tb.field_names = [u"名称", u"分类市值", u"盈亏（元）", u"分类盈亏率", u"组合占比", u"组合盈亏贡献",u'指数成本']
         for category in self.category3Array:
             marketCaps = [x.holdMarketCap for x in modelArray if x.category3 == category]
             # 有些组合没有部分三级分类，应该忽略该级别的循环
@@ -95,8 +97,12 @@ class assetAllocationConsoleParser:
             
             totalGains = [x.holdTotalGain for x in modelArray if x.category3 == category]
             gain = reduce(lambda x,y: x+y, totalGains)
-            
+            # 指数成本（三级分类持仓成本，换算成指数的点数）
+            indexValue = 0.0
+            for symbol in self.xueqiuIndexValue.indexSymbols:
+                if symbol['category3'] == category:
+                    indexValue = float(symbol['close']) / (1 + (gain/(marketCap - gain)))
             #print(u'{0} 市值：{1}\t占比：{2}%\t盈亏：{3}\t占比：{4}%'.format(category, self.beautify(marketCap), self.beautify(marketCap / totalMarketCap * 100), self.beautify(gain), self.beautify(gain / totalGain * 100)))
             # prettytable 输出
-            tb.add_row([category, self.beautify(marketCap), self.beautify(gain),u'{0}%'.format(self.beautify(gain/(marketCap - gain) * 100)), u'{0}%'.format(self.beautify(marketCap / totalMarketCap * 100)), u'{0}%'.format(self.beautify(gain / totalGain * 100))])
+            tb.add_row([category, self.beautify(marketCap), self.beautify(gain),u'{0}%'.format(self.beautify(gain/(marketCap - gain) * 100)), u'{0}%'.format(self.beautify(marketCap / totalMarketCap * 100)), u'{0}%'.format(self.beautify(gain / totalGain * 100)),self.beautify(indexValue)])
         print(tb)
