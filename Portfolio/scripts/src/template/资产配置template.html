@@ -129,11 +129,12 @@
         <th id='th3' class = 'asc' type='number' onclick='sort(this)'>持仓份额</th>
         <th id='th4' class = 'asc' type='number' onclick='sort(this)'>持仓市值</th>
         <th id='th5' class = 'asc' type='number' onclick='sort(this)'>累计收益</th>
-        <th id='th6' class = 'asc' type='string' onclick='sort(this)'>一级分类</th>
-        <th id='th7' class = 'asc' type='string' onclick='sort(this)'>二级分类</th>
-        <th id='th8' class = 'asc' type='string' onclick='sort(this)'>三级分类</th>
-        <th id='th9' class = 'asc' type='number' onclick='sort(this)'>分类 ID</th>
-        <th id='th10' class = 'asc' type='string' onclick='sort(this)'>来源</th>
+        <th id='th6' class = 'asc' type='number' onclick='sort(this)'>累计收益率</th>
+        <th id='th7' class = 'asc' type='string' onclick='sort(this)'>一级分类</th>
+        <th id='th8' class = 'asc' type='string' onclick='sort(this)'>二级分类</th>
+        <th id='th9' class = 'asc' type='string' onclick='sort(this)'>三级分类</th>
+        <th id='th10' class = 'asc' type='number' onclick='sort(this)'>分类 ID</th>
+        <th id='th11' class = 'asc' type='string' onclick='sort(this)'>来源</th>
     </tr>
     </thead>
     <tbody>
@@ -145,6 +146,7 @@
         <td align='right' bgcolor={{ item.color }}>{{ item.holdShareCount }}</td>
         <td align='right' bgcolor={{ item.color }}>{{ item.holdMarketCap }}</td>
         <td align='right' bgcolor={{ item.color }} style='color: {{item.changeValueColor}};'>{{ item.holdTotalGain }}</td>
+        <td align='right' bgcolor={{ item.color }} style='color: {{item.changeValueColor}};'>{{ item.holdTotalGainRate }}</td>
         <td bgcolor={{ item.color }}>{{ item.category1 }}</td>
         <td bgcolor={{ item.color }}>{{ item.category2 }}</td>
         <td bgcolor={{ item.color }}>{{ item.category3 }}</td>

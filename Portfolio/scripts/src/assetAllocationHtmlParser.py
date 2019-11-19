@@ -86,6 +86,7 @@ class assetAllocationHtmlParser:
             color = self.getFundColorByAppSourceName(assetModel.appSource)
             dict = assetModel.__dict__
             dict['color'] = color
+            dict['holdTotalGainRate'] = str(self.beautify(assetModel.holdTotalGain / (assetModel.holdMarketCap - assetModel.holdTotalGain) * 100))+'%'
             dict['changeValueColor'] = self.getGainColor(assetModel.holdTotalGain)
             data.append(dict)
             
