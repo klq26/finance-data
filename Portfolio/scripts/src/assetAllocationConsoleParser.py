@@ -50,7 +50,7 @@ class assetAllocationConsoleParser:
         self.dingtalk.sendMessage(f'当前市值情况：\n{outStr1}\n{outStr2}\n{outStr3}\n{outStr4}\n')
         print('\n一级分类：\n')
         tb = PrettyTable()
-        tb.field_names = [u"名称", u"分类市值", u"占比", u"盈亏（元）", u"盈亏占比"]
+        tb.field_names = [u"名称", u"分类市值", u"盈亏（元）", u"分类盈亏率", u"组合占比", u"组合盈亏贡献"]
         for category in self.category1Array:
             marketCaps = [x.holdMarketCap for x in modelArray if x.category1 == category]
             # 有些组合没有部分一级分类，应该忽略该级别的循环
@@ -63,11 +63,11 @@ class assetAllocationConsoleParser:
             
             #print(u'{0} 市值：{1}\t占比：{2}%\t盈亏：{3}\t占比：{4}%'.format(category, self.beautify(marketCap), self.beautify(marketCap / totalMarketCap * 100), self.beautify(gain), self.beautify(gain / totalGain * 100)))
             # prettytable 输出
-            tb.add_row([category, self.beautify(marketCap), u'{0}%'.format(self.beautify(marketCap / totalMarketCap * 100)), self.beautify(gain), u'{0}%'.format(self.beautify(gain / totalGain * 100))])
+            tb.add_row([category, self.beautify(marketCap), self.beautify(gain), u'{0}%'.format(self.beautify(gain/(marketCap - gain)* 100)), u'{0}%'.format(self.beautify(marketCap / totalMarketCap * 100)), u'{0}%'.format(self.beautify(gain / totalGain * 100))])
         print(tb)
         print('\n二级分类：\n')
         tb = PrettyTable()
-        tb.field_names = [u"名称", u"分类市值", u"占比", u"盈亏（元）", u"盈亏占比"]
+        tb.field_names = [u"名称", u"分类市值", u"盈亏（元）", u"分类盈亏率", u"组合占比", u"组合盈亏贡献"]
         for category in self.category2Array:
             #print(category)
             marketCaps = [x.holdMarketCap for x in modelArray if x.category2 == category]
@@ -81,11 +81,11 @@ class assetAllocationConsoleParser:
             
             #print(u'{0} 市值：{1}\t占比：{2}%\t盈亏：{3}\t占比：{4}%'.format(category, self.beautify(marketCap), self.beautify(marketCap / totalMarketCap * 100), self.beautify(gain), self.beautify(gain / totalGain * 100)))
             # prettytable 输出
-            tb.add_row([category, self.beautify(marketCap), u'{0}%'.format(self.beautify(marketCap / totalMarketCap * 100)), self.beautify(gain), u'{0}%'.format(self.beautify(gain / totalGain * 100))])
+            tb.add_row([category, self.beautify(marketCap), self.beautify(gain),u'{0}%'.format(self.beautify(gain/(marketCap - gain) * 100)), u'{0}%'.format(self.beautify(marketCap / totalMarketCap * 100)), u'{0}%'.format(self.beautify(gain / totalGain * 100))])
         print(tb)
         print('\n三级分类：\n')
         tb = PrettyTable()
-        tb.field_names = [u"名称", u"分类市值", u"占比", u"盈亏（元）", u"盈亏占比"]
+        tb.field_names = [u"名称", u"分类市值", u"盈亏（元）", u"分类盈亏率", u"组合占比", u"组合盈亏贡献"]
         for category in self.category3Array:
             marketCaps = [x.holdMarketCap for x in modelArray if x.category3 == category]
             # 有些组合没有部分三级分类，应该忽略该级别的循环
@@ -98,5 +98,5 @@ class assetAllocationConsoleParser:
             
             #print(u'{0} 市值：{1}\t占比：{2}%\t盈亏：{3}\t占比：{4}%'.format(category, self.beautify(marketCap), self.beautify(marketCap / totalMarketCap * 100), self.beautify(gain), self.beautify(gain / totalGain * 100)))
             # prettytable 输出
-            tb.add_row([category, self.beautify(marketCap), u'{0}%'.format(self.beautify(marketCap / totalMarketCap * 100)), self.beautify(gain), u'{0}%'.format(self.beautify(gain / totalGain * 100))])
+            tb.add_row([category, self.beautify(marketCap), self.beautify(gain),u'{0}%'.format(self.beautify(gain/(marketCap - gain) * 100)), u'{0}%'.format(self.beautify(marketCap / totalMarketCap * 100)), u'{0}%'.format(self.beautify(gain / totalGain * 100))])
         print(tb)

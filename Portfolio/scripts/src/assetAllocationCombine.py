@@ -199,6 +199,8 @@ assetHtml = assetAllocationHtmlParser()
 assetHtml.generateHtmlFile(assetModelArray,title=u'{0}资产配置'.format(combine.excelFilePathExt), path=os.path.join(combine.pm.holdingOutputPath, u'{0}资产配置.html'.format(combine.excelFilePathExt)))
 
 # 输出 控制台 统计信息
+# 注意：由于 assetHtml 内部会把一些数值类型变成 str 类型，导致后续流程错误，现在临时处理是重新读取一份 json 数据。后面应该看看如何深拷贝
+assetModelArray = combine.loadAssetModelArrayFromJson()
 console = assetAllocationConsoleParser()
 console.showInfo(assetModelArray)
 
