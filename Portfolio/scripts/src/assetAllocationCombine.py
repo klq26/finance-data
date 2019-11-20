@@ -245,7 +245,7 @@ assetHtml.generateHtmlFile(assetModelArray,title=u'{0}资产配置'.format(combi
 # 输出 控制台 统计信息
 # 注意：由于 assetHtml 内部会把一些数值类型变成 str 类型，导致后续流程错误，现在临时处理是重新读取一份 json 数据。后面应该看看如何深拷贝
 assetModelArray = combine.loadAssetModelArrayFromJson()
-console = assetAllocationConsoleParser()
+console = assetAllocationConsoleParser(path=combine.pm.holdingOutputPath)
 console.showInfo(assetModelArray)
 
 # 输出 echarts.json 和 data.json
