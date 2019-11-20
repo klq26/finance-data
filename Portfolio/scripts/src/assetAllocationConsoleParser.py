@@ -71,7 +71,7 @@ class assetAllocationConsoleParser:
         # 同时写入文件
         with open(os.path.join(self.outputPath,u'资产配置分类情况.html'),'w+',encoding=u'utf-8') as f:
             f.write('<h3>一级分类</h3>')
-            f.write(tb.get_html_string())
+            f.write(tb.get_html_string(format=True))
         print('\n二级分类：\n')
         tb = PrettyTable()
         tb.field_names = [u"名称", u"分类市值", u"盈亏（元）", u"分类盈亏率", u"组合占比", u"组合盈亏贡献"]
@@ -93,7 +93,7 @@ class assetAllocationConsoleParser:
         # 同时写入文件
         with open(os.path.join(self.outputPath,u'资产配置分类情况.html'),'a+',encoding=u'utf-8') as f:
             f.write('<h3>二级分类</h3>')
-            f.write(tb.get_html_string())
+            f.write(tb.get_html_string(format=True))
         print('\n三级分类：\n')
         tb = PrettyTable()
         tb.field_names = [u"名称", u'指数成本', u"分类市值", u"盈亏（元）", u"分类盈亏率", u"组合占比", u"组合盈亏贡献"]
@@ -118,4 +118,4 @@ class assetAllocationConsoleParser:
         # 同时写入文件
         with open(os.path.join(self.outputPath,u'资产配置分类情况.html'),'a+',encoding=u'utf-8') as f:
             f.write('<h3>三级分类</h3>')
-            f.write(tb.get_html_string())
+            f.write(tb.get_html_string(format=True))
