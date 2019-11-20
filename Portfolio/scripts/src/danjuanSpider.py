@@ -14,7 +14,9 @@ class danjuanSpider:
     
     # 初始化构造函数
     def __init__(self, strategy = 'a'):
-        self.url = u'https://danjuanapp.com/djapi/holding/plan/CSI666'
+        self.luosidingUrl = u'https://danjuanapp.com/djapi/holding/plan/CSI666'
+        # 暂存，这是拿钉钉宝数据的，暂时不算很重要
+        self.dingdingbaoUrl = u'https://danjuanapp.com/position/strategy/CSI1021'
         self.strategy = strategy
         if strategy == 'a':
             self.pm = pathManager(strategyName='康力泉')
@@ -23,19 +25,22 @@ class danjuanSpider:
         self.headerManager = requestHeaderManager()
 
     def getKLQ(self):
-        self.requestWithName('螺丝钉定投',self.headerManager.getDanjuanKLQ())
+        self.requestWithName(self.luosidingUrl, '螺丝钉定投', self.headerManager.getDanjuanKLQ())
+        self.requestWithName(self.dingdingbaoUrl, '钉钉宝', self.headerManager.getDanjuanKLQ())
     
     def getLSY(self):
-        self.requestWithName('李淑云',self.headerManager.getDanjuanLSY())
+        self.requestWithName(self.luosidingUrl, '李淑云',self.headerManager.getDanjuanLSY())
         
     def getKSH(self):
-        self.requestWithName('康世海',self.headerManager.getDanjuanKSH())
+        self.requestWithName(self.luosidingUrl, '康世海',self.headerManager.getDanjuanKSH())
         
-    def requestWithName(self,name,header):
+    def requestWithName(self, url, name, header):
         headers=header
+        if url == None:
+            url = self.luosidingUrl
         ssl._create_default_https_context = ssl._create_unverified_context
         requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
-        response = requests.get(self.url, headers = headers,verify=False)
+        response = requests.get(url, headers = headers,verify=False)
         pm = pathManager()
         with open(os.path.join(self.pm.holdingOutputPath,u'danjuan_{}.txt'.format(name)),'w',encoding='utf-8') as f:
             data = json.loads(response.text)['data']

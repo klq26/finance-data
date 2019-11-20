@@ -2,115 +2,115 @@
     {
         "category3":"上证50",
         "categoryID":"111",
-        "close":2991.28,
+        "close":2968.12,
         "xueqiuSymbol":"SH000016"
     },
     {
         "category3":"50AH",
         "categoryID":"112",
-        "close":5522.09,
+        "close":5506.0,
         "xueqiuSymbol":"SH000170"
     },
     {
         "category3":"沪深300",
         "categoryID":"113",
-        "close":3939.16,
+        "close":3907.86,
         "xueqiuSymbol":"SH000300"
     },
     {
         "category3":"300价值",
         "categoryID":"114",
-        "close":4871.5469,
+        "close":4829.4641,
         "xueqiuSymbol":"SH000919"
     },
     {
         "category3":"基本面60",
         "categoryID":"115",
-        "close":7780.33,
+        "close":7735.8,
         "xueqiuSymbol":"SZ399701"
     },
     {
         "category3":"基本面120",
         "categoryID":"116",
-        "close":6938.66,
+        "close":6892.87,
         "xueqiuSymbol":"SZ399702"
     },
     {
         "category3":"中证500",
         "categoryID":"121",
-        "close":4979.53,
+        "close":4946.28,
         "xueqiuSymbol":"SH000905"
     },
     {
         "category3":"500低波动",
         "categoryID":"122",
-        "close":9783.4102,
+        "close":9738.286,
         "xueqiuSymbol":"SH000804"
     },
     {
         "category3":"中证1000",
         "categoryID":"123",
-        "close":5285.9,
+        "close":5259.47,
         "xueqiuSymbol":"SH000852"
     },
     {
         "category3":"创业板",
         "categoryID":"124",
-        "close":1735.7,
+        "close":1719.66,
         "xueqiuSymbol":"SZ399006"
     },
     {
         "category3":"中证红利",
         "categoryID":"131",
-        "close":4224.0593,
+        "close":4198.8019,
         "xueqiuSymbol":"SH000922"
     },
     {
         "category3":"养老产业",
         "categoryID":"141",
-        "close":7366.41,
+        "close":7320.87,
         "xueqiuSymbol":"SZ399812"
     },
     {
         "category3":"全指医药",
         "categoryID":"142",
-        "close":10356.9,
+        "close":10341.67,
         "xueqiuSymbol":"SH000991"
     },
     {
         "category3":"中证环保",
         "categoryID":"143",
-        "close":1160.67,
+        "close":1150.98,
         "xueqiuSymbol":"SH000827"
     },
     {
         "category3":"中证传媒",
         "categoryID":"144",
-        "close":1291.58,
+        "close":1267.66,
         "xueqiuSymbol":"SZ399971"
     },
     {
         "category3":"证券公司",
         "categoryID":"145",
-        "close":690.96,
+        "close":681.08,
         "xueqiuSymbol":"SZ399975"
     },
     {
         "category3":"金融地产",
         "categoryID":"146",
-        "close":5919.19,
+        "close":5850.13,
         "xueqiuSymbol":"SH000992"
     },
     {
         "category3":"恒生",
         "categoryID":"211",
-        "close":26873.73,
+        "close":26904.48,
         "xueqiuSymbol":"HKHSI"
     },
     {
         "category3":"可转债",
         "categoryID":"411",
-        "close":334.4807,
+        "close":333.7634,
         "xueqiuSymbol":"SH000832"
     }
 ]
