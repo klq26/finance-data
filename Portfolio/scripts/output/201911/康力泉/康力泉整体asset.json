@@ -33,10 +33,10 @@
         "category4":"131",
         "fundCode":"090010",
         "fundName":"大成中证红利指数A",
-        "holdMarketCap":3588.93,
-        "holdNetValue":1.6544,
-        "holdShareCount":2139.86,
-        "holdTotalGain":-67.26
+        "holdMarketCap":3588.79,
+        "holdNetValue":1.6535,
+        "holdShareCount":2211.21,
+        "holdTotalGain":-67.4
     },
     {
         "appSource":"螺丝钉定投",
@@ -46,10 +46,10 @@
         "category4":"114",
         "fundCode":"519671",
         "fundName":"银河沪深300价值指数",
-        "holdMarketCap":3568.34,
-        "holdNetValue":1.425,
-        "holdShareCount":2381.52,
-        "holdTotalGain":57.2
+        "holdMarketCap":3568.21,
+        "holdNetValue":1.4258,
+        "holdShareCount":2462.53,
+        "holdTotalGain":57.07
     },
     {
         "appSource":"螺丝钉定投",
@@ -72,10 +72,10 @@
         "category4":"122",
         "fundCode":"003318",
         "fundName":"景顺长城中证500低波动",
-        "holdMarketCap":3020.05,
-        "holdNetValue":0.9348,
-        "holdShareCount":3153.28,
-        "holdTotalGain":-37.51
+        "holdMarketCap":3019.91,
+        "holdNetValue":0.9344,
+        "holdShareCount":3272.2,
+        "holdTotalGain":-37.65
     },
     {
         "appSource":"螺丝钉定投",
@@ -85,10 +85,10 @@
         "category4":"116",
         "fundCode":"070023",
         "fundName":"嘉实深证基本面120联接",
-        "holdMarketCap":2364.49,
-        "holdNetValue":1.7912,
-        "holdShareCount":1219.16,
-        "holdTotalGain":91.41
+        "holdMarketCap":2364.38,
+        "holdNetValue":1.7941,
+        "holdShareCount":1266.95,
+        "holdTotalGain":91.3
     },
     {
         "appSource":"螺丝钉定投",
@@ -98,10 +98,10 @@
         "category4":"115",
         "fundCode":"530015",
         "fundName":"建信深证基本面60ETF联接A",
-        "holdMarketCap":2018.65,
-        "holdNetValue":2.1171,
-        "holdShareCount":886.95,
-        "holdTotalGain":45.89
+        "holdMarketCap":2018.5,
+        "holdNetValue":2.1197,
+        "holdShareCount":930.7,
+        "holdTotalGain":45.74
     },
     {
         "appSource":"螺丝钉定投",
@@ -111,10 +111,10 @@
         "category4":"141",
         "fundCode":"000968",
         "fundName":"广发中证养老",
-        "holdMarketCap":782.7,
-        "holdNetValue":0.9583,
-        "holdShareCount":712.84,
-        "holdTotalGain":16.13
+        "holdMarketCap":782.6,
+        "holdNetValue":0.9608,
+        "holdShareCount":797.84,
+        "holdTotalGain":16.03
     },
     {
         "appSource":"螺丝钉定投",
@@ -137,7 +137,7 @@
         "category4":"142",
         "fundCode":"001550",
         "fundName":"天弘中证医药100A",
-        "holdMarketCap":431.56,
+        "holdMarketCap":432.2,
         "holdNetValue":0.6708,
         "holdShareCount":531.87,
         "holdTotalGain":74.78
@@ -637,7 +637,7 @@
         "holdTotalGain":145.71
     },
     {
-        "appSource":"康天天基金",
+        "appSource":"天天基金",
         "category1":"A 股",
         "category2":"红利价值",
         "category3":"中证红利",
@@ -650,7 +650,7 @@
         "holdTotalGain":5511.02
     },
     {
-        "appSource":"康天天基金",
+        "appSource":"天天基金",
         "category1":"A 股",
         "category2":"行业股",
         "category3":"养老产业",
@@ -663,7 +663,7 @@
         "holdTotalGain":4077.34
     },
     {
-        "appSource":"康天天基金",
+        "appSource":"天天基金",
         "category1":"债券",
         "category2":"国内债券",
         "category3":"可转债",
@@ -676,7 +676,7 @@
         "holdTotalGain":5420.05
     },
     {
-        "appSource":"康天天基金",
+        "appSource":"天天基金",
         "category1":"A 股",
         "category2":"行业股",
         "category3":"全指医药",
@@ -689,7 +689,7 @@
         "holdTotalGain":5988.35
     },
     {
-        "appSource":"康天天基金",
+        "appSource":"天天基金",
         "category1":"债券",
         "category2":"国内债券",
         "category3":"可转债",
@@ -702,7 +702,7 @@
         "holdTotalGain":2107.09
     },
     {
-        "appSource":"康天天基金",
+        "appSource":"天天基金",
         "category1":"海外成熟",
         "category2":"海外成熟",
         "category3":"德国30",
@@ -715,7 +715,7 @@
         "holdTotalGain":2280.67
     },
     {
-        "appSource":"康天天基金",
+        "appSource":"天天基金",
         "category1":"A 股",
         "category2":"大盘股",
         "category3":"沪深300",
@@ -728,7 +728,7 @@
         "holdTotalGain":4915.98
     },
     {
-        "appSource":"康天天基金",
+        "appSource":"天天基金",
         "category1":"A 股",
         "category2":"行业股",
         "category3":"金融地产",
@@ -741,7 +741,7 @@
         "holdTotalGain":4114.18
     },
     {
-        "appSource":"康天天基金",
+        "appSource":"天天基金",
         "category1":"海外新兴",
         "category2":"海外互联",
         "category3":"海外互联网",
@@ -754,7 +754,7 @@
         "holdTotalGain":2209.32
     },
     {
-        "appSource":"康天天基金",
+        "appSource":"天天基金",
         "category1":"A 股",
         "category2":"中小盘股",
         "category3":"中证500",
@@ -767,7 +767,7 @@
         "holdTotalGain":2581.11
     },
     {
-        "appSource":"康天天基金",
+        "appSource":"天天基金",
         "category1":"商品",
         "category2":"商品",
         "category3":"原油",
@@ -780,7 +780,7 @@
         "holdTotalGain":-5112.91
     },
     {
-        "appSource":"康天天基金",
+        "appSource":"天天基金",
         "category1":"海外新兴",
         "category2":"香港",
         "category3":"恒生",
@@ -793,7 +793,7 @@
         "holdTotalGain":372.56
     },
     {
-        "appSource":"康天天基金",
+        "appSource":"天天基金",
         "category1":"A 股",
         "category2":"中小盘股",
         "category3":"创业板",
@@ -806,7 +806,7 @@
         "holdTotalGain":2166.06
     },
     {
-        "appSource":"康天天基金",
+        "appSource":"天天基金",
         "category1":"债券",
         "category2":"海外债券",
         "category3":"美元债",
@@ -819,7 +819,7 @@
         "holdTotalGain":2377.6
     },
     {
-        "appSource":"康天天基金",
+        "appSource":"天天基金",
         "category1":"A 股",
         "category2":"行业股",
         "category3":"中证环保",
@@ -832,7 +832,7 @@
         "holdTotalGain":876.98
     },
     {
-        "appSource":"康天天基金",
+        "appSource":"天天基金",
         "category1":"债券",
         "category2":"国内债券",
         "category3":"可转债",
@@ -845,7 +845,7 @@
         "holdTotalGain":871.96
     },
     {
-        "appSource":"康天天基金",
+        "appSource":"天天基金",
         "category1":"A 股",
         "category2":"中小盘股",
         "category3":"中证500",
@@ -858,7 +858,7 @@
         "holdTotalGain":-206.14
     },
     {
-        "appSource":"康天天基金",
+        "appSource":"天天基金",
         "category1":"A 股",
         "category2":"行业股",
         "category3":"中证传媒",
@@ -871,7 +871,7 @@
         "holdTotalGain":-286.45
     },
     {
-        "appSource":"康天天基金",
+        "appSource":"天天基金",
         "category1":"A 股",
         "category2":"中小盘股",
         "category3":"中证1000",

@@ -17,6 +17,7 @@ currentDir = os.path.abspath(os.path.dirname(__file__))
 srcDir = os.path.dirname(currentDir)
 sys.path.append(srcDir)
 from config.pathManager import pathManager
+from config.colorConstants import colorConstants
 
 # 跨线程沟通 key
 thread_key_window = 'window'
@@ -53,11 +54,14 @@ class functionPanel:
         # 主窗口
         self.window = tk.Tk()
         self.window.wm_attributes('-topmost',1)
-
+        # 设置背景色
+        color = colorConstants()
+        self.window.configure(background=u'#{0}'.format(color.hexColorString(60,64,67)))
         # 窗口标题
         self.window.title('Finance Data Dashboard')
         # 窗口标题小 icon
-        self.window.iconbitmap('iVBORw0KGgoAAAANSUhEUgAAABwAAAA2CAYAAADUOvnEAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA5tJREFUeNrcWE1oE0EUnp0kbWyUpCiNYEpCFSpIMdpLRTD15s2ePHixnj00N4/GoyfTg2fbiwdvvagHC1UQ66GQUIQKKgn1UAqSSFua38b3prPJZDs7s5ufKn0w7CaZ2W/fe9/73kyMRqNB3Nrj1zdn4RJ6du9T2u1a2iHYSxjP4d41oOHGQwAIwSUHIyh8/RA8XeiXh0kLGFoaXiTecw/hoTG4ZCSAaFkY0+BpsZceLtiAoV2FkepZSDk5EpppczBvpuuQCqx0YnkYcVVoqQYMyeCG+lFdaGkXeVOFNu4aEBalOBk6sbQrQF7gSdK5JXjuHXuYVIVyr0TZ0FjKDeCs6km7JYMUdrWAUVmZUBtmRnVPK+x6nIR2xomH06R35ggwJPeofWphr/W5UjPIxq8B2bKgE8C4HVHWvg+2gZjXj19PkdFztY7bk9TDCH/g6oafDPpaoMvZIRI5WyMB/0Hv++HkpTKE0kM+A+h20cPAfN4GuRyp9G+LMTW+z8rCLI8b46XO9zRcYZTde/j0AZm8WGb3Y2F9KLlE2nqYkjFLJAsDOl/lea0q55mqxXcL7YBc++bsCPMe8mUyU2ZIpnCoblca6TZA/ga2Co8PGg7UGUlEDd0ueptglbrRZLLE7poti6pCaWUo2pu1oaYI1CF9b9cCZPO3F8ikJQ/rPpQT5YETht26ss+uCIL2Y8vHwJGpA96GI5mjOlaKhowUy6BcNcgIhDviTGWCGFaqEuufWz4pgcbCh+w0gEOyOjTlTtYYlIWPYWKEsLDzOs+nhzaO1KEpd+MXpOoTUgKiNyhdy5aSMPNVqxtSsJFgza5EWA4zKtCJ2OGbLn0JSLu8+SL4G86p1Fpr7ABXdGFF/UTD4rfmFYFw4G9VAJ9SM3aF8l3yok4/J6IV9sDVb36ynmtJ2M5+CwxTYBdKNMBaocKGV2nYgkz6r+cHBP30MzAfi4Sy+BebSoPIOi8PW1PpCCvr/KOD4k9Zu0WSH0Y0+SxJ2awp/nlwKtcGyHOJ8vNHtRJzhPlsHr8MogtlVtwUU0tSM1x58upSKbfJnSKUR07GVMKkDNfXpzpv0RTHy3nZMVx5IOWdZIaPabGFvfpwpjnvfmJHXLaEvZUTseu/TeLc+xgAPhEAb/PbjO6PBaOTf6LQRh/dERde23zxLtOXbaKNhfq2L/1fAOPHDUhOpIf5485h7l+GNHHiSYPKE3Myz9sFxoJuAyazvwIMAItferha5LTqAAAAAElFTkSuQmCC')
+        #self.window.iconbitmap('iVBORw0KGgoAAAANSUhEUgAAABwAAAA2CAYAAADUOvnEAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA5tJREFUeNrcWE1oE0EUnp0kbWyUpCiNYEpCFSpIMdpLRTD15s2ePHixnj00N4/GoyfTg2fbiwdvvagHC1UQ66GQUIQKKgn1UAqSSFua38b3prPJZDs7s5ufKn0w7CaZ2W/fe9/73kyMRqNB3Nrj1zdn4RJ6du9T2u1a2iHYSxjP4d41oOHGQwAIwSUHIyh8/RA8XeiXh0kLGFoaXiTecw/hoTG4ZCSAaFkY0+BpsZceLtiAoV2FkepZSDk5EpppczBvpuuQCqx0YnkYcVVoqQYMyeCG+lFdaGkXeVOFNu4aEBalOBk6sbQrQF7gSdK5JXjuHXuYVIVyr0TZ0FjKDeCs6km7JYMUdrWAUVmZUBtmRnVPK+x6nIR2xomH06R35ggwJPeofWphr/W5UjPIxq8B2bKgE8C4HVHWvg+2gZjXj19PkdFztY7bk9TDCH/g6oafDPpaoMvZIRI5WyMB/0Hv++HkpTKE0kM+A+h20cPAfN4GuRyp9G+LMTW+z8rCLI8b46XO9zRcYZTde/j0AZm8WGb3Y2F9KLlE2nqYkjFLJAsDOl/lea0q55mqxXcL7YBc++bsCPMe8mUyU2ZIpnCoblca6TZA/ga2Co8PGg7UGUlEDd0ueptglbrRZLLE7poti6pCaWUo2pu1oaYI1CF9b9cCZPO3F8ikJQ/rPpQT5YETht26ss+uCIL2Y8vHwJGpA96GI5mjOlaKhowUy6BcNcgIhDviTGWCGFaqEuufWz4pgcbCh+w0gEOyOjTlTtYYlIWPYWKEsLDzOs+nhzaO1KEpd+MXpOoTUgKiNyhdy5aSMPNVqxtSsJFgza5EWA4zKtCJ2OGbLn0JSLu8+SL4G86p1Fpr7ABXdGFF/UTD4rfmFYFw4G9VAJ9SM3aF8l3yok4/J6IV9sDVb36ynmtJ2M5+CwxTYBdKNMBaocKGV2nYgkz6r+cHBP30MzAfi4Sy+BebSoPIOi8PW1PpCCvr/KOD4k9Zu0WSH0Y0+SxJ2awp/nlwKtcGyHOJ8vNHtRJzhPlsHr8MogtlVtwUU0tSM1x58upSKbfJnSKUR07GVMKkDNfXpzpv0RTHy3nZMVx5IOWdZIaPabGFvfpwpjnvfmJHXLaEvZUTseu/TeLc+xgAPhEAb/PbjO6PBaOTf6LQRh/dERde23zxLtOXbaKNhfq2L/1fAOPHDUhOpIf5485h7l+GNHHiSYPKE3Myz9sFxoJuAyazvwIMAItferha5LTqAAAAAElFTkSuQmCC')
+        self.window.iconbitmap('icon2.ico') # icon1.ico 备用
         # 窗口尺寸
         self.window.geometry('542x360+100-100') # +{0} = origin.x 80 +{1} = origin.y
         # 剪切板
@@ -79,13 +83,13 @@ class functionPanel:
         parentsHeaders = [u'tiantian_lsy.txt',u'tiantian_ksh.txt', u'danjuan_lsy.txt',u'danjuan_ksh.txt']
         
         shorthands = [u'fetch Headers', u'src Folder', u'config Folder',u'input Folder', u'output Folder',u'echarts Folder']
-        operations = [u'allFundSpider a',u'allFundSpider b',u'assetCombine c',u'assetCombine b', u'estimateExcel a', u'estimateExcel b']
+        operations = [u'allFundSpider a',u'allFundSpider b',u'assetCombine c',u'assetCombine d', u'estimateFund a', u'estimateFund b']
         col = 0
         tk.Label(self.window,text=u'My Headers',width=15,height=1).grid(row=0, column=col, padx=10, pady=10)
         for i in range(1,len(klqHeaders)+1):
             row = klqHeaders[i-1]
             # tkinter 要求由按钮（或者其它的插件）触发的控制器函数不能含有参数，如果有，需要 lambda，下同
-            button = tk.Button(self.window, text=row,width=15,height=1, bg="#F7A128")
+            button = tk.Button(self.window, text=row,width=15,height=1, bg="#FF5F6E")
             button.grid(row=i, column=col, padx=10, pady=10)
             # 为左键单击事件绑定处理方法
             button.bind(u'<Button>', self.saveHeaderToFile)
@@ -95,25 +99,25 @@ class functionPanel:
         tk.Label(self.window,text=u'Parents Headers',width=15,height=1).grid(row=0, column=col, padx=10, pady=10)
         for i in range(1, len(parentsHeaders)+1):
             row = parentsHeaders[i-1]
-            button = tk.Button(self.window, text=row,width=15,height=1, bg="#F2C300")
+            button = tk.Button(self.window, text=row,width=15,height=1, bg="#E1AA37")
             button.grid(row=i, column=col, padx=10, pady=10)
             # 为左键单击事件绑定处理方法
             button.bind(u'<Button>', self.saveHeaderToFile)
             
         col = 2
-        tk.Label(self.window,text=u'shorthands',width=15,height=1).grid(row=0, column=col, padx=10, pady=10)
+        tk.Label(self.window,text=u'ShortHands',width=15,height=1).grid(row=0, column=col, padx=10, pady=10)
         for i in range(1, len(shorthands)+1):
             row = shorthands[i-1]
-            button = tk.Button(self.window, text=row,width=15,height=1, bg="#BE8663")
+            button = tk.Button(self.window, text=row,width=15,height=1, bg="#32CD96")
             button.grid(row=i, column=col, padx=10, pady=10)
             # 为左键单击事件绑定处理方法
             button.bind(u'<Button>', self.shorthandSelect)
 
         col = 3
-        tk.Label(self.window,text=u'operations',width=15,height=1).grid(row=0, column=col, padx=10, pady=10)
+        tk.Label(self.window,text=u'Operations',width=15,height=1).grid(row=0, column=col, padx=10, pady=10)
         for i in range(1, len(operations)+1):
             row = operations[i-1]
-            button = tk.Button(self.window, text=row,width=15,height=1, bg="#00B1CC")
+            button = tk.Button(self.window, text=row,width=15,height=1, bg="#3273EB")
             button.grid(row=i, column=col, padx=10, pady=10)
             # 为左键单击事件绑定处理方法
             button.bind(u'<Button>', self.functionSelect)
@@ -152,7 +156,7 @@ class functionPanel:
             os.startfile(pm.echartsPath)
         if param == u'fetch Headers':
             # 打开所有网页
-            os.startfile(u'http://www.1234567.com.cn/')
+            os.startfile(u'http://login.1234567.com.cn/')
             os.startfile(u'http://www.gffunds.com.cn/')
             os.startfile(u'http://www.qieman.com/')
             os.startfile(u'http://www.danjuanapp.com/')
@@ -177,7 +181,7 @@ class functionPanel:
             args = [r"powershell","python",pyFile,params[1]]
             print('[Executing] {0} {1} ...'.format(pyFile, params[1]))
             p = subprocess.Popen(args)
-        if params[0] == u'estimateExcel':
+        if params[0] == u'estimateFund':
             # html
             pyFile = os.path.join(pm.parentDir,u'assetAllocationEstimateHtmlParser.py')
             args = [r"powershell","python",pyFile,params[1]]

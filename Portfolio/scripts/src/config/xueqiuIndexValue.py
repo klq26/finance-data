@@ -16,7 +16,7 @@ class xueqiuIndexValue:
         self.urlPrefix = u'https://stock.xueqiu.com/v5/stock/batch/quote.json?symbol='
         self.headerManager = requestHeaderManager()
         self.pm = pathManager()
-        #组成雪球 URL
+        # 读取磁盘数据 & 组成雪球 URL
         with open(os.path.join(self.pm.configPath,u'xueqiuIndexSymbol.json'),u'r',encoding='utf-8') as f:
             self.indexSymbols = json.loads(f.read())
             url = self.urlPrefix
@@ -24,8 +24,6 @@ class xueqiuIndexValue:
                 url = url + '{0},'.format(symbol['xueqiuSymbol'])
             # 组成 URL
             self.url = url[0:len(url)-1]
-        # 查询指数最新值
-        self.fetchIndexValues(self.headerManager.getXueqiuKLQ())
         
     # 查询指数
     def fetchIndexValues(self,header):

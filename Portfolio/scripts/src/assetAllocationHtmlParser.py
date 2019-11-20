@@ -109,7 +109,7 @@ class assetAllocationHtmlParser:
         # jinja2 框架输出 html
         env = Environment(loader=FileSystemLoader(os.path.join(self.pm.parentDir, u'template')))
         template = env.get_template(u'资产配置template.html')
-        with open(path,'w+') as fout:
+        with open(path,'w+',encoding='utf-8') as fout:
             htmlCode = template.render(name=title, \
                 totalMarketCap=totalMarketCap, \
                 totalStockMarketCap=totalStockMarketCap, \

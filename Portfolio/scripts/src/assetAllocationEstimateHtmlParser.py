@@ -132,7 +132,7 @@ class assetAllocationEstimateHtmlParser:
         # jinja2 框架输出 html
         env = Environment(loader=FileSystemLoader(os.path.join(self.pm.parentDir, u'template')))
         template = env.get_template(u'实时估值template.html')
-        with open(path,'w+') as fout:
+        with open(path,'w+',encoding=u'utf-8') as fout:
             htmlCode = template.render(name=title, \
                 innerFundEstimateTotalGainToday = self.beautify(estimateTotalGainToday - outerFundEstimateTotalGainToday), \
                 innerColor = self.colorConstants.getGainColor(self.beautify(estimateTotalGainToday - outerFundEstimateTotalGainToday)),\
