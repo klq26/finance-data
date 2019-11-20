@@ -19,13 +19,14 @@ from tools.dingtalk import dingtalk
 
 class assetAllocationConsoleParser:
 
-    def __init__(self):
+    def __init__(self,path):
         categoryConstants = assetCategoryConstants()
         self.category1Array = categoryConstants.category1Array
         self.category2Array = categoryConstants.category2Array
         self.category3Array = categoryConstants.category3Array
         self.xueqiuIndexValue = xueqiuIndexValue()
         self.dingtalk = dingtalk()
+        self.outputPath = path
     
     # 格式化浮点数
     def beautify(self,num):
@@ -67,6 +68,10 @@ class assetAllocationConsoleParser:
             # prettytable 输出
             tb.add_row([category, self.beautify(marketCap), self.beautify(gain), u'{0}%'.format(self.beautify(gain/(marketCap - gain)* 100)), u'{0}%'.format(self.beautify(marketCap / totalMarketCap * 100)), u'{0}%'.format(self.beautify(gain / totalGain * 100))])
         print(tb)
+        # 同时写入文件
+        with open(os.path.join(self.outputPath,u'资产配置分类情况.html'),'w+',encoding=u'utf-8') as f:
+            f.write('<h3>一级分类</h3>')
+            f.write(tb.get_html_string())
         print('\n二级分类：\n')
         tb = PrettyTable()
         tb.field_names = [u"名称", u"分类市值", u"盈亏（元）", u"分类盈亏率", u"组合占比", u"组合盈亏贡献"]
@@ -85,6 +90,10 @@ class assetAllocationConsoleParser:
             # prettytable 输出
             tb.add_row([category, self.beautify(marketCap), self.beautify(gain),u'{0}%'.format(self.beautify(gain/(marketCap - gain) * 100)), u'{0}%'.format(self.beautify(marketCap / totalMarketCap * 100)), u'{0}%'.format(self.beautify(gain / totalGain * 100))])
         print(tb)
+        # 同时写入文件
+        with open(os.path.join(self.outputPath,u'资产配置分类情况.html'),'a+',encoding=u'utf-8') as f:
+            f.write('<h3>二级分类</h3>')
+            f.write(tb.get_html_string())
         print('\n三级分类：\n')
         tb = PrettyTable()
         tb.field_names = [u"名称", u'指数成本', u"分类市值", u"盈亏（元）", u"分类盈亏率", u"组合占比", u"组合盈亏贡献"]
@@ -106,3 +115,7 @@ class assetAllocationConsoleParser:
             # prettytable 输出
             tb.add_row([category, self.beautify(indexValue), self.beautify(marketCap), self.beautify(gain),u'{0}%'.format(self.beautify(gain/(marketCap - gain) * 100)), u'{0}%'.format(self.beautify(marketCap / totalMarketCap * 100)), u'{0}%'.format(self.beautify(gain / totalGain * 100))])
         print(tb)
+        # 同时写入文件
+        with open(os.path.join(self.outputPath,u'资产配置分类情况.html'),'a+',encoding=u'utf-8') as f:
+            f.write('<h3>三级分类</h3>')
+            f.write(tb.get_html_string())
