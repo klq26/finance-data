@@ -3,10 +3,10 @@ Host	qieman.com
 Connection	keep-alive
 Accept	application/json
 x-aid	A.8E975B001DK31V1CWJ905XECNHRDCWSN3
-x-sign	1574067312129E7ABED6A0BDF51A20EEEB4C5E2D1B718
+x-sign	1574204919900A5A9F56DD2192F85B052B3E8CBC00557
 Authorization	Bearer eyJ2ZXIiOiJ2MSIsImFsZyI6IkhTNTEyIn0.eyJzdWIiOiI3OTQ1NDkiLCJpc3MiOiJzc28ucWllbWFuLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJleHAiOjE1NzUzNjMzMDUsImlhdCI6MTU3NDA2NzMwNSwianRpIjoiMTZkMzllMWEtNjFmMy00NjQ2LWJjOWItNjdlYWIzYjAyMmVjIn0.i915x98Axl1Nw9L5wWtM0u1XJgFDVh61pzzA4hfu9z-2Uh8zaThDnr__0_U6pXZv7kkrujW2MY6S-nhsASDrzA
-User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36
-x-request-id	albus.2E80D5CB227B1E331746
+User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36
+x-request-id	albus.F2B0CE6B17DF26978250
 Sec-Fetch-Site	same-origin
 Sec-Fetch-Mode	cors
 Referer	https://qieman.com/umas/10209/profit/latest

@@ -13,7 +13,7 @@ class colorConstants:
     # 不同 APP 配色
     def getFundColorByAppSourceName(self, name):
         # 色值转换 https://www.sioe.cn/yingyong/yanse-rgb-16/
-        if name in [u'螺丝钉定投', u'李淑云螺丝钉', u'康世海螺丝钉']:
+        if name in [u'螺丝钉定投', u'母螺丝钉', u'父螺丝钉']:
             return 'F0DC5A'
         elif name in [u'且慢补充 150 份', u'且慢 S 定投']:
             return '6EB5FF'
@@ -34,7 +34,7 @@ class colorConstants:
     # 不同 APP 配色
     def getFundColorByAppSourceNameOld(self, name):
         # 色值转换 https://www.sioe.cn/yingyong/yanse-rgb-16/
-        if name in [u'螺丝钉定投', u'李淑云螺丝钉', u'康世海螺丝钉']:
+        if name in [u'螺丝钉定投', u'母螺丝钉', u'父螺丝钉']:
             # 242,195,0
             return 'F2C300'
         elif name in [u'且慢补充 150 份', u'且慢 S 定投']:

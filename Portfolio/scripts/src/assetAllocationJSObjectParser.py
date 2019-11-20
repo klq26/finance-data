@@ -31,7 +31,8 @@ class assetAllocationJSObjectParser:
             self.pm = pathManager(strategyName='康力泉')
         elif strategy == 'b':
             self.pm = pathManager(strategyName='父母')
-    
+        elif strategy == 'd':
+            self.pm = pathManager(strategyName='全家')
     # 格式化浮点数
     def beautify(self,num):
         return round(float(num),2)

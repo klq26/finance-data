@@ -30,26 +30,58 @@ class assetAllocationCombine:
             self.echartsJSFilePathExt = u'康力泉'
             self.pm = pathManager(strategyName=u'康力泉')
             self.echartsFile = u'KLQPortfolio.html'
+            self.filepaths = []
+            for root, dirs, files in os.walk(self.pm.holdingOutputPath, topdown=False):
+                for name in files:
+                    if name in self.filenames:
+                        self.filepaths.append(os.path.join(root,name))
         elif self.strategy == 'b':
             self.filenames = [u'danjuan_李淑云.txt',u'danjuan_康世海.txt',u'tiantian_李淑云.txt']
             self.excelFilePathExt = u'父母'
             self.echartsJSFilePathExt = u'父母'
             self.pm = pathManager(strategyName=u'父母')
             self.echartsFile = u'ParentPortfolio.html'
+            self.filepaths = []
+            for root, dirs, files in os.walk(self.pm.holdingOutputPath, topdown=False):
+                for name in files:
+                    if name in self.filenames:
+                        self.filepaths.append(os.path.join(root,name))
         elif self.strategy == 'c':
             self.filenames = [u'danjuan_螺丝钉定投.txt',u'qieman_10万补充ETF计划.txt',u'qieman_我的S定投计划.txt', u'tiantian_康力泉.txt',u'huatai_康力泉.txt',u'guangfa_支付宝.txt',u'cash_康力泉.txt',u'freeze_康力泉.txt']
             self.excelFilePathExt = u'康力泉整体'
             self.echartsJSFilePathExt = u'康力泉'
             self.pm = pathManager(strategyName=u'康力泉')
             self.echartsFile = u'KLQPortfolio.html'
+            self.filepaths = []
+            for root, dirs, files in os.walk(self.pm.holdingOutputPath, topdown=False):
+                for name in files:
+                    if name in self.filenames:
+                        self.filepaths.append(os.path.join(root,name))
+        elif self.strategy == 'd':
+            self.filenames = [u'danjuan_螺丝钉定投.txt',u'qieman_10万补充ETF计划.txt',u'qieman_我的S定投计划.txt', u'tiantian_康力泉.txt',u'huatai_康力泉.txt',u'guangfa_支付宝.txt',u'cash_康力泉.txt',u'freeze_康力泉.txt'\
+                ,u'danjuan_李淑云.txt',u'danjuan_康世海.txt',u'tiantian_李淑云.txt',u'cash_李淑云.txt',u'cash_康世海.txt',]
+            self.excelFilePathExt = u'全家整体'
+            self.echartsJSFilePathExt = u'全家'
+            self.pm = pathManager(strategyName=u'全家')
+            klqDir = os.path.join(os.path.dirname(self.pm.holdingOutputPath),u'康力泉')
+            parentDir = os.path.join(os.path.dirname(self.pm.holdingOutputPath),u'父母')
+            self.filepaths = []
+            print(u'全家整体情况，包含如下文件：')
+            for root, dirs, files in os.walk(klqDir, topdown=False):
+                for name in files:
+                    if name in self.filenames:
+                        self.filepaths.append(os.path.join(root,name))
+                        print(os.path.join(root,name))
+            for root, dirs, files in os.walk(parentDir, topdown=False):
+                for name in files:
+                    if name in self.filenames:
+                        self.filepaths.append(os.path.join(root,name))
+                        print(os.path.join(root,name))
+            self.echartsFile = u'FamilyPortfolio.html'
+
         # 持仓基金数据的本地保存路径标识
         self.fundJsonFilePathExt = self.excelFilePathExt
         self.fundCategorys = self.getFundCategorys()
-        self.filepaths = []
-        for root, dirs, files in os.walk(self.pm.holdingOutputPath, topdown=False):
-            for name in files:
-                if name in self.filenames:
-                    self.filepaths.append(os.path.join(root,name))
         
         # 基金数据模型集合
         self.fundModelArray = []
@@ -130,9 +162,9 @@ class assetAllocationCombine:
         if u'螺丝钉定投' in filepath:
             return u'螺丝钉定投'
         elif u'danjuan_李淑云' in filepath:
-            return u'李淑云螺丝钉'
+            return u'母螺丝钉'
         elif u'danjuan_康世海' in filepath:
-            return u'康世海螺丝钉'
+            return u'父螺丝钉'
         elif u'10万补充ETF计划' in filepath:
             return u'且慢补充 150 份'
         elif u'我的S定投计划' in filepath:
@@ -140,13 +172,17 @@ class assetAllocationCombine:
         elif u'tiantian_康力泉' in filepath:
             return u'天天基金'
         elif u'tiantian_李淑云' in filepath:
-            return u'天天基金'
+            return u'母天天基金'
         elif u'guangfa' in filepath:
             return u'支付宝'
         elif u'huatai_康力泉' in filepath:
             return u'股票账户'
         elif u'cash_康力泉' in filepath:
             return u'现金账户'
+        elif u'cash_康世海' in filepath:
+            return u'父现金账户'
+        elif u'cash_李淑云' in filepath:
+            return u'母现金账户'
         elif u'freeze_康力泉' in filepath:
             return u'冻结资金'
         return '未知'
@@ -172,7 +208,7 @@ class assetAllocationCombine:
 
 
 if len(sys.argv) <= 1:
-    print(u'[ERROR] 参数不足。需要键入策略编号。a：康力泉股票情况 b：父母 c：康力泉整体资产配置情况')
+    print(u'[ERROR] 参数不足。需要键入策略编号。a：康力泉股票情况 b：父母 c：康力泉整体资产配置情况 d: 全家整体情况')
     exit()
 strategy = sys.argv[1]
 combine = None
@@ -182,6 +218,8 @@ elif strategy == 'b':
     combine = assetAllocationCombine('b')
 elif strategy == 'c':
     combine = assetAllocationCombine('c')
+elif strategy == 'd':
+    combine = assetAllocationCombine('d')
 else:
     print(u'[ERROR] 参数错误，不支持的策略编号。')
     exit()
@@ -209,6 +247,8 @@ if strategy == 'a' or strategy == 'c':
     jsObject = assetAllocationJSObjectParser()
 elif strategy == 'b':
     jsObject = assetAllocationJSObjectParser('b')
+elif strategy == 'd':
+    jsObject = assetAllocationJSObjectParser('d')
 jsObject.generateEchartsJsonFile(assetModelArray)
 jsObject.generateJSObjectFile(assetModelArray,combine.echartsJSFilePathExt)
 

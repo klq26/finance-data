@@ -37,7 +37,11 @@ class allFundSpiderMultiProcess:
             args = [r"powershell","python",os.path.join(self.pm.parentDir, pyFile),"b"]
             print('[Executing] {0} b...'.format(os.path.join(self.pm.parentDir, pyFile)))
             p = subprocess.Popen(args)
-        
+        # 拷贝文件
+        fileName = u'cash_{0}.txt'.format(u'李淑云')
+        shutil.copy(os.path.join(self.pm.inputPath,fileName),os.path.join(self.pm.holdingOutputPath,fileName))
+        fileName = u'cash_{0}.txt'.format(u'康世海')
+        shutil.copy(os.path.join(self.pm.inputPath,fileName),os.path.join(self.pm.holdingOutputPath,fileName))        
 
 if __name__ == '__main__':
     strategy = 'a'
