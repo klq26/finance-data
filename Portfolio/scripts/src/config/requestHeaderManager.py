@@ -46,7 +46,7 @@ class requestHeaderManager:
         
     def getQiemanKLQ(self):
         return self.getHeaders(os.path.join(self.folder,u'qieman_klq.txt'))
-        
+
     def getGuangfaKLQ(self):
         return self.getHeaders(os.path.join(self.folder,u'guangfa_klq.txt'))
     
