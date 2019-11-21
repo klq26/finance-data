@@ -10,6 +10,7 @@ class requestHeaderManager:
         # 便于外部函数快速打开所有的 header.txt
         self.klqHeaderfiles = \
         [\
+            os.path.join(self.folder,u'sui_klq.txt'),\
             os.path.join(self.folder,u'xueqiu_klq.txt'),\
             os.path.join(self.folder,u'danjuan_klq.txt'),\
             os.path.join(self.folder,u'qieman_klq.txt'),\
@@ -52,6 +53,9 @@ class requestHeaderManager:
     def getXueqiuKLQ(self):
         return self.getHeaders(os.path.join(self.folder,u'xueqiu_klq.txt'))
         
+    def getSuiKLQ(self):
+        return self.getHeaders(os.path.join(self.folder,u'sui_klq.txt'))
+        
     def getHeaders(self,filepath):
         headers = {}
         with open(filepath,'r',encoding=u'utf-8') as f:
@@ -59,7 +63,7 @@ class requestHeaderManager:
             for i in range(1,len(lines)):
                 line = lines[i].strip('\n')
                 values = line.split('\t')
-                headers[values[0]] = values[1]
+                headers[values[0].replace(':','')] = values[1]
         return headers
         
 if __name__ == '__main__':
