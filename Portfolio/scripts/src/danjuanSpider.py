@@ -15,8 +15,6 @@ class danjuanSpider:
     # 初始化构造函数
     def __init__(self, strategy = 'a'):
         self.luosidingUrl = u'https://danjuanapp.com/djapi/holding/plan/CSI666'
-        # 暂存，这是拿钉钉宝数据的，暂时不算很重要
-        self.dingdingbaoUrl = u'https://danjuanapp.com/position/strategy/CSI1021'
         self.strategy = strategy
         if strategy == 'a':
             self.pm = pathManager(strategyName='康力泉')
@@ -26,7 +24,6 @@ class danjuanSpider:
 
     def getKLQ(self):
         self.requestWithName(self.luosidingUrl, '螺丝钉定投', self.headerManager.getDanjuanKLQ())
-        self.requestWithName(self.dingdingbaoUrl, '钉钉宝', self.headerManager.getDanjuanKLQ())
     
     def getLSY(self):
         self.requestWithName(self.luosidingUrl, '李淑云',self.headerManager.getDanjuanLSY())

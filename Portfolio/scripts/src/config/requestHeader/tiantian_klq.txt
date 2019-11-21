@@ -1,13 +1,14 @@
-	GET /xjb/index HTTP/1.1
-Host	trade.1234567.com.cn
-Connection	keep-alive
-Upgrade-Insecure-Requests	1
-User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36
-Sec-Fetch-User	?1
-Accept	text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3
-Sec-Fetch-Site	same-origin
-Sec-Fetch-Mode	navigate
+	POST /do.aspx/CheckLogin HTTP/1.1
+Origin	https://trade.1234567.com.cn
 Referer	https://trade.1234567.com.cn/MyAssets/default
+User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/18.17763
+Accept	application/json, text/javascript, */*; q=0.01
+Accept-Language	zh-Hans-CN,zh-Hans;q=0.8,en-US;q=0.6,en;q=0.4,ja;q=0.2
+Content-Type	application/json; charset=utf-8
+X-Requested-With	XMLHttpRequest
 Accept-Encoding	gzip, deflate, br
-Accept-Language	zh-CN,zh;q=0.9
-Cookie	ASP.NET_SessionId=xveljgkyx4b0p5ki23l0zrpj; st_si=67319759859114; st_asi=delete; FundTradeLoginTab=0; FundTradeLoginCard=0; st_pvi=18161887090912; st_inirUrl=http%3A%2F%2F1234567.com.cn%2F; st_sp=2019-11-01%2006%3A42%3A57; st_sn=37; st_psi=20191120070755773-112200304021-2946285632; cp_token=b24174bfe08a4707aec23416ddf5a580; FundTradeLoginUser=NS880Jf04G7P2LHDt+5LZYUuUjtgr/bqJ7QqQvB+U6p+hxMa7cpVUuwSK0BspDJDqEFs5GXL; fund_trade_cn=NLnvp2FeM2vieBGHwnYTpbGOEwPc5YcB0KKlrAWJTkgJVIrja4Df+RrWQhU4hOH6I7CKmKx9np0XAxvabTyNwnX+hW5z1A7KMrDPLNNI7pUVVUbadH4=; fund_trade_name=Nv0myMFh8GNfuCKOLi5UkXDZDubgdGJLX8I4QB2YkO/yUxWnRrFlamwO+vVxjbzDgkiMf+sW; fund_trade_visitor=N6fJ8Vxd5G9gY8oxVP5+76C0RUEgEfX7G+t2QPsFuKikbx6Yd6TMU4wIicEX0asDy/KAOJXw; fund_trade_risk=NI8YZ8zkWGko+72Vkn5R0/ze+b6gEAmupM4RQ4wmJnyQVxbkThJi5Xwh+IYyvupDIbWBqGQW; fund_trade_gps=6; VipLevel=1; TradeLoginToken=e2c5b7fbcb5d411f87d56823aeab0e4b; UTOKEN=NLnvp2FeM2vieBGHwnYTpbGOEwPc5YcB0KKlrAWJTkgJVIrja4Df+RrWQhU4hOH6I7CKmWxsOGxSfmXv6l1BwgdyeJbyK6gBywD8KHpHE/clAJlSn4I=; LToken=0e7de4f807664cab9f605f840cd809a5; fund_trade_trackid=gEtiEXcAZY8YoTZdxv+YJIiqgUpO+xMwuw+Bwz5mDrM0MJ868O5BA5Fklzsu9R4PIGGSsCvM9wSNS8xsx1EcLw==
+Host	trade.1234567.com.cn
+Content-Length	0
+Connection	Keep-Alive
+Cache-Control	no-cache
+Cookie	st_si=15440516115654; st_inirUrl=http%3A%2F%2Fwww.1234567.com.cn%2F; st_sp=2019-11-04%2012%3A30%3A51; FundTradeLoginUser=TuC82lw/VRo8ncaH9v5Iool+LlYmHL2RjP8eC6puoHAuchimFh3opm6ka8eDZc7AM6pcZQyJ; st_pvi=39534940810836; TradeLoginToken=c9fabe19113345118838d10e06262690; cp_token=c6cbb7ef208544129a471dd30e23db3a; fund_trade_cn=Te0ojEOjNOYaLxRYleRJuDZwrJNm5QsFUbOVcvcmecmVr2roGecEfucACzVHj8FBUAa0bghUvt08fxicWob86Y2pUh7efFafKYAA5+WZ4d72qdhy6as=; fund_trade_name=TPrJkuxlgRNPDY691s575HBITaEmas4wFGbmCGdIIOS8LhXl0CUQM36WPf3OUFZAS7QBbLYl; fund_trade_visitor=ToZmoSCXxRAw0t99Pr57T8YrAUZmx5XmFVYVCGXxaZAqphqSC64ejI6SjR3kpO4AnJB8YGsi; fund_trade_risk=T7XYLoX6ZRJYrWp+gR5jkb4NuPvmlEpmNaFUCZBpzMSrvhFi2NoVqy6FRYjA9iTAwLdQIoDr; fund_trade_gps=6; VipLevel=1; UTOKEN=Te0ojEOjNOYaLxRYleRJuDZwrJNm5QsFUbOVcvcmecmVr2roGecEfucACzVHj8FBUAa0bfhrWIt+IC87QROs6uic7A/1HnKbIwAAp8Qu8g4HPPYm5GM=; LToken=00faf71b8b64493892992e466664b3c1; fund_trade_trackid=LVr3I174gzl5bp79KTx3qYzaUV28gwTvwvy8o4SSujAQKbB4V+PHFlxGXrax4EkI1c/xGrS3A7EBLtTV4AP54w==; FundTradeLoginTab=0; FundTradeLoginCard=0; ASP.NET_SessionId=iwfzmmtljsbtichzf02m5uq2

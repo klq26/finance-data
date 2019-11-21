@@ -119,3 +119,4 @@ class assetAllocationConsoleParser:
         with open(os.path.join(self.outputPath,u'资产配置分类情况.html'),'a+',encoding=u'utf-8') as f:
             f.write('<h3>三级分类</h3>')
             f.write(tb.get_html_string(format=True))
+        os.startfile(os.path.join(self.outputPath,u'资产配置分类情况.html'))
