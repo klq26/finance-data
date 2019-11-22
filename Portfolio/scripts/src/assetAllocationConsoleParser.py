@@ -13,7 +13,7 @@ from model.assetModel import assetModel
 from model.echartsModel import echartsModel
 # config
 from config.assetCategoryConstants import assetCategoryConstants
-from config.xueqiuIndexValue import xueqiuIndexValue
+from config.indexInfo import indexInfo
 # tools
 from tools.dingtalk import dingtalk
 
@@ -24,7 +24,7 @@ class assetAllocationConsoleParser:
         self.category1Array = categoryConstants.category1Array
         self.category2Array = categoryConstants.category2Array
         self.category3Array = categoryConstants.category3Array
-        self.xueqiuIndexValue = xueqiuIndexValue()
+        self.indexInfo = indexInfo()
         self.dingtalk = dingtalk()
         self.outputPath = path
     
@@ -96,7 +96,7 @@ class assetAllocationConsoleParser:
             f.write(tb.get_html_string(format=True))
         print('\n三级分类：\n')
         tb = PrettyTable()
-        tb.field_names = [u"名称", u'指数成本', u"分类市值", u"盈亏（元）", u"分类盈亏率", u"组合占比", u"组合盈亏贡献"]
+        tb.field_names = [u"名称", u'指数成本',u'持仓 pe',u'持仓 pb',u'指数 roe', u"分类市值", u"盈亏（元）", u"分类盈亏率", u"组合占比", u"组合盈亏贡献"]
         for category in self.category3Array:
             marketCaps = [x.holdMarketCap for x in modelArray if x.category3 == category]
             # 有些组合没有部分三级分类，应该忽略该级别的循环
@@ -108,12 +108,18 @@ class assetAllocationConsoleParser:
             gain = reduce(lambda x,y: x+y, totalGains)
             # 指数成本（三级分类持仓成本，换算成指数的点数）
             indexValue = 0.0
-            for symbol in self.xueqiuIndexValue.indexSymbols:
+            peValue = 0.0
+            pbValue = 0.0
+            roeValue = 0.0
+            for symbol in self.indexInfo.indexInfoList:
                 if symbol['category3'] == category:
-                    indexValue = float(symbol['close']) / (1 + (gain/(marketCap - gain)))
+                    indexValue = float(symbol['result']['close']) / (1 + (gain/(marketCap - gain)))
+                    peValue = float(symbol['result']['pe']) / (1 + (gain/(marketCap - gain)))
+                    pbValue = float(symbol['result']['pb']) / (1 + (gain/(marketCap - gain)))
+                    roeValue =  float(symbol['result']['roe']) * 100
             #print(u'{0} 市值：{1}\t占比：{2}%\t盈亏：{3}\t占比：{4}%'.format(category, self.beautify(marketCap), self.beautify(marketCap / totalMarketCap * 100), self.beautify(gain), self.beautify(gain / totalGain * 100)))
             # prettytable 输出
-            tb.add_row([category, self.beautify(indexValue), self.beautify(marketCap), self.beautify(gain),u'{0}%'.format(self.beautify(gain/(marketCap - gain) * 100)), u'{0}%'.format(self.beautify(marketCap / totalMarketCap * 100)), u'{0}%'.format(self.beautify(gain / totalGain * 100))])
+            tb.add_row([category, u'{0:.2f}'.format(self.beautify(indexValue)), u'{0:.2f}'.format(self.beautify(peValue)), u'{0:.2f}'.format(self.beautify(pbValue)), u'{0:.2f}%'.format(self.beautify(roeValue)), self.beautify(marketCap), self.beautify(gain),u'{0}%'.format(self.beautify(gain/(marketCap - gain) * 100)), u'{0}%'.format(self.beautify(marketCap / totalMarketCap * 100)), u'{0}%'.format(self.beautify(gain / totalGain * 100))])
         print(tb)
         # 同时写入文件
         with open(os.path.join(self.outputPath,u'资产配置分类情况.html'),'a+',encoding=u'utf-8') as f:

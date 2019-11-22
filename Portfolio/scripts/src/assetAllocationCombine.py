@@ -7,7 +7,7 @@ import time
 
 from config.pathManager import pathManager
 from config.requestHeaderManager import requestHeaderManager
-from config.xueqiuIndexValue import xueqiuIndexValue
+from config.indexInfo import indexInfo
 # 多种统计输出
 from assetAllocationExcelParser import assetAllocationExcelParser               # 输出资产配置信息到 Excel 表
 from assetAllocationHtmlParser import assetAllocationHtmlParser               # 输出资产配置信息到 Html
@@ -27,8 +27,8 @@ class assetAllocationCombine:
         self.strategy = strategy # 默认 A 策略，即康力泉（不含现金和冻结资金）
         # 拿去最新指数值
         self.headerManager = requestHeaderManager()
-        self.xueqiuIndexValue = xueqiuIndexValue()
-        self.xueqiuIndexValue.fetchIndexValues(self.headerManager.getXueqiuKLQ())
+        self.indexInfo = indexInfo()
+        self.indexInfo.update()
         # 根据策略生成对于的变量配置参数
         if self.strategy == 'a':
             self.filenames = [u'danjuan_螺丝钉定投.txt',u'qieman_10万补充ETF计划.txt',u'qieman_我的S定投计划.txt', u'tiantian_康力泉.txt',u'huatai_康力泉.txt',u'guangfa_支付宝.txt']
