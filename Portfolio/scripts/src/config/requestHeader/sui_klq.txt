@@ -1,9 +1,11 @@
-:authority	www.sui.com
 :method	GET
 :path	/account/account.do
+:authority	www.sui.com
 :scheme	https
-accept	text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3
-accept-encoding:	gzip, deflate, br
-accept-language:	zh-CN,zh;q=0.9
-cache-control:	max-age=0
-cookie:	__vistor=C2FC974E1dkc2f30k; __nick=klq26%40163.com; SESSION_COOKIE=a8e14a3d3446b0d7b8155ae885f316e7; __utmc=121176714; __utmz=121176714.1572313309.44.20.utmcsr=login.sui.com|utmccn=(referral)|utmcmd=referral|utmcct=/auth.do; Hm_lvt_3db4e52bb5797afe0faaa2fde5c96ea4=1574293250; _bookTabSwitchList=05d9c1d88a4bc09f1e6a4ccc3fa3f033|1|0&; __spm_bid=4f56b7827a73s8f2p78972efeem5d8e4; SESSION=ef30e5a9-a3e3-40c7-b534-7bd8b6c172a3; __utma=121176714.1274987167.1566994582.1574300539.1574303726.54; __utmt=1; Hm_lpvt_3db4e52bb5797afe0faaa2fde5c96ea4=1574303737; __utmb=121176714.3.10.1574303726
+referer	https://www.sui.com/report_index.do
+accept	text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+accept-language	zh-Hans-CN,zh-Hans;q=0.8,en-US;q=0.6,en;q=0.4,ja;q=0.2
+upgrade-insecure-requests	1
+user-agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/18.17763
+accept-encoding	gzip, deflate, br
+cookie	Hm_lpvt_3db4e52bb5797afe0faaa2fde5c96ea4=1574330625; __utmc=121176714; __utmz=121176714.1574295963.24.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utma=121176714.1152311422.1552132033.1574295963.1574330586.25; _bookTabSwitchList=05d9c1d88a4bc09f1e6a4ccc3fa3f033|1|0&; __spm_bid=f50d9e9d7c73s898p46e7d9da4m06493; __utmb=121176714.2.10.1574330586; __utmt=1; Hm_lvt_3db4e52bb5797afe0faaa2fde5c96ea4=1574295960,1574330586; __nick=klq26%40163.com; __vistor=85CBB08A1d5h4ek1z; SESSION=ba05fb70-08cc-4c65-ad21-9864db5f67c5; SESSION_COOKIE=14ef1450ea7d6f4f82ef548c622dde6d

@@ -14,9 +14,12 @@ from config.pathManager import pathManager
 
 class cashSpider:
 
-    def __init__(self,strategyName):
+    def __init__(self, strategy, strategyName):
         self.strategyName = strategyName
-        self.pm = pathManager(strategyName)
+        if strategy == 'a':
+            self.pm = pathManager(u'康力泉')
+        elif strategy == 'b':
+            self.pm = pathManager(u'父母')
         self.requestHeaderManager = requestHeaderManager()
         
     # 获取随手记的现金部分数据
@@ -98,7 +101,7 @@ class cashSpider:
     def getTianTianHuoQiBao(self, url, header = None):
         # 请求
         url = url
-        headers = requestHeaderManager().getTiantianKLQ()
+        headers = header
         ssl._create_default_https_context = ssl._create_unverified_context
         requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
         response = requests.get(url,headers = headers, verify=False)
@@ -178,38 +181,11 @@ class cashSpider:
                 else:
                     f.write(line)
 
-    def getLSY(self):
-        totalCash = 0
-        totalGain = 0
-        print(u'全部资金情况：')
-        result = self.getTianTianHuoQiBao(u'https://trade7.1234567.com.cn/xjb/index', self.requestHeaderManager.getTiantianLSY())
-        totalCash = totalCash + result[0]
-        totalGain = totalGain + result[1]
-        print(u'\n总现金：{0} 元，总累计收益：{1} 元'.format(totalCash,totalGain))
-        cashPath = os.path.join(self.pm.inputPath, u'cash_{0}.txt'.format(self.strategyName))
-        cash_lines = []
-        # 读入内存
-        with open(cashPath,u'r',encoding='utf-8') as f:
-            for line in f.readlines():
-                cash_lines.append(line)
-        print(cash_lines)
-        # 写入磁盘
-        with open(cashPath,u'w',encoding='utf-8') as f:
-            for line in cash_lines:
-                if u'货币基金综合' in line:
-                    values = line.split('\t')
-                    values[3] = str(totalCash)
-                    values[4] = str(totalCash)
-                    values[5] = str(totalGain)
-                    f.write(u'\t'.join(values)+'\n')
-                else:
-                    f.write(line)
-
     def getKSH(self):
         totalCash = 0
         totalGain = 0
         print(u'全部资金情况：')
-        result = self.getTianTianHuoQiBao(self.requestHeaderManager.getTiantianKSH())
+        result = self.getTianTianHuoQiBao(u'https://trade7.1234567.com.cn/xjb/index', self.requestHeaderManager.getTiantianKSH())
         totalCash = totalCash + result[0]
         totalGain = totalGain + result[1]
         print(u'\n总现金：{0} 元，总累计收益：{1} 元'.format(totalCash,totalGain))
@@ -219,7 +195,6 @@ class cashSpider:
         with open(cashPath,u'r',encoding='utf-8') as f:
             for line in f.readlines():
                 cash_lines.append(line)
-        print(cash_lines)
         # 写入磁盘
         with open(cashPath,u'w',encoding='utf-8') as f:
             for line in cash_lines:
@@ -240,10 +215,10 @@ if __name__ == '__main__':
     if strategy == 'debug':
         print('[DEBUG] {0}'.format(__file__))
     elif strategy == 'a':
-        spider = cashSpider(u'康力泉')
+        spider = cashSpider(strategy, u'康力泉')
         spider.getKLQ()
     elif strategy == 'b':
-        spider1 = cashSpider(u'李淑云')
-        spider1.getLSY()
-        spider2 = cashSpider(u'康世海')
+        #spider1 = cashSpider(strategy, u'李淑云')
+        #spider1.getLSY()
+        spider2 = cashSpider(strategy, u'康世海')
         spider2.getKSH()

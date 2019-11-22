@@ -26,8 +26,8 @@ function getData()
                         "itemStyle":{
                             "color":"#0AA3B5"
                         },
-                        "name":"沪深300 , 4.06%",
-                        "value":4.06
+                        "name":"沪深300 , 4.05%",
+                        "value":4.05
                     },
                     {
                         "children":[],
@@ -57,8 +57,8 @@ function getData()
                 "itemStyle":{
                     "color":"#0AA3B5"
                 },
-                "name":"大盘股 , 5.24%",
-                "value":5.24
+                "name":"大盘股 , 5.23%",
+                "value":5.23
             },
             {
                 "children":[
@@ -67,8 +67,8 @@ function getData()
                         "itemStyle":{
                             "color":"#0AA3B5"
                         },
-                        "name":"中证500 , 16.48%",
-                        "value":16.48
+                        "name":"中证500 , 16.5%",
+                        "value":16.5
                     },
                     {
                         "children":[],
@@ -98,8 +98,8 @@ function getData()
                 "itemStyle":{
                     "color":"#0AA3B5"
                 },
-                "name":"中小盘股 , 18.61%",
-                "value":18.61
+                "name":"中小盘股 , 18.63%",
+                "value":18.63
             },
             {
                 "children":[
@@ -141,8 +141,8 @@ function getData()
                         "itemStyle":{
                             "color":"#0AA3B5"
                         },
-                        "name":"全指医药 , 3.89%",
-                        "value":3.89
+                        "name":"全指医药 , 3.88%",
+                        "value":3.88
                     },
                     {
                         "children":[],
@@ -180,8 +180,8 @@ function getData()
                 "itemStyle":{
                     "color":"#0AA3B5"
                 },
-                "name":"行业股 , 17.61%",
-                "value":17.61
+                "name":"行业股 , 17.6%",
+                "value":17.6
             }
         ],
         "itemStyle":{
@@ -319,8 +319,8 @@ function getData()
                         "itemStyle":{
                             "color":"#DBB6AC"
                         },
-                        "name":"黄金 , 1.16%",
-                        "value":1.16
+                        "name":"黄金 , 1.15%",
+                        "value":1.15
                     },
                     {
                         "children":[],

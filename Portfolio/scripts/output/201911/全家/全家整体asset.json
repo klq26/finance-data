@@ -7,10 +7,10 @@
         "category4":"990",
         "fundCode":"999990",
         "fundName":"货币基金综合",
-        "holdMarketCap":144837.41,
+        "holdMarketCap":148153.22,
         "holdNetValue":1.0,
-        "holdShareCount":144837.41,
-        "holdTotalGain":5409.19
+        "holdShareCount":148153.22,
+        "holdTotalGain":5695.51
     },
     {
         "appSource":"现金账户",
@@ -228,10 +228,10 @@
         "category4":"111",
         "fundCode":"510050",
         "fundName":"50ETF",
-        "holdMarketCap":8135.1,
+        "holdMarketCap":8086.5,
         "holdNetValue":2.337,
         "holdShareCount":2700.0,
-        "holdTotalGain":1825.2
+        "holdTotalGain":1776.6
     },
     {
         "appSource":"股票账户",
@@ -241,10 +241,10 @@
         "category4":"113",
         "fundCode":"510300",
         "fundName":"300ETF",
-        "holdMarketCap":36127.0,
+        "holdMarketCap":35945.0,
         "holdNetValue":3.447,
         "holdShareCount":9100.0,
-        "holdTotalGain":4759.3
+        "holdTotalGain":4577.3
     },
     {
         "appSource":"股票账户",
@@ -254,10 +254,10 @@
         "category4":"121",
         "fundCode":"510500",
         "fundName":"500ETF",
-        "holdMarketCap":207075.6,
+        "holdMarketCap":207386.0,
         "holdNetValue":5.601,
         "holdShareCount":38800.0,
-        "holdTotalGain":-10243.2
+        "holdTotalGain":-9932.8
     },
     {
         "appSource":"股票账户",
@@ -306,10 +306,10 @@
         "category4":"511",
         "fundCode":"518880",
         "fundName":"黄金ETF",
-        "holdMarketCap":14854.5,
+        "holdMarketCap":14823.0,
         "holdNetValue":2.856,
         "holdShareCount":4500.0,
-        "holdTotalGain":2002.5
+        "holdTotalGain":1971.0
     },
     {
         "appSource":"股票账户",
@@ -319,10 +319,10 @@
         "category4":"124",
         "fundCode":"159915",
         "fundName":"创业板",
-        "holdMarketCap":15226.0,
+        "holdMarketCap":15180.0,
         "holdNetValue":1.399,
         "holdShareCount":9200.0,
-        "holdTotalGain":2355.2
+        "holdTotalGain":2309.2
     },
     {
         "appSource":"股票账户",
@@ -332,10 +332,10 @@
         "category4":"142",
         "fundCode":"159938",
         "fundName":"广发医药",
-        "holdMarketCap":20606.4,
+        "holdMarketCap":20361.6,
         "holdNetValue":1.271,
         "holdShareCount":14400.0,
-        "holdTotalGain":2304.0
+        "holdTotalGain":2059.2
     },
     {
         "appSource":"且慢补充 150 份",
@@ -449,10 +449,10 @@
         "category4":"145",
         "fundCode":"502010",
         "fundName":"易方达证券公司分级",
-        "holdMarketCap":364.88,
-        "holdNetValue":0.9898,
-        "holdShareCount":377.37,
-        "holdTotalGain":-8.64
+        "holdMarketCap":458.17,
+        "holdNetValue":0.9853,
+        "holdShareCount":473.85,
+        "holdTotalGain":-8.73
     },
     {
         "appSource":"且慢补充 150 份",
@@ -891,10 +891,10 @@
         "category4":"990",
         "fundCode":"999990",
         "fundName":"货币基金综合",
-        "holdMarketCap":152413.55,
+        "holdMarketCap":160436.86,
         "holdNetValue":1.0,
-        "holdShareCount":152413.55,
-        "holdTotalGain":5051.51
+        "holdShareCount":160436.86,
+        "holdTotalGain":5063.27
     },
     {
         "appSource":"母现金账户",
@@ -904,10 +904,10 @@
         "category4":"990",
         "fundCode":"999990",
         "fundName":"货币基金综合",
-        "holdMarketCap":627273.3,
+        "holdMarketCap":626367.55,
         "holdNetValue":1.0,
-        "holdShareCount":627273.3,
-        "holdTotalGain":29470.81
+        "holdShareCount":626367.55,
+        "holdTotalGain":29519.02
     },
     {
         "appSource":"父螺丝钉",

@@ -1,14 +1,14 @@
-	GET /pmdj/v2/idx-eval/latest HTTP/1.1
-Host	qieman.com
-Connection	keep-alive
-Accept	application/json
-x-aid	A.8E975B001DK31V1CWJ905XECNHRDCWSN3
-x-sign	1574415218628BBA83658EC2C795369BF0845D126863F
-Authorization	Bearer eyJ2ZXIiOiJ2MSIsImFsZyI6IkhTNTEyIn0.eyJzdWIiOiI3OTQ1NDkiLCJpc3MiOiJzc28ucWllbWFuLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJleHAiOjE1NzUzNjMzMDUsImlhdCI6MTU3NDA2NzMwNSwianRpIjoiMTZkMzllMWEtNjFmMy00NjQ2LWJjOWItNjdlYWIzYjAyMmVjIn0.i915x98Axl1Nw9L5wWtM0u1XJgFDVh61pzzA4hfu9z-2Uh8zaThDnr__0_U6pXZv7kkrujW2MY6S-nhsASDrzA
-User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36
-x-request-id	albus.F63CD21A56226E7B873E
-Sec-Fetch-Site	same-origin
-Sec-Fetch-Mode	cors
-Referer	https://qieman.com/idx-eval
+	GET /pmdj/v2/uma/10209/detail HTTP/1.1
+Referer	https://qieman.com/umas/10209
+User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/18.17763
+Cache-Control	max-age=0
+accept	application/json
+Accept-Language	zh-Hans-CN,zh-Hans;q=0.8,en-US;q=0.6,en;q=0.4,ja;q=0.2
+authorization	Bearer eyJ2ZXIiOiJ2MSIsImFsZyI6IkhTNTEyIn0.eyJzdWIiOiI3OTQ1NDkiLCJpc3MiOiJzc28ucWllbWFuLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJleHAiOjE1NzU1OTU0MjUsImlhdCI6MTU3NDI5OTQyNSwianRpIjoiMWNiODAwNTUtZmU3Yi00MjE2LTg0Y2ItOTFmMmIwYTY4YjJjIn0.o0uw1wVOix1A3roVI5uyfCtQutdaZTsotUEL1A4bGAegVaSjfWTAAn4tIwtCSDXrEca35A55LXGLOF2tp5rmGw
+x-aid	A.3BD9A2401D4D6N4D9QCF27HEMHRZFA49S
+x-request-id	albus.90912789CA8E2E02A3B8
+x-sign	15743307512542908851202B431855D3F3501E91F6D4C
+>>>>>>> f78e9338d1b101b0e84c18df7bf044f710dce321
 Accept-Encoding	gzip, deflate, br
-Accept-Language	zh-CN,zh;q=0.9
+Host	qieman.com
+Connection	Keep-Alive
