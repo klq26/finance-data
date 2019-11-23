@@ -16,8 +16,7 @@ class tiantianSpider:
     
     # 初始化构造函数
     def __init__(self, strategy = 'a'):
-        self.url = u'https://trade.1234567.com.cn/MyAssets/do.aspx/GetHoldAssetsNew?1571906547481'
-        self.urlPrefix = u'https://trade.1234567.com.cn'
+        
         self.totalMarketCap = 0.0
         self.totalGain = 0.0
         self.results = []
@@ -29,12 +28,16 @@ class tiantianSpider:
         self.headerManager = requestHeaderManager()
 
     def getKLQ(self):
-        self.requestWithName(u'康力泉',self.headerManager.getTiantianKLQ())
+        self.url = u'https://trade.1234567.com.cn/MyAssets/do.aspx/GetHoldAssetsNew?1571906547481'
+        self.urlPrefix = u'https://trade.1234567.com.cn'
+        self.requestWithName(u'康力泉',self.headerManager.getTiantianKLQ(),self.headerManager.getTiantianKLQ())
     
     def getLSY(self):
-        self.requestWithName(u'李淑云',self.headerManager.getTiantianLSY())
+        self.url = u'https://trade7.1234567.com.cn/MyAssets/do.aspx/GetHoldAssetsNew?1574478714617'
+        self.urlPrefix = u'https://trade7.1234567.com.cn'
+        self.requestWithName(u'李淑云',self.headerManager.getTiantianLSY(),self.headerManager.getTiantianSingleLSY())
     
-    def requestWithName(self,name,header):
+    def requestWithName(self,name,header,singleHeader):
         """
         天天基金的爬虫略麻烦：
         1）请求为 POST 记得附带参数
@@ -53,6 +56,8 @@ class tiantianSpider:
         soup = BeautifulSoup(html, 'lxml')
         # 取出条目列表
         contentList = soup.find_all('tr')
+        totalCount = len(contentList)
+        current = 1
         pm = pathManager()
         with open(os.path.join(self.pm.holdingOutputPath,'tiantian_{}.txt'.format(name)),'w',encoding='utf-8') as f:
             for item in contentList:
@@ -64,7 +69,10 @@ class tiantianSpider:
                 # 从持仓详情页，取出品种的 摊薄单价 & 持仓份额
                 ssl._create_default_https_context = ssl._create_unverified_context
                 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
-                detailResponse = requests.get(detailUrl,headers = headers, verify=False)
+                # 老妈的天天基金详情需要独立的请求 header 无奈出此下策
+                singleHeaders = singleHeader
+                
+                detailResponse = requests.get(detailUrl,headers = singleHeaders, verify=False)
                 # e.g.
                 # <span id="tanbaodanjia">摊薄单价(元)：<span class="number14">1.0193</span></span>
                 # <div class="h20"><span class="ft w220">持仓份额(份)：<span class="numbergray14">65064.33</span></span></div>
@@ -92,6 +100,8 @@ class tiantianSpider:
                 # 计算整体情况
                 self.totalMarketCap = self.totalMarketCap + round(float(marketValue),2)
                 self.totalGain = self.totalGain + round(float(totalGain),2)
+                print('天天基金进度：{0:.2f}% {1} / {2}'.format(float(current)/totalCount * 100, current,totalCount))
+                current = current + 1
             # 开始写入整体情况
             titleLine = u'{0}\t总市值\t{1}\t累计收益\t{2}'.format(u'天天基金',round(self.totalMarketCap,2),round(self.totalGain,2))
             print(titleLine)

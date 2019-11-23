@@ -61,7 +61,7 @@ class functionPanel:
         self.window.title('Finance Data Dashboard')
         # 窗口标题小 icon
         #self.window.iconbitmap('iVBORw0KGgoAAAANSUhEUgAAABwAAAA2CAYAAADUOvnEAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA5tJREFUeNrcWE1oE0EUnp0kbWyUpCiNYEpCFSpIMdpLRTD15s2ePHixnj00N4/GoyfTg2fbiwdvvagHC1UQ66GQUIQKKgn1UAqSSFua38b3prPJZDs7s5ufKn0w7CaZ2W/fe9/73kyMRqNB3Nrj1zdn4RJ6du9T2u1a2iHYSxjP4d41oOHGQwAIwSUHIyh8/RA8XeiXh0kLGFoaXiTecw/hoTG4ZCSAaFkY0+BpsZceLtiAoV2FkepZSDk5EpppczBvpuuQCqx0YnkYcVVoqQYMyeCG+lFdaGkXeVOFNu4aEBalOBk6sbQrQF7gSdK5JXjuHXuYVIVyr0TZ0FjKDeCs6km7JYMUdrWAUVmZUBtmRnVPK+x6nIR2xomH06R35ggwJPeofWphr/W5UjPIxq8B2bKgE8C4HVHWvg+2gZjXj19PkdFztY7bk9TDCH/g6oafDPpaoMvZIRI5WyMB/0Hv++HkpTKE0kM+A+h20cPAfN4GuRyp9G+LMTW+z8rCLI8b46XO9zRcYZTde/j0AZm8WGb3Y2F9KLlE2nqYkjFLJAsDOl/lea0q55mqxXcL7YBc++bsCPMe8mUyU2ZIpnCoblca6TZA/ga2Co8PGg7UGUlEDd0ueptglbrRZLLE7poti6pCaWUo2pu1oaYI1CF9b9cCZPO3F8ikJQ/rPpQT5YETht26ss+uCIL2Y8vHwJGpA96GI5mjOlaKhowUy6BcNcgIhDviTGWCGFaqEuufWz4pgcbCh+w0gEOyOjTlTtYYlIWPYWKEsLDzOs+nhzaO1KEpd+MXpOoTUgKiNyhdy5aSMPNVqxtSsJFgza5EWA4zKtCJ2OGbLn0JSLu8+SL4G86p1Fpr7ABXdGFF/UTD4rfmFYFw4G9VAJ9SM3aF8l3yok4/J6IV9sDVb36ynmtJ2M5+CwxTYBdKNMBaocKGV2nYgkz6r+cHBP30MzAfi4Sy+BebSoPIOi8PW1PpCCvr/KOD4k9Zu0WSH0Y0+SxJ2awp/nlwKtcGyHOJ8vNHtRJzhPlsHr8MogtlVtwUU0tSM1x58upSKbfJnSKUR07GVMKkDNfXpzpv0RTHy3nZMVx5IOWdZIaPabGFvfpwpjnvfmJHXLaEvZUTseu/TeLc+xgAPhEAb/PbjO6PBaOTf6LQRh/dERde23zxLtOXbaKNhfq2L/1fAOPHDUhOpIf5485h7l+GNHHiSYPKE3Myz9sFxoJuAyazvwIMAItferha5LTqAAAAAElFTkSuQmCC')
-        self.window.iconbitmap('icon2.ico') # icon1.ico 备用
+        self.window.iconbitmap(os.path.join(currentDir,'icon1.ico')) # icon2.ico 备用
         # 窗口尺寸
         self.window.geometry('542x360+100-100') # +{0} = origin.x 80 +{1} = origin.y
         # 剪切板
@@ -79,8 +79,8 @@ class functionPanel:
     
     # 创建子视图
     def createWidgets(self):
-        klqHeaders = [u'tiantian_klq.txt',u'guangfa_klq.txt',u'qieman_klq.txt',u'danjuan_klq.txt',u'xueqiu_klq.txt']
-        parentsHeaders = [u'tiantian_lsy.txt',u'tiantian_ksh.txt', u'danjuan_lsy.txt',u'danjuan_ksh.txt']
+        klqHeaders = [u'tiantian_klq',u'guangfa_klq',u'qieman_klq',u'danjuan_klq',u'xueqiu_klq',u'sui_klq']
+        parentsHeaders = [u'tiantian_lsy',u'tiantian_lsy_single',u'tiantian_ksh', u'danjuan_lsy',u'danjuan_ksh']
         
         shorthands = [u'fetch Headers', u'src Folder', u'config Folder',u'input Folder', u'output Folder',u'echarts Folder']
         operations = [u'allFundSpider a',u'allFundSpider b',u'assetCombine c',u'assetCombine d', u'estimateFund a', u'estimateFund b']
@@ -133,7 +133,7 @@ class functionPanel:
         else:
             pm = pathManager()
             filename = event.widget['text']
-            filepath = os.path.join(pm.configPath,u'requestHeader',filename)
+            filepath = os.path.join(pm.configPath,u'requestHeader',u'{0}.txt'.format(filename))
             print(f'保存文件：{filepath}')
             with open(filepath,'w',encoding='utf-8') as f:
                 f.write(clipboardText)
@@ -248,6 +248,18 @@ class functionPanel:
             result = tkinter.messagebox.askokcancel('成功匹配“蛋卷基金 - 康力泉”', '要把剪切板上的内容覆盖到 danjuan_klq.txt 吗？')
             if result == True:
                 filepath = os.path.join(pm.configPath,u'requestHeader',u'danjuan_klq.txt')
+                print(filepath)
+                with open(filepath,'w',encoding=u'utf-8') as f:
+                    f.write(text)
+            else:
+                print(result)
+            return
+        # 尝试匹配随手记 - 康力泉
+        if u':path\t/account/account.do' in text and self.isSupposeToBeHeaderText(text):
+            print(u'[Success] 成功匹配到网站 Header：随手记 - 康力泉')
+            result = tkinter.messagebox.askokcancel('成功匹配“随手记 - 康力泉”', '要把剪切板上的内容覆盖到 sui_klq.txt 吗？')
+            if result == True:
+                filepath = os.path.join(pm.configPath,u'requestHeader',u'sui_klq.txt')
                 print(filepath)
                 with open(filepath,'w',encoding=u'utf-8') as f:
                     f.write(text)
