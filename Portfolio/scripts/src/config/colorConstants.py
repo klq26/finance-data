@@ -133,8 +133,14 @@ class colorConstants:
     # 10 进制色值转 16 进制
     def hexColorString(self, r=255, g=255, b=255):
         stringR = str(hex(int(r)))[2:4].upper()
+        if len(stringR) == 1:
+            stringR = '0'+stringR
         stringG = str(hex(int(g)))[2:4].upper()
+        if len(stringG) == 1:
+            stringG = '0'+stringG
         stringB = str(hex(int(b)))[2:4].upper()
+        if len(stringB) == 1:
+            stringB = '0'+stringB
         colorString = stringR + stringG + stringB
         return colorString
 
