@@ -13,18 +13,18 @@ from model.assetModel import assetModel
 from model.echartsModel import echartsModel
 # config
 from config.assetCategoryConstants import assetCategoryConstants
-from config.indexInfo import indexInfo
+from config.indexValueInfo import indexValueInfo
 # tools
 from tools.dingtalk import dingtalk
 
-class assetAllocationConsoleParser:
+class assetAllocationCategorySumParser:
 
     def __init__(self,path):
         categoryConstants = assetCategoryConstants()
         self.category1Array = categoryConstants.category1Array
         self.category2Array = categoryConstants.category2Array
         self.category3Array = categoryConstants.category3Array
-        self.indexInfo = indexInfo()
+        self.indexValueInfo = indexValueInfo()
         self.dingtalk = dingtalk()
         self.outputPath = path
     
@@ -111,7 +111,7 @@ class assetAllocationConsoleParser:
             peValue = 0.0
             pbValue = 0.0
             roeValue = 0.0
-            for symbol in self.indexInfo.indexInfoList:
+            for symbol in self.indexValueInfo.indexValueInfoList:
                 if symbol['category3'] == category:
                     indexValue = float(symbol['result']['close']) / (1 + (gain/(marketCap - gain)))
                     peValue = float(symbol['result']['pe']) / (1 + (gain/(marketCap - gain)))

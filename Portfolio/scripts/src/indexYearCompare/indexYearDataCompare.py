@@ -47,7 +47,7 @@ class indexYearDataCompare:
 
     def __init__(self):
         # 需要比对年线的品种
-        self.indexInfos = [ \
+        self.indexValueInfos = [ \
             {u"category1":u"A 股",u"category2":u"大盘股",u"category3":u"上证50",u"indexCode":u"000016",u"requestCode":u"0000161",u"categoryId":u"111"}, \
             {u"category1":u"A 股",u"category2":u"大盘股",u"category3":u"50AH",u"indexCode":u"000170",u"requestCode":u"0001701",u"categoryId":u"112"}, \
             {u"category1":u"A 股",u"category2":u"大盘股",u"category3":u"沪深300",u"indexCode":u"000300",u"requestCode":u"0003001",u"categoryId":u"113"}, \
@@ -90,18 +90,18 @@ class indexYearDataCompare:
 
     # 获取所有观察指数的年 K 数据
     def fetchIndexYearData(self):
-        for indexInfo in self.indexInfos:
-            code = indexInfo['requestCode']
+        for indexValueInfo in self.indexValueInfos:
+            code = indexValueInfo['requestCode']
             url = 'http://pdfm2.eastmoney.com/EM_UBG_PDTI_Fast/api/js?id={0}&TYPE=yk'.format(code)
             response = requests.get(url)
             dataList = response.text.split('\r\n')
             indexDir = os.path.join(self.outputDir,u'indexDataOfYear')
             if not os.path.exists(indexDir):
                 os.makedirs(indexDir)
-            filePath = os.path.join(indexDir,'{0}_{1}_{2}.txt'.format(indexInfo['categoryId'],indexInfo['category3'],indexInfo['indexCode']))
+            filePath = os.path.join(indexDir,'{0}_{1}_{2}.txt'.format(indexValueInfo['categoryId'],indexValueInfo['category3'],indexValueInfo['indexCode']))
 
             with open(filePath,'w',encoding='utf-8') as f:
-                print(indexInfo['category3'])
+                print(indexValueInfo['category3'])
                 for data in dataList:
                     values = str(data).replace('(','').split(',')
                     if len(values) < 3:

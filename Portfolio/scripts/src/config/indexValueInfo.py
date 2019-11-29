@@ -12,19 +12,19 @@ from bs4 import BeautifulSoup
 from config.requestHeaderManager import requestHeaderManager
 from config.pathManager import pathManager
 
-class indexInfo:
+class indexValueInfo:
 
     def __init__(self):
         self.requestHeaderManager = requestHeaderManager()
         self.pm = pathManager()
-        self.indexInfoList = []
+        self.indexValueInfoList = []
         self.indexValues = []
         self.qiemanEvaluations = []
         self.danjuanEvaluations = []
         # 读取磁盘数据
-        with open(os.path.join(self.pm.configPath,u'indexInfo.json'),u'r',encoding='utf-8') as f:
-            self.indexInfoList = json.loads(f.read())
-        #for index in self.indexInfoList:
+        with open(os.path.join(self.pm.configPath,u'indexValueInfo.json'),u'r',encoding='utf-8') as f:
+            self.indexValueInfoList = json.loads(f.read())
+        #for index in self.indexValueInfoList:
         #    print(index)
 
     # 更新指数 和 估值数据，存入磁盘
@@ -37,7 +37,7 @@ class indexInfo:
         self.updateIndexEvaluation()
         print('90%...')
         # 更新数组
-        for index in self.indexInfoList:
+        for index in self.indexValueInfoList:
             # 更新点数
             for value in self.indexValues:
                 if index['valueSymbol'] == value['valueSymbol']:
@@ -63,14 +63,14 @@ class indexInfo:
                         index['result']['roe'] = eval['roe']
                         break
         # 写入磁盘
-        with open(os.path.join(self.pm.configPath,u'indexInfo.json'),u'w+',encoding='utf-8') as f:
-            f.write(json.dumps(self.indexInfoList, ensure_ascii = False, sort_keys = True, indent = 4, separators=(',', ':')))
+        with open(os.path.join(self.pm.configPath,u'indexValueInfo.json'),u'w+',encoding='utf-8') as f:
+            f.write(json.dumps(self.indexValueInfoList, ensure_ascii = False, sort_keys = True, indent = 4, separators=(',', ':')))
         print('更新完毕')
 
     # 更新指数点数
     def updateIndexValues(self):
         # 读取雪球指数点位
-        xueqiuSymbols = [x for x in self.indexInfoList if x['valueType'] == u'xueqiu']
+        xueqiuSymbols = [x for x in self.indexValueInfoList if x['valueType'] == u'xueqiu']
         xueqiuUrlPrefix = u'https://stock.xueqiu.com/v5/stock/batch/quote.json?symbol='
         url = xueqiuUrlPrefix
         for symbol in xueqiuSymbols:
@@ -87,7 +87,7 @@ class indexInfo:
             self.indexValues.append(data)
 
         # 读取东方财富指数点位
-        eastMoneySymbols = [x for x in self.indexInfoList if x['valueType'] == u'eastmoney']
+        eastMoneySymbols = [x for x in self.indexValueInfoList if x['valueType'] == u'eastmoney']
         for symbol in eastMoneySymbols:
             url = 'http://pdfm2.eastmoney.com/EM_UBG_PDTI_Fast/api/js?id={0}&TYPE=yk'.format(symbol['valueSymbol'])
             response = self.requestUrl(url, self.requestHeaderManager.getXueqiuKLQ())
@@ -160,5 +160,5 @@ class indexInfo:
         return response
 
 if __name__ == '__main__':
-    info = indexInfo()
+    info = indexValueInfo()
     info.update()

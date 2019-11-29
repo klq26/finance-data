@@ -7,11 +7,11 @@ import time
 
 from config.pathManager import pathManager
 from config.requestHeaderManager import requestHeaderManager
-from config.indexInfo import indexInfo
+from config.indexValueInfo import indexValueInfo
 # 多种统计输出
 from assetAllocationExcelParser import assetAllocationExcelParser               # 输出资产配置信息到 Excel 表
 from assetAllocationHtmlParser import assetAllocationHtmlParser               # 输出资产配置信息到 Html
-from assetAllocationConsoleParser import assetAllocationConsoleParser           # 输出资产配置信息到控制台
+from assetAllocationCategorySumParser import assetAllocationCategorySumParser           # 输出资产配置分类汇总信息到控制台
 from assetAllocationJSObjectParser import assetAllocationJSObjectParser         # 输出资产配置信息到 echarts 专用 data.js 对象
 from assetAllocationEstimateExcelParser import assetAllocationEstimateExcelParser   # 输出当日收盘后的估算净值及预测涨跌金额
 from assetAllocationEstimateHtmlParser import assetAllocationEstimateHtmlParser   # 输出当日收盘后的估算净值及预测涨跌金额
@@ -21,14 +21,14 @@ from model.assetModel import assetModel
 
 class assetAllocationCombine:
     """
-    把天天基金，且慢，螺丝钉计划的数据整合到一张 Excel 表
+    把各网站的数据整合，汇总，输出
     """
     def __init__(self, strategy='a'):
         self.strategy = strategy # 默认 A 策略，即康力泉（不含现金和冻结资金）
-        # 拿去最新指数值
+        # 拿取最新指数值
         self.headerManager = requestHeaderManager()
-        self.indexInfo = indexInfo()
-        self.indexInfo.update()
+        self.indexValueInfo = indexValueInfo()
+        self.indexValueInfo.update()
         # 根据策略生成对于的变量配置参数
         if self.strategy == 'a':
             self.filenames = [u'danjuan_螺丝钉定投.txt',u'qieman_10万补充ETF计划.txt',u'qieman_我的S定投计划.txt', u'tiantian_康力泉.txt',u'huatai_康力泉.txt',u'guangfa_支付宝.txt']
@@ -185,10 +185,8 @@ class assetAllocationCombine:
             return u'股票账户'
         elif u'cash_康力泉' in filepath:
             return u'现金账户'
-        elif u'cash_康世海' in filepath:
-            return u'父现金账户'
-        elif u'cash_李淑云' in filepath:
-            return u'母现金账户'
+        elif u'cash_父母' in filepath:
+            return u'父母现金账户'
         elif u'freeze_康力泉' in filepath:
             return u'冻结资金'
         return '未知'
@@ -240,10 +238,10 @@ assetExcel.generateExcelFile(assetModelArray,path=os.path.join(combine.pm.holdin
 assetHtml = assetAllocationHtmlParser()
 assetHtml.generateHtmlFile(assetModelArray,title=u'{0}资产配置'.format(combine.excelFilePathExt), path=os.path.join(combine.pm.holdingOutputPath, u'{0}资产配置.html'.format(combine.excelFilePathExt)))
 
-# 输出 控制台 统计信息
+# 输出 资产配置汇总信息 到控制台和 html
 # 注意：由于 assetHtml 内部会把一些数值类型变成 str 类型，导致后续流程错误，现在临时处理是重新读取一份 json 数据。后面应该看看如何深拷贝
 assetModelArray = combine.loadAssetModelArrayFromJson()
-console = assetAllocationConsoleParser(path=combine.pm.holdingOutputPath)
+console = assetAllocationCategorySumParser(path=combine.pm.holdingOutputPath)
 console.showInfo(assetModelArray)
 
 # 输出 echarts.json 和 data.json
