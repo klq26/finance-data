@@ -87,6 +87,24 @@ class colorConstants:
         colorString = stringR + stringG + stringB
         return colorString
 
+    def rgbTupleFromHexString(self,hexString):
+        hexString = hexString.replace('#','')
+        assert len(hexString) == 6, u'16 进制颜色必须是 6 字符长'
+        r = int(hexString[0:2],16)
+        g = int(hexString[2:4],16)
+        b = int(hexString[4:6],16)
+        return (r,g,b)
+
+
+    def hexColorStringByPercent(self, origin, zero = '#FFFFFF', rate = 1.0):
+        minR,minG,minB = self.rgbTupleFromHexString(zero)
+        maxR,maxG,maxB = self.rgbTupleFromHexString(origin)
+
+        return self.hexColorString(minR - (minR - maxR) * rate,
+                                   minG - (minG - maxG) * rate,
+                                   minB - (minB - maxB) * rate,)
+
+
     # 获取上涨级别色阶，取值范围 0 ~ 1.0，1.0是最红，0 是最浅色
     def getGradationColorForRaise(self, rate):
         assert rate >= 0 and rate <= 1.0, u'{0} 超出 getGradationColorForRise 取值范围'.format(
