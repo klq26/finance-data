@@ -65,7 +65,7 @@ class assetAllocationCombine:
                         self.filepaths.append(os.path.join(root,name))
         elif self.strategy == 'd':
             self.filenames = [u'danjuan_螺丝钉定投.txt',u'qieman_10万补充ETF计划.txt',u'qieman_我的S定投计划.txt', u'tiantian_康力泉.txt',u'huatai_康力泉.txt',u'guangfa_支付宝.txt',u'cash_康力泉.txt',u'freeze_康力泉.txt'\
-                ,u'danjuan_李淑云.txt',u'danjuan_康世海.txt',u'tiantian_李淑云.txt',u'cash_李淑云.txt',u'cash_康世海.txt',]
+                ,u'danjuan_李淑云.txt',u'danjuan_康世海.txt',u'tiantian_李淑云.txt','cash_父母.txt']
             self.excelFilePathExt = u'全家整体'
             self.echartsJSFilePathExt = u'全家'
             self.pm = pathManager(strategyName=u'全家')
@@ -210,8 +210,6 @@ class assetAllocationCombine:
             # object_hook 配合 init 传入 self.__dict__ = dictData 实现 json 字符串转 python 自定义对象
             contentList = json.loads(assetJsonFile.read(),object_hook=assetModel)
             return contentList
-    
-
 
 if len(sys.argv) <= 1:
     print(u'[ERROR] 参数不足。需要键入策略编号。a：康力泉股票情况 b：父母 c：康力泉整体资产配置情况 d: 全家整体情况')

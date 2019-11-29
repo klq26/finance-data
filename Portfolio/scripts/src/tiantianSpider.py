@@ -100,7 +100,9 @@ class tiantianSpider:
                 # 计算整体情况
                 self.totalMarketCap = self.totalMarketCap + round(float(marketValue),2)
                 self.totalGain = self.totalGain + round(float(totalGain),2)
-                print('天天基金进度：{0:.2f}% {1} / {2}'.format(float(current)/totalCount * 100, current,totalCount))
+                print('\r天天基金进度：{0:.2f}% {1} / {2}'.format(float(current)/totalCount * 100, current,totalCount),end='',flush=True)
+                if current == totalCount:
+                    print('\n')
                 current = current + 1
             # 开始写入整体情况
             titleLine = u'{0}\t总市值\t{1}\t累计收益\t{2}'.format(u'天天基金',round(self.totalMarketCap,2),round(self.totalGain,2))
@@ -126,7 +128,7 @@ if __name__ == '__main__':
         spider.getKLQ()
     elif strategy == 'b':
         spider.getLSY()
-    elif strategy == 'debug':
+    elif strategy == 'debug':a
         print('[DEBUG] {0}'.format(__file__))
     else:
         print(u'[ERROR] 参数错误，不支持的策略编号。')

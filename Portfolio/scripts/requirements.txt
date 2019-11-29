@@ -10,3 +10,5 @@ import openpyxl
 import prettytable
 # 简化网络请求
 import requests
+# 聚宽数据接口
+import jqdatasdk

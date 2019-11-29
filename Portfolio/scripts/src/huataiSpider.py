@@ -48,8 +48,8 @@ class huataiSpider:
                 # 名称，代码，持仓成本，持仓份额，持仓市值，累计收益
                 seq = (data[self.neededColumnIndexs[0]],data[self.neededColumnIndexs[1]],data[self.neededColumnIndexs[2]],\
                         data[self.neededColumnIndexs[3]],str(lastMarketCap), str(lastTotalGain))
-                self.totalMarketCap = self.totalMarketCap + round(float(data[self.neededColumnIndexs[4]]),2)
-                self.totalGain = self.totalGain + round(float(data[self.neededColumnIndexs[5]]),2)
+                self.totalMarketCap = self.totalMarketCap + round(float(lastMarketCap),2)
+                self.totalGain = self.totalGain + round(float(lastTotalGain),2)
                 self.results.append(u'\t'.join(seq))
         
         # 写入输出文件

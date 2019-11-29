@@ -52,10 +52,10 @@ class cashSpider:
         return (round(totalCash,2),round(0,2))
 
     # 获取且慢盈米宝
-    def getQieManYingMiBao(self):
+    def getQieManYingMiBao(self,headers):
         # 请求
         url = u'https://qieman.com/pmdj/v2/asset/summary'
-        headers = requestHeaderManager().getQiemanKLQ()
+        headers = headers
         ssl._create_default_https_context = ssl._create_unverified_context
         requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
         response = requests.get(url,headers = headers, verify=False)
@@ -64,7 +64,7 @@ class cashSpider:
         wallets = data['walletAssets']
         totalCash = wallets[0]['totalAsset']
         totalGain = wallets[0]['accumulatedProfit']
-        print(u'盈米宝：{0} 元，累计收益：{1} 元'.format(round(totalCash,2),round(totalGain,2)))
+        print(u'且慢盈米宝：{0} 元，累计收益：{1} 元'.format(round(totalCash,2),round(totalGain,2)))
         return (round(totalCash,2),round(totalGain,2))
 
     # 获取蛋卷钉钉宝短期债券
@@ -94,7 +94,7 @@ class cashSpider:
             totalCash = totalCash + round(item['market_value'],2)
             totalGain = totalGain + round(item['total_gain'],2)
         # print('\n')
-        print(u'钉钉宝：{0} 元，累计收益：{1} 元'.format(round(totalCash,2),round(totalGain,2)))
+        print(u'蛋卷钉钉宝：{0} 元，累计收益：{1} 元'.format(round(totalCash,2),round(totalGain,2)))
         return (round(totalCash,2),round(totalGain,2))
 
     # 获取天天基金活期宝
@@ -115,7 +115,25 @@ class cashSpider:
         totalCash = float(spanTag.text.replace(',',''))
         spanTag = soup.find(attrs={'id':'ctl00_body_lblSumBenefit'})
         totalGain = float(spanTag.text.replace(',',''))
-        print(u'现金宝：{0} 元，累计收益：{1} 元'.format(round(totalCash,2),round(totalGain,2)))
+        print(u'天天现金宝：{0} 元，累计收益：{1} 元'.format(round(totalCash,2),round(totalGain,2)))
+        return (round(totalCash,2),round(totalGain,2))
+
+        # 获取且慢盈米宝
+    
+    # 获取父母稳稳的幸福组合
+    def getQieManWenWenDeXingFu(self,headers):
+        # 请求
+        url = u'https://qieman.com/pmdj/v2/asset/summary'
+        headers = headers
+        ssl._create_default_https_context = ssl._create_unverified_context
+        requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+        response = requests.get(url,headers = headers, verify=False)
+        # 解析
+        data = json.loads(response.text)
+        wallets = data['propertyAssets']
+        totalCash = wallets[0]['caAsset']['totalAsset']
+        totalGain = wallets[0]['caAsset']['accumulatedProfit']
+        print(u'且慢稳稳的幸福：{0} 元，累计收益：{1} 元'.format(round(totalCash,2),round(totalGain,2)))
         return (round(totalCash,2),round(totalGain,2))
 
     def getKLQ(self):
@@ -125,13 +143,14 @@ class cashSpider:
         result = self.getSuiShouJi()
         totalCash = totalCash + result[0]
         totalGain = totalGain + result[1]
-        result = self.getQieManYingMiBao()
+        result = self.getQieManYingMiBao(headers=requestHeaderManager().getQiemanKLQ())
         totalCash = totalCash + result[0]
         totalGain = totalGain + result[1]
         result = self.getDanjuanDingDingBao()
         totalCash = totalCash + result[0]
         totalGain = totalGain + result[1]
         result = self.getTianTianHuoQiBao(u'https://trade.1234567.com.cn/xjb/index', self.requestHeaderManager.getTiantianKLQ())
+        
         totalCash = totalCash + result[0]
         totalGain = totalGain + result[1]
         totalCash = round(totalCash,2)
@@ -156,11 +175,11 @@ class cashSpider:
                 else:
                     f.write(line)
 
-    def getLSY(self):
+    def getParent(self):
         totalCash = 0
         totalGain = 0
         print(u'全部资金情况：')
-        result = self.getTianTianHuoQiBao(u'https://trade7.1234567.com.cn/xjb/index', self.requestHeaderManager.getTiantianLSY())
+        result = self.getQieManWenWenDeXingFu(headers=requestHeaderManager().getQiemanKSH())
         totalCash = totalCash + result[0]
         totalGain = totalGain + result[1]
         totalCash = round(totalCash,2)
@@ -172,36 +191,7 @@ class cashSpider:
         with open(cashPath,u'r',encoding='utf-8') as f:
             for line in f.readlines():
                 cash_lines.append(line)
-        #print(cash_lines)
-        # 写入磁盘
-        with open(cashPath,u'w',encoding='utf-8') as f:
-            for line in cash_lines:
-                if u'货币基金综合' in line:
-                    values = line.split('\t')
-                    values[3] = str(totalCash)
-                    values[4] = str(totalCash)
-                    values[5] = str(totalGain)
-                    f.write(u'\t'.join(values)+'\n')
-                else:
-                    f.write(line)
-
-    def getKSH(self):
-        totalCash = 0
-        totalGain = 0
-        print(u'全部资金情况：')
-        result = self.getTianTianHuoQiBao(u'https://trade7.1234567.com.cn/xjb/index', self.requestHeaderManager.getTiantianKSH())
-        totalCash = totalCash + result[0]
-        totalGain = totalGain + result[1]
-        totalCash = round(totalCash,2)
-        totalGain = round(totalGain,2)
-        print(u'\n总现金：{0} 元，总累计收益：{1} 元'.format(totalCash,totalGain))
-        cashPath = os.path.join(self.pm.inputPath, u'cash_{0}.txt'.format(self.strategyName))
-        cash_lines = []
-        # 读入内存
-        with open(cashPath,u'r',encoding='utf-8') as f:
-            for line in f.readlines():
-                cash_lines.append(line)
-        #print(cash_lines)
+        print(cash_lines)
         # 写入磁盘
         with open(cashPath,u'w',encoding='utf-8') as f:
             for line in cash_lines:
@@ -215,7 +205,7 @@ class cashSpider:
                     f.write(line)
 
 if __name__ == '__main__':
-    strategy = 'a'
+    strategy = 'b'
     if len(sys.argv) >= 2:
         #print(u'[ERROR] 参数不足。需要键入策略编号。a：康力泉 b：父母')
         strategy = sys.argv[1]
@@ -225,7 +215,5 @@ if __name__ == '__main__':
         spider = cashSpider(strategy, u'康力泉')
         spider.getKLQ()
     elif strategy == 'b':
-        spider1 = cashSpider(strategy, u'李淑云')
-        spider1.getLSY()
-        spider2 = cashSpider(strategy, u'康世海')
-        spider2.getKSH()
+        spider1 = cashSpider(strategy, u'父母')
+        spider1.getParent()

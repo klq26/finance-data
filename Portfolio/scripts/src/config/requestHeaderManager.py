@@ -43,12 +43,11 @@ class requestHeaderManager:
     
     def getTiantianSingleLSY(self):
         return self.getHeaders(os.path.join(self.folder,u'tiantian_lsy_single.txt'))
-
-    def getTiantianKSH(self):
-        return self.getHeaders(os.path.join(self.folder,u'tiantian_ksh.txt'))
-        
     def getQiemanKLQ(self):
         return self.getHeaders(os.path.join(self.folder,u'qieman_klq.txt'))
+    
+    def getQiemanKSH(self):
+        return self.getHeaders(os.path.join(self.folder,u'qieman_ksh.txt'))
 
     def getGuangfaKLQ(self):
         return self.getHeaders(os.path.join(self.folder,u'guangfa_klq.txt'))

@@ -80,7 +80,7 @@ class functionPanel:
     # 创建子视图
     def createWidgets(self):
         klqHeaders = [u'tiantian_klq',u'guangfa_klq',u'qieman_klq',u'danjuan_klq',u'xueqiu_klq',u'sui_klq']
-        parentsHeaders = [u'tiantian_lsy',u'tiantian_lsy_single',u'tiantian_ksh', u'danjuan_lsy',u'danjuan_ksh']
+        parentsHeaders = [u'tiantian_lsy',u'tiantian_lsy_single', u'qieman_ksh', u'danjuan_lsy',u'danjuan_ksh']
         
         shorthands = [u'fetch Headers', u'src Folder', u'config Folder',u'input Folder', u'output Folder',u'echarts Folder']
         operations = [u'allFundSpider a',u'allFundSpider b',u'assetCombine c',u'assetCombine d', u'estimateFund a', u'estimateFund b']

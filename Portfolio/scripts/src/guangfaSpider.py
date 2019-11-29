@@ -15,8 +15,6 @@ class guangfaSpider:
     # 初始化构造函数
     def __init__(self):
         # 注意；这些请求需要从未登录状态，一路点详情进入具体页面才会发送，否则追踪不到
-        #self.url = u'https://trade.gffunds.com.cn/mapi/acco_hold_detail?fund_code=001064'
-        #self.url = u'https://trade.gffunds.com.cn/mapi/account/assets/position-gains?tttt=0.7061572339183033'
         self.url = u'https://trade.gffunds.com.cn/mapi/account/assets/position-gains?tttt=0.5490600043154694'
         self.headerManager = requestHeaderManager()
         
