@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta>
+    <title>持仓股票行业分类信息</title>
+    <!-- 引入 lib/echarts.min.js -->
+    <script src="lib/echarts.min.js"></script>
+    <script src="stockIndustry_全家.js"></script>
+</head>
+<body bgcolor='#333333'>
+    <div id="main" style="width:1680px;height:1680px;"></div>
+    <script>
+        var myChart = echarts.init(document.getElementById('main'));
+        var data = getData();
+        option = {
+            title: {
+                text: '全家股票行业构成',
+                textStyle: {
+                    fontSize: 36,
+                    color: '#FFFFFF',
+                    align: 'center'
+                },
+                subtextStyle: {
+                    align: 'center'
+                },
+            },
+            series: {
+                type: 'sunburst',
+                highlightPolicy: 'ancestor',
+                data: data,
+                radius: [0, '95%'],
+                sort: null,
+                levels: [{}, {
+                    r0: '10%',
+                    r: '35%',
+                    itemStyle: {
+                        borderWidth: 2
+                    },
+                    label: {
+                        align : 'center',
+                        fontSize : 20,
+                        color : '#333'
+                    }
+                }, {
+                    r0: '35%',
+                    r: '70%',
+                    label: {
+                        align: 'center',
+                        fontSize : 20,
+                        color : '#333'
+                    }
+                }, {
+                    r0: '70%',
+                    r: '80%',
+                    label: {
+                        position: 'outside',
+                        padding: 5,
+                        fontSize : 20,
+                        silent: false,
+                    },
+                    itemStyle: {
+                        borderWidth: 2
+                    }
+                }]
+            }
+        };
+        myChart.setOption(option);
+        window.onresize = myChart.resize;
+    </script>
+</body>
+</html>

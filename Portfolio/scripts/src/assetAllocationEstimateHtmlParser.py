@@ -75,9 +75,14 @@ class assetAllocationEstimateHtmlParser:
         estimateCache = {}
         # 写入基金持仓数据
         data = []
+        # 进度标识
+        current = 0
+        totalCount = len(fundModelArray)
         for fundModel in fundModelArray:
             # 现金，冻结资金，海外债券没什么可估值的。海外成熟市场因为是下午或晚上开盘，也没有估值的必要
             if fundModel.category1 in [u'现金',u'冻结资金',u'海外成熟'] or fundModel.category2 == u'海外债券':
+                current = current + 1
+                print('\rExcel estimate 进度：{0:.2f}% {1} / {2}'.format(float(current)/totalCount * 100, current,totalCount),end='',flush=True)
                 continue
             
             if fundModel.fundCode in estimateCache.keys():
@@ -87,6 +92,8 @@ class assetAllocationEstimateHtmlParser:
                 estimateCache[fundModel.fundCode] = estimateValues
             #print(estimateValues)  # 元组数据
             time.sleep(0.1)
+            current = current + 1
+            print('\rHtml estimate 进度：{0:.2f}% {1} / {2}'.format(float(current)/totalCount * 100, current,totalCount),end='',flush=True)
             if estimateValues:
                 fundModel.currentNetValue = estimateValues[0]
                 fundModel.currentNetValueDate = estimateValues[1]

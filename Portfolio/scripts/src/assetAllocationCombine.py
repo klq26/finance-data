@@ -12,6 +12,7 @@ from config.indexValueInfo import indexValueInfo
 from assetAllocationExcelParser import assetAllocationExcelParser               # 输出资产配置信息到 Excel 表
 from assetAllocationHtmlParser import assetAllocationHtmlParser               # 输出资产配置信息到 Html
 from assetAllocationCategorySumParser import assetAllocationCategorySumParser           # 输出资产配置分类汇总信息到控制台
+from assetAllocationIndustryParser import assetAllocationIndustryParser         # 支持输出持仓行业信息
 from assetAllocationJSObjectParser import assetAllocationJSObjectParser         # 输出资产配置信息到 echarts 专用 data.js 对象
 from assetAllocationEstimateExcelParser import assetAllocationEstimateExcelParser   # 输出当日收盘后的估算净值及预测涨跌金额
 from assetAllocationEstimateHtmlParser import assetAllocationEstimateHtmlParser   # 输出当日收盘后的估算净值及预测涨跌金额
@@ -241,8 +242,11 @@ assetHtml.generateHtmlFile(assetModelArray,title=u'{0}资产配置'.format(combi
 # 输出 资产配置汇总信息 到控制台和 html
 # 注意：由于 assetHtml 内部会把一些数值类型变成 str 类型，导致后续流程错误，现在临时处理是重新读取一份 json 数据。后面应该看看如何深拷贝
 assetModelArray = combine.loadAssetModelArrayFromJson()
-console = assetAllocationCategorySumParser(path=combine.pm.holdingOutputPath)
-console.showInfo(assetModelArray)
+categorySum = assetAllocationCategorySumParser(path=combine.pm.holdingOutputPath)
+categorySum.showInfo(assetModelArray)
+
+# 输出持仓个股的行业分布
+industry = assetAllocationIndustryParser(u'全家',forceUpdate=False)
 
 # 输出 echarts.json 和 data.json
 if strategy == 'a' or strategy == 'c':

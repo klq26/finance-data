@@ -9,7 +9,7 @@ import numpy as np
 
 from jqdatasdk import *
 
-from model.assetModel import assetModel
+from model.echartsModel import echartsModel
 from config.pathManager import pathManager
 from config.colorConstants import colorConstants
 
@@ -20,11 +20,11 @@ pd.set_option('display.max_rows', 5000)
 
 class assetAllocationIndustryParser:
 
-    def __init__(self, strategyName):
+    def __init__(self, strategyName, forceUpdate=False):
         self.strategyName = strategyName
         self.pm = pathManager(self.strategyName)
         self.colorConstants = colorConstants()
-
+        self.echarts = []
         # 市值情况
         with open(os.path.join(self.pm.configPath, 'indexHoldingInfo.json'), u'r', encoding=u'utf-8') as f:
             self.holdingInfos = json.loads(f.read())
@@ -40,7 +40,7 @@ class assetAllocationIndustryParser:
         cachFile = os.path.join(
             self.pm.holdingOutputPath, 'indexHoldingInfo.csv')
         shouldUpdate = True
-        if os.path.exists(cachFile):
+        if not forceUpdate and os.path.exists(cachFile):
             print('indexHoldingInfo.csv 存在... 是否需要在线更新？[Y/N]')
             choice = str(input()).upper()
             # 这里只要不是 Y 都不更新了，防止过多查询聚宽
@@ -55,10 +55,18 @@ class assetAllocationIndustryParser:
             # 登录
             auth('13810650842', '123456a')
             print(u'聚宽数据API：{0}'.format(get_query_count()))
-            self.generateJSObjectFile()
+            self.result_df = self.generateDataFrameCSVFile()
+        # 申万指数 json
+        with open(os.path.join(
+            self.pm.configPath,u'indexIndustryInfo.json'),'r',encoding='utf-8') as f:
+            self.swIndexInfos = json.loads(f.read())
+        self.generateEchartsModels(self.result_df)
+        self.generateJSObjectFile('全家') # 这里暂时没有使用 strategyName 作为输出标识符，后面应该想想更好的办法
+        # 打开
+        os.startfile(os.path.join(self.pm.echartsPath,u'FamilyStockIndustry.html'))
 
-    # 生成持仓所有个股的行业情况
-    def generateJSObjectFile(self, assetModelArray=None, name=None):
+    # 生成持仓所有个股的行业情况的 DataFrame 本地 csv 文件
+    def generateDataFrameCSVFile(self):
         # 今天的日期（用于拿最新的日涨跌额）
         todayStr = time.strftime("%Y-%m-%d", time.localtime())
         self.totalHolding = 0.0
@@ -206,7 +214,87 @@ class assetAllocationIndustryParser:
         # print(result_df)
         result_df.to_csv(os.path.join(self.pm.holdingOutputPath,
                                       'indexHoldingInfo.csv'), sep='\t')
+        return result_df
+    
+    # float 保留两位小数
+    def beautify(self,num):
+        return round(float(num),2)
+    
+    # 申万指数颜色
+    def colorWithHyName1(self,hy_name1):
+        return self.colorConstants.getIndustryColorByName(hy_name1)
 
+    # 申万指数排序算法
+    def indexWithHyName1(self,hy_name1):
+        for swIndex in self.swIndexInfos:
+            if hy_name1 == swIndex['name']:
+                return swIndex['index']
+        return 0
+
+    # 用申万指数排序索引对输出结果进行排序
+    def swIndexSortFunc(self, echartModel):
+        return echartModel['index']
+
+    # 生成绘制行业分类所需的 echarts data.js 文件
+    def generateEchartsModels(self,df):
+        self.totalHolding = self.beautify(df.holding.sum())
+        all_industry = {}
+        # 唯一一级分类
+        #all_hy_name1 = list(df.hy_name1.unique())
+        # 唯一二级分类
+        #all_hy_name2 = list(df.hy_name2.unique())
+        
+        for i in range(0,len(df)):
+            # 一级行业
+            industary1 = df.hy_name1.values[i]
+            if industary1 not in all_industry.keys():
+                all_industry[industary1] = {}
+            # 二级行业
+            industary2 = df.hy_name2.values[i]
+            if industary2 not in all_industry[industary1].keys():
+                # 二级行业持仓市值求和
+                #industry2Holding = round(df[df['hy_name2'] == industary2].holding.sum(),2)
+                # 百分比
+                industry2Holding = round((round(df[df['hy_name2'] == industary2].holding.sum(),2))/self.totalHolding * 100,2)
+                # 二维字典
+                all_industry[industary1][industary2] = industry2Holding
+        # 遍历生成 echarts 对象
+        for key in all_industry.keys():
+            # 一级行业市值求和
+            industry1_sum = round(sum(list(all_industry[key].values())),2)
+            color = self.colorWithHyName1(key)
+            echart1 = echartsModel()
+            echart1.value = industry1_sum
+            # 防止图太乱
+            if echart1.value >= 1.5:
+                echart1.name = '{0},{1}%'.format(key,industry1_sum)
+            echart1.itemStyle = {'color':color}
+            print(echart1.name)
+            for subIndustryKey in all_industry[key].keys():
+                echart2 = echartsModel()
+                echart2.value = all_industry[key][subIndustryKey]
+                # 防止图太乱
+                if echart2.value >= 0.5:
+                    echart2.name = '{0},{1}%'.format(subIndustryKey,all_industry[key][subIndustryKey])
+                echart2.itemStyle = {'color':color}
+                echart1.children.append(echart2.__dict__)
+                print('\t{0},{1}%'.format(subIndustryKey,all_industry[key][subIndustryKey]))
+                # 在对象字典上，加上指数的 index，用于后续排序
+                echart1['index'] = self.indexWithHyName1(key)
+            self.echarts.append(echart1.__dict__)
+        # 用申万指数排序索引对输出结果进行排序
+        self.echarts.sort(key = self.swIndexSortFunc)
+
+    # 生成直接可用的 data.js 文件
+    def generateJSObjectFile(self,name):
+        fileName = u'stockIndustry_{0}.js'.format(name)
+        jsPath = os.path.join(self.pm.echartsPath,fileName)
+        with open(jsPath,'w',encoding='utf-8') as jsFile:
+            # print(jsPath)
+            jsFile.write('function getData()\n')
+            jsFile.write('{\n')
+            jsFile.write('\t' + r'return {0}'.format(json.dumps(self.echarts, ensure_ascii=False, sort_keys = True, indent = 4, separators=(',', ':'))))
+            jsFile.write('\n}')
 
 if __name__ == "__main__":
     strategy = 'a'
@@ -220,4 +308,4 @@ if __name__ == "__main__":
         strategyName = u'父母'
     elif strategy == 'c':
         strategyName = u'全家'
-    industryParser = assetAllocationIndustryParser(strategyName)
+    industryParser = assetAllocationIndustryParser(strategyName,forceUpdate=False)
