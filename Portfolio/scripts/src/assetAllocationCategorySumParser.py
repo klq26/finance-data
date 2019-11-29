@@ -14,12 +14,14 @@ from model.echartsModel import echartsModel
 # config
 from config.assetCategoryConstants import assetCategoryConstants
 from config.indexValueInfo import indexValueInfo
+from config.pathManager import pathManager
 # tools
 from tools.dingtalk import dingtalk
 
 class assetAllocationCategorySumParser:
 
     def __init__(self,path):
+        self.pm = pathManager()
         categoryConstants = assetCategoryConstants()
         self.category1Array = categoryConstants.category1Array
         self.category2Array = categoryConstants.category2Array
@@ -97,13 +99,20 @@ class assetAllocationCategorySumParser:
         print('\n三级分类：\n')
         tb = PrettyTable()
         tb.field_names = [u"名称", u'指数成本',u'持仓 pe',u'持仓 pb',u'指数 roe', u"分类市值", u"盈亏（元）", u"分类盈亏率", u"组合占比", u"组合盈亏贡献"]
+        # 三级分类同时负责更新 indexHoldingInfos.json
+        indexHoldingInfos = list()
+        with open(os.path.join(self.pm.configPath,'indexHoldingInfo.json'),u'r',encoding='utf-8') as f:
+            indexHoldingInfos = json.loads(f.read())
+        
         for category in self.category3Array:
             marketCaps = [x.holdMarketCap for x in modelArray if x.category3 == category]
             # 有些组合没有部分三级分类，应该忽略该级别的循环
             if len(marketCaps) == 0:
                 continue
             marketCap = reduce(lambda x,y: x+y, marketCaps)
-            
+            for x in indexHoldingInfos:
+                if x['name'] == category:
+                    x['holding'] = round(marketCap,2)
             totalGains = [x.holdTotalGain for x in modelArray if x.category3 == category]
             gain = reduce(lambda x,y: x+y, totalGains)
             # 指数成本（三级分类持仓成本，换算成指数的点数）
@@ -121,6 +130,8 @@ class assetAllocationCategorySumParser:
             # prettytable 输出
             tb.add_row([category, u'{0:.2f}'.format(self.beautify(indexValue)), u'{0:.2f}'.format(self.beautify(peValue)), u'{0:.2f}'.format(self.beautify(pbValue)), u'{0:.2f}%'.format(self.beautify(roeValue)), self.beautify(marketCap), self.beautify(gain),u'{0}%'.format(self.beautify(gain/(marketCap - gain) * 100)), u'{0}%'.format(self.beautify(marketCap / totalMarketCap * 100)), u'{0}%'.format(self.beautify(gain / totalGain * 100))])
         print(tb)
+        with open(os.path.join(self.pm.configPath,'indexHoldingInfo.json'),u'w',encoding='utf-8') as f:
+            f.write(json.dumps(indexHoldingInfos, ensure_ascii=False, sort_keys = True, indent = 4, separators=(',', ':')))
         # 同时写入文件
         with open(os.path.join(self.outputPath,u'资产配置分类情况.html'),'a+',encoding=u'utf-8') as f:
             f.write('<h3>三级分类</h3>')
