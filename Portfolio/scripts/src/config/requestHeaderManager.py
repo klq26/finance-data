@@ -62,10 +62,25 @@ class requestHeaderManager:
         headers = {}
         with open(filepath,'r',encoding=u'utf-8') as f:
             lines = f.readlines()
+            cookies = []
+            for line in lines:
+                if line.lower().startswith('cookie'):
+                    cookies.append(line)
+            '; '
+            # 随手记用 Charles 抓取的 cookie 是多行的，需要整合
+            cookieValue = ''
+            if len(cookies) > 1:
+                cookieValue = cookies[0][7:len(cookies[0])].replace('\n','')
+                # print(cookieValue)
+                for i in range(1,len(cookies)):
+                    cookieValue = cookieValue + '; {0}'.format(cookies[i][7:len(cookies[i])].replace('\n',''))
+                print(cookieValue)
             for i in range(1,len(lines)):
                 line = lines[i].strip('\n')
                 values = line.split('\t')
                 headers[values[0].replace(':','')] = values[1]
+            if cookieValue != '':
+                headers['cookie'] = cookieValue
         return headers
         
 if __name__ == '__main__':

@@ -1,12 +1,14 @@
 	GET /pmdj/v2/asset/summary HTTP/1.1
 Referer	https://qieman.com/dashboard
 User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.18363
+Cache-Control	max-age=0
 accept	application/json
 Accept-Language	zh-Hans-CN,zh-Hans;q=0.7,ja;q=0.3
-authorization	Bearer eyJ2ZXIiOiJ2MSIsImFsZyI6IkhTNTEyIn0.eyJzdWIiOiIxMzExMjIzIiwiaXNzIjoic3NvLnFpZW1hbi5jb20iLCJpc0FkbWluIjpmYWxzZSwiZXhwIjoxNTc2MjgwMjI2LCJpYXQiOjE1NzQ5ODQyMjYsImp0aSI6IjYxNTlmNzYyLTQwZDMtNGQ4My05NDQ5LThjMzlkOTdlYWM2YiJ9.blJmigFawAsanguEyXjd10J5BTWaeU1SazjSI3Sw8SW-Mtc2NzcB0NfWDaS_A_i0J2wLc2i60oWQH0Ms9f2GuQ
+authorization	Bearer eyJ2ZXIiOiJ2MSIsImFsZyI6IkhTNTEyIn0.eyJzdWIiOiIxMzExMjIzIiwiaXNzIjoic3NvLnFpZW1hbi5jb20iLCJpc0FkbWluIjpmYWxzZSwiZXhwIjoxNTc2Mzc5MzE0LCJpYXQiOjE1NzUwODMzMTQsImp0aSI6ImQ0YzA4ZDUxLTEyYTMtNGFhZS1hMzI4LTlkN2E5ODk2NTUzMCJ9.RluuGcUJzcPwoXd8f0yDXwd35b2ASu5cKf249F-tBk6SPSV3lSdfHge0ZwbDRjx1iMOc2TTkFGPk07GeH7O18Q
 x-aid	A.FBAA5CB01DS4CTH82R1FPF6B7GRWFQ4JN
-x-request-id	albus.960ED4E522792BFA1F0D
-x-sign	1574984226222B8A82F08A3AB854D7E0DF26D2AF8FF03
+x-request-id	albus.548A4E83CC1D3CF6A506
+x-sign	1575083331952B2AF8C1699CC3427CB9222FDBBB9BE86
 Accept-Encoding	gzip, deflate, br
 Host	qieman.com
+If-None-Match	W/"703-kN9f+lqZo2zGjImxCctoLS8lJG0"
 Connection	Keep-Alive

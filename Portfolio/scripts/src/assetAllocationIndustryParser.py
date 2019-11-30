@@ -60,6 +60,7 @@ class assetAllocationIndustryParser:
         with open(os.path.join(
             self.pm.configPath,u'indexIndustryInfo.json'),'r',encoding='utf-8') as f:
             self.swIndexInfos = json.loads(f.read())
+        self.result_df = self.result_df.rename(columns=self.inputRenameColumns)
         self.generateEchartsModels(self.result_df)
         self.generateJSObjectFile('全家') # 这里暂时没有使用 strategyName 作为输出标识符，后面应该想想更好的办法
         # 打开
