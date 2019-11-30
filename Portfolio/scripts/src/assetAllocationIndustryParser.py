@@ -199,6 +199,8 @@ class assetAllocationIndustryParser:
         result_df['daily_gain'] = result_df.apply(
             lambda x: round(x['holding'] * x['daily_change'], 2), axis=1)
         # 输出前的最后格式化
+        result_df['market_cap'] = result_df['market_cap'].apply(
+            lambda x: round(x, 2))
         result_df['holding'] = result_df['holding'].apply(
             lambda x: round(x, 2))
         result_df['daily_change'] = result_df['daily_change'].apply(
