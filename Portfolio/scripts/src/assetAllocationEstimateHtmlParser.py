@@ -134,6 +134,8 @@ class assetAllocationEstimateHtmlParser:
             dict['estimateNetValue'] = '{:.4f}'.format(dict['estimateNetValue'])
             dict['changeValue'] = '{:.2f}'.format(dict['changeValue'])
             data.append(dict)
+        # 将估值数据写入缓存，30 分钟之内都有效
+        manager.saveCache(fundModelArray)
         # 按收益降序排序
         data.sort(key=itemgetter('changeValue'),reverse=True)
         # jinja2 框架输出 html

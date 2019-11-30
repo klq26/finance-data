@@ -72,8 +72,8 @@ class indexIndustryWeight:
                 # swIndexInfo['color'] = '#{0}'.format(self.colorConstants.hexColorStringByPercent(origin = originColor, zero = '#FFFFFF', rate = 1.0))
                 # colors.append(swIndexInfo['color'])
             
-            result_df['{0}_1'.format(indexName)] = counts
-            result_df['{0}_2'.format(indexName)] = rates
+            result_df['{0}_num'.format(indexName)] = counts
+            result_df['{0}_wei'.format(indexName)] = rates
            
             #result_df['color'] = colors
         print(result_df)

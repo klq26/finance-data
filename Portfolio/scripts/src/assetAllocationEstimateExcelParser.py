@@ -190,6 +190,8 @@ class assetAllocationEstimateExcelParser:
                     align = Alignment(horizontal='center') # ,vertical='center',wrap_text=True
                     outws.cell(rowCursor, col).alignment = align
             rowCursor = rowCursor + 1
+        # 将估值数据写入缓存，30 分钟之内都有效
+        manager.saveCache(fundModelArray)
         # 自动列宽
         # 获取每一列的内容的最大宽度
         i = 0
