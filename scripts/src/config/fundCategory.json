@@ -277,7 +277,7 @@
 			"category1": "海外新兴",
 			"category2": "海外互联",
 			"category3": "海外互联网",
-			"category4": "213"
+			"category4": "221"
 		},
 		{
 			"code": "000614",
@@ -312,7 +312,7 @@
 			"category1": "债券",
 			"category2": "海外债券",
 			"category3": "美元债",
-			"category4": "412"
+			"category4": "421"
 		},
 		{
 			"code": "518880",
@@ -355,6 +355,13 @@
 			"category2": "中等风险理财",
 			"category3": "房地产P2P",
 			"category4": "991"
+		},
+		{
+			"code": "999992",
+			"category1": "现金",
+			"category2": "中等风险理财",
+			"category3": "中期借贷",
+			"category4": "992"
 		},
 		{
 			"code": "899990",

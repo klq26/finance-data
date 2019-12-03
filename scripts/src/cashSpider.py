@@ -217,3 +217,4 @@ if __name__ == '__main__':
     elif strategy == 'b':
         spider1 = cashSpider(strategy, u'父母')
         spider1.getParent()
+        #https://qieman.com/pmdj/v2/asset/ca/detail?capitalAccountId=CA942R8128PFE7
