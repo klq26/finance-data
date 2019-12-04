@@ -48,8 +48,8 @@
         "categoryID":"114",
         "result":{
             "close":4805.03,
-            "pb":0.96,
-            "pe":8.55,
+            "pb":0.95,
+            "pe":8.51,
             "roe":0.1118
         },
         "valueSymbol":"SH000919",
@@ -63,7 +63,7 @@
         "result":{
             "close":7781.91,
             "pb":2.06,
-            "pe":16.02,
+            "pe":16.05,
             "roe":0.1283
         },
         "valueSymbol":"SZ399701",
@@ -76,8 +76,8 @@
         "categoryID":"116",
         "result":{
             "close":6932.09,
-            "pb":2.06,
-            "pe":17.45,
+            "pb":2.07,
+            "pe":17.49,
             "roe":0.1182
         },
         "valueSymbol":"SZ399702",
@@ -104,9 +104,9 @@
         "categoryID":"122",
         "result":{
             "close":11856.72,
-            "pb":1.34,
-            "pe":21.08,
-            "roe":0.0634
+            "pb":1.33,
+            "pe":21.06,
+            "roe":0.0633
         },
         "valueSymbol":"CSI930782",
         "valueType":"xueqiu"
@@ -160,9 +160,9 @@
         "categoryID":"132",
         "result":{
             "close":7864.35,
-            "pb":1.43,
-            "pe":12.18,
-            "roe":0.1174
+            "pb":1.42,
+            "pe":12.13,
+            "roe":0.1171
         },
         "valueSymbol":".CSPSADRP",
         "valueType":"xueqiu"
@@ -272,9 +272,9 @@
         "categoryID":"212",
         "result":{
             "close":3067.84,
-            "pb":1.47,
-            "pe":12.17,
-            "roe":0.1208
+            "pb":1.46,
+            "pe":12.05,
+            "roe":0.1212
         },
         "valueSymbol":".SPHCMSHP",
         "valueType":"xueqiu"
@@ -299,7 +299,7 @@
         "category3":"德国30",
         "categoryID":"311",
         "result":{
-            "close":13141.62,
+            "close":13129.74,
             "pb":0.0,
             "pe":0.0,
             "roe":0.0
@@ -327,7 +327,7 @@
         "category3":"黄金",
         "categoryID":"511",
         "result":{
-            "close":1483.5,
+            "close":1480.8,
             "pb":0.0,
             "pe":0.0,
             "roe":0.0
@@ -341,7 +341,7 @@
         "category3":"原油",
         "categoryID":"512",
         "result":{
-            "close":3043.05,
+            "close":3127.72,
             "pb":0.0,
             "pe":0.0,
             "roe":0.0

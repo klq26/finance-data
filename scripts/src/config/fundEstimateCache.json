@@ -155,7 +155,7 @@
         },
         {
             "currentNetValue":2.907,
-            "currentNetValueDate":"2019-12-03",
+            "currentNetValueDate":"2019-12-04",
             "estimateNetValue":2.901,
             "estimateRate":-0.0021,
             "estimateTime":"2019-12-04 15:00",
@@ -164,7 +164,7 @@
         },
         {
             "currentNetValue":3.911,
-            "currentNetValueDate":"2019-12-03",
+            "currentNetValueDate":"2019-12-04",
             "estimateNetValue":3.913,
             "estimateRate":0.0005,
             "estimateTime":"2019-12-04 15:00",
@@ -182,7 +182,7 @@
         },
         {
             "currentNetValue":0.729,
-            "currentNetValueDate":"2019-12-03",
+            "currentNetValueDate":"2019-12-04",
             "estimateNetValue":0.73,
             "estimateRate":0.0014,
             "estimateTime":"2019-12-04 15:00",
@@ -200,7 +200,7 @@
         },
         {
             "currentNetValue":0.756,
-            "currentNetValueDate":"2019-12-03",
+            "currentNetValueDate":"2019-12-04",
             "estimateNetValue":0.756,
             "estimateRate":0.0,
             "estimateTime":"2019-12-04 15:00",
@@ -209,7 +209,7 @@
         },
         {
             "currentNetValue":3.277,
-            "currentNetValueDate":"2019-12-03",
+            "currentNetValueDate":"2019-12-04",
             "estimateNetValue":3.337,
             "estimateRate":0.0183,
             "estimateTime":"2019-12-04 15:00",
@@ -218,7 +218,7 @@
         },
         {
             "currentNetValue":1.613,
-            "currentNetValueDate":"2019-12-03",
+            "currentNetValueDate":"2019-12-04",
             "estimateNetValue":1.612,
             "estimateRate":-0.0006,
             "estimateTime":"2019-12-04 15:04",
@@ -227,7 +227,7 @@
         },
         {
             "currentNetValue":1.32,
-            "currentNetValueDate":"2019-12-03",
+            "currentNetValueDate":"2019-12-04",
             "estimateNetValue":1.323,
             "estimateRate":0.0023,
             "estimateTime":"2019-12-04 15:04",
@@ -317,7 +317,7 @@
         },
         {
             "currentNetValue":0.374,
-            "currentNetValueDate":"2019-12-02",
+            "currentNetValueDate":"2019-12-03",
             "estimateNetValue":0.372,
             "estimateRate":-0.0053,
             "estimateTime":"2019-12-04 15:04",
@@ -327,9 +327,9 @@
         {
             "currentNetValue":1.303,
             "currentNetValueDate":"2019-12-02",
-            "estimateNetValue":1.2938,
-            "estimateRate":-0.007,
-            "estimateTime":"2019-12-04 05:00",
+            "estimateNetValue":1.3092,
+            "estimateRate":0.0047,
+            "estimateTime":"2019-12-04 22:51",
             "fundCode":"164906",
             "fundName":"交银中证海外中国互联网指数"
         },
@@ -397,20 +397,20 @@
             "fundName":"广发中证传媒ETF联接A"
         },
         {
-            "currentNetValue":1.2179,
-            "currentNetValueDate":"2019-12-03",
-            "estimateNetValue":1.2406,
-            "estimateRate":0.0187,
-            "estimateTime":"2019-12-04 15:30",
+            "currentNetValue":1.2401,
+            "currentNetValueDate":"2019-12-04",
+            "estimateNetValue":1.2266,
+            "estimateRate":-0.0109,
+            "estimateTime":"2019-12-04 22:48",
             "fundCode":"000216",
             "fundName":"华安黄金易ETF联接A"
         },
         {
             "currentNetValue":1.303,
             "currentNetValueDate":"2019-12-02",
-            "estimateNetValue":1.2938,
-            "estimateRate":-0.007,
-            "estimateTime":"2019-12-04 05:00",
+            "estimateNetValue":1.3092,
+            "estimateRate":0.0047,
+            "estimateTime":"2019-12-04 22:51",
             "fundCode":"164906",
             "fundName":"交银中证海外中国互联网指数"
         },
@@ -425,7 +425,7 @@
         },
         {
             "currentNetValue":0.374,
-            "currentNetValueDate":"2019-12-02",
+            "currentNetValueDate":"2019-12-03",
             "estimateNetValue":0.372,
             "estimateRate":-0.0053,
             "estimateTime":"2019-12-04 15:04",
@@ -525,9 +525,9 @@
         {
             "currentNetValue":1.303,
             "currentNetValueDate":"2019-12-02",
-            "estimateNetValue":1.2938,
-            "estimateRate":-0.007,
-            "estimateTime":"2019-12-04 05:00",
+            "estimateNetValue":1.3092,
+            "estimateRate":0.0047,
+            "estimateTime":"2019-12-04 22:51",
             "fundCode":"164906",
             "fundName":"交银中证海外中国互联网指数"
         },
@@ -542,7 +542,7 @@
         },
         {
             "currentNetValue":0.374,
-            "currentNetValueDate":"2019-12-02",
+            "currentNetValueDate":"2019-12-03",
             "estimateNetValue":0.372,
             "estimateRate":-0.0053,
             "estimateTime":"2019-12-04 15:04",
@@ -1011,9 +1011,9 @@
         {
             "currentNetValue":1.303,
             "currentNetValueDate":"2019-12-02",
-            "estimateNetValue":1.2938,
-            "estimateRate":-0.007,
-            "estimateTime":"2019-12-04 05:00",
+            "estimateNetValue":1.3092,
+            "estimateRate":0.0047,
+            "estimateTime":"2019-12-04 22:51",
             "fundCode":"164906",
             "fundName":"交银中证海外中国互联网指数"
         },
@@ -1028,7 +1028,7 @@
         },
         {
             "currentNetValue":0.374,
-            "currentNetValueDate":"2019-12-02",
+            "currentNetValueDate":"2019-12-03",
             "estimateNetValue":0.372,
             "estimateRate":-0.0053,
             "estimateTime":"2019-12-04 15:04",
@@ -1054,11 +1054,11 @@
             "fundName":"广发中证全指金融地产联接A"
         },
         {
-            "currentNetValue":1.2179,
-            "currentNetValueDate":"2019-12-03",
-            "estimateNetValue":1.2406,
-            "estimateRate":0.0187,
-            "estimateTime":"2019-12-04 15:30",
+            "currentNetValue":1.2401,
+            "currentNetValueDate":"2019-12-04",
+            "estimateNetValue":1.2266,
+            "estimateRate":-0.0109,
+            "estimateTime":"2019-12-04 22:48",
             "fundCode":"000216",
             "fundName":"华安黄金易ETF联接A"
         },
@@ -1117,5 +1117,5 @@
             "fundName":"广发中证500ETF联接C"
         }
     ],
-    "updateTime":"2019-12-04 19:49:31"
+    "updateTime":"2019-12-04 22:52:27"
 }

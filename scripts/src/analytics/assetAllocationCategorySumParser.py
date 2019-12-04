@@ -136,7 +136,7 @@ class assetAllocationCategorySumParser:
                     peValue = float(symbol['result']['pe']) / (1 + (gain/(marketCap - gain)))
                     pbValue = float(symbol['result']['pb']) / (1 + (gain/(marketCap - gain)))
                     roeValue =  float(symbol['result']['roe']) * 100
-                    historyGain = history_df[history_df['三级分类'] == category].累计盈亏.sum()
+            historyGain = history_df[history_df['三级分类'] == category].累计盈亏.sum()
             #print(u'{0} 市值：{1}\t占比：{2}%\t盈亏：{3}\t占比：{4}%'.format(category, self.beautify(marketCap), self.beautify(marketCap / totalMarketCap * 100), self.beautify(gain), self.beautify(gain / totalGain * 100)))
             # prettytable 输出
             tb.add_row([category, u'{0:.2f}'.format(self.beautify(holdingIndexValue)), u'{0:.2f}'.format(self.beautify(indexValue)), u'{0:.2f}'.format(self.beautify(peValue)), u'{0:.2f}'.format(self.beautify(pbValue)), u'{0:.2f}%'.format(self.beautify(roeValue)), self.beautify(marketCap), u'{0:.2f}'.format(self.beautify(gain)), u'{0:.2f}'.format(self.beautify(historyGain)), u'{0:.2f}'.format(self.beautify(gain + historyGain)), u'{0}%'.format(self.beautify(gain/(marketCap - gain) * 100)), u'{0}%'.format(self.beautify(marketCap / totalMarketCap * 100)), u'{0}%'.format(self.beautify(gain / totalGain * 100))])
