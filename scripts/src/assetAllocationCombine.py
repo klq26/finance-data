@@ -226,10 +226,10 @@ if strategy == 'a':
     history_df = historyManager.getKLQHistoryProfit()
 elif strategy == 'b':
     combine = assetAllocationCombine('b')
-    history_df = historyManager.getKLQHistoryProfit()
+    history_df = historyManager.getParentsHistoryProfit()
 elif strategy == 'c':
     combine = assetAllocationCombine('c')
-    history_df = historyManager.getParentsHistoryProfit()
+    history_df = historyManager.getKLQHistoryProfit()
 elif strategy == 'd':
     combine = assetAllocationCombine('d')
     history_df = historyManager.history_df
@@ -253,7 +253,7 @@ assetHtml.generateHtmlFile(assetModelArray,history_df, title=u'{0}资产配置'.
 # 注意：由于 assetHtml 内部会把一些数值类型变成 str 类型，导致后续流程错误，现在临时处理是重新读取一份 json 数据。后面应该看看如何深拷贝
 assetModelArray = combine.loadAssetModelArrayFromJson()
 categorySum = assetAllocationCategorySumParser(path=combine.pm.holdingOutputPath)
-categorySum.showInfo(assetModelArray)
+categorySum.showInfo(assetModelArray, history_df)
 
 # 输出持仓个股的行业分布
 industry = assetAllocationIndustryParser(u'全家',skipUpdateIfExist=True)

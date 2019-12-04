@@ -118,7 +118,10 @@ class assetAllocationHtmlParser:
         # 第三行统计信息
         totalGainRate = round(totalGain/totalMarketCap,4)
         totalStockGainRate = round(totalStockGain/totalStockMarketCap,4)
-        totalCashGainRate = round(totalCashGain/totalCashMarketCap,4)
+        if totalCashMarketCap > 0:
+            totalCashGainRate = round(totalCashGain/totalCashMarketCap,4)
+        else:
+            totalCashGainRate = 0
         # 第四行统计信息
         totalHistoryGain = self.beautify(history_df.累计盈亏.sum())
         totalHistoryStockGain = self.beautify(history_df[~(history_df['一级分类'].isin([u'现金',u'冻结资金']))].累计盈亏.sum())
@@ -130,7 +133,10 @@ class assetAllocationHtmlParser:
         # 第六行统计信息
         entireGainRate = round(entireGain/totalMarketCap,4)
         entireStockGainRate = round(entireStockGain/totalStockMarketCap,4)
-        entireCashGainRate = round(entireCashGain/totalCashMarketCap,4)
+        if totalCashMarketCap > 0:
+            entireCashGainRate = round(entireCashGain/totalCashMarketCap,4)
+        else:
+            entireCashGainRate = 0
         # 生产 summary
         summary = list()
         rowTitles = ['当前市值', '持仓盈亏', '持仓收益率', '历史盈亏', '整体盈亏', '整体收益率']

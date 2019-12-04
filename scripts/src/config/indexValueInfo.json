@@ -6,8 +6,8 @@
         "categoryID":"111",
         "result":{
             "close":2901.07,
-            "pb":1.15,
-            "pe":9.97,
+            "pb":1.14,
+            "pe":9.94,
             "roe":0.1226
         },
         "valueSymbol":"SH000016",
@@ -20,8 +20,8 @@
         "categoryID":"112",
         "result":{
             "close":5343.63,
-            "pb":0.97,
-            "pe":8.46,
+            "pb":0.96,
+            "pe":8.39,
             "roe":0.1143
         },
         "valueSymbol":"SH000170",
@@ -34,7 +34,7 @@
         "categoryID":"113",
         "result":{
             "close":3849.82,
-            "pb":1.41,
+            "pb":1.4,
             "pe":12.56,
             "roe":0.1204
         },
@@ -91,8 +91,8 @@
         "result":{
             "close":4920.67,
             "pb":1.78,
-            "pe":22.21,
-            "roe":0.0691
+            "pe":22.18,
+            "roe":0.069
         },
         "valueSymbol":"SH000905",
         "valueType":"xueqiu"
@@ -118,8 +118,8 @@
         "categoryID":"123",
         "result":{
             "close":5179.69,
-            "pb":2.06,
-            "pe":30.98,
+            "pb":2.07,
+            "pe":31.03,
             "roe":0.0525
         },
         "valueSymbol":"SH000852",
@@ -132,8 +132,8 @@
         "categoryID":"124",
         "result":{
             "close":1673.78,
-            "pb":4.63,
-            "pe":54.08,
+            "pb":4.64,
+            "pe":54.03,
             "roe":0.0909
         },
         "valueSymbol":"SZ399006",
@@ -147,7 +147,7 @@
         "result":{
             "close":4193.25,
             "pb":0.99,
-            "pe":9.62,
+            "pe":9.57,
             "roe":0.1275
         },
         "valueSymbol":"SH000922",
@@ -174,8 +174,8 @@
         "categoryID":"141",
         "result":{
             "close":7046.14,
-            "pb":2.95,
-            "pe":22.82,
+            "pb":2.94,
+            "pe":22.85,
             "roe":0.1656
         },
         "valueSymbol":"SZ399812",
@@ -188,8 +188,8 @@
         "categoryID":"142",
         "result":{
             "close":9561.96,
-            "pb":3.64,
-            "pe":29.45,
+            "pb":3.66,
+            "pe":29.59,
             "roe":0.1003
         },
         "valueSymbol":"SH000991",
@@ -203,7 +203,7 @@
         "result":{
             "close":1174.71,
             "pb":2.13,
-            "pe":25.53,
+            "pe":25.59,
             "roe":0.0941
         },
         "valueSymbol":"SH000827",
@@ -217,7 +217,7 @@
         "result":{
             "close":1241.02,
             "pb":2.6,
-            "pe":34.23,
+            "pe":34.19,
             "roe":0.0724
         },
         "valueSymbol":"SZ399971",
@@ -230,8 +230,8 @@
         "categoryID":"145",
         "result":{
             "close":687.42,
-            "pb":1.55,
-            "pe":25.17,
+            "pb":1.54,
+            "pe":25.09,
             "roe":0.0615
         },
         "valueSymbol":"SZ399975",
@@ -258,8 +258,8 @@
         "categoryID":"211",
         "result":{
             "close":26062.56,
-            "pb":1.01,
-            "pe":9.47,
+            "pb":1,
+            "pe":9.36,
             "roe":0.1068
         },
         "valueSymbol":"HKHSI",
@@ -299,7 +299,7 @@
         "category3":"德国30",
         "categoryID":"311",
         "result":{
-            "close":13127.75,
+            "close":13141.62,
             "pb":0.0,
             "pe":0.0,
             "roe":0.0
@@ -327,7 +327,7 @@
         "category3":"黄金",
         "categoryID":"511",
         "result":{
-            "close":1487.4,
+            "close":1483.5,
             "pb":0.0,
             "pe":0.0,
             "roe":0.0

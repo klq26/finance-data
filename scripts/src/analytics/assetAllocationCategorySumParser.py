@@ -1,13 +1,19 @@
 # -*- coding: utf-8 -*-
 import os
+import sys
 import json
 # for reduce method of lambda
 from functools import reduce
 # groupby & itemgetter
 from itertools import groupby
 from operator import itemgetter
+import pandas as pd
 # pretty table output
 from prettytable import PrettyTable
+# 把父路径加入到 sys.path 供 import 搜索
+currentDir = os.path.abspath(os.path.dirname(__file__))
+srcDir = os.path.dirname(currentDir)
+sys.path.append(srcDir)
 # model
 from model.assetModel import assetModel
 from model.echartsModel import echartsModel
@@ -15,6 +21,7 @@ from model.echartsModel import echartsModel
 from config.assetCategoryConstants import assetCategoryConstants
 from config.indexValueInfo import indexValueInfo
 from config.pathManager import pathManager
+from config.historyProfitManager import  historyProfitManager
 # tools
 from tools.dingtalk import dingtalk
 
@@ -34,7 +41,7 @@ class assetAllocationCategorySumParser:
     def beautify(self,num):
         return round(float(num),2)
     
-    def showInfo(self,modelArray):
+    def showInfo(self,modelArray, history_df):
         # 总市值
         allMarketCaps = [x.holdMarketCap for x in modelArray]
         totalMarketCap = reduce(lambda x,y: x+y, allMarketCaps)
@@ -98,7 +105,7 @@ class assetAllocationCategorySumParser:
             f.write(tb.get_html_string(format=True))
         print('\n三级分类：\n')
         tb = PrettyTable()
-        tb.field_names = [u"名称", u'指数成本',u'持仓 pe',u'持仓 pb',u'指数 roe', u"分类市值", u"盈亏（元）", u"分类盈亏率", u"组合占比", u"组合盈亏贡献"]
+        tb.field_names = [u"名称", u'指数成本', u'指数点位',u'持仓 pe',u'持仓 pb',u'指数 roe', u"分类市值", u"持仓盈亏", u'历史盈亏', u'总盈亏', u"持仓收益率", u"组合占比", u"组合盈亏贡献"]
         # 三级分类同时负责更新 indexHoldingInfos.json
         indexHoldingInfos = list()
         with open(os.path.join(self.pm.configPath,'indexHoldingInfo.json'),u'r',encoding='utf-8') as f:
@@ -117,18 +124,22 @@ class assetAllocationCategorySumParser:
             gain = reduce(lambda x,y: x+y, totalGains)
             # 指数成本（三级分类持仓成本，换算成指数的点数）
             indexValue = 0.0
+            holdingIndexValue = 0.0
             peValue = 0.0
             pbValue = 0.0
             roeValue = 0.0
+            historyGain = 0.0
             for symbol in self.indexValueInfo.indexValueInfoList:
                 if symbol['category3'] == category:
-                    indexValue = float(symbol['result']['close']) / (1 + (gain/(marketCap - gain)))
+                    indexValue = float(symbol['result']['close'])
+                    holdingIndexValue = float(symbol['result']['close']) / (1 + (gain/(marketCap - gain)))
                     peValue = float(symbol['result']['pe']) / (1 + (gain/(marketCap - gain)))
                     pbValue = float(symbol['result']['pb']) / (1 + (gain/(marketCap - gain)))
                     roeValue =  float(symbol['result']['roe']) * 100
+                    historyGain = history_df[history_df['三级分类'] == category].累计盈亏.sum()
             #print(u'{0} 市值：{1}\t占比：{2}%\t盈亏：{3}\t占比：{4}%'.format(category, self.beautify(marketCap), self.beautify(marketCap / totalMarketCap * 100), self.beautify(gain), self.beautify(gain / totalGain * 100)))
             # prettytable 输出
-            tb.add_row([category, u'{0:.2f}'.format(self.beautify(indexValue)), u'{0:.2f}'.format(self.beautify(peValue)), u'{0:.2f}'.format(self.beautify(pbValue)), u'{0:.2f}%'.format(self.beautify(roeValue)), self.beautify(marketCap), self.beautify(gain),u'{0}%'.format(self.beautify(gain/(marketCap - gain) * 100)), u'{0}%'.format(self.beautify(marketCap / totalMarketCap * 100)), u'{0}%'.format(self.beautify(gain / totalGain * 100))])
+            tb.add_row([category, u'{0:.2f}'.format(self.beautify(holdingIndexValue)), u'{0:.2f}'.format(self.beautify(indexValue)), u'{0:.2f}'.format(self.beautify(peValue)), u'{0:.2f}'.format(self.beautify(pbValue)), u'{0:.2f}%'.format(self.beautify(roeValue)), self.beautify(marketCap), u'{0:.2f}'.format(self.beautify(gain)), u'{0:.2f}'.format(self.beautify(historyGain)), u'{0:.2f}'.format(self.beautify(gain + historyGain)), u'{0}%'.format(self.beautify(gain/(marketCap - gain) * 100)), u'{0}%'.format(self.beautify(marketCap / totalMarketCap * 100)), u'{0}%'.format(self.beautify(gain / totalGain * 100))])
         print(tb)
         with open(os.path.join(self.pm.configPath,'indexHoldingInfo.json'),u'w',encoding='utf-8') as f:
             f.write(json.dumps(indexHoldingInfos, ensure_ascii=False, sort_keys = True, indent = 4, separators=(',', ':')))
