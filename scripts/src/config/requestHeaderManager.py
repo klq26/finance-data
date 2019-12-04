@@ -74,7 +74,6 @@ class requestHeaderManager:
                 # print(cookieValue)
                 for i in range(1,len(cookies)):
                     cookieValue = cookieValue + '; {0}'.format(cookies[i][7:len(cookies[i])].replace('\n',''))
-                print(cookieValue)
             for i in range(1,len(lines)):
                 line = lines[i].strip('\n')
                 values = line.split('\t')

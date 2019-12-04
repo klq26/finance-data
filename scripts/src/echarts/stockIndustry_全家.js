@@ -8,16 +8,24 @@ function getData()
                 "itemStyle":{
                     "color":"#E57373"
                 },
-                "name":"畜禽养殖II,0.73%",
-                "value":0.73
+                "name":"畜禽养殖II,0.52%",
+                "value":0.52
             },
             {
                 "children":[],
                 "itemStyle":{
                     "color":"#E57373"
                 },
-                "name":"饲料II,0.7%",
-                "value":0.7
+                "name":"饲料II,0.65%",
+                "value":0.65
+            },
+            {
+                "children":[],
+                "itemStyle":{
+                    "color":"#E57373"
+                },
+                "name":"",
+                "value":0.41
             },
             {
                 "children":[],
@@ -33,15 +41,7 @@ function getData()
                     "color":"#E57373"
                 },
                 "name":"",
-                "value":0.45
-            },
-            {
-                "children":[],
-                "itemStyle":{
-                    "color":"#E57373"
-                },
-                "name":"",
-                "value":0.25
+                "value":0.26
             },
             {
                 "children":[],
@@ -72,8 +72,8 @@ function getData()
         "itemStyle":{
             "color":"#E57373"
         },
-        "name":"农林牧渔I,2.58%",
-        "value":2.58
+        "name":"农林牧渔I,2.29%",
+        "value":2.29
     },
     {
         "children":[
@@ -82,8 +82,8 @@ function getData()
                 "itemStyle":{
                     "color":"#EF6492"
                 },
-                "name":"煤炭开采II,1.04%",
-                "value":1.04
+                "name":"煤炭开采II,1.03%",
+                "value":1.03
             },
             {
                 "children":[],
@@ -115,18 +115,10 @@ function getData()
             "color":"#EF6492"
         },
         "name":"",
-        "value":1.25
+        "value":1.24
     },
     {
         "children":[
-            {
-                "children":[],
-                "itemStyle":{
-                    "color":"#B869C8"
-                },
-                "name":"化学制品II,2.45%",
-                "value":2.45
-            },
             {
                 "children":[],
                 "itemStyle":{
@@ -140,8 +132,16 @@ function getData()
                 "itemStyle":{
                     "color":"#B869C8"
                 },
+                "name":"化学制品II,2.51%",
+                "value":2.51
+            },
+            {
+                "children":[],
+                "itemStyle":{
+                    "color":"#B869C8"
+                },
                 "name":"",
-                "value":0.14
+                "value":0.13
             },
             {
                 "children":[],
@@ -172,8 +172,8 @@ function getData()
         "itemStyle":{
             "color":"#B869C8"
         },
-        "name":"化工I,3.86%",
-        "value":3.86
+        "name":"化工I,3.91%",
+        "value":3.91
     },
     {
         "children":[
@@ -182,16 +182,16 @@ function getData()
                 "itemStyle":{
                     "color":"#9375CD"
                 },
-                "name":"钢铁II,1.61%",
-                "value":1.61
+                "name":"钢铁II,1.72%",
+                "value":1.72
             }
         ],
         "index":4,
         "itemStyle":{
             "color":"#9375CD"
         },
-        "name":"钢铁I,1.61%",
-        "value":1.61
+        "name":"钢铁I,1.72%",
+        "value":1.72
     },
     {
         "children":[
@@ -201,7 +201,7 @@ function getData()
                     "color":"#7987CB"
                 },
                 "name":"",
-                "value":0.41
+                "value":0.4
             },
             {
                 "children":[],
@@ -216,24 +216,24 @@ function getData()
                 "itemStyle":{
                     "color":"#7987CB"
                 },
-                "name":"稀有金属II,0.78%",
-                "value":0.78
+                "name":"稀有金属II,0.85%",
+                "value":0.85
             },
             {
                 "children":[],
                 "itemStyle":{
                     "color":"#7987CB"
                 },
-                "name":"工业金属II,0.62%",
-                "value":0.62
+                "name":"工业金属II,0.64%",
+                "value":0.64
             }
         ],
         "index":5,
         "itemStyle":{
             "color":"#7987CB"
         },
-        "name":"有色金属I,2.07%",
-        "value":2.07
+        "name":"有色金属I,2.15%",
+        "value":2.15
     },
     {
         "children":[
@@ -242,48 +242,48 @@ function getData()
                 "itemStyle":{
                     "color":"#66B5F3"
                 },
-                "name":"元件II,1.72%",
-                "value":1.72
+                "name":"元件II,1.73%",
+                "value":1.73
             },
             {
                 "children":[],
                 "itemStyle":{
                     "color":"#66B5F3"
                 },
-                "name":"电子制造II,1.38%",
-                "value":1.38
+                "name":"电子制造II,1.55%",
+                "value":1.55
             },
             {
                 "children":[],
                 "itemStyle":{
                     "color":"#66B5F3"
                 },
-                "name":"半导体II,0.91%",
-                "value":0.91
+                "name":"半导体II,0.97%",
+                "value":0.97
             },
             {
                 "children":[],
                 "itemStyle":{
                     "color":"#66B5F3"
                 },
-                "name":"光学光电子II,1.7%",
-                "value":1.7
+                "name":"其他电子II,0.85%",
+                "value":0.85
             },
             {
                 "children":[],
                 "itemStyle":{
                     "color":"#66B5F3"
                 },
-                "name":"其他电子II,0.8%",
-                "value":0.8
+                "name":"光学光电子II,1.75%",
+                "value":1.75
             }
         ],
         "index":6,
         "itemStyle":{
             "color":"#66B5F3"
         },
-        "name":"电子I,6.51%",
-        "value":6.51
+        "name":"电子I,6.85%",
+        "value":6.85
     },
     {
         "children":[
@@ -301,7 +301,7 @@ function getData()
                     "color":"#50C2F9"
                 },
                 "name":"",
-                "value":0.16
+                "value":0.17
             }
         ],
         "index":7,
@@ -309,7 +309,7 @@ function getData()
             "color":"#50C2F9"
         },
         "name":"",
-        "value":1.39
+        "value":1.4
     },
     {
         "children":[
@@ -318,35 +318,27 @@ function getData()
                 "itemStyle":{
                     "color":"#4DD1E2"
                 },
-                "name":"饮料制造II,1.97%",
-                "value":1.97
+                "name":"饮料制造II,1.98%",
+                "value":1.98
             },
             {
                 "children":[],
                 "itemStyle":{
                     "color":"#4DD1E2"
                 },
-                "name":"食品加工II,1.72%",
-                "value":1.72
+                "name":"食品加工II,1.75%",
+                "value":1.75
             }
         ],
         "index":8,
         "itemStyle":{
             "color":"#4DD1E2"
         },
-        "name":"食品饮料I,3.69%",
-        "value":3.69
+        "name":"食品饮料I,3.73%",
+        "value":3.73
     },
     {
         "children":[
-            {
-                "children":[],
-                "itemStyle":{
-                    "color":"#4FB4AD"
-                },
-                "name":"",
-                "value":0.26
-            },
             {
                 "children":[],
                 "itemStyle":{
@@ -354,6 +346,14 @@ function getData()
                 },
                 "name":"",
                 "value":0.47
+            },
+            {
+                "children":[],
+                "itemStyle":{
+                    "color":"#4FB4AD"
+                },
+                "name":"",
+                "value":0.25
             }
         ],
         "index":9,
@@ -361,7 +361,7 @@ function getData()
             "color":"#4FB4AD"
         },
         "name":"",
-        "value":0.73
+        "value":0.72
     },
     {
         "children":[
@@ -370,8 +370,8 @@ function getData()
                 "itemStyle":{
                     "color":"#81C686"
                 },
-                "name":"造纸II,0.5%",
-                "value":0.5
+                "name":"造纸II,0.54%",
+                "value":0.54
             },
             {
                 "children":[],
@@ -379,7 +379,7 @@ function getData()
                     "color":"#81C686"
                 },
                 "name":"",
-                "value":0.38
+                "value":0.39
             },
             {
                 "children":[],
@@ -387,7 +387,7 @@ function getData()
                     "color":"#81C686"
                 },
                 "name":"",
-                "value":0.21
+                "value":0.22
             },
             {
                 "children":[],
@@ -403,7 +403,7 @@ function getData()
             "color":"#81C686"
         },
         "name":"",
-        "value":1.09
+        "value":1.15
     },
     {
         "children":[
@@ -412,56 +412,56 @@ function getData()
                 "itemStyle":{
                     "color":"#B0D482"
                 },
-                "name":"化学制药II,5.81%",
-                "value":5.81
+                "name":"化学制药II,5.89%",
+                "value":5.89
             },
             {
                 "children":[],
                 "itemStyle":{
                     "color":"#B0D482"
                 },
-                "name":"医疗服务II,1.8%",
-                "value":1.8
+                "name":"医疗服务II,1.74%",
+                "value":1.74
             },
             {
                 "children":[],
                 "itemStyle":{
                     "color":"#B0D482"
                 },
-                "name":"生物制品II,3.25%",
-                "value":3.25
+                "name":"生物制品II,3.04%",
+                "value":3.04
             },
             {
                 "children":[],
                 "itemStyle":{
                     "color":"#B0D482"
                 },
-                "name":"医疗器械II,1.9%",
-                "value":1.9
+                "name":"医疗器械II,1.83%",
+                "value":1.83
             },
             {
                 "children":[],
                 "itemStyle":{
                     "color":"#B0D482"
                 },
-                "name":"中药II,2.96%",
-                "value":2.96
+                "name":"中药II,2.89%",
+                "value":2.89
             },
             {
                 "children":[],
                 "itemStyle":{
                     "color":"#B0D482"
                 },
-                "name":"医药商业II,1.44%",
-                "value":1.44
+                "name":"医药商业II,1.41%",
+                "value":1.41
             }
         ],
         "index":11,
         "itemStyle":{
             "color":"#B0D482"
         },
-        "name":"医药生物I,17.16%",
-        "value":17.16
+        "name":"医药生物I,16.8%",
+        "value":16.8
     },
     {
         "children":[
@@ -470,24 +470,24 @@ function getData()
                 "itemStyle":{
                     "color":"#DCE877"
                 },
-                "name":"电力II,2.61%",
-                "value":2.61
+                "name":"电力II,2.62%",
+                "value":2.62
             },
             {
                 "children":[],
                 "itemStyle":{
                     "color":"#DCE877"
                 },
-                "name":"水务II,0.57%",
-                "value":0.57
+                "name":"水务II,0.56%",
+                "value":0.56
             },
             {
                 "children":[],
                 "itemStyle":{
                     "color":"#DCE877"
                 },
-                "name":"环保工程及服务II,1.12%",
-                "value":1.12
+                "name":"环保工程及服务II,1.08%",
+                "value":1.08
             },
             {
                 "children":[],
@@ -502,8 +502,8 @@ function getData()
         "itemStyle":{
             "color":"#DCE877"
         },
-        "name":"公用事业I,4.39%",
-        "value":4.39
+        "name":"公用事业I,4.35%",
+        "value":4.35
     },
     {
         "children":[
@@ -512,8 +512,16 @@ function getData()
                 "itemStyle":{
                     "color":"#FFF177"
                 },
-                "name":"高速公路II,0.79%",
-                "value":0.79
+                "name":"",
+                "value":0.3
+            },
+            {
+                "children":[],
+                "itemStyle":{
+                    "color":"#FFF177"
+                },
+                "name":"高速公路II,0.8%",
+                "value":0.8
             },
             {
                 "children":[],
@@ -521,15 +529,7 @@ function getData()
                     "color":"#FFF177"
                 },
                 "name":"",
-                "value":0.29
-            },
-            {
-                "children":[],
-                "itemStyle":{
-                    "color":"#FFF177"
-                },
-                "name":"",
-                "value":0.33
+                "value":0.36
             },
             {
                 "children":[],
@@ -544,8 +544,8 @@ function getData()
                 "itemStyle":{
                     "color":"#FFF177"
                 },
-                "name":"港口II,0.55%",
-                "value":0.55
+                "name":"港口II,0.56%",
+                "value":0.56
             },
             {
                 "children":[],
@@ -576,8 +576,8 @@ function getData()
         "itemStyle":{
             "color":"#FFF177"
         },
-        "name":"交通运输I,2.92%",
-        "value":2.92
+        "name":"交通运输I,2.98%",
+        "value":2.98
     },
     {
         "children":[
@@ -586,8 +586,8 @@ function getData()
                 "itemStyle":{
                     "color":"#FCDB62"
                 },
-                "name":"房地产开发II,4.05%",
-                "value":4.05
+                "name":"房地产开发II,4.07%",
+                "value":4.07
             },
             {
                 "children":[],
@@ -595,15 +595,15 @@ function getData()
                     "color":"#FCDB62"
                 },
                 "name":"",
-                "value":0.43
+                "value":0.4
             }
         ],
         "index":14,
         "itemStyle":{
             "color":"#FCDB62"
         },
-        "name":"房地产I,4.48%",
-        "value":4.48
+        "name":"房地产I,4.47%",
+        "value":4.47
     },
     {
         "children":[
@@ -613,15 +613,15 @@ function getData()
                     "color":"#FDB84D"
                 },
                 "name":"",
-                "value":0.24
+                "value":0.25
             },
             {
                 "children":[],
                 "itemStyle":{
                     "color":"#FDB84D"
                 },
-                "name":"一般零售II,0.62%",
-                "value":0.62
+                "name":"一般零售II,0.61%",
+                "value":0.61
             },
             {
                 "children":[],
@@ -655,7 +655,7 @@ function getData()
                     "color":"#FD8B66"
                 },
                 "name":"",
-                "value":0.34
+                "value":0.38
             },
             {
                 "children":[],
@@ -663,7 +663,7 @@ function getData()
                     "color":"#FD8B66"
                 },
                 "name":"",
-                "value":0.4
+                "value":0.39
             },
             {
                 "children":[],
@@ -671,7 +671,7 @@ function getData()
                     "color":"#FD8B66"
                 },
                 "name":"",
-                "value":0.35
+                "value":0.31
             }
         ],
         "index":16,
@@ -679,7 +679,7 @@ function getData()
             "color":"#FD8B66"
         },
         "name":"",
-        "value":1.09
+        "value":1.08
     },
     {
         "children":[
@@ -689,7 +689,7 @@ function getData()
                     "color":"#BEBEBE"
                 },
                 "name":"",
-                "value":0.4
+                "value":0.39
             }
         ],
         "index":17,
@@ -697,7 +697,7 @@ function getData()
             "color":"#BEBEBE"
         },
         "name":"",
-        "value":0.4
+        "value":0.39
     },
     {
         "children":[
@@ -706,16 +706,8 @@ function getData()
                 "itemStyle":{
                     "color":"#91A4AE"
                 },
-                "name":"",
-                "value":0.3
-            },
-            {
-                "children":[],
-                "itemStyle":{
-                    "color":"#91A4AE"
-                },
-                "name":"水泥制造II,0.67%",
-                "value":0.67
+                "name":"水泥制造II,0.74%",
+                "value":0.74
             },
             {
                 "children":[],
@@ -723,7 +715,15 @@ function getData()
                     "color":"#91A4AE"
                 },
                 "name":"",
-                "value":0.25
+                "value":0.29
+            },
+            {
+                "children":[],
+                "itemStyle":{
+                    "color":"#91A4AE"
+                },
+                "name":"",
+                "value":0.27
             }
         ],
         "index":18,
@@ -731,7 +731,7 @@ function getData()
             "color":"#91A4AE"
         },
         "name":"",
-        "value":1.22
+        "value":1.3
     },
     {
         "children":[
@@ -749,15 +749,15 @@ function getData()
                     "color":"#A38680"
                 },
                 "name":"",
-                "value":0.42
+                "value":0.39
             },
             {
                 "children":[],
                 "itemStyle":{
                     "color":"#A38680"
                 },
-                "name":"基础建设II,0.52%",
-                "value":0.52
+                "name":"基础建设II,0.53%",
+                "value":0.53
             },
             {
                 "children":[],
@@ -781,7 +781,7 @@ function getData()
             "color":"#A38680"
         },
         "name":"",
-        "value":1.43
+        "value":1.41
     },
     {
         "children":[
@@ -790,24 +790,24 @@ function getData()
                 "itemStyle":{
                     "color":"#2196F3"
                 },
-                "name":"电源设备II,2.58%",
-                "value":2.58
+                "name":"电源设备II,2.49%",
+                "value":2.49
             },
             {
                 "children":[],
                 "itemStyle":{
                     "color":"#2196F3"
                 },
-                "name":"电气自动化设备II,0.54%",
-                "value":0.54
+                "name":"高低压设备II,0.85%",
+                "value":0.85
             },
             {
                 "children":[],
                 "itemStyle":{
                     "color":"#2196F3"
                 },
-                "name":"高低压设备II,0.82%",
-                "value":0.82
+                "name":"电气自动化设备II,0.53%",
+                "value":0.53
             },
             {
                 "children":[],
@@ -815,15 +815,15 @@ function getData()
                     "color":"#2196F3"
                 },
                 "name":"",
-                "value":0.2
+                "value":0.21
             }
         ],
         "index":20,
         "itemStyle":{
             "color":"#2196F3"
         },
-        "name":"电气设备I,4.14%",
-        "value":4.14
+        "name":"电气设备I,4.08%",
+        "value":4.08
     },
     {
         "children":[
@@ -833,7 +833,7 @@ function getData()
                     "color":"#02AAF3"
                 },
                 "name":"",
-                "value":0.46
+                "value":0.48
             },
             {
                 "children":[],
@@ -865,7 +865,7 @@ function getData()
             "color":"#02AAF3"
         },
         "name":"",
-        "value":1.07
+        "value":1.09
     },
     {
         "children":[
@@ -874,24 +874,24 @@ function getData()
                 "itemStyle":{
                     "color":"#01BCD6"
                 },
-                "name":"计算机应用II,3.72%",
-                "value":3.72
+                "name":"计算机应用II,3.55%",
+                "value":3.55
             },
             {
                 "children":[],
                 "itemStyle":{
                     "color":"#01BCD6"
                 },
-                "name":"计算机设备II,0.67%",
-                "value":0.67
+                "name":"计算机设备II,0.66%",
+                "value":0.66
             }
         ],
         "index":22,
         "itemStyle":{
             "color":"#01BCD6"
         },
-        "name":"计算机I,4.39%",
-        "value":4.39
+        "name":"计算机I,4.21%",
+        "value":4.21
     },
     {
         "children":[
@@ -900,32 +900,32 @@ function getData()
                 "itemStyle":{
                     "color":"#009786"
                 },
-                "name":"互联网传媒II,4.23%",
-                "value":4.23
+                "name":"互联网传媒II,4.36%",
+                "value":4.36
             },
             {
                 "children":[],
                 "itemStyle":{
                     "color":"#009786"
                 },
-                "name":"营销传播II,1.09%",
-                "value":1.09
+                "name":"营销传播II,1.05%",
+                "value":1.05
             },
             {
                 "children":[],
                 "itemStyle":{
                     "color":"#009786"
                 },
-                "name":"文化传媒II,3.26%",
-                "value":3.26
+                "name":"文化传媒II,3.24%",
+                "value":3.24
             }
         ],
         "index":23,
         "itemStyle":{
             "color":"#009786"
         },
-        "name":"传媒I,8.58%",
-        "value":8.58
+        "name":"传媒I,8.65%",
+        "value":8.65
     },
     {
         "children":[
@@ -934,8 +934,8 @@ function getData()
                 "itemStyle":{
                     "color":"#4EAF51"
                 },
-                "name":"通信设备II,1.68%",
-                "value":1.68
+                "name":"通信设备II,1.64%",
+                "value":1.64
             },
             {
                 "children":[],
@@ -950,8 +950,8 @@ function getData()
         "itemStyle":{
             "color":"#4EAF51"
         },
-        "name":"通信I,1.73%",
-        "value":1.73
+        "name":"通信I,1.69%",
+        "value":1.69
     },
     {
         "children":[
@@ -960,16 +960,16 @@ function getData()
                 "itemStyle":{
                     "color":"#8CC249"
                 },
-                "name":"银行II,5.27%",
-                "value":5.27
+                "name":"银行II,5.29%",
+                "value":5.29
             }
         ],
         "index":25,
         "itemStyle":{
             "color":"#8CC249"
         },
-        "name":"银行I,5.27%",
-        "value":5.27
+        "name":"银行I,5.29%",
+        "value":5.29
     },
     {
         "children":[
@@ -978,32 +978,32 @@ function getData()
                 "itemStyle":{
                     "color":"#CCDE37"
                 },
-                "name":"保险II,2.52%",
-                "value":2.52
+                "name":"保险II,2.43%",
+                "value":2.43
             },
             {
                 "children":[],
                 "itemStyle":{
                     "color":"#CCDE37"
                 },
-                "name":"证券II,6.92%",
-                "value":6.92
+                "name":"证券II,6.97%",
+                "value":6.97
             },
             {
                 "children":[],
                 "itemStyle":{
                     "color":"#CCDE37"
                 },
-                "name":"多元金融II,0.6%",
-                "value":0.6
+                "name":"多元金融II,0.59%",
+                "value":0.59
             }
         ],
         "index":26,
         "itemStyle":{
             "color":"#CCDE37"
         },
-        "name":"非银金融I,10.04%",
-        "value":10.04
+        "name":"非银金融I,9.99%",
+        "value":9.99
     },
     {
         "children":[
@@ -1012,16 +1012,16 @@ function getData()
                 "itemStyle":{
                     "color":"#FACD20"
                 },
-                "name":"汽车整车II,1.33%",
-                "value":1.33
+                "name":"汽车整车II,1.35%",
+                "value":1.35
             },
             {
                 "children":[],
                 "itemStyle":{
                     "color":"#FACD20"
                 },
-                "name":"汽车零部件II,1.33%",
-                "value":1.33
+                "name":"汽车零部件II,1.43%",
+                "value":1.43
             },
             {
                 "children":[],
@@ -1037,15 +1037,15 @@ function getData()
                     "color":"#FACD20"
                 },
                 "name":"",
-                "value":0.11
+                "value":0.1
             }
         ],
         "index":27,
         "itemStyle":{
             "color":"#FACD20"
         },
-        "name":"汽车I,2.9%",
-        "value":2.9
+        "name":"汽车I,3.01%",
+        "value":3.01
     },
     {
         "children":[
@@ -1054,16 +1054,16 @@ function getData()
                 "itemStyle":{
                     "color":"#FF5723"
                 },
-                "name":"专用设备II,1.94%",
-                "value":1.94
+                "name":"专用设备II,1.96%",
+                "value":1.96
             },
             {
                 "children":[],
                 "itemStyle":{
                     "color":"#FF5723"
                 },
-                "name":"通用机械II,0.55%",
-                "value":0.55
+                "name":"通用机械II,0.56%",
+                "value":0.56
             },
             {
                 "children":[],
@@ -1071,7 +1071,7 @@ function getData()
                     "color":"#FF5723"
                 },
                 "name":"",
-                "value":0.23
+                "value":0.24
             },
             {
                 "children":[],
@@ -1087,15 +1087,15 @@ function getData()
                     "color":"#FF5723"
                 },
                 "name":"",
-                "value":0.05
+                "value":0.04
             }
         ],
         "index":28,
         "itemStyle":{
             "color":"#FF5723"
         },
-        "name":"机械设备I,2.87%",
-        "value":2.87
+        "name":"机械设备I,2.9%",
+        "value":2.9
     }
 ]
 }

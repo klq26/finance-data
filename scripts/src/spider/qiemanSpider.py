@@ -5,6 +5,10 @@ import requests
 import json
 import ssl
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
+# 把父路径加入到 sys.path 供 import 搜索
+currentDir = os.path.abspath(os.path.dirname(__file__))
+srcDir = os.path.dirname(currentDir)
+sys.path.append(srcDir)
 
 from config.requestHeaderManager import requestHeaderManager
 from config.pathManager import pathManager

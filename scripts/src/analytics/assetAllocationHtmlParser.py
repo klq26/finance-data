@@ -1,22 +1,30 @@
 # -*- coding: utf-8 -*-
 import os
+import sys
 import json
 from operator import itemgetter
+import pandas as pd
 # html template
 import jinja2
 from jinja2 import Environment, FileSystemLoader
+# 把父路径加入到 sys.path 供 import 搜索
+currentDir = os.path.abspath(os.path.dirname(__file__))
+srcDir = os.path.dirname(currentDir)
+sys.path.append(srcDir)
 # model
 from model.assetModel import assetModel
 # config
 from config.assetCategoryConstants import assetCategoryConstants
 from config.pathManager import pathManager
 from config.colorConstants import colorConstants
+from config.historyProfitManager import  historyProfitManager
 
 class assetAllocationHtmlParser:
 
     def __init__(self):
         self.pm = pathManager()
         self.fundCategorys = self.getFundCategorys()
+        self.historyManager = historyProfitManager()
         categoryConstants = assetCategoryConstants()
         self.category1Array = categoryConstants.category1Array
         self.category2Array = categoryConstants.category2Array
@@ -63,7 +71,7 @@ class assetAllocationHtmlParser:
         return ''
 
     # 读取 txt，生成 assetModel 基金数据集合，输出到 xlsx 文件
-    def generateHtmlFile(self,assetModelArray, title, path=''):
+    def generateHtmlFile(self,assetModelArray, history_df, title, path=''):
         # 先删除旧文件
         if os.path.exists(path):
             os.remove(path)
@@ -84,42 +92,79 @@ class assetAllocationHtmlParser:
             totalGain = totalGain + assetModel.holdTotalGain
             # 增加色值
             color = self.getFundColorByAppSourceName(assetModel.appSource)
-            dict = assetModel.__dict__
-            dict['color'] = color
+            assetDict = assetModel.__dict__
+            assetDict['color'] = color
             # 计算收益率特殊处理已经平仓的品种
             if assetModel.holdMarketCap == 0:
-                dict['holdTotalGainRate'] = '0.00%'
+                assetDict['holdTotalGainRate'] = '0.00%'
             else:
-                dict['holdTotalGainRate'] = '{:.2f}%'.format(self.beautify(assetModel.holdTotalGain / (assetModel.holdMarketCap - assetModel.holdTotalGain) * 100))
-            dict['changeValueColor'] = self.getGainColor(assetModel.holdTotalGain)
+                assetDict['holdTotalGainRate'] = '{:.2f}%'.format(self.beautify(assetModel.holdTotalGain / (assetModel.holdMarketCap - assetModel.holdTotalGain) * 100))
+            assetDict['changeValueColor'] = self.getGainColor(assetModel.holdTotalGain)
             # 输出格式化（保留小数点后 4 或 2 位）
-            dict['holdNetValue'] = '{:.4f}'.format(dict['holdNetValue'])
-            dict['holdShareCount'] = '{:.2f}'.format(dict['holdShareCount'])
-            dict['holdMarketCap'] = '{:.2f}'.format(dict['holdMarketCap'])
-            dict['holdTotalGain'] = '{:.2f}'.format(dict['holdTotalGain'])
-            data.append(dict)
-            
+            assetDict['holdNetValue'] = '{:.4f}'.format(assetDict['holdNetValue'])
+            assetDict['holdShareCount'] = '{:.2f}'.format(assetDict['holdShareCount'])
+            assetDict['holdMarketCap'] = '{:.2f}'.format(assetDict['holdMarketCap'])
+            assetDict['holdTotalGain'] = '{:.2f}'.format(assetDict['holdTotalGain'])
+            data.append(assetDict)
+        
+        # 第一行统计信息
         totalMarketCap = self.beautify(totalMarketCap)
         totalCashMarketCap = self.beautify(totalCashMarketCap)
         totalStockMarketCap = self.beautify(totalMarketCap - totalCashMarketCap)
+        # 第二行统计信息
         totalGain = self.beautify(totalGain)
         totalStockGain = self.beautify(totalGain - totalCashGain)
         totalCashGain = self.beautify(totalCashGain)
+        # 第三行统计信息
+        totalGainRate = round(totalGain/totalMarketCap,4)
+        totalStockGainRate = round(totalStockGain/totalStockMarketCap,4)
+        totalCashGainRate = round(totalCashGain/totalCashMarketCap,4)
+        # 第四行统计信息
+        totalHistoryGain = self.beautify(history_df.累计盈亏.sum())
+        totalHistoryStockGain = self.beautify(history_df[~(history_df['一级分类'].isin([u'现金',u'冻结资金']))].累计盈亏.sum())
+        totalHistoryCashGain = self.beautify(history_df[(history_df['一级分类'].isin([u'现金',u'冻结资金']))].累计盈亏.sum())
+        # 第五行统计信息
+        entireGain = self.beautify(totalHistoryGain + totalGain)
+        entireStockGain = self.beautify(totalHistoryStockGain + totalStockGain)
+        entireCashGain = self.beautify(totalHistoryCashGain + totalCashGain)
+        # 第六行统计信息
+        entireGainRate = round(entireGain/totalMarketCap,4)
+        entireStockGainRate = round(entireStockGain/totalStockMarketCap,4)
+        entireCashGainRate = round(entireCashGain/totalCashMarketCap,4)
+        # 生产 summary
+        summary = list()
+        rowTitles = ['当前市值', '持仓盈亏', '持仓收益率', '历史盈亏', '整体盈亏', '整体收益率']
+        keys = list()
+        keys += [u'property{0}'.format(x) for x in range(1,5)]
+        keys += [u'property{0}Color'.format(x) for x in range(2,5)]
+        keys.sort()
+        # print('keys',keys)
+        # keys ['property1', 'property2', 'property2Color', 'property3', 'property3Color', 'property4', 'property4Color']
+        def getRowDataByIndex(rowTitle, index):
+            if index == 0:
+                return [rowTitles[index], totalStockMarketCap,u'#333333', totalCashMarketCap, u'#333333', totalMarketCap, u'#333333']
+            if index == 1:
+                return [rowTitles[index], totalStockGain,u'#333333', totalCashGain, u'#333333', totalGain, u'#333333']
+            if index == 2:
+                return [rowTitles[index], u'{:.2f}%'.format(totalStockGainRate * 100),self.getGainColor(totalStockGainRate), u'{:.2f}%'.format(totalCashGainRate * 100), self.getGainColor(totalCashGainRate), u'{:.2f}%'.format(totalGainRate * 100), self.getGainColor(totalGainRate)]
+            if index == 3:
+                return [rowTitles[index], totalHistoryStockGain,u'#333333', totalHistoryCashGain, u'#333333', totalHistoryGain, u'#333333']
+            if index == 4:
+                return [rowTitles[index], entireStockGain,u'#333333', entireCashGain, u'#333333', entireGain, u'#333333']
+            if index == 5:
+                return [rowTitles[index], u'{:.2f}%'.format(entireStockGainRate * 100),self.getGainColor(entireStockGainRate), u'{:.2f}%'.format(entireCashGainRate * 100), self.getGainColor(entireCashGainRate), u'{:.2f}%'.format(entireGainRate * 100), self.getGainColor(entireGainRate)]
         
+        for i in range(len(rowTitles)):
+            values = getRowDataByIndex(rowTitles, i)
+            result = dict(zip(keys,values))
+            summary.append(result)
+
         # jinja2 框架输出 html
         env = Environment(loader=FileSystemLoader(os.path.join(self.pm.parentDir, u'template')))
         template = env.get_template(u'资产配置template.html')
         with open(path,'w+',encoding='utf-8') as fout:
             htmlCode = template.render(name=title, \
-                totalMarketCap=totalMarketCap, \
-                totalStockMarketCap=totalStockMarketCap, \
-                totalCashMarketCap=totalCashMarketCap, \
-                totalGain=totalGain, \
-                totalGainColor = self.getGainColor(totalGain), \
-                totalStockGain=totalStockGain, \
-                totalStockGainColor = self.getGainColor(totalStockGain), \
-                totalCashGain=totalCashGain, \
-                totalCashGainColor = self.getGainColor(totalCashGain), \
+                summary=summary, \
                 data=data)
             fout.write(htmlCode)
         # 打开文件
@@ -133,7 +178,7 @@ if __name__ == "__main__":
     with open(assetJsonPath,'r',encoding=u'utf-8') as assetJsonFile:
         assetModelArray = json.loads(assetJsonFile.read(),object_hook=assetModel)
     
-    assetHtml.generateHtmlFile(assetModelArray,title=u'康力泉整体资产配置',path=os.path.join(assetHtml.pm.holdingOutputPath, u'{0}资产配置.html'.format(u'康力泉整体')))
-    
+    assetHtml.generateHtmlFile(assetModelArray, assetHtml.historyManager.getKLQHistoryProfit(), title=u'康力泉整体资产配置',path=os.path.join(assetHtml.pm.holdingOutputPath, u'{0}资产配置.html'.format(u'康力泉整体')))
+
     #assetModelArray.sort(key=itemgetter('category4'))
     #assetHtml.generateHtmlFile(assetModelArray,title=u'康力泉整体资产配置（分类ID升序）',path=os.path.join(assetHtml.pm.holdingOutputPath, u'{0}资产配置（分类ID升序）.html'.format(u'康力泉整体')))

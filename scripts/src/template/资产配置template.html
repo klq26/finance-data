@@ -1,160 +1,176 @@
-<meta http-equiv="Content-Type"content="text/html;charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <html align='left'>
+
 <head>
-<style type="text/css">
-</style>
-<script type="text/javascript">
-    // 点击筛选
-    function sort(object)
-    {
-        var type = object.attributes['type'].nodeValue
-        console.log(type)
-        var sortFunction = object.className;
-        var index = object.id.substr(2,2);
-        var tableNode = document.getElementById("table");
-        var trs = tableNode.rows;
-        // 取出所有的 row
-        var arr = new Array;
-        for ( var x = 1; x < trs.length; x++)
-        {
-            arr.push(trs[x]);
+    <style type="text/css">
+        #summary {
+            width: 480px;
+            height: 150px;
+            position: relative;
+            background-color: #4DD1E2;
+            padding: 0;
+            margin: 0;
+            color: #333;
         }
-        // className 做升降序标识
-        if (sortFunction == 'asc') {
-            object.className = 'desc'
-            if (type == 'number') {
-                numAscSort(arr,index);
+
+        #table {
+            position: relative;
+            top: 250px;
+            left: -480px;
+            background-color: #fff;
+        }
+    </style>
+    <script type="text/javascript">
+        // 点击筛选
+        function sort(object) {
+            var type = object.attributes['type'].nodeValue
+            console.log(type)
+            var sortFunction = object.className;
+            var index = object.id.substr(2, 2);
+            var tableNode = document.getElementById("table");
+            var trs = tableNode.rows;
+            // 取出所有的 row
+            var arr = new Array;
+            for (var x = 1; x < trs.length; x++) {
+                arr.push(trs[x]);
+            }
+            // className 做升降序标识
+            if (sortFunction == 'asc') {
+                object.className = 'desc'
+                if (type == 'number') {
+                    numAscSort(arr, index);
+                } else {
+                    strAscSort(arr, index);
+                }
+
             } else {
-                strAscSort(arr,index);
+                object.className = 'asc'
+                if (type == 'number') {
+                    numDescSort(arr, index);
+                } else {
+                    strDescSort(arr, index);
+                }
             }
-            
-        } else {
-            object.className = 'asc'
-            if (type == 'number') {
-                numDescSort(arr,index);
-            } else {
-                strDescSort(arr,index);
+
+            for (var x = 0; x < arr.length; x++) {
+                tableNode.tBodies[0].appendChild(arr[x]);
             }
         }
-        
-        for ( var x = 0; x < arr.length; x++)
-        {
-            tableNode.tBodies[0].appendChild(arr[x]);
-        }
-    }
-    
-    // 升序冒泡
-    function numAscSort (arr, index)
-    {
-        console.log('numAscSort')
-        for ( var x = 0; x < arr.length; x++)
-        {
-            for ( var y = x + 1; y < arr.length; y++)
-            {
-                if (parseFloat(arr[x].cells[index].childNodes[0].nodeValue) >= parseFloat(arr[y].cells[index].childNodes[0].nodeValue))
-                {
-                    var tmp = arr[x];
-                    arr[x] = arr[y];
-                    arr[y] = tmp;
+
+        // 升序冒泡
+        function numAscSort(arr, index) {
+            console.log('numAscSort')
+            for (var x = 0; x < arr.length; x++) {
+                for (var y = x + 1; y < arr.length; y++) {
+                    if (parseFloat(arr[x].cells[index].childNodes[0].nodeValue) >= parseFloat(arr[y].cells[index].childNodes[0].nodeValue)) {
+                        var tmp = arr[x];
+                        arr[x] = arr[y];
+                        arr[y] = tmp;
+                    }
                 }
             }
         }
-    }
-    
-    // 升序冒泡
-    function strAscSort (arr, index)
-    {
-        for ( var x = 0; x < arr.length; x++)
-        {
-            for ( var y = x + 1; y < arr.length; y++)
-            {
-                if (arr[x].cells[index].childNodes[0].nodeValue.localeCompare(arr[y].cells[index].childNodes[0].nodeValue) >= 0)
-                {
-                    var tmp = arr[x];
-                    arr[x] = arr[y];
-                    arr[y] = tmp;
+
+        // 升序冒泡
+        function strAscSort(arr, index) {
+            for (var x = 0; x < arr.length; x++) {
+                for (var y = x + 1; y < arr.length; y++) {
+                    if (arr[x].cells[index].childNodes[0].nodeValue.localeCompare(arr[y].cells[index].childNodes[0].nodeValue) >= 0) {
+                        var tmp = arr[x];
+                        arr[x] = arr[y];
+                        arr[y] = tmp;
+                    }
                 }
             }
         }
-    }
-    
-    // 降序冒泡
-    function numDescSort (arr, index)
-    {
-        console.log('numDescSort')
-        for ( var x = 0; x < arr.length; x++)
-        {
-            for ( var y = x + 1; y < arr.length; y++)
-            {
-                if (parseFloat(arr[x].cells[index].childNodes[0].nodeValue) <= parseFloat(arr[y].cells[index].childNodes[0].nodeValue))
-                {
-                    var tmp = arr[x];
-                    arr[x] = arr[y];
-                    arr[y] = tmp;
+
+        // 降序冒泡
+        function numDescSort(arr, index) {
+            console.log('numDescSort')
+            for (var x = 0; x < arr.length; x++) {
+                for (var y = x + 1; y < arr.length; y++) {
+                    if (parseFloat(arr[x].cells[index].childNodes[0].nodeValue) <= parseFloat(arr[y].cells[index].childNodes[0].nodeValue)) {
+                        var tmp = arr[x];
+                        arr[x] = arr[y];
+                        arr[y] = tmp;
+                    }
                 }
             }
         }
-    }
-    
-    // 降序冒泡
-    function strDescSort (arr, index)
-    {
-        console.log('strDescSort')
-        for ( var x = 0; x < arr.length; x++)
-        {
-            for ( var y = x + 1; y < arr.length; y++)
-            {
-                if (arr[x].cells[index].childNodes[0].nodeValue.localeCompare(arr[y].cells[index].childNodes[0].nodeValue) <= 0)
-                {
-                    var tmp = arr[x];
-                    arr[x] = arr[y];
-                    arr[y] = tmp;
+
+        // 降序冒泡
+        function strDescSort(arr, index) {
+            console.log('strDescSort')
+            for (var x = 0; x < arr.length; x++) {
+                for (var y = x + 1; y < arr.length; y++) {
+                    if (arr[x].cells[index].childNodes[0].nodeValue.localeCompare(arr[y].cells[index].childNodes[0].nodeValue) <= 0) {
+                        var tmp = arr[x];
+                        arr[x] = arr[y];
+                        arr[y] = tmp;
+                    }
                 }
             }
         }
-    }
-</script>
+    </script>
 </head>
 <h1>{{ name }}</h1>
-    <body>
-    <h2>整体情况</h2> 
-    <p><b>持仓市值 : </b>{{ totalMarketCap }}&nbsp;&nbsp;<b>权益类市值 : </b>{{totalStockMarketCap}}&nbsp;&nbsp;<b>保本类市值 : </b>{{totalCashMarketCap}}</p>
-    <p><b>持仓盈亏 : <font color={{ totalGainColor }}>{{totalGain}}</b></font>&nbsp;&nbsp;<b>权益类盈亏 : <font color={{ totalStockGainColor }}>{{totalStockGain}}</b></font>&nbsp;&nbsp;<b>保本类盈亏 : <font color={{ totalCashGainColor }}>{{totalCashGain}}</font></b></p>
-    <table id='table' border="1" cellspacing='0' cellpadding='4' align='left'>
-    <thead>
-    <tr align='center'>
-        <th id='th0' class = 'asc' type='string' onclick='sort(this)'>基金名称</th>
-        <th id='th1' class = 'asc' type='number' onclick='sort(this)'>基金代码</th>
-        <th id='th2' class = 'asc' type='number' onclick='sort(this)'>持仓成本</th>
-        <th id='th3' class = 'asc' type='number' onclick='sort(this)'>持仓份额</th>
-        <th id='th4' class = 'asc' type='number' onclick='sort(this)'>持仓市值</th>
-        <th id='th5' class = 'asc' type='number' onclick='sort(this)'>累计收益</th>
-        <th id='th6' class = 'asc' type='number' onclick='sort(this)'>累计收益率</th>
-        <th id='th7' class = 'asc' type='string' onclick='sort(this)'>一级分类</th>
-        <th id='th8' class = 'asc' type='string' onclick='sort(this)'>二级分类</th>
-        <th id='th9' class = 'asc' type='string' onclick='sort(this)'>三级分类</th>
-        <th id='th10' class = 'asc' type='number' onclick='sort(this)'>分类 ID</th>
-        <th id='th11' class = 'asc' type='string' onclick='sort(this)'>来源</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for item in data %}
-    <tr align='center'>
-        <td bgcolor={{ item.color }}>{{ item.fundName }}</td>
-        <td bgcolor={{ item.color }}>{{ item.fundCode }}</td>
-        <td align='right' bgcolor={{ item.color }}>{{ item.holdNetValue }}</td>
-        <td align='right' bgcolor={{ item.color }}>{{ item.holdShareCount }}</td>
-        <td align='right' bgcolor={{ item.color }}>{{ item.holdMarketCap }}</td>
-        <td align='right' bgcolor={{ item.color }} style='color: {{item.changeValueColor}};'>{{ item.holdTotalGain }}</td>
-        <td align='right' bgcolor={{ item.color }} style='color: {{item.changeValueColor}};'>{{ item.holdTotalGainRate }}</td>
-        <td bgcolor={{ item.color }}>{{ item.category1 }}</td>
-        <td bgcolor={{ item.color }}>{{ item.category2 }}</td>
-        <td bgcolor={{ item.color }}>{{ item.category3 }}</td>
-        <td bgcolor={{ item.color }}>{{ item.category4 }}</td>
-        <td bgcolor={{ item.color }}>{{ item.appSource }}</td>
-    </tr>
-    {% endfor%}
-    </tbody>
-    </table>
-    </body>
+
+<body>
+    <h2>整体情况</h2>
+        <table id='summary' border="1" cellspacing='0' cellpadding='4' align='left'>
+            <tr align='center'>
+                <th></th>
+                <th><b>权益型</b></th>
+                <th><b>稳健型</b></th>
+                <th><b>总计</b></th>
+            </tr>
+            {% for item in summary %}
+            <tr align='right'>
+                <th align='center'><b>{{item.property1}}</b></th>
+                <th style='color: {{ item.property2Color }};'>{{item.property2}}</th>
+                <th style='color: {{ item.property3Color }};'>{{item.property3}}</th>
+                <th style='color: {{ item.property4Color }};'>{{item.property4}}</th>
+            </tr>
+            {% endfor%}
+        </table>
+        <table id='table' border="1" cellspacing='0' cellpadding='4' align='left'>
+            <thead>
+                <tr align='center'>
+                    <th id='th0' class='asc' type='string' onclick='sort(this)'>基金名称</th>
+                    <th id='th1' class='asc' type='number' onclick='sort(this)'>基金代码</th>
+                    <th id='th2' class='asc' type='number' onclick='sort(this)'>持仓成本</th>
+                    <th id='th3' class='asc' type='number' onclick='sort(this)'>持仓份额</th>
+                    <th id='th4' class='asc' type='number' onclick='sort(this)'>持仓市值</th>
+                    <th id='th5' class='asc' type='number' onclick='sort(this)'>累计收益</th>
+                    <th id='th6' class='asc' type='number' onclick='sort(this)'>累计收益率</th>
+                    <th id='th7' class='asc' type='string' onclick='sort(this)'>一级分类</th>
+                    <th id='th8' class='asc' type='string' onclick='sort(this)'>二级分类</th>
+                    <th id='th9' class='asc' type='string' onclick='sort(this)'>三级分类</th>
+                    <th id='th10' class='asc' type='number' onclick='sort(this)'>分类 ID</th>
+                    <th id='th11' class='asc' type='string' onclick='sort(this)'>来源</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in data %}
+                <tr align='center'>
+                    <td bgcolor={{ item.color }}>{{ item.fundName }}</td>
+                    <td bgcolor={{ item.color }}>{{ item.fundCode }}</td>
+                    <td align='right' bgcolor={{ item.color }}>{{ item.holdNetValue }}</td>
+                    <td align='right' bgcolor={{ item.color }}>{{ item.holdShareCount }}</td>
+                    <td align='right' bgcolor={{ item.color }}>{{ item.holdMarketCap }}</td>
+                    <td align='right' bgcolor={{ item.color }} style='color: {{item.changeValueColor}};'>
+                        {{ item.holdTotalGain }}</td>
+                    <td align='right' bgcolor={{ item.color }} style='color: {{item.changeValueColor}};'>
+                        {{ item.holdTotalGainRate }}</td>
+                    <td bgcolor={{ item.color }}>{{ item.category1 }}</td>
+                    <td bgcolor={{ item.color }}>{{ item.category2 }}</td>
+                    <td bgcolor={{ item.color }}>{{ item.category3 }}</td>
+                    <td bgcolor={{ item.color }}>{{ item.category4 }}</td>
+                    <td bgcolor={{ item.color }}>{{ item.appSource }}</td>
+                </tr>
+                {% endfor%}
+            </tbody>
+        </table>
+</body>
+
 </html>

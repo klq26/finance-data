@@ -11,7 +11,7 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning
  
 from model.fundModel import fundModel
 from config.requestHeaderManager import requestHeaderManager
-from config.fundCodeConstants import fundCodeConstants
+from config.assetCategoryManager import assetCategoryManager
 from config.pathManager import pathManager
 
 
@@ -20,7 +20,7 @@ class estimateFundManager:
     # 初始化构造函数
     def __init__(self):
         # 场内代码
-        self.innerMarketCodes = fundCodeConstants().innerMarketCodes.values()
+        self.innerMarketCodes = assetCategoryManager().getEstimableFunds(isInnerMarket = True).values()
         self.headerManager = requestHeaderManager()
         self.dateFormat = u'%Y-%m-%d %H:%M:%S'
         self.pm = pathManager()
@@ -73,7 +73,7 @@ class estimateFundManager:
         requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
         ssl._create_default_https_context = ssl._create_unverified_context
         marketSign = ''
-        if code.startswith(u'15'):
+        if code.startswith(u'15') or code == '162411':
             marketSign = u'SZ'
         else:
             marketSign = u'SH'
@@ -82,6 +82,8 @@ class estimateFundManager:
         data = json.loads(response.text)
         # data.quote.last_close & data.quote.nav_date & data.quote.current & current/last_close & timestamp
         quote = data['data']['quote']
+        # DEBUG
+        # print('\n', code, url.format(marketSign, code), data,sep='\n')
         netValueDateTimeStamp = int(int(quote['nav_date'])/1000)
         esitmateValueDateTimeStamp = int(int(quote['timestamp'])/1000)
 

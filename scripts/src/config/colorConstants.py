@@ -1,5 +1,11 @@
 # -*- coding: utf-8 -*-
 
+import os
+import sys
+# 把父路径加入到 sys.path 供 import 搜索
+currentDir = os.path.abspath(os.path.dirname(__file__))
+srcDir = os.path.dirname(currentDir)
+sys.path.append(srcDir)
 # config
 from config.assetCategoryConstants import assetCategoryConstants
 
@@ -15,7 +21,7 @@ class colorConstants:
         # 色值转换 https://www.sioe.cn/yingyong/yanse-rgb-16/
         if name in [u'螺丝钉定投', u'母螺丝钉', u'父螺丝钉']:
             return 'F0DC5A'
-        elif name in [u'且慢补充 150 份', u'且慢 S 定投']:
+        elif name in [u'且慢补充 150 份', u'且慢 S 定投', u'我要稳稳的幸福']:
             return '6EB5FF'
         elif u'天天基金' in name:
             return 'FF8361'
@@ -44,9 +50,11 @@ class colorConstants:
         elif category1 == self.category1Array[4]:
             return '#DBB6AC'
         elif category1 == self.category1Array[5]:
-            return '#F0DC5A'
+            return '#2196F3'
         elif category1 == self.category1Array[6]:
             return '#DCDCDC'
+        elif category1 == self.category1Array[7]:
+            return '#F0DC5A'
         else:
             return 'FFFFFF'
 

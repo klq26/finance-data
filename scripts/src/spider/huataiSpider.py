@@ -3,6 +3,10 @@
 import os
 import sys
 
+# 把父路径加入到 sys.path 供 import 搜索
+currentDir = os.path.abspath(os.path.dirname(__file__))
+srcDir = os.path.dirname(currentDir)
+sys.path.append(srcDir)
 from estimateFundManager import estimateFundManager
 from config.pathManager import pathManager
 

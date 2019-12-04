@@ -1,14 +1,12 @@
 	GET /pmdj/v2/asset/summary HTTP/1.1
-Referer	https://qieman.com/dashboard
-User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.18363
-Cache-Control	max-age=0
 accept	application/json
-Accept-Language	zh-Hans-CN,zh-Hans;q=0.7,ja;q=0.3
-authorization	Bearer eyJ2ZXIiOiJ2MSIsImFsZyI6IkhTNTEyIn0.eyJzdWIiOiIxMzExMjIzIiwiaXNzIjoic3NvLnFpZW1hbi5jb20iLCJpc0FkbWluIjpmYWxzZSwiZXhwIjoxNTc2Mzc5MzE0LCJpYXQiOjE1NzUwODMzMTQsImp0aSI6ImQ0YzA4ZDUxLTEyYTMtNGFhZS1hMzI4LTlkN2E5ODk2NTUzMCJ9.RluuGcUJzcPwoXd8f0yDXwd35b2ASu5cKf249F-tBk6SPSV3lSdfHge0ZwbDRjx1iMOc2TTkFGPk07GeH7O18Q
-x-aid	A.FBAA5CB01DS4CTH82R1FPF6B7GRWFQ4JN
-x-request-id	albus.548A4E83CC1D3CF6A506
-x-sign	1575083331952B2AF8C1699CC3427CB9222FDBBB9BE86
 Accept-Encoding	gzip, deflate, br
-Host	qieman.com
-If-None-Match	W/"703-kN9f+lqZo2zGjImxCctoLS8lJG0"
+Accept-Language	zh-Hans-CN, zh-Hans; q=0.7, ja; q=0.3
+authorization	Bearer eyJ2ZXIiOiJ2MSIsImFsZyI6IkhTNTEyIn0.eyJzdWIiOiIxMzExMjIzIiwiaXNzIjoic3NvLnFpZW1hbi5jb20iLCJpc0FkbWluIjpmYWxzZSwiZXhwIjoxNTc2NzEzNDg4LCJpYXQiOjE1NzU0MTc0ODgsImp0aSI6ImU3MmEzZDBmLTAwNDgtNDdkOC05OWIwLTI2YmEwZDlhNDhiZCJ9.TDn0LuYAXy9bdOu9NWR03EDM03I997kvevepyVFxID4f6-YGb2R21Dn61La1lCmSV7gS4U-WRCxBXoSWwq-pYw
 Connection	Keep-Alive
+Host	qieman.com
+Referer	https://qieman.com/assets/CA942R8128PFE7
+User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.18363
+x-aid	A.FEDC5A401DV734SSYCKX8FE49E5CTTTP5
+x-request-id	albus.C9B3D427AA85AB147ED5
+x-sign	1575417801349B602F70EA997D33FA091961676EBDDF7

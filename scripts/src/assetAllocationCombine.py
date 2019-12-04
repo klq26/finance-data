@@ -4,18 +4,22 @@ import os
 import sys
 import json
 import time
-
+# 把父路径加入到 sys.path 供 import 搜索
+currentDir = os.path.abspath(os.path.dirname(__file__))
+srcDir = os.path.dirname(currentDir)
+sys.path.append(srcDir)
 from config.pathManager import pathManager
 from config.requestHeaderManager import requestHeaderManager
 from config.indexValueInfo import indexValueInfo
+from config.historyProfitManager import  historyProfitManager
 # 多种统计输出
-from assetAllocationExcelParser import assetAllocationExcelParser               # 输出资产配置信息到 Excel 表
-from assetAllocationHtmlParser import assetAllocationHtmlParser               # 输出资产配置信息到 Html
-from assetAllocationCategorySumParser import assetAllocationCategorySumParser           # 输出资产配置分类汇总信息到控制台
-from assetAllocationIndustryParser import assetAllocationIndustryParser         # 支持输出持仓行业信息
-from assetAllocationJSObjectParser import assetAllocationJSObjectParser         # 输出资产配置信息到 echarts 专用 data.js 对象
-from assetAllocationEstimateExcelParser import assetAllocationEstimateExcelParser   # 输出当日收盘后的估算净值及预测涨跌金额
-from assetAllocationEstimateHtmlParser import assetAllocationEstimateHtmlParser   # 输出当日收盘后的估算净值及预测涨跌金额
+from analytics.assetAllocationExcelParser import assetAllocationExcelParser               # 输出资产配置信息到 Excel 表
+from analytics.assetAllocationHtmlParser import assetAllocationHtmlParser               # 输出资产配置信息到 Html
+from analytics.assetAllocationCategorySumParser import assetAllocationCategorySumParser           # 输出资产配置分类汇总信息到控制台
+from analytics.assetAllocationIndustryParser import assetAllocationIndustryParser         # 支持输出持仓行业信息
+from analytics.assetAllocationJSObjectParser import assetAllocationJSObjectParser         # 输出资产配置信息到 echarts 专用 data.js 对象
+from analytics.assetAllocationEstimateExcelParser import assetAllocationEstimateExcelParser   # 输出当日收盘后的估算净值及预测涨跌金额
+from analytics.assetAllocationEstimateHtmlParser import assetAllocationEstimateHtmlParser   # 输出当日收盘后的估算净值及预测涨跌金额
 # model
 from model.fundModel import fundModel
 from model.assetModel import assetModel
@@ -43,7 +47,7 @@ class assetAllocationCombine:
                     if name in self.filenames:
                         self.filepaths.append(os.path.join(root,name))
         elif self.strategy == 'b':
-            self.filenames = [u'danjuan_李淑云.txt',u'danjuan_康世海.txt',u'tiantian_李淑云.txt']
+            self.filenames = [u'danjuan_李淑云.txt',u'danjuan_康世海.txt',u'tiantian_李淑云.txt','cash_父母.txt']
             self.excelFilePathExt = u'父母'
             self.echartsJSFilePathExt = u'父母'
             self.pm = pathManager(strategyName=u'父母')
@@ -187,7 +191,7 @@ class assetAllocationCombine:
         elif u'cash_康力泉' in filepath:
             return u'现金账户'
         elif u'cash_父母' in filepath:
-            return u'父母现金账户'
+            return u'我要稳稳的幸福'
         elif u'freeze_康力泉' in filepath:
             return u'冻结资金'
         return '未知'
@@ -215,14 +219,20 @@ if len(sys.argv) <= 1:
     exit()
 strategy = sys.argv[1]
 combine = None
+history_df = None
+historyManager = historyProfitManager()
 if strategy == 'a':
     combine = assetAllocationCombine('a')
+    history_df = historyManager.getKLQHistoryProfit()
 elif strategy == 'b':
     combine = assetAllocationCombine('b')
+    history_df = historyManager.getKLQHistoryProfit()
 elif strategy == 'c':
     combine = assetAllocationCombine('c')
+    history_df = historyManager.getParentsHistoryProfit()
 elif strategy == 'd':
     combine = assetAllocationCombine('d')
+    history_df = historyManager.history_df
 else:
     print(u'[ERROR] 参数错误，不支持的策略编号。')
     exit()
@@ -237,7 +247,7 @@ assetExcel.generateExcelFile(assetModelArray,path=os.path.join(combine.pm.holdin
 
 # 输出 Html 资产配置
 assetHtml = assetAllocationHtmlParser()
-assetHtml.generateHtmlFile(assetModelArray,title=u'{0}资产配置'.format(combine.excelFilePathExt), path=os.path.join(combine.pm.holdingOutputPath, u'{0}资产配置.html'.format(combine.excelFilePathExt)))
+assetHtml.generateHtmlFile(assetModelArray,history_df, title=u'{0}资产配置'.format(combine.excelFilePathExt), path=os.path.join(combine.pm.holdingOutputPath, u'{0}资产配置.html'.format(combine.excelFilePathExt)))
 
 # 输出 资产配置汇总信息 到控制台和 html
 # 注意：由于 assetHtml 内部会把一些数值类型变成 str 类型，导致后续流程错误，现在临时处理是重新读取一份 json 数据。后面应该看看如何深拷贝
@@ -246,7 +256,7 @@ categorySum = assetAllocationCategorySumParser(path=combine.pm.holdingOutputPath
 categorySum.showInfo(assetModelArray)
 
 # 输出持仓个股的行业分布
-industry = assetAllocationIndustryParser(u'全家',forceUpdate=False)
+industry = assetAllocationIndustryParser(u'全家',skipUpdateIfExist=True)
 
 # 输出 echarts.json 和 data.json
 if strategy == 'a' or strategy == 'c':

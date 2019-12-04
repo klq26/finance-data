@@ -20,7 +20,7 @@ pd.set_option('display.max_rows', 5000)
 
 class assetAllocationIndustryParser:
 
-    def __init__(self, strategyName, forceUpdate=False):
+    def __init__(self, strategyName, skipUpdateIfExist=False):
         self.strategyName = strategyName
         self.pm = pathManager(self.strategyName)
         self.colorConstants = colorConstants()
@@ -39,19 +39,21 @@ class assetAllocationIndustryParser:
         # 个股持仓明细表
         cachFile = os.path.join(
             self.pm.holdingOutputPath, 'indexHoldingInfo.csv')
-        shouldUpdate = True
-        if not forceUpdate and os.path.exists(cachFile):
-            print('indexHoldingInfo.csv 存在... 是否需要在线更新？[Y/N]')
-            choice = str(input()).upper()
-            # 这里只要不是 Y 都不更新了，防止过多查询聚宽
-            if choice != 'Y':
-                shouldUpdate = False
-                self.result_df = pd.read_csv(cachFile, sep='\t')
-                self.result_df = self.result_df.rename(
-                    columns=self.inputRenameColumns)
-                print('日盈亏：{0} 元'.format(
-                    round(self.result_df.daily_gain.sum(), 2)))
-        if shouldUpdate:
+        if (not os.path.exists(cachFile)) or (not skipUpdateIfExist):
+            shouldUpdate = True
+        else:
+            shouldUpdate = False
+        if not shouldUpdate:
+            # print('indexHoldingInfo.csv 存在... 是否需要在线更新？[Y/N]')
+            # choice = str(input()).upper()
+            # # 这里只要不是 Y 都不更新了，防止过多查询聚宽
+            # if choice != 'Y':
+                # shouldUpdate = False
+            self.result_df = pd.read_csv(cachFile, sep='\t')
+            self.result_df = self.result_df.rename(
+                columns=self.inputRenameColumns)
+            #print('日盈亏：{0} 元'.format(round(self.result_df.daily_gain.sum(), 2)))
+        else:
             # 登录
             auth('13810650842', '123456a')
             print(u'聚宽数据API：{0}'.format(get_query_count()))
@@ -311,4 +313,5 @@ if __name__ == "__main__":
         strategyName = u'父母'
     elif strategy == 'c':
         strategyName = u'全家'
-    industryParser = assetAllocationIndustryParser(strategyName,forceUpdate=False)
+    # 更新行业库
+    industryParser = assetAllocationIndustryParser(strategyName, skipUpdateIfExist=False)
