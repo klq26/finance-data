@@ -7,7 +7,7 @@ import sys
 currentDir = os.path.abspath(os.path.dirname(__file__))
 srcDir = os.path.dirname(currentDir)
 sys.path.append(srcDir)
-from estimateFundManager import estimateFundManager
+from tools.fundEstimateManager import fundEstimateManager
 from config.pathManager import pathManager
 
 class huataiSpider:
@@ -44,7 +44,7 @@ class huataiSpider:
             for line in inputfile.readlines():
                 data = line.replace('\n','').split('\t')
                 # 用雪球获取场内净值
-                manager = estimateFundManager()
+                manager = fundEstimateManager()
                 innerMarketData = manager.estimateInnerMarketETF(data[self.neededColumnIndexs[1]])
                 lastNetValue = float(innerMarketData[2])
                 lastMarketCap = round(lastNetValue * float(data[self.neededColumnIndexs[3]]),2)  # 最新净值 * 仓位

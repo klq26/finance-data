@@ -8,6 +8,9 @@ import time
 currentDir = os.path.abspath(os.path.dirname(__file__))
 srcDir = os.path.dirname(currentDir)
 sys.path.append(srcDir)
+
+from tools.fundNavManager import fundNavManager
+
 from config.pathManager import pathManager
 from config.requestHeaderManager import requestHeaderManager
 from config.indexValueInfo import indexValueInfo
@@ -30,6 +33,8 @@ class assetAllocationCombine:
     """
     def __init__(self, strategy='a'):
         self.strategy = strategy # 默认 A 策略，即康力泉（不含现金和冻结资金）
+        # 拿取最新基金净值
+        self.navManager = fundNavManager()
         # 拿取最新指数值
         self.headerManager = requestHeaderManager()
         self.indexValueInfo = indexValueInfo()
@@ -120,6 +125,15 @@ class assetAllocationCombine:
                     fund.estimateNetValue = 0.0000                              # 估算净值
                     fund.estimateTime = u'估算时间'                             # 估算时间
                     fund.estimateRate = 0.0000                                  # 估算涨跌幅
+                    navData = self.navManager.getFundNav(fund.fundCode)
+                    if navData != None:
+                        # keys = ['基金代码','单位净值','净值日期','基金名称']
+                        # 说明，用新浪接口拿最新的基金单位净值，就可以根据历史份额和持仓净值计算出“当前市值”和“持仓盈亏”了
+                        # 之后不用动不动去很多个网站拿接口。这种情况通常只是无法更新货币基金。无法更新就走网站抓取，货币基金一个月更新一次就足够了
+                        fund.currentNetValue = round(float(navData['单位净值']),4)  # 基金净值
+                        fund.currentNetValueDate = navData['净值日期']              # 净值日期
+                        fund.holdMarketCap = round(fund.currentNetValue * fund.holdShareCount,2)
+                        fund.holdTotalGain = round((fund.currentNetValue - fund.holdNetValue) * fund.holdShareCount,2)   # 自己计算出来的持仓盈亏
                     category = self.getFundCategoryByCode(fund.fundCode)
                     fund.category1 = category[u'category1']                    # 一级分类
                     fund.category2 = category[u'category2']                    # 二级分类
@@ -132,7 +146,8 @@ class assetAllocationCombine:
                     asset.fundCode = values[1]                                  # 基金净值
                     asset.holdNetValue = round(float(values[2]),4)              # 持仓成本
                     asset.holdShareCount = round(float(values[3]),2)            # 持仓份额
-                    asset.holdMarketCap = round(float(values[4]),2)             # 持仓市值
+                    asset.holdMarketCap = fund.holdMarketCap                    # 持仓市值
+                    asset.holdTotalGain = fund.holdTotalGain                    # 自己计算出来的持仓盈亏
                     asset.holdTotalGain = round(float(values[5]),2)             # 持仓盈亏
                     asset.category1 = category[u'category1']                    # 一级分类
                     asset.category2 = category[u'category2']                    # 二级分类
@@ -240,7 +255,6 @@ else:
 # 从 json 文件读取数据
 assetModelArray = combine.loadAssetModelArrayFromJson()
 fundModelArray = combine.loadFundModelArrayFromJson()
-
 # 输出 Excel 资产配置
 assetExcel = assetAllocationExcelParser()
 assetExcel.generateExcelFile(assetModelArray,path=os.path.join(combine.pm.holdingOutputPath, u'{0}资产配置.xlsx'.format(combine.excelFilePathExt)))
@@ -270,7 +284,7 @@ jsObject.generateJSObjectFile(assetModelArray,combine.echartsJSFilePathExt)
 
 # 生成 Excel 实时估值信息
 estimateExcel = assetAllocationEstimateExcelParser()
-estimateExcel.generateEstimateExcelFile(fundModelArray, path=os.path.join(combine.pm.holdingOutputPath, u'{0}收益估算.xlsx'.format(combine.excelFilePathExt)))
+estimateExcel.generateExcelFile(fundModelArray, path=os.path.join(combine.pm.holdingOutputPath, u'{0}收益估算.xlsx'.format(combine.excelFilePathExt)))
 
 # 生成 Html 实时估值信息
 estimateHtml = assetAllocationEstimateHtmlParser()

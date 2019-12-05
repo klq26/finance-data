@@ -12,7 +12,7 @@ from openpyxl.utils import get_column_letter    # 列宽
 
 from config.pathManager import pathManager
 from tools.dingtalk import dingtalk
-from estimateFundManager import estimateFundManager
+from tools.fundEstimateManager import fundEstimateManager
 from model.fundModel import fundModel
 # pretty table output
 from prettytable import PrettyTable
@@ -54,11 +54,11 @@ class assetAllocationEstimateExcelParser:
     def getFundColorByAppSourceName(self, name):
         return self.colorConstants.getFundColorByAppSourceName(name)
 
-    def generateEstimateExcelFile(self, fundModelArray, path=''):
+    def generateExcelFile(self, fundModelArray, path=''):
         if len(fundModelArray) == 0:
             return
         # 天天基金获取估算净值
-        manager = estimateFundManager()
+        manager = fundEstimateManager()
         headerLine = u'基金名称\t基金代码\t持仓成本\t持仓份额\t持仓市值\t累计收益\t当前净值\t净值日期\t估算净值\t估算涨跌幅\t估算日收益\t估算时间\t一级分类\t二级分类\t三级分类\t分类 ID\t来源'
         # 先删除旧文件
         if os.path.exists(path):
@@ -113,8 +113,6 @@ class assetAllocationEstimateExcelParser:
             current = current + 1
             print('\rExcel estimate 进度：{0:.2f}% {1} / {2}'.format(float(current)/totalCount * 100, current,totalCount),end='',flush=True)
             if estimateValues:
-                fundModel.currentNetValue = estimateValues[0]
-                fundModel.currentNetValueDate = estimateValues[1]
                 fundModel.estimateNetValue = estimateValues[2]
                 fundModel.estimateRate = estimateValues[3]
                 fundModel.estimateTime = estimateValues[4]
@@ -156,7 +154,10 @@ class assetAllocationEstimateExcelParser:
                 if col == 11:
                     outws.cell(rowCursor,col).number_format = '0.00'
                     # 红涨绿跌
-                    changeValue = round((fundModel.estimateNetValue - fundModel.currentNetValue)*fundModel.holdShareCount,2)
+                    if fundModel.estimateNetValue <= 0:
+                        changeValue = 0.0
+                    else:
+                        changeValue = round((fundModel.estimateNetValue - fundModel.currentNetValue)*fundModel.holdShareCount,2)
                     font = openpyxl.styles.Font(u'Arial', size = 10,bold = True, color='FFFFFF')
                     # http://www.yuangongju.com/color
                     changeValueColor = self.colorConstants.getGainColor(changeValue)
@@ -276,5 +277,5 @@ if __name__ == '__main__':
         estimateExcel = assetAllocationEstimateExcelParser('b')
         estimateExcel.fundJsonFilePathExt = u'父母'
     path=os.path.join(estimateExcel.pm.holdingOutputPath, u'{0}收益估算.xlsx'.format(estimateExcel.fundJsonFilePathExt))
-    estimateExcel.generateEstimateExcelFile(estimateExcel.loadFundModelArrayFromJson(),path)
+    estimateExcel.generateExcelFile(estimateExcel.loadFundModelArrayFromJson(),path)
     

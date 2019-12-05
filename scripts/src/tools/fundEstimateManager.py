@@ -8,14 +8,17 @@ from datetime import datetime
 import time
 import ssl
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
- 
+# 把父路径加入到 sys.path 供 import 搜索
+currentDir = os.path.abspath(os.path.dirname(__file__))
+srcDir = os.path.dirname(currentDir)
+sys.path.append(srcDir)
 from model.fundModel import fundModel
 from config.requestHeaderManager import requestHeaderManager
 from config.assetCategoryManager import assetCategoryManager
 from config.pathManager import pathManager
 
 
-class estimateFundManager:
+class fundEstimateManager:
 
     # 初始化构造函数
     def __init__(self):
@@ -138,5 +141,5 @@ class estimateFundManager:
         return (0,[])
 
 if __name__ == '__main__':
-    manager = estimateFundManager()
+    manager = fundEstimateManager()
     print(manager.estimate(u'510500'))

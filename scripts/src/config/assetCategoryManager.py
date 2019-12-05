@@ -69,6 +69,12 @@ class assetCategoryManager:
         results = dict(zip(list(estimableCodes_df.基金名称.unique()), list(estimableCodes_df.基金代码.unique())))
         return results
 
+    def getCanUpdateNavFunds(self):
+        canUpdateNavCodes_df = self.category_df[(self.category_df['市场'] == "场外")]
+        canUpdateNavCodes_df = canUpdateNavCodes_df.append(self.category_df[self.category_df['市场'] == '场内'])
+        canUpdateNavCodes_df = canUpdateNavCodes_df.reset_index(drop=True)
+        results = dict(zip(list(canUpdateNavCodes_df.基金名称.unique()), list(canUpdateNavCodes_df.基金代码.unique())))
+        return results
 
 if __name__ == "__main__":
     manager = assetCategoryManager()

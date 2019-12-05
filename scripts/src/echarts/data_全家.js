@@ -67,8 +67,8 @@ function getData()
                         "itemStyle":{
                             "color":"#0AA3B5"
                         },
-                        "name":"中证500 , 11.36%",
-                        "value":11.36
+                        "name":"中证500 , 11.35%",
+                        "value":11.35
                     },
                     {
                         "children":[],
@@ -98,8 +98,8 @@ function getData()
                 "itemStyle":{
                     "color":"#0AA3B5"
                 },
-                "name":"中小盘股 , 12.59%",
-                "value":12.59
+                "name":"中小盘股 , 12.57%",
+                "value":12.57
             },
             {
                 "children":[
@@ -108,8 +108,8 @@ function getData()
                         "itemStyle":{
                             "color":"#0AA3B5"
                         },
-                        "name":"中证红利 , 4.02%",
-                        "value":4.02
+                        "name":"中证红利 , 4.0%",
+                        "value":4.0
                     },
                     {
                         "children":[],
@@ -123,8 +123,8 @@ function getData()
                 "itemStyle":{
                     "color":"#0AA3B5"
                 },
-                "name":"红利价值 , 4.06%",
-                "value":4.06
+                "name":"红利价值 , 4.04%",
+                "value":4.04
             },
             {
                 "children":[
@@ -141,16 +141,16 @@ function getData()
                         "itemStyle":{
                             "color":"#0AA3B5"
                         },
-                        "name":"全指医药 , 2.53%",
-                        "value":2.53
+                        "name":"全指医药 , 2.54%",
+                        "value":2.54
                     },
                     {
                         "children":[],
                         "itemStyle":{
                             "color":"#0AA3B5"
                         },
-                        "name":"中证环保 , 2.13%",
-                        "value":2.13
+                        "name":"中证环保 , 2.14%",
+                        "value":2.14
                     },
                     {
                         "children":[],
@@ -165,30 +165,30 @@ function getData()
                         "itemStyle":{
                             "color":"#0AA3B5"
                         },
-                        "name":"证券公司 , 1.32%",
-                        "value":1.32
+                        "name":"证券公司 , 1.31%",
+                        "value":1.31
                     },
                     {
                         "children":[],
                         "itemStyle":{
                             "color":"#0AA3B5"
                         },
-                        "name":"金融地产 , 1.03%",
-                        "value":1.03
+                        "name":"金融地产 , 1.02%",
+                        "value":1.02
                     }
                 ],
                 "itemStyle":{
                     "color":"#0AA3B5"
                 },
-                "name":"行业股 , 11.78%",
-                "value":11.78
+                "name":"行业股 , 11.79%",
+                "value":11.79
             }
         ],
         "itemStyle":{
             "color":"#0AA3B5"
         },
-        "name":"A 股 , 32.28%",
-        "value":32.28
+        "name":"A 股 , 32.26%",
+        "value":32.26
     },
     {
         "children":[
@@ -224,22 +224,22 @@ function getData()
                         "itemStyle":{
                             "color":"#BBEDA8"
                         },
-                        "name":"海外互联网 , 1.1%",
-                        "value":1.1
+                        "name":"海外互联网 , 1.09%",
+                        "value":1.09
                     }
                 ],
                 "itemStyle":{
                     "color":"#BBEDA8"
                 },
-                "name":"海外互联 , 1.1%",
-                "value":1.1
+                "name":"海外互联 , 1.09%",
+                "value":1.09
             }
         ],
         "itemStyle":{
             "color":"#BBEDA8"
         },
-        "name":"海外新兴 , 1.87%",
-        "value":1.87
+        "name":"海外新兴 , 1.86%",
+        "value":1.86
     },
     {
         "children":[
@@ -250,22 +250,22 @@ function getData()
                         "itemStyle":{
                             "color":"#FFC751"
                         },
-                        "name":"德国30 , 1.22%",
-                        "value":1.22
+                        "name":"德国30 , 1.23%",
+                        "value":1.23
                     }
                 ],
                 "itemStyle":{
                     "color":"#FFC751"
                 },
-                "name":"德国 , 1.22%",
-                "value":1.22
+                "name":"德国 , 1.23%",
+                "value":1.23
             }
         ],
         "itemStyle":{
             "color":"#FFC751"
         },
-        "name":"海外成熟 , 1.22%",
-        "value":1.22
+        "name":"海外成熟 , 1.23%",
+        "value":1.23
     },
     {
         "children":[
@@ -276,15 +276,15 @@ function getData()
                         "itemStyle":{
                             "color":"#FF8361"
                         },
-                        "name":"可转债 , 29.79%",
-                        "value":29.79
+                        "name":"可转债 , 29.8%",
+                        "value":29.8
                     }
                 ],
                 "itemStyle":{
                     "color":"#FF8361"
                 },
-                "name":"国内债券 , 29.79%",
-                "value":29.79
+                "name":"国内债券 , 29.8%",
+                "value":29.8
             },
             {
                 "children":[
@@ -307,8 +307,8 @@ function getData()
         "itemStyle":{
             "color":"#FF8361"
         },
-        "name":"债券 , 30.11%",
-        "value":30.11
+        "name":"债券 , 30.12%",
+        "value":30.12
     },
     {
         "children":[
@@ -319,30 +319,30 @@ function getData()
                         "itemStyle":{
                             "color":"#DBB6AC"
                         },
-                        "name":"黄金 , 0.77%",
-                        "value":0.77
+                        "name":"黄金 , 0.78%",
+                        "value":0.78
                     },
                     {
                         "children":[],
                         "itemStyle":{
                             "color":"#DBB6AC"
                         },
-                        "name":"原油 , 0.79%",
-                        "value":0.79
+                        "name":"原油 , 0.78%",
+                        "value":0.78
                     }
                 ],
                 "itemStyle":{
                     "color":"#DBB6AC"
                 },
-                "name":"商品 , 1.56%",
-                "value":1.56
+                "name":"商品 , 1.57%",
+                "value":1.57
             }
         ],
         "itemStyle":{
             "color":"#DBB6AC"
         },
-        "name":"商品 , 1.56%",
-        "value":1.56
+        "name":"商品 , 1.57%",
+        "value":1.57
     },
     {
         "children":[
@@ -418,8 +418,8 @@ function getData()
         "itemStyle":{
             "color":"#DCDCDC"
         },
-        "name":"冻结资金 , 14.48%",
-        "value":14.48
+        "name":"冻结资金 , 14.49%",
+        "value":14.49
     },
     {
         "children":[
