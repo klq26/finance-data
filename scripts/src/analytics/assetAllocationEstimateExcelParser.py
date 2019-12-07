@@ -11,7 +11,6 @@ from openpyxl.styles import Alignment
 from openpyxl.utils import get_column_letter    # 列宽
 
 from config.pathManager import pathManager
-from tools.dingtalk import dingtalk
 from tools.fundEstimateManager import fundEstimateManager
 from model.fundModel import fundModel
 # pretty table output
