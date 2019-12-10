@@ -2,6 +2,7 @@
 
 import os
 import sys
+import shutil
 import time
 import json
 from operator import itemgetter
@@ -20,6 +21,7 @@ from config.colorConstants import colorConstants
 from config.assetCategoryConstants import assetCategoryConstants
 # tools
 from tools.fundEstimateManager import fundEstimateManager
+from tools.dingtalk import dingtalk
 
 class assetAllocationEstimateHtmlParser:
 
@@ -36,6 +38,7 @@ class assetAllocationEstimateHtmlParser:
         self.modelArray = []
         self.colorConstants = colorConstants()
         self.fundJsonFilePathExt = ''
+        self.dingtalk = dingtalk()
 
     # 格式化浮点数
     def beautify(self, num):
@@ -172,8 +175,11 @@ class assetAllocationEstimateHtmlParser:
                                        data=data)
             fout.write(htmlCode)
         # 打开文件
-        os.startfile(path)
-
+        if sys.platform.startswith('win'):
+            os.startfile(path)
+        elif sys.platform.startswith('linux'):
+            shutil.copy(path, '/var/www/html/estimate.html')
+            self.dingtalk.sendMessage(f'估值：http://112.125.25.230/estimate.html')
     # 读取本地 fundModel 数据
     def loadFundModelArrayFromJson(self):
         # 读取文件

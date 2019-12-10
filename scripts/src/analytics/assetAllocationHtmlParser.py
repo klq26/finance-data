@@ -174,7 +174,8 @@ class assetAllocationHtmlParser:
                 data=data)
             fout.write(htmlCode)
         # 打开文件
-        os.startfile(path)
+        if sys.platform.startswith('win'):
+            os.startfile(path)
 
 if __name__ == "__main__":
     assetHtml = assetAllocationHtmlParser()
