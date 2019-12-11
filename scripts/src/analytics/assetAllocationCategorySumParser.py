@@ -59,7 +59,7 @@ class assetAllocationCategorySumParser:
         outStr1 = u'\n总投入：{0}'.format(allInvest)
         outStr2 = u'持仓盈亏：{0}\n历史盈亏：{1}\n总盈亏：{2}'.format(self.beautify(totalGain),totalHistoryGain,self.beautify(totalHistoryGain + totalGain))
         outStr3 = u'总市值：{0}'.format(self.beautify(totalMarketCap))
-        outStr4 = u'持仓收益率：{0}%\n累计收益率：{1}%'.format(self.beautify(totalGain/allInvest * 100),self.beautify(self.beautify(totalHistoryGain + totalGain)/allInvest * 100))
+        outStr4 = u'持仓收益率：{0}%\n累计收益率：{1}%'.format(self.beautify(totalGain/(allInvest-totalGain) * 100),self.beautify(self.beautify(totalHistoryGain + totalGain)/(allInvest - (totalHistoryGain + totalGain)) * 100))
         print(outStr0)
         print(outStr1)
         print(outStr2)
