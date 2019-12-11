@@ -46,11 +46,11 @@ class colorConstants:
         elif category1 == self.category1Array[2]:
             return '#FFC751'
         elif category1 == self.category1Array[3]:
-            return '#FF8361'
-        elif category1 == self.category1Array[4]:
-            return '#DBB6AC'
-        elif category1 == self.category1Array[5]:
             return '#2196F3'
+        elif category1 == self.category1Array[4]:
+            return '#FF8361'
+        elif category1 == self.category1Array[5]:
+            return '#DBB6AC'
         elif category1 == self.category1Array[6]:
             return '#DCDCDC'
         elif category1 == self.category1Array[7]:

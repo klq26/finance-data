@@ -78,6 +78,6 @@ class assetCategoryManager:
 
 if __name__ == "__main__":
     manager = assetCategoryManager()
-    # manager.generateFundCategoryJsonFile()
+    manager.generateFundCategoryJsonFile()
     print(manager.getEstimableFunds(isInnerMarket = True))
     print(manager.getEstimableFunds(isInnerMarket = False))

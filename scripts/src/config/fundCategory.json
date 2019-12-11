@@ -297,12 +297,20 @@
             "category4":"145"
         },
         {
+            "name":"天弘中证银行指数A",
+            "code":"001594",
+            "category1":"A 股",
+            "category2":"行业股",
+            "category3":"中证银行",
+            "category4":"146"
+        },
+        {
             "name":"广发中证全指金融地产联接A",
             "code":"001469",
             "category1":"A 股",
             "category2":"行业股",
             "category3":"金融地产",
-            "category4":"146"
+            "category4":"147"
         },
         {
             "name":"易方达消费行业股票",
@@ -310,14 +318,14 @@
             "category1":"A 股",
             "category2":"行业股",
             "category3":"全指消费",
-            "category4":"147"
+            "category4":"148"
         },
         {
             "name":"招商中证白酒指数分级",
             "code":"161725",
             "category1":"A 股",
             "category2":"行业股",
-            "category3":"白酒",
+            "category3":"全指消费",
             "category4":"148"
         },
         {
@@ -433,12 +441,36 @@
             "category4":"321"
         },
         {
+            "name":"交银主题优选",
+            "code":"519700",
+            "category1":"混合型",
+            "category2":"股债混合",
+            "category3":"偏股",
+            "category4":"411"
+        },
+        {
+            "name":"交银新回报灵活配置混合A",
+            "code":"519752",
+            "category1":"混合型",
+            "category2":"股债混合",
+            "category3":"偏债",
+            "category4":"412"
+        },
+        {
+            "name":"交银多策略回报灵活配置混合A",
+            "code":"519755",
+            "category1":"混合型",
+            "category2":"股债混合",
+            "category3":"偏债",
+            "category4":"412"
+        },
+        {
             "name":"广发中债7-10年国开债指数A",
             "code":"003376",
             "category1":"债券",
             "category2":"国内债券",
             "category3":"纯债",
-            "category4":"411"
+            "category4":"511"
         },
         {
             "name":"GC001",
@@ -446,7 +478,7 @@
             "category1":"债券",
             "category2":"国内债券",
             "category3":"纯债",
-            "category4":"411"
+            "category4":"511"
         },
         {
             "name":"GC007",
@@ -454,7 +486,7 @@
             "category1":"债券",
             "category2":"国内债券",
             "category3":"纯债",
-            "category4":"411"
+            "category4":"511"
         },
         {
             "name":"R-001",
@@ -462,7 +494,7 @@
             "category1":"债券",
             "category2":"国内债券",
             "category3":"纯债",
-            "category4":"411"
+            "category4":"511"
         },
         {
             "name":"R-003",
@@ -470,7 +502,7 @@
             "category1":"债券",
             "category2":"国内债券",
             "category3":"纯债",
-            "category4":"411"
+            "category4":"511"
         },
         {
             "name":"国债ETF",
@@ -478,7 +510,7 @@
             "category1":"债券",
             "category2":"国内债券",
             "category3":"纯债",
-            "category4":"411"
+            "category4":"511"
         },
         {
             "name":"交银稳鑫短债债券A",
@@ -486,7 +518,7 @@
             "category1":"债券",
             "category2":"国内债券",
             "category3":"可转债",
-            "category4":"411"
+            "category4":"512"
         },
         {
             "name":"交银纯债A/B",
@@ -494,7 +526,7 @@
             "category1":"债券",
             "category2":"国内债券",
             "category3":"可转债",
-            "category4":"411"
+            "category4":"512"
         },
         {
             "name":"交银双轮动A/B",
@@ -502,7 +534,7 @@
             "category1":"债券",
             "category2":"国内债券",
             "category3":"可转债",
-            "category4":"411"
+            "category4":"512"
         },
         {
             "name":"交银裕盈纯债债券A",
@@ -510,7 +542,7 @@
             "category1":"债券",
             "category2":"国内债券",
             "category3":"可转债",
-            "category4":"411"
+            "category4":"512"
         },
         {
             "name":"兴全可转债混合",
@@ -518,7 +550,7 @@
             "category1":"债券",
             "category2":"国内债券",
             "category3":"可转债",
-            "category4":"412"
+            "category4":"512"
         },
         {
             "name":"易方达安心回报债券A",
@@ -526,7 +558,7 @@
             "category1":"债券",
             "category2":"国内债券",
             "category3":"可转债",
-            "category4":"412"
+            "category4":"512"
         },
         {
             "name":"长信可转债债券A",
@@ -534,7 +566,7 @@
             "category1":"债券",
             "category2":"国内债券",
             "category3":"可转债",
-            "category4":"412"
+            "category4":"512"
         },
         {
             "name":"华夏收益债券(QDII)A",
@@ -542,7 +574,7 @@
             "category1":"债券",
             "category2":"海外债券",
             "category3":"美元债",
-            "category4":"421"
+            "category4":"521"
         },
         {
             "name":"黄金ETF",
@@ -550,7 +582,7 @@
             "category1":"商品",
             "category2":"商品",
             "category3":"黄金",
-            "category4":"511"
+            "category4":"611"
         },
         {
             "name":"华安黄金易ETF联接A",
@@ -558,7 +590,7 @@
             "category1":"商品",
             "category2":"商品",
             "category3":"黄金",
-            "category4":"511"
+            "category4":"611"
         },
         {
             "name":"纸白银",
@@ -566,15 +598,15 @@
             "category1":"商品",
             "category2":"商品",
             "category3":"白银",
-            "category4":"512"
+            "category4":"612"
         },
         {
-            "name":"华宝标普石油指数",
+            "name":"华宝油气",
             "code":"162411",
             "category1":"商品",
             "category2":"商品",
             "category3":"原油",
-            "category4":"513"
+            "category4":"613"
         },
         {
             "name":"南方原油",
@@ -582,31 +614,7 @@
             "category1":"商品",
             "category2":"商品",
             "category3":"原油",
-            "category4":"513"
-        },
-        {
-            "name":"交银主题优选",
-            "code":"519700",
-            "category1":"主动型",
-            "category2":"股债混合",
-            "category3":"偏股",
-            "category4":"611"
-        },
-        {
-            "name":"交银新回报灵活配置混合A",
-            "code":"519752",
-            "category1":"主动型",
-            "category2":"股债混合",
-            "category3":"偏债",
-            "category4":"612"
-        },
-        {
-            "name":"交银多策略回报灵活配置混合A",
-            "code":"519755",
-            "category1":"主动型",
-            "category2":"股债混合",
-            "category3":"偏债",
-            "category4":"612"
+            "category4":"613"
         },
         {
             "name":"无息外借款",
