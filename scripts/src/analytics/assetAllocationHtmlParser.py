@@ -2,6 +2,7 @@
 import os
 import sys
 import json
+import shutil
 from operator import itemgetter
 import pandas as pd
 # html template
@@ -18,6 +19,7 @@ from config.assetCategoryConstants import assetCategoryConstants
 from config.pathManager import pathManager
 from config.colorConstants import colorConstants
 from config.historyProfitManager import  historyProfitManager
+from tools.dingtalk import dingtalk
 
 class assetAllocationHtmlParser:
 
@@ -31,6 +33,7 @@ class assetAllocationHtmlParser:
         self.category3Array = categoryConstants.category3Array
         self.modelArray = []
         self.colorConstants = colorConstants()
+        self.dingtalk = dingtalk()
 
     # 格式化浮点数
     def beautify(self,num):
@@ -176,6 +179,9 @@ class assetAllocationHtmlParser:
         # 打开文件
         if sys.platform.startswith('win'):
             os.startfile(path)
+        elif sys.platform.startswith('linux'):
+            shutil.copy(path, '/var/www/html/assetAllocation.html')
+            self.dingtalk.sendMessage(f'市值：http://112.125.25.230/assetAllocation.html')
 
 if __name__ == "__main__":
     assetHtml = assetAllocationHtmlParser()

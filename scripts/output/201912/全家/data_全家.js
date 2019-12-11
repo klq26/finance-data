@@ -26,8 +26,8 @@ function getData()
                         "itemStyle":{
                             "color":"#0AA3B5"
                         },
-                        "name":"沪深300 , 2.76%",
-                        "value":2.76
+                        "name":"沪深300 , 2.75%",
+                        "value":2.75
                     },
                     {
                         "children":[],
@@ -173,8 +173,8 @@ function getData()
                         "itemStyle":{
                             "color":"#0AA3B5"
                         },
-                        "name":"金融地产 , 1.03%",
-                        "value":1.03
+                        "name":"金融地产 , 1.02%",
+                        "value":1.02
                     }
                 ],
                 "itemStyle":{
@@ -214,8 +214,8 @@ function getData()
                 "itemStyle":{
                     "color":"#BBEDA8"
                 },
-                "name":"香港 , 0.78%",
-                "value":0.78
+                "name":"香港 , 0.77%",
+                "value":0.77
             },
             {
                 "children":[
@@ -224,15 +224,15 @@ function getData()
                         "itemStyle":{
                             "color":"#BBEDA8"
                         },
-                        "name":"海外互联网 , 1.1%",
-                        "value":1.1
+                        "name":"海外互联网 , 1.09%",
+                        "value":1.09
                     }
                 ],
                 "itemStyle":{
                     "color":"#BBEDA8"
                 },
-                "name":"海外互联 , 1.1%",
-                "value":1.1
+                "name":"海外互联 , 1.09%",
+                "value":1.09
             }
         ],
         "itemStyle":{
@@ -250,22 +250,56 @@ function getData()
                         "itemStyle":{
                             "color":"#FFC751"
                         },
-                        "name":"德国30 , 1.24%",
-                        "value":1.24
+                        "name":"德国30 , 1.23%",
+                        "value":1.23
                     }
                 ],
                 "itemStyle":{
                     "color":"#FFC751"
                 },
-                "name":"德国 , 1.24%",
-                "value":1.24
+                "name":"德国 , 1.23%",
+                "value":1.23
             }
         ],
         "itemStyle":{
             "color":"#FFC751"
         },
-        "name":"海外成熟 , 1.24%",
-        "value":1.24
+        "name":"海外成熟 , 1.23%",
+        "value":1.23
+    },
+    {
+        "children":[
+            {
+                "children":[
+                    {
+                        "children":[],
+                        "itemStyle":{
+                            "color":"#2196F3"
+                        },
+                        "name":"偏股 , 0.74%",
+                        "value":0.74
+                    },
+                    {
+                        "children":[],
+                        "itemStyle":{
+                            "color":"#2196F3"
+                        },
+                        "name":"偏债 , 7.4%",
+                        "value":7.4
+                    }
+                ],
+                "itemStyle":{
+                    "color":"#2196F3"
+                },
+                "name":"股债混合 , 8.14%",
+                "value":8.14
+            }
+        ],
+        "itemStyle":{
+            "color":"#2196F3"
+        },
+        "name":"混合型 , 8.14%",
+        "value":8.14
     },
     {
         "children":[
@@ -343,40 +377,6 @@ function getData()
         },
         "name":"商品 , 1.59%",
         "value":1.59
-    },
-    {
-        "children":[
-            {
-                "children":[
-                    {
-                        "children":[],
-                        "itemStyle":{
-                            "color":"#2196F3"
-                        },
-                        "name":"偏股 , 0.74%",
-                        "value":0.74
-                    },
-                    {
-                        "children":[],
-                        "itemStyle":{
-                            "color":"#2196F3"
-                        },
-                        "name":"偏债 , 7.4%",
-                        "value":7.4
-                    }
-                ],
-                "itemStyle":{
-                    "color":"#2196F3"
-                },
-                "name":"股债混合 , 8.14%",
-                "value":8.14
-            }
-        ],
-        "itemStyle":{
-            "color":"#2196F3"
-        },
-        "name":"主动型 , 8.14%",
-        "value":8.14
     },
     {
         "children":[

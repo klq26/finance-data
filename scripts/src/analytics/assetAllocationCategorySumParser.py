@@ -2,6 +2,7 @@
 import os
 import sys
 import json
+import shutil
 from datetime import datetime
 # for reduce method of lambda
 from functools import reduce
@@ -85,7 +86,7 @@ class assetAllocationCategorySumParser:
         print(tb)
         # 同时写入文件
         with open(os.path.join(self.outputPath,u'资产配置分类情况.html'),'w+',encoding=u'utf-8') as f:
-            f.write('<h3>一级分类</h3>')
+            f.write('<head><meta charset=\'utf-8\'/></head><h3>一级分类</h3>')
             f.write(tb.get_html_string(format=True))
         print('\n二级分类：\n')
         tb = PrettyTable()
@@ -155,3 +156,6 @@ class assetAllocationCategorySumParser:
             f.write(tb.get_html_string(format=True))
         if sys.platform.startswith('win'):
             os.startfile(os.path.join(self.outputPath,u'资产配置分类情况.html'))
+        elif sys.platform.startswith('linux'):
+            shutil.copy(os.path.join(self.outputPath,u'资产配置分类情况.html'), '/var/www/html/assetCategory.html')
+            self.dingtalk.sendMessage(f'账户：http://112.125.25.230/assetCategory.html')

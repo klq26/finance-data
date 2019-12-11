@@ -274,6 +274,40 @@ function getData()
                     {
                         "children":[],
                         "itemStyle":{
+                            "color":"#2196F3"
+                        },
+                        "name":"偏股 , 0.74%",
+                        "value":0.74
+                    },
+                    {
+                        "children":[],
+                        "itemStyle":{
+                            "color":"#2196F3"
+                        },
+                        "name":"偏债 , 7.4%",
+                        "value":7.4
+                    }
+                ],
+                "itemStyle":{
+                    "color":"#2196F3"
+                },
+                "name":"股债混合 , 8.14%",
+                "value":8.14
+            }
+        ],
+        "itemStyle":{
+            "color":"#2196F3"
+        },
+        "name":"混合型 , 8.14%",
+        "value":8.14
+    },
+    {
+        "children":[
+            {
+                "children":[
+                    {
+                        "children":[],
+                        "itemStyle":{
                             "color":"#FF8361"
                         },
                         "name":"可转债 , 29.63%",
@@ -343,40 +377,6 @@ function getData()
         },
         "name":"商品 , 1.59%",
         "value":1.59
-    },
-    {
-        "children":[
-            {
-                "children":[
-                    {
-                        "children":[],
-                        "itemStyle":{
-                            "color":"#2196F3"
-                        },
-                        "name":"偏股 , 0.74%",
-                        "value":0.74
-                    },
-                    {
-                        "children":[],
-                        "itemStyle":{
-                            "color":"#2196F3"
-                        },
-                        "name":"偏债 , 7.4%",
-                        "value":7.4
-                    }
-                ],
-                "itemStyle":{
-                    "color":"#2196F3"
-                },
-                "name":"股债混合 , 8.14%",
-                "value":8.14
-            }
-        ],
-        "itemStyle":{
-            "color":"#2196F3"
-        },
-        "name":"主动型 , 8.14%",
-        "value":8.14
     },
     {
         "children":[
