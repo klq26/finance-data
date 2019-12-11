@@ -5,7 +5,7 @@
         "category3":"上证50",
         "categoryID":"111",
         "result":{
-            "close":2943.26,
+            "close":2947.99,
             "pb":1.16,
             "pe":10.06,
             "roe":0.1226
@@ -19,7 +19,7 @@
         "category3":"50AH",
         "categoryID":"112",
         "result":{
-            "close":5462.61,
+            "close":5480.98,
             "pb":0.98,
             "pe":8.56,
             "roe":0.1143
@@ -33,7 +33,7 @@
         "category3":"沪深300",
         "categoryID":"113",
         "result":{
-            "close":3898.99,
+            "close":3900.73,
             "pb":1.42,
             "pe":12.72,
             "roe":0.1204
@@ -47,7 +47,7 @@
         "category3":"300价值",
         "categoryID":"114",
         "result":{
-            "close":4858.26,
+            "close":4870.06,
             "pb":0.95,
             "pe":8.55,
             "roe":0.1116
@@ -61,7 +61,7 @@
         "category3":"基本面60",
         "categoryID":"115",
         "result":{
-            "close":7872.79,
+            "close":7864.3,
             "pb":2.1,
             "pe":16.27,
             "roe":0.1291
@@ -75,7 +75,7 @@
         "category3":"基本面120",
         "categoryID":"116",
         "result":{
-            "close":7017.5,
+            "close":7010.09,
             "pb":2.11,
             "pe":17.78,
             "roe":0.1188
@@ -89,7 +89,7 @@
         "category3":"中证500",
         "categoryID":"121",
         "result":{
-            "close":5025.67,
+            "close":5024.76,
             "pb":1.82,
             "pe":22.76,
             "roe":0.0689
@@ -103,7 +103,7 @@
         "category3":"500低波动",
         "categoryID":"122",
         "result":{
-            "close":12084.85,
+            "close":12074.99,
             "pb":1.36,
             "pe":21.51,
             "roe":0.0634
@@ -117,7 +117,7 @@
         "category3":"中证1000",
         "categoryID":"123",
         "result":{
-            "close":5309.33,
+            "close":5304.99,
             "pb":2.12,
             "pe":31.9,
             "roe":0.0524
@@ -131,7 +131,7 @@
         "category3":"创业板",
         "categoryID":"124",
         "result":{
-            "close":1720.57,
+            "close":1718.9,
             "pb":4.8,
             "pe":55.98,
             "roe":0.0906
@@ -145,7 +145,7 @@
         "category3":"中证红利",
         "categoryID":"131",
         "result":{
-            "close":4253.82,
+            "close":4256.87,
             "pb":0.99,
             "pe":9.67,
             "roe":0.1275
@@ -159,7 +159,7 @@
         "category3":"标普红利",
         "categoryID":"132",
         "result":{
-            "close":8058.62,
+            "close":8053.44,
             "pb":1.45,
             "pe":12.38,
             "roe":0.1171
@@ -173,7 +173,7 @@
         "category3":"养老产业",
         "categoryID":"141",
         "result":{
-            "close":7159.36,
+            "close":7155.72,
             "pb":2.99,
             "pe":23.34,
             "roe":0.1657
@@ -187,7 +187,7 @@
         "category3":"全指医药",
         "categoryID":"142",
         "result":{
-            "close":9627.68,
+            "close":9629.06,
             "pb":3.7,
             "pe":29.88,
             "roe":0.1004
@@ -201,7 +201,7 @@
         "category3":"中证环保",
         "categoryID":"143",
         "result":{
-            "close":1191.21,
+            "close":1191.14,
             "pb":2.17,
             "pe":26.15,
             "roe":0.0939
@@ -215,7 +215,7 @@
         "category3":"中证传媒",
         "categoryID":"144",
         "result":{
-            "close":1288.93,
+            "close":1283.87,
             "pb":2.71,
             "pe":35.54,
             "roe":0.0724
@@ -229,7 +229,7 @@
         "category3":"证券公司",
         "categoryID":"145",
         "result":{
-            "close":701.84,
+            "close":699.2,
             "pb":1.56,
             "pe":25.4,
             "roe":0.0615
@@ -243,7 +243,7 @@
         "category3":"金融地产",
         "categoryID":"146",
         "result":{
-            "close":5887.38,
+            "close":5899.41,
             "pb":0.0,
             "pe":0.0,
             "roe":0.0
@@ -257,7 +257,7 @@
         "category3":"恒生",
         "categoryID":"211",
         "result":{
-            "close":26522.89,
+            "close":26654.42,
             "pb":1.02,
             "pe":9.52,
             "roe":0.1068
@@ -271,7 +271,7 @@
         "category3":"香港中小",
         "categoryID":"212",
         "result":{
-            "close":3133.66,
+            "close":3145.99,
             "pb":1.48,
             "pe":12.25,
             "roe":0.1208
@@ -313,7 +313,7 @@
         "category3":"可转债",
         "categoryID":"411",
         "result":{
-            "close":335.05,
+            "close":335.37,
             "pb":0.0,
             "pe":0.0,
             "roe":0.0
@@ -327,7 +327,7 @@
         "category3":"黄金",
         "categoryID":"511",
         "result":{
-            "close":1467.7,
+            "close":1467.8,
             "pb":0.0,
             "pe":0.0,
             "roe":0.0

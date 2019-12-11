@@ -82,7 +82,12 @@ class assetAllocationCategorySumParser:
             
             #print(u'{0} 市值：{1}\t占比：{2}%\t盈亏：{3}\t占比：{4}%'.format(category, self.beautify(marketCap), self.beautify(marketCap / totalMarketCap * 100), self.beautify(gain), self.beautify(gain / totalGain * 100)))
             # prettytable 输出
-            tb.add_row([category, self.beautify(marketCap), self.beautify(gain), u'{0}%'.format(self.beautify(gain/(marketCap - gain)* 100)), u'{0}%'.format(self.beautify(marketCap / totalMarketCap * 100)), u'{0}%'.format(self.beautify(gain / totalGain * 100))])
+            gainRate = 0
+            if marketCap - gain <= 0:
+                gainRate = 0
+            else:
+                gainRate = gain/(marketCap - gain)* 100
+            tb.add_row([category, self.beautify(marketCap), self.beautify(gain), u'{0}%'.format(self.beautify(gainRate)), u'{0}%'.format(self.beautify(marketCap / totalMarketCap * 100)), u'{0}%'.format(self.beautify(gain / totalGain * 100))])
         print(tb)
         # 同时写入文件
         with open(os.path.join(self.outputPath,u'资产配置分类情况.html'),'w+',encoding=u'utf-8') as f:
@@ -104,7 +109,12 @@ class assetAllocationCategorySumParser:
             
             #print(u'{0} 市值：{1}\t占比：{2}%\t盈亏：{3}\t占比：{4}%'.format(category, self.beautify(marketCap), self.beautify(marketCap / totalMarketCap * 100), self.beautify(gain), self.beautify(gain / totalGain * 100)))
             # prettytable 输出
-            tb.add_row([category, self.beautify(marketCap), self.beautify(gain),u'{0}%'.format(self.beautify(gain/(marketCap - gain) * 100)), u'{0}%'.format(self.beautify(marketCap / totalMarketCap * 100)), u'{0}%'.format(self.beautify(gain / totalGain * 100))])
+            gainRate = 0
+            if marketCap - gain <= 0:
+                gainRate = 0
+            else:
+                gainRate = gain/(marketCap - gain)* 100
+            tb.add_row([category, self.beautify(marketCap), self.beautify(gain),u'{0}%'.format(self.beautify(gainRate)), u'{0}%'.format(self.beautify(marketCap / totalMarketCap * 100)), u'{0}%'.format(self.beautify(gain / totalGain * 100))])
         print(tb)
         # 同时写入文件
         with open(os.path.join(self.outputPath,u'资产配置分类情况.html'),'a+',encoding=u'utf-8') as f:
@@ -146,7 +156,12 @@ class assetAllocationCategorySumParser:
             historyGain = history_df[history_df['三级分类'] == category].累计盈亏.sum()
             #print(u'{0} 市值：{1}\t占比：{2}%\t盈亏：{3}\t占比：{4}%'.format(category, self.beautify(marketCap), self.beautify(marketCap / totalMarketCap * 100), self.beautify(gain), self.beautify(gain / totalGain * 100)))
             # prettytable 输出
-            tb.add_row([category, u'{0:.2f}'.format(self.beautify(holdingIndexValue)), u'{0:.2f}'.format(self.beautify(indexValue)), u'{0:.2f}'.format(self.beautify(peValue)), u'{0:.2f}'.format(self.beautify(pbValue)), u'{0:.2f}%'.format(self.beautify(roeValue)), self.beautify(marketCap), u'{0:.2f}'.format(self.beautify(gain)), u'{0:.2f}'.format(self.beautify(historyGain)), u'{0:.2f}'.format(self.beautify(gain + historyGain)), u'{0}%'.format(self.beautify(gain/(marketCap - gain) * 100)), u'{0}%'.format(self.beautify(marketCap / totalMarketCap * 100)), u'{0}%'.format(self.beautify(gain / totalGain * 100))])
+            gainRate = 0
+            if marketCap - gain <= 0:
+                gainRate = 0
+            else:
+                gainRate = gain/(marketCap - gain)* 100
+            tb.add_row([category, u'{0:.2f}'.format(self.beautify(holdingIndexValue)), u'{0:.2f}'.format(self.beautify(indexValue)), u'{0:.2f}'.format(self.beautify(peValue)), u'{0:.2f}'.format(self.beautify(pbValue)), u'{0:.2f}%'.format(self.beautify(roeValue)), self.beautify(marketCap), u'{0:.2f}'.format(self.beautify(gain)), u'{0:.2f}'.format(self.beautify(historyGain)), u'{0:.2f}'.format(self.beautify(gain + historyGain)), u'{0}%'.format(self.beautify(gainRate)), u'{0}%'.format(self.beautify(marketCap / totalMarketCap * 100)), u'{0}%'.format(self.beautify(gain / totalGain * 100))])
         print(tb)
         with open(os.path.join(self.pm.configPath,'indexHoldingInfo.json'),u'w',encoding='utf-8') as f:
             f.write(json.dumps(indexHoldingInfos, ensure_ascii=False, sort_keys = True, indent = 4, separators=(',', ':')))
