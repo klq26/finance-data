@@ -180,6 +180,7 @@ class assetAllocationEstimateHtmlParser:
         elif sys.platform.startswith('linux'):
             shutil.copy(path, '/var/www/html/estimate.html')
             self.dingtalk.sendMessage(f'估值：http://112.125.25.230/estimate.html')
+            print('持仓估值：http://112.125.25.230/estimate.html')
     # 读取本地 fundModel 数据
     def loadFundModelArrayFromJson(self):
         # 读取文件

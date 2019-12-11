@@ -182,6 +182,7 @@ class assetAllocationHtmlParser:
         elif sys.platform.startswith('linux'):
             shutil.copy(path, '/var/www/html/assetAllocation.html')
             self.dingtalk.sendMessage(f'市值：http://112.125.25.230/assetAllocation.html')
+            print('持仓市值：http://112.125.25.230/assetAllocation.html')
 
 if __name__ == "__main__":
     assetHtml = assetAllocationHtmlParser()
