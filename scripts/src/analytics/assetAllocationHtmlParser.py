@@ -98,7 +98,7 @@ class assetAllocationHtmlParser:
             assetDict = assetModel.__dict__
             assetDict['color'] = color
             # 计算收益率特殊处理已经平仓的品种
-            if assetModel.holdMarketCap == 0:
+            if (assetModel.holdMarketCap - assetModel.holdTotalGain) <= 0:
                 assetDict['holdTotalGainRate'] = '0.00%'
             else:
                 assetDict['holdTotalGainRate'] = '{:.2f}%'.format(self.beautify(assetModel.holdTotalGain / (assetModel.holdMarketCap - assetModel.holdTotalGain) * 100))
