@@ -2,6 +2,7 @@
 import os
 import sys
 import json
+from datetime import datetime
 # for reduce method of lambda
 from functools import reduce
 # groupby & itemgetter
@@ -34,6 +35,7 @@ class assetAllocationCategorySumParser:
         self.category2Array = categoryConstants.category2Array
         self.category3Array = categoryConstants.category3Array
         self.indexValueInfo = indexValueInfo()
+        self.historyManager = historyProfitManager()
         self.dingtalk = dingtalk()
         self.outputPath = path
     
@@ -50,16 +52,20 @@ class assetAllocationCategorySumParser:
         totalGain = reduce(lambda x,y: x+y, allTotalGains)
         # 总投资额
         allInvest = self.beautify(totalMarketCap - totalGain)
+        # 历史盈亏
+        totalHistoryGain = self.beautify(self.historyManager.history_df.累计盈亏.sum())
+        outStr0 = u'{0}'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
         outStr1 = u'\n总投入：{0}'.format(allInvest)
-        outStr2 = u'总盈亏：{0}'.format(self.beautify(totalGain))
+        outStr2 = u'持仓盈亏：{0}\n历史盈亏：{1}\n总盈亏：{2}'.format(self.beautify(totalGain),totalHistoryGain,self.beautify(totalHistoryGain + totalGain))
         outStr3 = u'总市值：{0}'.format(self.beautify(totalMarketCap))
-        outStr4 = u'组合收益率：{0}%'.format(self.beautify(totalGain/allInvest * 100))
+        outStr4 = u'持仓收益率：{0}%\n累计收益率：{1}%'.format(self.beautify(totalGain/allInvest * 100),self.beautify(self.beautify(totalHistoryGain + totalGain)/allInvest * 100))
+        print(outStr0)
         print(outStr1)
         print(outStr2)
         print(outStr3)
         print(outStr4)
         # 给钉钉发消息
-        self.dingtalk.sendMessage(f'当前市值情况：\n{outStr1}\n{outStr2}\n{outStr3}\n{outStr4}\n')
+        self.dingtalk.sendMessage(f'{outStr0}\n当前市值情况：\n{outStr1}\n{outStr2}\n{outStr3}\n{outStr4}')
         print('\n一级分类：\n')
         tb = PrettyTable()
         tb.field_names = [u"名称", u"分类市值", u"盈亏（元）", u"分类盈亏率", u"组合占比", u"组合盈亏贡献"]
@@ -147,4 +153,5 @@ class assetAllocationCategorySumParser:
         with open(os.path.join(self.outputPath,u'资产配置分类情况.html'),'a+',encoding=u'utf-8') as f:
             f.write('<h3>三级分类</h3>')
             f.write(tb.get_html_string(format=True))
-        os.startfile(os.path.join(self.outputPath,u'资产配置分类情况.html'))
+        if sys.platform.startswith('win'):
+            os.startfile(os.path.join(self.outputPath,u'资产配置分类情况.html'))

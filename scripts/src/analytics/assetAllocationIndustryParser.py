@@ -66,7 +66,8 @@ class assetAllocationIndustryParser:
         self.generateEchartsModels(self.result_df)
         self.generateJSObjectFile('全家') # 这里暂时没有使用 strategyName 作为输出标识符，后面应该想想更好的办法
         # 打开
-        os.startfile(os.path.join(self.pm.echartsPath,u'FamilyStockIndustry.html'))
+        if sys.platform.startswith('win'):
+            os.startfile(os.path.join(self.pm.echartsPath,u'FamilyStockIndustry.html'))
 
     # 生成持仓所有个股的行业情况的 DataFrame 本地 csv 文件
     def generateDataFrameCSVFile(self):

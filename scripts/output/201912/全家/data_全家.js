@@ -26,8 +26,8 @@ function getData()
                         "itemStyle":{
                             "color":"#0AA3B5"
                         },
-                        "name":"沪深300 , 2.75%",
-                        "value":2.75
+                        "name":"沪深300 , 2.76%",
+                        "value":2.76
                     },
                     {
                         "children":[],
@@ -173,8 +173,8 @@ function getData()
                         "itemStyle":{
                             "color":"#0AA3B5"
                         },
-                        "name":"金融地产 , 1.02%",
-                        "value":1.02
+                        "name":"金融地产 , 1.03%",
+                        "value":1.03
                     }
                 ],
                 "itemStyle":{
@@ -214,8 +214,8 @@ function getData()
                 "itemStyle":{
                     "color":"#BBEDA8"
                 },
-                "name":"香港 , 0.77%",
-                "value":0.77
+                "name":"香港 , 0.78%",
+                "value":0.78
             },
             {
                 "children":[
@@ -224,15 +224,15 @@ function getData()
                         "itemStyle":{
                             "color":"#BBEDA8"
                         },
-                        "name":"海外互联网 , 1.09%",
-                        "value":1.09
+                        "name":"海外互联网 , 1.1%",
+                        "value":1.1
                     }
                 ],
                 "itemStyle":{
                     "color":"#BBEDA8"
                 },
-                "name":"海外互联 , 1.09%",
-                "value":1.09
+                "name":"海外互联 , 1.1%",
+                "value":1.1
             }
         ],
         "itemStyle":{
@@ -250,22 +250,22 @@ function getData()
                         "itemStyle":{
                             "color":"#FFC751"
                         },
-                        "name":"德国30 , 1.23%",
-                        "value":1.23
+                        "name":"德国30 , 1.24%",
+                        "value":1.24
                     }
                 ],
                 "itemStyle":{
                     "color":"#FFC751"
                 },
-                "name":"德国 , 1.23%",
-                "value":1.23
+                "name":"德国 , 1.24%",
+                "value":1.24
             }
         ],
         "itemStyle":{
             "color":"#FFC751"
         },
-        "name":"海外成熟 , 1.23%",
-        "value":1.23
+        "name":"海外成熟 , 1.24%",
+        "value":1.24
     },
     {
         "children":[

@@ -290,8 +290,9 @@ estimateExcel.generateExcelFile(fundModelArray, path=os.path.join(combine.pm.hol
 estimateHtml = assetAllocationEstimateHtmlParser()
 estimateHtml.generateHtmlFile(fundModelArray, title=u'{0}收益估算'.format(combine.excelFilePathExt),  path=os.path.join(combine.pm.holdingOutputPath, u'{0}收益估算.html'.format(combine.excelFilePathExt)))
 
-# 打开资产配置旭日图
-os.startfile(os.path.join(combine.pm.echartsPath,combine.echartsFile))
-# 打开输出文件夹
-os.startfile(combine.pm.holdingOutputPath)
+if sys.platform.startswith('win'):
+    # 打开资产配置旭日图
+    os.startfile(os.path.join(combine.pm.echartsPath,combine.echartsFile))
+    # 打开输出文件夹
+    os.startfile(combine.pm.holdingOutputPath)
 
