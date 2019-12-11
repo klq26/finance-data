@@ -116,10 +116,10 @@ class assetAllocationHtmlParser:
         totalStockGain = self.beautify(totalGain - totalCashGain)
         totalCashGain = self.beautify(totalCashGain)
         # 第三行统计信息
-        totalGainRate = round(totalGain/totalMarketCap,4)
-        totalStockGainRate = round(totalStockGain/totalStockMarketCap,4)
+        totalGainRate = round(totalGain/(totalMarketCap-totalGain),4)
+        totalStockGainRate = round(totalStockGain/(totalStockMarketCap - totalStockGain),4)
         if totalCashMarketCap > 0:
-            totalCashGainRate = round(totalCashGain/totalCashMarketCap,4)
+            totalCashGainRate = round(totalCashGain/(totalCashMarketCap-totalCashGain),4)
         else:
             totalCashGainRate = 0
         # 第四行统计信息
@@ -131,10 +131,10 @@ class assetAllocationHtmlParser:
         entireStockGain = self.beautify(totalHistoryStockGain + totalStockGain)
         entireCashGain = self.beautify(totalHistoryCashGain + totalCashGain)
         # 第六行统计信息
-        entireGainRate = round(entireGain/totalMarketCap,4)
-        entireStockGainRate = round(entireStockGain/totalStockMarketCap,4)
+        entireGainRate = round(entireGain/(totalMarketCap-entireGain),4)
+        entireStockGainRate = round(entireStockGain/(totalStockMarketCap-entireStockGain),4)
         if totalCashMarketCap > 0:
-            entireCashGainRate = round(entireCashGain/totalCashMarketCap,4)
+            entireCashGainRate = round(entireCashGain/(totalCashMarketCap-entireCashGain),4)
         else:
             entireCashGainRate = 0
         # 生产 summary

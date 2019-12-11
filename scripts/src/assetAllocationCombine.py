@@ -206,7 +206,7 @@ class assetAllocationCombine:
         elif u'cash_康力泉' in filepath:
             return u'现金账户'
         elif u'cash_父母' in filepath:
-            return u'我要稳稳的幸福'
+            return u'父稳稳的幸福'
         elif u'freeze_康力泉' in filepath:
             return u'冻结资金'
         return '未知'

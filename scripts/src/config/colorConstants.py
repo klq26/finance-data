@@ -21,7 +21,7 @@ class colorConstants:
         # 色值转换 https://www.sioe.cn/yingyong/yanse-rgb-16/
         if name in [u'螺丝钉定投', u'母螺丝钉', u'父螺丝钉']:
             return 'F0DC5A'
-        elif name in [u'且慢补充 150 份', u'且慢 S 定投', u'我要稳稳的幸福']:
+        elif name in [u'且慢补充 150 份', u'且慢 S 定投', u'父稳稳的幸福',u'稳稳的幸福']:
             return '6EB5FF'
         elif u'天天基金' in name:
             return 'FF8361'
