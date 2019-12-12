@@ -66,6 +66,18 @@ class assetAllocationEstimateHtmlParser:
                 return fundCategory
         return ''
 
+    # 根据涨跌，返回颜色
+    def getGainColor(self,value):
+        # http://www.yuangongju.com/color
+        changeValueColor = '#DD2200'
+        if value >= 0:
+            # 221,34,0
+            changeValueColor = '#DD2200'
+        else:
+            # 0,153,51
+            changeValueColor = '#009933'
+        return changeValueColor
+
     # 读取 txt，生成 fundModel 基金数据集合，输出到 xlsx 文件
     def generateHtmlFile(self, fundModelArray, title, path=''):
         if len(fundModelArray) == 0:
@@ -125,6 +137,9 @@ class assetAllocationEstimateHtmlParser:
             changeValue = round(
                 (fundModel.estimateNetValue - fundModel.currentNetValue)*fundModel.holdShareCount, 2)
             dict['changeValue'] = changeValue
+            # 用的之前的深色配色（代码比较乱）
+            dict['holdingGainColor'] = self.getGainColor(dict['holdTotalGain'])
+            dict['gainRateColor'] = self.getGainColor(fundModel.estimateRate)
             dict['changeValueColor'] = self.colorConstants.getGainColor(
                 changeValue)
             # 计入今日统计

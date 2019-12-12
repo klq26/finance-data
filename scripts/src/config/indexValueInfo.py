@@ -8,7 +8,10 @@ import json
 import requests
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 from bs4 import BeautifulSoup
-
+# 把父路径加入到 sys.path 供 import 搜索
+currentDir = os.path.abspath(os.path.dirname(__file__))
+srcDir = os.path.dirname(currentDir)
+sys.path.append(srcDir)
 from config.requestHeaderManager import requestHeaderManager
 from config.pathManager import pathManager
 
@@ -49,6 +52,8 @@ class indexValueInfo:
                 index['result']['pb'] = 0.0
                 index['result']['roe'] = 0.0
             elif index['EvaluationType'] == 'qieman':
+                # 如果且慢估值数据获取失败，这里将不会赋值，所以会沿用上次的内容。
+                # 这样做是防止因为且慢 x-sign 没更新，就无法跑通估值流程的情况。
                 for eval in self.qiemanEvaluations:
                     if index['EvaluationSymbol'] == eval['EvaluationSymbol']:
                         index['result']['pe'] = eval['pe']
@@ -107,24 +112,28 @@ class indexValueInfo:
         # 读取且慢估值
         qiemanUrl = u'https://qieman.com/pmdj/v2/idx-eval/latest'
         response = self.requestUrl(qiemanUrl, self.requestHeaderManager.getQiemanKLQ())
-        jsonData = json.loads(response.text)
-        evalList = jsonData['idxEvalList']
-        for eval in evalList:
-            data = {}
-            if u'pe' in eval.keys():
-                data['pe'] = eval['pe']
-            else:
-                data['pe'] = 0.0
-            if u'pb' in eval.keys():
-                data['pb'] = eval['pb']
-            else:
-                data['pb'] = 0.0
-            if u'roe' in eval.keys():
-                data['roe'] = eval['roe']
-            else:
-                data['roe'] = 0.0
-            data['EvaluationSymbol'] = eval['indexName']
-            self.qiemanEvaluations.append(data)
+        if len(response.text) > 0:
+            jsonData = json.loads(response.text)
+            
+            evalList = jsonData['idxEvalList']
+            for eval in evalList:
+                data = {}
+                if u'pe' in eval.keys():
+                    data['pe'] = eval['pe']
+                else:
+                    data['pe'] = 0.0
+                if u'pb' in eval.keys():
+                    data['pb'] = eval['pb']
+                else:
+                    data['pb'] = 0.0
+                if u'roe' in eval.keys():
+                    data['roe'] = eval['roe']
+                else:
+                    data['roe'] = 0.0
+                data['EvaluationSymbol'] = eval['indexName']
+                self.qiemanEvaluations.append(data)
+        else:
+            print('[WARNNING]：且慢 x-sign 失效，且慢部分的估值将使用历史数据')
         # for d in self.qiemanEvaluations:
         #     print(d)
 
