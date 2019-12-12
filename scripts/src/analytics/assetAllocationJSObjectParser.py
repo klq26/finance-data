@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import sys
 import json
 import shutil
 # for reduce method of lambda
@@ -113,5 +114,4 @@ class assetAllocationJSObjectParser:
         shutil.copy(jsPath,os.path.join(self.pm.holdingOutputPath,fileName))
         # 把文件拷贝到 nginx 服务器目录下
         if sys.platform.startswith('linux'):
-            shutil.copy(jsPath, os.path.join('/var/www/html',fileName)
-            
+            shutil.copy(jsPath, os.path.join('/var/www/html',fileName))

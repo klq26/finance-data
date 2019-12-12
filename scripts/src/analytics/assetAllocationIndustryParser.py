@@ -304,7 +304,7 @@ class assetAllocationIndustryParser:
             jsFile.write('\n}')
         # 把文件拷贝到 nginx 服务器目录下
         if sys.platform.startswith('linux'):
-            shutil.copy(jsPath, os.path.join('/var/www/html',fileName)
+            shutil.copy(jsPath, os.path.join('/var/www/html',fileName))
     
 if __name__ == "__main__":
     strategy = 'a'
