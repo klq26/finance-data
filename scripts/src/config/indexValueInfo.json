@@ -84,6 +84,20 @@
         "valueType":"xueqiu"
     },
     {
+        "EvaluationSymbol":"中小板指",
+        "EvaluationType":"qieman",
+        "category3":"中小板",
+        "categoryID":"117",
+        "result":{
+            "close":7011.98,
+            "pb":2.11,
+            "pe":17.73,
+            "roe":0.1188
+        },
+        "valueSymbol":"SZ399005",
+        "valueType":"xueqiu"
+    },
+    {
         "EvaluationSymbol":"中证500",
         "EvaluationType":"qieman",
         "category3":"中证500",
@@ -238,9 +252,9 @@
         "valueType":"xueqiu"
     },
     {
-        "EvaluationSymbol":"",
-        "EvaluationType":"",
-        "category3":"金融地产",
+        "EvaluationSymbol":"中证银行",
+        "EvaluationType":"qieman",
+        "category3":"中证银行",
         "categoryID":"146",
         "result":{
             "close":5902.02,
@@ -248,7 +262,35 @@
             "pe":0.0,
             "roe":0.0
         },
+        "valueSymbol":"SZ399986",
+        "valueType":"xueqiu"
+    },
+    {
+        "EvaluationSymbol":"",
+        "EvaluationType":"",
+        "category3":"金融地产",
+        "categoryID":"147",
+        "result":{
+            "close":5902.02,
+            "pb":0.0,
+            "pe":0.0,
+            "roe":0.0
+        },
         "valueSymbol":"SH000992",
+        "valueType":"xueqiu"
+    },
+    {
+        "EvaluationSymbol":"中证消费",
+        "EvaluationType":"qieman",
+        "category3":"全指消费",
+        "categoryID":"148",
+        "result":{
+            "close":5902.02,
+            "pb":0.0,
+            "pe":0.0,
+            "roe":0.0
+        },
+        "valueSymbol":"SH000990",
         "valueType":"xueqiu"
     },
     {
@@ -266,10 +308,24 @@
         "valueType":"xueqiu"
     },
     {
+        "EvaluationSymbol":"H股指数",
+        "EvaluationType":"danjuan",
+        "category3":"国企",
+        "categoryID":"212",
+        "result":{
+            "close":26645.43,
+            "pb":1.03,
+            "pe":9.6,
+            "roe":0.1068
+        },
+        "valueSymbol":"HKHSCEI",
+        "valueType":"xueqiu"
+    },
+    {
         "EvaluationSymbol":"香港中小",
         "EvaluationType":"danjuan",
         "category3":"香港中小",
-        "categoryID":"212",
+        "categoryID":"213",
         "result":{
             "close":3148.71,
             "pb":1.49,
@@ -297,7 +353,7 @@
         "EvaluationSymbol":"",
         "EvaluationType":"",
         "category3":"德国30",
-        "categoryID":"311",
+        "categoryID":"321",
         "result":{
             "close":13145.74,
             "pb":0.0,
@@ -311,7 +367,7 @@
         "EvaluationSymbol":"",
         "EvaluationType":"",
         "category3":"可转债",
-        "categoryID":"411",
+        "categoryID":"512",
         "result":{
             "close":335.38,
             "pb":0.0,
@@ -325,7 +381,7 @@
         "EvaluationSymbol":"",
         "EvaluationType":"",
         "category3":"黄金",
-        "categoryID":"511",
+        "categoryID":"611",
         "result":{
             "close":1479.6,
             "pb":0.0,
@@ -339,7 +395,7 @@
         "EvaluationSymbol":"",
         "EvaluationType":"",
         "category3":"原油",
-        "categoryID":"512",
+        "categoryID":"613",
         "result":{
             "close":3248.68,
             "pb":0.0,
