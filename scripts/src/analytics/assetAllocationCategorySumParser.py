@@ -91,7 +91,7 @@ class assetAllocationCategorySumParser:
         print(tb)
         # 同时写入文件
         with open(os.path.join(self.outputPath,u'资产配置分类情况.html'),'w+',encoding=u'utf-8') as f:
-            f.write('<head><meta charset=\'utf-8\'/></head><h3>一级分类</h3>')
+            f.write('<head><meta charset=\'utf-8\'/><title>资产配置分类</title></head><h3>一级分类</h3>')
             f.write(tb.get_html_string(format=True))
         print('\n二级分类：\n')
         tb = PrettyTable()
