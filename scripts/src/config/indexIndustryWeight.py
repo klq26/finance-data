@@ -32,9 +32,9 @@ class indexIndustryWeight:
 
     def analytics(self):
         indexList = ['000016.XSHG', '000300.XSHG', '000919.XSHG', '399701.XSHE', '399702.XSHE', '000905.XSHG', '000852.XSHG',
-                     '399006.XSHE', '000922.XSHG', '399812.XSHE', '000991.XSHG', '000827.XSHG', '399971.XSHE', '399975.XSHE', '000992.XSHG']
+                     '399006.XSHE', '000922.XSHG', '399812.XSHE', '000991.XSHG', '000827.XSHG', '399971.XSHE', '399975.XSHE','399986.XSHE', '000992.XSHG']
         indexNames = ['上证50', '沪深300', '300价值', '基本面60', '基本面120', '中证500', '中证1000',
-                     '创业板', '中证红利', '养老产业', '全指医药', '中证环保', '中证传媒', '证券公司', '金融地产']
+                     '创业板', '中证红利', '养老产业', '全指医药', '中证环保', '中证传媒', '证券公司','中证银行', '金融地产']
         industrys = []
         result_df = pd.DataFrame()
         for swIndexInfo in self.swIndexInfos:
