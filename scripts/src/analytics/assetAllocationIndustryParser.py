@@ -1,6 +1,7 @@
 import json
 import os
 import sys
+import shutil
 import time
 from datetime import datetime
 
@@ -304,7 +305,10 @@ class assetAllocationIndustryParser:
             jsFile.write('{\n')
             jsFile.write('\t' + r'return {0}'.format(json.dumps(self.echarts, ensure_ascii=False, sort_keys = True, indent = 4, separators=(',', ':'))))
             jsFile.write('\n}')
-
+        # 把文件拷贝到 nginx 服务器目录下
+        if sys.platform.startswith('linux'):
+            shutil.copy(jsPath, os.path.join('/var/www/html',fileName))
+    
 if __name__ == "__main__":
     strategy = 'a'
     if len(sys.argv) >= 2:
