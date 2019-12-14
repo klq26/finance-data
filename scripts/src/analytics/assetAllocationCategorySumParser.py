@@ -27,6 +27,7 @@ from config.assetCategoryConstants import assetCategoryConstants
 from config.indexValueInfo import indexValueInfo
 from config.pathManager import pathManager
 from config.historyProfitManager import  historyProfitManager
+from config.colorConstants import colorConstants
 # tools
 from tools.dingtalk import dingtalk
 
@@ -34,6 +35,7 @@ class assetAllocationCategorySumParser:
 
     def __init__(self,path):
         self.pm = pathManager()
+        self.colorConstants = colorConstants()
         categoryConstants = assetCategoryConstants()
         self.category1Array = categoryConstants.category1Array
         self.category2Array = categoryConstants.category2Array
@@ -115,7 +117,7 @@ class assetAllocationCategorySumParser:
             category1Item['portfolioPercent'] = u'{0:.2f}%'.format(self.beautify(marketCap / totalMarketCap * 100))
             category1Item['portfolioGainContribute'] = u'{0:.2f}%'.format(self.beautify(gain / totalGain * 100))
             # color
-            category1Item['color'] = '#F4F4F4'
+            category1Item['color'] = self.colorConstants.colorForCategory1(category)
             category1Item['holdTotalGainColor'] = self.getGainColor(gain)
             category1Item['holdTotalGainRateColor'] = self.getGainColor(gainRate)
             category1Item['portfolioGainContributeColor'] = self.getGainColor(gain / totalGain * 100)
@@ -135,6 +137,8 @@ class assetAllocationCategorySumParser:
             totalGains = [x.holdTotalGain for x in modelArray if x.category2 == category]
             gain = reduce(lambda x,y: x+y, totalGains)
             
+            category1 = [x.category1 for x in modelArray if x.category2 == category][0]
+
             #print(u'{0} 市值：{1}\t占比：{2}%\t盈亏：{3}\t占比：{4}%'.format(category, self.beautify(marketCap), self.beautify(marketCap / totalMarketCap * 100), self.beautify(gain), self.beautify(gain / totalGain * 100)))
             # prettytable 输出
             gainRate = 0
@@ -151,7 +155,7 @@ class assetAllocationCategorySumParser:
             category2Item['portfolioPercent'] = u'{0:.2f}%'.format(self.beautify(marketCap / totalMarketCap * 100))
             category2Item['portfolioGainContribute'] = u'{0:.2f}%'.format(self.beautify(gain / totalGain * 100))
             # color
-            category2Item['color'] = '#F4F4F4'
+            category2Item['color'] = self.colorConstants.colorForCategory1(category1)
             category2Item['holdTotalGainColor'] = self.getGainColor(gain)
             category2Item['holdTotalGainRateColor'] = self.getGainColor(gainRate)
             category2Item['portfolioGainContributeColor'] = self.getGainColor(gain / totalGain * 100)
@@ -176,6 +180,8 @@ class assetAllocationCategorySumParser:
                     x['holding'] = round(marketCap,2)
             totalGains = [x.holdTotalGain for x in modelArray if x.category3 == category]
             gain = reduce(lambda x,y: x+y, totalGains)
+
+            category1 = [x.category1 for x in modelArray if x.category3 == category][0]
             # 指数成本（三级分类持仓成本，换算成指数的点数）
             indexValue = 0.0
             holdingIndexValue = 0.0
@@ -215,7 +221,7 @@ class assetAllocationCategorySumParser:
             category3Item['portfolioPercent'] = u'{0:.2f}%'.format(self.beautify(marketCap / totalMarketCap * 100))
             category3Item['portfolioGainContribute'] = u'{0:.2f}%'.format(self.beautify(gain / totalGain * 100))
             # color
-            category3Item['color'] = '#F4F4F4'
+            category3Item['color'] = self.colorConstants.colorForCategory1(category1)
             category3Item['indexHoldingValueColor'] = self.getGainColor(indexValue - holdingIndexValue)
             category3Item['holdTotalGainColor'] = self.getGainColor(gain)
             category3Item['holdHistoryGainColor'] = self.getGainColor(historyGain)
@@ -242,13 +248,12 @@ class assetAllocationCategorySumParser:
 
 if __name__ == "__main__":
     print(__name__)
-    # historyManager = historyProfitManager()
-    # history_df = historyManager.history_df
+    historyManager = historyProfitManager()
+    history_df = historyManager.history_df
     # 读取文件
-    # assetJsonPath = os.path.join(r'D:\github\finance-data\scripts\output\201912\全家', u'全家整体asset.json')
-    # with open(assetJsonPath,'r',encoding=u'utf-8') as assetJsonFile:
-        # object_hook 配合 init 传入 self.__dict__ = dictData 实现 json 字符串转 python 自定义对象
-        # contentList = json.loads(assetJsonFile.read(),object_hook=assetModel)
-        # assetModelArray = contentList
-    # t = test(path = os.getcwd())
-    # t.showInfo(assetModelArray, history_df)
+    assetJsonPath = os.path.join(r'D:\github\finance-data\scripts\output\201912\全家', u'全家整体asset.json')
+    with open(assetJsonPath,'r',encoding=u'utf-8') as assetJsonFile:
+        contentList = json.loads(assetJsonFile.read(),object_hook=assetModel)
+        assetModelArray = contentList
+    t = assetAllocationCategorySumParser(path = os.getcwd())
+    t.showInfo(assetModelArray, history_df)

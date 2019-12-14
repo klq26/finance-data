@@ -40,13 +40,15 @@ class colorConstants:
     # 资产分类的 echarts 背景色
     def colorForCategory1(self, category1):
         if category1 == self.category1Array[0]:
-            return '#0AA3B5'
+            # return '#0AA3B5'
+            return '#50C2F9'
         elif category1 == self.category1Array[1]:
             return '#BBEDA8'
         elif category1 == self.category1Array[2]:
             return '#FFC751'
         elif category1 == self.category1Array[3]:
-            return '#2196F3'
+            # return '#2196F3'
+            return '#FF7C9E'
         elif category1 == self.category1Array[4]:
             return '#FF8361'
         elif category1 == self.category1Array[5]:

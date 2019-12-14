@@ -48,7 +48,7 @@
         {
             "currentNetValue":1.4979,
             "currentNetValueDate":"2019-12-13",
-            "estimateNetValue":1.5171,
+            "estimateNetValue":1.534,
             "estimateRate":0.0241,
             "estimateTime":"2019-12-13 16:00",
             "fundCode":"501021",
@@ -336,7 +336,7 @@
         {
             "currentNetValue":1.323,
             "currentNetValueDate":"2019-12-12",
-            "estimateNetValue":1.3142,
+            "estimateNetValue":1.3232,
             "estimateRate":0.0002,
             "estimateTime":"2019-12-14 05:00",
             "fundCode":"164906",
@@ -345,7 +345,7 @@
         {
             "currentNetValue":1.5481,
             "currentNetValueDate":"2019-12-13",
-            "estimateNetValue":1.5493,
+            "estimateNetValue":1.5859,
             "estimateRate":0.0244,
             "estimateTime":"2019-12-13 16:00",
             "fundCode":"000071",
@@ -417,7 +417,7 @@
         {
             "currentNetValue":1.323,
             "currentNetValueDate":"2019-12-12",
-            "estimateNetValue":1.3142,
+            "estimateNetValue":1.3232,
             "estimateRate":0.0002,
             "estimateTime":"2019-12-14 05:00",
             "fundCode":"164906",
@@ -426,7 +426,7 @@
         {
             "currentNetValue":1.5481,
             "currentNetValueDate":"2019-12-13",
-            "estimateNetValue":1.5493,
+            "estimateNetValue":1.5859,
             "estimateRate":0.0244,
             "estimateTime":"2019-12-13 16:00",
             "fundCode":"000071",
@@ -534,7 +534,7 @@
         {
             "currentNetValue":1.323,
             "currentNetValueDate":"2019-12-12",
-            "estimateNetValue":1.3142,
+            "estimateNetValue":1.3232,
             "estimateRate":0.0002,
             "estimateTime":"2019-12-14 05:00",
             "fundCode":"164906",
@@ -561,7 +561,7 @@
         {
             "currentNetValue":1.5481,
             "currentNetValueDate":"2019-12-13",
-            "estimateNetValue":1.5493,
+            "estimateNetValue":1.5859,
             "estimateRate":0.0244,
             "estimateTime":"2019-12-13 16:00",
             "fundCode":"000071",
@@ -714,7 +714,7 @@
         {
             "currentNetValue":1.4979,
             "currentNetValueDate":"2019-12-13",
-            "estimateNetValue":1.5171,
+            "estimateNetValue":1.534,
             "estimateRate":0.0241,
             "estimateTime":"2019-12-13 16:00",
             "fundCode":"501021",
@@ -831,7 +831,7 @@
         {
             "currentNetValue":1.4979,
             "currentNetValueDate":"2019-12-13",
-            "estimateNetValue":1.5171,
+            "estimateNetValue":1.534,
             "estimateRate":0.0241,
             "estimateTime":"2019-12-13 16:00",
             "fundCode":"501021",
@@ -1038,7 +1038,7 @@
         {
             "currentNetValue":1.323,
             "currentNetValueDate":"2019-12-12",
-            "estimateNetValue":1.3142,
+            "estimateNetValue":1.3232,
             "estimateRate":0.0002,
             "estimateTime":"2019-12-14 05:00",
             "fundCode":"164906",
@@ -1119,7 +1119,7 @@
         {
             "currentNetValue":1.5481,
             "currentNetValueDate":"2019-12-13",
-            "estimateNetValue":1.5493,
+            "estimateNetValue":1.5859,
             "estimateRate":0.0244,
             "estimateTime":"2019-12-13 16:00",
             "fundCode":"000071",
@@ -1144,5 +1144,5 @@
             "fundName":"广发中证500ETF联接C"
         }
     ],
-    "updateTime":"2019-12-14 07:52:53"
+    "updateTime":"2019-12-14 22:12:41"
 }
