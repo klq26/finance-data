@@ -12,6 +12,9 @@ from operator import itemgetter
 import pandas as pd
 # pretty table output
 from prettytable import PrettyTable
+# html template
+import jinja2
+from jinja2 import Environment, FileSystemLoader
 # 把父路径加入到 sys.path 供 import 搜索
 currentDir = os.path.abspath(os.path.dirname(__file__))
 srcDir = os.path.dirname(currentDir)
@@ -44,7 +47,23 @@ class assetAllocationCategorySumParser:
     def beautify(self,num):
         return round(float(num),2)
     
+    # 根据涨跌，返回颜色
+    def getGainColor(self,value):
+        # http://www.yuangongju.com/color
+        changeValueColor = '#DD2200'
+        if value >= 0:
+            # 221,34,0
+            changeValueColor = '#DD2200'
+        else:
+            # 0,153,51
+            changeValueColor = '#009933'
+        return changeValueColor
+    
     def showInfo(self,modelArray, history_df):
+        # jinja2
+        category1Items = []
+        category2Items = []
+        category3Items = []
         # 总市值
         allMarketCaps = [x.holdMarketCap for x in modelArray]
         totalMarketCap = reduce(lambda x,y: x+y, allMarketCaps)
@@ -68,6 +87,7 @@ class assetAllocationCategorySumParser:
         # 给钉钉发消息
         self.dingtalk.sendMessage(f'{outStr0}\n当前市值情况：\n{outStr1}\n{outStr2}\n{outStr3}\n{outStr4}')
         print('\n一级分类：\n')
+        
         tb = PrettyTable()
         tb.field_names = [u"名称", u"分类市值", u"盈亏（元）", u"分类盈亏率", u"组合占比", u"组合盈亏贡献"]
         for category in self.category1Array:
@@ -79,8 +99,7 @@ class assetAllocationCategorySumParser:
             
             totalGains = [x.holdTotalGain for x in modelArray if x.category1 == category]
             gain = reduce(lambda x,y: x+y, totalGains)
-            
-            #print(u'{0} 市值：{1}\t占比：{2}%\t盈亏：{3}\t占比：{4}%'.format(category, self.beautify(marketCap), self.beautify(marketCap / totalMarketCap * 100), self.beautify(gain), self.beautify(gain / totalGain * 100)))
+
             # prettytable 输出
             gainRate = 0
             if marketCap - gain <= 0:
@@ -88,11 +107,20 @@ class assetAllocationCategorySumParser:
             else:
                 gainRate = gain/(marketCap - gain)* 100
             tb.add_row([category, self.beautify(marketCap), self.beautify(gain), u'{0}%'.format(self.beautify(gainRate)), u'{0}%'.format(self.beautify(marketCap / totalMarketCap * 100)), u'{0}%'.format(self.beautify(gain / totalGain * 100))])
+            category1Item = {}
+            category1Item['categoryName'] = str(category)
+            category1Item['holdMarketCap'] = u'{0:.2f}'.format(self.beautify(marketCap))
+            category1Item['holdTotalGain'] = u'{0:.2f}'.format(self.beautify(gain))
+            category1Item['holdTotalGainRate'] = u'{0:.2f}%'.format(self.beautify(gainRate))
+            category1Item['portfolioPercent'] = u'{0:.2f}%'.format(self.beautify(marketCap / totalMarketCap * 100))
+            category1Item['portfolioGainContribute'] = u'{0:.2f}%'.format(self.beautify(gain / totalGain * 100))
+            # color
+            category1Item['color'] = '#F4F4F4'
+            category1Item['holdTotalGainColor'] = self.getGainColor(gain)
+            category1Item['holdTotalGainRateColor'] = self.getGainColor(gainRate)
+            category1Item['portfolioGainContributeColor'] = self.getGainColor(gain / totalGain * 100)
+            category1Items.append(category1Item)
         print(tb)
-        # 同时写入文件
-        with open(os.path.join(self.outputPath,u'资产配置分类情况.html'),'w+',encoding=u'utf-8') as f:
-            f.write('<head><meta charset=\'utf-8\'/><title>资产配置分类</title></head><h3>一级分类</h3>')
-            f.write(tb.get_html_string(format=True))
         print('\n二级分类：\n')
         tb = PrettyTable()
         tb.field_names = [u"名称", u"分类市值", u"盈亏（元）", u"分类盈亏率", u"组合占比", u"组合盈亏贡献"]
@@ -115,11 +143,20 @@ class assetAllocationCategorySumParser:
             else:
                 gainRate = gain/(marketCap - gain)* 100
             tb.add_row([category, self.beautify(marketCap), self.beautify(gain),u'{0}%'.format(self.beautify(gainRate)), u'{0}%'.format(self.beautify(marketCap / totalMarketCap * 100)), u'{0}%'.format(self.beautify(gain / totalGain * 100))])
+            category2Item = {}
+            category2Item['categoryName'] = category
+            category2Item['holdMarketCap'] = u'{0:.2f}'.format(self.beautify(marketCap))
+            category2Item['holdTotalGain'] = u'{0:.2f}'.format(self.beautify(gain))
+            category2Item['holdTotalGainRate'] = u'{0:.2f}%'.format(self.beautify(gainRate))
+            category2Item['portfolioPercent'] = u'{0:.2f}%'.format(self.beautify(marketCap / totalMarketCap * 100))
+            category2Item['portfolioGainContribute'] = u'{0:.2f}%'.format(self.beautify(gain / totalGain * 100))
+            # color
+            category2Item['color'] = '#F4F4F4'
+            category2Item['holdTotalGainColor'] = self.getGainColor(gain)
+            category2Item['holdTotalGainRateColor'] = self.getGainColor(gainRate)
+            category2Item['portfolioGainContributeColor'] = self.getGainColor(gain / totalGain * 100)
+            category2Items.append(category2Item)
         print(tb)
-        # 同时写入文件
-        with open(os.path.join(self.outputPath,u'资产配置分类情况.html'),'a+',encoding=u'utf-8') as f:
-            f.write('<h3>二级分类</h3>')
-            f.write(tb.get_html_string(format=True))
         print('\n三级分类：\n')
         tb = PrettyTable()
         tb.field_names = [u"名称", u'指数成本', u'指数点位',u'持仓 pe',u'持仓 pb',u'指数 roe', u"分类市值", u"持仓盈亏", u'历史盈亏', u'总盈亏', u"持仓收益率", u"组合占比", u"组合盈亏贡献"]
@@ -162,16 +199,56 @@ class assetAllocationCategorySumParser:
             else:
                 gainRate = gain/(marketCap - gain)* 100
             tb.add_row([category, u'{0:.2f}'.format(self.beautify(holdingIndexValue)), u'{0:.2f}'.format(self.beautify(indexValue)), u'{0:.2f}'.format(self.beautify(peValue)), u'{0:.2f}'.format(self.beautify(pbValue)), u'{0:.2f}%'.format(self.beautify(roeValue)), self.beautify(marketCap), u'{0:.2f}'.format(self.beautify(gain)), u'{0:.2f}'.format(self.beautify(historyGain)), u'{0:.2f}'.format(self.beautify(gain + historyGain)), u'{0}%'.format(self.beautify(gainRate)), u'{0}%'.format(self.beautify(marketCap / totalMarketCap * 100)), u'{0}%'.format(self.beautify(gain / totalGain * 100))])
+            category3Item = {}
+            category3Item['categoryName'] = str(category)
+            
+            category3Item['indexHoldingValue'] = u'{0:.2f}'.format(self.beautify(holdingIndexValue))
+            category3Item['indexValue'] = u'{0:.2f}'.format(self.beautify(indexValue))
+            category3Item['pe'] = u'{0:.2f}'.format(self.beautify(peValue))
+            category3Item['pb'] = u'{0:.2f}'.format(self.beautify(pbValue))
+            category3Item['roe'] = u'{0:.2f}%'.format(self.beautify(roeValue))
+            category3Item['holdMarketCap'] =  u'{0:.2f}'.format(self.beautify(marketCap))
+            category3Item['holdTotalGain'] =  u'{0:.2f}'.format(self.beautify(gain))
+            category3Item['holdHistoryGain'] =  u'{0:.2f}'.format(self.beautify(historyGain))
+            category3Item['holdEntireGain'] = u'{0:.2f}'.format(self.beautify(gain + historyGain))
+            category3Item['holdTotalGainRate'] = u'{0:.2f}%'.format(self.beautify(gainRate))
+            category3Item['portfolioPercent'] = u'{0:.2f}%'.format(self.beautify(marketCap / totalMarketCap * 100))
+            category3Item['portfolioGainContribute'] = u'{0:.2f}%'.format(self.beautify(gain / totalGain * 100))
+            # color
+            category3Item['color'] = '#F4F4F4'
+            category3Item['indexHoldingValueColor'] = self.getGainColor(indexValue - holdingIndexValue)
+            category3Item['holdTotalGainColor'] = self.getGainColor(gain)
+            category3Item['holdHistoryGainColor'] = self.getGainColor(historyGain)
+            category3Item['holdEntireGainColor'] = self.getGainColor(gain + historyGain)
+            category3Item['holdTotalGainRateColor'] = self.getGainColor(gainRate)
+            category3Item['portfolioGainContributeColor'] = self.getGainColor(gain / totalGain * 100)
+            category3Items.append(category3Item)
         print(tb)
         with open(os.path.join(self.pm.configPath,'indexHoldingInfo.json'),u'w',encoding='utf-8') as f:
             f.write(json.dumps(indexHoldingInfos, ensure_ascii=False, sort_keys = True, indent = 4, separators=(',', ':')))
-        # 同时写入文件
-        with open(os.path.join(self.outputPath,u'资产配置分类情况.html'),'a+',encoding=u'utf-8') as f:
-            f.write('<h3>三级分类</h3>')
-            f.write(tb.get_html_string(format=True))
+        # jinja2 框架输出 html
+        env = Environment(loader=FileSystemLoader(
+            os.path.join(self.pm.parentDir, u'template')))
+        template = env.get_template(u'资产分类template.html')
+        with open(os.path.join(self.outputPath,u'资产配置分类情况.html'), 'w+', encoding=u'utf-8') as fout:
+            htmlCode = template.render(category1Items = category1Items, category2Items = category2Items, category3Items = category3Items)
+            fout.write(htmlCode)
         if sys.platform.startswith('win'):
             os.startfile(os.path.join(self.outputPath,u'资产配置分类情况.html'))
         elif sys.platform.startswith('linux'):
             shutil.copy(os.path.join(self.outputPath,u'资产配置分类情况.html'), '/var/www/html/assetCategory.html')
             self.dingtalk.sendMessage(f'账户：http://112.125.25.230/assetCategory.html')
             print('资产配置分类情况：http://112.125.25.230/assetCategory.html')
+
+if __name__ == "__main__":
+    print(__name__)
+    # historyManager = historyProfitManager()
+    # history_df = historyManager.history_df
+    # 读取文件
+    # assetJsonPath = os.path.join(r'D:\github\finance-data\scripts\output\201912\全家', u'全家整体asset.json')
+    # with open(assetJsonPath,'r',encoding=u'utf-8') as assetJsonFile:
+        # object_hook 配合 init 传入 self.__dict__ = dictData 实现 json 字符串转 python 自定义对象
+        # contentList = json.loads(assetJsonFile.read(),object_hook=assetModel)
+        # assetModelArray = contentList
+    # t = test(path = os.getcwd())
+    # t.showInfo(assetModelArray, history_df)
