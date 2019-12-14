@@ -148,7 +148,6 @@ class assetAllocationCombine:
                     asset.holdShareCount = round(float(values[3]),2)            # 持仓份额
                     asset.holdMarketCap = fund.holdMarketCap                    # 持仓市值
                     asset.holdTotalGain = fund.holdTotalGain                    # 自己计算出来的持仓盈亏
-                    asset.holdTotalGain = round(float(values[5]),2)             # 持仓盈亏
                     asset.category1 = category[u'category1']                    # 一级分类
                     asset.category2 = category[u'category2']                    # 二级分类
                     asset.category3 = category[u'category3']                    # 三级分类
