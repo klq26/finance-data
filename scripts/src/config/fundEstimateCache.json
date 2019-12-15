@@ -336,8 +336,8 @@
         {
             "currentNetValue":1.323,
             "currentNetValueDate":"2019-12-12",
-            "estimateNetValue":1.3232,
-            "estimateRate":0.0002,
+            "estimateNetValue":1.3231,
+            "estimateRate":0.0001,
             "estimateTime":"2019-12-14 05:00",
             "fundCode":"164906",
             "fundName":"交银中证海外中国互联网指数"
@@ -417,8 +417,8 @@
         {
             "currentNetValue":1.323,
             "currentNetValueDate":"2019-12-12",
-            "estimateNetValue":1.3232,
-            "estimateRate":0.0002,
+            "estimateNetValue":1.3231,
+            "estimateRate":0.0001,
             "estimateTime":"2019-12-14 05:00",
             "fundCode":"164906",
             "fundName":"交银中证海外中国互联网指数"
@@ -534,8 +534,8 @@
         {
             "currentNetValue":1.323,
             "currentNetValueDate":"2019-12-12",
-            "estimateNetValue":1.3232,
-            "estimateRate":0.0002,
+            "estimateNetValue":1.3231,
+            "estimateRate":0.0001,
             "estimateTime":"2019-12-14 05:00",
             "fundCode":"164906",
             "fundName":"交银中证海外中国互联网指数"
@@ -1038,8 +1038,8 @@
         {
             "currentNetValue":1.323,
             "currentNetValueDate":"2019-12-12",
-            "estimateNetValue":1.3232,
-            "estimateRate":0.0002,
+            "estimateNetValue":1.3231,
+            "estimateRate":0.0001,
             "estimateTime":"2019-12-14 05:00",
             "fundCode":"164906",
             "fundName":"交银中证海外中国互联网指数"
@@ -1144,5 +1144,5 @@
             "fundName":"广发中证500ETF联接C"
         }
     ],
-    "updateTime":"2019-12-14 22:12:41"
+    "updateTime":"2019-12-15 08:25:44"
 }

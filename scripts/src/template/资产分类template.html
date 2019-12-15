@@ -1,118 +1,112 @@
 <html>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <title>资产配置分类</title>
-</head>
-<body
     <h1>资产配置分类</h1>
-    <div style='margin:10px;'>
-    <br>
-    <h3>一级分类</h3>
-    <table id='category1' width='100%' border="1" cellspacing='0' cellpadding='4' align='left'>
-        <thead>
-            <!-- 名称	分类市值	盈亏（元）	分类盈亏率	组合占比	组合盈亏贡献 -->
-            <tr align='center'>
-                <th id='th0' class='asc' type='string' onclick='sort(this)'>名称</th>
-                <th id='th1' class='asc' type='number' onclick='sort(this)'>分类市值</th>
-                <th id='th2' class='asc' type='number' onclick='sort(this)'>盈亏</th>
-                <th id='th3' class='asc' type='number' onclick='sort(this)'>分类盈亏率</th>
-                <th id='th4' class='asc' type='number' onclick='sort(this)'>组合占比</th>
-                <th id='th5' class='asc' type='number' onclick='sort(this)'>组合盈亏贡献</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in category1Items %}
-            <tr align='center'>
-                <td align='center' bgcolor={{ item.color }}>{{ item.categoryName }}</td>
-                <td align='right' bgcolor={{ item.color }}>{{ item.holdMarketCap }}</td>
-                <td align='right' bgcolor={{ item.color }} style='color: {{item.holdTotalGainColor}};'>
-                    {{ item.holdTotalGain }}</td>
-                <td align='right' bgcolor={{ item.color }} style='color: {{item.holdTotalGainRateColor}};'>
-                    {{ item.holdTotalGainRate }}</td>
-                <td align='right' bgcolor={{ item.color }}>{{ item.portfolioPercent }}</td>
-                <td align='right' bgcolor={{ item.color }} style='color: {{item.portfolioGainContributeColor}};'>{{ item.portfolioGainContribute }}</td>
-            </tr>
-            {% endfor%}
-        </tbody>
+</head>
+
+<body>
+    <table id='category1' border="0" cellspacing='0' cellpadding='4' align='left'>
+        <tr>
+            <th>
+                <h3>一级分类</h3>
+            </th>
+        </tr>
+        <!-- 名称	分类市值	盈亏（元）	分类盈亏率	组合占比	组合盈亏贡献 -->
+        <tr align='center'>
+            <th id='th0' class='asc' type='string' onclick='sort(this)'>名称</th>
+            <th id='th1' class='asc' type='number' onclick='sort(this)'>分类市值</th>
+            <th id='th2' class='asc' type='number' onclick='sort(this)'>盈亏</th>
+            <th id='th3' class='asc' type='number' onclick='sort(this)'>分类盈亏率</th>
+            <th id='th4' class='asc' type='number' onclick='sort(this)'>组合占比</th>
+            <th id='th5' class='asc' type='number' onclick='sort(this)'>组合盈亏贡献</th>
+        </tr>
+        {% for item in category1Items %}
+        <tr align='center'>
+            <td align='center' bgcolor={{ item.color }}>{{ item.categoryName }}</td>
+            <td align='right' bgcolor={{ item.color }}>{{ item.holdMarketCap }}</td>
+            <td align='right' bgcolor={{ item.color }} style='color: {{item.holdTotalGainColor}};'>
+                {{ item.holdTotalGain }}</td>
+            <td align='right' bgcolor={{ item.color }} style='color: {{item.holdTotalGainRateColor}};'>
+                {{ item.holdTotalGainRate }}</td>
+            <td align='right' bgcolor={{ item.color }}>{{ item.portfolioPercent }}</td>
+            <td align='right' bgcolor={{ item.color }} style='color: {{item.portfolioGainContributeColor}};'>
+                {{ item.portfolioGainContribute }}</td>
+        </tr>
+        {% endfor%}
+        <tr>
+            <th>
+                <h3>二级分类</h3>
+            </th>
+        </tr>
+        <!-- 名称	分类市值	盈亏（元）	分类盈亏率	组合占比	组合盈亏贡献 -->
+        <tr align='center'>
+            <th id='th0' class='asc' type='string' onclick='sort(this)'>名称</th>
+            <th id='th1' class='asc' type='number' onclick='sort(this)'>分类市值</th>
+            <th id='th2' class='asc' type='number' onclick='sort(this)'>盈亏</th>
+            <th id='th3' class='asc' type='number' onclick='sort(this)'>分类盈亏率</th>
+            <th id='th4' class='asc' type='number' onclick='sort(this)'>组合占比</th>
+            <th id='th5' class='asc' type='number' onclick='sort(this)'>组合盈亏贡献</th>
+        </tr>
+        {% for item in category2Items %}
+        <tr align='center'>
+            <td align='center' bgcolor={{ item.color }}>{{ item.categoryName }}</td>
+            <td align='right' bgcolor={{ item.color }}>{{ item.holdMarketCap }}</td>
+            <td align='right' bgcolor={{ item.color }} style='color: {{item.holdTotalGainColor}};'>
+                {{ item.holdTotalGain }}</td>
+            <td align='right' bgcolor={{ item.color }} style='color: {{item.holdTotalGainRateColor}};'>
+                {{ item.holdTotalGainRate }}</td>
+            <td align='right' bgcolor={{ item.color }}>{{ item.portfolioPercent }}</td>
+            <td align='right' bgcolor={{ item.color }} style='color: {{item.portfolioGainContributeColor}};'>
+                {{ item.portfolioGainContribute }}</td>
+        </tr>
+        {% endfor%}
+        <tr>
+            <th>
+                <h3>三级分类</h3>
+            </th>
+        </tr>
+        <!-- 名称	指数成本	指数点位	持仓 pe	持仓 pb	指数 roe	分类市值	持仓盈亏	历史盈亏	总盈亏	持仓收益率	组合占比	组合盈亏贡献 -->
+        <tr align='center'>
+            <th id='th0' class='asc' type='string' onclick='sort(this)'>名称</th>
+            <th id='th1' class='asc' type='number' onclick='sort(this)'>指数成本</th>
+            <th id='th2' class='asc' type='number' onclick='sort(this)'>指数点位</th>
+            <th id='th3' class='asc' type='number' onclick='sort(this)'>持仓 pe</th>
+            <th id='th4' class='asc' type='number' onclick='sort(this)'>持仓 pb</th>
+            <th id='th5' class='asc' type='number' onclick='sort(this)'>指数 roe</th>
+            <th id='th6' class='asc' type='number' onclick='sort(this)'>分类市值</th>
+            <th id='th7' class='asc' type='number' onclick='sort(this)'>盈亏</th>
+            <th id='th8' class='asc' type='number' onclick='sort(this)'>历史盈亏</th>
+            <th id='th9' class='asc' type='number' onclick='sort(this)'>总盈亏</th>
+            <th id='th10' class='asc' type='number' onclick='sort(this)'>持仓收益率</th>
+            <th id='th11' class='asc' type='number' onclick='sort(this)'>组合占比</th>
+            <th id='th12' class='asc' type='number' onclick='sort(this)'>组合盈亏贡献</th>
+        </tr>
+        {% for item in category3Items %}
+        <tr align='center'>
+            <td align='center' bgcolor={{ item.color }}>{{ item.categoryName }}</td>
+            <td align='right' bgcolor={{ item.color }} style='color: {{item.indexHoldingValueColor}};'>
+                {{ item.indexHoldingValue }}</td>
+            <td align='right' bgcolor={{ item.color }}>{{ item.indexValue }}</td>
+            <td align='right' bgcolor={{ item.color }}>{{ item.pe }}</td>
+            <td align='right' bgcolor={{ item.color }}>{{ item.pb }}</td>
+            <td align='right' bgcolor={{ item.color }}>{{ item.roe }}</td>
+            <td align='right' bgcolor={{ item.color }}>{{ item.holdMarketCap }}</td>
+            <td align='right' bgcolor={{ item.color }} style='color: {{item.holdTotalGainColor}};'>
+                {{ item.holdTotalGain }}</td>
+            <td align='right' bgcolor={{ item.color }} style='color: {{item.holdHistoryGainColor}};'>
+                {{ item.holdHistoryGain }}</td>
+            <td align='right' bgcolor={{ item.color }} style='color: {{item.holdEntireGainColor}};'>
+                {{ item.holdEntireGain }}</td>
+            <td align='right' bgcolor={{ item.color }} style='color: {{item.holdTotalGainRateColor}};'>
+                {{ item.holdTotalGainRate }}</td>
+            <td align='right' bgcolor={{ item.color }}>{{ item.portfolioPercent }}</td>
+            <td align='right' bgcolor={{ item.color }} style='color: {{item.portfolioGainContributeColor}};'>
+                {{ item.portfolioGainContribute }}</td>
+        </tr>
+        {% endfor%}
     </table>
-    </div>
-    <div style='margin:10px;'>
-    <br>
-    <h3>二级分类</h3>
-    <table id='category2' width='100%' border="1" cellspacing='0' cellpadding='4' align='left'>
-        <thead>
-            <!-- 名称	分类市值	盈亏（元）	分类盈亏率	组合占比	组合盈亏贡献 -->
-            <tr align='center'>
-                <th id='th0' class='asc' type='string' onclick='sort(this)'>名称</th>
-                <th id='th1' class='asc' type='number' onclick='sort(this)'>分类市值</th>
-                <th id='th2' class='asc' type='number' onclick='sort(this)'>盈亏</th>
-                <th id='th3' class='asc' type='number' onclick='sort(this)'>分类盈亏率</th>
-                <th id='th4' class='asc' type='number' onclick='sort(this)'>组合占比</th>
-                <th id='th5' class='asc' type='number' onclick='sort(this)'>组合盈亏贡献</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in category2Items %}
-            <tr align='center'>
-                <td align='center' bgcolor={{ item.color }}>{{ item.categoryName }}</td>
-                <td align='right' bgcolor={{ item.color }}>{{ item.holdMarketCap }}</td>
-                <td align='right' bgcolor={{ item.color }} style='color: {{item.holdTotalGainColor}};'>
-                    {{ item.holdTotalGain }}</td>
-                <td align='right' bgcolor={{ item.color }} style='color: {{item.holdTotalGainRateColor}};'>
-                    {{ item.holdTotalGainRate }}</td>
-                <td align='right' bgcolor={{ item.color }}>{{ item.portfolioPercent }}</td>
-                <td align='right' bgcolor={{ item.color }} style='color: {{item.portfolioGainContributeColor}};'>{{ item.portfolioGainContribute }}</td>
-            </tr>
-            {% endfor%}
-        </tbody>
-    </table>
-    </div>
-    <div style='margin:10px;'>
-    <br>
-    <h3>三级分类</h3>
-    <table id='category3' width='100%' border="1" cellspacing='0' cellpadding='4' align='left'>
-        <thead>
-            <!-- 名称	指数成本	指数点位	持仓 pe	持仓 pb	指数 roe	分类市值	持仓盈亏	历史盈亏	总盈亏	持仓收益率	组合占比	组合盈亏贡献 -->
-            <tr align='center'>
-                <th id='th0' class='asc' type='string' onclick='sort(this)'>名称</th>
-                <th id='th1' class='asc' type='number' onclick='sort(this)'>指数成本</th>
-                <th id='th2' class='asc' type='number' onclick='sort(this)'>指数点位</th>
-                <th id='th3' class='asc' type='number' onclick='sort(this)'>持仓 pe</th>
-                <th id='th4' class='asc' type='number' onclick='sort(this)'>持仓 pb</th>
-                <th id='th5' class='asc' type='number' onclick='sort(this)'>指数 roe</th>
-                <th id='th6' class='asc' type='number' onclick='sort(this)'>分类市值</th>
-                <th id='th7' class='asc' type='number' onclick='sort(this)'>盈亏</th>
-                <th id='th8' class='asc' type='number' onclick='sort(this)'>历史盈亏</th>
-                <th id='th9' class='asc' type='number' onclick='sort(this)'>总盈亏</th>
-                <th id='th10' class='asc' type='number' onclick='sort(this)'>持仓收益率</th>
-                <th id='th11' class='asc' type='number' onclick='sort(this)'>组合占比</th>
-                <th id='th12' class='asc' type='number' onclick='sort(this)'>组合盈亏贡献</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in category3Items %}
-            <tr align='center'>
-                <td align='center' bgcolor={{ item.color }}>{{ item.categoryName }}</td>
-                <td align='right' bgcolor={{ item.color }} style='color: {{item.indexHoldingValueColor}};'>{{ item.indexHoldingValue }}</td>
-                <td align='right' bgcolor={{ item.color }}>{{ item.indexValue }}</td>
-                <td align='right' bgcolor={{ item.color }}>{{ item.pe }}</td>
-                <td align='right' bgcolor={{ item.color }}>{{ item.pb }}</td>
-                <td align='right' bgcolor={{ item.color }}>{{ item.roe }}</td>
-                <td align='right' bgcolor={{ item.color }}>{{ item.holdMarketCap }}</td>
-                <td align='right' bgcolor={{ item.color }} style='color: {{item.holdTotalGainColor}};'>
-                    {{ item.holdTotalGain }}</td>
-                <td align='right' bgcolor={{ item.color }} style='color: {{item.holdHistoryGainColor}};'>
-                    {{ item.holdHistoryGain }}</td>
-                <td align='right' bgcolor={{ item.color }} style='color: {{item.holdEntireGainColor}};'>
-                    {{ item.holdEntireGain }}</td>
-                <td align='right' bgcolor={{ item.color }} style='color: {{item.holdTotalGainRateColor}};'>
-                    {{ item.holdTotalGainRate }}</td>
-                <td align='right' bgcolor={{ item.color }}>{{ item.portfolioPercent }}</td>
-                <td align='right' bgcolor={{ item.color }} style='color: {{item.portfolioGainContributeColor}};'>{{ item.portfolioGainContribute }}</td>
-            </tr>
-            {% endfor%}
-        </tbody>
-    </table>
-    </div>
 </body>
+
 </html>
