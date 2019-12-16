@@ -11,7 +11,7 @@
         $(function () {
             $('.gainLabel').each(function (j) {
                 var colorStr = '';
-                $('.gainLabel').eq(j).html().replace("%","") > 0 ? colorStr = '#DD2200' : colorStr = '#009933';
+                $('.gainLabel').eq(j).html().replace("%", "") > 0 ? colorStr = '#DD2200' : colorStr = '#009933';
                 $('.gainLabel').eq(j).css('color', colorStr);
             });
         })
@@ -77,6 +77,97 @@
                 }
             })
         })
+
+        // 点击筛选
+        function sort(object) {
+            var type = object.attributes['type'].nodeValue
+            console.log(type)
+            var sortFunction = object.className;
+            var index = object.id.substr(2, 2);
+            var tableNode = document.getElementById("table");
+            var trs = tableNode.rows;
+            // 取出所有的 row
+            var arr = new Array;
+            for (var x = 1; x < trs.length; x++) {
+                arr.push(trs[x]);
+            }
+            // className 做升降序标识
+            if (sortFunction == 'asc') {
+                object.className = 'desc'
+                if (type == 'number') {
+                    numAscSort(arr, index);
+                } else {
+                    strAscSort(arr, index);
+                }
+
+            } else {
+                object.className = 'asc'
+                if (type == 'number') {
+                    numDescSort(arr, index);
+                } else {
+                    strDescSort(arr, index);
+                }
+            }
+
+            for (var x = 0; x < arr.length; x++) {
+                tableNode.tBodies[0].appendChild(arr[x]);
+            }
+        }
+
+        // 升序冒泡
+        function numAscSort(arr, index) {
+            console.log('numAscSort')
+            for (var x = 0; x < arr.length; x++) {
+                for (var y = x + 1; y < arr.length; y++) {
+                    if (parseFloat(arr[x].cells[index].childNodes[0].nodeValue) >= parseFloat(arr[y].cells[index].childNodes[0].nodeValue)) {
+                        var tmp = arr[x];
+                        arr[x] = arr[y];
+                        arr[y] = tmp;
+                    }
+                }
+            }
+        }
+
+        // 升序冒泡
+        function strAscSort(arr, index) {
+            for (var x = 0; x < arr.length; x++) {
+                for (var y = x + 1; y < arr.length; y++) {
+                    if (arr[x].cells[index].childNodes[0].nodeValue.localeCompare(arr[y].cells[index].childNodes[0].nodeValue) >= 0) {
+                        var tmp = arr[x];
+                        arr[x] = arr[y];
+                        arr[y] = tmp;
+                    }
+                }
+            }
+        }
+
+        // 降序冒泡
+        function numDescSort(arr, index) {
+            console.log('numDescSort')
+            for (var x = 0; x < arr.length; x++) {
+                for (var y = x + 1; y < arr.length; y++) {
+                    if (parseFloat(arr[x].cells[index].childNodes[0].nodeValue) <= parseFloat(arr[y].cells[index].childNodes[0].nodeValue)) {
+                        var tmp = arr[x];
+                        arr[x] = arr[y];
+                        arr[y] = tmp;
+                    }
+                }
+            }
+        }
+
+        // 降序冒泡
+        function strDescSort(arr, index) {
+            console.log('strDescSort')
+            for (var x = 0; x < arr.length; x++) {
+                for (var y = x + 1; y < arr.length; y++) {
+                    if (arr[x].cells[index].childNodes[0].nodeValue.localeCompare(arr[y].cells[index].childNodes[0].nodeValue) <= 0) {
+                        var tmp = arr[x];
+                        arr[x] = arr[y];
+                        arr[y] = tmp;
+                    }
+                }
+            }
+        }
     </script>
     <style>
         .summaryTable {
