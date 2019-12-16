@@ -67,7 +67,7 @@ class assetAllocationEstimateHtmlParser:
         return ''
 
     # 根据涨跌，返回颜色
-    def getGainColor(self,value):
+    def getGainColor(self, value):
         # http://www.yuangongju.com/color
         changeValueColor = '#DD2200'
         if value >= 0:
@@ -82,15 +82,22 @@ class assetAllocationEstimateHtmlParser:
     def generateHtmlFile(self, fundModelArray, title, path=''):
         if len(fundModelArray) == 0:
             return
+        # jinja2
+        summarys = []
+        accounts = []
+        accounts = []
+        # 统计
+        summaryNames = [u'今日收益估算', u'场内估算', u'场外估算', u'权益类涨跌', u'组合涨跌']
+        currentTotalMarketCap = 0.0             # 当前资产整体市值
+        currentTotalStockMarketCap = 0.0        # 当前股票市值
+        estimateTotalGainToday = 0.0            # 今日涨跌额估值
+        outerFundEstimateTotalGainToday = 0.0   # 今日场外涨跌额估值
+        gainByAppSource = {}                    # 分 APP 涨跌幅统计
         # 先删除旧文件
         if os.path.exists(path):
             os.remove(path)
         # 天天基金获取估算净值
         manager = fundEstimateManager()
-        # 资产配置统计数据
-        estimateTotalGainToday = 0.0            # 今日涨跌额估值
-        outerFundEstimateTotalGainToday = 0.0   # 今日场外涨跌额估值
-        gainByAppSource = {}                    # 分 APP 涨跌幅统计
         # esitmate 暂存区，如果一个代码查过了，就不要二次出现浪费时间了
         estimateCache = {}
         # 写入基金持仓数据
@@ -99,14 +106,17 @@ class assetAllocationEstimateHtmlParser:
         current = 0
         totalCount = len(fundModelArray)
         for fundModel in fundModelArray:
-            
+            currentTotalMarketCap = currentTotalMarketCap + fundModel.holdMarketCap
+            if fundModel.category1 not in [u'现金', u'冻结资金']:
+                currentTotalStockMarketCap = currentTotalStockMarketCap + fundModel.holdMarketCap
+
             # 现金，冻结资金，海外债券没什么可估值的。海外成熟市场因为是下午或晚上开盘，也没有估值的必要
             if fundModel.category1 in [u'现金', u'冻结资金', u'海外成熟'] or fundModel.category2 == u'海外债券':
                 current = current + 1
                 print('\rHtml estimate 进度：{0:.2f}% {1} / {2}'.format(
                     float(current)/totalCount * 100, current, totalCount), end='', flush=True)
                 continue
-            
+
             if fundModel.fundCode in estimateCache.keys():
                 estimateValues = estimateCache[fundModel.fundCode]
             else:
@@ -117,20 +127,22 @@ class assetAllocationEstimateHtmlParser:
             current = current + 1
             print('\rHtml estimate 进度：{0:.2f}% {1} / {2}'.format(
                 float(current)/totalCount * 100, current, totalCount), end='', flush=True)
-            
+
             if estimateValues:
                 fundModel.estimateNetValue = estimateValues[2]
                 fundModel.estimateRate = estimateValues[3]
                 fundModel.estimateTime = estimateValues[4]
             else:
                 print('{0}估值请求失败'.format(fund.fundCode))
-            
+
             dict = fundModel.__dict__
             # 颜色
             color = self.getFundColorByAppSourceName(fundModel.appSource)
             # 格式化
-            fundModel.currentNetValue = round(float(fundModel.currentNetValue), 4)
-            fundModel.estimateNetValue = round(float(fundModel.estimateNetValue), 4)
+            fundModel.currentNetValue = round(
+                float(fundModel.currentNetValue), 4)
+            fundModel.estimateNetValue = round(
+                float(fundModel.estimateNetValue), 4)
             fundModel.estimateRate = round(float(fundModel.estimateRate), 4)
             dict['color'] = color
             # 红涨绿跌
@@ -162,7 +174,8 @@ class assetAllocationEstimateHtmlParser:
             dict['currentNetValue'] = '{:.4f}'.format(dict['currentNetValue'])
             dict['estimateNetValue'] = '{:.4f}'.format(
                 dict['estimateNetValue'])
-            dict['estimateRate'] = '{:.2f}%'.format(fundModel.estimateRate * 100)
+            dict['estimateRate'] = '{:.2f}%'.format(
+                fundModel.estimateRate * 100)
             dict['changeValue'] = '{:.2f}'.format(dict['changeValue'])
             data.append(dict)
         # 将估值数据写入缓存，30 分钟之内都有效
@@ -173,20 +186,22 @@ class assetAllocationEstimateHtmlParser:
         env = Environment(loader=FileSystemLoader(
             os.path.join(self.pm.parentDir, u'template')))
         template = env.get_template(u'实时估值template.html')
+
+        # 生成 summary
+        summaryValues = [round(estimateTotalGainToday, 2), round(estimateTotalGainToday - outerFundEstimateTotalGainToday, 2), round(outerFundEstimateTotalGainToday, 2),
+                         u'{0}%'.format(round(estimateTotalGainToday/currentTotalStockMarketCap * 100, 2)), u'{0}%'.format(round(estimateTotalGainToday/currentTotalMarketCap * 100, 2))]
+        for i in range(len(summaryNames)):
+            summarys.append(
+                {'title': summaryNames[i], 'value': summaryValues[i]})
+        # 生成 account
+        titles = list(gainByAppSource.keys())
+        values = list(gainByAppSource.values())
+        for i in range(len(titles)):
+            accounts.append({'title': titles[i], 'value': values[i]})
         with open(path, 'w+', encoding=u'utf-8') as fout:
             htmlCode = template.render(name=title,
-                                       innerFundEstimateTotalGainToday=self.beautify(
-                                           estimateTotalGainToday - outerFundEstimateTotalGainToday),
-                                       innerColor=self.colorConstants.getGainColor(self.beautify(
-                                           estimateTotalGainToday - outerFundEstimateTotalGainToday)),
-                                       outerFundEstimateTotalGainToday=self.beautify(
-                                           outerFundEstimateTotalGainToday),
-                                       outerColor=self.colorConstants.getGainColor(
-                                           outerFundEstimateTotalGainToday),
-                                       estimateTotalGainToday=self.beautify(
-                                           estimateTotalGainToday),
-                                       totalColor=self.colorConstants.getGainColor(
-                                           estimateTotalGainToday),
+                                       summary=summarys,
+                                       account=accounts,
                                        data=data)
             fout.write(htmlCode)
         # 打开文件
@@ -194,9 +209,11 @@ class assetAllocationEstimateHtmlParser:
             os.startfile(path)
         elif sys.platform.startswith('linux'):
             shutil.copy(path, '/var/www/html/estimate.html')
-            self.dingtalk.sendMessage(f'估值：http://112.125.25.230/estimate.html')
+            self.dingtalk.sendMessage(
+                f'估值：http://112.125.25.230/estimate.html')
             print('持仓估值：http://112.125.25.230/estimate.html')
     # 读取本地 fundModel 数据
+
     def loadFundModelArrayFromJson(self):
         # 读取文件
         fundJsonPath = os.path.join(
@@ -206,6 +223,7 @@ class assetAllocationEstimateHtmlParser:
             contentList = json.loads(
                 fundJsonFile.read(), object_hook=fundModel)
             return contentList
+
 
 if __name__ == "__main__":
     strategy = 'a'

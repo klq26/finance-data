@@ -1,169 +1,203 @@
-<meta http-equiv="Content-Type"content="text/html;charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <html align='left'>
+
 <head>
-<title>收益估算</title>
-<script type="text/javascript">
-    // 点击筛选
-    function sort(object)
-    {
-        var type = object.attributes['type'].nodeValue
-        console.log(type)
-        var sortFunction = object.className;
-        var index = object.id.substr(2,2);
-        var tableNode = document.getElementById("table");
-        var trs = tableNode.rows;
-        // 取出所有的 row
-        var arr = new Array;
-        for ( var x = 1; x < trs.length; x++)
-        {
-            arr.push(trs[x]);
-        }
-        // className 做升降序标识
-        if (sortFunction == 'asc') {
-            object.className = 'desc'
-            if (type == 'number') {
-                numAscSort(arr,index);
-            } else {
-                strAscSort(arr,index);
-            }
-            
-        } else {
-            object.className = 'asc'
-            if (type == 'number') {
-                numDescSort(arr,index);
-            } else {
-                strDescSort(arr,index);
-            }
-        }
-        
-        for ( var x = 0; x < arr.length; x++)
-        {
-            tableNode.tBodies[0].appendChild(arr[x]);
-        }
-    }
-    
-    // 升序冒泡
-    function numAscSort (arr, index)
-    {
-        console.log('numAscSort')
-        for ( var x = 0; x < arr.length; x++)
-        {
-            for ( var y = x + 1; y < arr.length; y++)
-            {
-                if (parseFloat(arr[x].cells[index].childNodes[0].nodeValue) >= parseFloat(arr[y].cells[index].childNodes[0].nodeValue))
-                {
-                    var tmp = arr[x];
-                    arr[x] = arr[y];
-                    arr[y] = tmp;
+    <title>收益估算</title>
+    <!-- jQuery -->
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+    <!-- color for summary & account -->
+    <script type="text/javascript">
+        // 给涨跌额用颜色区分开
+        $(function () {
+            $('.gainLabel').each(function (j) {
+                var colorStr = '';
+                $('.gainLabel').eq(j).html().replace("%","") > 0 ? colorStr = '#DD2200' : colorStr = '#009933';
+                $('.gainLabel').eq(j).css('color', colorStr);
+            });
+        })
+        // 给账户增加底色
+        $(function () {
+            $('.account').each(function (j) {
+                // 且慢补充 150 份 | 且慢 S 定投 | 股票账户 | 螺丝钉定投 | 天天基金 | 支付宝 | 父稳稳的幸福 | 母天天基金 | 母螺丝钉 | 父螺丝钉 |
+                var qieman = new Array("且慢补充 150 份", "且慢 S 定投", "父稳稳的幸福")
+                var huatai = new Array("股票账户")
+                var danjuan = new Array("螺丝钉定投", "母螺丝钉", "父螺丝钉")
+                var tiantian = new Array("天天基金", "母天天基金")
+                var zhifubao = new Array("支付宝")
+                // 判断 title
+                var title = $('.accountTitleLabel').eq(j).html();
+                var colorStr = '';
+                console.log($('.accountTitleLabel').parent("account").text());
+                // 且慢 APP
+                for (var i = 0; i < qieman.length; i++) {
+                    if (qieman[i].indexOf(title) > -1) {
+                        colorStr = '#6EB5FF';
+                        console.log(title + "  命中且慢");
+                        $('.accountTitleLabel').parent().eq(j).css('background-color', colorStr);
+                        return;
+                    }
                 }
-            }
-        }
-    }
-    
-    // 升序冒泡
-    function strAscSort (arr, index)
-    {
-        for ( var x = 0; x < arr.length; x++)
-        {
-            for ( var y = x + 1; y < arr.length; y++)
-            {
-                if (arr[x].cells[index].childNodes[0].nodeValue.localeCompare(arr[y].cells[index].childNodes[0].nodeValue) >= 0)
-                {
-                    var tmp = arr[x];
-                    arr[x] = arr[y];
-                    arr[y] = tmp;
+                // 蛋卷 APP
+                for (var i = 0; i < danjuan.length; i++) {
+                    if (danjuan[i].indexOf(title) > -1) {
+                        colorStr = '#F0DC5A';
+                        console.log(title + "  命中蛋卷");
+                        $('.accountTitleLabel').parent().eq(j).css('background-color', colorStr);
+                        return;
+                    }
                 }
-            }
-        }
-    }
-    
-    // 降序冒泡
-    function numDescSort (arr, index)
-    {
-        console.log('numDescSort')
-        for ( var x = 0; x < arr.length; x++)
-        {
-            for ( var y = x + 1; y < arr.length; y++)
-            {
-                if (parseFloat(arr[x].cells[index].childNodes[0].nodeValue) <= parseFloat(arr[y].cells[index].childNodes[0].nodeValue))
-                {
-                    var tmp = arr[x];
-                    arr[x] = arr[y];
-                    arr[y] = tmp;
+                // 天天基金 APP
+                for (var i = 0; i < tiantian.length; i++) {
+                    if (tiantian[i].indexOf(title) > -1) {
+                        colorStr = '#FF8361';
+                        console.log(title + "  命中天天基金");
+                        $('.accountTitleLabel').parent().eq(j).css('background-color', colorStr);
+                        return;
+                    }
                 }
-            }
-        }
-    }
-    
-    // 降序冒泡
-    function strDescSort (arr, index)
-    {
-        console.log('strDescSort')
-        for ( var x = 0; x < arr.length; x++)
-        {
-            for ( var y = x + 1; y < arr.length; y++)
-            {
-                if (arr[x].cells[index].childNodes[0].nodeValue.localeCompare(arr[y].cells[index].childNodes[0].nodeValue) <= 0)
-                {
-                    var tmp = arr[x];
-                    arr[x] = arr[y];
-                    arr[y] = tmp;
+
+                // 支付宝 APP
+                for (var i = 0; i < zhifubao.length; i++) {
+                    if (zhifubao[i].indexOf(title) > -1) {
+                        colorStr = '#DBB6AC';
+                        console.log(title + "  命中支付宝");
+                        $('.accountTitleLabel').parent().eq(j).css('background-color', colorStr);
+                        return;
+                    }
                 }
-            }
+
+                // 华泰证券
+                for (var i = 0; i < huatai.length; i++) {
+                    if (huatai[i].indexOf(title) > -1) {
+                        colorStr = '#FF7C9E';
+                        console.log(title + "  命中华泰证券");
+                        $('.accountTitleLabel').parent().eq(j).css('background-color', colorStr);
+                        return;
+                    }
+                }
+            })
+        })
+    </script>
+    <style>
+        .summaryTable {
+            border-color: aqua;
+            background-color: #fdfdfd;
+            margin-bottom: 5px;
+            margin-top: 5px;
         }
-    }
-</script>
+
+        .summary {
+            display: inline-block;
+            max-width: max-content;
+            margin: 1px;
+            background-color: #50C2F9;
+        }
+
+        .summaryTitleLabel {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .accountTable {
+            border-color: aqua;
+            background-color: #fdfdfd;
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+
+        .account {
+            display: inline-block;
+            max-width: max-content;
+            margin: 1px;
+            background-color: #fdfdfd;
+        }
+
+        .accountTitleLabel {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .gainLabel {
+            padding-left: 5px;
+            padding-right: 5px;
+            height: 5px;
+            text-align: right;
+        }
+    </style>
 </head>
 <h1>{{ name }}</h1>
-    <body>
-    <h2>整体情况</h2> 
-    <p><b>场内盈亏 : <font color={{ innerColor }}>{{innerFundEstimateTotalGainToday}}</font></b>&nbsp;&nbsp;<b>场外盈亏 : <font color={{ outerColor }}>{{outerFundEstimateTotalGainToday}}</font></b>&nbsp;&nbsp;<b>整体盈亏 : <font color={{ totalColor }}>{{estimateTotalGainToday}}</font></b></p>
-    <table id='table' border="1" cellspacing='0' cellpadding='4' align='left'>
-    <tr align='center'>
-        <th id='th0' class='asc' type='string' onclick='sort(this)' align='center'>基金名称</th>
-        <th id='th1' class='asc' type='number' onclick='sort(this)' align='center'>基金代码</th>
-        <th id='th2' class='asc' type='number' onclick='sort(this)' align='center'>持仓成本</th>
-        <th id='th3' class='asc' type='number' onclick='sort(this)' align='center'>持仓份额</th>
-        <th id='th4' class='asc' type='number' onclick='sort(this)' align='center'>持仓市值</th>
-        <th id='th5' class='asc' type='number' onclick='sort(this)' align='center'>累计收益</th>
-        <!-- 接口查询 -->
-        <th id='th6' class='asc' type='number' onclick='sort(this)' align='center'>当前净值</th>
-        <th id='th7' class='asc' type='number' onclick='sort(this)' align='center'>净值日期</th>
-        <th id='th8' class='asc' type='number' onclick='sort(this)' align='center'>估算净值</th>
-        <th id='th9' class='asc' type='number' onclick='sort(this)' align='center'>估算时间</th>
-        <th id='th10' class='asc' type='number' onclick='sort(this)' align='center'>估算涨跌幅</th>
-        <th id='th11' class='asc' type='number' onclick='sort(this)' align='center'>估算日收益</th>
-        <!-- 接口查询 结束 -->
-        <th id='th12' class='asc' type='string' onclick='sort(this)' align='center'>一级分类</th>
-        <th id='th13' class='asc' type='string' onclick='sort(this)' align='center'>二级分类</th>
-        <th id='th14' class='asc' type='string' onclick='sort(this)' align='center'>三级分类</th>
-        <th id='th15' class='asc' type='number' onclick='sort(this)' align='center'>分类 ID</th>
-        <th id='th16' class='asc' type='string' onclick='sort(this)' align='center'>来源</th>
-    </tr>
- 
-    {% for item in data %}
-    <tr align='center'>
-        <td bgcolor={{ item.color }}>{{ item.fundName }}</td>
-        <td bgcolor={{ item.color }}>{{ item.fundCode }}</td>
-        <td align='right' bgcolor={{ item.color }}>{{ item.holdNetValue }}</td>
-        <td align='right' bgcolor={{ item.color }}>{{ item.holdShareCount }}</td>
-        <td align='right' bgcolor={{ item.color }}>{{ item.holdMarketCap }}</td>
-        <td align='right' bgcolor={{ item.color }} style='color: {{item.holdingGainColor}};'>{{ item.holdTotalGain }}</td>
 
-        <td align='right' bgcolor={{ item.color }}>{{ item.currentNetValue }}</td>
-        <td bgcolor={{ item.color }}>{{ item.currentNetValueDate }}</td>
-        <td align='right' bgcolor={{ item.color }}>{{ item.estimateNetValue }}</td>
-        <td bgcolor={{ item.color }}>{{ item.estimateTime }}</td>
-        <td align='right' bgcolor={{ item.color }} style='color: {{item.gainRateColor}};'>{{ item.estimateRate }}</td>
-        <td align='right' bgcolor={{ item.color }} style='color: {{item.gainRateColor}};'>{{ item.changeValue }}</td>
-        
-        <td bgcolor={{ item.color }}>{{ item.category1 }}</td>
-        <td bgcolor={{ item.color }}>{{ item.category2 }}</td>
-        <td bgcolor={{ item.color }}>{{ item.category3 }}</td>
-        <td bgcolor={{ item.color }}>{{ item.category4 }}</td>
-        <td bgcolor={{ item.color }}>{{ item.appSource }}</td>
-    </tr>
-    {% endfor%}
+<body>
+    <h2>整体情况</h2>
+    <!-- 整体情况 -->
+    <div class="summaryTable">
+        {% for item in summary %}
+        <div class="summary">
+            <span class="summaryTitleLabel">{{ item.title }}</span>
+            <p class="gainLabel">{{ item.value }}</p>
+        </div>
+        {% endfor%}
+    </div>
+    <!-- 账户情况 -->
+    <div class="accountTable">
+        {% for item in account %}
+        <div class="account">
+            <span class="accountTitleLabel">{{ item.title }}</span>
+            <p class="gainLabel">{{ item.value }}</p>
+        </div>
+        {% endfor%}
+    </div>
+    <!-- 基金估值 -->
+    <table id='table' border="1" cellspacing='0' cellpadding='4' align='left'>
+        <tr align='center'>
+            <th id='th0' class='asc' type='string' onclick='sort(this)' align='center'>基金名称</th>
+            <th id='th1' class='asc' type='number' onclick='sort(this)' align='center'>基金代码</th>
+            <th id='th2' class='asc' type='number' onclick='sort(this)' align='center'>持仓成本</th>
+            <th id='th3' class='asc' type='number' onclick='sort(this)' align='center'>持仓份额</th>
+            <th id='th4' class='asc' type='number' onclick='sort(this)' align='center'>持仓市值</th>
+            <th id='th5' class='asc' type='number' onclick='sort(this)' align='center'>累计收益</th>
+            <!-- 接口查询 -->
+            <th id='th6' class='asc' type='number' onclick='sort(this)' align='center'>当前净值</th>
+            <th id='th7' class='asc' type='number' onclick='sort(this)' align='center'>净值日期</th>
+            <th id='th8' class='asc' type='number' onclick='sort(this)' align='center'>估算净值</th>
+            <th id='th9' class='asc' type='number' onclick='sort(this)' align='center'>估算时间</th>
+            <th id='th10' class='asc' type='number' onclick='sort(this)' align='center'>估算涨跌幅</th>
+            <th id='th11' class='asc' type='number' onclick='sort(this)' align='center'>估算日收益</th>
+            <!-- 接口查询 结束 -->
+            <th id='th12' class='asc' type='string' onclick='sort(this)' align='center'>一级分类</th>
+            <th id='th13' class='asc' type='string' onclick='sort(this)' align='center'>二级分类</th>
+            <th id='th14' class='asc' type='string' onclick='sort(this)' align='center'>三级分类</th>
+            <th id='th15' class='asc' type='number' onclick='sort(this)' align='center'>分类 ID</th>
+            <th id='th16' class='asc' type='string' onclick='sort(this)' align='center'>来源</th>
+        </tr>
+
+        {% for item in data %}
+        <tr align='center'>
+            <td bgcolor={{ item.color }}>{{ item.fundName }}</td>
+            <td bgcolor={{ item.color }}>{{ item.fundCode }}</td>
+            <td align='right' bgcolor={{ item.color }}>{{ item.holdNetValue }}</td>
+            <td align='right' bgcolor={{ item.color }}>{{ item.holdShareCount }}</td>
+            <td align='right' bgcolor={{ item.color }}>{{ item.holdMarketCap }}</td>
+            <td align='right' bgcolor={{ item.color }} style='color: {{item.holdingGainColor}};'>
+                {{ item.holdTotalGain }}</td>
+
+            <td align='right' bgcolor={{ item.color }}>{{ item.currentNetValue }}</td>
+            <td bgcolor={{ item.color }}>{{ item.currentNetValueDate }}</td>
+            <td align='right' bgcolor={{ item.color }}>{{ item.estimateNetValue }}</td>
+            <td bgcolor={{ item.color }}>{{ item.estimateTime }}</td>
+            <td align='right' bgcolor={{ item.color }} style='color: {{item.gainRateColor}};'>{{ item.estimateRate }}
+            </td>
+            <td align='right' bgcolor={{ item.color }} style='color: {{item.gainRateColor}};'>{{ item.changeValue }}
+            </td>
+
+            <td bgcolor={{ item.color }}>{{ item.category1 }}</td>
+            <td bgcolor={{ item.color }}>{{ item.category2 }}</td>
+            <td bgcolor={{ item.color }}>{{ item.category3 }}</td>
+            <td bgcolor={{ item.color }}>{{ item.category4 }}</td>
+            <td bgcolor={{ item.color }}>{{ item.appSource }}</td>
+        </tr>
+        {% endfor%}
     </table>
-    </body>
+</body>
+
 </html>
