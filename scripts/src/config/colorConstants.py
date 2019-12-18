@@ -30,7 +30,7 @@ class colorConstants:
             # return '5587F0' # 绍鹏给的颜色，和绿色太撞色，看不清楚
         elif u'股票账户' in name:
             return 'FF7C9E'
-        elif u'现金账户' in name:
+        elif name in [u'现金账户',u'父母现金账户']:
             return 'FFC751'
         elif u'冻结资金' in name:
             return 'DCDCDC'

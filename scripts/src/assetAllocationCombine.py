@@ -52,7 +52,7 @@ class assetAllocationCombine:
                     if name in self.filenames:
                         self.filepaths.append(os.path.join(root,name))
         elif self.strategy == 'b':
-            self.filenames = [u'danjuan_李淑云.txt',u'danjuan_康世海.txt',u'tiantian_李淑云.txt','cash_父母.txt']
+            self.filenames = [u'danjuan_李淑云.txt',u'danjuan_康世海.txt',u'tiantian_李淑云.txt','cash_父母.txt','qieman_父稳稳的幸福.txt']
             self.excelFilePathExt = u'父母'
             self.echartsJSFilePathExt = u'父母'
             self.pm = pathManager(strategyName=u'父母')
@@ -75,7 +75,7 @@ class assetAllocationCombine:
                         self.filepaths.append(os.path.join(root,name))
         elif self.strategy == 'd':
             self.filenames = [u'danjuan_螺丝钉定投.txt',u'qieman_10万补充ETF计划.txt',u'qieman_我的S定投计划.txt', u'tiantian_康力泉.txt',u'huatai_康力泉.txt',u'guangfa_支付宝.txt',u'cash_康力泉.txt',u'freeze_康力泉.txt'\
-                ,u'danjuan_李淑云.txt',u'danjuan_康世海.txt',u'tiantian_李淑云.txt','cash_父母.txt']
+                ,u'danjuan_李淑云.txt',u'danjuan_康世海.txt',u'tiantian_李淑云.txt','cash_父母.txt','qieman_父稳稳的幸福.txt']
             self.excelFilePathExt = u'全家整体'
             self.echartsJSFilePathExt = u'全家'
             self.pm = pathManager(strategyName=u'全家')
@@ -205,6 +205,8 @@ class assetAllocationCombine:
         elif u'cash_康力泉' in filepath:
             return u'现金账户'
         elif u'cash_父母' in filepath:
+            return u'父母现金账户'
+        elif u'qieman_父稳稳的幸福' in filepath:
             return u'父稳稳的幸福'
         elif u'freeze_康力泉' in filepath:
             return u'冻结资金'

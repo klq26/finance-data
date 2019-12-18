@@ -1,12 +1,12 @@
-	GET /pmdj/v2/asset/summary HTTP/1.1
-accept	application/json
-Accept-Encoding	gzip, deflate, br
-Accept-Language	zh-Hans-CN, zh-Hans; q=0.7, ja; q=0.3
-authorization	Bearer eyJ2ZXIiOiJ2MSIsImFsZyI6IkhTNTEyIn0.eyJzdWIiOiIxMzExMjIzIiwiaXNzIjoic3NvLnFpZW1hbi5jb20iLCJpc0FkbWluIjpmYWxzZSwiZXhwIjoxNTc2NzEzNDg4LCJpYXQiOjE1NzU0MTc0ODgsImp0aSI6ImU3MmEzZDBmLTAwNDgtNDdkOC05OWIwLTI2YmEwZDlhNDhiZCJ9.TDn0LuYAXy9bdOu9NWR03EDM03I997kvevepyVFxID4f6-YGb2R21Dn61La1lCmSV7gS4U-WRCxBXoSWwq-pYw
-Connection	Keep-Alive
-Host	qieman.com
+	GET /pmdj/v2/asset/ca/detail?capitalAccountId=CA942R8128PFE7 HTTP/1.1
 Referer	https://qieman.com/assets/CA942R8128PFE7
 User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.18363
+accept	application/json
+Accept-Language	zh-Hans-CN,zh-Hans;q=0.7,ja;q=0.3
+authorization	Bearer eyJ2ZXIiOiJ2MSIsImFsZyI6IkhTNTEyIn0.eyJzdWIiOiIxMzExMjIzIiwiaXNzIjoic3NvLnFpZW1hbi5jb20iLCJpc0FkbWluIjpmYWxzZSwiZXhwIjoxNTc2NzEzNDg4LCJpYXQiOjE1NzU0MTc0ODgsImp0aSI6ImU3MmEzZDBmLTAwNDgtNDdkOC05OWIwLTI2YmEwZDlhNDhiZCJ9.TDn0LuYAXy9bdOu9NWR03EDM03I997kvevepyVFxID4f6-YGb2R21Dn61La1lCmSV7gS4U-WRCxBXoSWwq-pYw
 x-aid	A.FEDC5A401DV734SSYCKX8FE49E5CTTTP5
-x-request-id	albus.C9B3D427AA85AB147ED5
-x-sign	1575417801349B602F70EA997D33FA091961676EBDDF7
+x-request-id	albus.47D3506DCF299476D863
+x-sign	15766256210143E7CE631E3B9B2512B23B45417841151
+Accept-Encoding	gzip, deflate, br
+Host	qieman.com
+Connection	Keep-Alive

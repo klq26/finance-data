@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 # 把父路径加入到 sys.path 供 import 搜索
 currentDir = os.path.abspath(os.path.dirname(__file__))
 srcDir = os.path.dirname(currentDir)
-print(scrDir)
+print(srcDir)
 sys.path.append(srcDir)
 from config.requestHeaderManager import requestHeaderManager
 from config.pathManager import pathManager
@@ -72,10 +72,10 @@ class cashSpider:
         return (round(totalCash,2),round(totalGain,2))
 
     # 获取蛋卷钉钉宝短期债券
-    def getDanjuanDingDingBao(self):
+    def getDanjuanDingDingBao(self, headers):
         # 请求
         url = u'https://danjuanapp.com/djapi/holding/plan/CSI1021'
-        headers = requestHeaderManager().getDanjuanKLQ()
+        headers = headers
         ssl._create_default_https_context = ssl._create_unverified_context
         requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
         response = requests.get(url,headers = headers, verify=False)
@@ -124,38 +124,7 @@ class cashSpider:
 
         # 获取且慢盈米宝
     
-    # 获取父母稳稳的幸福组合
-    def getQieManWenWenDeXingFu(self,headers):
-        # 请求
-        
-        url = u'https://qieman.com/pmdj/v2/asset/ca/detail?capitalAccountId=CA942R8128PFE7'
-        headers = headers
-        ssl._create_default_https_context = ssl._create_unverified_context
-        requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
-        response = requests.get(url,headers = headers, verify=False)
-        # 解析
-        data = json.loads(response.text)
-        totalAsset = data['totalAsset']
-        totalGain = data['accumulatedProfit']
-
-        cashPath = os.path.join(self.pm.inputPath, u'cash_{0}.txt'.format(self.strategyName))
-
-        with open(cashPath,u'w+',encoding='utf-8') as f:
-            titleLine = u'{0}\t总市值\t{1}\t累计收益\t{2}'.format('父母',round(totalAsset,2),round(totalGain,2))
-            print(titleLine)
-            f.write(titleLine + '\n')
-            headerLine = u'基金名称\t基金代码\t持仓成本\t持仓份额\t持仓市值\t累计收益'
-            print(headerLine)
-            f.write(headerLine + '\n')
-            for item in data['compositionShares']:
-                # 名称，代码，持仓成本，持仓份额，持仓市值，累计收益
-                seq = (item['fundName'],item['fundCode'],str(round(item['custUnitValue'],4)),\
-                str(round(item['totalShare'],2)),str(round(item['totalShareAsset'],2)),str(round(item['accumulatedProfit'],2)))
-                print(u'\t'.join(seq))
-                f.write(u'\t'.join(seq) + '\n')
-            print('\n')
-
-        print(u'且慢稳稳的幸福：{0} 元，累计收益：{1} 元'.format(round(totalAsset,2),round(totalGain,2)))
+    
 
     def getKLQ(self):
         totalCash = 0
@@ -167,7 +136,7 @@ class cashSpider:
         result = self.getQieManYingMiBao(headers=requestHeaderManager().getQiemanKLQ())
         totalCash = totalCash + result[0]
         totalGain = totalGain + result[1]
-        result = self.getDanjuanDingDingBao()
+        result = self.getDanjuanDingDingBao(headers=requestHeaderManager().getDanjuanKLQ())
         totalCash = totalCash + result[0]
         totalGain = totalGain + result[1]
         result = self.getTianTianHuoQiBao(u'https://trade.1234567.com.cn/xjb/index', self.requestHeaderManager.getTiantianKLQ())
@@ -200,7 +169,34 @@ class cashSpider:
         totalCash = 0
         totalGain = 0
         print(u'全部资金情况：')
-        result = self.getQieManWenWenDeXingFu(headers=requestHeaderManager().getQiemanKSH())
+        result = self.getDanjuanDingDingBao(headers=requestHeaderManager().getDanjuanLSY())
+        totalCash = totalCash + result[0]
+        totalGain = totalGain + result[1]
+        result = self.getDanjuanDingDingBao(headers=requestHeaderManager().getDanjuanKSH())
+        totalCash = totalCash + result[0]
+        totalGain = totalGain + result[1]
+        totalCash = round(totalCash,2)
+        totalGain = round(totalGain,2)
+        print(u'\n总现金：{0} 元，总累计收益：{1} 元'.format(totalCash,totalGain))
+        cashPath = os.path.join(self.pm.inputPath, u'cash_{0}.txt'.format(self.strategyName))
+        cash_lines = []
+        # 读入内存
+        with open(cashPath,u'r',encoding='utf-8') as f:
+            for line in f.readlines():
+                cash_lines.append(line)
+        #print(cash_lines)
+        # 写入磁盘
+        with open(cashPath,u'w',encoding='utf-8') as f:
+            for line in cash_lines:
+                if u'货币基金综合' in line:
+                    values = line.split('\t')
+                    values[3] = str(totalCash)
+                    values[4] = str(totalCash)
+                    values[5] = str(totalGain)
+                    f.write(u'\t'.join(values)+'\n')
+                else:
+                    f.write(line)
+        
 
 if __name__ == '__main__':
     strategy = 'a'
