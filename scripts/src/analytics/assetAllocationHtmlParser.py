@@ -86,7 +86,10 @@ class assetAllocationHtmlParser:
         totalGain = 0.0
         totalCashGain = 0.0
         totalStockGain = 0.0
-        data = []
+        fundData = []
+        accounts = []
+        gainByAppSource = {}
+        marketCapByAppSource = {}
         for assetModel in assetModelArray:
             if assetModel.category1 in [u'现金',u'冻结资金']:
                 totalCashGain = totalCashGain + assetModel.holdTotalGain
@@ -108,7 +111,26 @@ class assetAllocationHtmlParser:
             assetDict['holdShareCount'] = '{:.2f}'.format(assetDict['holdShareCount'])
             assetDict['holdMarketCap'] = '{:.2f}'.format(assetDict['holdMarketCap'])
             assetDict['holdTotalGain'] = '{:.2f}'.format(assetDict['holdTotalGain'])
-            data.append(assetDict)
+            # 按 APP 来源统计
+            # gain
+            if assetModel['appSource'] not in gainByAppSource.keys():
+                gainByAppSource[assetModel['appSource']] = round(float(assetModel.holdTotalGain), 2)
+            else:
+                gainOfCurrentAppSource = gainByAppSource[assetModel['appSource']]
+                gainByAppSource[assetModel['appSource']] = round(
+                    gainOfCurrentAppSource + float(assetModel.holdTotalGain), 2)
+            # market cap
+            if assetModel['appSource'] not in marketCapByAppSource.keys():
+                marketCapByAppSource[assetModel['appSource']] = round(float(assetModel.holdMarketCap), 2)
+            else:
+                holdMarketCapOfCurrentAppSource = marketCapByAppSource[assetModel['appSource']]
+                marketCapByAppSource[assetModel['appSource']] = round(
+                    holdMarketCapOfCurrentAppSource + round(float(assetModel.holdMarketCap),2), 2)
+            fundData.append(assetDict)
+        # 生产 account
+        for key in gainByAppSource.keys():
+            rate = '{0:.2f}%'.format(float(gainByAppSource[key]) / (float(marketCapByAppSource[key]) - float(gainByAppSource[key])) * 100)
+            accounts.append({'accountName' : key, 'gain' : '{0:.2f}'.format(gainByAppSource[key]), 'marketcap' : '{0:.2f}'.format(marketCapByAppSource[key]), 'gainRate': rate})
         
         # 第一行统计信息
         totalMarketCap = self.beautify(totalMarketCap)
@@ -174,7 +196,8 @@ class assetAllocationHtmlParser:
         with open(path,'w+',encoding='utf-8') as fout:
             htmlCode = template.render(name=title, \
                 summary=summary, \
-                data=data)
+                account = accounts, \
+                data=fundData)
             fout.write(htmlCode)
         # 打开文件
         if sys.platform.startswith('win'):

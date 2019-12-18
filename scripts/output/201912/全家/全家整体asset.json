@@ -72,10 +72,10 @@
         "category4":"213",
         "fundCode":"501021",
         "fundName":"华宝香港中小",
-        "holdMarketCap":3431.57,
+        "holdMarketCap":3422.53,
         "holdNetValue":1.3481,
         "holdShareCount":2260.14,
-        "holdTotalGain":384.68
+        "holdTotalGain":375.64
     },
     {
         "appSource":"螺丝钉定投",
@@ -163,10 +163,10 @@
         "category4":"146",
         "fundCode":"001594",
         "fundName":"天弘中证银行指数A",
-        "holdMarketCap":107.71,
+        "holdMarketCap":107.82,
         "holdNetValue":1.214,
         "holdShareCount":85.65,
-        "holdTotalGain":3.73
+        "holdTotalGain":3.85
     },
     {
         "appSource":"螺丝钉定投",
@@ -254,10 +254,10 @@
         "category4":"113",
         "fundCode":"510300",
         "fundName":"300ETF",
-        "holdMarketCap":36756.72,
+        "holdMarketCap":36675.73,
         "holdNetValue":3.447,
         "holdShareCount":9100.0,
-        "holdTotalGain":5389.02
+        "holdTotalGain":5308.03
     },
     {
         "appSource":"股票账户",
@@ -319,10 +319,10 @@
         "category4":"611",
         "fundCode":"518880",
         "fundName":"黄金ETF",
-        "holdMarketCap":14831.1,
+        "holdMarketCap":14854.95,
         "holdNetValue":2.856,
         "holdShareCount":4500.0,
-        "holdTotalGain":1979.1
+        "holdTotalGain":2002.95
     },
     {
         "appSource":"股票账户",
@@ -475,10 +475,10 @@
         "category4":"613",
         "fundCode":"162411",
         "fundName":"华宝标普石油指数",
-        "holdMarketCap":2088.18,
+        "holdMarketCap":2135.88,
         "holdNetValue":0.3775,
         "holdShareCount":5299.96,
-        "holdTotalGain":87.45
+        "holdTotalGain":135.15
     },
     {
         "appSource":"且慢补充 150 份",
@@ -592,10 +592,10 @@
         "category4":"611",
         "fundCode":"000216",
         "fundName":"华安黄金易ETF联接A",
-        "holdMarketCap":2238.42,
+        "holdMarketCap":2241.72,
         "holdNetValue":1.0902,
         "holdShareCount":1834.47,
-        "holdTotalGain":238.48
+        "holdTotalGain":241.78
     },
     {
         "appSource":"且慢 S 定投",
@@ -631,10 +631,10 @@
         "category4":"613",
         "fundCode":"162411",
         "fundName":"华宝标普石油指数",
-        "holdMarketCap":1874.61,
+        "holdMarketCap":1917.43,
         "holdNetValue":0.4204,
         "holdShareCount":4757.9,
-        "holdTotalGain":-125.61
+        "holdTotalGain":-82.79
     },
     {
         "appSource":"且慢 S 定投",
@@ -657,10 +657,10 @@
         "category4":"512",
         "fundCode":"110027",
         "fundName":"易方达安心债券A",
-        "holdMarketCap":1036.71,
+        "holdMarketCap":1035.52,
         "holdNetValue":1.6793,
         "holdShareCount":595.47,
-        "holdTotalGain":36.74
+        "holdTotalGain":35.55
     },
     {
         "appSource":"天天基金",
@@ -709,10 +709,10 @@
         "category4":"512",
         "fundCode":"110027",
         "fundName":"易方达安心回报债券A",
-        "holdMarketCap":34970.82,
+        "holdMarketCap":34930.65,
         "holdNetValue":1.5931,
         "holdShareCount":20086.63,
-        "holdTotalGain":2970.81
+        "holdTotalGain":2930.64
     },
     {
         "appSource":"天天基金",
@@ -800,10 +800,10 @@
         "category4":"613",
         "fundCode":"162411",
         "fundName":"华宝标普油气上游股票",
-        "holdMarketCap":14683.38,
+        "holdMarketCap":15018.78,
         "holdNetValue":0.5152,
         "holdShareCount":37267.45,
-        "holdTotalGain":-4516.81
+        "holdTotalGain":-4181.41
     },
     {
         "appSource":"天天基金",
@@ -956,10 +956,10 @@
         "category4":"213",
         "fundCode":"501021",
         "fundName":"华宝香港中小",
-        "holdMarketCap":1363.49,
+        "holdMarketCap":1359.9,
         "holdNetValue":1.3485,
         "holdShareCount":898.04,
-        "holdTotalGain":152.49
+        "holdTotalGain":148.9
     },
     {
         "appSource":"父螺丝钉",
@@ -1073,10 +1073,10 @@
         "category4":"146",
         "fundCode":"001594",
         "fundName":"天弘中证银行指数A",
-        "holdMarketCap":21.53,
+        "holdMarketCap":21.55,
         "holdNetValue":1.2144,
         "holdShareCount":17.12,
-        "holdTotalGain":0.74
+        "holdTotalGain":0.76
     },
     {
         "appSource":"父螺丝钉",
@@ -1125,10 +1125,10 @@
         "category4":"213",
         "fundCode":"501021",
         "fundName":"华宝香港中小",
-        "holdMarketCap":1390.72,
+        "holdMarketCap":1387.05,
         "holdNetValue":1.3514,
         "holdShareCount":915.97,
-        "holdTotalGain":152.88
+        "holdTotalGain":149.21
     },
     {
         "appSource":"母螺丝钉",
@@ -1229,10 +1229,10 @@
         "category4":"146",
         "fundCode":"001594",
         "fundName":"天弘中证银行指数A",
-        "holdMarketCap":43.09,
+        "holdMarketCap":43.13,
         "holdNetValue":1.2142,
         "holdShareCount":34.26,
-        "holdTotalGain":1.49
+        "holdTotalGain":1.53
     },
     {
         "appSource":"母螺丝钉",
@@ -1437,10 +1437,10 @@
         "category4":"512",
         "fundCode":"110027",
         "fundName":"易方达安心回报债券A",
-        "holdMarketCap":3450.38,
+        "holdMarketCap":3446.42,
         "holdNetValue":1.6102,
         "holdShareCount":1981.84,
-        "holdTotalGain":259.22
+        "holdTotalGain":255.26
     },
     {
         "appSource":"母天天基金",
@@ -1541,10 +1541,10 @@
         "category4":"613",
         "fundCode":"162411",
         "fundName":"华宝标普油气上游股票",
-        "holdMarketCap":1320.18,
+        "holdMarketCap":1350.33,
         "holdNetValue":0.4776,
         "holdShareCount":3350.7,
-        "holdTotalGain":-280.12
+        "holdTotalGain":-249.96
     },
     {
         "appSource":"母天天基金",
@@ -1580,10 +1580,10 @@
         "category4":"611",
         "fundCode":"000216",
         "fundName":"华安黄金易ETF联接A",
-        "holdMarketCap":895.37,
+        "holdMarketCap":896.69,
         "holdNetValue":1.0903,
         "holdShareCount":733.79,
-        "holdTotalGain":95.32
+        "holdTotalGain":96.64
     },
     {
         "appSource":"母天天基金",

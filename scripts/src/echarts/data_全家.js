@@ -50,8 +50,8 @@ function getData()
                         "itemStyle":{
                             "color":"#50C2F9"
                         },
-                        "name":"基本面120 , 0.2%",
-                        "value":0.2
+                        "name":"基本面120 , 0.19%",
+                        "value":0.19
                     }
                 ],
                 "itemStyle":{
@@ -98,8 +98,8 @@ function getData()
                 "itemStyle":{
                     "color":"#50C2F9"
                 },
-                "name":"中小盘股 , 13.03%",
-                "value":13.03
+                "name":"中小盘股 , 13.02%",
+                "value":13.02
             },
             {
                 "children":[
@@ -195,8 +195,8 @@ function getData()
         "itemStyle":{
             "color":"#50C2F9"
         },
-        "name":"A 股 , 33.22%",
-        "value":33.22
+        "name":"A 股 , 33.21%",
+        "value":33.21
     },
     {
         "children":[
@@ -349,8 +349,8 @@ function getData()
         "itemStyle":{
             "color":"#FF8361"
         },
-        "name":"债券 , 29.47%",
-        "value":29.47
+        "name":"债券 , 29.46%",
+        "value":29.46
     },
     {
         "children":[
@@ -369,22 +369,22 @@ function getData()
                         "itemStyle":{
                             "color":"#DBB6AC"
                         },
-                        "name":"原油 , 0.83%",
-                        "value":0.83
+                        "name":"原油 , 0.85%",
+                        "value":0.85
                     }
                 ],
                 "itemStyle":{
                     "color":"#DBB6AC"
                 },
-                "name":"商品 , 1.58%",
-                "value":1.58
+                "name":"商品 , 1.6%",
+                "value":1.6
             }
         ],
         "itemStyle":{
             "color":"#DBB6AC"
         },
-        "name":"商品 , 1.58%",
-        "value":1.58
+        "name":"商品 , 1.6%",
+        "value":1.6
     },
     {
         "children":[
