@@ -185,19 +185,19 @@ class assetAllocationCombine:
     # 根据基金文件，获取 APP 持仓来源
     def getFundAppSourceByFilePath(self,filepath):
         if u'螺丝钉定投' in filepath:
-            return u'螺丝钉定投'
+            return u'螺丝钉'
         elif u'danjuan_李淑云' in filepath:
-            return u'母螺丝钉'
+            return u'螺丝钉母'
         elif u'danjuan_康世海' in filepath:
-            return u'父螺丝钉'
+            return u'螺丝钉父'
         elif u'10万补充ETF计划' in filepath:
-            return u'且慢补充 150 份'
+            return u'且慢 150 份'
         elif u'我的S定投计划' in filepath:
             return u'且慢 S 定投'       
         elif u'tiantian_康力泉' in filepath:
             return u'天天基金'
         elif u'tiantian_李淑云' in filepath:
-            return u'母天天基金'
+            return u'天天基金母'
         elif u'guangfa' in filepath:
             return u'支付宝'
         elif u'huatai_康力泉' in filepath:
@@ -205,9 +205,9 @@ class assetAllocationCombine:
         elif u'cash_康力泉' in filepath:
             return u'现金账户'
         elif u'cash_父母' in filepath:
-            return u'父母现金账户'
+            return u'现金账户父母'
         elif u'qieman_父稳稳的幸福' in filepath:
-            return u'父稳稳的幸福'
+            return u'稳稳的幸福父'
         elif u'freeze_康力泉' in filepath:
             return u'冻结资金'
         return '未知'

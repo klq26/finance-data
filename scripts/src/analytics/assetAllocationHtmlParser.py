@@ -131,7 +131,27 @@ class assetAllocationHtmlParser:
         for key in gainByAppSource.keys():
             rate = '{0:.2f}%'.format(float(gainByAppSource[key]) / (float(marketCapByAppSource[key]) - float(gainByAppSource[key])) * 100)
             accounts.append({'accountName' : key, 'gain' : '{0:.2f}'.format(gainByAppSource[key]), 'marketcap' : '{0:.2f}'.format(marketCapByAppSource[key]), 'gainRate': rate})
-        
+        # 角色 account
+        klqAccount = {'accountName' : '康力泉整体','gain' : 0, 'gainRate' : 0, 'marketcap' : 0}
+        parentAccount = {'accountName' : '父母整体','gain' : 0, 'gainRate' : 0, 'marketcap' : 0}
+        for account in accounts:
+            if u'父' in account['accountName'] or u'母' in account['accountName']:
+                parentAccount['gain'] = float(parentAccount['gain']) + float(account['gain'])
+                parentAccount['marketcap'] = float(parentAccount['marketcap']) + float(account['marketcap'])
+            else:
+                klqAccount['gain'] = float(klqAccount['gain']) + float(account['gain'])
+                klqAccount['marketcap'] = float(klqAccount['marketcap']) + float(account['marketcap'])
+        klqAccount['gain'] = round(float(klqAccount['gain']),2)
+        parentAccount['gain'] = round(float(parentAccount['gain']),2)
+        klqAccount['marketcap'] = round(float(klqAccount['marketcap']),2)
+        parentAccount['marketcap'] = round(float(parentAccount['marketcap']),2)
+        klqAccount['gainRate'] = rate = '{0:.2f}%'.format(float(klqAccount['gain']) / (float(klqAccount['marketcap']) - float(klqAccount['gain'])) * 100)
+        parentAccount['gainRate'] = rate = '{0:.2f}%'.format(float(parentAccount['gain']) / (float(parentAccount['marketcap']) - float(parentAccount['gain'])) * 100)       
+
+        accounts.sort(key=lambda k: k['accountName'])
+        accounts.append(klqAccount)
+        accounts.append(parentAccount)
+
         # 第一行统计信息
         totalMarketCap = self.beautify(totalMarketCap)
         totalCashMarketCap = self.beautify(totalCashMarketCap)

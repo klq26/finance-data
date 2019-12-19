@@ -18,12 +18,12 @@
         // 给账户增加底色
         $(function () {
             $('.account').each(function (j) {
-                // 且慢补充 150 份 | 且慢 S 定投 | 股票账户 | 螺丝钉定投 | 天天基金 | 支付宝 | 父稳稳的幸福 | 母天天基金 | 母螺丝钉 | 父螺丝钉 |
-                var qieman = new Array("且慢补充 150 份", "且慢 S 定投", "父稳稳的幸福")
+                var qieman = new Array("且慢 150 份", "且慢 S 定投", "稳稳的幸福父")
                 var huatai = new Array("股票账户")
-                var danjuan = new Array("螺丝钉定投", "母螺丝钉", "父螺丝钉")
-                var tiantian = new Array("天天基金", "母天天基金")
+                var danjuan = new Array("螺丝钉", "螺丝钉母", "螺丝钉父")
+                var tiantian = new Array("天天基金", "天天基金母")
                 var zhifubao = new Array("支付宝")
+                var entire = new Array("康力泉整体","父母整体")
                 // 判断 title
                 var title = $('.accountTitleLabel').eq(j).html();
                 var colorStr = '';
@@ -32,7 +32,6 @@
                 for (var i = 0; i < qieman.length; i++) {
                     if (qieman[i].indexOf(title) > -1) {
                         colorStr = '#6EB5FF';
-                        console.log(title + "  命中且慢");
                         $('.accountTitleLabel').parent().eq(j).css('background-color', colorStr);
                         return;
                     }
@@ -41,7 +40,6 @@
                 for (var i = 0; i < danjuan.length; i++) {
                     if (danjuan[i].indexOf(title) > -1) {
                         colorStr = '#F0DC5A';
-                        console.log(title + "  命中蛋卷");
                         $('.accountTitleLabel').parent().eq(j).css('background-color', colorStr);
                         return;
                     }
@@ -50,7 +48,6 @@
                 for (var i = 0; i < tiantian.length; i++) {
                     if (tiantian[i].indexOf(title) > -1) {
                         colorStr = '#FF8361';
-                        console.log(title + "  命中天天基金");
                         $('.accountTitleLabel').parent().eq(j).css('background-color', colorStr);
                         return;
                     }
@@ -60,7 +57,6 @@
                 for (var i = 0; i < zhifubao.length; i++) {
                     if (zhifubao[i].indexOf(title) > -1) {
                         colorStr = '#DBB6AC';
-                        console.log(title + "  命中支付宝");
                         $('.accountTitleLabel').parent().eq(j).css('background-color', colorStr);
                         return;
                     }
@@ -70,7 +66,15 @@
                 for (var i = 0; i < huatai.length; i++) {
                     if (huatai[i].indexOf(title) > -1) {
                         colorStr = '#FF7C9E';
-                        console.log(title + "  命中华泰证券");
+                        $('.accountTitleLabel').parent().eq(j).css('background-color', colorStr);
+                        return;
+                    }
+                }
+
+                // 整体账户
+                for (var i = 0; i < entire.length; i++) {
+                    if (entire[i].indexOf(title) > -1) {
+                        colorStr = '#50C2F9';
                         $('.accountTitleLabel').parent().eq(j).css('background-color', colorStr);
                         return;
                     }

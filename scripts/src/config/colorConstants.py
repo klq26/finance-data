@@ -19,9 +19,9 @@ class colorConstants:
     # 不同 APP 配色
     def getFundColorByAppSourceName(self, name):
         # 色值转换 https://www.sioe.cn/yingyong/yanse-rgb-16/
-        if name in [u'螺丝钉定投', u'母螺丝钉', u'父螺丝钉']:
+        if name in [u'螺丝钉', u'螺丝钉母', u'螺丝钉父']:
             return 'F0DC5A'
-        elif name in [u'且慢补充 150 份', u'且慢 S 定投', u'父稳稳的幸福',u'稳稳的幸福']:
+        elif name in [u'且慢 150 份', u'且慢 S 定投', u'稳稳的幸福父',u'稳稳的幸福']:
             return '6EB5FF'
         elif u'天天基金' in name:
             return 'FF8361'
@@ -30,7 +30,7 @@ class colorConstants:
             # return '5587F0' # 绍鹏给的颜色，和绿色太撞色，看不清楚
         elif u'股票账户' in name:
             return 'FF7C9E'
-        elif name in [u'现金账户',u'父母现金账户']:
+        elif name in [u'现金账户',u'现金账户父母']:
             return 'FFC751'
         elif u'冻结资金' in name:
             return 'DCDCDC'

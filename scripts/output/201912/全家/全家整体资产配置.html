@@ -25,6 +25,15 @@
             });
         })
 
+        $(function () {
+            $('.account').each(function (j) {
+                var colorStr = '';
+                $('.account').eq(j).html().indexOf("整体") > -1 ? colorStr = '#50C2F9' : colorStr = '#FFC751';
+                console.log($('.account').parent().parent().eq(j).html())
+                $('.account').parent().parent().eq(j).css('background-color', colorStr);
+            });
+        })
+
         // 点击筛选
         function sort(object) {
             var type = object.attributes['type'].nodeValue
@@ -177,69 +186,14 @@
             </table>
         </li>
         <!-- account -->
-        <h2>分帐户盈亏</h2>
+        <h2>帐户盈亏</h2>
         <li style="width: 100%; margin-bottom: 10px;">
             <!-- 'accountName' 'gain' 'marketcap' -->
-            <div id="account" style="display: inline-table;">
+            <div style="display: inline-table;">
                 
                 <div style="background-color:#FFC751; max-width: max-content; float: left;">
                     <ul style="list-style: none; padding: 4px; border-style: outset;">
-                        <li style="padding: 3px; list-style-type:none; text-align: center;">现金账户</li>
-                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
-                            19718.93</listyle="padding: 3px;">
-                        <li style="padding: 3px; list-style-type:none; text-align: right;">240508.55</li>
-                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
-                            8.93%</li>
-                    </ul>
-                </div>
-                
-                <div style="background-color:#FFC751; max-width: max-content; float: left;">
-                    <ul style="list-style: none; padding: 4px; border-style: outset;">
-                        <li style="padding: 3px; list-style-type:none; text-align: center;">螺丝钉定投</li>
-                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
-                            1134.22</listyle="padding: 3px;">
-                        <li style="padding: 3px; list-style-type:none; text-align: right;">23054.68</li>
-                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
-                            5.17%</li>
-                    </ul>
-                </div>
-                
-                <div style="background-color:#FFC751; max-width: max-content; float: left;">
-                    <ul style="list-style: none; padding: 4px; border-style: outset;">
-                        <li style="padding: 3px; list-style-type:none; text-align: center;">冻结资金</li>
-                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
-                            7027.67</listyle="padding: 3px;">
-                        <li style="padding: 3px; list-style-type:none; text-align: right;">337553.75</li>
-                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
-                            2.13%</li>
-                    </ul>
-                </div>
-                
-                <div style="background-color:#FFC751; max-width: max-content; float: left;">
-                    <ul style="list-style: none; padding: 4px; border-style: outset;">
-                        <li style="padding: 3px; list-style-type:none; text-align: center;">支付宝</li>
-                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
-                            -2329.08</listyle="padding: 3px;">
-                        <li style="padding: 3px; list-style-type:none; text-align: right;">9671.03</li>
-                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
-                            -19.41%</li>
-                    </ul>
-                </div>
-                
-                <div style="background-color:#FFC751; max-width: max-content; float: left;">
-                    <ul style="list-style: none; padding: 4px; border-style: outset;">
-                        <li style="padding: 3px; list-style-type:none; text-align: center;">股票账户</li>
-                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
-                            18559.06</listyle="padding: 3px;">
-                        <li style="padding: 3px; list-style-type:none; text-align: right;">402460.26</li>
-                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
-                            4.83%</li>
-                    </ul>
-                </div>
-                
-                <div style="background-color:#FFC751; max-width: max-content; float: left;">
-                    <ul style="list-style: none; padding: 4px; border-style: outset;">
-                        <li style="padding: 3px; list-style-type:none; text-align: center;">且慢补充 150 份</li>
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">且慢 150 份</li>
                         <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
                             2495.17</listyle="padding: 3px;">
                         <li style="padding: 3px; list-style-type:none; text-align: right;">37646.16</li>
@@ -250,7 +204,7 @@
                 
                 <div style="background-color:#FFC751; max-width: max-content; float: left;">
                     <ul style="list-style: none; padding: 4px; border-style: outset;">
-                        <li style="padding: 3px; list-style-type:none; text-align: center;">且慢 S 定投</li>
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">且慢 S 定投</li>
                         <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
                             1039.66</listyle="padding: 3px;">
                         <li style="padding: 3px; list-style-type:none; text-align: right;">16039.92</li>
@@ -261,7 +215,18 @@
                 
                 <div style="background-color:#FFC751; max-width: max-content; float: left;">
                     <ul style="list-style: none; padding: 4px; border-style: outset;">
-                        <li style="padding: 3px; list-style-type:none; text-align: center;">天天基金</li>
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">冻结资金</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            7027.67</listyle="padding: 3px;">
+                        <li style="padding: 3px; list-style-type:none; text-align: right;">337553.75</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            2.13%</li>
+                    </ul>
+                </div>
+                
+                <div style="background-color:#FFC751; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">天天基金</li>
                         <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
                             47972.58</listyle="padding: 3px;">
                         <li style="padding: 3px; list-style-type:none; text-align: right;">430409.01</li>
@@ -272,7 +237,40 @@
                 
                 <div style="background-color:#FFC751; max-width: max-content; float: left;">
                     <ul style="list-style: none; padding: 4px; border-style: outset;">
-                        <li style="padding: 3px; list-style-type:none; text-align: center;">父母现金账户</li>
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">天天基金母</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            8653.69</listyle="padding: 3px;">
+                        <li style="padding: 3px; list-style-type:none; text-align: right;">68189.43</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            14.54%</li>
+                    </ul>
+                </div>
+                
+                <div style="background-color:#FFC751; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">支付宝</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            -2329.08</listyle="padding: 3px;">
+                        <li style="padding: 3px; list-style-type:none; text-align: right;">9671.03</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            -19.41%</li>
+                    </ul>
+                </div>
+                
+                <div style="background-color:#FFC751; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">现金账户</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            19718.93</listyle="padding: 3px;">
+                        <li style="padding: 3px; list-style-type:none; text-align: right;">240508.55</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            8.93%</li>
+                    </ul>
+                </div>
+                
+                <div style="background-color:#FFC751; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">现金账户父母</li>
                         <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
                             0.30</listyle="padding: 3px;">
                         <li style="padding: 3px; list-style-type:none; text-align: right;">10200.30</li>
@@ -283,29 +281,7 @@
                 
                 <div style="background-color:#FFC751; max-width: max-content; float: left;">
                     <ul style="list-style: none; padding: 4px; border-style: outset;">
-                        <li style="padding: 3px; list-style-type:none; text-align: center;">父螺丝钉</li>
-                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
-                            431.15</listyle="padding: 3px;">
-                        <li style="padding: 3px; list-style-type:none; text-align: right;">8584.74</li>
-                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
-                            5.29%</li>
-                    </ul>
-                </div>
-                
-                <div style="background-color:#FFC751; max-width: max-content; float: left;">
-                    <ul style="list-style: none; padding: 4px; border-style: outset;">
-                        <li style="padding: 3px; list-style-type:none; text-align: center;">母螺丝钉</li>
-                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
-                            443.23</listyle="padding: 3px;">
-                        <li style="padding: 3px; list-style-type:none; text-align: right;">9176.69</li>
-                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
-                            5.08%</li>
-                    </ul>
-                </div>
-                
-                <div style="background-color:#FFC751; max-width: max-content; float: left;">
-                    <ul style="list-style: none; padding: 4px; border-style: outset;">
-                        <li style="padding: 3px; list-style-type:none; text-align: center;">父稳稳的幸福</li>
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">稳稳的幸福父</li>
                         <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
                             3058.97</listyle="padding: 3px;">
                         <li style="padding: 3px; list-style-type:none; text-align: right;">803081.41</li>
@@ -316,12 +292,67 @@
                 
                 <div style="background-color:#FFC751; max-width: max-content; float: left;">
                     <ul style="list-style: none; padding: 4px; border-style: outset;">
-                        <li style="padding: 3px; list-style-type:none; text-align: center;">母天天基金</li>
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">股票账户</li>
                         <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
-                            8653.69</listyle="padding: 3px;">
-                        <li style="padding: 3px; list-style-type:none; text-align: right;">68189.43</li>
+                            18559.06</listyle="padding: 3px;">
+                        <li style="padding: 3px; list-style-type:none; text-align: right;">402460.26</li>
                         <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
-                            14.54%</li>
+                            4.83%</li>
+                    </ul>
+                </div>
+                
+                <div style="background-color:#FFC751; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">螺丝钉</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            1134.22</listyle="padding: 3px;">
+                        <li style="padding: 3px; list-style-type:none; text-align: right;">23054.68</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            5.17%</li>
+                    </ul>
+                </div>
+                
+                <div style="background-color:#FFC751; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">螺丝钉母</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            443.23</listyle="padding: 3px;">
+                        <li style="padding: 3px; list-style-type:none; text-align: right;">9176.69</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            5.08%</li>
+                    </ul>
+                </div>
+                
+                <div style="background-color:#FFC751; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">螺丝钉父</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            431.15</listyle="padding: 3px;">
+                        <li style="padding: 3px; list-style-type:none; text-align: right;">8584.74</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            5.29%</li>
+                    </ul>
+                </div>
+                
+                <div style="background-color:#FFC751; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">康力泉整体</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            95618.21</listyle="padding: 3px;">
+                        <li style="padding: 3px; list-style-type:none; text-align: right;">1497343.36</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            6.82%</li>
+                    </ul>
+                </div>
+                
+                <div style="background-color:#FFC751; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">父母整体</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            12587.34</listyle="padding: 3px;">
+                        <li style="padding: 3px; list-style-type:none; text-align: right;">899232.57</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            1.42%</li>
                     </ul>
                 </div>
                 
@@ -397,7 +428,7 @@
                         <td bgcolor=F0DC5A>红利价值</td>
                         <td bgcolor=F0DC5A>中证红利</td>
                         <td bgcolor=F0DC5A>131</td>
-                        <td bgcolor=F0DC5A>螺丝钉定投</td>
+                        <td bgcolor=F0DC5A>螺丝钉</td>
                     </tr>
                     
                     <tr align='center'>
@@ -414,7 +445,7 @@
                         <td bgcolor=F0DC5A>大盘股</td>
                         <td bgcolor=F0DC5A>300价值</td>
                         <td bgcolor=F0DC5A>114</td>
-                        <td bgcolor=F0DC5A>螺丝钉定投</td>
+                        <td bgcolor=F0DC5A>螺丝钉</td>
                     </tr>
                     
                     <tr align='center'>
@@ -431,7 +462,7 @@
                         <td bgcolor=F0DC5A>中小盘股</td>
                         <td bgcolor=F0DC5A>500低波动</td>
                         <td bgcolor=F0DC5A>122</td>
-                        <td bgcolor=F0DC5A>螺丝钉定投</td>
+                        <td bgcolor=F0DC5A>螺丝钉</td>
                     </tr>
                     
                     <tr align='center'>
@@ -448,7 +479,7 @@
                         <td bgcolor=F0DC5A>香港</td>
                         <td bgcolor=F0DC5A>香港中小</td>
                         <td bgcolor=F0DC5A>213</td>
-                        <td bgcolor=F0DC5A>螺丝钉定投</td>
+                        <td bgcolor=F0DC5A>螺丝钉</td>
                     </tr>
                     
                     <tr align='center'>
@@ -465,7 +496,7 @@
                         <td bgcolor=F0DC5A>大盘股</td>
                         <td bgcolor=F0DC5A>基本面120</td>
                         <td bgcolor=F0DC5A>116</td>
-                        <td bgcolor=F0DC5A>螺丝钉定投</td>
+                        <td bgcolor=F0DC5A>螺丝钉</td>
                     </tr>
                     
                     <tr align='center'>
@@ -482,7 +513,7 @@
                         <td bgcolor=F0DC5A>大盘股</td>
                         <td bgcolor=F0DC5A>基本面60</td>
                         <td bgcolor=F0DC5A>115</td>
-                        <td bgcolor=F0DC5A>螺丝钉定投</td>
+                        <td bgcolor=F0DC5A>螺丝钉</td>
                     </tr>
                     
                     <tr align='center'>
@@ -499,7 +530,7 @@
                         <td bgcolor=F0DC5A>行业股</td>
                         <td bgcolor=F0DC5A>养老产业</td>
                         <td bgcolor=F0DC5A>141</td>
-                        <td bgcolor=F0DC5A>螺丝钉定投</td>
+                        <td bgcolor=F0DC5A>螺丝钉</td>
                     </tr>
                     
                     <tr align='center'>
@@ -516,7 +547,7 @@
                         <td bgcolor=F0DC5A>红利价值</td>
                         <td bgcolor=F0DC5A>标普红利</td>
                         <td bgcolor=F0DC5A>132</td>
-                        <td bgcolor=F0DC5A>螺丝钉定投</td>
+                        <td bgcolor=F0DC5A>螺丝钉</td>
                     </tr>
                     
                     <tr align='center'>
@@ -533,7 +564,7 @@
                         <td bgcolor=F0DC5A>行业股</td>
                         <td bgcolor=F0DC5A>全指医药</td>
                         <td bgcolor=F0DC5A>142</td>
-                        <td bgcolor=F0DC5A>螺丝钉定投</td>
+                        <td bgcolor=F0DC5A>螺丝钉</td>
                     </tr>
                     
                     <tr align='center'>
@@ -550,7 +581,7 @@
                         <td bgcolor=F0DC5A>大盘股</td>
                         <td bgcolor=F0DC5A>50AH</td>
                         <td bgcolor=F0DC5A>112</td>
-                        <td bgcolor=F0DC5A>螺丝钉定投</td>
+                        <td bgcolor=F0DC5A>螺丝钉</td>
                     </tr>
                     
                     <tr align='center'>
@@ -567,7 +598,7 @@
                         <td bgcolor=F0DC5A>行业股</td>
                         <td bgcolor=F0DC5A>中证银行</td>
                         <td bgcolor=F0DC5A>146</td>
-                        <td bgcolor=F0DC5A>螺丝钉定投</td>
+                        <td bgcolor=F0DC5A>螺丝钉</td>
                     </tr>
                     
                     <tr align='center'>
@@ -584,7 +615,7 @@
                         <td bgcolor=F0DC5A>大盘股</td>
                         <td bgcolor=F0DC5A>300价值</td>
                         <td bgcolor=F0DC5A>114</td>
-                        <td bgcolor=F0DC5A>螺丝钉定投</td>
+                        <td bgcolor=F0DC5A>螺丝钉</td>
                     </tr>
                     
                     <tr align='center'>
@@ -601,7 +632,7 @@
                         <td bgcolor=F0DC5A>低风险理财</td>
                         <td bgcolor=F0DC5A>货币基金</td>
                         <td bgcolor=F0DC5A>999</td>
-                        <td bgcolor=F0DC5A>螺丝钉定投</td>
+                        <td bgcolor=F0DC5A>螺丝钉</td>
                     </tr>
                     
                     <tr align='center'>
@@ -822,7 +853,7 @@
                         <td bgcolor=6EB5FF>中小盘股</td>
                         <td bgcolor=6EB5FF>中证500</td>
                         <td bgcolor=6EB5FF>121</td>
-                        <td bgcolor=6EB5FF>且慢补充 150 份</td>
+                        <td bgcolor=6EB5FF>且慢 150 份</td>
                     </tr>
                     
                     <tr align='center'>
@@ -839,7 +870,7 @@
                         <td bgcolor=6EB5FF>行业股</td>
                         <td bgcolor=6EB5FF>中证环保</td>
                         <td bgcolor=6EB5FF>143</td>
-                        <td bgcolor=6EB5FF>且慢补充 150 份</td>
+                        <td bgcolor=6EB5FF>且慢 150 份</td>
                     </tr>
                     
                     <tr align='center'>
@@ -856,7 +887,7 @@
                         <td bgcolor=6EB5FF>行业股</td>
                         <td bgcolor=6EB5FF>养老产业</td>
                         <td bgcolor=6EB5FF>141</td>
-                        <td bgcolor=6EB5FF>且慢补充 150 份</td>
+                        <td bgcolor=6EB5FF>且慢 150 份</td>
                     </tr>
                     
                     <tr align='center'>
@@ -873,7 +904,7 @@
                         <td bgcolor=6EB5FF>中小盘股</td>
                         <td bgcolor=6EB5FF>中证500</td>
                         <td bgcolor=6EB5FF>121</td>
-                        <td bgcolor=6EB5FF>且慢补充 150 份</td>
+                        <td bgcolor=6EB5FF>且慢 150 份</td>
                     </tr>
                     
                     <tr align='center'>
@@ -890,7 +921,7 @@
                         <td bgcolor=6EB5FF>红利价值</td>
                         <td bgcolor=6EB5FF>中证红利</td>
                         <td bgcolor=6EB5FF>131</td>
-                        <td bgcolor=6EB5FF>且慢补充 150 份</td>
+                        <td bgcolor=6EB5FF>且慢 150 份</td>
                     </tr>
                     
                     <tr align='center'>
@@ -907,7 +938,7 @@
                         <td bgcolor=6EB5FF>行业股</td>
                         <td bgcolor=6EB5FF>中证传媒</td>
                         <td bgcolor=6EB5FF>144</td>
-                        <td bgcolor=6EB5FF>且慢补充 150 份</td>
+                        <td bgcolor=6EB5FF>且慢 150 份</td>
                     </tr>
                     
                     <tr align='center'>
@@ -924,7 +955,7 @@
                         <td bgcolor=6EB5FF>中小盘股</td>
                         <td bgcolor=6EB5FF>创业板</td>
                         <td bgcolor=6EB5FF>124</td>
-                        <td bgcolor=6EB5FF>且慢补充 150 份</td>
+                        <td bgcolor=6EB5FF>且慢 150 份</td>
                     </tr>
                     
                     <tr align='center'>
@@ -941,7 +972,7 @@
                         <td bgcolor=6EB5FF>中小盘股</td>
                         <td bgcolor=6EB5FF>创业板</td>
                         <td bgcolor=6EB5FF>124</td>
-                        <td bgcolor=6EB5FF>且慢补充 150 份</td>
+                        <td bgcolor=6EB5FF>且慢 150 份</td>
                     </tr>
                     
                     <tr align='center'>
@@ -958,7 +989,7 @@
                         <td bgcolor=6EB5FF>行业股</td>
                         <td bgcolor=6EB5FF>证券公司</td>
                         <td bgcolor=6EB5FF>145</td>
-                        <td bgcolor=6EB5FF>且慢补充 150 份</td>
+                        <td bgcolor=6EB5FF>且慢 150 份</td>
                     </tr>
                     
                     <tr align='center'>
@@ -975,7 +1006,7 @@
                         <td bgcolor=6EB5FF>商品</td>
                         <td bgcolor=6EB5FF>原油</td>
                         <td bgcolor=6EB5FF>613</td>
-                        <td bgcolor=6EB5FF>且慢补充 150 份</td>
+                        <td bgcolor=6EB5FF>且慢 150 份</td>
                     </tr>
                     
                     <tr align='center'>
@@ -992,7 +1023,7 @@
                         <td bgcolor=6EB5FF>海外互联</td>
                         <td bgcolor=6EB5FF>海外互联网</td>
                         <td bgcolor=6EB5FF>221</td>
-                        <td bgcolor=6EB5FF>且慢补充 150 份</td>
+                        <td bgcolor=6EB5FF>且慢 150 份</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1009,7 +1040,7 @@
                         <td bgcolor=6EB5FF>香港</td>
                         <td bgcolor=6EB5FF>恒生</td>
                         <td bgcolor=6EB5FF>211</td>
-                        <td bgcolor=6EB5FF>且慢补充 150 份</td>
+                        <td bgcolor=6EB5FF>且慢 150 份</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1026,7 +1057,7 @@
                         <td bgcolor=6EB5FF>德国</td>
                         <td bgcolor=6EB5FF>德国30</td>
                         <td bgcolor=6EB5FF>321</td>
-                        <td bgcolor=6EB5FF>且慢补充 150 份</td>
+                        <td bgcolor=6EB5FF>且慢 150 份</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1553,7 +1584,7 @@
                         <td bgcolor=FFC751>低风险理财</td>
                         <td bgcolor=FFC751>货币基金</td>
                         <td bgcolor=FFC751>999</td>
-                        <td bgcolor=FFC751>父母现金账户</td>
+                        <td bgcolor=FFC751>现金账户父母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1570,7 +1601,7 @@
                         <td bgcolor=F0DC5A>大盘股</td>
                         <td bgcolor=F0DC5A>300价值</td>
                         <td bgcolor=F0DC5A>114</td>
-                        <td bgcolor=F0DC5A>父螺丝钉</td>
+                        <td bgcolor=F0DC5A>螺丝钉父</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1587,7 +1618,7 @@
                         <td bgcolor=F0DC5A>红利价值</td>
                         <td bgcolor=F0DC5A>中证红利</td>
                         <td bgcolor=F0DC5A>131</td>
-                        <td bgcolor=F0DC5A>父螺丝钉</td>
+                        <td bgcolor=F0DC5A>螺丝钉父</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1604,7 +1635,7 @@
                         <td bgcolor=F0DC5A>香港</td>
                         <td bgcolor=F0DC5A>香港中小</td>
                         <td bgcolor=F0DC5A>213</td>
-                        <td bgcolor=F0DC5A>父螺丝钉</td>
+                        <td bgcolor=F0DC5A>螺丝钉父</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1621,7 +1652,7 @@
                         <td bgcolor=F0DC5A>中小盘股</td>
                         <td bgcolor=F0DC5A>500低波动</td>
                         <td bgcolor=F0DC5A>122</td>
-                        <td bgcolor=F0DC5A>父螺丝钉</td>
+                        <td bgcolor=F0DC5A>螺丝钉父</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1638,7 +1669,7 @@
                         <td bgcolor=F0DC5A>大盘股</td>
                         <td bgcolor=F0DC5A>基本面120</td>
                         <td bgcolor=F0DC5A>116</td>
-                        <td bgcolor=F0DC5A>父螺丝钉</td>
+                        <td bgcolor=F0DC5A>螺丝钉父</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1655,7 +1686,7 @@
                         <td bgcolor=F0DC5A>大盘股</td>
                         <td bgcolor=F0DC5A>基本面60</td>
                         <td bgcolor=F0DC5A>115</td>
-                        <td bgcolor=F0DC5A>父螺丝钉</td>
+                        <td bgcolor=F0DC5A>螺丝钉父</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1672,7 +1703,7 @@
                         <td bgcolor=F0DC5A>行业股</td>
                         <td bgcolor=F0DC5A>养老产业</td>
                         <td bgcolor=F0DC5A>141</td>
-                        <td bgcolor=F0DC5A>父螺丝钉</td>
+                        <td bgcolor=F0DC5A>螺丝钉父</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1689,7 +1720,7 @@
                         <td bgcolor=F0DC5A>红利价值</td>
                         <td bgcolor=F0DC5A>标普红利</td>
                         <td bgcolor=F0DC5A>132</td>
-                        <td bgcolor=F0DC5A>父螺丝钉</td>
+                        <td bgcolor=F0DC5A>螺丝钉父</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1706,7 +1737,7 @@
                         <td bgcolor=F0DC5A>行业股</td>
                         <td bgcolor=F0DC5A>全指医药</td>
                         <td bgcolor=F0DC5A>142</td>
-                        <td bgcolor=F0DC5A>父螺丝钉</td>
+                        <td bgcolor=F0DC5A>螺丝钉父</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1723,7 +1754,7 @@
                         <td bgcolor=F0DC5A>大盘股</td>
                         <td bgcolor=F0DC5A>50AH</td>
                         <td bgcolor=F0DC5A>112</td>
-                        <td bgcolor=F0DC5A>父螺丝钉</td>
+                        <td bgcolor=F0DC5A>螺丝钉父</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1740,7 +1771,7 @@
                         <td bgcolor=F0DC5A>行业股</td>
                         <td bgcolor=F0DC5A>中证银行</td>
                         <td bgcolor=F0DC5A>146</td>
-                        <td bgcolor=F0DC5A>父螺丝钉</td>
+                        <td bgcolor=F0DC5A>螺丝钉父</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1757,7 +1788,7 @@
                         <td bgcolor=F0DC5A>大盘股</td>
                         <td bgcolor=F0DC5A>300价值</td>
                         <td bgcolor=F0DC5A>114</td>
-                        <td bgcolor=F0DC5A>父螺丝钉</td>
+                        <td bgcolor=F0DC5A>螺丝钉父</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1774,7 +1805,7 @@
                         <td bgcolor=F0DC5A>低风险理财</td>
                         <td bgcolor=F0DC5A>货币基金</td>
                         <td bgcolor=F0DC5A>999</td>
-                        <td bgcolor=F0DC5A>父螺丝钉</td>
+                        <td bgcolor=F0DC5A>螺丝钉父</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1791,7 +1822,7 @@
                         <td bgcolor=F0DC5A>红利价值</td>
                         <td bgcolor=F0DC5A>中证红利</td>
                         <td bgcolor=F0DC5A>131</td>
-                        <td bgcolor=F0DC5A>母螺丝钉</td>
+                        <td bgcolor=F0DC5A>螺丝钉母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1808,7 +1839,7 @@
                         <td bgcolor=F0DC5A>大盘股</td>
                         <td bgcolor=F0DC5A>300价值</td>
                         <td bgcolor=F0DC5A>114</td>
-                        <td bgcolor=F0DC5A>母螺丝钉</td>
+                        <td bgcolor=F0DC5A>螺丝钉母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1825,7 +1856,7 @@
                         <td bgcolor=F0DC5A>中小盘股</td>
                         <td bgcolor=F0DC5A>500低波动</td>
                         <td bgcolor=F0DC5A>122</td>
-                        <td bgcolor=F0DC5A>母螺丝钉</td>
+                        <td bgcolor=F0DC5A>螺丝钉母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1842,7 +1873,7 @@
                         <td bgcolor=F0DC5A>香港</td>
                         <td bgcolor=F0DC5A>香港中小</td>
                         <td bgcolor=F0DC5A>213</td>
-                        <td bgcolor=F0DC5A>母螺丝钉</td>
+                        <td bgcolor=F0DC5A>螺丝钉母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1859,7 +1890,7 @@
                         <td bgcolor=F0DC5A>大盘股</td>
                         <td bgcolor=F0DC5A>基本面120</td>
                         <td bgcolor=F0DC5A>116</td>
-                        <td bgcolor=F0DC5A>母螺丝钉</td>
+                        <td bgcolor=F0DC5A>螺丝钉母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1876,7 +1907,7 @@
                         <td bgcolor=F0DC5A>大盘股</td>
                         <td bgcolor=F0DC5A>基本面60</td>
                         <td bgcolor=F0DC5A>115</td>
-                        <td bgcolor=F0DC5A>母螺丝钉</td>
+                        <td bgcolor=F0DC5A>螺丝钉母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1893,7 +1924,7 @@
                         <td bgcolor=F0DC5A>行业股</td>
                         <td bgcolor=F0DC5A>养老产业</td>
                         <td bgcolor=F0DC5A>141</td>
-                        <td bgcolor=F0DC5A>母螺丝钉</td>
+                        <td bgcolor=F0DC5A>螺丝钉母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1910,7 +1941,7 @@
                         <td bgcolor=F0DC5A>红利价值</td>
                         <td bgcolor=F0DC5A>标普红利</td>
                         <td bgcolor=F0DC5A>132</td>
-                        <td bgcolor=F0DC5A>母螺丝钉</td>
+                        <td bgcolor=F0DC5A>螺丝钉母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1927,7 +1958,7 @@
                         <td bgcolor=F0DC5A>大盘股</td>
                         <td bgcolor=F0DC5A>50AH</td>
                         <td bgcolor=F0DC5A>112</td>
-                        <td bgcolor=F0DC5A>母螺丝钉</td>
+                        <td bgcolor=F0DC5A>螺丝钉母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1944,7 +1975,7 @@
                         <td bgcolor=F0DC5A>行业股</td>
                         <td bgcolor=F0DC5A>全指医药</td>
                         <td bgcolor=F0DC5A>142</td>
-                        <td bgcolor=F0DC5A>母螺丝钉</td>
+                        <td bgcolor=F0DC5A>螺丝钉母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1961,7 +1992,7 @@
                         <td bgcolor=F0DC5A>行业股</td>
                         <td bgcolor=F0DC5A>中证银行</td>
                         <td bgcolor=F0DC5A>146</td>
-                        <td bgcolor=F0DC5A>母螺丝钉</td>
+                        <td bgcolor=F0DC5A>螺丝钉母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1978,7 +2009,7 @@
                         <td bgcolor=F0DC5A>大盘股</td>
                         <td bgcolor=F0DC5A>300价值</td>
                         <td bgcolor=F0DC5A>114</td>
-                        <td bgcolor=F0DC5A>母螺丝钉</td>
+                        <td bgcolor=F0DC5A>螺丝钉母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -1995,7 +2026,7 @@
                         <td bgcolor=F0DC5A>低风险理财</td>
                         <td bgcolor=F0DC5A>货币基金</td>
                         <td bgcolor=F0DC5A>999</td>
-                        <td bgcolor=F0DC5A>母螺丝钉</td>
+                        <td bgcolor=F0DC5A>螺丝钉母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2012,7 +2043,7 @@
                         <td bgcolor=6EB5FF>国内债券</td>
                         <td bgcolor=6EB5FF>可转债</td>
                         <td bgcolor=6EB5FF>512</td>
-                        <td bgcolor=6EB5FF>父稳稳的幸福</td>
+                        <td bgcolor=6EB5FF>稳稳的幸福父</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2029,7 +2060,7 @@
                         <td bgcolor=6EB5FF>股债混合</td>
                         <td bgcolor=6EB5FF>偏股</td>
                         <td bgcolor=6EB5FF>411</td>
-                        <td bgcolor=6EB5FF>父稳稳的幸福</td>
+                        <td bgcolor=6EB5FF>稳稳的幸福父</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2046,7 +2077,7 @@
                         <td bgcolor=6EB5FF>国内债券</td>
                         <td bgcolor=6EB5FF>可转债</td>
                         <td bgcolor=6EB5FF>512</td>
-                        <td bgcolor=6EB5FF>父稳稳的幸福</td>
+                        <td bgcolor=6EB5FF>稳稳的幸福父</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2063,7 +2094,7 @@
                         <td bgcolor=6EB5FF>国内债券</td>
                         <td bgcolor=6EB5FF>可转债</td>
                         <td bgcolor=6EB5FF>512</td>
-                        <td bgcolor=6EB5FF>父稳稳的幸福</td>
+                        <td bgcolor=6EB5FF>稳稳的幸福父</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2080,7 +2111,7 @@
                         <td bgcolor=6EB5FF>股债混合</td>
                         <td bgcolor=6EB5FF>偏债</td>
                         <td bgcolor=6EB5FF>412</td>
-                        <td bgcolor=6EB5FF>父稳稳的幸福</td>
+                        <td bgcolor=6EB5FF>稳稳的幸福父</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2097,7 +2128,7 @@
                         <td bgcolor=6EB5FF>股债混合</td>
                         <td bgcolor=6EB5FF>偏债</td>
                         <td bgcolor=6EB5FF>412</td>
-                        <td bgcolor=6EB5FF>父稳稳的幸福</td>
+                        <td bgcolor=6EB5FF>稳稳的幸福父</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2114,7 +2145,7 @@
                         <td bgcolor=6EB5FF>国内债券</td>
                         <td bgcolor=6EB5FF>可转债</td>
                         <td bgcolor=6EB5FF>512</td>
-                        <td bgcolor=6EB5FF>父稳稳的幸福</td>
+                        <td bgcolor=6EB5FF>稳稳的幸福父</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2131,7 +2162,7 @@
                         <td bgcolor=FF8361>中小盘股</td>
                         <td bgcolor=FF8361>中证500</td>
                         <td bgcolor=FF8361>121</td>
-                        <td bgcolor=FF8361>母天天基金</td>
+                        <td bgcolor=FF8361>天天基金母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2148,7 +2179,7 @@
                         <td bgcolor=FF8361>红利价值</td>
                         <td bgcolor=FF8361>中证红利</td>
                         <td bgcolor=FF8361>131</td>
-                        <td bgcolor=FF8361>母天天基金</td>
+                        <td bgcolor=FF8361>天天基金母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2165,7 +2196,7 @@
                         <td bgcolor=FF8361>行业股</td>
                         <td bgcolor=FF8361>养老产业</td>
                         <td bgcolor=FF8361>141</td>
-                        <td bgcolor=FF8361>母天天基金</td>
+                        <td bgcolor=FF8361>天天基金母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2182,7 +2213,7 @@
                         <td bgcolor=FF8361>行业股</td>
                         <td bgcolor=FF8361>全指医药</td>
                         <td bgcolor=FF8361>142</td>
-                        <td bgcolor=FF8361>母天天基金</td>
+                        <td bgcolor=FF8361>天天基金母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2199,7 +2230,7 @@
                         <td bgcolor=FF8361>大盘股</td>
                         <td bgcolor=FF8361>沪深300</td>
                         <td bgcolor=FF8361>113</td>
-                        <td bgcolor=FF8361>母天天基金</td>
+                        <td bgcolor=FF8361>天天基金母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2216,7 +2247,7 @@
                         <td bgcolor=FF8361>行业股</td>
                         <td bgcolor=FF8361>中证传媒</td>
                         <td bgcolor=FF8361>144</td>
-                        <td bgcolor=FF8361>母天天基金</td>
+                        <td bgcolor=FF8361>天天基金母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2233,7 +2264,7 @@
                         <td bgcolor=FF8361>国内债券</td>
                         <td bgcolor=FF8361>可转债</td>
                         <td bgcolor=FF8361>512</td>
-                        <td bgcolor=FF8361>母天天基金</td>
+                        <td bgcolor=FF8361>天天基金母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2250,7 +2281,7 @@
                         <td bgcolor=FF8361>中小盘股</td>
                         <td bgcolor=FF8361>中证500</td>
                         <td bgcolor=FF8361>121</td>
-                        <td bgcolor=FF8361>母天天基金</td>
+                        <td bgcolor=FF8361>天天基金母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2267,7 +2298,7 @@
                         <td bgcolor=FF8361>行业股</td>
                         <td bgcolor=FF8361>中证环保</td>
                         <td bgcolor=FF8361>143</td>
-                        <td bgcolor=FF8361>母天天基金</td>
+                        <td bgcolor=FF8361>天天基金母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2284,7 +2315,7 @@
                         <td bgcolor=FF8361>德国</td>
                         <td bgcolor=FF8361>德国30</td>
                         <td bgcolor=FF8361>321</td>
-                        <td bgcolor=FF8361>母天天基金</td>
+                        <td bgcolor=FF8361>天天基金母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2301,7 +2332,7 @@
                         <td bgcolor=FF8361>中小盘股</td>
                         <td bgcolor=FF8361>创业板</td>
                         <td bgcolor=FF8361>124</td>
-                        <td bgcolor=FF8361>母天天基金</td>
+                        <td bgcolor=FF8361>天天基金母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2318,7 +2349,7 @@
                         <td bgcolor=FF8361>国内债券</td>
                         <td bgcolor=FF8361>可转债</td>
                         <td bgcolor=FF8361>512</td>
-                        <td bgcolor=FF8361>母天天基金</td>
+                        <td bgcolor=FF8361>天天基金母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2335,7 +2366,7 @@
                         <td bgcolor=FF8361>海外互联</td>
                         <td bgcolor=FF8361>海外互联网</td>
                         <td bgcolor=FF8361>221</td>
-                        <td bgcolor=FF8361>母天天基金</td>
+                        <td bgcolor=FF8361>天天基金母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2352,7 +2383,7 @@
                         <td bgcolor=FF8361>大盘股</td>
                         <td bgcolor=FF8361>上证50</td>
                         <td bgcolor=FF8361>111</td>
-                        <td bgcolor=FF8361>母天天基金</td>
+                        <td bgcolor=FF8361>天天基金母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2369,7 +2400,7 @@
                         <td bgcolor=FF8361>商品</td>
                         <td bgcolor=FF8361>原油</td>
                         <td bgcolor=FF8361>613</td>
-                        <td bgcolor=FF8361>母天天基金</td>
+                        <td bgcolor=FF8361>天天基金母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2386,7 +2417,7 @@
                         <td bgcolor=FF8361>中小盘股</td>
                         <td bgcolor=FF8361>中证1000</td>
                         <td bgcolor=FF8361>123</td>
-                        <td bgcolor=FF8361>母天天基金</td>
+                        <td bgcolor=FF8361>天天基金母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2403,7 +2434,7 @@
                         <td bgcolor=FF8361>行业股</td>
                         <td bgcolor=FF8361>金融地产</td>
                         <td bgcolor=FF8361>147</td>
-                        <td bgcolor=FF8361>母天天基金</td>
+                        <td bgcolor=FF8361>天天基金母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2420,7 +2451,7 @@
                         <td bgcolor=FF8361>商品</td>
                         <td bgcolor=FF8361>黄金</td>
                         <td bgcolor=FF8361>611</td>
-                        <td bgcolor=FF8361>母天天基金</td>
+                        <td bgcolor=FF8361>天天基金母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2437,7 +2468,7 @@
                         <td bgcolor=FF8361>行业股</td>
                         <td bgcolor=FF8361>证券公司</td>
                         <td bgcolor=FF8361>145</td>
-                        <td bgcolor=FF8361>母天天基金</td>
+                        <td bgcolor=FF8361>天天基金母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2454,7 +2485,7 @@
                         <td bgcolor=FF8361>国内债券</td>
                         <td bgcolor=FF8361>可转债</td>
                         <td bgcolor=FF8361>512</td>
-                        <td bgcolor=FF8361>母天天基金</td>
+                        <td bgcolor=FF8361>天天基金母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2471,7 +2502,7 @@
                         <td bgcolor=FF8361>大盘股</td>
                         <td bgcolor=FF8361>沪深300</td>
                         <td bgcolor=FF8361>113</td>
-                        <td bgcolor=FF8361>母天天基金</td>
+                        <td bgcolor=FF8361>天天基金母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2488,7 +2519,7 @@
                         <td bgcolor=FF8361>香港</td>
                         <td bgcolor=FF8361>恒生</td>
                         <td bgcolor=FF8361>211</td>
-                        <td bgcolor=FF8361>母天天基金</td>
+                        <td bgcolor=FF8361>天天基金母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2505,7 +2536,7 @@
                         <td bgcolor=FF8361>中小盘股</td>
                         <td bgcolor=FF8361>中证500</td>
                         <td bgcolor=FF8361>121</td>
-                        <td bgcolor=FF8361>母天天基金</td>
+                        <td bgcolor=FF8361>天天基金母</td>
                     </tr>
                     
                     <tr align='center'>
@@ -2522,7 +2553,7 @@
                         <td bgcolor=FF8361>中小盘股</td>
                         <td bgcolor=FF8361>中证500</td>
                         <td bgcolor=FF8361>121</td>
-                        <td bgcolor=FF8361>母天天基金</td>
+                        <td bgcolor=FF8361>天天基金母</td>
                     </tr>
                     
                 </tbody>

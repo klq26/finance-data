@@ -198,6 +198,19 @@ class assetAllocationEstimateHtmlParser:
         values = list(gainByAppSource.values())
         for i in range(len(titles)):
             accounts.append({'title': titles[i], 'value': values[i]})
+        # 角色 account
+        klqAccount = {'title' : '康力泉整体','value' : 0}
+        parentAccount = {'title' : '父母整体','value' : 0}
+        for account in accounts:
+            if u'父' in account['title'] or u'母' in account['title']:
+                parentAccount['value'] = float(parentAccount['value']) + float(account['value'])
+            else:
+                klqAccount['value'] = float(klqAccount['value']) + float(account['value'])
+        klqAccount['value'] = round(float(klqAccount['value']),2)
+        parentAccount['value'] = round(float(parentAccount['value']),2)
+        accounts.sort(key=lambda k: k['title'])
+        accounts.append(klqAccount)
+        accounts.append(parentAccount)
         with open(path, 'w+', encoding=u'utf-8') as fout:
             htmlCode = template.render(name=title,
                                        summary=summarys,
