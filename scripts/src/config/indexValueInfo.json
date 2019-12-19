@@ -5,10 +5,10 @@
         "category3":"上证50",
         "categoryID":"111",
         "result":{
-            "close":3025.78,
+            "close":3020.98,
             "pb":1.22,
-            "pe":10.39,
-            "roe":0.1234
+            "pe":10.37,
+            "roe":0.1233
         },
         "valueSymbol":"SH000016",
         "valueType":"xueqiu"
@@ -19,9 +19,9 @@
         "category3":"50AH",
         "categoryID":"112",
         "result":{
-            "close":5666.18,
+            "close":5650.13,
             "pb":1.05,
-            "pe":9.12,
+            "pe":9.14,
             "roe":0.1149
         },
         "valueSymbol":"SH000170",
@@ -33,9 +33,9 @@
         "category3":"沪深300",
         "categoryID":"113",
         "result":{
-            "close":4032.78,
+            "close":4026.51,
             "pb":1.49,
-            "pe":13.18,
+            "pe":13.15,
             "roe":0.1209
         },
         "valueSymbol":"SH000300",
@@ -47,9 +47,9 @@
         "category3":"300价值",
         "categoryID":"114",
         "result":{
-            "close":5023.57,
+            "close":5039.82,
             "pb":1,
-            "pe":8.88,
+            "pe":8.86,
             "roe":0.1127
         },
         "valueSymbol":"SH000919",
@@ -61,7 +61,7 @@
         "category3":"基本面60",
         "categoryID":"115",
         "result":{
-            "close":8248.44,
+            "close":8273.73,
             "pb":2.19,
             "pe":17,
             "roe":0.1287
@@ -75,9 +75,9 @@
         "category3":"基本面120",
         "categoryID":"116",
         "result":{
-            "close":7335.05,
+            "close":7348.03,
             "pb":2.19,
-            "pe":18.43,
+            "pe":18.41,
             "roe":0.1189
         },
         "valueSymbol":"SZ399702",
@@ -89,9 +89,9 @@
         "category3":"中小板",
         "categoryID":"117",
         "result":{
-            "close":6553.12,
+            "close":6506.91,
             "pb":3.47,
-            "pe":26.82,
+            "pe":26.84,
             "roe":0.1317
         },
         "valueSymbol":"SZ399005",
@@ -103,10 +103,10 @@
         "category3":"中证500",
         "categoryID":"121",
         "result":{
-            "close":5235.12,
+            "close":5226.67,
             "pb":1.84,
             "pe":23.6,
-            "roe":0.0742
+            "roe":0.0741
         },
         "valueSymbol":"SH000905",
         "valueType":"xueqiu"
@@ -117,9 +117,9 @@
         "category3":"500低波动",
         "categoryID":"122",
         "result":{
-            "close":12484.58,
+            "close":12476.29,
             "pb":1.46,
-            "pe":21.94,
+            "pe":21.96,
             "roe":0.0663
         },
         "valueSymbol":"CSI930782",
@@ -131,10 +131,10 @@
         "category3":"中证1000",
         "categoryID":"123",
         "result":{
-            "close":5543.79,
+            "close":5543.24,
             "pb":2.19,
-            "pe":33.27,
-            "roe":0.0572
+            "pe":33.26,
+            "roe":0.0571
         },
         "valueSymbol":"SH000852",
         "valueType":"xueqiu"
@@ -145,9 +145,9 @@
         "category3":"创业板",
         "categoryID":"124",
         "result":{
-            "close":1792.42,
-            "pb":5.33,
-            "pe":58.16,
+            "close":1783.47,
+            "pb":5.3,
+            "pe":57.86,
             "roe":0.1073
         },
         "valueSymbol":"SZ399006",
@@ -159,9 +159,9 @@
         "category3":"中证红利",
         "categoryID":"131",
         "result":{
-            "close":4363.93,
+            "close":4363.56,
             "pb":1,
-            "pe":9.98,
+            "pe":9.96,
             "roe":0.1292
         },
         "valueSymbol":"SH000922",
@@ -173,10 +173,10 @@
         "category3":"标普红利",
         "categoryID":"132",
         "result":{
-            "close":8321.16,
+            "close":8327.36,
             "pb":1.5,
-            "pe":12.85,
-            "roe":0.1167
+            "pe":12.83,
+            "roe":0.1169
         },
         "valueSymbol":".CSPSADRP",
         "valueType":"xueqiu"
@@ -187,9 +187,9 @@
         "category3":"养老产业",
         "categoryID":"141",
         "result":{
-            "close":7413.07,
-            "pb":3.18,
-            "pe":24.09,
+            "close":7422.25,
+            "pb":3.16,
+            "pe":24.04,
             "roe":0.1689
         },
         "valueSymbol":"SZ399812",
@@ -201,9 +201,9 @@
         "category3":"全指医药",
         "categoryID":"142",
         "result":{
-            "close":9831.51,
-            "pb":3.84,
-            "pe":30.74,
+            "close":9832.24,
+            "pb":3.8,
+            "pe":30.42,
             "roe":0.1003
         },
         "valueSymbol":"SH000991",
@@ -215,9 +215,9 @@
         "category3":"中证环保",
         "categoryID":"143",
         "result":{
-            "close":1243.61,
-            "pb":2.32,
-            "pe":27.2,
+            "close":1240.95,
+            "pb":2.29,
+            "pe":27.1,
             "roe":0.0941
         },
         "valueSymbol":"SH000827",
@@ -229,10 +229,10 @@
         "category3":"中证传媒",
         "categoryID":"144",
         "result":{
-            "close":1377.66,
-            "pb":2.83,
-            "pe":37.11,
-            "roe":0.0724
+            "close":1384.61,
+            "pb":2.92,
+            "pe":37.95,
+            "roe":0.0771
         },
         "valueSymbol":"SZ399971",
         "valueType":"xueqiu"
@@ -243,9 +243,9 @@
         "category3":"证券公司",
         "categoryID":"145",
         "result":{
-            "close":756.52,
-            "pb":1.78,
-            "pe":28.82,
+            "close":749.68,
+            "pb":1.79,
+            "pe":28.99,
             "roe":0.0616
         },
         "valueSymbol":"SZ399975",
@@ -257,7 +257,7 @@
         "category3":"中证银行",
         "categoryID":"146",
         "result":{
-            "close":6831.31,
+            "close":6855.69,
             "pb":0.84,
             "pe":6.31,
             "roe":0.1252
@@ -271,7 +271,7 @@
         "category3":"金融地产",
         "categoryID":"147",
         "result":{
-            "close":6165.65,
+            "close":6167.75,
             "pb":0.0,
             "pe":0.0,
             "roe":0.0
@@ -285,9 +285,9 @@
         "category3":"全指消费",
         "categoryID":"148",
         "result":{
-            "close":13827.8,
-            "pb":6.66,
-            "pe":32.29,
+            "close":13771.32,
+            "pb":6.64,
+            "pe":32.19,
             "roe":0.2054
         },
         "valueSymbol":"SH000990",
@@ -299,9 +299,9 @@
         "category3":"恒生",
         "categoryID":"211",
         "result":{
-            "close":27884.21,
-            "pb":1.07,
-            "pe":10.05,
+            "close":27752.86,
+            "pb":1.08,
+            "pe":10.08,
             "roe":0.1068
         },
         "valueSymbol":"HKHSI",
@@ -313,9 +313,9 @@
         "category3":"国企",
         "categoryID":"212",
         "result":{
-            "close":11024.66,
-            "pb":1.04,
-            "pe":8.77,
+            "close":10961.44,
+            "pb":1.05,
+            "pe":8.82,
             "roe":0.1189
         },
         "valueSymbol":"HKHSCEI",
@@ -327,10 +327,10 @@
         "category3":"香港中小",
         "categoryID":"213",
         "result":{
-            "close":3248.51,
-            "pb":1.55,
-            "pe":12.84,
-            "roe":0.1207
+            "close":3224.64,
+            "pb":1.54,
+            "pe":12.8,
+            "roe":0.1203
         },
         "valueSymbol":".SPHCMSHP",
         "valueType":"xueqiu"
@@ -355,7 +355,7 @@
         "category3":"德国30",
         "categoryID":"321",
         "result":{
-            "close":13246.16,
+            "close":13219.89,
             "pb":0.0,
             "pe":0.0,
             "roe":0.0
@@ -369,7 +369,7 @@
         "category3":"可转债",
         "categoryID":"512",
         "result":{
-            "close":344.45,
+            "close":344.37,
             "pb":0.0,
             "pe":0.0,
             "roe":0.0
@@ -383,7 +383,7 @@
         "category3":"黄金",
         "categoryID":"611",
         "result":{
-            "close":1481.1,
+            "close":1481.5,
             "pb":0.0,
             "pe":0.0,
             "roe":0.0
@@ -397,7 +397,7 @@
         "category3":"原油",
         "categoryID":"613",
         "result":{
-            "close":3483.93,
+            "close":3508.98,
             "pb":0.0,
             "pe":0.0,
             "roe":0.0

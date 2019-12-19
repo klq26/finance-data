@@ -1,82 +1,82 @@
 [
     {
         "code":"000016",
-        "holding":10659.54,
+        "holding":10630.75,
         "name":"上证50"
     },
     {
         "code":"000300",
-        "holding":66321.97,
+        "holding":66234.07,
         "name":"沪深300"
     },
     {
         "code":"000919",
-        "holding":7289.07,
+        "holding":7446.68,
         "name":"300价值"
     },
     {
         "code":"399701",
-        "holding":4271.22,
+        "holding":4408.47,
         "name":"基本面60"
     },
     {
         "code":"399702",
-        "holding":4672.09,
+        "holding":4668.75,
         "name":"基本面120"
     },
     {
         "code":"000905",
-        "holding":281448.73,
+        "holding":281341.77,
         "name":"中证500"
     },
     {
         "code":"000852",
-        "holding":4792.23,
+        "holding":4789.69,
         "name":"中证1000"
     },
     {
         "code":"399006",
-        "holding":19701.75,
+        "holding":19602.18,
         "name":"创业板"
     },
     {
         "code":"000922",
-        "holding":97622.0,
+        "holding":97542.75,
         "name":"中证红利"
     },
     {
         "code":"399812",
-        "holding":75597.74,
+        "holding":75513.67,
         "name":"养老产业"
     },
     {
         "code":"000991",
-        "holding":61436.1,
+        "holding":60836.89,
         "name":"全指医药"
     },
     {
         "code":"000827",
-        "holding":52793.06,
+        "holding":52560.25,
         "name":"中证环保"
     },
     {
         "code":"399971",
-        "holding":42596.42,
+        "holding":43490.86,
         "name":"中证传媒"
     },
     {
         "code":"399975",
-        "holding":33612.14,
+        "holding":33712.95,
         "name":"证券公司"
     },
     {
         "code":"399986",
-        "holding":172.5,
+        "holding":333.7,
         "name":"中证银行"
     },
     {
         "code":"000992",
-        "holding":25144.45,
+        "holding":25155.49,
         "name":"金融地产"
     }
 ]

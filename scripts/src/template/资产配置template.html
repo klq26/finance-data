@@ -18,11 +18,11 @@
     <script type="text/javascript">
         // 给盈亏上色
         $(function () {
-                $('.gainLabel').each(function (j) {
-                    var colorStr = '';
-                    $('.gainLabel').eq(j).html().replace("%", "") >= 0 ? colorStr = '#DD2200' : colorStr = '#009933';
-                    $('.gainLabel').eq(j).css('color', colorStr);
-                });
+            $('.gainLabel').each(function (j) {
+                var colorStr = '';
+                $('.gainLabel').eq(j).html().replace("%", "") >= 0 ? colorStr = '#DD2200' : colorStr = '#009933';
+                $('.gainLabel').eq(j).css('color', colorStr);
+            });
         })
 
         // 点击筛选
@@ -120,8 +120,9 @@
 <h1>{{ name }}</h1>
 
 <body>
-    <h2>整体情况</h2>
     <ul style="padding: 0px;">
+        <h2>整体情况</h2>
+        <!-- summary -->
         <li style="display:inline-flex; width: 100%; margin-bottom: 10px;">
             <table id='summary' border="1" cellspacing='0' cellpadding='4' align='left'>
                 <tr align='center'>
@@ -140,17 +141,27 @@
                 {% endfor%}
             </table>
         </li>
-        <li style="display:inline-flex; width: 100%; margin-bottom: 10px; overflow:scroll;">
+        <!-- account -->
+        <h2>帐户盈亏</h2>
+        <li style="width: 100%; margin-bottom: 10px;">
             <!-- 'accountName' 'gain' 'marketcap' -->
-            {% for item in account %}
-                <ul class='account' style="padding: 0px; border-style: outset; margin-right: 4px; background-color: #FFC751;">
-                    <li style="padding: 3px; list-style-type:none; text-align: center;">{{ item.accountName }}</li>
-                    <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">{{ item.gain }}</listyle="padding: 3px;">
-                    <li style="padding: 3px; list-style-type:none; text-align: right;">{{ item.marketcap }}</li>
-                    <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">{{ item.gainRate }}</li>
-                </ul>
-            {% endfor%}
+            <div id="account" style="display: inline-table;">
+                {% for item in account %}
+                <div style="background-color:#FFC751; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li style="padding: 3px; list-style-type:none; text-align: center;">{{ item.accountName }}</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            {{ item.gain }}</listyle="padding: 3px;">
+                        <li style="padding: 3px; list-style-type:none; text-align: right;">{{ item.marketcap }}</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            {{ item.gainRate }}</li>
+                    </ul>
+                </div>
+                {% endfor%}
+            </div>
         </li>
+        <!-- fundData -->
+        <h2>基金情况</h2>
         <li style="display:inline-flex; width: 100%; margin-bottom: 10px;">
             <table id='table' border="1" cellspacing='0' cellpadding='4' align='left'>
                 <thead>

@@ -243,7 +243,7 @@ class assetAllocationCategorySumParser:
             os.startfile(os.path.join(self.outputPath,u'资产配置分类情况.html'))
         elif sys.platform.startswith('linux'):
             shutil.copy(os.path.join(self.outputPath,u'资产配置分类情况.html'), '/var/www/html/assetCategory.html')
-            self.dingtalk.sendMessage(f'账户：http://112.125.25.230/assetCategory.html')
+            #self.dingtalk.sendMessage(f'账户：http://112.125.25.230/assetCategory.html')
             print('资产配置分类情况：http://112.125.25.230/assetCategory.html')
 
 if __name__ == "__main__":
