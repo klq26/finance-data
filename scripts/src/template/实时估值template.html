@@ -108,127 +108,104 @@
         }
     </script>
     <style>
-        .summaryTable {
-            border-color: aqua;
-            background-color: #fdfdfd;
-            margin-bottom: 5px;
-            margin-top: 5px;
-        }
 
-        .summary {
-            display: inline-block;
-            max-width: max-content;
-            margin: 1px;
-            background-color: #50C2F9;
-        }
-
-        .summaryTitleLabel {
-            padding-left: 5px;
-            padding-right: 5px;
-        }
-
-        .accountTable {
-            border-color: aqua;
-            background-color: #fdfdfd;
-            margin-bottom: 5px;
-            margin-top: 5px;
-        }
-
-        .account {
-            display: inline-block;
-            max-width: max-content;
-            margin: 1px;
-            background-color: #fdfdfd;
-        }
-
-        .accountTitleLabel {
-            padding-left: 5px;
-            padding-right: 5px;
-        }
-
-        .gainLabel {
-            padding-left: 5px;
-            padding-right: 5px;
-            height: 5px;
-            text-align: right;
-        }
     </style>
 </head>
 <h1>{{ name }}</h1>
 
 <body>
-    <h2>整体情况</h2>
-    <!-- 整体情况 -->
-    <div class="summaryTable">
-        {% for item in summary %}
-        <div class="summary">
-            <span class="summaryTitleLabel">{{ item.title }}</span>
-            <p class="gainLabel">{{ item.value }}</p>
-        </div>
-        {% endfor%}
-    </div>
-    <!-- 账户情况 -->
-    <div class="accountTable" style="display: inline-table;">
-        {% for item in account %}
-        <div style="background-color:{{ item.bgColor }}; max-width: max-content; float: left; margin-right: 4px;">
-            <ul style="list-style: none; padding: 4px;">
-                <li class="accountTitleLabel" style="padding: 3px; list-style-type:none; text-align: center;">{{ item.title }}</li>
-                <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">{{ item.value }}</li>
-            </ul>
-        </div>
-        {% endfor%}
-    </div>
-    <!-- 基金估值 -->
-    <table id='table' border="1" cellspacing='0' cellpadding='4' align='left'>
-        <tr align='center'>
-            <th id='th0' class='asc' type='string' onclick='sort(this)' align='center'>基金名称</th>
-            <th id='th1' class='asc' type='number' onclick='sort(this)' align='center'>基金代码</th>
-            <th id='th2' class='asc' type='number' onclick='sort(this)' align='center'>持仓成本</th>
-            <th id='th3' class='asc' type='number' onclick='sort(this)' align='center'>持仓份额</th>
-            <th id='th4' class='asc' type='number' onclick='sort(this)' align='center'>持仓市值</th>
-            <th id='th5' class='asc' type='number' onclick='sort(this)' align='center'>累计收益</th>
-            <!-- 接口查询 -->
-            <th id='th6' class='asc' type='number' onclick='sort(this)' align='center'>当前净值</th>
-            <th id='th7' class='asc' type='number' onclick='sort(this)' align='center'>净值日期</th>
-            <th id='th8' class='asc' type='number' onclick='sort(this)' align='center'>估算净值</th>
-            <th id='th9' class='asc' type='number' onclick='sort(this)' align='center'>估算时间</th>
-            <th id='th10' class='asc' type='number' onclick='sort(this)' align='center'>估算涨跌幅</th>
-            <th id='th11' class='asc' type='number' onclick='sort(this)' align='center'>估算日收益</th>
-            <!-- 接口查询 结束 -->
-            <th id='th12' class='asc' type='string' onclick='sort(this)' align='center'>一级分类</th>
-            <th id='th13' class='asc' type='string' onclick='sort(this)' align='center'>二级分类</th>
-            <th id='th14' class='asc' type='string' onclick='sort(this)' align='center'>三级分类</th>
-            <th id='th15' class='asc' type='number' onclick='sort(this)' align='center'>分类 ID</th>
-            <th id='th16' class='asc' type='string' onclick='sort(this)' align='center'>来源</th>
-        </tr>
+    <ul style="padding: 0px;">
+        <!-- 整体情况 -->
+        <h2>整体情况</h2>
+        <li style="width: 100%; margin-bottom: 10px;">
+            <div style="display: inline-table;">
+                {% for item in summary %}
+                <div style="background-color:#50C2F9; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">
+                            {{ item.title }}</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            {{ item.value }}</li>
+                    </ul>
+                </div>
+                {% endfor%}
+            </div>
+        </li>
+        <!-- 帐户盈亏 -->
+        <h2>帐户盈亏</h2>
+        <li style="width: 100%; margin-bottom: 10px;">
+            <div style="display: inline-table;">
+                {% for item in account %}
+                <div style="background-color:{{ item.bgColor }}; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">
+                            {{ item.title }}</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            {{ item.value }}</li>
+                    </ul>
+                </div>
+                {% endfor%}
+            </div>
+        </li>
+        <!-- 基金情况 -->
+        <h2>基金情况</h2>
+        <li>
+            <!-- 基金估值 -->
+            <table id='table' border="1" cellspacing='0' cellpadding='4' align='left'>
+                <tr align='center'>
+                    <th id='th0' class='asc' type='string' onclick='sort(this)' align='center'>基金名称</th>
+                    <th id='th1' class='asc' type='number' onclick='sort(this)' align='center'>基金代码</th>
+                    <th id='th2' class='asc' type='number' onclick='sort(this)' align='center'>持仓成本</th>
+                    <th id='th3' class='asc' type='number' onclick='sort(this)' align='center'>持仓份额</th>
+                    <th id='th4' class='asc' type='number' onclick='sort(this)' align='center'>持仓市值</th>
+                    <th id='th5' class='asc' type='number' onclick='sort(this)' align='center'>累计收益</th>
+                    <!-- 接口查询 -->
+                    <th id='th6' class='asc' type='number' onclick='sort(this)' align='center'>当前净值</th>
+                    <th id='th7' class='asc' type='number' onclick='sort(this)' align='center'>净值日期</th>
+                    <th id='th8' class='asc' type='number' onclick='sort(this)' align='center'>估算净值</th>
+                    <th id='th9' class='asc' type='number' onclick='sort(this)' align='center'>估算时间</th>
+                    <th id='th10' class='asc' type='number' onclick='sort(this)' align='center'>估算涨跌幅</th>
+                    <th id='th11' class='asc' type='number' onclick='sort(this)' align='center'>估算日收益</th>
+                    <!-- 接口查询 结束 -->
+                    <th id='th12' class='asc' type='string' onclick='sort(this)' align='center'>一级分类</th>
+                    <th id='th13' class='asc' type='string' onclick='sort(this)' align='center'>二级分类</th>
+                    <th id='th14' class='asc' type='string' onclick='sort(this)' align='center'>三级分类</th>
+                    <th id='th15' class='asc' type='number' onclick='sort(this)' align='center'>分类 ID</th>
+                    <th id='th16' class='asc' type='string' onclick='sort(this)' align='center'>来源</th>
+                </tr>
 
-        {% for item in data %}
-        <tr align='center'>
-            <td bgcolor={{ item.color }}>{{ item.fundName }}</td>
-            <td bgcolor={{ item.color }}>{{ item.fundCode }}</td>
-            <td align='right' bgcolor={{ item.color }}>{{ item.holdNetValue }}</td>
-            <td align='right' bgcolor={{ item.color }}>{{ item.holdShareCount }}</td>
-            <td align='right' bgcolor={{ item.color }}>{{ item.holdMarketCap }}</td>
-            <td align='right' bgcolor={{ item.color }} style='color: {{item.holdingGainColor}};'>
-                {{ item.holdTotalGain }}</td>
+                {% for item in data %}
+                <tr align='center'>
+                    <td bgcolor={{ item.color }}>{{ item.fundName }}</td>
+                    <td bgcolor={{ item.color }}>{{ item.fundCode }}</td>
+                    <td align='right' bgcolor={{ item.color }}>{{ item.holdNetValue }}</td>
+                    <td align='right' bgcolor={{ item.color }}>{{ item.holdShareCount }}</td>
+                    <td align='right' bgcolor={{ item.color }}>{{ item.holdMarketCap }}</td>
+                    <td align='right' bgcolor={{ item.color }} style='color: {{item.holdingGainColor}};'>
+                        {{ item.holdTotalGain }}</td>
 
-            <td align='right' bgcolor={{ item.color }}>{{ item.currentNetValue }}</td>
-            <td bgcolor={{ item.color }}>{{ item.currentNetValueDate }}</td>
-            <td align='right' bgcolor={{ item.color }}>{{ item.estimateNetValue }}</td>
-            <td bgcolor={{ item.color }}>{{ item.estimateTime }}</td>
-            <td align='right' bgcolor={{ item.color }} style='color: {{item.gainRateColor}};'>{{ item.estimateRate }}
-            </td>
-            <td align='right' bgcolor={{ item.color }} style='color: {{item.gainRateColor}};'>{{ item.changeValue }}
-            </td>
+                    <td align='right' bgcolor={{ item.color }}>{{ item.currentNetValue }}</td>
+                    <td bgcolor={{ item.color }}>{{ item.currentNetValueDate }}</td>
+                    <td align='right' bgcolor={{ item.color }}>{{ item.estimateNetValue }}</td>
+                    <td bgcolor={{ item.color }}>{{ item.estimateTime }}</td>
+                    <td align='right' bgcolor={{ item.color }} style='color: {{item.gainRateColor}};'>
+                        {{ item.estimateRate }}
+                    </td>
+                    <td align='right' bgcolor={{ item.color }} style='color: {{item.gainRateColor}};'>
+                        {{ item.changeValue }}
+                    </td>
 
-            <td bgcolor={{ item.color }}>{{ item.category1 }}</td>
-            <td bgcolor={{ item.color }}>{{ item.category2 }}</td>
-            <td bgcolor={{ item.color }}>{{ item.category3 }}</td>
-            <td bgcolor={{ item.color }}>{{ item.category4 }}</td>
-            <td bgcolor={{ item.color }}>{{ item.appSource }}</td>
-        </tr>
-        {% endfor%}
-    </table>
+                    <td bgcolor={{ item.color }}>{{ item.category1 }}</td>
+                    <td bgcolor={{ item.color }}>{{ item.category2 }}</td>
+                    <td bgcolor={{ item.color }}>{{ item.category3 }}</td>
+                    <td bgcolor={{ item.color }}>{{ item.category4 }}</td>
+                    <td bgcolor={{ item.color }}>{{ item.appSource }}</td>
+                </tr>
+                {% endfor%}
+            </table>
+        </li>
+    </ul>
+
 </body>
 
 </html>
