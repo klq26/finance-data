@@ -18,6 +18,7 @@ from model.fundModel import fundModel
 # config
 from config.pathManager import pathManager
 from config.colorConstants import colorConstants
+from config.accountManager import accountManager
 from config.assetCategoryConstants import assetCategoryConstants
 # tools
 from tools.fundEstimateManager import fundEstimateManager
@@ -37,6 +38,7 @@ class assetAllocationEstimateHtmlParser:
         self.category3Array = categoryConstants.category3Array
         self.modelArray = []
         self.colorConstants = colorConstants()
+        self.accountManager = accountManager()
         self.fundJsonFilePathExt = ''
         self.dingtalk = dingtalk()
 
@@ -135,7 +137,7 @@ class assetAllocationEstimateHtmlParser:
             else:
                 print('{0}估值请求失败'.format(fund.fundCode))
 
-            dict = fundModel.__dict__
+            fundDict = fundModel.__dict__
             # 颜色
             color = self.getFundColorByAppSourceName(fundModel.appSource)
             # 格式化
@@ -144,15 +146,15 @@ class assetAllocationEstimateHtmlParser:
             fundModel.estimateNetValue = round(
                 float(fundModel.estimateNetValue), 4)
             fundModel.estimateRate = round(float(fundModel.estimateRate), 4)
-            dict['color'] = color
+            fundDict['color'] = color
             # 红涨绿跌
             changeValue = round(
                 (fundModel.estimateNetValue - fundModel.currentNetValue)*fundModel.holdShareCount, 2)
-            dict['changeValue'] = changeValue
+            fundDict['changeValue'] = changeValue
             # 用的之前的深色配色（代码比较乱）
-            dict['holdingGainColor'] = self.getGainColor(dict['holdTotalGain'])
-            dict['gainRateColor'] = self.getGainColor(fundModel.estimateRate)
-            dict['changeValueColor'] = self.colorConstants.getGainColor(
+            fundDict['holdingGainColor'] = self.getGainColor(fundDict['holdTotalGain'])
+            fundDict['gainRateColor'] = self.getGainColor(fundModel.estimateRate)
+            fundDict['changeValueColor'] = self.colorConstants.getGainColor(
                 changeValue)
             # 计入今日统计
             if fundModel.appSource != u'股票账户':
@@ -167,17 +169,17 @@ class assetAllocationEstimateHtmlParser:
                 gainByAppSource[fundModel.appSource] = round(
                     gainOfCurrentAppSource + changeValue, 2)
             # 输出格式化（保留小数点后 4 或 2 位）
-            dict['holdNetValue'] = '{:.4f}'.format(dict['holdNetValue'])
-            dict['holdShareCount'] = '{:.2f}'.format(dict['holdShareCount'])
-            dict['holdMarketCap'] = '{:.2f}'.format(dict['holdMarketCap'])
-            dict['holdTotalGain'] = '{:.2f}'.format(dict['holdTotalGain'])
-            dict['currentNetValue'] = '{:.4f}'.format(dict['currentNetValue'])
-            dict['estimateNetValue'] = '{:.4f}'.format(
-                dict['estimateNetValue'])
-            dict['estimateRate'] = '{:.2f}%'.format(
+            fundDict['holdNetValue'] = '{:.4f}'.format(fundDict['holdNetValue'])
+            fundDict['holdShareCount'] = '{:.2f}'.format(fundDict['holdShareCount'])
+            fundDict['holdMarketCap'] = '{:.2f}'.format(fundDict['holdMarketCap'])
+            fundDict['holdTotalGain'] = '{:.2f}'.format(fundDict['holdTotalGain'])
+            fundDict['currentNetValue'] = '{:.4f}'.format(fundDict['currentNetValue'])
+            fundDict['estimateNetValue'] = '{:.4f}'.format(
+                fundDict['estimateNetValue'])
+            fundDict['estimateRate'] = '{:.2f}%'.format(
                 fundModel.estimateRate * 100)
-            dict['changeValue'] = '{:.2f}'.format(dict['changeValue'])
-            data.append(dict)
+            fundDict['changeValue'] = '{:.2f}'.format(fundDict['changeValue'])
+            data.append(fundDict)
         # 将估值数据写入缓存，30 分钟之内都有效
         manager.saveCache(fundModelArray)
         # 按收益降序排序
@@ -197,10 +199,10 @@ class assetAllocationEstimateHtmlParser:
         titles = list(gainByAppSource.keys())
         values = list(gainByAppSource.values())
         for i in range(len(titles)):
-            accounts.append({'title': titles[i], 'value': values[i]})
+            accounts.append({'title': titles[i], 'value': values[i], 'sortId' : self.accountManager.getSortIdByName(titles[i]), 'bgColor' : self.accountManager.getRecommendColorByName(titles[i])})
         # 角色 account
-        klqAccount = {'title' : '康力泉整体','value' : 0}
-        parentAccount = {'title' : '父母整体','value' : 0}
+        klqAccount = {'title' : '康力泉整体','value' : 0, 'sortId' : self.accountManager.getSortIdByName('康力泉整体'), 'bgColor' : self.accountManager.getRecommendColorByName('康力泉整体')}
+        parentAccount = {'title' : '父母整体','value' : 0, 'sortId' : self.accountManager.getSortIdByName('父母整体'), 'bgColor' : self.accountManager.getRecommendColorByName('父母整体')}
         for account in accounts:
             if u'父' in account['title'] or u'母' in account['title']:
                 parentAccount['value'] = float(parentAccount['value']) + float(account['value'])
@@ -208,9 +210,10 @@ class assetAllocationEstimateHtmlParser:
                 klqAccount['value'] = float(klqAccount['value']) + float(account['value'])
         klqAccount['value'] = round(float(klqAccount['value']),2)
         parentAccount['value'] = round(float(parentAccount['value']),2)
-        accounts.sort(key=lambda k: k['title'])
-        accounts.append(klqAccount)
-        accounts.append(parentAccount)
+        accounts.sort(key=lambda k: k['sortId'])
+        accounts.insert(0, parentAccount)
+        accounts.insert(0, klqAccount)
+
         with open(path, 'w+', encoding=u'utf-8') as fout:
             htmlCode = template.render(name=title,
                                        summary=summarys,

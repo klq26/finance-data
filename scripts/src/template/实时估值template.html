@@ -11,75 +11,9 @@
         $(function () {
             $('.gainLabel').each(function (j) {
                 var colorStr = '';
-                $('.gainLabel').eq(j).html().replace("%", "") > 0 ? colorStr = '#DD2200' : colorStr = '#009933';
+                $('.gainLabel').eq(j).html().replace("%", "") >= 0 ? colorStr = '#DD2200' : colorStr = '#009933';
                 $('.gainLabel').eq(j).css('color', colorStr);
             });
-        })
-        // 给账户增加底色
-        $(function () {
-            $('.account').each(function (j) {
-                var qieman = new Array("且慢 150 份", "且慢 S 定投", "稳稳的幸福父")
-                var huatai = new Array("股票账户")
-                var danjuan = new Array("螺丝钉", "螺丝钉母", "螺丝钉父")
-                var tiantian = new Array("天天基金", "天天基金母")
-                var zhifubao = new Array("支付宝")
-                var entire = new Array("康力泉整体","父母整体")
-                // 判断 title
-                var title = $('.accountTitleLabel').eq(j).html();
-                var colorStr = '';
-                console.log($('.accountTitleLabel').parent("account").text());
-                // 且慢 APP
-                for (var i = 0; i < qieman.length; i++) {
-                    if (qieman[i].indexOf(title) > -1) {
-                        colorStr = '#6EB5FF';
-                        $('.accountTitleLabel').parent().eq(j).css('background-color', colorStr);
-                        return;
-                    }
-                }
-                // 蛋卷 APP
-                for (var i = 0; i < danjuan.length; i++) {
-                    if (danjuan[i].indexOf(title) > -1) {
-                        colorStr = '#F0DC5A';
-                        $('.accountTitleLabel').parent().eq(j).css('background-color', colorStr);
-                        return;
-                    }
-                }
-                // 天天基金 APP
-                for (var i = 0; i < tiantian.length; i++) {
-                    if (tiantian[i].indexOf(title) > -1) {
-                        colorStr = '#FF8361';
-                        $('.accountTitleLabel').parent().eq(j).css('background-color', colorStr);
-                        return;
-                    }
-                }
-
-                // 支付宝 APP
-                for (var i = 0; i < zhifubao.length; i++) {
-                    if (zhifubao[i].indexOf(title) > -1) {
-                        colorStr = '#DBB6AC';
-                        $('.accountTitleLabel').parent().eq(j).css('background-color', colorStr);
-                        return;
-                    }
-                }
-
-                // 华泰证券
-                for (var i = 0; i < huatai.length; i++) {
-                    if (huatai[i].indexOf(title) > -1) {
-                        colorStr = '#FF7C9E';
-                        $('.accountTitleLabel').parent().eq(j).css('background-color', colorStr);
-                        return;
-                    }
-                }
-
-                // 整体账户
-                for (var i = 0; i < entire.length; i++) {
-                    if (entire[i].indexOf(title) > -1) {
-                        colorStr = '#50C2F9';
-                        $('.accountTitleLabel').parent().eq(j).css('background-color', colorStr);
-                        return;
-                    }
-                }
-            })
         })
 
         // 点击筛选
@@ -234,11 +168,13 @@
         {% endfor%}
     </div>
     <!-- 账户情况 -->
-    <div class="accountTable">
+    <div class="accountTable" style="display: inline-table;">
         {% for item in account %}
-        <div class="account">
-            <span class="accountTitleLabel">{{ item.title }}</span>
-            <p class="gainLabel">{{ item.value }}</p>
+        <div style="background-color:{{ item.bgColor }}; max-width: max-content; float: left; margin-right: 4px;">
+            <ul style="list-style: none; padding: 4px;">
+                <li class="accountTitleLabel" style="padding: 3px; list-style-type:none; text-align: center;">{{ item.title }}</li>
+                <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">{{ item.value }}</li>
+            </ul>
         </div>
         {% endfor%}
     </div>

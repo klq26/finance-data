@@ -34,6 +34,8 @@ class colorConstants:
             return 'FFC751'
         elif u'冻结资金' in name:
             return 'DCDCDC'
+        elif u'整体' in name:
+            return '50C2F9'
         else:
             return 'FFFFFF'
 

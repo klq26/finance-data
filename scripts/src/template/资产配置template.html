@@ -25,14 +25,14 @@
             });
         })
         // 给账户上色
-        $(function () {
-            $('.account').each(function (j) {
-                var colorStr = '';
-                $('.account').eq(j).html().indexOf("整体") > -1 ? colorStr = '#50C2F9' : colorStr = '#FFC751';
-                console.log($('.account').parent().parent().eq(j).html())
-                $('.account').parent().parent().eq(j).css('background-color', colorStr);
-            });
-        })
+        // $(function () {
+        //     $('.account').each(function (j) {
+        //         var colorStr = '';
+        //         $('.account').eq(j).html().indexOf("整体") > -1 ? colorStr = '#50C2F9' : colorStr = '#FFC751';
+        //         console.log($('.account').parent().parent().eq(j).html())
+        //         $('.account').parent().parent().eq(j).css('background-color', colorStr);
+        //     });
+        // })
 
         // 点击筛选
         function sort(object) {
@@ -156,7 +156,7 @@
             <!-- 'accountName' 'gain' 'marketcap' -->
             <div style="display: inline-table;">
                 {% for item in account %}
-                <div style="background-color:#FFC751; max-width: max-content; float: left;">
+                <div style="background-color:{{ item.bgColor }}; max-width: max-content; float: left;">
                     <ul style="list-style: none; padding: 4px; border-style: outset;">
                         <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">{{ item.accountName }}</li>
                         <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
