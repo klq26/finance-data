@@ -155,31 +155,31 @@
                 <tr align='center'>
                     <th id='th0' class='asc' type='string' onclick='sort(this)' align='center'>基金名称</th>
                     <th id='th1' class='asc' type='number' onclick='sort(this)' align='center'>基金代码</th>
-                    <th id='th2' class='asc' type='number' onclick='sort(this)' align='center'>持仓成本</th>
-                    <th id='th3' class='asc' type='number' onclick='sort(this)' align='center'>持仓份额</th>
-                    <th id='th4' class='asc' type='number' onclick='sort(this)' align='center'>持仓市值</th>
-                    <th id='th5' class='asc' type='number' onclick='sort(this)' align='center'>累计收益</th>
+                    <!-- <th id='th2' class='asc' type='number' onclick='sort(this)' align='center'>持仓成本</th> -->
+                    <!-- <th id='th3' class='asc' type='number' onclick='sort(this)' align='center'>持仓份额</th> -->
+                    <th id='th2' class='asc' type='number' onclick='sort(this)' align='center'>持仓市值</th>
+                    <th id='th3' class='asc' type='number' onclick='sort(this)' align='center'>累计收益</th>
                     <!-- 接口查询 -->
-                    <th id='th6' class='asc' type='number' onclick='sort(this)' align='center'>当前净值</th>
-                    <th id='th7' class='asc' type='number' onclick='sort(this)' align='center'>净值日期</th>
-                    <th id='th8' class='asc' type='number' onclick='sort(this)' align='center'>估算净值</th>
-                    <th id='th9' class='asc' type='number' onclick='sort(this)' align='center'>估算时间</th>
-                    <th id='th10' class='asc' type='number' onclick='sort(this)' align='center'>估算涨跌幅</th>
-                    <th id='th11' class='asc' type='number' onclick='sort(this)' align='center'>估算日收益</th>
+                    <th id='th4' class='asc' type='number' onclick='sort(this)' align='center'>当前净值</th>
+                    <th id='th5' class='asc' type='number' onclick='sort(this)' align='center'>净值日期</th>
+                    <th id='th6' class='asc' type='number' onclick='sort(this)' align='center'>估算净值</th>
+                    <th id='th7' class='asc' type='number' onclick='sort(this)' align='center'>估算时间</th>
+                    <th id='th8' class='asc' type='number' onclick='sort(this)' align='center'>估算涨跌幅</th>
+                    <th id='th9' class='asc' type='number' onclick='sort(this)' align='center'>估算日收益</th>
                     <!-- 接口查询 结束 -->
-                    <th id='th12' class='asc' type='string' onclick='sort(this)' align='center'>一级分类</th>
-                    <th id='th13' class='asc' type='string' onclick='sort(this)' align='center'>二级分类</th>
-                    <th id='th14' class='asc' type='string' onclick='sort(this)' align='center'>三级分类</th>
-                    <th id='th15' class='asc' type='number' onclick='sort(this)' align='center'>分类 ID</th>
-                    <th id='th16' class='asc' type='string' onclick='sort(this)' align='center'>来源</th>
+                    <th id='th10' class='asc' type='string' onclick='sort(this)' align='center'>一级分类</th>
+                    <th id='th11' class='asc' type='string' onclick='sort(this)' align='center'>二级分类</th>
+                    <th id='th12' class='asc' type='string' onclick='sort(this)' align='center'>三级分类</th>
+                    <th id='th13' class='asc' type='number' onclick='sort(this)' align='center'>分类 ID</th>
+                    <th id='th14' class='asc' type='string' onclick='sort(this)' align='center'>来源</th>
                 </tr>
 
                 {% for item in data %}
                 <tr align='center'>
                     <td bgcolor={{ item.color }}>{{ item.fundName }}</td>
                     <td bgcolor={{ item.color }}>{{ item.fundCode }}</td>
-                    <td align='right' bgcolor={{ item.color }}>{{ item.holdNetValue }}</td>
-                    <td align='right' bgcolor={{ item.color }}>{{ item.holdShareCount }}</td>
+                    <!-- <td align='right' bgcolor={{ item.color }}>{{ item.holdNetValue }}</td> -->
+                    <!-- <td align='right' bgcolor={{ item.color }}>{{ item.holdShareCount }}</td> -->
                     <td align='right' bgcolor={{ item.color }}>{{ item.holdMarketCap }}</td>
                     <td align='right' bgcolor={{ item.color }} style='color: {{item.holdingGainColor}};'>
                         {{ item.holdTotalGain }}</td>
