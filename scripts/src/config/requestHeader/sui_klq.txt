@@ -3,12 +3,12 @@
 :scheme	https
 :path	/account/account.do
 upgrade-insecure-requests	1
-user-agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36
+user-agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36
 sec-fetch-user	?1
 accept	text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
 sec-fetch-site	same-origin
 sec-fetch-mode	navigate
-referer	https://www.sui.com/account/account.do
+referer	https://www.sui.com/report_index.do
 accept-encoding	gzip, deflate, br
 accept-language	zh-CN,zh;q=0.9
 cookie	__vistor=C2FC974E1dkc2f30k
@@ -16,11 +16,11 @@ cookie	__nick=klq26%40163.com
 cookie	SESSION_COOKIE=a8e14a3d3446b0d7b8155ae885f316e7
 cookie	__utmc=121176714
 cookie	__utmz=121176714.1572313309.44.20.utmcsr=login.sui.com|utmccn=(referral)|utmcmd=referral|utmcct=/auth.do
-cookie	Hm_lvt_3db4e52bb5797afe0faaa2fde5c96ea4=1574293250
 cookie	_bookTabSwitchList=05d9c1d88a4bc09f1e6a4ccc3fa3f033|1|0&
-cookie	__spm_bid=d750b49a60ebs7e8p10bb41ea6m1e537
-cookie	SESSION=13f6b405-5385-4b66-9bfb-76f41d673b0a
-cookie	__utma=121176714.1274987167.1566994582.1576211211.1576624068.69
+cookie	Hm_lvt_3db4e52bb5797afe0faaa2fde5c96ea4=1576891040
+cookie	__spm_bid=117bbfa01a15secdpcd8b7ff02m67b3a
+cookie	__utma=121176714.1274987167.1566994582.1576940008.1577225838.79
 cookie	__utmt=1
-cookie	Hm_lpvt_3db4e52bb5797afe0faaa2fde5c96ea4=1576624076
-cookie	__utmb=121176714.4.9.1576624151690
+cookie	SESSION=780ca387-1ca9-41bd-90cc-d5b04525b776
+cookie	Hm_lpvt_3db4e52bb5797afe0faaa2fde5c96ea4=1577226299
+cookie	__utmb=121176714.6.10.1577225838
