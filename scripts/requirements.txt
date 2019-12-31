@@ -12,3 +12,5 @@ import prettytable
 import requests
 # 聚宽数据接口
 import jqdatasdk
+
+pip install BeautifulSoup lxml jinja2 openpyxl prettytable requests jqdatasdk
