@@ -147,8 +147,14 @@ class assetAllocationHtmlParser:
         parentAccount['gain'] = round(float(parentAccount['gain']),2)
         klqAccount['marketcap'] = round(float(klqAccount['marketcap']),2)
         parentAccount['marketcap'] = round(float(parentAccount['marketcap']),2)
-        klqAccount['gainRate'] = rate = '{0:.2f}%'.format(float(klqAccount['gain']) / (float(klqAccount['marketcap']) - float(klqAccount['gain'])) * 100)
-        parentAccount['gainRate'] = rate = '{0:.2f}%'.format(float(parentAccount['gain']) / (float(parentAccount['marketcap']) - float(parentAccount['gain'])) * 100)       
+        if (float(klqAccount['marketcap']) - float(klqAccount['gain'])) <= 0:
+            klqAccount['gainRate'] = '0.00%'
+        else:
+            klqAccount['gainRate'] = rate = '{0:.2f}%'.format(float(klqAccount['gain']) / (float(klqAccount['marketcap']) - float(klqAccount['gain'])) * 100)
+        if (float(parentAccount['marketcap']) - float(parentAccount['gain'])) <= 0:
+            parentAccount['gainRate'] = '0.00%'
+        else:
+            parentAccount['gainRate'] = rate = '{0:.2f}%'.format(float(parentAccount['gain']) / (float(parentAccount['marketcap']) - float(parentAccount['gain'])) * 100)
         accounts.insert(0, parentAccount)
         accounts.insert(0, klqAccount)
         accounts.sort(key=lambda k: k['sortId'])
@@ -161,8 +167,14 @@ class assetAllocationHtmlParser:
         totalStockGain = self.beautify(totalGain - totalCashGain)
         totalCashGain = self.beautify(totalCashGain)
         # 第三行统计信息
-        totalGainRate = round(totalGain/(totalMarketCap-totalGain),4)
-        totalStockGainRate = round(totalStockGain/(totalStockMarketCap - totalStockGain),4)
+        if totalMarketCap-totalGain <= 0:
+            totalGainRate = 0.0
+        else:
+            totalGainRate = round(totalGain/(totalMarketCap-totalGain),4)
+        if totalStockMarketCap - totalStockGain <= 0:
+            totalStockGainRate = 0.0
+        else:
+            totalStockGainRate = round(totalStockGain/(totalStockMarketCap - totalStockGain),4)
         if totalCashMarketCap > 0:
             totalCashGainRate = round(totalCashGain/(totalCashMarketCap-totalCashGain),4)
         else:

@@ -3,10 +3,10 @@ Referer	https://qieman.com/assets/CA942R8128PFE7
 User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.18363
 accept	application/json
 Accept-Language	zh-Hans-CN,zh-Hans;q=0.7,ja;q=0.3
-authorization	Bearer eyJ2ZXIiOiJ2MSIsImFsZyI6IkhTNTEyIn0.eyJzdWIiOiIxMzExMjIzIiwiaXNzIjoic3NvLnFpZW1hbi5jb20iLCJpc0FkbWluIjpmYWxzZSwiZXhwIjoxNTc2NzEzNDg4LCJpYXQiOjE1NzU0MTc0ODgsImp0aSI6ImU3MmEzZDBmLTAwNDgtNDdkOC05OWIwLTI2YmEwZDlhNDhiZCJ9.TDn0LuYAXy9bdOu9NWR03EDM03I997kvevepyVFxID4f6-YGb2R21Dn61La1lCmSV7gS4U-WRCxBXoSWwq-pYw
+authorization	Bearer eyJ2ZXIiOiJ2MSIsImFsZyI6IkhTNTEyIn0.eyJzdWIiOiIxMzExMjIzIiwiaXNzIjoic3NvLnFpZW1hbi5jb20iLCJpc0FkbWluIjpmYWxzZSwiZXhwIjoxNTc4MTQ1Mzc5LCJpYXQiOjE1NzY4NDkzNzksImp0aSI6ImIyNDRjZmMzLTU4YzMtNDRiNC05MjAwLThhM2YxMmVhOTY2YSJ9.4_nyAUmmGJ9Er-zV04BURt-UL04N528uekExrHb8SRSSCnEiXwkFzuQ63eZeOz3_W47o45H_3Ynvv4fiCBc7WA
 x-aid	A.FEDC5A401DV734SSYCKX8FE49E5CTTTP5
-x-request-id	albus.47D3506DCF299476D863
-x-sign	15766256210143E7CE631E3B9B2512B23B45417841151
+x-request-id	albus.7F476C340AD2B6D708B9
+x-sign	1577833941120A9F093AB7E0EE132EACC7CB06D4620CD
 Accept-Encoding	gzip, deflate, br
 Host	qieman.com
 Connection	Keep-Alive

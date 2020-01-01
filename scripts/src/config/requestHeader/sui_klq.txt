@@ -1,11 +1,13 @@
-:method	GET
-:path	/account/account.do
-:authority	www.sui.com
-:scheme	https
-referer	https://www.sui.com/report_index.do
-accept	text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-accept-language	zh-Hans-CN,zh-Hans;q=0.8,en-US;q=0.6,en;q=0.4,ja;q=0.2
-upgrade-insecure-requests	1
-user-agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/18.17763
-accept-encoding	gzip, deflate, br
-cookie	Hm_lpvt_3db4e52bb5797afe0faaa2fde5c96ea4=1577365441; __utmc=121176714; __utmz=121176714.1574295963.24.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utma=121176714.1152311422.1552132033.1574330586.1577365344.26; __spm_bid=63f58ea78b61s69fp98af0beefm68006; __utmb=121176714.3.10.1577365344; __utmt=1; Hm_lvt_3db4e52bb5797afe0faaa2fde5c96ea4=1577365344; __nick=klq26%40163.com; __vistor=85CBB08A1d5h4ek1z; _bookTabSwitchList=05d9c1d88a4bc09f1e6a4ccc3fa3f033|1|0&; SESSION=081dcaed-c88d-4178-9d22-39c5605ad543; SESSION_COOKIE=a8e14a3d3446b0d7b8155ae885f316e7
+	GET /account/account.do HTTP/1.1
+Host	www.sui.com
+Connection	keep-alive
+Upgrade-Insecure-Requests	1
+User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36
+Sec-Fetch-User	?1
+Accept	text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Sec-Fetch-Site	same-origin
+Sec-Fetch-Mode	navigate
+Referer	https://www.sui.com/report_index.do
+Accept-Encoding	gzip, deflate, br
+Accept-Language	zh-CN,zh;q=0.9
+Cookie	__vistor=C2FC974E1dkc2f30k; __nick=klq26%40163.com; SESSION_COOKIE=a8e14a3d3446b0d7b8155ae885f316e7; __utmc=121176714; __utmz=121176714.1572313309.44.20.utmcsr=login.sui.com|utmccn=(referral)|utmcmd=referral|utmcct=/auth.do; _bookTabSwitchList=05d9c1d88a4bc09f1e6a4ccc3fa3f033|1|0&; Hm_lvt_3db4e52bb5797afe0faaa2fde5c96ea4=1576891040; __jsluid_s=5bfc79c54390dcec87595cffb3de5ed3; __spm_bid=b1a586a341c8sc19pe2e8f3423m15a5f; SESSION=a87bfdd9-cec3-490e-8a9f-ed3dbcaf6e54; __utma=121176714.1274987167.1566994582.1577489713.1577832793.81; __utmt=1; Hm_lpvt_3db4e52bb5797afe0faaa2fde5c96ea4=1577832814; __utmb=121176714.2.10.1577832793

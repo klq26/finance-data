@@ -3,12 +3,13 @@ Host	qieman.com
 Connection	keep-alive
 Accept	application/json
 x-aid	A.8E975B001DK31V1CWJ905XECNHRDCWSN3
-x-sign	157736561299692F40EC4CF900D830FA61DD5FF82E605
+x-sign	1577832738225FA9ABC6A262D12A0CA80DF678A6630F6
 Authorization	Bearer eyJ2ZXIiOiJ2MSIsImFsZyI6IkhTNTEyIn0.eyJzdWIiOiI3OTQ1NDkiLCJpc3MiOiJzc28ucWllbWFuLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJleHAiOjE1Nzc5MjA3MjQsImlhdCI6MTU3NjYyNDcyNCwianRpIjoiYzI1NGE1YWItMGI3MS00NWUzLTgyMDktNWY0ZmFhOTMzMDdjIn0.Nt73-5UbZufSsfZ2Pn__S1G0gz-oL9ijSTg4WCy7NY4PfKvj3yHRVRFC8wLbsk3RYF9TZrL-__lReyFTTZYADg
-User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36
-x-request-id	albus.5109D36892004E6E0A8E
+User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36
+x-request-id	albus.0CCDE11806C7FF2ABE2F
 Sec-Fetch-Site	same-origin
 Sec-Fetch-Mode	cors
 Referer	https://qieman.com/umas/10209
 Accept-Encoding	gzip, deflate, br
 Accept-Language	zh-CN,zh;q=0.9
+If-None-Match	W/"7df-f5BD7motsUqB+mSW82tNoqczfic"
