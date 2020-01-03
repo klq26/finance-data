@@ -5,6 +5,7 @@ import sys
 import shutil
 import time
 import json
+from datetime import datetime
 from operator import itemgetter
 # html template
 import jinja2
@@ -216,9 +217,10 @@ class assetAllocationEstimateHtmlParser:
 
         with open(path, 'w+', encoding=u'utf-8') as fout:
             htmlCode = template.render(name=title,
-                                       summary=summarys,
-                                       account=accounts,
-                                       data=data)
+                                        time = datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                                        summary=summarys,
+                                        account=accounts,
+                                        data=data)
             fout.write(htmlCode)
         # 打开文件
         if sys.platform.startswith('win'):
