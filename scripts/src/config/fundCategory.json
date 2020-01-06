@@ -457,14 +457,6 @@
             "category4":"411"
         },
         {
-            "name":"交银信用添利债券(LOF)",
-            "code":"164902",
-            "category1":"混合型",
-            "category2":"股债混合",
-            "category3":"偏债",
-            "category4":"411"
-        },
-        {
             "name":"交银新回报灵活配置混合A",
             "code":"519752",
             "category1":"混合型",
@@ -579,6 +571,14 @@
         {
             "name":"易方达安心回报债券A",
             "code":"110027",
+            "category1":"债券",
+            "category2":"国内债券",
+            "category3":"可转债",
+            "category4":"512"
+        },
+        {
+            "name":"交银信用添利债券(LOF)",
+            "code":"164902",
             "category1":"债券",
             "category2":"国内债券",
             "category3":"可转债",
