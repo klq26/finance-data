@@ -1,12 +1,12 @@
 	GET /pmdj/v2/asset/ca/detail?capitalAccountId=CA942R8128PFE7 HTTP/1.1
 Referer	https://qieman.com/assets/CA942R8128PFE7
-User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.18363
+User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/18.17763
 accept	application/json
-Accept-Language	zh-Hans-CN,zh-Hans;q=0.7,ja;q=0.3
-authorization	Bearer eyJ2ZXIiOiJ2MSIsImFsZyI6IkhTNTEyIn0.eyJzdWIiOiIxMzExMjIzIiwiaXNzIjoic3NvLnFpZW1hbi5jb20iLCJpc0FkbWluIjpmYWxzZSwiZXhwIjoxNTc4MTQ1Mzc5LCJpYXQiOjE1NzY4NDkzNzksImp0aSI6ImIyNDRjZmMzLTU4YzMtNDRiNC05MjAwLThhM2YxMmVhOTY2YSJ9.4_nyAUmmGJ9Er-zV04BURt-UL04N528uekExrHb8SRSSCnEiXwkFzuQ63eZeOz3_W47o45H_3Ynvv4fiCBc7WA
-x-aid	A.FEDC5A401DV734SSYCKX8FE49E5CTTTP5
-x-request-id	albus.7F476C340AD2B6D708B9
-x-sign	1577833941120A9F093AB7E0EE132EACC7CB06D4620CD
+Accept-Language	zh-Hans-CN,zh-Hans;q=0.8,en-US;q=0.6,en;q=0.4,ja;q=0.2
+authorization	Bearer eyJ2ZXIiOiJ2MSIsImFsZyI6IkhTNTEyIn0.eyJzdWIiOiIxMzExMjIzIiwiaXNzIjoic3NvLnFpZW1hbi5jb20iLCJpc0FkbWluIjpmYWxzZSwiZXhwIjoxNTc5NjA0NTY3LCJpYXQiOjE1NzgzMDg1NjcsImp0aSI6IjE5YzAxMDI3LWE5NGQtNDFkZi1iNTdkLTA0MmM0ZDc3MGU4ZSJ9.XuaLIy7pen6yXL2BXCnJXLvO4pR4kY4MI1aW5uQES6s_VQ-ldZ_Pw9jm8vo-1UlV1yxlyG05M4njkhoL3X3D-w
+x-aid	A.3BD9A2401D4D6N4D9QCF27HEMHRZFA49S
+x-request-id	albus.26E2A8A14615BC68C304
+x-sign	1578308572088F2D84F1E1AA266F08BC72FB038408769
 Accept-Encoding	gzip, deflate, br
 Host	qieman.com
 Connection	Keep-Alive
