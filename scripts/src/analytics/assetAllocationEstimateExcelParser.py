@@ -239,9 +239,9 @@ class assetAllocationEstimateExcelParser:
         print(tb1)
         print('\n')
         # 钉钉消息
-        self.dingtalk.sendMessage(u'{0}\n今日收益估算：{1}\n场内估算：{2}\n场外估算：{3}\n权益类涨跌：{4}\n组合涨跌：{5}'.format(\
-            title, round(estimateTotalGainToday,2),round(estimateTotalGainToday - outerFundEstimateTotalGainToday,2),round(outerFundEstimateTotalGainToday,2),u'{0}%'.format(round(estimateTotalGainToday/currentTotalStockMarketCap * 100, 2)),u'{0}%'.format(round(estimateTotalGainToday/currentTotalMarketCap * 100, 2))
-        ))
+        # self.dingtalk.sendMessage(u'{0}\n今日收益估算：{1}\n场内估算：{2}\n场外估算：{3}\n权益类涨跌：{4}\n组合涨跌：{5}'.format(\
+        #    title, round(estimateTotalGainToday,2),round(estimateTotalGainToday - outerFundEstimateTotalGainToday,2),round(outerFundEstimateTotalGainToday,2),u'{0}%'.format(round(estimateTotalGainToday/currentTotalStockMarketCap * 100, 2)),u'{0}%'.format(round(estimateTotalGainToday/currentTotalMarketCap * 100, 2))
+        #))
         
         # 输出分账户情况
         tb2 = PrettyTable()
@@ -253,7 +253,7 @@ class assetAllocationEstimateExcelParser:
         for key in gainByAppSource.keys():
             msg = msg + u'{0}：{1}\n'.format(key,gainByAppSource[key])
         msg = msg[0:-1] # 去掉最后一个 \n
-        self.dingtalk.sendMessage(u'分账户收益估算：\n{0}'.format(msg))
+        # self.dingtalk.sendMessage(u'分账户收益估算：\n{0}'.format(msg))
         
     # 读取本地 fundModel 数据
     def loadFundModelArrayFromJson(self):
