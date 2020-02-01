@@ -1,0 +1,1724 @@
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<html align='left'>
+
+<head>
+    <title>收益估算</title>
+    <!-- jQuery -->
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+    <!-- color for summary & account -->
+    <script type="text/javascript">
+        // 给涨跌额用颜色区分开
+        $(function () {
+            $('.gainLabel').each(function (j) {
+                var colorStr = '';
+                $('.gainLabel').eq(j).html().replace("%", "") >= 0 ? colorStr = '#DD2200' : colorStr = '#009933';
+                $('.gainLabel').eq(j).css('color', colorStr);
+            });
+        })
+
+        // 点击筛选
+        function sort(object) {
+            var type = object.attributes['type'].nodeValue
+            console.log(type)
+            var sortFunction = object.className;
+            var index = object.id.substr(2, 2);
+            var tableNode = document.getElementById("table");
+            var trs = tableNode.rows;
+            // 取出所有的 row
+            var arr = new Array;
+            for (var x = 1; x < trs.length; x++) {
+                arr.push(trs[x]);
+            }
+            // className 做升降序标识
+            if (sortFunction == 'asc') {
+                object.className = 'desc'
+                if (type == 'number') {
+                    numAscSort(arr, index);
+                } else {
+                    strAscSort(arr, index);
+                }
+
+            } else {
+                object.className = 'asc'
+                if (type == 'number') {
+                    numDescSort(arr, index);
+                } else {
+                    strDescSort(arr, index);
+                }
+            }
+
+            for (var x = 0; x < arr.length; x++) {
+                tableNode.tBodies[0].appendChild(arr[x]);
+            }
+        }
+
+        // 升序冒泡
+        function numAscSort(arr, index) {
+            console.log('numAscSort')
+            for (var x = 0; x < arr.length; x++) {
+                for (var y = x + 1; y < arr.length; y++) {
+                    if (parseFloat(arr[x].cells[index].childNodes[0].nodeValue) >= parseFloat(arr[y].cells[index].childNodes[0].nodeValue)) {
+                        var tmp = arr[x];
+                        arr[x] = arr[y];
+                        arr[y] = tmp;
+                    }
+                }
+            }
+        }
+
+        // 升序冒泡
+        function strAscSort(arr, index) {
+            for (var x = 0; x < arr.length; x++) {
+                for (var y = x + 1; y < arr.length; y++) {
+                    if (arr[x].cells[index].childNodes[0].nodeValue.localeCompare(arr[y].cells[index].childNodes[0].nodeValue) >= 0) {
+                        var tmp = arr[x];
+                        arr[x] = arr[y];
+                        arr[y] = tmp;
+                    }
+                }
+            }
+        }
+
+        // 降序冒泡
+        function numDescSort(arr, index) {
+            console.log('numDescSort')
+            for (var x = 0; x < arr.length; x++) {
+                for (var y = x + 1; y < arr.length; y++) {
+                    if (parseFloat(arr[x].cells[index].childNodes[0].nodeValue) <= parseFloat(arr[y].cells[index].childNodes[0].nodeValue)) {
+                        var tmp = arr[x];
+                        arr[x] = arr[y];
+                        arr[y] = tmp;
+                    }
+                }
+            }
+        }
+
+        // 降序冒泡
+        function strDescSort(arr, index) {
+            console.log('strDescSort')
+            for (var x = 0; x < arr.length; x++) {
+                for (var y = x + 1; y < arr.length; y++) {
+                    if (arr[x].cells[index].childNodes[0].nodeValue.localeCompare(arr[y].cells[index].childNodes[0].nodeValue) <= 0) {
+                        var tmp = arr[x];
+                        arr[x] = arr[y];
+                        arr[y] = tmp;
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+
+    </style>
+</head>
+<h1>父母收益估算</h1>
+
+<body>
+    <ul style="padding: 0px;">
+        <!-- 整体情况 -->
+        <h2>整体情况</h2>
+        <p>估值时间：2020-02-01 11:31:25 </p>
+        <li style="width: 100%; margin-bottom: 10px;">
+            <div style="display: inline-table;">
+                
+                <div style="background-color:#50C2F9; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">
+                            今日收益估算</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            -3.89</li>
+                    </ul>
+                </div>
+                
+                <div style="background-color:#50C2F9; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">
+                            场内估算</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            0.0</li>
+                    </ul>
+                </div>
+                
+                <div style="background-color:#50C2F9; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">
+                            场外估算</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            -3.89</li>
+                    </ul>
+                </div>
+                
+                <div style="background-color:#50C2F9; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">
+                            权益类涨跌</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            -0.0%</li>
+                    </ul>
+                </div>
+                
+                <div style="background-color:#50C2F9; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">
+                            组合涨跌</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            -0.0%</li>
+                    </ul>
+                </div>
+                
+            </div>
+        </li>
+        <!-- 帐户盈亏 -->
+        <h2>帐户盈亏</h2>
+        <li style="width: 100%; margin-bottom: 10px;">
+            <div style="display: inline-table;">
+                
+                <div style="background-color:#50C2F9; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">
+                            康力泉整体</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            0.0</li>
+                    </ul>
+                </div>
+                
+                <div style="background-color:#50C2F9; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">
+                            父母整体</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            -3.89</li>
+                    </ul>
+                </div>
+                
+                <div style="background-color:#FF8361; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">
+                            天天基金母</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            -21.51</li>
+                    </ul>
+                </div>
+                
+                <div style="background-color:#6EB5FF; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">
+                            稳稳的幸福父</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            183.32</li>
+                    </ul>
+                </div>
+                
+                <div style="background-color:#F0DC5A; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">
+                            螺丝钉母</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            -85.15</li>
+                    </ul>
+                </div>
+                
+                <div style="background-color:#F0DC5A; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">
+                            螺丝钉父</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            -80.55</li>
+                    </ul>
+                </div>
+                
+            </div>
+        </li>
+        <!-- 基金情况 -->
+        <h2>基金情况</h2>
+        <li>
+            <!-- 基金估值 -->
+            <table id='table' border="1" cellspacing='0' cellpadding='4' align='left'>
+                <tr align='center'>
+                    <th id='th0' class='asc' type='string' onclick='sort(this)' align='center'>基金名称</th>
+                    <th id='th1' class='asc' type='number' onclick='sort(this)' align='center'>基金代码</th>
+                    <!-- <th id='th2' class='asc' type='number' onclick='sort(this)' align='center'>持仓成本</th> -->
+                    <!-- <th id='th3' class='asc' type='number' onclick='sort(this)' align='center'>持仓份额</th> -->
+                    <th id='th2' class='asc' type='number' onclick='sort(this)' align='center'>持仓市值</th>
+                    <th id='th3' class='asc' type='number' onclick='sort(this)' align='center'>累计收益</th>
+                    <!-- 接口查询 -->
+                    <th id='th4' class='asc' type='number' onclick='sort(this)' align='center'>当前净值</th>
+                    <th id='th5' class='asc' type='number' onclick='sort(this)' align='center'>净值日期</th>
+                    <th id='th6' class='asc' type='number' onclick='sort(this)' align='center'>估算净值</th>
+                    <th id='th7' class='asc' type='number' onclick='sort(this)' align='center'>估算时间</th>
+                    <th id='th8' class='asc' type='number' onclick='sort(this)' align='center'>估算涨跌幅</th>
+                    <th id='th9' class='asc' type='number' onclick='sort(this)' align='center'>估算日收益</th>
+                    <!-- 接口查询 结束 -->
+                    <th id='th10' class='asc' type='string' onclick='sort(this)' align='center'>一级分类</th>
+                    <th id='th11' class='asc' type='string' onclick='sort(this)' align='center'>二级分类</th>
+                    <th id='th12' class='asc' type='string' onclick='sort(this)' align='center'>三级分类</th>
+                    <th id='th13' class='asc' type='number' onclick='sort(this)' align='center'>分类 ID</th>
+                    <th id='th14' class='asc' type='string' onclick='sort(this)' align='center'>来源</th>
+                </tr>
+
+                
+                <tr align='center'>
+                    <td bgcolor=6EB5FF>交银双轮动A/B</td>
+                    <td bgcolor=6EB5FF>519723</td>
+                    <!-- <td align='right' bgcolor=6EB5FF>1.0674</td> -->
+                    <!-- <td align='right' bgcolor=6EB5FF>134080.44</td> -->
+                    <td align='right' bgcolor=6EB5FF>144002.39</td>
+                    <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                        884.93</td>
+
+                    <td align='right' bgcolor=6EB5FF>1.0740</td>
+                    <td bgcolor=6EB5FF>2020-01-23</td>
+                    <td align='right' bgcolor=6EB5FF>1.0746</td>
+                    <td bgcolor=6EB5FF>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                        0.06%
+                    </td>
+                    <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                        80.45
+                    </td>
+
+                    <td bgcolor=6EB5FF>债券</td>
+                    <td bgcolor=6EB5FF>国内债券</td>
+                    <td bgcolor=6EB5FF>可转债</td>
+                    <td bgcolor=6EB5FF>512</td>
+                    <td bgcolor=6EB5FF>稳稳的幸福父</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=6EB5FF>交银信用添利债券(LOF)</td>
+                    <td bgcolor=6EB5FF>164902</td>
+                    <!-- <td align='right' bgcolor=6EB5FF>1.1469</td> -->
+                    <!-- <td align='right' bgcolor=6EB5FF>132767.68</td> -->
+                    <td align='right' bgcolor=6EB5FF>152682.83</td>
+                    <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                        411.58</td>
+
+                    <td align='right' bgcolor=6EB5FF>1.1500</td>
+                    <td bgcolor=6EB5FF>2020-01-23</td>
+                    <td align='right' bgcolor=6EB5FF>1.1506</td>
+                    <td bgcolor=6EB5FF>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                        0.05%
+                    </td>
+                    <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                        79.66
+                    </td>
+
+                    <td bgcolor=6EB5FF>债券</td>
+                    <td bgcolor=6EB5FF>国内债券</td>
+                    <td bgcolor=6EB5FF>可转债</td>
+                    <td bgcolor=6EB5FF>512</td>
+                    <td bgcolor=6EB5FF>稳稳的幸福父</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=FF8361>华宝标普油气上游股票人民币A</td>
+                    <td bgcolor=FF8361>162411</td>
+                    <!-- <td align='right' bgcolor=FF8361>0.4776</td> -->
+                    <!-- <td align='right' bgcolor=FF8361>3350.70</td> -->
+                    <td align='right' bgcolor=FF8361>1230.04</td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -370.25</td>
+
+                    <td align='right' bgcolor=FF8361>0.3671</td>
+                    <td bgcolor=FF8361>2020-01-22</td>
+                    <td align='right' bgcolor=FF8361>0.3810</td>
+                    <td bgcolor=FF8361>2020-01-23 15:04</td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -1.30%
+                    </td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        46.57
+                    </td>
+
+                    <td bgcolor=FF8361>商品</td>
+                    <td bgcolor=FF8361>商品</td>
+                    <td bgcolor=FF8361>原油</td>
+                    <td bgcolor=FF8361>613</td>
+                    <td bgcolor=FF8361>天天基金母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=6EB5FF>交银稳鑫短债债券A</td>
+                    <td bgcolor=6EB5FF>006793</td>
+                    <!-- <td align='right' bgcolor=6EB5FF>1.0286</td> -->
+                    <!-- <td align='right' bgcolor=6EB5FF>78202.03</td> -->
+                    <td align='right' bgcolor=6EB5FF>80962.56</td>
+                    <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                        523.95</td>
+
+                    <td align='right' bgcolor=6EB5FF>1.0353</td>
+                    <td bgcolor=6EB5FF>2020-01-23</td>
+                    <td align='right' bgcolor=6EB5FF>1.0357</td>
+                    <td bgcolor=6EB5FF>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                        0.05%
+                    </td>
+                    <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                        31.28
+                    </td>
+
+                    <td bgcolor=6EB5FF>债券</td>
+                    <td bgcolor=6EB5FF>国内债券</td>
+                    <td bgcolor=6EB5FF>可转债</td>
+                    <td bgcolor=6EB5FF>512</td>
+                    <td bgcolor=6EB5FF>稳稳的幸福父</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=FF8361>兴全可转债混合</td>
+                    <td bgcolor=FF8361>340001</td>
+                    <!-- <td align='right' bgcolor=FF8361>0.9816</td> -->
+                    <!-- <td align='right' bgcolor=FF8361>1630.08</td> -->
+                    <td align='right' bgcolor=FF8361>1984.30</td>
+                    <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                        384.21</td>
+
+                    <td align='right' bgcolor=FF8361>1.2173</td>
+                    <td bgcolor=FF8361>2020-01-23</td>
+                    <td align='right' bgcolor=FF8361>1.2311</td>
+                    <td bgcolor=FF8361>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -0.68%
+                    </td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        22.50
+                    </td>
+
+                    <td bgcolor=FF8361>债券</td>
+                    <td bgcolor=FF8361>国内债券</td>
+                    <td bgcolor=FF8361>可转债</td>
+                    <td bgcolor=FF8361>512</td>
+                    <td bgcolor=FF8361>天天基金母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=6EB5FF>交银新回报灵活配置混合A</td>
+                    <td bgcolor=6EB5FF>519752</td>
+                    <!-- <td align='right' bgcolor=6EB5FF>1.2439</td> -->
+                    <!-- <td align='right' bgcolor=6EB5FF>59685.02</td> -->
+                    <td align='right' bgcolor=6EB5FF>75143.44</td>
+                    <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                        901.24</td>
+
+                    <td align='right' bgcolor=6EB5FF>1.2590</td>
+                    <td bgcolor=6EB5FF>2020-01-23</td>
+                    <td align='right' bgcolor=6EB5FF>1.2612</td>
+                    <td bgcolor=6EB5FF>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=6EB5FF style='color: #009933;'>
+                        -0.22%
+                    </td>
+                    <td align='right' bgcolor=6EB5FF style='color: #009933;'>
+                        131.31
+                    </td>
+
+                    <td bgcolor=6EB5FF>混合型</td>
+                    <td bgcolor=6EB5FF>股债混合</td>
+                    <td bgcolor=6EB5FF>偏债</td>
+                    <td bgcolor=6EB5FF>412</td>
+                    <td bgcolor=6EB5FF>稳稳的幸福父</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=6EB5FF>交银纯债A/B</td>
+                    <td bgcolor=6EB5FF>519718</td>
+                    <!-- <td align='right' bgcolor=6EB5FF>1.0644</td> -->
+                    <!-- <td align='right' bgcolor=6EB5FF>144612.80</td> -->
+                    <td align='right' bgcolor=6EB5FF>155458.76</td>
+                    <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                        1532.90</td>
+
+                    <td align='right' bgcolor=6EB5FF>1.0750</td>
+                    <td bgcolor=6EB5FF>2020-01-23</td>
+                    <td align='right' bgcolor=6EB5FF>1.0757</td>
+                    <td bgcolor=6EB5FF>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                        0.06%
+                    </td>
+                    <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                        101.23
+                    </td>
+
+                    <td bgcolor=6EB5FF>债券</td>
+                    <td bgcolor=6EB5FF>国内债券</td>
+                    <td bgcolor=6EB5FF>可转债</td>
+                    <td bgcolor=6EB5FF>512</td>
+                    <td bgcolor=6EB5FF>稳稳的幸福父</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=FF8361>建信中证500指数增强A</td>
+                    <td bgcolor=FF8361>000478</td>
+                    <!-- <td align='right' bgcolor=FF8361>1.9396</td> -->
+                    <!-- <td align='right' bgcolor=FF8361>206.23</td> -->
+                    <td align='right' bgcolor=FF8361>430.59</td>
+                    <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                        30.58</td>
+
+                    <td align='right' bgcolor=FF8361>2.0879</td>
+                    <td bgcolor=FF8361>2020-01-23</td>
+                    <td align='right' bgcolor=FF8361>2.0964</td>
+                    <td bgcolor=FF8361>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -3.37%
+                    </td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        1.75
+                    </td>
+
+                    <td bgcolor=FF8361>A 股</td>
+                    <td bgcolor=FF8361>中小盘股</td>
+                    <td bgcolor=FF8361>中证500</td>
+                    <td bgcolor=FF8361>121</td>
+                    <td bgcolor=FF8361>天天基金母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=FF8361>富国中证红利指数增强</td>
+                    <td bgcolor=FF8361>100032</td>
+                    <!-- <td align='right' bgcolor=FF8361>1.0142</td> -->
+                    <!-- <td align='right' bgcolor=FF8361>8677.60</td> -->
+                    <td align='right' bgcolor=FF8361>9814.37</td>
+                    <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                        1013.54</td>
+
+                    <td align='right' bgcolor=FF8361>1.1310</td>
+                    <td bgcolor=FF8361>2020-01-23</td>
+                    <td align='right' bgcolor=FF8361>1.1312</td>
+                    <td bgcolor=FF8361>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -2.57%
+                    </td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        1.74
+                    </td>
+
+                    <td bgcolor=FF8361>A 股</td>
+                    <td bgcolor=FF8361>红利价值</td>
+                    <td bgcolor=FF8361>中证红利</td>
+                    <td bgcolor=FF8361>131</td>
+                    <td bgcolor=FF8361>天天基金母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=FF8361>长信可转债债券A</td>
+                    <td bgcolor=FF8361>519977</td>
+                    <!-- <td align='right' bgcolor=FF8361>1.2011</td> -->
+                    <!-- <td align='right' bgcolor=FF8361>333.04</td> -->
+                    <td align='right' bgcolor=FF8361>480.51</td>
+                    <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                        80.50</td>
+
+                    <td align='right' bgcolor=FF8361>1.4428</td>
+                    <td bgcolor=FF8361>2020-01-23</td>
+                    <td align='right' bgcolor=FF8361>1.4477</td>
+                    <td bgcolor=FF8361>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -1.69%
+                    </td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        1.63
+                    </td>
+
+                    <td bgcolor=FF8361>债券</td>
+                    <td bgcolor=FF8361>国内债券</td>
+                    <td bgcolor=FF8361>可转债</td>
+                    <td bgcolor=FF8361>512</td>
+                    <td bgcolor=FF8361>天天基金母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=FF8361>易方达安心回报债券A</td>
+                    <td bgcolor=FF8361>110027</td>
+                    <!-- <td align='right' bgcolor=FF8361>1.6102</td> -->
+                    <!-- <td align='right' bgcolor=FF8361>1981.84</td> -->
+                    <td align='right' bgcolor=FF8361>3515.78</td>
+                    <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                        324.63</td>
+
+                    <td align='right' bgcolor=FF8361>1.7740</td>
+                    <td bgcolor=FF8361>2020-01-23</td>
+                    <td align='right' bgcolor=FF8361>1.7746</td>
+                    <td bgcolor=FF8361>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -1.08%
+                    </td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        1.19
+                    </td>
+
+                    <td bgcolor=FF8361>债券</td>
+                    <td bgcolor=FF8361>国内债券</td>
+                    <td bgcolor=FF8361>可转债</td>
+                    <td bgcolor=FF8361>512</td>
+                    <td bgcolor=FF8361>天天基金母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=FF8361>华夏上证50ETF联接A</td>
+                    <td bgcolor=FF8361>001051</td>
+                    <!-- <td align='right' bgcolor=FF8361>0.8966</td> -->
+                    <!-- <td align='right' bgcolor=FF8361>1338.46</td> -->
+                    <td align='right' bgcolor=FF8361>1341.14</td>
+                    <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                        141.07</td>
+
+                    <td align='right' bgcolor=FF8361>1.0020</td>
+                    <td bgcolor=FF8361>2020-01-23</td>
+                    <td align='right' bgcolor=FF8361>1.0023</td>
+                    <td bgcolor=FF8361>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -2.69%
+                    </td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        0.40
+                    </td>
+
+                    <td bgcolor=FF8361>A 股</td>
+                    <td bgcolor=FF8361>大盘股</td>
+                    <td bgcolor=FF8361>上证50</td>
+                    <td bgcolor=FF8361>111</td>
+                    <td bgcolor=FF8361>天天基金母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=F0DC5A>华宝红利基金</td>
+                    <td bgcolor=F0DC5A>501029</td>
+                    <!-- <td align='right' bgcolor=F0DC5A>0.9824</td> -->
+                    <!-- <td align='right' bgcolor=F0DC5A>227.52</td> -->
+                    <td align='right' bgcolor=F0DC5A>224.04</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                        0.52</td>
+
+                    <td align='right' bgcolor=F0DC5A>0.9847</td>
+                    <td bgcolor=F0DC5A>2020-01-23</td>
+                    <td align='right' bgcolor=F0DC5A>0.9862</td>
+                    <td bgcolor=F0DC5A>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -2.61%
+                    </td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        0.34
+                    </td>
+
+                    <td bgcolor=F0DC5A>A 股</td>
+                    <td bgcolor=F0DC5A>红利价值</td>
+                    <td bgcolor=F0DC5A>标普红利</td>
+                    <td bgcolor=F0DC5A>132</td>
+                    <td bgcolor=F0DC5A>螺丝钉母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=F0DC5A>华宝红利基金</td>
+                    <td bgcolor=F0DC5A>501029</td>
+                    <!-- <td align='right' bgcolor=F0DC5A>0.9829</td> -->
+                    <!-- <td align='right' bgcolor=F0DC5A>214.89</td> -->
+                    <td align='right' bgcolor=F0DC5A>211.60</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                        0.39</td>
+
+                    <td align='right' bgcolor=F0DC5A>0.9847</td>
+                    <td bgcolor=F0DC5A>2020-01-23</td>
+                    <td align='right' bgcolor=F0DC5A>0.9862</td>
+                    <td bgcolor=F0DC5A>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -2.61%
+                    </td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        0.32
+                    </td>
+
+                    <td bgcolor=F0DC5A>A 股</td>
+                    <td bgcolor=F0DC5A>红利价值</td>
+                    <td bgcolor=F0DC5A>标普红利</td>
+                    <td bgcolor=F0DC5A>132</td>
+                    <td bgcolor=F0DC5A>螺丝钉父</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=FF8361>华安黄金易ETF联接A</td>
+                    <td bgcolor=FF8361>000216</td>
+                    <!-- <td align='right' bgcolor=FF8361>1.0903</td> -->
+                    <!-- <td align='right' bgcolor=FF8361>733.79</td> -->
+                    <td align='right' bgcolor=FF8361>933.38</td>
+                    <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                        133.33</td>
+
+                    <td align='right' bgcolor=FF8361>1.2720</td>
+                    <td bgcolor=FF8361>2020-01-23</td>
+                    <td align='right' bgcolor=FF8361>1.2723</td>
+                    <td bgcolor=FF8361>2020-01-23 15:30</td>
+                    <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                        0.58%
+                    </td>
+                    <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                        0.22
+                    </td>
+
+                    <td bgcolor=FF8361>商品</td>
+                    <td bgcolor=FF8361>商品</td>
+                    <td bgcolor=FF8361>黄金</td>
+                    <td bgcolor=FF8361>611</td>
+                    <td bgcolor=FF8361>天天基金母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=FF8361>华夏沪深300ETF联接A</td>
+                    <td bgcolor=FF8361>000051</td>
+                    <!-- <td align='right' bgcolor=FF8361>1.2285</td> -->
+                    <!-- <td align='right' bgcolor=FF8361>325.61</td> -->
+                    <td align='right' bgcolor=FF8361>435.99</td>
+                    <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                        35.98</td>
+
+                    <td align='right' bgcolor=FF8361>1.3390</td>
+                    <td bgcolor=FF8361>2020-01-23</td>
+                    <td align='right' bgcolor=FF8361>1.3394</td>
+                    <td bgcolor=FF8361>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -2.95%
+                    </td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        0.13
+                    </td>
+
+                    <td bgcolor=FF8361>A 股</td>
+                    <td bgcolor=FF8361>大盘股</td>
+                    <td bgcolor=FF8361>沪深300</td>
+                    <td bgcolor=FF8361>113</td>
+                    <td bgcolor=FF8361>天天基金母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=F0DC5A>天弘中证医药100A</td>
+                    <td bgcolor=F0DC5A>001550</td>
+                    <!-- <td align='right' bgcolor=F0DC5A>0.6708</td> -->
+                    <!-- <td align='right' bgcolor=F0DC5A>212.74</td> -->
+                    <td align='right' bgcolor=F0DC5A>180.25</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                        37.55</td>
+
+                    <td align='right' bgcolor=F0DC5A>0.8473</td>
+                    <td bgcolor=F0DC5A>2020-01-23</td>
+                    <td align='right' bgcolor=F0DC5A>0.8478</td>
+                    <td bgcolor=F0DC5A>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -1.13%
+                    </td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        0.11
+                    </td>
+
+                    <td bgcolor=F0DC5A>A 股</td>
+                    <td bgcolor=F0DC5A>行业股</td>
+                    <td bgcolor=F0DC5A>全指医药</td>
+                    <td bgcolor=F0DC5A>142</td>
+                    <td bgcolor=F0DC5A>螺丝钉父</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=F0DC5A>天弘中证医药100A</td>
+                    <td bgcolor=F0DC5A>001550</td>
+                    <!-- <td align='right' bgcolor=F0DC5A>0.6708</td> -->
+                    <!-- <td align='right' bgcolor=F0DC5A>212.74</td> -->
+                    <td align='right' bgcolor=F0DC5A>180.25</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                        37.55</td>
+
+                    <td align='right' bgcolor=F0DC5A>0.8473</td>
+                    <td bgcolor=F0DC5A>2020-01-23</td>
+                    <td align='right' bgcolor=F0DC5A>0.8478</td>
+                    <td bgcolor=F0DC5A>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -1.13%
+                    </td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        0.11
+                    </td>
+
+                    <td bgcolor=F0DC5A>A 股</td>
+                    <td bgcolor=F0DC5A>行业股</td>
+                    <td bgcolor=F0DC5A>全指医药</td>
+                    <td bgcolor=F0DC5A>142</td>
+                    <td bgcolor=F0DC5A>螺丝钉母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=F0DC5A>华宝香港中小</td>
+                    <td bgcolor=F0DC5A>501021</td>
+                    <!-- <td align='right' bgcolor=F0DC5A>1.3514</td> -->
+                    <!-- <td align='right' bgcolor=F0DC5A>915.97</td> -->
+                    <td align='right' bgcolor=F0DC5A>1370.57</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                        132.72</td>
+
+                    <td align='right' bgcolor=F0DC5A>1.4963</td>
+                    <td bgcolor=F0DC5A>2020-01-23</td>
+                    <td align='right' bgcolor=F0DC5A>1.4155</td>
+                    <td bgcolor=F0DC5A>2020-01-31 16:00</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -5.40%
+                    </td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -74.01
+                    </td>
+
+                    <td bgcolor=F0DC5A>海外新兴</td>
+                    <td bgcolor=F0DC5A>香港</td>
+                    <td bgcolor=F0DC5A>香港中小</td>
+                    <td bgcolor=F0DC5A>213</td>
+                    <td bgcolor=F0DC5A>螺丝钉母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=F0DC5A>华宝香港中小</td>
+                    <td bgcolor=F0DC5A>501021</td>
+                    <!-- <td align='right' bgcolor=F0DC5A>1.3485</td> -->
+                    <!-- <td align='right' bgcolor=F0DC5A>898.04</td> -->
+                    <td align='right' bgcolor=F0DC5A>1343.74</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                        132.73</td>
+
+                    <td align='right' bgcolor=F0DC5A>1.4963</td>
+                    <td bgcolor=F0DC5A>2020-01-23</td>
+                    <td align='right' bgcolor=F0DC5A>1.4155</td>
+                    <td bgcolor=F0DC5A>2020-01-31 16:00</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -5.40%
+                    </td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -72.56
+                    </td>
+
+                    <td bgcolor=F0DC5A>海外新兴</td>
+                    <td bgcolor=F0DC5A>香港</td>
+                    <td bgcolor=F0DC5A>香港中小</td>
+                    <td bgcolor=F0DC5A>213</td>
+                    <td bgcolor=F0DC5A>螺丝钉父</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=FF8361>富国中证500指数(LOF)</td>
+                    <td bgcolor=FF8361>161017</td>
+                    <!-- <td align='right' bgcolor=FF8361>1.3250</td> -->
+                    <!-- <td align='right' bgcolor=FF8361>2046.97</td> -->
+                    <td align='right' bgcolor=FF8361>3598.57</td>
+                    <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                        886.34</td>
+
+                    <td align='right' bgcolor=FF8361>1.7580</td>
+                    <td bgcolor=FF8361>2020-01-23</td>
+                    <td align='right' bgcolor=FF8361>1.7548</td>
+                    <td bgcolor=FF8361>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -3.37%
+                    </td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -6.55
+                    </td>
+
+                    <td bgcolor=FF8361>A 股</td>
+                    <td bgcolor=FF8361>中小盘股</td>
+                    <td bgcolor=FF8361>中证500</td>
+                    <td bgcolor=FF8361>121</td>
+                    <td bgcolor=FF8361>天天基金母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=FF8361>交银中证海外中国互联网指数</td>
+                    <td bgcolor=FF8361>164906</td>
+                    <!-- <td align='right' bgcolor=FF8361>1.1370</td> -->
+                    <!-- <td align='right' bgcolor=FF8361>1407.29</td> -->
+                    <td align='right' bgcolor=FF8361>2001.17</td>
+                    <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                        401.08</td>
+
+                    <td align='right' bgcolor=FF8361>1.4220</td>
+                    <td bgcolor=FF8361>2020-01-22</td>
+                    <td align='right' bgcolor=FF8361>1.3900</td>
+                    <td bgcolor=FF8361>2020-02-01 05:00</td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -2.25%
+                    </td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -45.03
+                    </td>
+
+                    <td bgcolor=FF8361>海外新兴</td>
+                    <td bgcolor=FF8361>海外互联</td>
+                    <td bgcolor=FF8361>海外互联网</td>
+                    <td bgcolor=FF8361>221</td>
+                    <td bgcolor=FF8361>天天基金母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=F0DC5A>华夏上证50AH优选指数</td>
+                    <td bgcolor=F0DC5A>501050</td>
+                    <!-- <td align='right' bgcolor=F0DC5A>1.2840</td> -->
+                    <!-- <td align='right' bgcolor=F0DC5A>142.10</td> -->
+                    <td align='right' bgcolor=F0DC5A>191.27</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                        8.81</td>
+
+                    <td align='right' bgcolor=F0DC5A>1.3460</td>
+                    <td bgcolor=F0DC5A>2020-01-21</td>
+                    <td align='right' bgcolor=F0DC5A>1.3125</td>
+                    <td bgcolor=F0DC5A>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -2.49%
+                    </td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -4.76
+                    </td>
+
+                    <td bgcolor=F0DC5A>A 股</td>
+                    <td bgcolor=F0DC5A>大盘股</td>
+                    <td bgcolor=F0DC5A>50AH</td>
+                    <td bgcolor=F0DC5A>112</td>
+                    <td bgcolor=F0DC5A>螺丝钉母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=FF8361>富国沪深300指数增强</td>
+                    <td bgcolor=FF8361>100038</td>
+                    <!-- <td align='right' bgcolor=FF8361>1.3043</td> -->
+                    <!-- <td align='right' bgcolor=FF8361>2760.12</td> -->
+                    <td align='right' bgcolor=FF8361>4612.16</td>
+                    <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                        1012.14</td>
+
+                    <td align='right' bgcolor=FF8361>1.6710</td>
+                    <td bgcolor=FF8361>2020-01-23</td>
+                    <td align='right' bgcolor=FF8361>1.6693</td>
+                    <td bgcolor=FF8361>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -2.95%
+                    </td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -4.69
+                    </td>
+
+                    <td bgcolor=FF8361>A 股</td>
+                    <td bgcolor=FF8361>大盘股</td>
+                    <td bgcolor=FF8361>沪深300</td>
+                    <td bgcolor=FF8361>113</td>
+                    <td bgcolor=FF8361>天天基金母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=FF8361>广发中证传媒ETF联接A</td>
+                    <td bgcolor=FF8361>004752</td>
+                    <!-- <td align='right' bgcolor=FF8361>0.7235</td> -->
+                    <!-- <td align='right' bgcolor=FF8361>4423.48</td> -->
+                    <td align='right' bgcolor=FF8361>3860.81</td>
+                    <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                        660.43</td>
+
+                    <td align='right' bgcolor=FF8361>0.8728</td>
+                    <td bgcolor=FF8361>2020-01-23</td>
+                    <td align='right' bgcolor=FF8361>0.8718</td>
+                    <td bgcolor=FF8361>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -2.63%
+                    </td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -4.42
+                    </td>
+
+                    <td bgcolor=FF8361>A 股</td>
+                    <td bgcolor=FF8361>行业股</td>
+                    <td bgcolor=FF8361>中证传媒</td>
+                    <td bgcolor=FF8361>144</td>
+                    <td bgcolor=FF8361>天天基金母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=FF8361>广发中证500ETF联接A</td>
+                    <td bgcolor=FF8361>162711</td>
+                    <!-- <td align='right' bgcolor=FF8361>1.0519</td> -->
+                    <!-- <td align='right' bgcolor=FF8361>9697.57</td> -->
+                    <td align='right' bgcolor=FF8361>11356.82</td>
+                    <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                        1155.95</td>
+
+                    <td align='right' bgcolor=FF8361>1.1711</td>
+                    <td bgcolor=FF8361>2020-01-23</td>
+                    <td align='right' bgcolor=FF8361>1.1707</td>
+                    <td bgcolor=FF8361>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -3.37%
+                    </td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -3.88
+                    </td>
+
+                    <td bgcolor=FF8361>A 股</td>
+                    <td bgcolor=FF8361>中小盘股</td>
+                    <td bgcolor=FF8361>中证500</td>
+                    <td bgcolor=FF8361>121</td>
+                    <td bgcolor=FF8361>天天基金母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=6EB5FF>交银主题优选</td>
+                    <td bgcolor=6EB5FF>519700</td>
+                    <!-- <td align='right' bgcolor=6EB5FF>1.4657</td> -->
+                    <!-- <td align='right' bgcolor=6EB5FF>11598.58</td> -->
+                    <td align='right' bgcolor=6EB5FF>18847.69</td>
+                    <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                        1847.65</td>
+
+                    <td align='right' bgcolor=6EB5FF>1.6250</td>
+                    <td bgcolor=6EB5FF>2020-01-23</td>
+                    <td align='right' bgcolor=6EB5FF>1.6247</td>
+                    <td bgcolor=6EB5FF>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=6EB5FF style='color: #009933;'>
+                        -2.77%
+                    </td>
+                    <td align='right' bgcolor=6EB5FF style='color: #009933;'>
+                        -3.48
+                    </td>
+
+                    <td bgcolor=6EB5FF>混合型</td>
+                    <td bgcolor=6EB5FF>股债混合</td>
+                    <td bgcolor=6EB5FF>偏股</td>
+                    <td bgcolor=6EB5FF>411</td>
+                    <td bgcolor=6EB5FF>稳稳的幸福父</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=FF8361>华夏恒生ETF联接A</td>
+                    <td bgcolor=FF8361>000071</td>
+                    <!-- <td align='right' bgcolor=FF8361>1.4520</td> -->
+                    <!-- <td align='right' bgcolor=FF8361>275.49</td> -->
+                    <td align='right' bgcolor=FF8361>423.76</td>
+                    <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                        23.75</td>
+
+                    <td align='right' bgcolor=FF8361>1.5382</td>
+                    <td bgcolor=FF8361>2020-01-23</td>
+                    <td align='right' bgcolor=FF8361>1.4542</td>
+                    <td bgcolor=FF8361>2020-01-31 16:00</td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -5.46%
+                    </td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -23.14
+                    </td>
+
+                    <td bgcolor=FF8361>海外新兴</td>
+                    <td bgcolor=FF8361>香港</td>
+                    <td bgcolor=FF8361>恒生</td>
+                    <td bgcolor=FF8361>211</td>
+                    <td bgcolor=FF8361>天天基金母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=F0DC5A>大成中证红利指数A</td>
+                    <td bgcolor=F0DC5A>090010</td>
+                    <!-- <td align='right' bgcolor=F0DC5A>1.6607</td> -->
+                    <!-- <td align='right' bgcolor=F0DC5A>1128.82</td> -->
+                    <td align='right' bgcolor=F0DC5A>1862.55</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -12.08</td>
+
+                    <td align='right' bgcolor=F0DC5A>1.6500</td>
+                    <td bgcolor=F0DC5A>2020-01-23</td>
+                    <td align='right' bgcolor=F0DC5A>1.6476</td>
+                    <td bgcolor=F0DC5A>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -2.57%
+                    </td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -2.71
+                    </td>
+
+                    <td bgcolor=F0DC5A>A 股</td>
+                    <td bgcolor=F0DC5A>红利价值</td>
+                    <td bgcolor=F0DC5A>中证红利</td>
+                    <td bgcolor=F0DC5A>131</td>
+                    <td bgcolor=F0DC5A>螺丝钉母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=FF8361>广发医药卫生联接A</td>
+                    <td bgcolor=FF8361>001180</td>
+                    <!-- <td align='right' bgcolor=FF8361>0.7111</td> -->
+                    <!-- <td align='right' bgcolor=FF8361>6750.28</td> -->
+                    <td align='right' bgcolor=FF8361>6069.18</td>
+                    <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                        1269.05</td>
+
+                    <td align='right' bgcolor=FF8361>0.8991</td>
+                    <td bgcolor=FF8361>2020-01-23</td>
+                    <td align='right' bgcolor=FF8361>0.8987</td>
+                    <td bgcolor=FF8361>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -1.81%
+                    </td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -2.70
+                    </td>
+
+                    <td bgcolor=FF8361>A 股</td>
+                    <td bgcolor=FF8361>行业股</td>
+                    <td bgcolor=FF8361>全指医药</td>
+                    <td bgcolor=FF8361>142</td>
+                    <td bgcolor=FF8361>天天基金母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=F0DC5A>大成中证红利指数A</td>
+                    <td bgcolor=F0DC5A>090010</td>
+                    <!-- <td align='right' bgcolor=F0DC5A>1.6574</td> -->
+                    <!-- <td align='right' bgcolor=F0DC5A>1013.85</td> -->
+                    <td align='right' bgcolor=F0DC5A>1672.85</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -7.50</td>
+
+                    <td align='right' bgcolor=F0DC5A>1.6500</td>
+                    <td bgcolor=F0DC5A>2020-01-23</td>
+                    <td align='right' bgcolor=F0DC5A>1.6476</td>
+                    <td bgcolor=F0DC5A>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -2.57%
+                    </td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -2.43
+                    </td>
+
+                    <td bgcolor=F0DC5A>A 股</td>
+                    <td bgcolor=F0DC5A>红利价值</td>
+                    <td bgcolor=F0DC5A>中证红利</td>
+                    <td bgcolor=F0DC5A>131</td>
+                    <td bgcolor=F0DC5A>螺丝钉父</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=FF8361>广发中证环保ETF联接A</td>
+                    <td bgcolor=FF8361>001064</td>
+                    <!-- <td align='right' bgcolor=FF8361>0.5379</td> -->
+                    <!-- <td align='right' bgcolor=FF8361>5949.77</td> -->
+                    <td align='right' bgcolor=FF8361>3666.84</td>
+                    <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                        466.46</td>
+
+                    <td align='right' bgcolor=FF8361>0.6163</td>
+                    <td bgcolor=FF8361>2020-01-23</td>
+                    <td align='right' bgcolor=FF8361>0.6159</td>
+                    <td bgcolor=FF8361>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -3.27%
+                    </td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -2.38
+                    </td>
+
+                    <td bgcolor=FF8361>A 股</td>
+                    <td bgcolor=FF8361>行业股</td>
+                    <td bgcolor=FF8361>中证环保</td>
+                    <td bgcolor=FF8361>143</td>
+                    <td bgcolor=FF8361>天天基金母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=F0DC5A>华夏上证50AH优选指数</td>
+                    <td bgcolor=F0DC5A>501050</td>
+                    <!-- <td align='right' bgcolor=F0DC5A>1.2891</td> -->
+                    <!-- <td align='right' bgcolor=F0DC5A>62.09</td> -->
+                    <td align='right' bgcolor=F0DC5A>83.57</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                        3.53</td>
+
+                    <td align='right' bgcolor=F0DC5A>1.3460</td>
+                    <td bgcolor=F0DC5A>2020-01-21</td>
+                    <td align='right' bgcolor=F0DC5A>1.3125</td>
+                    <td bgcolor=F0DC5A>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -2.49%
+                    </td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -2.08
+                    </td>
+
+                    <td bgcolor=F0DC5A>A 股</td>
+                    <td bgcolor=F0DC5A>大盘股</td>
+                    <td bgcolor=F0DC5A>50AH</td>
+                    <td bgcolor=F0DC5A>112</td>
+                    <td bgcolor=F0DC5A>螺丝钉父</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=F0DC5A>银河沪深300价值指数</td>
+                    <td bgcolor=F0DC5A>519671</td>
+                    <!-- <td align='right' bgcolor=F0DC5A>1.4346</td> -->
+                    <!-- <td align='right' bgcolor=F0DC5A>1225.03</td> -->
+                    <td align='right' bgcolor=F0DC5A>1757.92</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                        0.49</td>
+
+                    <td align='right' bgcolor=F0DC5A>1.4350</td>
+                    <td bgcolor=F0DC5A>2020-01-23</td>
+                    <td align='right' bgcolor=F0DC5A>1.4333</td>
+                    <td bgcolor=F0DC5A>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -2.70%
+                    </td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -2.08
+                    </td>
+
+                    <td bgcolor=F0DC5A>A 股</td>
+                    <td bgcolor=F0DC5A>大盘股</td>
+                    <td bgcolor=F0DC5A>300价值</td>
+                    <td bgcolor=F0DC5A>114</td>
+                    <td bgcolor=F0DC5A>螺丝钉母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=F0DC5A>银河沪深300价值指数</td>
+                    <td bgcolor=F0DC5A>519671</td>
+                    <!-- <td align='right' bgcolor=F0DC5A>1.4347</td> -->
+                    <!-- <td align='right' bgcolor=F0DC5A>1182.45</td> -->
+                    <td align='right' bgcolor=F0DC5A>1696.82</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                        0.35</td>
+
+                    <td align='right' bgcolor=F0DC5A>1.4350</td>
+                    <td bgcolor=F0DC5A>2020-01-23</td>
+                    <td align='right' bgcolor=F0DC5A>1.4333</td>
+                    <td bgcolor=F0DC5A>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -2.70%
+                    </td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -2.01
+                    </td>
+
+                    <td bgcolor=F0DC5A>A 股</td>
+                    <td bgcolor=F0DC5A>大盘股</td>
+                    <td bgcolor=F0DC5A>300价值</td>
+                    <td bgcolor=F0DC5A>114</td>
+                    <td bgcolor=F0DC5A>螺丝钉父</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=6EB5FF>交银周期回报灵活配置混合A</td>
+                    <td bgcolor=6EB5FF>519738</td>
+                    <!-- <td align='right' bgcolor=6EB5FF>1.1791</td> -->
+                    <!-- <td align='right' bgcolor=6EB5FF>68092.81</td> -->
+                    <td align='right' bgcolor=6EB5FF>80281.42</td>
+                    <td align='right' bgcolor=6EB5FF style='color: #009933;'>
+                        -6.81</td>
+
+                    <td align='right' bgcolor=6EB5FF>1.1790</td>
+                    <td bgcolor=6EB5FF>2020-01-23</td>
+                    <td align='right' bgcolor=6EB5FF>1.1771</td>
+                    <td bgcolor=6EB5FF>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=6EB5FF style='color: #009933;'>
+                        -0.67%
+                    </td>
+                    <td align='right' bgcolor=6EB5FF style='color: #009933;'>
+                        -129.38
+                    </td>
+
+                    <td bgcolor=6EB5FF>混合型</td>
+                    <td bgcolor=6EB5FF>股债混合</td>
+                    <td bgcolor=6EB5FF>偏债</td>
+                    <td bgcolor=6EB5FF>411</td>
+                    <td bgcolor=6EB5FF>稳稳的幸福父</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=6EB5FF>交银多策略回报灵活配置混合A</td>
+                    <td bgcolor=6EB5FF>519755</td>
+                    <!-- <td align='right' bgcolor=6EB5FF>1.2894</td> -->
+                    <!-- <td align='right' bgcolor=6EB5FF>76964.17</td> -->
+                    <td align='right' bgcolor=6EB5FF>100976.99</td>
+                    <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                        1739.39</td>
+
+                    <td align='right' bgcolor=6EB5FF>1.3120</td>
+                    <td bgcolor=6EB5FF>2020-01-23</td>
+                    <td align='right' bgcolor=6EB5FF>1.3106</td>
+                    <td bgcolor=6EB5FF>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=6EB5FF style='color: #009933;'>
+                        -0.49%
+                    </td>
+                    <td align='right' bgcolor=6EB5FF style='color: #009933;'>
+                        -107.75
+                    </td>
+
+                    <td bgcolor=6EB5FF>混合型</td>
+                    <td bgcolor=6EB5FF>股债混合</td>
+                    <td bgcolor=6EB5FF>偏债</td>
+                    <td bgcolor=6EB5FF>412</td>
+                    <td bgcolor=6EB5FF>稳稳的幸福父</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=FF8361>华宝中证1000指数分级</td>
+                    <td bgcolor=FF8361>162413</td>
+                    <!-- <td align='right' bgcolor=FF8361>0.7760</td> -->
+                    <!-- <td align='right' bgcolor=FF8361>1546.42</td> -->
+                    <td align='right' bgcolor=FF8361>1300.54</td>
+                    <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                        100.52</td>
+
+                    <td align='right' bgcolor=FF8361>0.8410</td>
+                    <td bgcolor=FF8361>2020-01-23</td>
+                    <td align='right' bgcolor=FF8361>0.8401</td>
+                    <td bgcolor=FF8361>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -3.54%
+                    </td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -1.39
+                    </td>
+
+                    <td bgcolor=FF8361>A 股</td>
+                    <td bgcolor=FF8361>中小盘股</td>
+                    <td bgcolor=FF8361>中证1000</td>
+                    <td bgcolor=FF8361>123</td>
+                    <td bgcolor=FF8361>天天基金母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=FF8361>广发养老指数A</td>
+                    <td bgcolor=FF8361>000968</td>
+                    <!-- <td align='right' bgcolor=FF8361>0.8530</td> -->
+                    <!-- <td align='right' bgcolor=FF8361>6096.21</td> -->
+                    <td align='right' bgcolor=FF8361>6161.44</td>
+                    <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                        961.37</td>
+
+                    <td align='right' bgcolor=FF8361>1.0107</td>
+                    <td bgcolor=FF8361>2020-01-23</td>
+                    <td align='right' bgcolor=FF8361>1.0105</td>
+                    <td bgcolor=FF8361>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -2.45%
+                    </td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -1.22
+                    </td>
+
+                    <td bgcolor=FF8361>A 股</td>
+                    <td bgcolor=FF8361>行业股</td>
+                    <td bgcolor=FF8361>养老产业</td>
+                    <td bgcolor=FF8361>141</td>
+                    <td bgcolor=FF8361>天天基金母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=F0DC5A>景顺长城中证500低波动</td>
+                    <td bgcolor=F0DC5A>003318</td>
+                    <!-- <td align='right' bgcolor=F0DC5A>0.9393</td> -->
+                    <!-- <td align='right' bgcolor=F0DC5A>1647.71</td> -->
+                    <td align='right' bgcolor=F0DC5A>1599.43</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                        51.74</td>
+
+                    <td align='right' bgcolor=F0DC5A>0.9707</td>
+                    <td bgcolor=F0DC5A>2020-01-23</td>
+                    <td align='right' bgcolor=F0DC5A>0.9700</td>
+                    <td bgcolor=F0DC5A>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -2.75%
+                    </td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -1.15
+                    </td>
+
+                    <td bgcolor=F0DC5A>A 股</td>
+                    <td bgcolor=F0DC5A>中小盘股</td>
+                    <td bgcolor=F0DC5A>500低波动</td>
+                    <td bgcolor=F0DC5A>122</td>
+                    <td bgcolor=F0DC5A>螺丝钉母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=FF8361>易方达证券公司分级</td>
+                    <td bgcolor=FF8361>502010</td>
+                    <!-- <td align='right' bgcolor=FF8361>0.8063</td> -->
+                    <!-- <td align='right' bgcolor=FF8361>496.13</td> -->
+                    <td align='right' bgcolor=FF8361>528.28</td>
+                    <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                        128.25</td>
+
+                    <td align='right' bgcolor=FF8361>1.0648</td>
+                    <td bgcolor=FF8361>2020-01-23</td>
+                    <td align='right' bgcolor=FF8361>1.0626</td>
+                    <td bgcolor=FF8361>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -4.11%
+                    </td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -1.09
+                    </td>
+
+                    <td bgcolor=FF8361>A 股</td>
+                    <td bgcolor=FF8361>行业股</td>
+                    <td bgcolor=FF8361>证券公司</td>
+                    <td bgcolor=FF8361>145</td>
+                    <td bgcolor=FF8361>天天基金母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=F0DC5A>景顺长城中证500低波动</td>
+                    <td bgcolor=F0DC5A>003318</td>
+                    <!-- <td align='right' bgcolor=F0DC5A>0.9386</td> -->
+                    <!-- <td align='right' bgcolor=F0DC5A>1548.03</td> -->
+                    <td align='right' bgcolor=F0DC5A>1502.67</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                        49.69</td>
+
+                    <td align='right' bgcolor=F0DC5A>0.9707</td>
+                    <td bgcolor=F0DC5A>2020-01-23</td>
+                    <td align='right' bgcolor=F0DC5A>0.9700</td>
+                    <td bgcolor=F0DC5A>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -2.75%
+                    </td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -1.08
+                    </td>
+
+                    <td bgcolor=F0DC5A>A 股</td>
+                    <td bgcolor=F0DC5A>中小盘股</td>
+                    <td bgcolor=F0DC5A>500低波动</td>
+                    <td bgcolor=F0DC5A>122</td>
+                    <td bgcolor=F0DC5A>螺丝钉父</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=FF8361>易方达创业板ETF联接A</td>
+                    <td bgcolor=FF8361>110026</td>
+                    <!-- <td align='right' bgcolor=FF8361>1.3190</td> -->
+                    <!-- <td align='right' bgcolor=FF8361>1213.09</td> -->
+                    <td align='right' bgcolor=FF8361>2400.22</td>
+                    <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                        800.15</td>
+
+                    <td align='right' bgcolor=FF8361>1.9786</td>
+                    <td bgcolor=FF8361>2020-01-23</td>
+                    <td align='right' bgcolor=FF8361>1.9781</td>
+                    <td bgcolor=FF8361>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -3.15%
+                    </td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -0.61
+                    </td>
+
+                    <td bgcolor=FF8361>A 股</td>
+                    <td bgcolor=FF8361>中小盘股</td>
+                    <td bgcolor=FF8361>创业板</td>
+                    <td bgcolor=FF8361>124</td>
+                    <td bgcolor=FF8361>天天基金母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=F0DC5A>建信深证基本面60ETF联接A</td>
+                    <td bgcolor=F0DC5A>530015</td>
+                    <!-- <td align='right' bgcolor=F0DC5A>2.1420</td> -->
+                    <!-- <td align='right' bgcolor=F0DC5A>451.58</td> -->
+                    <td align='right' bgcolor=F0DC5A>1020.71</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                        53.42</td>
+
+                    <td align='right' bgcolor=F0DC5A>2.2603</td>
+                    <td bgcolor=F0DC5A>2020-01-23</td>
+                    <td align='right' bgcolor=F0DC5A>2.2591</td>
+                    <td bgcolor=F0DC5A>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -3.46%
+                    </td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -0.54
+                    </td>
+
+                    <td bgcolor=F0DC5A>A 股</td>
+                    <td bgcolor=F0DC5A>大盘股</td>
+                    <td bgcolor=F0DC5A>基本面60</td>
+                    <td bgcolor=F0DC5A>115</td>
+                    <td bgcolor=F0DC5A>螺丝钉母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=FF8361>广发中证全指金融地产联接A</td>
+                    <td bgcolor=FF8361>001469</td>
+                    <!-- <td align='right' bgcolor=FF8361>0.8886</td> -->
+                    <!-- <td align='right' bgcolor=FF8361>900.35</td> -->
+                    <td align='right' bgcolor=FF8361>991.47</td>
+                    <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                        191.41</td>
+
+                    <td align='right' bgcolor=FF8361>1.1012</td>
+                    <td bgcolor=FF8361>2020-01-23</td>
+                    <td align='right' bgcolor=FF8361>1.1006</td>
+                    <td bgcolor=FF8361>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -2.98%
+                    </td>
+                    <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                        -0.54
+                    </td>
+
+                    <td bgcolor=FF8361>A 股</td>
+                    <td bgcolor=FF8361>行业股</td>
+                    <td bgcolor=FF8361>金融地产</td>
+                    <td bgcolor=FF8361>147</td>
+                    <td bgcolor=FF8361>天天基金母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=F0DC5A>建信深证基本面60ETF联接A</td>
+                    <td bgcolor=F0DC5A>530015</td>
+                    <!-- <td align='right' bgcolor=F0DC5A>2.1277</td> -->
+                    <!-- <td align='right' bgcolor=F0DC5A>421.99</td> -->
+                    <td align='right' bgcolor=F0DC5A>953.82</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                        55.96</td>
+
+                    <td align='right' bgcolor=F0DC5A>2.2603</td>
+                    <td bgcolor=F0DC5A>2020-01-23</td>
+                    <td align='right' bgcolor=F0DC5A>2.2591</td>
+                    <td bgcolor=F0DC5A>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -3.46%
+                    </td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -0.51
+                    </td>
+
+                    <td bgcolor=F0DC5A>A 股</td>
+                    <td bgcolor=F0DC5A>大盘股</td>
+                    <td bgcolor=F0DC5A>基本面60</td>
+                    <td bgcolor=F0DC5A>115</td>
+                    <td bgcolor=F0DC5A>螺丝钉父</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=F0DC5A>嘉实深证基本面120联接</td>
+                    <td bgcolor=F0DC5A>070023</td>
+                    <!-- <td align='right' bgcolor=F0DC5A>1.7992</td> -->
+                    <!-- <td align='right' bgcolor=F0DC5A>528.99</td> -->
+                    <td align='right' bgcolor=F0DC5A>1031.05</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                        79.30</td>
+
+                    <td align='right' bgcolor=F0DC5A>1.9491</td>
+                    <td bgcolor=F0DC5A>2020-01-23</td>
+                    <td align='right' bgcolor=F0DC5A>1.9489</td>
+                    <td bgcolor=F0DC5A>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -3.55%
+                    </td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -0.11
+                    </td>
+
+                    <td bgcolor=F0DC5A>A 股</td>
+                    <td bgcolor=F0DC5A>大盘股</td>
+                    <td bgcolor=F0DC5A>基本面120</td>
+                    <td bgcolor=F0DC5A>116</td>
+                    <td bgcolor=F0DC5A>螺丝钉母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=F0DC5A>嘉实深证基本面120联接</td>
+                    <td bgcolor=F0DC5A>070023</td>
+                    <!-- <td align='right' bgcolor=F0DC5A>1.7966</td> -->
+                    <!-- <td align='right' bgcolor=F0DC5A>492.58</td> -->
+                    <td align='right' bgcolor=F0DC5A>960.09</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                        75.12</td>
+
+                    <td align='right' bgcolor=F0DC5A>1.9491</td>
+                    <td bgcolor=F0DC5A>2020-01-23</td>
+                    <td align='right' bgcolor=F0DC5A>1.9489</td>
+                    <td bgcolor=F0DC5A>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -3.55%
+                    </td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -0.10
+                    </td>
+
+                    <td bgcolor=F0DC5A>A 股</td>
+                    <td bgcolor=F0DC5A>大盘股</td>
+                    <td bgcolor=F0DC5A>基本面120</td>
+                    <td bgcolor=F0DC5A>116</td>
+                    <td bgcolor=F0DC5A>螺丝钉父</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=F0DC5A>广发中证养老</td>
+                    <td bgcolor=F0DC5A>000968</td>
+                    <!-- <td align='right' bgcolor=F0DC5A>0.9588</td> -->
+                    <!-- <td align='right' bgcolor=F0DC5A>426.97</td> -->
+                    <td align='right' bgcolor=F0DC5A>431.54</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                        22.16</td>
+
+                    <td align='right' bgcolor=F0DC5A>1.0107</td>
+                    <td bgcolor=F0DC5A>2020-01-23</td>
+                    <td align='right' bgcolor=F0DC5A>1.0105</td>
+                    <td bgcolor=F0DC5A>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -2.45%
+                    </td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -0.09
+                    </td>
+
+                    <td bgcolor=F0DC5A>A 股</td>
+                    <td bgcolor=F0DC5A>行业股</td>
+                    <td bgcolor=F0DC5A>养老产业</td>
+                    <td bgcolor=F0DC5A>141</td>
+                    <td bgcolor=F0DC5A>螺丝钉母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=F0DC5A>天弘中证银行指数A</td>
+                    <td bgcolor=F0DC5A>001594</td>
+                    <!-- <td align='right' bgcolor=F0DC5A>1.2512</td> -->
+                    <!-- <td align='right' bgcolor=F0DC5A>220.69</td> -->
+                    <td align='right' bgcolor=F0DC5A>265.58</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -10.55</td>
+
+                    <td align='right' bgcolor=F0DC5A>1.2034</td>
+                    <td bgcolor=F0DC5A>2020-01-23</td>
+                    <td align='right' bgcolor=F0DC5A>1.2030</td>
+                    <td bgcolor=F0DC5A>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -2.30%
+                    </td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -0.09
+                    </td>
+
+                    <td bgcolor=F0DC5A>A 股</td>
+                    <td bgcolor=F0DC5A>行业股</td>
+                    <td bgcolor=F0DC5A>中证银行</td>
+                    <td bgcolor=F0DC5A>146</td>
+                    <td bgcolor=F0DC5A>螺丝钉母</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=F0DC5A>广发中证养老</td>
+                    <td bgcolor=F0DC5A>000968</td>
+                    <!-- <td align='right' bgcolor=F0DC5A>0.9599</td> -->
+                    <!-- <td align='right' bgcolor=F0DC5A>390.82</td> -->
+                    <td align='right' bgcolor=F0DC5A>395.00</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                        19.85</td>
+
+                    <td align='right' bgcolor=F0DC5A>1.0107</td>
+                    <td bgcolor=F0DC5A>2020-01-23</td>
+                    <td align='right' bgcolor=F0DC5A>1.0105</td>
+                    <td bgcolor=F0DC5A>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -2.45%
+                    </td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -0.08
+                    </td>
+
+                    <td bgcolor=F0DC5A>A 股</td>
+                    <td bgcolor=F0DC5A>行业股</td>
+                    <td bgcolor=F0DC5A>养老产业</td>
+                    <td bgcolor=F0DC5A>141</td>
+                    <td bgcolor=F0DC5A>螺丝钉父</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=F0DC5A>天弘中证银行指数A</td>
+                    <td bgcolor=F0DC5A>001594</td>
+                    <!-- <td align='right' bgcolor=F0DC5A>1.2538</td> -->
+                    <!-- <td align='right' bgcolor=F0DC5A>171.26</td> -->
+                    <td align='right' bgcolor=F0DC5A>206.09</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -8.63</td>
+
+                    <td align='right' bgcolor=F0DC5A>1.2034</td>
+                    <td bgcolor=F0DC5A>2020-01-23</td>
+                    <td align='right' bgcolor=F0DC5A>1.2030</td>
+                    <td bgcolor=F0DC5A>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -2.30%
+                    </td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -0.07
+                    </td>
+
+                    <td bgcolor=F0DC5A>A 股</td>
+                    <td bgcolor=F0DC5A>行业股</td>
+                    <td bgcolor=F0DC5A>中证银行</td>
+                    <td bgcolor=F0DC5A>146</td>
+                    <td bgcolor=F0DC5A>螺丝钉父</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=F0DC5A>申万菱信沪深300价值指数</td>
+                    <td bgcolor=F0DC5A>310398</td>
+                    <!-- <td align='right' bgcolor=F0DC5A>1.4372</td> -->
+                    <!-- <td align='right' bgcolor=F0DC5A>25.80</td> -->
+                    <td align='right' bgcolor=F0DC5A>35.00</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -2.08</td>
+
+                    <td align='right' bgcolor=F0DC5A>1.3565</td>
+                    <td bgcolor=F0DC5A>2020-01-23</td>
+                    <td align='right' bgcolor=F0DC5A>1.3541</td>
+                    <td bgcolor=F0DC5A>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -2.70%
+                    </td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -0.06
+                    </td>
+
+                    <td bgcolor=F0DC5A>A 股</td>
+                    <td bgcolor=F0DC5A>大盘股</td>
+                    <td bgcolor=F0DC5A>300价值</td>
+                    <td bgcolor=F0DC5A>114</td>
+                    <td bgcolor=F0DC5A>螺丝钉父</td>
+                </tr>
+                
+                <tr align='center'>
+                    <td bgcolor=F0DC5A>申万菱信沪深300价值指数</td>
+                    <td bgcolor=F0DC5A>310398</td>
+                    <!-- <td align='right' bgcolor=F0DC5A>1.4372</td> -->
+                    <!-- <td align='right' bgcolor=F0DC5A>25.80</td> -->
+                    <td align='right' bgcolor=F0DC5A>35.00</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -2.08</td>
+
+                    <td align='right' bgcolor=F0DC5A>1.3565</td>
+                    <td bgcolor=F0DC5A>2020-01-23</td>
+                    <td align='right' bgcolor=F0DC5A>1.3541</td>
+                    <td bgcolor=F0DC5A>2020-01-23 15:00</td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -2.70%
+                    </td>
+                    <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                        -0.06
+                    </td>
+
+                    <td bgcolor=F0DC5A>A 股</td>
+                    <td bgcolor=F0DC5A>大盘股</td>
+                    <td bgcolor=F0DC5A>300价值</td>
+                    <td bgcolor=F0DC5A>114</td>
+                    <td bgcolor=F0DC5A>螺丝钉母</td>
+                </tr>
+                
+            </table>
+        </li>
+    </ul>
+
+</body>
+
+</html>

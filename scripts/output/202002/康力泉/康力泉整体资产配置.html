@@ -1,0 +1,1492 @@
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<html align='left'>
+
+<head>
+    <title>资产配置情况</title>
+    <style type="text/css">
+        #summary {
+            background-color: #FFC751;
+            color: #333333;
+        }
+
+        #fund {
+            background-color: #FFFFFF;
+        }
+    </style>
+    <!-- jQuery -->
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+    <script type="text/javascript">
+        // 给盈亏上色
+        $(function () {
+            $('.gainLabel').each(function (j) {
+                var colorStr = '';
+                $('.gainLabel').eq(j).html().replace("%", "") >= 0 ? colorStr = '#DD2200' : colorStr = '#009933';
+                $('.gainLabel').eq(j).css('color', colorStr);
+            });
+        })
+        // 给账户上色
+        // $(function () {
+        //     $('.account').each(function (j) {
+        //         var colorStr = '';
+        //         $('.account').eq(j).html().indexOf("整体") > -1 ? colorStr = '#50C2F9' : colorStr = '#FFC751';
+        //         console.log($('.account').parent().parent().eq(j).html())
+        //         $('.account').parent().parent().eq(j).css('background-color', colorStr);
+        //     });
+        // })
+
+        // 点击筛选
+        function sort(object) {
+            var type = object.attributes['type'].nodeValue
+            console.log(type)
+            var sortFunction = object.className;
+            var index = object.id.substr(2, 2);
+            var tableNode = document.getElementById("table");
+            var trs = tableNode.rows;
+            // 取出所有的 row
+            var arr = new Array;
+            for (var x = 1; x < trs.length; x++) {
+                arr.push(trs[x]);
+            }
+            // className 做升降序标识
+            if (sortFunction == 'asc') {
+                object.className = 'desc'
+                if (type == 'number') {
+                    numAscSort(arr, index);
+                } else {
+                    strAscSort(arr, index);
+                }
+
+            } else {
+                object.className = 'asc'
+                if (type == 'number') {
+                    numDescSort(arr, index);
+                } else {
+                    strDescSort(arr, index);
+                }
+            }
+
+            for (var x = 0; x < arr.length; x++) {
+                tableNode.tBodies[0].appendChild(arr[x]);
+            }
+        }
+
+        // 升序冒泡
+        function numAscSort(arr, index) {
+            console.log('numAscSort')
+            for (var x = 0; x < arr.length; x++) {
+                for (var y = x + 1; y < arr.length; y++) {
+                    if (parseFloat(arr[x].cells[index].childNodes[0].nodeValue) >= parseFloat(arr[y].cells[index].childNodes[0].nodeValue)) {
+                        var tmp = arr[x];
+                        arr[x] = arr[y];
+                        arr[y] = tmp;
+                    }
+                }
+            }
+        }
+
+        // 升序冒泡
+        function strAscSort(arr, index) {
+            for (var x = 0; x < arr.length; x++) {
+                for (var y = x + 1; y < arr.length; y++) {
+                    if (arr[x].cells[index].childNodes[0].nodeValue.localeCompare(arr[y].cells[index].childNodes[0].nodeValue) >= 0) {
+                        var tmp = arr[x];
+                        arr[x] = arr[y];
+                        arr[y] = tmp;
+                    }
+                }
+            }
+        }
+
+        // 降序冒泡
+        function numDescSort(arr, index) {
+            console.log('numDescSort')
+            for (var x = 0; x < arr.length; x++) {
+                for (var y = x + 1; y < arr.length; y++) {
+                    if (parseFloat(arr[x].cells[index].childNodes[0].nodeValue) <= parseFloat(arr[y].cells[index].childNodes[0].nodeValue)) {
+                        var tmp = arr[x];
+                        arr[x] = arr[y];
+                        arr[y] = tmp;
+                    }
+                }
+            }
+        }
+
+        // 降序冒泡
+        function strDescSort(arr, index) {
+            console.log('strDescSort')
+            for (var x = 0; x < arr.length; x++) {
+                for (var y = x + 1; y < arr.length; y++) {
+                    if (arr[x].cells[index].childNodes[0].nodeValue.localeCompare(arr[y].cells[index].childNodes[0].nodeValue) <= 0) {
+                        var tmp = arr[x];
+                        arr[x] = arr[y];
+                        arr[y] = tmp;
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<h1>康力泉整体资产配置</h1>
+
+<body>
+    <ul style="padding: 0px;">
+        <h2>整体情况</h2>
+        <!-- summary -->
+        <li style="display:inline-flex; width: 100%; margin-bottom: 10px;">
+            <table id='summary' border="1" cellspacing='0' cellpadding='4' align='left'>
+                <tr align='center'>
+                    <th></th>
+                    <th><b>权益型</b></th>
+                    <th><b>稳健型</b></th>
+                    <th><b>总计</b></th>
+                </tr>
+                
+                <tr align='right'>
+                    <th align='center'><b>当前市值</b></th>
+                    <th style='color: #333333;'>932571.44</th>
+                    <th style='color: #333333;'>579862.16</th>
+                    <th style='color: #333333;'>1512433.6</th>
+                </tr>
+                
+                <tr align='right'>
+                    <th align='center'><b>持仓盈亏</b></th>
+                    <th style='color: #333333;'>86588.88</th>
+                    <th style='color: #333333;'>13540.46</th>
+                    <th style='color: #333333;'>100129.34</th>
+                </tr>
+                
+                <tr align='right'>
+                    <th align='center'><b>持仓收益率</b></th>
+                    <th style='color: #DD2200;'>10.24%</th>
+                    <th style='color: #DD2200;'>2.39%</th>
+                    <th style='color: #DD2200;'>7.09%</th>
+                </tr>
+                
+                <tr align='right'>
+                    <th align='center'><b>历史盈亏</b></th>
+                    <th style='color: #333333;'>30961.25</th>
+                    <th style='color: #333333;'>52837.62</th>
+                    <th style='color: #333333;'>83798.87</th>
+                </tr>
+                
+                <tr align='right'>
+                    <th align='center'><b>整体盈亏</b></th>
+                    <th style='color: #333333;'>117550.13</th>
+                    <th style='color: #333333;'>66378.08</th>
+                    <th style='color: #333333;'>183928.21</th>
+                </tr>
+                
+                <tr align='right'>
+                    <th align='center'><b>整体收益率</b></th>
+                    <th style='color: #DD2200;'>14.42%</th>
+                    <th style='color: #DD2200;'>12.93%</th>
+                    <th style='color: #DD2200;'>13.84%</th>
+                </tr>
+                
+            </table>
+        </li>
+        <!-- account -->
+        <h2>帐户盈亏</h2>
+        <li style="width: 100%; margin-bottom: 10px;">
+            <!-- 'accountName' 'gain' 'marketcap' -->
+            <div style="display: inline-table;">
+                
+                <div style="background-color:#50C2F9; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">康力泉整体</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            100129.34</listyle="padding: 3px;">
+                        <li style="padding: 3px; list-style-type:none; text-align: right;">1512433.6</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            7.09%</li>
+                    </ul>
+                </div>
+                
+                <div style="background-color:#50C2F9; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">父母整体</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            0.0</listyle="padding: 3px;">
+                        <li style="padding: 3px; list-style-type:none; text-align: right;">0.0</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            0.00%</li>
+                    </ul>
+                </div>
+                
+                <div style="background-color:#FF7C9E; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">股票账户</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            29972.70</listyle="padding: 3px;">
+                        <li style="padding: 3px; list-style-type:none; text-align: right;">413873.90</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            7.81%</li>
+                    </ul>
+                </div>
+                
+                <div style="background-color:#FF8361; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">天天基金</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            52891.05</listyle="padding: 3px;">
+                        <li style="padding: 3px; list-style-type:none; text-align: right;">428151.25</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            14.09%</li>
+                    </ul>
+                </div>
+                
+                <div style="background-color:#6EB5FF; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">且慢 150 份</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            3387.83</listyle="padding: 3px;">
+                        <li style="padding: 3px; list-style-type:none; text-align: right;">39205.87</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            9.46%</li>
+                    </ul>
+                </div>
+                
+                <div style="background-color:#6EB5FF; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">且慢 S 定投</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            1091.13</listyle="padding: 3px;">
+                        <li style="padding: 3px; list-style-type:none; text-align: right;">16091.38</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            7.27%</li>
+                    </ul>
+                </div>
+                
+                <div style="background-color:#F0DC5A; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">螺丝钉</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            934.42</listyle="padding: 3px;">
+                        <li style="padding: 3px; list-style-type:none; text-align: right;">24937.18</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            3.89%</li>
+                    </ul>
+                </div>
+                
+                <div style="background-color:#DBB6AC; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">支付宝</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            -1688.25</listyle="padding: 3px;">
+                        <li style="padding: 3px; list-style-type:none; text-align: right;">10311.86</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            -14.07%</li>
+                    </ul>
+                </div>
+                
+                <div style="background-color:#DCDCDC; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">冻结资金</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            7027.67</listyle="padding: 3px;">
+                        <li style="padding: 3px; list-style-type:none; text-align: right;">319017.75</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            2.25%</li>
+                    </ul>
+                </div>
+                
+                <div style="background-color:#FFC751; max-width: max-content; float: left;">
+                    <ul style="list-style: none; padding: 4px; border-style: outset;">
+                        <li class="account" style="padding: 3px; list-style-type:none; text-align: center;">现金账户</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            6512.79</listyle="padding: 3px;">
+                        <li style="padding: 3px; list-style-type:none; text-align: right;">260844.41</li>
+                        <li class="gainLabel" style="padding: 3px; list-style-type:none; text-align: right;">
+                            2.56%</li>
+                    </ul>
+                </div>
+                
+            </div>
+        </li>
+        <!-- fundData -->
+        <h2>基金情况</h2>
+        <li style="display:inline-flex; width: 100%; margin-bottom: 10px;">
+            <table id='table' border="1" cellspacing='0' cellpadding='4' align='left'>
+                <thead>
+                    <tr align='center'>
+                        <th id='th0' class='asc' type='string' onclick='sort(this)'>基金名称</th>
+                        <th id='th1' class='asc' type='number' onclick='sort(this)'>基金代码</th>
+                        <th id='th2' class='asc' type='number' onclick='sort(this)'>持仓成本</th>
+                        <th id='th3' class='asc' type='number' onclick='sort(this)'>持仓份额</th>
+                        <th id='th4' class='asc' type='number' onclick='sort(this)'>持仓市值</th>
+                        <th id='th5' class='asc' type='number' onclick='sort(this)'>累计收益</th>
+                        <th id='th6' class='asc' type='number' onclick='sort(this)'>累计收益率</th>
+                        <th id='th7' class='asc' type='string' onclick='sort(this)'>一级分类</th>
+                        <th id='th8' class='asc' type='string' onclick='sort(this)'>二级分类</th>
+                        <th id='th9' class='asc' type='string' onclick='sort(this)'>三级分类</th>
+                        <th id='th10' class='asc' type='number' onclick='sort(this)'>分类 ID</th>
+                        <th id='th11' class='asc' type='string' onclick='sort(this)'>来源</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr align='center'>
+                        <td bgcolor=FFC751>货币基金综合</td>
+                        <td bgcolor=FFC751>999999</td>
+                        <td align='right' bgcolor=FFC751>1.0000</td>
+                        <td align='right' bgcolor=FFC751>260844.41</td>
+                        <td align='right' bgcolor=FFC751>260844.41</td>
+                        <td align='right' bgcolor=FFC751 style='color: #DD2200;'>
+                            6512.79</td>
+                        <td align='right' bgcolor=FFC751 style='color: #DD2200;'>
+                            2.56%</td>
+                        <td bgcolor=FFC751>现金</td>
+                        <td bgcolor=FFC751>低风险理财</td>
+                        <td bgcolor=FFC751>货币基金</td>
+                        <td bgcolor=FFC751>999</td>
+                        <td bgcolor=FFC751>现金账户</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=F0DC5A>大成中证红利指数A</td>
+                        <td bgcolor=F0DC5A>090010</td>
+                        <td align='right' bgcolor=F0DC5A>1.6562</td>
+                        <td align='right' bgcolor=F0DC5A>2804.87</td>
+                        <td align='right' bgcolor=F0DC5A>4628.04</td>
+                        <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                            -17.39</td>
+                        <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                            -0.37%</td>
+                        <td bgcolor=F0DC5A>A 股</td>
+                        <td bgcolor=F0DC5A>红利价值</td>
+                        <td bgcolor=F0DC5A>中证红利</td>
+                        <td bgcolor=F0DC5A>131</td>
+                        <td bgcolor=F0DC5A>螺丝钉</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=F0DC5A>银河沪深300价值指数</td>
+                        <td bgcolor=F0DC5A>519671</td>
+                        <td align='right' bgcolor=F0DC5A>1.4358</td>
+                        <td align='right' bgcolor=F0DC5A>3115.88</td>
+                        <td align='right' bgcolor=F0DC5A>4471.29</td>
+                        <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                            -2.49</td>
+                        <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                            -0.06%</td>
+                        <td bgcolor=F0DC5A>A 股</td>
+                        <td bgcolor=F0DC5A>大盘股</td>
+                        <td bgcolor=F0DC5A>300价值</td>
+                        <td bgcolor=F0DC5A>114</td>
+                        <td bgcolor=F0DC5A>螺丝钉</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=F0DC5A>景顺长城中证500低波动</td>
+                        <td bgcolor=F0DC5A>003318</td>
+                        <td align='right' bgcolor=F0DC5A>0.9388</td>
+                        <td align='right' bgcolor=F0DC5A>4201.88</td>
+                        <td align='right' bgcolor=F0DC5A>4078.76</td>
+                        <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                            134.04</td>
+                        <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                            3.40%</td>
+                        <td bgcolor=F0DC5A>A 股</td>
+                        <td bgcolor=F0DC5A>中小盘股</td>
+                        <td bgcolor=F0DC5A>500低波动</td>
+                        <td bgcolor=F0DC5A>122</td>
+                        <td bgcolor=F0DC5A>螺丝钉</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=F0DC5A>华宝香港中小</td>
+                        <td bgcolor=F0DC5A>501021</td>
+                        <td align='right' bgcolor=F0DC5A>1.3481</td>
+                        <td align='right' bgcolor=F0DC5A>2260.14</td>
+                        <td align='right' bgcolor=F0DC5A>3381.85</td>
+                        <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                            334.95</td>
+                        <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                            10.99%</td>
+                        <td bgcolor=F0DC5A>海外新兴</td>
+                        <td bgcolor=F0DC5A>香港</td>
+                        <td bgcolor=F0DC5A>香港中小</td>
+                        <td bgcolor=F0DC5A>213</td>
+                        <td bgcolor=F0DC5A>螺丝钉</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=F0DC5A>嘉实深证基本面120联接</td>
+                        <td bgcolor=F0DC5A>070023</td>
+                        <td align='right' bgcolor=F0DC5A>1.7987</td>
+                        <td align='right' bgcolor=F0DC5A>1363.37</td>
+                        <td align='right' bgcolor=F0DC5A>2657.34</td>
+                        <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                            205.05</td>
+                        <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                            8.36%</td>
+                        <td bgcolor=F0DC5A>A 股</td>
+                        <td bgcolor=F0DC5A>大盘股</td>
+                        <td bgcolor=F0DC5A>基本面120</td>
+                        <td bgcolor=F0DC5A>116</td>
+                        <td bgcolor=F0DC5A>螺丝钉</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=F0DC5A>建信深证基本面60ETF联接A</td>
+                        <td bgcolor=F0DC5A>530015</td>
+                        <td align='right' bgcolor=F0DC5A>2.1360</td>
+                        <td align='right' bgcolor=F0DC5A>1134.65</td>
+                        <td align='right' bgcolor=F0DC5A>2564.65</td>
+                        <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                            141.04</td>
+                        <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                            5.82%</td>
+                        <td bgcolor=F0DC5A>A 股</td>
+                        <td bgcolor=F0DC5A>大盘股</td>
+                        <td bgcolor=F0DC5A>基本面60</td>
+                        <td bgcolor=F0DC5A>115</td>
+                        <td bgcolor=F0DC5A>螺丝钉</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=F0DC5A>广发中证养老</td>
+                        <td bgcolor=F0DC5A>000968</td>
+                        <td align='right' bgcolor=F0DC5A>0.9589</td>
+                        <td align='right' bgcolor=F0DC5A>1067.42</td>
+                        <td align='right' bgcolor=F0DC5A>1078.84</td>
+                        <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                            55.29</td>
+                        <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                            5.40%</td>
+                        <td bgcolor=F0DC5A>A 股</td>
+                        <td bgcolor=F0DC5A>行业股</td>
+                        <td bgcolor=F0DC5A>养老产业</td>
+                        <td bgcolor=F0DC5A>141</td>
+                        <td bgcolor=F0DC5A>螺丝钉</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=F0DC5A>天弘中证银行指数A</td>
+                        <td bgcolor=F0DC5A>001594</td>
+                        <td align='right' bgcolor=F0DC5A>1.2511</td>
+                        <td align='right' bgcolor=F0DC5A>550.61</td>
+                        <td align='right' bgcolor=F0DC5A>662.60</td>
+                        <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                            -26.26</td>
+                        <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                            -3.81%</td>
+                        <td bgcolor=F0DC5A>A 股</td>
+                        <td bgcolor=F0DC5A>行业股</td>
+                        <td bgcolor=F0DC5A>中证银行</td>
+                        <td bgcolor=F0DC5A>146</td>
+                        <td bgcolor=F0DC5A>螺丝钉</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=F0DC5A>华宝红利基金</td>
+                        <td bgcolor=F0DC5A>501029</td>
+                        <td align='right' bgcolor=F0DC5A>0.9827</td>
+                        <td align='right' bgcolor=F0DC5A>550.40</td>
+                        <td align='right' bgcolor=F0DC5A>541.98</td>
+                        <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                            1.10</td>
+                        <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                            0.20%</td>
+                        <td bgcolor=F0DC5A>A 股</td>
+                        <td bgcolor=F0DC5A>红利价值</td>
+                        <td bgcolor=F0DC5A>标普红利</td>
+                        <td bgcolor=F0DC5A>132</td>
+                        <td bgcolor=F0DC5A>螺丝钉</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=F0DC5A>天弘中证医药100A</td>
+                        <td bgcolor=F0DC5A>001550</td>
+                        <td align='right' bgcolor=F0DC5A>0.6708</td>
+                        <td align='right' bgcolor=F0DC5A>531.87</td>
+                        <td align='right' bgcolor=F0DC5A>450.65</td>
+                        <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                            93.88</td>
+                        <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                            26.31%</td>
+                        <td bgcolor=F0DC5A>A 股</td>
+                        <td bgcolor=F0DC5A>行业股</td>
+                        <td bgcolor=F0DC5A>全指医药</td>
+                        <td bgcolor=F0DC5A>142</td>
+                        <td bgcolor=F0DC5A>螺丝钉</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=F0DC5A>华夏上证50AH优选指数</td>
+                        <td bgcolor=F0DC5A>501050</td>
+                        <td align='right' bgcolor=F0DC5A>1.2636</td>
+                        <td align='right' bgcolor=F0DC5A>247.91</td>
+                        <td align='right' bgcolor=F0DC5A>333.69</td>
+                        <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                            20.43</td>
+                        <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                            6.52%</td>
+                        <td bgcolor=F0DC5A>A 股</td>
+                        <td bgcolor=F0DC5A>大盘股</td>
+                        <td bgcolor=F0DC5A>50AH</td>
+                        <td bgcolor=F0DC5A>112</td>
+                        <td bgcolor=F0DC5A>螺丝钉</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=F0DC5A>申万菱信沪深300价值指数</td>
+                        <td bgcolor=F0DC5A>310398</td>
+                        <td align='right' bgcolor=F0DC5A>1.4374</td>
+                        <td align='right' bgcolor=F0DC5A>64.50</td>
+                        <td align='right' bgcolor=F0DC5A>87.49</td>
+                        <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                            -5.22</td>
+                        <td align='right' bgcolor=F0DC5A style='color: #009933;'>
+                            -5.63%</td>
+                        <td bgcolor=F0DC5A>A 股</td>
+                        <td bgcolor=F0DC5A>大盘股</td>
+                        <td bgcolor=F0DC5A>300价值</td>
+                        <td bgcolor=F0DC5A>114</td>
+                        <td bgcolor=F0DC5A>螺丝钉</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=F0DC5A>大成景安短融债券E</td>
+                        <td bgcolor=F0DC5A>002086</td>
+                        <td align='right' bgcolor=F0DC5A>1.2256</td>
+                        <td align='right' bgcolor=F0DC5A>0.00</td>
+                        <td align='right' bgcolor=F0DC5A>0.00</td>
+                        <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                            0.00</td>
+                        <td align='right' bgcolor=F0DC5A style='color: #DD2200;'>
+                            0.00%</td>
+                        <td bgcolor=F0DC5A>现金</td>
+                        <td bgcolor=F0DC5A>低风险理财</td>
+                        <td bgcolor=F0DC5A>货币基金</td>
+                        <td bgcolor=F0DC5A>999</td>
+                        <td bgcolor=F0DC5A>螺丝钉</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=DCDCDC>住房公积金</td>
+                        <td bgcolor=DCDCDC>999989</td>
+                        <td align='right' bgcolor=DCDCDC>1.0000</td>
+                        <td align='right' bgcolor=DCDCDC>319017.75</td>
+                        <td align='right' bgcolor=DCDCDC>319017.75</td>
+                        <td align='right' bgcolor=DCDCDC style='color: #DD2200;'>
+                            7027.67</td>
+                        <td align='right' bgcolor=DCDCDC style='color: #DD2200;'>
+                            2.25%</td>
+                        <td bgcolor=DCDCDC>冻结资金</td>
+                        <td bgcolor=DCDCDC>有息资金</td>
+                        <td bgcolor=DCDCDC>住房公积金</td>
+                        <td bgcolor=DCDCDC>989</td>
+                        <td bgcolor=DCDCDC>冻结资金</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=DBB6AC>广发中证环保ETF联接基金A</td>
+                        <td bgcolor=DBB6AC>001064</td>
+                        <td align='right' bgcolor=DBB6AC>0.7172</td>
+                        <td align='right' bgcolor=DBB6AC>16731.88</td>
+                        <td align='right' bgcolor=DBB6AC>10311.86</td>
+                        <td align='right' bgcolor=DBB6AC style='color: #009933;'>
+                            -1688.25</td>
+                        <td align='right' bgcolor=DBB6AC style='color: #009933;'>
+                            -14.07%</td>
+                        <td bgcolor=DBB6AC>A 股</td>
+                        <td bgcolor=DBB6AC>行业股</td>
+                        <td bgcolor=DBB6AC>中证环保</td>
+                        <td bgcolor=DBB6AC>143</td>
+                        <td bgcolor=DBB6AC>支付宝</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=FF7C9E>50ETF</td>
+                        <td bgcolor=FF7C9E>510050</td>
+                        <td align='right' bgcolor=FF7C9E>2.3370</td>
+                        <td align='right' bgcolor=FF7C9E>2700.00</td>
+                        <td align='right' bgcolor=FF7C9E>7897.50</td>
+                        <td align='right' bgcolor=FF7C9E style='color: #DD2200;'>
+                            1587.60</td>
+                        <td align='right' bgcolor=FF7C9E style='color: #DD2200;'>
+                            25.16%</td>
+                        <td bgcolor=FF7C9E>A 股</td>
+                        <td bgcolor=FF7C9E>大盘股</td>
+                        <td bgcolor=FF7C9E>上证50</td>
+                        <td bgcolor=FF7C9E>111</td>
+                        <td bgcolor=FF7C9E>股票账户</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=FF7C9E>300ETF</td>
+                        <td bgcolor=FF7C9E>510300</td>
+                        <td align='right' bgcolor=FF7C9E>3.4470</td>
+                        <td align='right' bgcolor=FF7C9E>9100.00</td>
+                        <td align='right' bgcolor=FF7C9E>36384.53</td>
+                        <td align='right' bgcolor=FF7C9E style='color: #DD2200;'>
+                            5016.83</td>
+                        <td align='right' bgcolor=FF7C9E style='color: #DD2200;'>
+                            15.99%</td>
+                        <td bgcolor=FF7C9E>A 股</td>
+                        <td bgcolor=FF7C9E>大盘股</td>
+                        <td bgcolor=FF7C9E>沪深300</td>
+                        <td bgcolor=FF7C9E>113</td>
+                        <td bgcolor=FF7C9E>股票账户</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=FF7C9E>500ETF</td>
+                        <td bgcolor=FF7C9E>510500</td>
+                        <td align='right' bgcolor=FF7C9E>5.6010</td>
+                        <td align='right' bgcolor=FF7C9E>38800.00</td>
+                        <td align='right' bgcolor=FF7C9E>225998.36</td>
+                        <td align='right' bgcolor=FF7C9E style='color: #DD2200;'>
+                            8679.56</td>
+                        <td align='right' bgcolor=FF7C9E style='color: #DD2200;'>
+                            3.99%</td>
+                        <td bgcolor=FF7C9E>A 股</td>
+                        <td bgcolor=FF7C9E>中小盘股</td>
+                        <td bgcolor=FF7C9E>中证500</td>
+                        <td bgcolor=FF7C9E>121</td>
+                        <td bgcolor=FF7C9E>股票账户</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=FF7C9E>环保ETF</td>
+                        <td bgcolor=FF7C9E>512580</td>
+                        <td align='right' bgcolor=FF7C9E>0.8770</td>
+                        <td align='right' bgcolor=FF7C9E>33800.00</td>
+                        <td align='right' bgcolor=FF7C9E>27908.66</td>
+                        <td align='right' bgcolor=FF7C9E style='color: #009933;'>
+                            -1733.94</td>
+                        <td align='right' bgcolor=FF7C9E style='color: #009933;'>
+                            -5.85%</td>
+                        <td bgcolor=FF7C9E>A 股</td>
+                        <td bgcolor=FF7C9E>行业股</td>
+                        <td bgcolor=FF7C9E>中证环保</td>
+                        <td bgcolor=FF7C9E>143</td>
+                        <td bgcolor=FF7C9E>股票账户</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=FF7C9E>证券ETF</td>
+                        <td bgcolor=FF7C9E>512880</td>
+                        <td align='right' bgcolor=FF7C9E>0.7830</td>
+                        <td align='right' bgcolor=FF7C9E>32700.00</td>
+                        <td align='right' bgcolor=FF7C9E>32379.54</td>
+                        <td align='right' bgcolor=FF7C9E style='color: #DD2200;'>
+                            6775.44</td>
+                        <td align='right' bgcolor=FF7C9E style='color: #DD2200;'>
+                            26.46%</td>
+                        <td bgcolor=FF7C9E>A 股</td>
+                        <td bgcolor=FF7C9E>行业股</td>
+                        <td bgcolor=FF7C9E>证券公司</td>
+                        <td bgcolor=FF7C9E>145</td>
+                        <td bgcolor=FF7C9E>股票账户</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=FF7C9E>传媒ETF</td>
+                        <td bgcolor=FF7C9E>512980</td>
+                        <td align='right' bgcolor=FF7C9E>0.8690</td>
+                        <td align='right' bgcolor=FF7C9E>34100.00</td>
+                        <td align='right' bgcolor=FF7C9E>29943.21</td>
+                        <td align='right' bgcolor=FF7C9E style='color: #DD2200;'>
+                            310.31</td>
+                        <td align='right' bgcolor=FF7C9E style='color: #DD2200;'>
+                            1.05%</td>
+                        <td bgcolor=FF7C9E>A 股</td>
+                        <td bgcolor=FF7C9E>行业股</td>
+                        <td bgcolor=FF7C9E>中证传媒</td>
+                        <td bgcolor=FF7C9E>144</td>
+                        <td bgcolor=FF7C9E>股票账户</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=FF7C9E>黄金ETF</td>
+                        <td bgcolor=FF7C9E>518880</td>
+                        <td align='right' bgcolor=FF7C9E>2.8560</td>
+                        <td align='right' bgcolor=FF7C9E>4500.00</td>
+                        <td align='right' bgcolor=FF7C9E>15450.30</td>
+                        <td align='right' bgcolor=FF7C9E style='color: #DD2200;'>
+                            2598.30</td>
+                        <td align='right' bgcolor=FF7C9E style='color: #DD2200;'>
+                            20.22%</td>
+                        <td bgcolor=FF7C9E>商品</td>
+                        <td bgcolor=FF7C9E>商品</td>
+                        <td bgcolor=FF7C9E>黄金</td>
+                        <td bgcolor=FF7C9E>611</td>
+                        <td bgcolor=FF7C9E>股票账户</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=FF7C9E>创业板</td>
+                        <td bgcolor=FF7C9E>159915</td>
+                        <td align='right' bgcolor=FF7C9E>1.3990</td>
+                        <td align='right' bgcolor=FF7C9E>9200.00</td>
+                        <td align='right' bgcolor=FF7C9E>17057.72</td>
+                        <td align='right' bgcolor=FF7C9E style='color: #DD2200;'>
+                            4186.92</td>
+                        <td align='right' bgcolor=FF7C9E style='color: #DD2200;'>
+                            32.53%</td>
+                        <td bgcolor=FF7C9E>A 股</td>
+                        <td bgcolor=FF7C9E>中小盘股</td>
+                        <td bgcolor=FF7C9E>创业板</td>
+                        <td bgcolor=FF7C9E>124</td>
+                        <td bgcolor=FF7C9E>股票账户</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=FF7C9E>广发医药</td>
+                        <td bgcolor=FF7C9E>159938</td>
+                        <td align='right' bgcolor=FF7C9E>1.2710</td>
+                        <td align='right' bgcolor=FF7C9E>14400.00</td>
+                        <td align='right' bgcolor=FF7C9E>20854.08</td>
+                        <td align='right' bgcolor=FF7C9E style='color: #DD2200;'>
+                            2551.68</td>
+                        <td align='right' bgcolor=FF7C9E style='color: #DD2200;'>
+                            13.94%</td>
+                        <td bgcolor=FF7C9E>A 股</td>
+                        <td bgcolor=FF7C9E>行业股</td>
+                        <td bgcolor=FF7C9E>全指医药</td>
+                        <td bgcolor=FF7C9E>142</td>
+                        <td bgcolor=FF7C9E>股票账户</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=6EB5FF>建信中证500指数增强A</td>
+                        <td bgcolor=6EB5FF>000478</td>
+                        <td align='right' bgcolor=6EB5FF>1.9252</td>
+                        <td align='right' bgcolor=6EB5FF>4157.52</td>
+                        <td align='right' bgcolor=6EB5FF>8680.49</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            676.43</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            8.45%</td>
+                        <td bgcolor=6EB5FF>A 股</td>
+                        <td bgcolor=6EB5FF>中小盘股</td>
+                        <td bgcolor=6EB5FF>中证500</td>
+                        <td bgcolor=6EB5FF>121</td>
+                        <td bgcolor=6EB5FF>且慢 150 份</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=6EB5FF>广发中证环保ETF联接A</td>
+                        <td bgcolor=6EB5FF>001064</td>
+                        <td align='right' bgcolor=6EB5FF>0.5489</td>
+                        <td align='right' bgcolor=6EB5FF>9722.00</td>
+                        <td align='right' bgcolor=6EB5FF>5991.67</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            655.26</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            12.28%</td>
+                        <td bgcolor=6EB5FF>A 股</td>
+                        <td bgcolor=6EB5FF>行业股</td>
+                        <td bgcolor=6EB5FF>中证环保</td>
+                        <td bgcolor=6EB5FF>143</td>
+                        <td bgcolor=6EB5FF>且慢 150 份</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=6EB5FF>广发养老指数A</td>
+                        <td bgcolor=6EB5FF>000968</td>
+                        <td align='right' bgcolor=6EB5FF>0.9444</td>
+                        <td align='right' bgcolor=6EB5FF>4943.96</td>
+                        <td align='right' bgcolor=6EB5FF>4996.86</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            327.78</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            7.02%</td>
+                        <td bgcolor=6EB5FF>A 股</td>
+                        <td bgcolor=6EB5FF>行业股</td>
+                        <td bgcolor=6EB5FF>养老产业</td>
+                        <td bgcolor=6EB5FF>141</td>
+                        <td bgcolor=6EB5FF>且慢 150 份</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=6EB5FF>华夏中证500ETF联接A</td>
+                        <td bgcolor=6EB5FF>001052</td>
+                        <td align='right' bgcolor=6EB5FF>0.5423</td>
+                        <td align='right' bgcolor=6EB5FF>7379.54</td>
+                        <td align='right' bgcolor=6EB5FF>4398.21</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            396.28</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            9.90%</td>
+                        <td bgcolor=6EB5FF>A 股</td>
+                        <td bgcolor=6EB5FF>中小盘股</td>
+                        <td bgcolor=6EB5FF>中证500</td>
+                        <td bgcolor=6EB5FF>121</td>
+                        <td bgcolor=6EB5FF>且慢 150 份</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=6EB5FF>富国中证红利指数增强</td>
+                        <td bgcolor=6EB5FF>100032</td>
+                        <td align='right' bgcolor=6EB5FF>1.0919</td>
+                        <td align='right' bgcolor=6EB5FF>3665.01</td>
+                        <td align='right' bgcolor=6EB5FF>4145.13</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            143.30</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            3.58%</td>
+                        <td bgcolor=6EB5FF>A 股</td>
+                        <td bgcolor=6EB5FF>红利价值</td>
+                        <td bgcolor=6EB5FF>中证红利</td>
+                        <td bgcolor=6EB5FF>131</td>
+                        <td bgcolor=6EB5FF>且慢 150 份</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=6EB5FF>广发中证传媒ETF联接A</td>
+                        <td bgcolor=6EB5FF>004752</td>
+                        <td align='right' bgcolor=6EB5FF>0.7329</td>
+                        <td align='right' bgcolor=6EB5FF>4550.55</td>
+                        <td align='right' bgcolor=6EB5FF>3971.72</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            636.62</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            19.09%</td>
+                        <td bgcolor=6EB5FF>A 股</td>
+                        <td bgcolor=6EB5FF>行业股</td>
+                        <td bgcolor=6EB5FF>中证传媒</td>
+                        <td bgcolor=6EB5FF>144</td>
+                        <td bgcolor=6EB5FF>且慢 150 份</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=6EB5FF>易方达创业板ETF联接A</td>
+                        <td bgcolor=6EB5FF>110026</td>
+                        <td align='right' bgcolor=6EB5FF>1.6649</td>
+                        <td align='right' bgcolor=6EB5FF>400.63</td>
+                        <td align='right' bgcolor=6EB5FF>792.69</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            125.68</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            18.84%</td>
+                        <td bgcolor=6EB5FF>A 股</td>
+                        <td bgcolor=6EB5FF>中小盘股</td>
+                        <td bgcolor=6EB5FF>创业板</td>
+                        <td bgcolor=6EB5FF>124</td>
+                        <td bgcolor=6EB5FF>且慢 150 份</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=6EB5FF>广发创业板ETF联接A</td>
+                        <td bgcolor=6EB5FF>003765</td>
+                        <td align='right' bgcolor=6EB5FF>0.9059</td>
+                        <td align='right' bgcolor=6EB5FF>736.30</td>
+                        <td align='right' bgcolor=6EB5FF>785.04</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            118.03</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            17.70%</td>
+                        <td bgcolor=6EB5FF>A 股</td>
+                        <td bgcolor=6EB5FF>中小盘股</td>
+                        <td bgcolor=6EB5FF>创业板</td>
+                        <td bgcolor=6EB5FF>124</td>
+                        <td bgcolor=6EB5FF>且慢 150 份</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=6EB5FF>广发医药卫生联接A</td>
+                        <td bgcolor=6EB5FF>001180</td>
+                        <td align='right' bgcolor=6EB5FF>0.8242</td>
+                        <td align='right' bgcolor=6EB5FF>809.28</td>
+                        <td align='right' bgcolor=6EB5FF>727.62</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            60.62</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            9.09%</td>
+                        <td bgcolor=6EB5FF>A 股</td>
+                        <td bgcolor=6EB5FF>行业股</td>
+                        <td bgcolor=6EB5FF>全指医药</td>
+                        <td bgcolor=6EB5FF>142</td>
+                        <td bgcolor=6EB5FF>且慢 150 份</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=6EB5FF>易方达证券公司分级</td>
+                        <td bgcolor=6EB5FF>502010</td>
+                        <td align='right' bgcolor=6EB5FF>0.9853</td>
+                        <td align='right' bgcolor=6EB5FF>473.85</td>
+                        <td align='right' bgcolor=6EB5FF>504.56</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            37.67</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            8.07%</td>
+                        <td bgcolor=6EB5FF>A 股</td>
+                        <td bgcolor=6EB5FF>行业股</td>
+                        <td bgcolor=6EB5FF>证券公司</td>
+                        <td bgcolor=6EB5FF>145</td>
+                        <td bgcolor=6EB5FF>且慢 150 份</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=6EB5FF>华宝标普石油指数A</td>
+                        <td bgcolor=6EB5FF>162411</td>
+                        <td align='right' bgcolor=6EB5FF>0.3775</td>
+                        <td align='right' bgcolor=6EB5FF>5299.96</td>
+                        <td align='right' bgcolor=6EB5FF>1945.62</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #009933;'>
+                            -55.12</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #009933;'>
+                            -2.75%</td>
+                        <td bgcolor=6EB5FF>商品</td>
+                        <td bgcolor=6EB5FF>商品</td>
+                        <td bgcolor=6EB5FF>原油</td>
+                        <td bgcolor=6EB5FF>613</td>
+                        <td bgcolor=6EB5FF>且慢 150 份</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=6EB5FF>交银中证海外中国互联网指数</td>
+                        <td bgcolor=6EB5FF>164906</td>
+                        <td align='right' bgcolor=6EB5FF>1.1564</td>
+                        <td align='right' bgcolor=6EB5FF>576.80</td>
+                        <td align='right' bgcolor=6EB5FF>820.21</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            153.20</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            22.97%</td>
+                        <td bgcolor=6EB5FF>海外新兴</td>
+                        <td bgcolor=6EB5FF>海外互联</td>
+                        <td bgcolor=6EB5FF>海外互联网</td>
+                        <td bgcolor=6EB5FF>221</td>
+                        <td bgcolor=6EB5FF>且慢 150 份</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=6EB5FF>华夏恒生ETF联接A</td>
+                        <td bgcolor=6EB5FF>000071</td>
+                        <td align='right' bgcolor=6EB5FF>1.4510</td>
+                        <td align='right' bgcolor=6EB5FF>459.67</td>
+                        <td align='right' bgcolor=6EB5FF>707.06</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            40.08</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            6.01%</td>
+                        <td bgcolor=6EB5FF>海外新兴</td>
+                        <td bgcolor=6EB5FF>香港</td>
+                        <td bgcolor=6EB5FF>恒生</td>
+                        <td bgcolor=6EB5FF>211</td>
+                        <td bgcolor=6EB5FF>且慢 150 份</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=6EB5FF>华安德国30(DAX)联接</td>
+                        <td bgcolor=6EB5FF>000614</td>
+                        <td align='right' bgcolor=6EB5FF>1.0903</td>
+                        <td align='right' bgcolor=6EB5FF>611.75</td>
+                        <td align='right' bgcolor=6EB5FF>738.99</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            72.00</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            10.79%</td>
+                        <td bgcolor=6EB5FF>海外成熟</td>
+                        <td bgcolor=6EB5FF>德国</td>
+                        <td bgcolor=6EB5FF>德国30</td>
+                        <td bgcolor=6EB5FF>321</td>
+                        <td bgcolor=6EB5FF>且慢 150 份</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=6EB5FF>建信中证500指数增强A</td>
+                        <td bgcolor=6EB5FF>000478</td>
+                        <td align='right' bgcolor=6EB5FF>1.9107</td>
+                        <td align='right' bgcolor=6EB5FF>1046.73</td>
+                        <td align='right' bgcolor=6EB5FF>2185.47</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            185.48</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            9.27%</td>
+                        <td bgcolor=6EB5FF>A 股</td>
+                        <td bgcolor=6EB5FF>中小盘股</td>
+                        <td bgcolor=6EB5FF>中证500</td>
+                        <td bgcolor=6EB5FF>121</td>
+                        <td bgcolor=6EB5FF>且慢 S 定投</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=6EB5FF>富国中证红利指数增强</td>
+                        <td bgcolor=6EB5FF>100032</td>
+                        <td align='right' bgcolor=6EB5FF>1.0954</td>
+                        <td align='right' bgcolor=6EB5FF>1825.90</td>
+                        <td align='right' bgcolor=6EB5FF>2065.09</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            65.00</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            3.25%</td>
+                        <td bgcolor=6EB5FF>A 股</td>
+                        <td bgcolor=6EB5FF>红利价值</td>
+                        <td bgcolor=6EB5FF>中证红利</td>
+                        <td bgcolor=6EB5FF>131</td>
+                        <td bgcolor=6EB5FF>且慢 S 定投</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=6EB5FF>华夏中证500ETF联接A</td>
+                        <td bgcolor=6EB5FF>001052</td>
+                        <td align='right' bgcolor=6EB5FF>0.5517</td>
+                        <td align='right' bgcolor=6EB5FF>1812.70</td>
+                        <td align='right' bgcolor=6EB5FF>1080.37</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            80.30</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            8.03%</td>
+                        <td bgcolor=6EB5FF>A 股</td>
+                        <td bgcolor=6EB5FF>中小盘股</td>
+                        <td bgcolor=6EB5FF>中证500</td>
+                        <td bgcolor=6EB5FF>121</td>
+                        <td bgcolor=6EB5FF>且慢 S 定投</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=6EB5FF>广发中证传媒ETF联接A</td>
+                        <td bgcolor=6EB5FF>004752</td>
+                        <td align='right' bgcolor=6EB5FF>0.8150</td>
+                        <td align='right' bgcolor=6EB5FF>1227.03</td>
+                        <td align='right' bgcolor=6EB5FF>1070.95</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            70.92</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            7.09%</td>
+                        <td bgcolor=6EB5FF>A 股</td>
+                        <td bgcolor=6EB5FF>行业股</td>
+                        <td bgcolor=6EB5FF>中证传媒</td>
+                        <td bgcolor=6EB5FF>144</td>
+                        <td bgcolor=6EB5FF>且慢 S 定投</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=6EB5FF>华夏上证50ETF联接A</td>
+                        <td bgcolor=6EB5FF>001051</td>
+                        <td align='right' bgcolor=6EB5FF>0.9441</td>
+                        <td align='right' bgcolor=6EB5FF>1059.17</td>
+                        <td align='right' bgcolor=6EB5FF>1061.29</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            61.33</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            6.13%</td>
+                        <td bgcolor=6EB5FF>A 股</td>
+                        <td bgcolor=6EB5FF>大盘股</td>
+                        <td bgcolor=6EB5FF>上证50</td>
+                        <td bgcolor=6EB5FF>111</td>
+                        <td bgcolor=6EB5FF>且慢 S 定投</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=6EB5FF>交银中证海外中国互联网指数</td>
+                        <td bgcolor=6EB5FF>164906</td>
+                        <td align='right' bgcolor=6EB5FF>1.1113</td>
+                        <td align='right' bgcolor=6EB5FF>899.82</td>
+                        <td align='right' bgcolor=6EB5FF>1279.54</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            279.57</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            27.96%</td>
+                        <td bgcolor=6EB5FF>海外新兴</td>
+                        <td bgcolor=6EB5FF>海外互联</td>
+                        <td bgcolor=6EB5FF>海外互联网</td>
+                        <td bgcolor=6EB5FF>221</td>
+                        <td bgcolor=6EB5FF>且慢 S 定投</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=6EB5FF>华夏恒生ETF联接A</td>
+                        <td bgcolor=6EB5FF>000071</td>
+                        <td align='right' bgcolor=6EB5FF>1.4513</td>
+                        <td align='right' bgcolor=6EB5FF>689.02</td>
+                        <td align='right' bgcolor=6EB5FF>1059.85</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            59.88</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            5.99%</td>
+                        <td bgcolor=6EB5FF>海外新兴</td>
+                        <td bgcolor=6EB5FF>香港</td>
+                        <td bgcolor=6EB5FF>恒生</td>
+                        <td bgcolor=6EB5FF>211</td>
+                        <td bgcolor=6EB5FF>且慢 S 定投</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=6EB5FF>华安黄金易ETF联接A</td>
+                        <td bgcolor=6EB5FF>000216</td>
+                        <td align='right' bgcolor=6EB5FF>1.0902</td>
+                        <td align='right' bgcolor=6EB5FF>1834.47</td>
+                        <td align='right' bgcolor=6EB5FF>2333.45</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            333.51</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            16.68%</td>
+                        <td bgcolor=6EB5FF>商品</td>
+                        <td bgcolor=6EB5FF>商品</td>
+                        <td bgcolor=6EB5FF>黄金</td>
+                        <td bgcolor=6EB5FF>611</td>
+                        <td bgcolor=6EB5FF>且慢 S 定投</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=6EB5FF>华宝标普石油指数A</td>
+                        <td bgcolor=6EB5FF>162411</td>
+                        <td align='right' bgcolor=6EB5FF>0.4204</td>
+                        <td align='right' bgcolor=6EB5FF>4757.90</td>
+                        <td align='right' bgcolor=6EB5FF>1746.63</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #009933;'>
+                            -253.60</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #009933;'>
+                            -12.68%</td>
+                        <td bgcolor=6EB5FF>商品</td>
+                        <td bgcolor=6EB5FF>商品</td>
+                        <td bgcolor=6EB5FF>原油</td>
+                        <td bgcolor=6EB5FF>613</td>
+                        <td bgcolor=6EB5FF>且慢 S 定投</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=6EB5FF>华安德国30(DAX)联接</td>
+                        <td bgcolor=6EB5FF>000614</td>
+                        <td align='right' bgcolor=6EB5FF>1.0483</td>
+                        <td align='right' bgcolor=6EB5FF>953.96</td>
+                        <td align='right' bgcolor=6EB5FF>1152.38</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            152.35</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            15.23%</td>
+                        <td bgcolor=6EB5FF>海外成熟</td>
+                        <td bgcolor=6EB5FF>德国</td>
+                        <td bgcolor=6EB5FF>德国30</td>
+                        <td bgcolor=6EB5FF>321</td>
+                        <td bgcolor=6EB5FF>且慢 S 定投</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=6EB5FF>易方达安心债券A</td>
+                        <td bgcolor=6EB5FF>110027</td>
+                        <td align='right' bgcolor=6EB5FF>1.6793</td>
+                        <td align='right' bgcolor=6EB5FF>595.47</td>
+                        <td align='right' bgcolor=6EB5FF>1056.36</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            56.39</td>
+                        <td align='right' bgcolor=6EB5FF style='color: #DD2200;'>
+                            5.64%</td>
+                        <td bgcolor=6EB5FF>债券</td>
+                        <td bgcolor=6EB5FF>国内债券</td>
+                        <td bgcolor=6EB5FF>可转债</td>
+                        <td bgcolor=6EB5FF>512</td>
+                        <td bgcolor=6EB5FF>且慢 S 定投</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=FF8361>富国中证红利指数增强</td>
+                        <td bgcolor=FF8361>100032</td>
+                        <td align='right' bgcolor=FF8361>1.0193</td>
+                        <td align='right' bgcolor=FF8361>65064.33</td>
+                        <td align='right' bgcolor=FF8361>73587.76</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            7267.69</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            10.96%</td>
+                        <td bgcolor=FF8361>A 股</td>
+                        <td bgcolor=FF8361>红利价值</td>
+                        <td bgcolor=FF8361>中证红利</td>
+                        <td bgcolor=FF8361>131</td>
+                        <td bgcolor=FF8361>天天基金</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=FF8361>广发养老指数A</td>
+                        <td bgcolor=FF8361>000968</td>
+                        <td align='right' bgcolor=FF8361>0.9167</td>
+                        <td align='right' bgcolor=FF8361>63490.00</td>
+                        <td align='right' bgcolor=FF8361>64169.34</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            5968.06</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            10.25%</td>
+                        <td bgcolor=FF8361>A 股</td>
+                        <td bgcolor=FF8361>行业股</td>
+                        <td bgcolor=FF8361>养老产业</td>
+                        <td bgcolor=FF8361>141</td>
+                        <td bgcolor=FF8361>天天基金</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=FF8361>兴全可转债混合</td>
+                        <td bgcolor=FF8361>340001</td>
+                        <td align='right' bgcolor=FF8361>0.9886</td>
+                        <td align='right' bgcolor=FF8361>32370.29</td>
+                        <td align='right' bgcolor=FF8361>39404.35</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            7403.09</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            23.13%</td>
+                        <td bgcolor=FF8361>债券</td>
+                        <td bgcolor=FF8361>国内债券</td>
+                        <td bgcolor=FF8361>可转债</td>
+                        <td bgcolor=FF8361>512</td>
+                        <td bgcolor=FF8361>天天基金</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=FF8361>广发医药卫生联接A</td>
+                        <td bgcolor=FF8361>001180</td>
+                        <td align='right' bgcolor=FF8361>0.7451</td>
+                        <td align='right' bgcolor=FF8361>41014.88</td>
+                        <td align='right' bgcolor=FF8361>36876.48</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            6316.29</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            20.67%</td>
+                        <td bgcolor=FF8361>A 股</td>
+                        <td bgcolor=FF8361>行业股</td>
+                        <td bgcolor=FF8361>全指医药</td>
+                        <td bgcolor=FF8361>142</td>
+                        <td bgcolor=FF8361>天天基金</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=FF8361>易方达安心回报债券A</td>
+                        <td bgcolor=FF8361>110027</td>
+                        <td align='right' bgcolor=FF8361>1.5931</td>
+                        <td align='right' bgcolor=FF8361>20086.63</td>
+                        <td align='right' bgcolor=FF8361>35633.68</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            3633.67</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            11.36%</td>
+                        <td bgcolor=FF8361>债券</td>
+                        <td bgcolor=FF8361>国内债券</td>
+                        <td bgcolor=FF8361>可转债</td>
+                        <td bgcolor=FF8361>512</td>
+                        <td bgcolor=FF8361>天天基金</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=FF8361>华安德国30(DAX)联接</td>
+                        <td bgcolor=FF8361>000614</td>
+                        <td align='right' bgcolor=FF8361>1.0910</td>
+                        <td align='right' bgcolor=FF8361>20716.63</td>
+                        <td align='right' bgcolor=FF8361>25025.69</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            2423.85</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            10.72%</td>
+                        <td bgcolor=FF8361>海外成熟</td>
+                        <td bgcolor=FF8361>德国</td>
+                        <td bgcolor=FF8361>德国30</td>
+                        <td bgcolor=FF8361>321</td>
+                        <td bgcolor=FF8361>天天基金</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=FF8361>富国沪深300指数增强</td>
+                        <td bgcolor=FF8361>100038</td>
+                        <td align='right' bgcolor=FF8361>1.3129</td>
+                        <td align='right' bgcolor=FF8361>14624.61</td>
+                        <td align='right' bgcolor=FF8361>24437.72</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            5237.07</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            27.28%</td>
+                        <td bgcolor=FF8361>A 股</td>
+                        <td bgcolor=FF8361>大盘股</td>
+                        <td bgcolor=FF8361>沪深300</td>
+                        <td bgcolor=FF8361>113</td>
+                        <td bgcolor=FF8361>天天基金</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=FF8361>交银中证海外中国互联网指数</td>
+                        <td bgcolor=FF8361>164906</td>
+                        <td align='right' bgcolor=FF8361>1.1444</td>
+                        <td align='right' bgcolor=FF8361>16778.47</td>
+                        <td align='right' bgcolor=FF8361>23858.98</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            4657.70</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            24.26%</td>
+                        <td bgcolor=FF8361>海外新兴</td>
+                        <td bgcolor=FF8361>海外互联</td>
+                        <td bgcolor=FF8361>海外互联网</td>
+                        <td bgcolor=FF8361>221</td>
+                        <td bgcolor=FF8361>天天基金</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=FF8361>广发中证全指金融地产联接A</td>
+                        <td bgcolor=FF8361>001469</td>
+                        <td align='right' bgcolor=FF8361>0.9073</td>
+                        <td align='right' bgcolor=FF8361>21163.93</td>
+                        <td align='right' bgcolor=FF8361>23305.72</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            4103.69</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            21.37%</td>
+                        <td bgcolor=FF8361>A 股</td>
+                        <td bgcolor=FF8361>行业股</td>
+                        <td bgcolor=FF8361>金融地产</td>
+                        <td bgcolor=FF8361>147</td>
+                        <td bgcolor=FF8361>天天基金</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=FF8361>富国中证500指数(LOF)</td>
+                        <td bgcolor=FF8361>161017</td>
+                        <td align='right' bgcolor=FF8361>1.3432</td>
+                        <td align='right' bgcolor=FF8361>9529.81</td>
+                        <td align='right' bgcolor=FF8361>16753.41</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            3952.97</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            30.88%</td>
+                        <td bgcolor=FF8361>A 股</td>
+                        <td bgcolor=FF8361>中小盘股</td>
+                        <td bgcolor=FF8361>中证500</td>
+                        <td bgcolor=FF8361>121</td>
+                        <td bgcolor=FF8361>天天基金</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=FF8361>华宝标普油气上游股票人民币A</td>
+                        <td bgcolor=FF8361>162411</td>
+                        <td align='right' bgcolor=FF8361>0.5152</td>
+                        <td align='right' bgcolor=FF8361>37267.45</td>
+                        <td align='right' bgcolor=FF8361>13680.88</td>
+                        <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                            -5519.31</td>
+                        <td align='right' bgcolor=FF8361 style='color: #009933;'>
+                            -28.75%</td>
+                        <td bgcolor=FF8361>商品</td>
+                        <td bgcolor=FF8361>商品</td>
+                        <td bgcolor=FF8361>原油</td>
+                        <td bgcolor=FF8361>613</td>
+                        <td bgcolor=FF8361>天天基金</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=FF8361>华夏恒生ETF联接A</td>
+                        <td bgcolor=FF8361>000071</td>
+                        <td align='right' bgcolor=FF8361>1.4562</td>
+                        <td align='right' bgcolor=FF8361>6798.52</td>
+                        <td align='right' bgcolor=FF8361>10457.48</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            557.48</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            5.63%</td>
+                        <td bgcolor=FF8361>海外新兴</td>
+                        <td bgcolor=FF8361>香港</td>
+                        <td bgcolor=FF8361>恒生</td>
+                        <td bgcolor=FF8361>211</td>
+                        <td bgcolor=FF8361>天天基金</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=FF8361>广发中证环保ETF联接A</td>
+                        <td bgcolor=FF8361>001064</td>
+                        <td align='right' bgcolor=FF8361>0.4775</td>
+                        <td align='right' bgcolor=FF8361>13403.92</td>
+                        <td align='right' bgcolor=FF8361>8260.84</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            1860.46</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            29.07%</td>
+                        <td bgcolor=FF8361>A 股</td>
+                        <td bgcolor=FF8361>行业股</td>
+                        <td bgcolor=FF8361>中证环保</td>
+                        <td bgcolor=FF8361>143</td>
+                        <td bgcolor=FF8361>天天基金</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=FF8361>长信可转债债券A</td>
+                        <td bgcolor=FF8361>519977</td>
+                        <td align='right' bgcolor=FF8361>1.2011</td>
+                        <td align='right' bgcolor=FF8361>5328.62</td>
+                        <td align='right' bgcolor=FF8361>7688.13</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            1287.93</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            20.12%</td>
+                        <td bgcolor=FF8361>债券</td>
+                        <td bgcolor=FF8361>国内债券</td>
+                        <td bgcolor=FF8361>可转债</td>
+                        <td bgcolor=FF8361>512</td>
+                        <td bgcolor=FF8361>天天基金</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=FF8361>华夏收益债券(QDII)A</td>
+                        <td bgcolor=FF8361>001061</td>
+                        <td align='right' bgcolor=FF8361>0.9172</td>
+                        <td align='right' bgcolor=FF8361>5609.79</td>
+                        <td align='right' bgcolor=FF8361>7629.31</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            2484.02</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            48.28%</td>
+                        <td bgcolor=FF8361>债券</td>
+                        <td bgcolor=FF8361>海外债券</td>
+                        <td bgcolor=FF8361>美元债</td>
+                        <td bgcolor=FF8361>521</td>
+                        <td bgcolor=FF8361>天天基金</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=FF8361>建信中证500指数增强A</td>
+                        <td bgcolor=FF8361>000478</td>
+                        <td align='right' bgcolor=FF8361>1.9397</td>
+                        <td align='right' bgcolor=FF8361>3299.64</td>
+                        <td align='right' bgcolor=FF8361>6889.32</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            489.01</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            7.64%</td>
+                        <td bgcolor=FF8361>A 股</td>
+                        <td bgcolor=FF8361>中小盘股</td>
+                        <td bgcolor=FF8361>中证500</td>
+                        <td bgcolor=FF8361>121</td>
+                        <td bgcolor=FF8361>天天基金</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=FF8361>广发中证传媒ETF联接A</td>
+                        <td bgcolor=FF8361>004752</td>
+                        <td align='right' bgcolor=FF8361>0.8150</td>
+                        <td align='right' bgcolor=FF8361>7852.99</td>
+                        <td align='right' bgcolor=FF8361>6854.09</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            453.90</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            7.09%</td>
+                        <td bgcolor=FF8361>A 股</td>
+                        <td bgcolor=FF8361>行业股</td>
+                        <td bgcolor=FF8361>中证传媒</td>
+                        <td bgcolor=FF8361>144</td>
+                        <td bgcolor=FF8361>天天基金</td>
+                    </tr>
+                    
+                    <tr align='center'>
+                        <td bgcolor=FF8361>广发中证500ETF联接C</td>
+                        <td bgcolor=FF8361>002903</td>
+                        <td align='right' bgcolor=FF8361>0.8548</td>
+                        <td align='right' bgcolor=FF8361>3889.32</td>
+                        <td align='right' bgcolor=FF8361>3638.07</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            313.48</td>
+                        <td align='right' bgcolor=FF8361 style='color: #DD2200;'>
+                            9.43%</td>
+                        <td bgcolor=FF8361>A 股</td>
+                        <td bgcolor=FF8361>中小盘股</td>
+                        <td bgcolor=FF8361>中证500</td>
+                        <td bgcolor=FF8361>121</td>
+                        <td bgcolor=FF8361>天天基金</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </li>
+    </ul>
+
+
+</body>
+
+</html>

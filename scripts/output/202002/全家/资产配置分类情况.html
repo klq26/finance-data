@@ -1,0 +1,1000 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>资产配置分类</title>
+    <h1>资产配置分类</h1>
+</head>
+
+<body>
+    <table id='category1' border="0" cellspacing='0' cellpadding='4' align='left'>
+        <tr>
+            <th>
+                <h3>一级分类</h3>
+            </th>
+        </tr>
+        <!-- 名称	分类市值	盈亏（元）	分类盈亏率	组合占比	组合盈亏贡献 -->
+        <tr align='center'>
+            <th id='th0' class='asc' type='string' onclick='sort(this)'>名称</th>
+            <th id='th1' class='asc' type='number' onclick='sort(this)'>分类市值</th>
+            <th id='th2' class='asc' type='number' onclick='sort(this)'>盈亏</th>
+            <th id='th3' class='asc' type='number' onclick='sort(this)'>分类盈亏率</th>
+            <th id='th4' class='asc' type='number' onclick='sort(this)'>组合占比</th>
+            <th id='th5' class='asc' type='number' onclick='sort(this)'>组合盈亏贡献</th>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#50C2F9>A 股</td>
+            <td align='right' bgcolor=#50C2F9>810586.22</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                75195.69</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                10.23%</td>
+            <td align='right' bgcolor=#50C2F9>33.48%</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                63.28%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#BBEDA8>海外新兴</td>
+            <td align='right' bgcolor=#BBEDA8>46704.21</td>
+            <td align='right' bgcolor=#BBEDA8 style='color: #DD2200;'>
+                6773.14</td>
+            <td align='right' bgcolor=#BBEDA8 style='color: #DD2200;'>
+                16.96%</td>
+            <td align='right' bgcolor=#BBEDA8>1.93%</td>
+            <td align='right' bgcolor=#BBEDA8 style='color: #DD2200;'>
+                5.70%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#FFC751>海外成熟</td>
+            <td align='right' bgcolor=#FFC751>29193.83</td>
+            <td align='right' bgcolor=#FFC751 style='color: #DD2200;'>
+                2924.88</td>
+            <td align='right' bgcolor=#FFC751 style='color: #DD2200;'>
+                11.13%</td>
+            <td align='right' bgcolor=#FFC751>1.21%</td>
+            <td align='right' bgcolor=#FFC751 style='color: #DD2200;'>
+                2.46%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#FF7C9E>混合型</td>
+            <td align='right' bgcolor=#FF7C9E>275249.54</td>
+            <td align='right' bgcolor=#FF7C9E style='color: #DD2200;'>
+                4481.47</td>
+            <td align='right' bgcolor=#FF7C9E style='color: #DD2200;'>
+                1.66%</td>
+            <td align='right' bgcolor=#FF7C9E>11.37%</td>
+            <td align='right' bgcolor=#FF7C9E style='color: #DD2200;'>
+                3.77%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#FF8361>债券</td>
+            <td align='right' bgcolor=#FF8361>630498.96</td>
+            <td align='right' bgcolor=#FF8361 style='color: #DD2200;'>
+                19007.80</td>
+            <td align='right' bgcolor=#FF8361 style='color: #DD2200;'>
+                3.11%</td>
+            <td align='right' bgcolor=#FF8361>26.04%</td>
+            <td align='right' bgcolor=#FF8361 style='color: #DD2200;'>
+                16.00%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#DBB6AC>商品</td>
+            <td align='right' bgcolor=#DBB6AC>37320.30</td>
+            <td align='right' bgcolor=#DBB6AC style='color: #009933;'>
+                -3133.14</td>
+            <td align='right' bgcolor=#DBB6AC style='color: #009933;'>
+                -7.75%</td>
+            <td align='right' bgcolor=#DBB6AC>1.54%</td>
+            <td align='right' bgcolor=#DBB6AC style='color: #009933;'>
+                -2.64%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#DCDCDC>冻结资金</td>
+            <td align='right' bgcolor=#DCDCDC>319017.75</td>
+            <td align='right' bgcolor=#DCDCDC style='color: #DD2200;'>
+                7027.67</td>
+            <td align='right' bgcolor=#DCDCDC style='color: #DD2200;'>
+                2.25%</td>
+            <td align='right' bgcolor=#DCDCDC>13.17%</td>
+            <td align='right' bgcolor=#DCDCDC style='color: #DD2200;'>
+                5.91%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#F0DC5A>现金</td>
+            <td align='right' bgcolor=#F0DC5A>272886.71</td>
+            <td align='right' bgcolor=#F0DC5A style='color: #DD2200;'>
+                6554.14</td>
+            <td align='right' bgcolor=#F0DC5A style='color: #DD2200;'>
+                2.46%</td>
+            <td align='right' bgcolor=#F0DC5A>11.27%</td>
+            <td align='right' bgcolor=#F0DC5A style='color: #DD2200;'>
+                5.52%</td>
+        </tr>
+        
+        <tr>
+            <th>
+                <h3>二级分类</h3>
+            </th>
+        </tr>
+        <!-- 名称	分类市值	盈亏（元）	分类盈亏率	组合占比	组合盈亏贡献 -->
+        <tr align='center'>
+            <th id='th0' class='asc' type='string' onclick='sort(this)'>名称</th>
+            <th id='th1' class='asc' type='number' onclick='sort(this)'>分类市值</th>
+            <th id='th2' class='asc' type='number' onclick='sort(this)'>盈亏</th>
+            <th id='th3' class='asc' type='number' onclick='sort(this)'>分类盈亏率</th>
+            <th id='th4' class='asc' type='number' onclick='sort(this)'>组合占比</th>
+            <th id='th5' class='asc' type='number' onclick='sort(this)'>组合盈亏贡献</th>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#50C2F9>大盘股</td>
+            <td align='right' bgcolor=#50C2F9>94050.04</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                13723.65</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                17.08%</td>
+            <td align='right' bgcolor=#50C2F9>3.88%</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                11.55%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#50C2F9>中小盘股</td>
+            <td align='right' bgcolor=#50C2F9>314526.75</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                22413.15</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                7.67%</td>
+            <td align='right' bgcolor=#50C2F9>12.99%</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                18.86%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#50C2F9>红利价值</td>
+            <td align='right' bgcolor=#50C2F9>98753.41</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                8454.57</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                9.36%</td>
+            <td align='right' bgcolor=#50C2F9>4.08%</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                7.11%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#50C2F9>行业股</td>
+            <td align='right' bgcolor=#50C2F9>303256.02</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                30604.32</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                11.22%</td>
+            <td align='right' bgcolor=#50C2F9>12.52%</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                25.75%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#BBEDA8>香港</td>
+            <td align='right' bgcolor=#BBEDA8>18744.31</td>
+            <td align='right' bgcolor=#BBEDA8 style='color: #DD2200;'>
+                1281.59</td>
+            <td align='right' bgcolor=#BBEDA8 style='color: #DD2200;'>
+                7.34%</td>
+            <td align='right' bgcolor=#BBEDA8>0.77%</td>
+            <td align='right' bgcolor=#BBEDA8 style='color: #DD2200;'>
+                1.08%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#BBEDA8>海外互联</td>
+            <td align='right' bgcolor=#BBEDA8>27959.90</td>
+            <td align='right' bgcolor=#BBEDA8 style='color: #DD2200;'>
+                5491.55</td>
+            <td align='right' bgcolor=#BBEDA8 style='color: #DD2200;'>
+                24.44%</td>
+            <td align='right' bgcolor=#BBEDA8>1.15%</td>
+            <td align='right' bgcolor=#BBEDA8 style='color: #DD2200;'>
+                4.62%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#FFC751>德国</td>
+            <td align='right' bgcolor=#FFC751>29193.83</td>
+            <td align='right' bgcolor=#FFC751 style='color: #DD2200;'>
+                2924.88</td>
+            <td align='right' bgcolor=#FFC751 style='color: #DD2200;'>
+                11.13%</td>
+            <td align='right' bgcolor=#FFC751>1.21%</td>
+            <td align='right' bgcolor=#FFC751 style='color: #DD2200;'>
+                2.46%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#FF7C9E>股债混合</td>
+            <td align='right' bgcolor=#FF7C9E>275249.54</td>
+            <td align='right' bgcolor=#FF7C9E style='color: #DD2200;'>
+                4481.47</td>
+            <td align='right' bgcolor=#FF7C9E style='color: #DD2200;'>
+                1.66%</td>
+            <td align='right' bgcolor=#FF7C9E>11.37%</td>
+            <td align='right' bgcolor=#FF7C9E style='color: #DD2200;'>
+                3.77%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#FF8361>国内债券</td>
+            <td align='right' bgcolor=#FF8361>622869.65</td>
+            <td align='right' bgcolor=#FF8361 style='color: #DD2200;'>
+                16523.78</td>
+            <td align='right' bgcolor=#FF8361 style='color: #DD2200;'>
+                2.73%</td>
+            <td align='right' bgcolor=#FF8361>25.72%</td>
+            <td align='right' bgcolor=#FF8361 style='color: #DD2200;'>
+                13.91%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#FF8361>海外债券</td>
+            <td align='right' bgcolor=#FF8361>7629.31</td>
+            <td align='right' bgcolor=#FF8361 style='color: #DD2200;'>
+                2484.02</td>
+            <td align='right' bgcolor=#FF8361 style='color: #DD2200;'>
+                48.28%</td>
+            <td align='right' bgcolor=#FF8361>0.32%</td>
+            <td align='right' bgcolor=#FF8361 style='color: #DD2200;'>
+                2.09%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#DBB6AC>商品</td>
+            <td align='right' bgcolor=#DBB6AC>37320.30</td>
+            <td align='right' bgcolor=#DBB6AC style='color: #009933;'>
+                -3133.14</td>
+            <td align='right' bgcolor=#DBB6AC style='color: #009933;'>
+                -7.75%</td>
+            <td align='right' bgcolor=#DBB6AC>1.54%</td>
+            <td align='right' bgcolor=#DBB6AC style='color: #009933;'>
+                -2.64%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#DCDCDC>有息资金</td>
+            <td align='right' bgcolor=#DCDCDC>319017.75</td>
+            <td align='right' bgcolor=#DCDCDC style='color: #DD2200;'>
+                7027.67</td>
+            <td align='right' bgcolor=#DCDCDC style='color: #DD2200;'>
+                2.25%</td>
+            <td align='right' bgcolor=#DCDCDC>13.17%</td>
+            <td align='right' bgcolor=#DCDCDC style='color: #DD2200;'>
+                5.91%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#F0DC5A>低风险理财</td>
+            <td align='right' bgcolor=#F0DC5A>272886.71</td>
+            <td align='right' bgcolor=#F0DC5A style='color: #DD2200;'>
+                6554.14</td>
+            <td align='right' bgcolor=#F0DC5A style='color: #DD2200;'>
+                2.46%</td>
+            <td align='right' bgcolor=#F0DC5A>11.27%</td>
+            <td align='right' bgcolor=#F0DC5A style='color: #DD2200;'>
+                5.52%</td>
+        </tr>
+        
+        <tr>
+            <th>
+                <h3>三级分类</h3>
+            </th>
+        </tr>
+        <!-- 名称	指数成本	指数点位	持仓 pe	持仓 pb	指数 roe	分类市值	持仓盈亏	历史盈亏	总盈亏	持仓收益率	组合占比	组合盈亏贡献 -->
+        <tr align='center'>
+            <th id='th0' class='asc' type='string' onclick='sort(this)'>名称</th>
+            <th id='th1' class='asc' type='number' onclick='sort(this)'>指数成本</th>
+            <th id='th2' class='asc' type='number' onclick='sort(this)'>指数点位</th>
+            <th id='th3' class='asc' type='number' onclick='sort(this)'>持仓 pe</th>
+            <th id='th4' class='asc' type='number' onclick='sort(this)'>持仓 pb</th>
+            <th id='th5' class='asc' type='number' onclick='sort(this)'>指数 roe</th>
+            <th id='th6' class='asc' type='number' onclick='sort(this)'>分类市值</th>
+            <th id='th7' class='asc' type='number' onclick='sort(this)'>盈亏</th>
+            <th id='th8' class='asc' type='number' onclick='sort(this)'>历史盈亏</th>
+            <th id='th9' class='asc' type='number' onclick='sort(this)'>总盈亏</th>
+            <th id='th10' class='asc' type='number' onclick='sort(this)'>持仓收益率</th>
+            <th id='th11' class='asc' type='number' onclick='sort(this)'>组合占比</th>
+            <th id='th12' class='asc' type='number' onclick='sort(this)'>组合盈亏贡献</th>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#50C2F9>上证50</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                2422.86</td>
+            <td align='right' bgcolor=#50C2F9>2932.49</td>
+            <td align='right' bgcolor=#50C2F9>8.27</td>
+            <td align='right' bgcolor=#50C2F9>0.97</td>
+            <td align='right' bgcolor=#50C2F9>12.29%</td>
+            <td align='right' bgcolor=#50C2F9>10299.93</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                1790.00</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                310.20</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                2100.20</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                21.03%</td>
+            <td align='right' bgcolor=#50C2F9>0.43%</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                1.51%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#50C2F9>50AH</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                5213.70</td>
+            <td align='right' bgcolor=#50C2F9>5510.44</td>
+            <td align='right' bgcolor=#50C2F9>8.37</td>
+            <td align='right' bgcolor=#50C2F9>0.97</td>
+            <td align='right' bgcolor=#50C2F9>11.48%</td>
+            <td align='right' bgcolor=#50C2F9>608.53</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                32.77</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                0.00</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                32.77</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                5.69%</td>
+            <td align='right' bgcolor=#50C2F9>0.03%</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                0.03%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#50C2F9>沪深300</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                3316.91</td>
+            <td align='right' bgcolor=#50C2F9>4003.90</td>
+            <td align='right' bgcolor=#50C2F9>10.78</td>
+            <td align='right' bgcolor=#50C2F9>1.21</td>
+            <td align='right' bgcolor=#50C2F9>12.03%</td>
+            <td align='right' bgcolor=#50C2F9>65870.40</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                11302.02</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                1017.30</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                12319.32</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                20.71%</td>
+            <td align='right' bgcolor=#50C2F9>2.72%</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                9.51%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#50C2F9>300价值</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #009933;'>
+                4858.06</td>
+            <td align='right' bgcolor=#50C2F9>4851.44</td>
+            <td align='right' bgcolor=#50C2F9>8.75</td>
+            <td align='right' bgcolor=#50C2F9>0.97</td>
+            <td align='right' bgcolor=#50C2F9>11.06%</td>
+            <td align='right' bgcolor=#50C2F9>8083.52</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #009933;'>
+                -11.03</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                0.00</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #009933;'>
+                -11.03</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #009933;'>
+                -0.14%</td>
+            <td align='right' bgcolor=#50C2F9>0.33%</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #009933;'>
+                -0.01%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#50C2F9>基本面60</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                7723.63</td>
+            <td align='right' bgcolor=#50C2F9>8174.61</td>
+            <td align='right' bgcolor=#50C2F9>16.32</td>
+            <td align='right' bgcolor=#50C2F9>2.10</td>
+            <td align='right' bgcolor=#50C2F9>12.84%</td>
+            <td align='right' bgcolor=#50C2F9>4539.18</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                250.42</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                0.00</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                250.42</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                5.84%</td>
+            <td align='right' bgcolor=#50C2F9>0.19%</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                0.21%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#50C2F9>基本面120</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                6736.70</td>
+            <td align='right' bgcolor=#50C2F9>7301.32</td>
+            <td align='right' bgcolor=#50C2F9>17.38</td>
+            <td align='right' bgcolor=#50C2F9>2.05</td>
+            <td align='right' bgcolor=#50C2F9>11.78%</td>
+            <td align='right' bgcolor=#50C2F9>4648.48</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                359.47</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                0.00</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                359.47</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                8.38%</td>
+            <td align='right' bgcolor=#50C2F9>0.19%</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                0.30%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#50C2F9>中证500</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                5059.87</td>
+            <td align='right' bgcolor=#50C2F9>5377.74</td>
+            <td align='right' bgcolor=#50C2F9>22.72</td>
+            <td align='right' bgcolor=#50C2F9>1.76</td>
+            <td align='right' bgcolor=#50C2F9>7.38%</td>
+            <td align='right' bgcolor=#50C2F9>285009.68</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                16846.38</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                4032.06</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                20878.44</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                6.28%</td>
+            <td align='right' bgcolor=#50C2F9>11.77%</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                14.18%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#50C2F9>500低波动</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                12233.00</td>
+            <td align='right' bgcolor=#50C2F9>12647.74</td>
+            <td align='right' bgcolor=#50C2F9>22.19</td>
+            <td align='right' bgcolor=#50C2F9>1.43</td>
+            <td align='right' bgcolor=#50C2F9>6.44%</td>
+            <td align='right' bgcolor=#50C2F9>7180.86</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                235.47</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                0.00</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                235.47</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                3.39%</td>
+            <td align='right' bgcolor=#50C2F9>0.30%</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                0.20%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#50C2F9>中证1000</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                5258.53</td>
+            <td align='right' bgcolor=#50C2F9>5699.01</td>
+            <td align='right' bgcolor=#50C2F9>31.82</td>
+            <td align='right' bgcolor=#50C2F9>2.08</td>
+            <td align='right' bgcolor=#50C2F9>5.67%</td>
+            <td align='right' bgcolor=#50C2F9>1300.54</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                100.52</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #009933;'>
+                -5027.69</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #009933;'>
+                -4927.17</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                8.38%</td>
+            <td align='right' bgcolor=#50C2F9>0.05%</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                0.08%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#50C2F9>创业板</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                1448.38</td>
+            <td align='right' bgcolor=#50C2F9>1927.74</td>
+            <td align='right' bgcolor=#50C2F9>46.57</td>
+            <td align='right' bgcolor=#50C2F9>4.36</td>
+            <td align='right' bgcolor=#50C2F9>10.68%</td>
+            <td align='right' bgcolor=#50C2F9>21035.67</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                5230.78</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                1927.70</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                7158.48</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                33.10%</td>
+            <td align='right' bgcolor=#50C2F9>0.87%</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                4.40%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#50C2F9>中证红利</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                3944.75</td>
+            <td align='right' bgcolor=#50C2F9>4318.04</td>
+            <td align='right' bgcolor=#50C2F9>8.97</td>
+            <td align='right' bgcolor=#50C2F9>0.88</td>
+            <td align='right' bgcolor=#50C2F9>12.84%</td>
+            <td align='right' bgcolor=#50C2F9>97775.79</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                8452.56</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                0.00</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                8452.56</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                9.46%</td>
+            <td align='right' bgcolor=#50C2F9>4.04%</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                7.11%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#50C2F9>标普红利</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                8302.33</td>
+            <td align='right' bgcolor=#50C2F9>8319.43</td>
+            <td align='right' bgcolor=#50C2F9>12.82</td>
+            <td align='right' bgcolor=#50C2F9>1.46</td>
+            <td align='right' bgcolor=#50C2F9>11.36%</td>
+            <td align='right' bgcolor=#50C2F9>977.62</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                2.01</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                0.00</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                2.01</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                0.21%</td>
+            <td align='right' bgcolor=#50C2F9>0.04%</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                0.00%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#50C2F9>养老产业</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                6872.21</td>
+            <td align='right' bgcolor=#50C2F9>7595.49</td>
+            <td align='right' bgcolor=#50C2F9>22.20</td>
+            <td align='right' bgcolor=#50C2F9>2.86</td>
+            <td align='right' bgcolor=#50C2F9>16.96%</td>
+            <td align='right' bgcolor=#50C2F9>77233.02</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                7354.51</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                0.00</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                7354.51</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                10.52%</td>
+            <td align='right' bgcolor=#50C2F9>3.19%</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                6.19%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#50C2F9>全指医药</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                8806.28</td>
+            <td align='right' bgcolor=#50C2F9>10466.97</td>
+            <td align='right' bgcolor=#50C2F9>27.14</td>
+            <td align='right' bgcolor=#50C2F9>3.41</td>
+            <td align='right' bgcolor=#50C2F9>10.00%</td>
+            <td align='right' bgcolor=#50C2F9>65338.51</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                10366.62</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                0.00</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                10366.62</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                18.86%</td>
+            <td align='right' bgcolor=#50C2F9>2.70%</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                8.72%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#50C2F9>中证环保</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #009933;'>
+                1339.65</td>
+            <td align='right' bgcolor=#50C2F9>1329.23</td>
+            <td align='right' bgcolor=#50C2F9>29.08</td>
+            <td align='right' bgcolor=#50C2F9>2.47</td>
+            <td align='right' bgcolor=#50C2F9>9.24%</td>
+            <td align='right' bgcolor=#50C2F9>56139.87</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #009933;'>
+                -440.01</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                0.00</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #009933;'>
+                -440.01</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #009933;'>
+                -0.78%</td>
+            <td align='right' bgcolor=#50C2F9>2.32%</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #009933;'>
+                -0.37%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#50C2F9>中证传媒</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                1377.98</td>
+            <td align='right' bgcolor=#50C2F9>1445.42</td>
+            <td align='right' bgcolor=#50C2F9>37.81</td>
+            <td align='right' bgcolor=#50C2F9>2.96</td>
+            <td align='right' bgcolor=#50C2F9>7.72%</td>
+            <td align='right' bgcolor=#50C2F9>45700.78</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                2132.18</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                0.00</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                2132.18</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                4.89%</td>
+            <td align='right' bgcolor=#50C2F9>1.89%</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                1.79%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#50C2F9>证券公司</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                594.26</td>
+            <td align='right' bgcolor=#50C2F9>750.09</td>
+            <td align='right' bgcolor=#50C2F9>22.60</td>
+            <td align='right' bgcolor=#50C2F9>1.41</td>
+            <td align='right' bgcolor=#50C2F9>6.23%</td>
+            <td align='right' bgcolor=#50C2F9>33412.38</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                6941.36</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                0.00</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                6941.36</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                26.22%</td>
+            <td align='right' bgcolor=#50C2F9>1.38%</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                5.84%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#50C2F9>中证银行</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #009933;'>
+                6775.38</td>
+            <td align='right' bgcolor=#50C2F9>6514.41</td>
+            <td align='right' bgcolor=#50C2F9>6.23</td>
+            <td align='right' bgcolor=#50C2F9>0.83</td>
+            <td align='right' bgcolor=#50C2F9>12.44%</td>
+            <td align='right' bgcolor=#50C2F9>1134.27</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #009933;'>
+                -45.44</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                0.00</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #009933;'>
+                -45.44</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #009933;'>
+                -3.85%</td>
+            <td align='right' bgcolor=#50C2F9>0.05%</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #009933;'>
+                -0.04%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#50C2F9>金融地产</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                4893.18</td>
+            <td align='right' bgcolor=#50C2F9>5943.91</td>
+            <td align='right' bgcolor=#50C2F9>0.00</td>
+            <td align='right' bgcolor=#50C2F9>0.00</td>
+            <td align='right' bgcolor=#50C2F9>0.00%</td>
+            <td align='right' bgcolor=#50C2F9>24297.19</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                4295.10</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                0.00</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                4295.10</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                21.47%</td>
+            <td align='right' bgcolor=#50C2F9>1.00%</td>
+            <td align='right' bgcolor=#50C2F9 style='color: #DD2200;'>
+                3.61%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#BBEDA8>恒生</td>
+            <td align='right' bgcolor=#BBEDA8 style='color: #DD2200;'>
+                24895.51</td>
+            <td align='right' bgcolor=#BBEDA8>26312.63</td>
+            <td align='right' bgcolor=#BBEDA8>9.51</td>
+            <td align='right' bgcolor=#BBEDA8>1.01</td>
+            <td align='right' bgcolor=#BBEDA8>10.68%</td>
+            <td align='right' bgcolor=#BBEDA8>12648.15</td>
+            <td align='right' bgcolor=#BBEDA8 style='color: #DD2200;'>
+                681.19</td>
+            <td align='right' bgcolor=#BBEDA8 style='color: #DD2200;'>
+                4503.42</td>
+            <td align='right' bgcolor=#BBEDA8 style='color: #DD2200;'>
+                5184.61</td>
+            <td align='right' bgcolor=#BBEDA8 style='color: #DD2200;'>
+                5.69%</td>
+            <td align='right' bgcolor=#BBEDA8>0.52%</td>
+            <td align='right' bgcolor=#BBEDA8 style='color: #DD2200;'>
+                0.57%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#BBEDA8>香港中小</td>
+            <td align='right' bgcolor=#BBEDA8 style='color: #DD2200;'>
+                2723.33</td>
+            <td align='right' bgcolor=#BBEDA8>3020.85</td>
+            <td align='right' bgcolor=#BBEDA8>11.82</td>
+            <td align='right' bgcolor=#BBEDA8>1.41</td>
+            <td align='right' bgcolor=#BBEDA8>11.90%</td>
+            <td align='right' bgcolor=#BBEDA8>6096.16</td>
+            <td align='right' bgcolor=#BBEDA8 style='color: #DD2200;'>
+                600.40</td>
+            <td align='right' bgcolor=#BBEDA8 style='color: #DD2200;'>
+                0.00</td>
+            <td align='right' bgcolor=#BBEDA8 style='color: #DD2200;'>
+                600.40</td>
+            <td align='right' bgcolor=#BBEDA8 style='color: #DD2200;'>
+                10.92%</td>
+            <td align='right' bgcolor=#BBEDA8>0.25%</td>
+            <td align='right' bgcolor=#BBEDA8 style='color: #DD2200;'>
+                0.51%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#BBEDA8>海外互联网</td>
+            <td align='right' bgcolor=#BBEDA8 style='color: #DD2200;'>
+                4978.14</td>
+            <td align='right' bgcolor=#BBEDA8>6194.86</td>
+            <td align='right' bgcolor=#BBEDA8>0.00</td>
+            <td align='right' bgcolor=#BBEDA8>0.00</td>
+            <td align='right' bgcolor=#BBEDA8>0.00%</td>
+            <td align='right' bgcolor=#BBEDA8>27959.90</td>
+            <td align='right' bgcolor=#BBEDA8 style='color: #DD2200;'>
+                5491.55</td>
+            <td align='right' bgcolor=#BBEDA8 style='color: #DD2200;'>
+                0.00</td>
+            <td align='right' bgcolor=#BBEDA8 style='color: #DD2200;'>
+                5491.55</td>
+            <td align='right' bgcolor=#BBEDA8 style='color: #DD2200;'>
+                24.44%</td>
+            <td align='right' bgcolor=#BBEDA8>1.15%</td>
+            <td align='right' bgcolor=#BBEDA8 style='color: #DD2200;'>
+                4.62%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#FFC751>德国30</td>
+            <td align='right' bgcolor=#FFC751 style='color: #DD2200;'>
+                11680.65</td>
+            <td align='right' bgcolor=#FFC751>12981.22</td>
+            <td align='right' bgcolor=#FFC751>0.00</td>
+            <td align='right' bgcolor=#FFC751>0.00</td>
+            <td align='right' bgcolor=#FFC751>0.00%</td>
+            <td align='right' bgcolor=#FFC751>29193.83</td>
+            <td align='right' bgcolor=#FFC751 style='color: #DD2200;'>
+                2924.88</td>
+            <td align='right' bgcolor=#FFC751 style='color: #DD2200;'>
+                0.00</td>
+            <td align='right' bgcolor=#FFC751 style='color: #DD2200;'>
+                2924.88</td>
+            <td align='right' bgcolor=#FFC751 style='color: #DD2200;'>
+                11.13%</td>
+            <td align='right' bgcolor=#FFC751>1.21%</td>
+            <td align='right' bgcolor=#FFC751 style='color: #DD2200;'>
+                2.46%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#FF7C9E>偏股</td>
+            <td align='right' bgcolor=#FF7C9E style='color: #DD2200;'>
+                0.00</td>
+            <td align='right' bgcolor=#FF7C9E>0.00</td>
+            <td align='right' bgcolor=#FF7C9E>0.00</td>
+            <td align='right' bgcolor=#FF7C9E>0.00</td>
+            <td align='right' bgcolor=#FF7C9E>0.00%</td>
+            <td align='right' bgcolor=#FF7C9E>18847.69</td>
+            <td align='right' bgcolor=#FF7C9E style='color: #DD2200;'>
+                1847.65</td>
+            <td align='right' bgcolor=#FF7C9E style='color: #DD2200;'>
+                0.00</td>
+            <td align='right' bgcolor=#FF7C9E style='color: #DD2200;'>
+                1847.65</td>
+            <td align='right' bgcolor=#FF7C9E style='color: #DD2200;'>
+                10.87%</td>
+            <td align='right' bgcolor=#FF7C9E>0.78%</td>
+            <td align='right' bgcolor=#FF7C9E style='color: #DD2200;'>
+                1.55%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#FF7C9E>偏债</td>
+            <td align='right' bgcolor=#FF7C9E style='color: #DD2200;'>
+                0.00</td>
+            <td align='right' bgcolor=#FF7C9E>0.00</td>
+            <td align='right' bgcolor=#FF7C9E>0.00</td>
+            <td align='right' bgcolor=#FF7C9E>0.00</td>
+            <td align='right' bgcolor=#FF7C9E>0.00%</td>
+            <td align='right' bgcolor=#FF7C9E>256401.85</td>
+            <td align='right' bgcolor=#FF7C9E style='color: #DD2200;'>
+                2633.82</td>
+            <td align='right' bgcolor=#FF7C9E style='color: #DD2200;'>
+                0.00</td>
+            <td align='right' bgcolor=#FF7C9E style='color: #DD2200;'>
+                2633.82</td>
+            <td align='right' bgcolor=#FF7C9E style='color: #DD2200;'>
+                1.04%</td>
+            <td align='right' bgcolor=#FF7C9E>10.59%</td>
+            <td align='right' bgcolor=#FF7C9E style='color: #DD2200;'>
+                2.22%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#FF8361>可转债</td>
+            <td align='right' bgcolor=#FF8361 style='color: #DD2200;'>
+                341.12</td>
+            <td align='right' bgcolor=#FF8361>350.42</td>
+            <td align='right' bgcolor=#FF8361>0.00</td>
+            <td align='right' bgcolor=#FF8361>0.00</td>
+            <td align='right' bgcolor=#FF8361>0.00%</td>
+            <td align='right' bgcolor=#FF8361>622869.65</td>
+            <td align='right' bgcolor=#FF8361 style='color: #DD2200;'>
+                16523.78</td>
+            <td align='right' bgcolor=#FF8361 style='color: #DD2200;'>
+                553.48</td>
+            <td align='right' bgcolor=#FF8361 style='color: #DD2200;'>
+                17077.26</td>
+            <td align='right' bgcolor=#FF8361 style='color: #DD2200;'>
+                2.73%</td>
+            <td align='right' bgcolor=#FF8361>25.72%</td>
+            <td align='right' bgcolor=#FF8361 style='color: #DD2200;'>
+                13.91%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#FF8361>美元债</td>
+            <td align='right' bgcolor=#FF8361 style='color: #DD2200;'>
+                0.00</td>
+            <td align='right' bgcolor=#FF8361>0.00</td>
+            <td align='right' bgcolor=#FF8361>0.00</td>
+            <td align='right' bgcolor=#FF8361>0.00</td>
+            <td align='right' bgcolor=#FF8361>0.00%</td>
+            <td align='right' bgcolor=#FF8361>7629.31</td>
+            <td align='right' bgcolor=#FF8361 style='color: #DD2200;'>
+                2484.02</td>
+            <td align='right' bgcolor=#FF8361 style='color: #DD2200;'>
+                0.00</td>
+            <td align='right' bgcolor=#FF8361 style='color: #DD2200;'>
+                2484.02</td>
+            <td align='right' bgcolor=#FF8361 style='color: #DD2200;'>
+                48.28%</td>
+            <td align='right' bgcolor=#FF8361>0.32%</td>
+            <td align='right' bgcolor=#FF8361 style='color: #DD2200;'>
+                2.09%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#DBB6AC>黄金</td>
+            <td align='right' bgcolor=#DBB6AC style='color: #DD2200;'>
+                1332.63</td>
+            <td align='right' bgcolor=#DBB6AC>1593.60</td>
+            <td align='right' bgcolor=#DBB6AC>0.00</td>
+            <td align='right' bgcolor=#DBB6AC>0.00</td>
+            <td align='right' bgcolor=#DBB6AC>0.00%</td>
+            <td align='right' bgcolor=#DBB6AC>18717.13</td>
+            <td align='right' bgcolor=#DBB6AC style='color: #DD2200;'>
+                3065.14</td>
+            <td align='right' bgcolor=#DBB6AC style='color: #009933;'>
+                -369.00</td>
+            <td align='right' bgcolor=#DBB6AC style='color: #DD2200;'>
+                2696.14</td>
+            <td align='right' bgcolor=#DBB6AC style='color: #DD2200;'>
+                19.58%</td>
+            <td align='right' bgcolor=#DBB6AC>0.77%</td>
+            <td align='right' bgcolor=#DBB6AC style='color: #DD2200;'>
+                2.58%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#DBB6AC>原油</td>
+            <td align='right' bgcolor=#DBB6AC style='color: #009933;'>
+                3886.46</td>
+            <td align='right' bgcolor=#DBB6AC>2915.17</td>
+            <td align='right' bgcolor=#DBB6AC>0.00</td>
+            <td align='right' bgcolor=#DBB6AC>0.00</td>
+            <td align='right' bgcolor=#DBB6AC>0.00%</td>
+            <td align='right' bgcolor=#DBB6AC>18603.17</td>
+            <td align='right' bgcolor=#DBB6AC style='color: #009933;'>
+                -6198.28</td>
+            <td align='right' bgcolor=#DBB6AC style='color: #DD2200;'>
+                6435.56</td>
+            <td align='right' bgcolor=#DBB6AC style='color: #DD2200;'>
+                237.28</td>
+            <td align='right' bgcolor=#DBB6AC style='color: #009933;'>
+                -24.99%</td>
+            <td align='right' bgcolor=#DBB6AC>0.77%</td>
+            <td align='right' bgcolor=#DBB6AC style='color: #009933;'>
+                -5.22%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#DCDCDC>住房公积金</td>
+            <td align='right' bgcolor=#DCDCDC style='color: #DD2200;'>
+                0.00</td>
+            <td align='right' bgcolor=#DCDCDC>0.00</td>
+            <td align='right' bgcolor=#DCDCDC>0.00</td>
+            <td align='right' bgcolor=#DCDCDC>0.00</td>
+            <td align='right' bgcolor=#DCDCDC>0.00%</td>
+            <td align='right' bgcolor=#DCDCDC>319017.75</td>
+            <td align='right' bgcolor=#DCDCDC style='color: #DD2200;'>
+                7027.67</td>
+            <td align='right' bgcolor=#DCDCDC style='color: #DD2200;'>
+                0.00</td>
+            <td align='right' bgcolor=#DCDCDC style='color: #DD2200;'>
+                7027.67</td>
+            <td align='right' bgcolor=#DCDCDC style='color: #DD2200;'>
+                2.25%</td>
+            <td align='right' bgcolor=#DCDCDC>13.17%</td>
+            <td align='right' bgcolor=#DCDCDC style='color: #DD2200;'>
+                5.91%</td>
+        </tr>
+        
+        <tr align='center'>
+            <td align='center' bgcolor=#F0DC5A>货币基金</td>
+            <td align='right' bgcolor=#F0DC5A style='color: #DD2200;'>
+                0.00</td>
+            <td align='right' bgcolor=#F0DC5A>0.00</td>
+            <td align='right' bgcolor=#F0DC5A>0.00</td>
+            <td align='right' bgcolor=#F0DC5A>0.00</td>
+            <td align='right' bgcolor=#F0DC5A>0.00%</td>
+            <td align='right' bgcolor=#F0DC5A>272886.71</td>
+            <td align='right' bgcolor=#F0DC5A style='color: #DD2200;'>
+                6554.14</td>
+            <td align='right' bgcolor=#F0DC5A style='color: #DD2200;'>
+                60545.48</td>
+            <td align='right' bgcolor=#F0DC5A style='color: #DD2200;'>
+                67099.62</td>
+            <td align='right' bgcolor=#F0DC5A style='color: #DD2200;'>
+                2.46%</td>
+            <td align='right' bgcolor=#F0DC5A>11.27%</td>
+            <td align='right' bgcolor=#F0DC5A style='color: #DD2200;'>
+                5.52%</td>
+        </tr>
+        
+    </table>
+</body>
+
+</html>
