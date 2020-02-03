@@ -221,7 +221,7 @@
         "holdTotalGain":-3008.29
     },
     {
-        "appSource":"股票账户",
+        "appSource":"华泰证券",
         "category1":"A 股",
         "category2":"大盘股",
         "category3":"上证50",
@@ -234,7 +234,7 @@
         "holdTotalGain":1798.2
     },
     {
-        "appSource":"股票账户",
+        "appSource":"华泰证券",
         "category1":"A 股",
         "category2":"大盘股",
         "category3":"沪深300",
@@ -247,7 +247,7 @@
         "holdTotalGain":4531.8
     },
     {
-        "appSource":"股票账户",
+        "appSource":"华泰证券",
         "category1":"A 股",
         "category2":"中小盘股",
         "category3":"中证500",
@@ -260,7 +260,7 @@
         "holdTotalGain":-11116.2
     },
     {
-        "appSource":"股票账户",
+        "appSource":"华泰证券",
         "category1":"A 股",
         "category2":"行业股",
         "category3":"中证环保",
@@ -273,7 +273,7 @@
         "holdTotalGain":-5509.4
     },
     {
-        "appSource":"股票账户",
+        "appSource":"华泰证券",
         "category1":"A 股",
         "category2":"行业股",
         "category3":"证券公司",
@@ -286,7 +286,7 @@
         "holdTotalGain":4479.9
     },
     {
-        "appSource":"股票账户",
+        "appSource":"华泰证券",
         "category1":"A 股",
         "category2":"行业股",
         "category3":"中证传媒",
@@ -299,7 +299,7 @@
         "holdTotalGain":-4126.1
     },
     {
-        "appSource":"股票账户",
+        "appSource":"华泰证券",
         "category1":"商品",
         "category2":"商品",
         "category3":"黄金",
@@ -312,7 +312,7 @@
         "holdTotalGain":2281.5
     },
     {
-        "appSource":"股票账户",
+        "appSource":"华泰证券",
         "category1":"A 股",
         "category2":"大盘股",
         "category3":"中小板",
@@ -325,7 +325,7 @@
         "holdTotalGain":75.6
     },
     {
-        "appSource":"股票账户",
+        "appSource":"华泰证券",
         "category1":"A 股",
         "category2":"中小盘股",
         "category3":"创业板",
@@ -338,7 +338,7 @@
         "holdTotalGain":1922.8
     },
     {
-        "appSource":"股票账户",
+        "appSource":"华泰证券",
         "category1":"A 股",
         "category2":"行业股",
         "category3":"全指医药",

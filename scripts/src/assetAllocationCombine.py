@@ -41,7 +41,7 @@ class assetAllocationCombine:
         self.indexValueInfo.update()
         # 根据策略生成对于的变量配置参数
         if self.strategy == 'a':
-            self.filenames = [u'danjuan_螺丝钉定投.txt',u'qieman_10万补充ETF计划.txt',u'qieman_我的S定投计划.txt', u'tiantian_康力泉.txt',u'huatai_康力泉.txt',u'guangfa_支付宝.txt']
+            self.filenames = [u'danjuan_螺丝钉定投.txt',u'qieman_10万补充ETF计划.txt',u'qieman_我的S定投计划.txt', u'tiantian_康力泉.txt',u'huatai_康力泉.txt',u'huabao_康力泉.txt',u'guangfa_支付宝.txt']
             self.excelFilePathExt = u'康力泉权益类'
             self.echartsJSFilePathExt = u'康力泉'
             self.pm = pathManager(strategyName=u'康力泉')
@@ -63,7 +63,7 @@ class assetAllocationCombine:
                     if name in self.filenames:
                         self.filepaths.append(os.path.join(root,name))
         elif self.strategy == 'c':
-            self.filenames = [u'danjuan_螺丝钉定投.txt',u'qieman_10万补充ETF计划.txt',u'qieman_我的S定投计划.txt', u'tiantian_康力泉.txt',u'huatai_康力泉.txt',u'guangfa_支付宝.txt',u'cash_康力泉.txt',u'freeze_康力泉.txt']
+            self.filenames = [u'danjuan_螺丝钉定投.txt',u'qieman_10万补充ETF计划.txt',u'qieman_我的S定投计划.txt', u'tiantian_康力泉.txt',u'huatai_康力泉.txt',u'huabao_康力泉.txt',u'guangfa_支付宝.txt',u'cash_康力泉.txt',u'freeze_康力泉.txt']
             self.excelFilePathExt = u'康力泉整体'
             self.echartsJSFilePathExt = u'康力泉'
             self.pm = pathManager(strategyName=u'康力泉')
@@ -74,7 +74,7 @@ class assetAllocationCombine:
                     if name in self.filenames:
                         self.filepaths.append(os.path.join(root,name))
         elif self.strategy == 'd':
-            self.filenames = [u'danjuan_螺丝钉定投.txt',u'qieman_10万补充ETF计划.txt',u'qieman_我的S定投计划.txt', u'tiantian_康力泉.txt',u'huatai_康力泉.txt',u'guangfa_支付宝.txt',u'cash_康力泉.txt',u'freeze_康力泉.txt'\
+            self.filenames = [u'danjuan_螺丝钉定投.txt',u'qieman_10万补充ETF计划.txt',u'qieman_我的S定投计划.txt', u'tiantian_康力泉.txt',u'huatai_康力泉.txt',u'huabao_康力泉.txt',u'guangfa_支付宝.txt',u'cash_康力泉.txt',u'freeze_康力泉.txt'\
                 ,u'danjuan_李淑云.txt',u'danjuan_康世海.txt',u'tiantian_李淑云.txt','cash_父母.txt','qieman_父稳稳的幸福.txt']
             self.excelFilePathExt = u'全家整体'
             self.echartsJSFilePathExt = u'全家'
@@ -201,7 +201,9 @@ class assetAllocationCombine:
         elif u'guangfa' in filepath:
             return u'支付宝'
         elif u'huatai_康力泉' in filepath:
-            return u'股票账户'
+            return u'华泰证券'
+        elif u'huabao_康力泉' in filepath:
+            return u'华宝证券'
         elif u'cash_康力泉' in filepath:
             return u'现金账户'
         elif u'cash_父母' in filepath:

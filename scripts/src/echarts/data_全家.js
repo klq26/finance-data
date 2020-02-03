@@ -195,8 +195,8 @@ function getData()
         "itemStyle":{
             "color":"#50C2F9"
         },
-        "name":"A 股 , 33.48%",
-        "value":33.48
+        "name":"A 股 , 33.47%",
+        "value":33.47
     },
     {
         "children":[
@@ -369,22 +369,22 @@ function getData()
                         "itemStyle":{
                             "color":"#DBB6AC"
                         },
-                        "name":"原油 , 0.77%",
-                        "value":0.77
+                        "name":"原油 , 1.31%",
+                        "value":1.31
                     }
                 ],
                 "itemStyle":{
                     "color":"#DBB6AC"
                 },
-                "name":"商品 , 1.54%",
-                "value":1.54
+                "name":"商品 , 2.08%",
+                "value":2.08
             }
         ],
         "itemStyle":{
             "color":"#DBB6AC"
         },
-        "name":"商品 , 1.54%",
-        "value":1.54
+        "name":"商品 , 2.08%",
+        "value":2.08
     },
     {
         "children":[
@@ -421,22 +421,22 @@ function getData()
                         "itemStyle":{
                             "color":"#F0DC5A"
                         },
-                        "name":"货币基金 , 11.27%",
-                        "value":11.27
+                        "name":"货币基金 , 10.74%",
+                        "value":10.74
                     }
                 ],
                 "itemStyle":{
                     "color":"#F0DC5A"
                 },
-                "name":"低风险理财 , 11.27%",
-                "value":11.27
+                "name":"低风险理财 , 10.74%",
+                "value":10.74
             }
         ],
         "itemStyle":{
             "color":"#F0DC5A"
         },
-        "name":"现金 , 11.27%",
-        "value":11.27
+        "name":"现金 , 10.74%",
+        "value":10.74
     }
 ]
 }

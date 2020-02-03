@@ -324,7 +324,7 @@
         "holdTotalGain":-2141.68
     },
     {
-        "appSource":"股票账户",
+        "appSource":"华泰证券",
         "category1":"A 股",
         "category2":"大盘股",
         "category3":"上证50",
@@ -342,7 +342,7 @@
         "holdTotalGain":1944.0
     },
     {
-        "appSource":"股票账户",
+        "appSource":"华泰证券",
         "category1":"A 股",
         "category2":"大盘股",
         "category3":"沪深300",
@@ -360,7 +360,7 @@
         "holdTotalGain":5882.24
     },
     {
-        "appSource":"股票账户",
+        "appSource":"华泰证券",
         "category1":"A 股",
         "category2":"中小盘股",
         "category3":"中证500",
@@ -378,7 +378,7 @@
         "holdTotalGain":4139.96
     },
     {
-        "appSource":"股票账户",
+        "appSource":"华泰证券",
         "category1":"A 股",
         "category2":"行业股",
         "category3":"中证环保",
@@ -396,7 +396,7 @@
         "holdTotalGain":-3025.1
     },
     {
-        "appSource":"股票账户",
+        "appSource":"华泰证券",
         "category1":"A 股",
         "category2":"行业股",
         "category3":"证券公司",
@@ -414,7 +414,7 @@
         "holdTotalGain":8423.52
     },
     {
-        "appSource":"股票账户",
+        "appSource":"华泰证券",
         "category1":"A 股",
         "category2":"行业股",
         "category3":"中证传媒",
@@ -432,7 +432,7 @@
         "holdTotalGain":-1159.4
     },
     {
-        "appSource":"股票账户",
+        "appSource":"华泰证券",
         "category1":"商品",
         "category2":"商品",
         "category3":"黄金",
@@ -450,7 +450,7 @@
         "holdTotalGain":2294.1
     },
     {
-        "appSource":"股票账户",
+        "appSource":"华泰证券",
         "category1":"A 股",
         "category2":"中小盘股",
         "category3":"创业板",
@@ -468,7 +468,7 @@
         "holdTotalGain":3048.88
     },
     {
-        "appSource":"股票账户",
+        "appSource":"华泰证券",
         "category1":"A 股",
         "category2":"行业股",
         "category3":"全指医药",

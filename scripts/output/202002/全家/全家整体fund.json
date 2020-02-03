@@ -12,9 +12,9 @@
         "estimateTime":"估算时间",
         "fundCode":"999999",
         "fundName":"货币基金综合",
-        "holdMarketCap":260844.41,
+        "holdMarketCap":248044.41,
         "holdNetValue":1.0,
-        "holdShareCount":260844.41,
+        "holdShareCount":248044.41,
         "holdTotalGain":6512.79
     },
     {
@@ -288,7 +288,25 @@
         "holdTotalGain":-1688.25
     },
     {
-        "appSource":"股票账户",
+        "appSource":"华宝证券",
+        "category1":"商品",
+        "category2":"商品",
+        "category3":"原油",
+        "category4":"613",
+        "currentNetValue":0.3671,
+        "currentNetValueDate":"2020-01-22",
+        "estimateNetValue":0.0,
+        "estimateRate":0.0,
+        "estimateTime":"估算时间",
+        "fundCode":"162411",
+        "fundName":"华宝油气",
+        "holdMarketCap":13032.05,
+        "holdNetValue":0.36,
+        "holdShareCount":35500.0,
+        "holdTotalGain":252.05
+    },
+    {
+        "appSource":"华泰证券",
         "category1":"A 股",
         "category2":"大盘股",
         "category3":"上证50",
@@ -306,7 +324,7 @@
         "holdTotalGain":1587.6
     },
     {
-        "appSource":"股票账户",
+        "appSource":"华泰证券",
         "category1":"A 股",
         "category2":"大盘股",
         "category3":"沪深300",
@@ -324,7 +342,7 @@
         "holdTotalGain":5016.83
     },
     {
-        "appSource":"股票账户",
+        "appSource":"华泰证券",
         "category1":"A 股",
         "category2":"中小盘股",
         "category3":"中证500",
@@ -342,7 +360,7 @@
         "holdTotalGain":8679.56
     },
     {
-        "appSource":"股票账户",
+        "appSource":"华泰证券",
         "category1":"A 股",
         "category2":"行业股",
         "category3":"中证环保",
@@ -360,7 +378,7 @@
         "holdTotalGain":-1733.94
     },
     {
-        "appSource":"股票账户",
+        "appSource":"华泰证券",
         "category1":"A 股",
         "category2":"行业股",
         "category3":"证券公司",
@@ -378,7 +396,7 @@
         "holdTotalGain":6775.44
     },
     {
-        "appSource":"股票账户",
+        "appSource":"华泰证券",
         "category1":"A 股",
         "category2":"行业股",
         "category3":"中证传媒",
@@ -396,7 +414,7 @@
         "holdTotalGain":310.31
     },
     {
-        "appSource":"股票账户",
+        "appSource":"华泰证券",
         "category1":"商品",
         "category2":"商品",
         "category3":"黄金",
@@ -414,7 +432,7 @@
         "holdTotalGain":2598.3
     },
     {
-        "appSource":"股票账户",
+        "appSource":"华泰证券",
         "category1":"A 股",
         "category2":"中小盘股",
         "category3":"创业板",
@@ -432,7 +450,7 @@
         "holdTotalGain":4186.92
     },
     {
-        "appSource":"股票账户",
+        "appSource":"华泰证券",
         "category1":"A 股",
         "category2":"行业股",
         "category3":"全指医药",

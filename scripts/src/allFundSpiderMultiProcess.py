@@ -24,6 +24,11 @@ class allFundSpiderMultiProcess:
             print('[Executing] {0} a...'.format(os.path.join(self.pm.spiderPath, pyFile)))
             p = subprocess.Popen(args)
         # 拷贝文件
+        fileName = u'huabao_{0}.txt'.format(fileNameExt)
+        shutil.copy(os.path.join(self.pm.inputPath,fileName),os.path.join(self.pm.holdingOutputPath,fileName))
+        with open(os.path.join(self.pm.holdingOutputPath,fileName), 'r', encoding='utf-8') as f:
+            for line in f.readlines():
+                print(line, end='')
         fileName = u'cash_{0}.txt'.format(fileNameExt)
         shutil.copy(os.path.join(self.pm.inputPath,fileName),os.path.join(self.pm.holdingOutputPath,fileName))
         with open(os.path.join(self.pm.holdingOutputPath,fileName), 'r', encoding='utf-8') as f:

@@ -71,10 +71,21 @@ class accountManager:
         accounts.append(account.__dict__)
 
         account = accountModel()
-        account.accountName = u'股票账户'
+        account.accountName = u'华泰证券'
         account.sortId = 101
         account.owner = u'klq'
         account.appSource = u'huatai'
+        account.marketcap = 0.00
+        account.gain = 0.00
+        account.gainRate = 0.00
+        account.recommendColor = '#' + self.colorManager.getFundColorByAppSourceName(account.accountName)
+        accounts.append(account.__dict__)
+
+        account = accountModel()
+        account.accountName = u'华宝证券'
+        account.sortId = 102
+        account.owner = u'klq'
+        account.appSource = u'huabao'
         account.marketcap = 0.00
         account.gain = 0.00
         account.gainRate = 0.00

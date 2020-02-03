@@ -158,7 +158,7 @@ class assetAllocationEstimateHtmlParser:
             fundDict['changeValueColor'] = self.colorConstants.getGainColor(
                 changeValue)
             # 计入今日统计
-            if fundModel.appSource != u'股票账户':
+            if fundModel.appSource != u'华泰证券' or fundModel.appSource != u'华宝证券':
                 # 仅计入场外基金部分（因为场内有情绪涨跌溢价，收盘价不能用净值估算代表）
                 outerFundEstimateTotalGainToday = outerFundEstimateTotalGainToday + changeValue
             estimateTotalGainToday = estimateTotalGainToday + changeValue

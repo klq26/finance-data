@@ -59,7 +59,7 @@ class huataiSpider:
         # 写入输出文件
         pm = pathManager()
         with open(os.path.join(pm.holdingOutputPath,u'huatai_康力泉.txt'),'w',encoding='utf-8') as outfile:
-            titleLine = u'{0}\t总市值\t{1}\t累计收益\t{2}'.format(u'股票账户',round(self.totalMarketCap,2),round(self.totalGain,2))
+            titleLine = u'{0}\t总市值\t{1}\t累计收益\t{2}'.format(u'华泰证券',round(self.totalMarketCap,2),round(self.totalGain,2))
             print(titleLine)
             outfile.write(titleLine + '\n')
             headerLine = u'基金名称\t基金代码\t持仓成本\t持仓份额\t持仓市值\t累计收益'

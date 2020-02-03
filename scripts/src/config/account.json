@@ -22,10 +22,21 @@
         "marketcap":0.0
     },
     {
-        "accountName":"股票账户",
+        "accountName":"华泰证券",
         "sortId":101,
         "owner":"klq",
         "appSource":"huatai",
+        "marketCap":0.0,
+        "gain":0.0,
+        "gainRate":0.0,
+        "recommendColor":"#FF7C9E",
+        "marketcap":0.0
+    },
+	{
+        "accountName":"华宝证券",
+        "sortId":102,
+        "owner":"klq",
+        "appSource":"huabao",
         "marketCap":0.0,
         "gain":0.0,
         "gainRate":0.0,
