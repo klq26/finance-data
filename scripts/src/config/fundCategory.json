@@ -425,6 +425,14 @@
             "category4":"221"
         },
         {
+            "name":"易方达中证海外联接人民币A",
+            "code":"006327",
+            "category1":"海外新兴",
+            "category2":"海外互联",
+            "category3":"海外互联网",
+            "category4":"221"
+        },
+        {
             "name":"广发美国房地产指数",
             "code":"000179",
             "category1":"海外成熟",
@@ -473,8 +481,72 @@
             "category4":"412"
         },
         {
+            "name":"工银双利债券B",
+            "code":"485011",
+            "category1":"混合型",
+            "category2":"股债混合",
+            "category3":"偏债",
+            "category4":"412"
+        },
+        {
+            "name":"安信稳健增值混合C",
+            "code":"001338",
+            "category1":"混合型",
+            "category2":"股债混合",
+            "category3":"偏债",
+            "category4":"412"
+        },
+        {
+            "name":"民生加银鹏程混合C",
+            "code":"007749",
+            "category1":"混合型",
+            "category2":"股债混合",
+            "category3":"偏债",
+            "category4":"412"
+        },
+        {
+            "name":"鹏扬泓利债券C",
+            "code":"006060",
+            "category1":"混合型",
+            "category2":"股债混合",
+            "category3":"偏债",
+            "category4":"412"
+        },
+        {
+            "name":"长安鑫益增强混合C",
+            "code":"002147",
+            "category1":"混合型",
+            "category2":"股债混合",
+            "category3":"偏债",
+            "category4":"412"
+        },
+        {
             "name":"广发中债7-10年国开债指数A",
             "code":"003376",
+            "category1":"债券",
+            "category2":"国内债券",
+            "category3":"纯债",
+            "category4":"511"
+        },
+        {
+            "name":"新华纯债添利C",
+            "code":"519153",
+            "category1":"债券",
+            "category2":"国内债券",
+            "category3":"纯债",
+            "category4":"511"
+        },
+        {
+            "name":"大成景安短融债券E",
+            "code":"002086",
+            "category1":"债券",
+            "category2":"国内债券",
+            "category3":"纯债",
+            "category4":"511"
+        },
+        {
+            "name":"易方达安瑞短债C",
+            "code":"006320",
             "category1":"债券",
             "category2":"国内债券",
             "category3":"纯债",
@@ -671,14 +743,6 @@
             "category2":"中风险理财",
             "category3":"企业借贷",
             "category4":"998"
-        },
-        {
-            "name":"大成景安短融债券E",
-            "code":"002086",
-            "category1":"现金",
-            "category2":"低风险理财",
-            "category3":"货币基金",
-            "category4":"999"
         },
         {
             "name":"货币基金综合",
