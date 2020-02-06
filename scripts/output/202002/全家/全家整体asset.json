@@ -215,10 +215,10 @@
         "category4":"613",
         "fundCode":"162411",
         "fundName":"华宝油气",
-        "holdMarketCap":11910.25,
+        "holdMarketCap":12851.0,
         "holdNetValue":0.36,
         "holdShareCount":35500.0,
-        "holdTotalGain":-869.75
+        "holdTotalGain":71.0
     },
     {
         "appSource":"华泰证券",
@@ -228,10 +228,10 @@
         "category4":"111",
         "fundCode":"510050",
         "fundName":"50ETF",
-        "holdMarketCap":7573.5,
+        "holdMarketCap":7562.7,
         "holdNetValue":2.337,
         "holdShareCount":2700.0,
-        "holdTotalGain":1263.6
+        "holdTotalGain":1252.8
     },
     {
         "appSource":"华泰证券",
@@ -241,10 +241,10 @@
         "category4":"113",
         "fundCode":"510300",
         "fundName":"300ETF",
-        "holdMarketCap":34774.74,
+        "holdMarketCap":34643.7,
         "holdNetValue":3.447,
         "holdShareCount":9100.0,
-        "holdTotalGain":3407.04
+        "holdTotalGain":3276.0
     },
     {
         "appSource":"华泰证券",
@@ -254,10 +254,10 @@
         "category4":"121",
         "fundCode":"510500",
         "fundName":"500ETF",
-        "holdMarketCap":215200.32,
+        "holdMarketCap":215184.8,
         "holdNetValue":5.601,
         "holdShareCount":38800.0,
-        "holdTotalGain":-2118.48
+        "holdTotalGain":-2134.0
     },
     {
         "appSource":"华泰证券",
@@ -267,10 +267,10 @@
         "category4":"143",
         "fundCode":"512580",
         "fundName":"环保ETF",
-        "holdMarketCap":26478.92,
+        "holdMarketCap":26533.0,
         "holdNetValue":0.877,
         "holdShareCount":33800.0,
-        "holdTotalGain":-3163.68
+        "holdTotalGain":-3109.6
     },
     {
         "appSource":"华泰证券",
@@ -280,10 +280,10 @@
         "category4":"145",
         "fundCode":"512880",
         "fundName":"证券ETF",
-        "holdMarketCap":29541.18,
+        "holdMarketCap":29593.5,
         "holdNetValue":0.783,
         "holdShareCount":32700.0,
-        "holdTotalGain":3937.08
+        "holdTotalGain":3989.4
     },
     {
         "appSource":"华泰证券",
@@ -293,10 +293,10 @@
         "category4":"144",
         "fundCode":"512980",
         "fundName":"传媒ETF",
-        "holdMarketCap":29022.51,
+        "holdMarketCap":28950.9,
         "holdNetValue":0.869,
         "holdShareCount":34100.0,
-        "holdTotalGain":-610.39
+        "holdTotalGain":-682.0
     },
     {
         "appSource":"华泰证券",
@@ -306,10 +306,10 @@
         "category4":"611",
         "fundCode":"518880",
         "fundName":"黄金ETF",
-        "holdMarketCap":15617.25,
+        "holdMarketCap":15610.5,
         "holdNetValue":2.856,
         "holdShareCount":4500.0,
-        "holdTotalGain":2765.25
+        "holdTotalGain":2758.5
     },
     {
         "appSource":"华泰证券",
@@ -319,10 +319,10 @@
         "category4":"124",
         "fundCode":"159915",
         "fundName":"创业板",
-        "holdMarketCap":17155.24,
+        "holdMarketCap":17213.2,
         "holdNetValue":1.399,
         "holdShareCount":9200.0,
-        "holdTotalGain":4284.44
+        "holdTotalGain":4342.4
     },
     {
         "appSource":"华泰证券",
@@ -332,10 +332,10 @@
         "category4":"142",
         "fundCode":"159938",
         "fundName":"广发医药",
-        "holdMarketCap":21690.72,
+        "holdMarketCap":21686.4,
         "holdNetValue":1.271,
         "holdShareCount":14400.0,
-        "holdTotalGain":3388.32
+        "holdTotalGain":3384.0
     },
     {
         "appSource":"且慢 150 份",
@@ -475,10 +475,10 @@
         "category4":"613",
         "fundCode":"162411",
         "fundName":"华宝标普石油指数A",
-        "holdMarketCap":1778.14,
+        "holdMarketCap":1918.59,
         "holdNetValue":0.3775,
         "holdShareCount":5299.96,
-        "holdTotalGain":-222.6
+        "holdTotalGain":-82.15
     },
     {
         "appSource":"且慢 150 份",
@@ -631,10 +631,10 @@
         "category4":"613",
         "fundCode":"162411",
         "fundName":"华宝标普石油指数A",
-        "holdMarketCap":1596.28,
+        "holdMarketCap":1722.36,
         "holdNetValue":0.4204,
         "holdShareCount":4757.9,
-        "holdTotalGain":-403.95
+        "holdTotalGain":-277.86
     },
     {
         "appSource":"且慢 S 定投",
@@ -800,10 +800,10 @@
         "category4":"613",
         "fundCode":"162411",
         "fundName":"华宝标普油气上游股票人民币A",
-        "holdMarketCap":12503.23,
+        "holdMarketCap":13490.82,
         "holdNetValue":0.5152,
         "holdShareCount":37267.45,
-        "holdTotalGain":-6696.96
+        "holdTotalGain":-5709.37
     },
     {
         "appSource":"天天基金",
@@ -1554,10 +1554,10 @@
         "category4":"613",
         "fundCode":"162411",
         "fundName":"华宝标普油气上游股票人民币A",
-        "holdMarketCap":1124.16,
+        "holdMarketCap":1212.95,
         "holdNetValue":0.4776,
         "holdShareCount":3350.7,
-        "holdTotalGain":-476.13
+        "holdTotalGain":-387.34
     },
     {
         "appSource":"天天基金母",

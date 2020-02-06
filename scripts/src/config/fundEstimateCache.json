@@ -145,7 +145,7 @@
             "fundName":"广发中证环保ETF联接基金A"
         },
         {
-            "currentNetValue":0.3355,
+            "currentNetValue":0.362,
             "currentNetValueDate":"2020-02-04",
             "estimateNetValue":0.372,
             "estimateRate":0.0276,
@@ -154,7 +154,7 @@
             "fundName":"华宝油气"
         },
         {
-            "currentNetValue":2.805,
+            "currentNetValue":2.801,
             "currentNetValueDate":"2020-02-05",
             "estimateNetValue":2.842,
             "estimateRate":0.0146,
@@ -163,7 +163,7 @@
             "fundName":"50ETF"
         },
         {
-            "currentNetValue":3.8214,
+            "currentNetValue":3.807,
             "currentNetValueDate":"2020-02-05",
             "estimateNetValue":3.897,
             "estimateRate":0.0236,
@@ -172,7 +172,7 @@
             "fundName":"300ETF"
         },
         {
-            "currentNetValue":5.5464,
+            "currentNetValue":5.546,
             "currentNetValueDate":"2020-02-05",
             "estimateNetValue":5.711,
             "estimateRate":0.0298,
@@ -181,7 +181,7 @@
             "fundName":"500ETF"
         },
         {
-            "currentNetValue":0.7834,
+            "currentNetValue":0.785,
             "currentNetValueDate":"2020-02-05",
             "estimateNetValue":0.805,
             "estimateRate":0.0255,
@@ -190,7 +190,7 @@
             "fundName":"环保ETF"
         },
         {
-            "currentNetValue":0.9034,
+            "currentNetValue":0.905,
             "currentNetValueDate":"2020-02-05",
             "estimateNetValue":0.928,
             "estimateRate":0.0254,
@@ -199,7 +199,7 @@
             "fundName":"证券ETF"
         },
         {
-            "currentNetValue":0.8511,
+            "currentNetValue":0.849,
             "currentNetValueDate":"2020-02-05",
             "estimateNetValue":0.909,
             "estimateRate":0.0707,
@@ -208,7 +208,7 @@
             "fundName":"传媒ETF"
         },
         {
-            "currentNetValue":3.4705,
+            "currentNetValue":3.469,
             "currentNetValueDate":"2020-02-05",
             "estimateNetValue":3.452,
             "estimateRate":-0.0049,
@@ -217,7 +217,7 @@
             "fundName":"黄金ETF"
         },
         {
-            "currentNetValue":1.8647,
+            "currentNetValue":1.871,
             "currentNetValueDate":"2020-02-05",
             "estimateNetValue":1.93,
             "estimateRate":0.0315,
@@ -226,7 +226,7 @@
             "fundName":"创业板"
         },
         {
-            "currentNetValue":1.5063,
+            "currentNetValue":1.506,
             "currentNetValueDate":"2020-02-05",
             "estimateNetValue":1.56,
             "estimateRate":0.0359,
@@ -325,7 +325,7 @@
             "fundName":"易方达证券公司分级"
         },
         {
-            "currentNetValue":0.3355,
+            "currentNetValue":0.362,
             "currentNetValueDate":"2020-02-04",
             "estimateNetValue":0.372,
             "estimateRate":0.0276,
@@ -433,7 +433,7 @@
             "fundName":"华安黄金易ETF联接A"
         },
         {
-            "currentNetValue":0.3355,
+            "currentNetValue":0.362,
             "currentNetValueDate":"2020-02-04",
             "estimateNetValue":0.372,
             "estimateRate":0.0276,
@@ -550,7 +550,7 @@
             "fundName":"富国中证500指数(LOF)"
         },
         {
-            "currentNetValue":0.3355,
+            "currentNetValue":0.362,
             "currentNetValueDate":"2020-02-04",
             "estimateNetValue":0.372,
             "estimateRate":0.0276,
@@ -1072,7 +1072,7 @@
             "fundName":"华宝中证1000指数分级"
         },
         {
-            "currentNetValue":0.3355,
+            "currentNetValue":0.362,
             "currentNetValueDate":"2020-02-04",
             "estimateNetValue":0.372,
             "estimateRate":0.0276,
@@ -1144,5 +1144,5 @@
             "fundName":"华夏恒生ETF联接A"
         }
     ],
-    "updateTime":"2020-02-06 17:52:54"
+    "updateTime":"2020-02-06 18:36:04"
 }

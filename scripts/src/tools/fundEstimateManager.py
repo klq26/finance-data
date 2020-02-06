@@ -97,8 +97,8 @@ class fundEstimateManager:
         netValueDate = netValueDateArray.strftime("%Y-%m-%d")
         esitmateValueDate = esitmateValueDateArray.strftime("%Y-%m-%d %H:%M")
 
-        # 当前净值，当前净值日期，估算净值，估算增长率，估算时间戳
-        return (round(float(quote['last_close']), 4), netValueDate, round(float(quote['current']), 4), round(float(quote['current'])/float(quote['last_close'])-1, 4), esitmateValueDate)
+        # 当前净值，当前净值日期，估算净值，估算增长率，估算时间戳，名称
+        return (round(float(quote['last_close']), 4), netValueDate, round(float(quote['current']), 4), round(float(quote['current'])/float(quote['last_close'])-1, 4), esitmateValueDate, quote['name'])
 
     # 存入缓存文件
     def saveCache(self, fundModelArray):

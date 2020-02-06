@@ -8,16 +8,23 @@ currentDir = os.path.abspath(os.path.dirname(__file__))
 srcDir = os.path.dirname(currentDir)
 sys.path.append(srcDir)
 from config.assetCategoryManager import assetCategoryManager
+from tools.fundEstimateManager import fundEstimateManager
 
 class fundNavManager:
 
     def __init__(self):
         self.categoryManager = assetCategoryManager()
+        self.estiMateManager = fundEstimateManager()
         self.allCodes = self.categoryManager.getCanUpdateNavFunds().values()
         # print(self.categoryManager.getCanUpdateNavFunds())
+        # 场内代码
+        self.innerMarketCodes = self.categoryManager.getEstimableFunds(isInnerMarket = True).values()
         pass
 
     def getFundNav(self, code):
+        # 场内当前净值还是走雪球吧，这样总资产和今日盈亏都更加准确
+        if code in self.innerMarketCodes:
+            return self.getInnerFundNav(code)
         url = f'http://hq.sinajs.cn/?list=f_{code}'
         header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36'}
         response = requests.get(url, headers=header)
@@ -36,6 +43,10 @@ class fundNavManager:
             return None
         pass
 
+    def getInnerFundNav(self, code):
+        estimateValues = self.estiMateManager.estimate(code)
+        keys = ['基金代码','单位净值','净值日期','基金名称']
+        return dict(zip(keys,[code, estimateValues[0], estimateValues[1], estimateValues[-1]]))
 
 if __name__ == "__main__":
     manager = funNavManager()
