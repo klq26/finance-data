@@ -154,6 +154,15 @@
             "fundName":"华宝油气"
         },
         {
+            "currentNetValue":0.94,
+            "currentNetValueDate":"2020-02-05",
+            "estimateNetValue":0.952,
+            "estimateRate":0.0128,
+            "estimateTime":"2020-02-06 15:00",
+            "fundCode":"515180",
+            "fundName":"中证红利"
+        },
+        {
             "currentNetValue":2.801,
             "currentNetValueDate":"2020-02-05",
             "estimateNetValue":2.842,
@@ -1144,5 +1153,5 @@
             "fundName":"华夏恒生ETF联接A"
         }
     ],
-    "updateTime":"2020-02-06 18:36:04"
+    "updateTime":"2020-02-06 19:04:36"
 }

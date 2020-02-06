@@ -306,6 +306,24 @@
         "holdTotalGain":71.0
     },
     {
+        "appSource":"华宝证券",
+        "category1":"A 股",
+        "category2":"红利价值",
+        "category3":"中证红利",
+        "category4":"131",
+        "currentNetValue":0.94,
+        "currentNetValueDate":"2020-02-05",
+        "estimateNetValue":0.0,
+        "estimateRate":0.0,
+        "estimateTime":"估算时间",
+        "fundCode":"515180",
+        "fundName":"中证红利",
+        "holdMarketCap":2538.0,
+        "holdNetValue":0.906,
+        "holdShareCount":2700.0,
+        "holdTotalGain":91.8
+    },
+    {
         "appSource":"华泰证券",
         "category1":"A 股",
         "category2":"大盘股",
