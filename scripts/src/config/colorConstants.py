@@ -28,8 +28,10 @@ class colorConstants:
         elif u'支付宝' in name:
             return 'DBB6AC'
             # return '5587F0' # 绍鹏给的颜色，和绿色太撞色，看不清楚
-        elif name in [u'华泰证券',u'华宝证券']:
+        elif name in [u'华泰证券']:
             return 'FF7C9E'
+        elif name in [u'华宝证券']:
+            return 'B0D482'
         elif name in [u'现金账户',u'现金账户父母']:
             return 'FFC751'
         elif u'冻结资金' in name:

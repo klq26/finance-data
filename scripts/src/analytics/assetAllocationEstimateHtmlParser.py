@@ -149,8 +149,10 @@ class assetAllocationEstimateHtmlParser:
             fundModel.estimateRate = round(float(fundModel.estimateRate), 4)
             fundDict['color'] = color
             # 红涨绿跌
-            changeValue = round(
-                (fundModel.estimateNetValue - fundModel.currentNetValue)*fundModel.holdShareCount, 2)
+            if fundModel.estimateNetValue <= 0:
+                changeValue = 0.0
+            else:
+                changeValue = round((fundModel.estimateNetValue - fundModel.currentNetValue)*fundModel.holdShareCount, 2)
             fundDict['changeValue'] = changeValue
             # 用的之前的深色配色（代码比较乱）
             fundDict['holdingGainColor'] = self.getGainColor(fundDict['holdTotalGain'])
