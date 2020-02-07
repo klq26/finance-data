@@ -18,7 +18,12 @@ class danjuanSpider:
     
     # 初始化构造函数
     def __init__(self, strategy = 'a'):
-        self.luosidingUrl = u'https://danjuanapp.com/djapi/holding/plan/CSI666'
+        url = 'https://danjuanapp.com/djapi/holding/plan/'
+        
+        self.luosidingUrl = url + u'CSI666'
+        self.dingdingbao90 = url + u'CSI1021'
+        self.dingdingbao365 = url + u'CSI1019'
+
         self.strategy = strategy
         if strategy == 'a':
             self.pm = pathManager(strategyName='康力泉')
@@ -27,13 +32,17 @@ class danjuanSpider:
         self.headerManager = requestHeaderManager()
 
     def getKLQ(self):
-        self.requestWithName(self.luosidingUrl, '螺丝钉定投', self.headerManager.getDanjuanKLQ())
+        self.requestWithName(self.luosidingUrl, '螺丝钉', self.headerManager.getDanjuanKLQ())
+        self.requestWithName(self.dingdingbao90, '钉钉宝90',self.headerManager.getDanjuanKLQ())
+        self.requestWithName(self.dingdingbao365, '钉钉宝365',self.headerManager.getDanjuanKLQ())
     
     def getLSY(self):
-        self.requestWithName(self.luosidingUrl, '李淑云',self.headerManager.getDanjuanLSY())
+        self.requestWithName(self.luosidingUrl, '母螺丝钉',self.headerManager.getDanjuanLSY())
+        self.requestWithName(self.dingdingbao90, '母钉钉宝90',self.headerManager.getDanjuanLSY())
         
     def getKSH(self):
-        self.requestWithName(self.luosidingUrl, '康世海',self.headerManager.getDanjuanKSH())
+        self.requestWithName(self.luosidingUrl, '父螺丝钉',self.headerManager.getDanjuanKSH())
+        self.requestWithName(self.dingdingbao365, '父钉钉宝365',self.headerManager.getDanjuanKSH())
         
     def requestWithName(self, url, name, header):
         headers=header

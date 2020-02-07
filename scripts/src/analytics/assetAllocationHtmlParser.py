@@ -108,6 +108,9 @@ class assetAllocationHtmlParser:
             else:
                 assetDict['holdTotalGainRate'] = '{:.2f}%'.format(self.beautify(assetModel.holdTotalGain / (assetModel.holdMarketCap - assetModel.holdTotalGain) * 100))
             assetDict['changeValueColor'] = self.getGainColor(assetModel.holdTotalGain)
+            # 如果持仓市值 & 份额都小于 0 说明是平仓品种，不计入统计系统
+            if float(assetDict['holdMarketCap']) <= 0 and float(assetDict['holdShareCount']) <= 0:
+                continue
             # 输出格式化（保留小数点后 4 或 2 位）
             assetDict['holdNetValue'] = '{:.4f}'.format(assetDict['holdNetValue'])
             assetDict['holdShareCount'] = '{:.2f}'.format(assetDict['holdShareCount'])

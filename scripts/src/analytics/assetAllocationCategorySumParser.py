@@ -175,6 +175,8 @@ class assetAllocationCategorySumParser:
             if len(marketCaps) == 0:
                 continue
             marketCap = reduce(lambda x,y: x+y, marketCaps)
+            if marketCap <= 0:
+                continue
             for x in indexHoldingInfos:
                 if x['name'] == category:
                     x['holding'] = round(marketCap,2)

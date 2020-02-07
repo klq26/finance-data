@@ -75,6 +75,8 @@ class cashSpider:
     def getDanjuanDingDingBao(self, headers):
         # 请求
         url = u'https://danjuanapp.com/djapi/holding/plan/CSI1021'
+        # https://danjuanapp.com/djapi/holding/fund/003474 南方天天利
+        # CSI1021 CSI1019 CSI666
         headers = headers
         ssl._create_default_https_context = ssl._create_unverified_context
         requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
@@ -100,6 +102,37 @@ class cashSpider:
         # print('\n')
         print(u'蛋卷钉钉宝：{0} 元，累计收益：{1} 元'.format(round(totalCash,2),round(totalGain,2)))
         return (round(totalCash,2),round(totalGain,2))
+
+    def getDanjuan(self, isCash, code, headers):
+        url = u'https://danjuanapp.com/djapi/holding/'
+        if isCash:
+            url = url + 'fund/' + code
+        else:
+            url = url + 'plan/' + code
+        headers = headers
+        ssl._create_default_https_context = ssl._create_unverified_context
+        requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+        response = requests.get(url,headers = headers, verify=False)
+        # 解析
+        data = json.loads(response.text)['data']
+        #titleLine = u'{0}\t总市值\t{1}\t累计收益\t{2}'.format(name,round(data['total_assets'],2),round(data['total_gain'],2))
+        #print(titleLine)
+        #f.write(titleLine + '\n')
+        headerLine = u'基金名称\t基金代码\t持仓成本\t持仓份额\t持仓市值\t累计收益'
+        #print(headerLine)
+        #f.write(headerLine + '\n')
+        totalCash = 0
+        totalGain = 0
+        # 名称，代码，持仓成本，持仓份额，持仓市值，累计收益
+        seq = (data['fd_name'],data['fd_code'],str(round(data['holding_cost'],4)),\
+        str(round(data['volume'],2)),str(round(data['market_value'],2)),str(round(data['total_gain'],2)))
+        #print(u'\t'.join(seq))
+        #f.write(u'\t'.join(seq) + '\n')
+        totalCash = totalCash + round(data['market_value'],2)
+        totalGain = totalGain + round(data['total_gain'],2)
+        print(u'蛋卷货币基金：{0} 元，累计收益：{1} 元'.format(round(totalCash,2),round(totalGain,2)))
+        return (round(totalCash,2),round(totalGain,2))
+
 
     # 获取天天基金活期宝
     def getTianTianHuoQiBao(self, url, header = None):
@@ -133,16 +166,25 @@ class cashSpider:
         result = self.getSuiShouJi()
         totalCash = totalCash + result[0]
         totalGain = totalGain + result[1]
-        result = self.getQieManYingMiBao(headers=requestHeaderManager().getQiemanKLQ())
+        # 且慢盈米宝之后不会在存现金，历史收益已收录
+        # result = self.getQieManYingMiBao(headers=requestHeaderManager().getQiemanKLQ())
+        # totalCash = totalCash + result[0]
+        # totalGain = totalGain + result[1]
+
+        result = self.getDanjuan(True, '003474',headers=requestHeaderManager().getDanjuanKLQ())
         totalCash = totalCash + result[0]
         totalGain = totalGain + result[1]
-        result = self.getDanjuanDingDingBao(headers=requestHeaderManager().getDanjuanKLQ())
-        totalCash = totalCash + result[0]
-        totalGain = totalGain + result[1]
-        result = self.getTianTianHuoQiBao(u'https://trade.1234567.com.cn/xjb/index', self.requestHeaderManager.getTiantianKLQ())
-        
-        totalCash = totalCash + result[0]
-        totalGain = totalGain + result[1]
+
+        # 天天现金宝之后不会在存现金，历史收益已收录
+        # result = self.getTianTianHuoQiBao(u'https://trade.1234567.com.cn/xjb/index', self.requestHeaderManager.getTiantianKLQ())
+        # totalCash = totalCash + result[0]
+        # totalGain = totalGain + result[1]
+
+        # 华宝证券，现在是手动更新
+        totalCash = totalCash + 10003.74
+        totalGain = totalGain + 3.74
+        print(u'华宝证券：10003.74 元，累计收益：3.74 元')
+
         totalCash = round(totalCash,2)
         totalGain = round(totalGain,2)
         print(u'\n总现金：{0} 元，总累计收益：{1} 元'.format(totalCash,totalGain))
@@ -169,10 +211,10 @@ class cashSpider:
         totalCash = 0
         totalGain = 0
         print(u'全部资金情况：')
-        result = self.getDanjuanDingDingBao(headers=requestHeaderManager().getDanjuanLSY())
-        totalCash = totalCash + result[0]
-        totalGain = totalGain + result[1]
-        result = self.getDanjuanDingDingBao(headers=requestHeaderManager().getDanjuanKSH())
+        # result = self.getDanjuanDingDingBao(headers=requestHeaderManager().getDanjuanLSY())
+        # totalCash = totalCash + result[0]
+        # totalGain = totalGain + result[1]
+        result = self.getDanjuan(True, '003474', headers=requestHeaderManager().getDanjuanKSH())
         totalCash = totalCash + result[0]
         totalGain = totalGain + result[1]
         totalCash = round(totalCash,2)

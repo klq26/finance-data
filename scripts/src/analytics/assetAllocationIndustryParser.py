@@ -279,7 +279,8 @@ class assetAllocationIndustryParser:
             if echart1.value >= 1.5:
                 echart1.name = '{0},{1}%'.format(key,industry1_sum)
             echart1.itemStyle = {'color':color}
-            print(echart1.name)
+            # ★想看控制台输出就打开（1/2）
+            #print(echart1.name)
             for subIndustryKey in all_industry[key].keys():
                 echart2 = echartsModel()
                 echart2.value = all_industry[key][subIndustryKey]
@@ -288,7 +289,8 @@ class assetAllocationIndustryParser:
                     echart2.name = '{0},{1}%'.format(subIndustryKey,all_industry[key][subIndustryKey])
                 echart2.itemStyle = {'color':color}
                 echart1.children.append(echart2.__dict__)
-                print('\t{0},{1}%'.format(subIndustryKey,all_industry[key][subIndustryKey]))
+                # ★想看控制台输出就打开（2/2）
+                #print('\t{0},{1}%'.format(subIndustryKey,all_industry[key][subIndustryKey]))
                 # 在对象字典上，加上指数的 index，用于后续排序
                 echart1['index'] = self.indexWithHyName1(key)
             self.echarts.append(echart1.__dict__)

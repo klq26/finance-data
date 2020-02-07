@@ -7,10 +7,10 @@
         "category4":"999",
         "fundCode":"999999",
         "fundName":"货币基金综合",
-        "holdMarketCap":248044.41,
+        "holdMarketCap":22803.15,
         "holdNetValue":1.0,
-        "holdShareCount":248044.41,
-        "holdTotalGain":6512.79
+        "holdShareCount":22803.15,
+        "holdTotalGain":3.74
     },
     {
         "appSource":"螺丝钉",
@@ -20,10 +20,10 @@
         "category4":"131",
         "fundCode":"090010",
         "fundName":"大成中证红利指数A",
-        "holdMarketCap":4375.6,
-        "holdNetValue":1.6562,
-        "holdShareCount":2804.87,
-        "holdTotalGain":-269.83
+        "holdMarketCap":4541.55,
+        "holdNetValue":1.6533,
+        "holdShareCount":2879.87,
+        "holdTotalGain":-219.73
     },
     {
         "appSource":"螺丝钉",
@@ -33,10 +33,10 @@
         "category4":"114",
         "fundCode":"519671",
         "fundName":"银河沪深300价值指数",
-        "holdMarketCap":4278.1,
-        "holdNetValue":1.4358,
-        "holdShareCount":3115.88,
-        "holdTotalGain":-195.68
+        "holdMarketCap":4434.66,
+        "holdNetValue":1.434,
+        "holdShareCount":3201.92,
+        "holdTotalGain":-156.89
     },
     {
         "appSource":"螺丝钉",
@@ -46,10 +46,10 @@
         "category4":"122",
         "fundCode":"003318",
         "fundName":"景顺长城中证500低波动",
-        "holdMarketCap":3907.75,
-        "holdNetValue":0.9388,
-        "holdShareCount":4201.88,
-        "holdTotalGain":-36.98
+        "holdMarketCap":4117.21,
+        "holdNetValue":0.9381,
+        "holdShareCount":4314.38,
+        "holdTotalGain":69.89
     },
     {
         "appSource":"螺丝钉",
@@ -59,23 +59,10 @@
         "category4":"213",
         "fundCode":"501021",
         "fundName":"华宝香港中小",
-        "holdMarketCap":3320.15,
+        "holdMarketCap":3393.37,
         "holdNetValue":1.3481,
         "holdShareCount":2260.14,
-        "holdTotalGain":273.25
-    },
-    {
-        "appSource":"螺丝钉",
-        "category1":"A 股",
-        "category2":"大盘股",
-        "category3":"基本面120",
-        "category4":"116",
-        "fundCode":"070023",
-        "fundName":"嘉实深证基本面120联接",
-        "holdMarketCap":2522.51,
-        "holdNetValue":1.7987,
-        "holdShareCount":1363.37,
-        "holdTotalGain":70.21
+        "holdTotalGain":346.48
     },
     {
         "appSource":"螺丝钉",
@@ -85,10 +72,23 @@
         "category4":"115",
         "fundCode":"530015",
         "fundName":"建信深证基本面60ETF联接A",
-        "holdMarketCap":2445.28,
-        "holdNetValue":2.136,
-        "holdShareCount":1134.65,
-        "holdTotalGain":21.67
+        "holdMarketCap":2588.46,
+        "holdNetValue":2.1359,
+        "holdShareCount":1178.34,
+        "holdTotalGain":71.64
+    },
+    {
+        "appSource":"螺丝钉",
+        "category1":"A 股",
+        "category2":"大盘股",
+        "category3":"基本面120",
+        "category4":"116",
+        "fundCode":"070023",
+        "fundName":"嘉实深证基本面120联接",
+        "holdMarketCap":2570.23,
+        "holdNetValue":1.7987,
+        "holdShareCount":1363.37,
+        "holdTotalGain":117.93
     },
     {
         "appSource":"螺丝钉",
@@ -98,10 +98,10 @@
         "category4":"141",
         "fundCode":"000968",
         "fundName":"广发中证养老",
-        "holdMarketCap":1063.15,
+        "holdMarketCap":1099.87,
         "holdNetValue":0.9589,
         "holdShareCount":1067.42,
-        "holdTotalGain":39.6
+        "holdTotalGain":76.32
     },
     {
         "appSource":"螺丝钉",
@@ -111,23 +111,10 @@
         "category4":"146",
         "fundCode":"001594",
         "fundName":"天弘中证银行指数A",
-        "holdMarketCap":635.13,
-        "holdNetValue":1.2511,
-        "holdShareCount":550.61,
-        "holdTotalGain":-53.74
-    },
-    {
-        "appSource":"螺丝钉",
-        "category1":"A 股",
-        "category2":"红利价值",
-        "category3":"标普红利",
-        "category4":"132",
-        "fundCode":"501029",
-        "fundName":"华宝红利基金",
-        "holdMarketCap":512.97,
-        "holdNetValue":0.9827,
-        "holdShareCount":550.4,
-        "holdTotalGain":-27.91
+        "holdMarketCap":749.23,
+        "holdNetValue":1.237,
+        "holdShareCount":645.5,
+        "holdTotalGain":-49.25
     },
     {
         "appSource":"螺丝钉",
@@ -137,10 +124,10 @@
         "category4":"142",
         "fundCode":"001550",
         "fundName":"天弘中证医药100A",
-        "holdMarketCap":472.51,
+        "holdMarketCap":486.61,
         "holdNetValue":0.6708,
         "holdShareCount":531.87,
-        "holdTotalGain":115.73
+        "holdTotalGain":129.83
     },
     {
         "appSource":"螺丝钉",
@@ -150,10 +137,23 @@
         "category4":"112",
         "fundCode":"501050",
         "fundName":"华夏上证50AH优选指数",
-        "holdMarketCap":319.06,
+        "holdMarketCap":326.5,
         "holdNetValue":1.2636,
         "holdShareCount":247.91,
-        "holdTotalGain":5.8
+        "holdTotalGain":13.24
+    },
+    {
+        "appSource":"螺丝钉",
+        "category1":"海外新兴",
+        "category2":"海外互联",
+        "category3":"海外互联网",
+        "category4":"221",
+        "fundCode":"006327",
+        "fundName":"易方达中概互联50ETF联接人民币A",
+        "holdMarketCap":91.39,
+        "holdNetValue":1.1846,
+        "holdShareCount":77.73,
+        "holdTotalGain":-0.69
     },
     {
         "appSource":"螺丝钉",
@@ -163,10 +163,10 @@
         "category4":"114",
         "fundCode":"310398",
         "fundName":"申万菱信沪深300价值指数",
-        "holdMarketCap":83.5,
+        "holdMarketCap":84.35,
         "holdNetValue":1.4374,
         "holdShareCount":64.5,
-        "holdTotalGain":-9.22
+        "holdTotalGain":-8.36
     },
     {
         "appSource":"螺丝钉",
@@ -180,6 +180,123 @@
         "holdNetValue":1.2256,
         "holdShareCount":0.0,
         "holdTotalGain":0.0
+    },
+    {
+        "appSource":"螺丝钉",
+        "category1":"A 股",
+        "category2":"红利价值",
+        "category3":"标普红利",
+        "category4":"132",
+        "fundCode":"501029",
+        "fundName":"华宝红利基金",
+        "holdMarketCap":0.0,
+        "holdNetValue":0.9827,
+        "holdShareCount":0.0,
+        "holdTotalGain":-0.0
+    },
+    {
+        "appSource":"钉钉宝365",
+        "category1":"混合型",
+        "category2":"股债混合",
+        "category3":"偏债",
+        "category4":"412",
+        "fundCode":"002147",
+        "fundName":"长安鑫益增强混合C",
+        "holdMarketCap":66093.39,
+        "holdNetValue":1.211,
+        "holdShareCount":54550.5,
+        "holdTotalGain":32.73
+    },
+    {
+        "appSource":"钉钉宝365",
+        "category1":"混合型",
+        "category2":"股债混合",
+        "category3":"偏债",
+        "category4":"412",
+        "fundCode":"007749",
+        "fundName":"民生加银鹏程混合C",
+        "holdMarketCap":33268.65,
+        "holdNetValue":1.0543,
+        "holdShareCount":31244.04,
+        "holdTotalGain":328.06
+    },
+    {
+        "appSource":"钉钉宝365",
+        "category1":"混合型",
+        "category2":"股债混合",
+        "category3":"偏债",
+        "category4":"412",
+        "fundCode":"006060",
+        "fundName":"鹏扬泓利债券C",
+        "holdMarketCap":33167.78,
+        "holdNetValue":1.0806,
+        "holdShareCount":30529.99,
+        "holdTotalGain":177.07
+    },
+    {
+        "appSource":"钉钉宝365",
+        "category1":"混合型",
+        "category2":"股债混合",
+        "category3":"偏债",
+        "category4":"412",
+        "fundCode":"485011",
+        "fundName":"工银双利债券B",
+        "holdMarketCap":16579.53,
+        "holdNetValue":1.5473,
+        "holdShareCount":10662.08,
+        "holdTotalGain":82.1
+    },
+    {
+        "appSource":"钉钉宝365",
+        "category1":"混合型",
+        "category2":"股债混合",
+        "category3":"偏债",
+        "category4":"412",
+        "fundCode":"001338",
+        "fundName":"安信稳健增值混合C",
+        "holdMarketCap":16534.47,
+        "holdNetValue":1.3411,
+        "holdShareCount":12313.43,
+        "holdTotalGain":20.93
+    },
+    {
+        "appSource":"钉钉宝90",
+        "category1":"债券",
+        "category2":"国内债券",
+        "category3":"纯债",
+        "category4":"511",
+        "fundCode":"519153",
+        "fundName":"新华纯债C",
+        "holdMarketCap":17101.51,
+        "holdNetValue":1.1672,
+        "holdShareCount":14554.48,
+        "holdTotalGain":113.52
+    },
+    {
+        "appSource":"钉钉宝90",
+        "category1":"债券",
+        "category2":"国内债券",
+        "category3":"纯债",
+        "category4":"511",
+        "fundCode":"002086",
+        "fundName":"大成景安短融债券E",
+        "holdMarketCap":12833.77,
+        "holdNetValue":1.2532,
+        "holdShareCount":10162.95,
+        "holdTotalGain":97.56
+    },
+    {
+        "appSource":"钉钉宝90",
+        "category1":"债券",
+        "category2":"国内债券",
+        "category3":"纯债",
+        "category4":"511",
+        "fundCode":"006320",
+        "fundName":"易方达安瑞短债C",
+        "holdMarketCap":12829.75,
+        "holdNetValue":1.0017,
+        "holdShareCount":12720.35,
+        "holdTotalGain":87.77
     },
     {
         "appSource":"冻结资金",
@@ -202,10 +319,10 @@
         "category4":"143",
         "fundCode":"001064",
         "fundName":"广发中证环保ETF联接基金A",
-        "holdMarketCap":9816.59,
+        "holdMarketCap":10034.11,
         "holdNetValue":0.7172,
         "holdShareCount":16731.88,
-        "holdTotalGain":-2183.51
+        "holdTotalGain":-1966.0
     },
     {
         "appSource":"华宝证券",
@@ -215,10 +332,10 @@
         "category4":"613",
         "fundCode":"162411",
         "fundName":"华宝油气",
-        "holdMarketCap":12851.0,
+        "holdMarketCap":13206.0,
         "holdNetValue":0.36,
         "holdShareCount":35500.0,
-        "holdTotalGain":71.0
+        "holdTotalGain":426.0
     },
     {
         "appSource":"华宝证券",
@@ -228,10 +345,10 @@
         "category4":"131",
         "fundCode":"515180",
         "fundName":"中证红利",
-        "holdMarketCap":2538.0,
+        "holdMarketCap":2570.4,
         "holdNetValue":0.906,
         "holdShareCount":2700.0,
-        "holdTotalGain":91.8
+        "holdTotalGain":124.2
     },
     {
         "appSource":"华泰证券",
@@ -241,10 +358,10 @@
         "category4":"111",
         "fundCode":"510050",
         "fundName":"50ETF",
-        "holdMarketCap":7562.7,
+        "holdMarketCap":7673.4,
         "holdNetValue":2.337,
         "holdShareCount":2700.0,
-        "holdTotalGain":1252.8
+        "holdTotalGain":1363.5
     },
     {
         "appSource":"华泰证券",
@@ -254,10 +371,10 @@
         "category4":"113",
         "fundCode":"510300",
         "fundName":"300ETF",
-        "holdMarketCap":34643.7,
+        "holdMarketCap":35462.7,
         "holdNetValue":3.447,
         "holdShareCount":9100.0,
-        "holdTotalGain":3276.0
+        "holdTotalGain":4095.0
     },
     {
         "appSource":"华泰证券",
@@ -267,10 +384,10 @@
         "category4":"121",
         "fundCode":"510500",
         "fundName":"500ETF",
-        "holdMarketCap":215184.8,
+        "holdMarketCap":221586.8,
         "holdNetValue":5.601,
         "holdShareCount":38800.0,
-        "holdTotalGain":-2134.0
+        "holdTotalGain":4268.0
     },
     {
         "appSource":"华泰证券",
@@ -280,10 +397,10 @@
         "category4":"143",
         "fundCode":"512580",
         "fundName":"环保ETF",
-        "holdMarketCap":26533.0,
+        "holdMarketCap":27209.0,
         "holdNetValue":0.877,
         "holdShareCount":33800.0,
-        "holdTotalGain":-3109.6
+        "holdTotalGain":-2433.6
     },
     {
         "appSource":"华泰证券",
@@ -293,10 +410,10 @@
         "category4":"145",
         "fundCode":"512880",
         "fundName":"证券ETF",
-        "holdMarketCap":29593.5,
+        "holdMarketCap":30345.6,
         "holdNetValue":0.783,
         "holdShareCount":32700.0,
-        "holdTotalGain":3989.4
+        "holdTotalGain":4741.5
     },
     {
         "appSource":"华泰证券",
@@ -306,10 +423,10 @@
         "category4":"144",
         "fundCode":"512980",
         "fundName":"传媒ETF",
-        "holdMarketCap":28950.9,
+        "holdMarketCap":30996.9,
         "holdNetValue":0.869,
         "holdShareCount":34100.0,
-        "holdTotalGain":-682.0
+        "holdTotalGain":1364.0
     },
     {
         "appSource":"华泰证券",
@@ -319,10 +436,10 @@
         "category4":"611",
         "fundCode":"518880",
         "fundName":"黄金ETF",
-        "holdMarketCap":15610.5,
+        "holdMarketCap":15534.0,
         "holdNetValue":2.856,
         "holdShareCount":4500.0,
-        "holdTotalGain":2758.5
+        "holdTotalGain":2682.0
     },
     {
         "appSource":"华泰证券",
@@ -332,10 +449,10 @@
         "category4":"124",
         "fundCode":"159915",
         "fundName":"创业板",
-        "holdMarketCap":17213.2,
+        "holdMarketCap":17756.0,
         "holdNetValue":1.399,
         "holdShareCount":9200.0,
-        "holdTotalGain":4342.4
+        "holdTotalGain":4885.2
     },
     {
         "appSource":"华泰证券",
@@ -345,10 +462,10 @@
         "category4":"142",
         "fundCode":"159938",
         "fundName":"广发医药",
-        "holdMarketCap":21686.4,
+        "holdMarketCap":22464.0,
         "holdNetValue":1.271,
         "holdShareCount":14400.0,
-        "holdTotalGain":3384.0
+        "holdTotalGain":4161.6
     },
     {
         "appSource":"且慢 150 份",
@@ -358,10 +475,10 @@
         "category4":"121",
         "fundCode":"000478",
         "fundName":"建信中证500指数增强A",
-        "holdMarketCap":8169.53,
+        "holdMarketCap":8386.55,
         "holdNetValue":1.9252,
         "holdShareCount":4157.52,
-        "holdTotalGain":165.47
+        "holdTotalGain":382.49
     },
     {
         "appSource":"且慢 150 份",
@@ -371,10 +488,10 @@
         "category4":"143",
         "fundCode":"001064",
         "fundName":"广发中证环保ETF联接A",
-        "holdMarketCap":5703.9,
+        "holdMarketCap":5830.28,
         "holdNetValue":0.5489,
         "holdShareCount":9722.0,
-        "holdTotalGain":367.49
+        "holdTotalGain":493.88
     },
     {
         "appSource":"且慢 150 份",
@@ -384,10 +501,10 @@
         "category4":"141",
         "fundCode":"000968",
         "fundName":"广发养老指数A",
-        "holdMarketCap":4924.18,
+        "holdMarketCap":5094.26,
         "holdNetValue":0.9444,
         "holdShareCount":4943.96,
-        "holdTotalGain":255.11
+        "holdTotalGain":425.18
     },
     {
         "appSource":"且慢 150 份",
@@ -397,10 +514,10 @@
         "category4":"121",
         "fundCode":"001052",
         "fundName":"华夏中证500ETF联接A",
-        "holdMarketCap":4184.2,
+        "holdMarketCap":4309.65,
         "holdNetValue":0.5423,
         "holdShareCount":7379.54,
-        "holdTotalGain":182.27
+        "holdTotalGain":307.73
     },
     {
         "appSource":"且慢 150 份",
@@ -410,10 +527,10 @@
         "category4":"131",
         "fundCode":"100032",
         "fundName":"富国中证红利指数增强",
-        "holdMarketCap":3910.57,
+        "holdMarketCap":3958.21,
         "holdNetValue":1.0919,
         "holdShareCount":3665.01,
-        "holdTotalGain":-91.26
+        "holdTotalGain":-43.61
     },
     {
         "appSource":"且慢 150 份",
@@ -423,10 +540,10 @@
         "category4":"144",
         "fundCode":"004752",
         "fundName":"广发中证传媒ETF联接A",
-        "holdMarketCap":3855.68,
+        "holdMarketCap":4058.64,
         "holdNetValue":0.7329,
         "holdShareCount":4550.55,
-        "holdTotalGain":520.58
+        "holdTotalGain":723.54
     },
     {
         "appSource":"且慢 150 份",
@@ -436,10 +553,10 @@
         "category4":"124",
         "fundCode":"110026",
         "fundName":"易方达创业板ETF联接A",
-        "holdMarketCap":795.77,
+        "holdMarketCap":823.74,
         "holdNetValue":1.6649,
         "holdShareCount":400.63,
-        "holdTotalGain":128.76
+        "holdTotalGain":156.73
     },
     {
         "appSource":"且慢 150 份",
@@ -449,10 +566,10 @@
         "category4":"124",
         "fundCode":"003765",
         "fundName":"广发创业板ETF联接A",
-        "holdMarketCap":791.38,
+        "holdMarketCap":819.35,
         "holdNetValue":0.9059,
         "holdShareCount":736.3,
-        "holdTotalGain":124.36
+        "holdTotalGain":152.34
     },
     {
         "appSource":"且慢 150 份",
@@ -462,10 +579,10 @@
         "category4":"142",
         "fundCode":"001180",
         "fundName":"广发医药卫生联接A",
-        "holdMarketCap":754.82,
+        "holdMarketCap":778.45,
         "holdNetValue":0.8242,
         "holdShareCount":809.28,
-        "holdTotalGain":87.81
+        "holdTotalGain":111.44
     },
     {
         "appSource":"且慢 150 份",
@@ -475,10 +592,10 @@
         "category4":"145",
         "fundCode":"502010",
         "fundName":"易方达证券公司分级",
-        "holdMarketCap":463.71,
+        "holdMarketCap":475.37,
         "holdNetValue":0.9853,
         "holdShareCount":473.85,
-        "holdTotalGain":-3.17
+        "holdTotalGain":8.48
     },
     {
         "appSource":"且慢 150 份",
@@ -488,10 +605,10 @@
         "category4":"613",
         "fundCode":"162411",
         "fundName":"华宝标普石油指数A",
-        "holdMarketCap":1918.59,
+        "holdMarketCap":1971.59,
         "holdNetValue":0.3775,
         "holdShareCount":5299.96,
-        "holdTotalGain":-82.15
+        "holdTotalGain":-29.15
     },
     {
         "appSource":"且慢 150 份",
@@ -501,10 +618,10 @@
         "category4":"221",
         "fundCode":"164906",
         "fundName":"交银中证海外中国互联网指数",
-        "holdMarketCap":825.4,
+        "holdMarketCap":816.75,
         "holdNetValue":1.1564,
         "holdShareCount":576.8,
-        "holdTotalGain":158.39
+        "holdTotalGain":149.74
     },
     {
         "appSource":"且慢 150 份",
@@ -514,10 +631,10 @@
         "category4":"211",
         "fundCode":"000071",
         "fundName":"华夏恒生ETF联接A",
-        "holdMarketCap":689.41,
+        "holdMarketCap":707.85,
         "holdNetValue":1.451,
         "holdShareCount":459.67,
-        "holdTotalGain":22.43
+        "holdTotalGain":40.86
     },
     {
         "appSource":"且慢 150 份",
@@ -527,10 +644,10 @@
         "category4":"321",
         "fundCode":"000614",
         "fundName":"华安德国30(DAX)联接",
-        "holdMarketCap":734.71,
+        "holdMarketCap":744.5,
         "holdNetValue":1.0903,
         "holdShareCount":611.75,
-        "holdTotalGain":67.72
+        "holdTotalGain":77.51
     },
     {
         "appSource":"且慢 S 定投",
@@ -540,10 +657,10 @@
         "category4":"121",
         "fundCode":"000478",
         "fundName":"建信中证500指数增强A",
-        "holdMarketCap":2056.82,
+        "holdMarketCap":2111.46,
         "holdNetValue":1.9107,
         "holdShareCount":1046.73,
-        "holdTotalGain":56.84
+        "holdTotalGain":111.48
     },
     {
         "appSource":"且慢 S 定投",
@@ -553,10 +670,10 @@
         "category4":"131",
         "fundCode":"100032",
         "fundName":"富国中证红利指数增强",
-        "holdMarketCap":1948.24,
+        "holdMarketCap":1971.97,
         "holdNetValue":1.0954,
         "holdShareCount":1825.9,
-        "holdTotalGain":-51.86
+        "holdTotalGain":-28.12
     },
     {
         "appSource":"且慢 S 定投",
@@ -566,10 +683,10 @@
         "category4":"121",
         "fundCode":"001052",
         "fundName":"华夏中证500ETF联接A",
-        "holdMarketCap":1027.8,
+        "holdMarketCap":1058.62,
         "holdNetValue":0.5517,
         "holdShareCount":1812.7,
-        "holdTotalGain":27.73
+        "holdTotalGain":58.55
     },
     {
         "appSource":"且慢 S 定投",
@@ -579,10 +696,10 @@
         "category4":"144",
         "fundCode":"004752",
         "fundName":"广发中证传媒ETF联接A",
-        "holdMarketCap":1039.66,
+        "holdMarketCap":1094.39,
         "holdNetValue":0.815,
         "holdShareCount":1227.03,
-        "holdTotalGain":39.63
+        "holdTotalGain":94.36
     },
     {
         "appSource":"且慢 S 定投",
@@ -592,10 +709,10 @@
         "category4":"111",
         "fundCode":"001051",
         "fundName":"华夏上证50ETF联接A",
-        "holdMarketCap":1021.04,
+        "holdMarketCap":1035.87,
         "holdNetValue":0.9441,
         "holdShareCount":1059.17,
-        "holdTotalGain":21.08
+        "holdTotalGain":35.91
     },
     {
         "appSource":"且慢 S 定投",
@@ -605,10 +722,10 @@
         "category4":"221",
         "fundCode":"164906",
         "fundName":"交银中证海外中国互联网指数",
-        "holdMarketCap":1287.64,
+        "holdMarketCap":1274.15,
         "holdNetValue":1.1113,
         "holdShareCount":899.82,
-        "holdTotalGain":287.67
+        "holdTotalGain":274.18
     },
     {
         "appSource":"且慢 S 定投",
@@ -618,10 +735,10 @@
         "category4":"211",
         "fundCode":"000071",
         "fundName":"华夏恒生ETF联接A",
-        "holdMarketCap":1033.39,
+        "holdMarketCap":1061.02,
         "holdNetValue":1.4513,
         "holdShareCount":689.02,
-        "holdTotalGain":33.42
+        "holdTotalGain":61.05
     },
     {
         "appSource":"且慢 S 定投",
@@ -631,10 +748,10 @@
         "category4":"611",
         "fundCode":"000216",
         "fundName":"华安黄金易ETF联接A",
-        "holdMarketCap":2358.58,
+        "holdMarketCap":2343.17,
         "holdNetValue":1.0902,
         "holdShareCount":1834.47,
-        "holdTotalGain":358.64
+        "holdTotalGain":343.23
     },
     {
         "appSource":"且慢 S 定投",
@@ -644,10 +761,10 @@
         "category4":"613",
         "fundCode":"162411",
         "fundName":"华宝标普石油指数A",
-        "holdMarketCap":1722.36,
+        "holdMarketCap":1769.94,
         "holdNetValue":0.4204,
         "holdShareCount":4757.9,
-        "holdTotalGain":-277.86
+        "holdTotalGain":-230.28
     },
     {
         "appSource":"且慢 S 定投",
@@ -657,10 +774,10 @@
         "category4":"321",
         "fundCode":"000614",
         "fundName":"华安德国30(DAX)联接",
-        "holdMarketCap":1145.71,
+        "holdMarketCap":1160.97,
         "holdNetValue":1.0483,
         "holdShareCount":953.96,
-        "holdTotalGain":145.67
+        "holdTotalGain":160.93
     },
     {
         "appSource":"且慢 S 定投",
@@ -670,10 +787,10 @@
         "category4":"512",
         "fundCode":"110027",
         "fundName":"易方达安心债券A",
-        "holdMarketCap":1049.81,
+        "holdMarketCap":1056.96,
         "holdNetValue":1.6793,
         "holdShareCount":595.47,
-        "holdTotalGain":49.84
+        "holdTotalGain":56.99
     },
     {
         "appSource":"天天基金",
@@ -683,10 +800,10 @@
         "category4":"131",
         "fundCode":"100032",
         "fundName":"富国中证红利指数增强",
-        "holdMarketCap":69423.64,
+        "holdMarketCap":70269.48,
         "holdNetValue":1.0193,
         "holdShareCount":65064.33,
-        "holdTotalGain":3103.57
+        "holdTotalGain":3949.4
     },
     {
         "appSource":"天天基金",
@@ -696,10 +813,10 @@
         "category4":"141",
         "fundCode":"000968",
         "fundName":"广发养老指数A",
-        "holdMarketCap":63236.04,
+        "holdMarketCap":65420.1,
         "holdNetValue":0.9167,
         "holdShareCount":63490.0,
-        "holdTotalGain":5034.76
+        "holdTotalGain":7218.81
     },
     {
         "appSource":"天天基金",
@@ -709,10 +826,10 @@
         "category4":"512",
         "fundCode":"340001",
         "fundName":"兴全可转债混合",
-        "holdMarketCap":38918.8,
+        "holdMarketCap":39414.07,
         "holdNetValue":0.9886,
         "holdShareCount":32370.29,
-        "holdTotalGain":6917.53
+        "holdTotalGain":7412.8
     },
     {
         "appSource":"天天基金",
@@ -722,10 +839,10 @@
         "category4":"142",
         "fundCode":"001180",
         "fundName":"广发医药卫生联接A",
-        "holdMarketCap":38254.58,
+        "holdMarketCap":39452.21,
         "holdNetValue":0.7451,
         "holdShareCount":41014.88,
-        "holdTotalGain":7694.39
+        "holdTotalGain":8892.03
     },
     {
         "appSource":"天天基金",
@@ -735,10 +852,10 @@
         "category4":"512",
         "fundCode":"110027",
         "fundName":"易方达安心回报债券A",
-        "holdMarketCap":35412.73,
+        "holdMarketCap":35653.77,
         "holdNetValue":1.5931,
         "holdShareCount":20086.63,
-        "holdTotalGain":3412.72
+        "holdTotalGain":3653.76
     },
     {
         "appSource":"天天基金",
@@ -748,10 +865,10 @@
         "category4":"321",
         "fundCode":"000614",
         "fundName":"华安德国30(DAX)联接",
-        "holdMarketCap":24880.67,
+        "holdMarketCap":25212.14,
         "holdNetValue":1.091,
         "holdShareCount":20716.63,
-        "holdTotalGain":2278.83
+        "holdTotalGain":2610.3
     },
     {
         "appSource":"天天基金",
@@ -761,10 +878,10 @@
         "category4":"113",
         "fundCode":"100038",
         "fundName":"富国沪深300指数增强",
-        "holdMarketCap":23340.88,
+        "holdMarketCap":23721.12,
         "holdNetValue":1.3129,
         "holdShareCount":14624.61,
-        "holdTotalGain":4140.23
+        "holdTotalGain":4520.47
     },
     {
         "appSource":"天天基金",
@@ -774,10 +891,10 @@
         "category4":"221",
         "fundCode":"164906",
         "fundName":"交银中证海外中国互联网指数",
-        "holdMarketCap":24009.99,
+        "holdMarketCap":23758.31,
         "holdNetValue":1.1444,
         "holdShareCount":16778.47,
-        "holdTotalGain":4808.71
+        "holdTotalGain":4557.03
     },
     {
         "appSource":"天天基金",
@@ -787,10 +904,10 @@
         "category4":"147",
         "fundCode":"001469",
         "fundName":"广发中证全指金融地产联接A",
-        "holdMarketCap":21824.24,
+        "holdMarketCap":22078.21,
         "holdNetValue":0.9073,
         "holdShareCount":21163.93,
-        "holdTotalGain":2622.21
+        "holdTotalGain":2876.18
     },
     {
         "appSource":"天天基金",
@@ -800,10 +917,10 @@
         "category4":"121",
         "fundCode":"161017",
         "fundName":"富国中证500指数(LOF)",
-        "holdMarketCap":16029.14,
+        "holdMarketCap":16477.04,
         "holdNetValue":1.3432,
         "holdShareCount":9529.81,
-        "holdTotalGain":3228.7
+        "holdTotalGain":3676.6
     },
     {
         "appSource":"天天基金",
@@ -813,10 +930,10 @@
         "category4":"613",
         "fundCode":"162411",
         "fundName":"华宝标普油气上游股票人民币A",
-        "holdMarketCap":13490.82,
+        "holdMarketCap":13863.49,
         "holdNetValue":0.5152,
         "holdShareCount":37267.45,
-        "holdTotalGain":-5709.37
+        "holdTotalGain":-5336.7
     },
     {
         "appSource":"天天基金",
@@ -826,10 +943,10 @@
         "category4":"211",
         "fundCode":"000071",
         "fundName":"华夏恒生ETF联接A",
-        "holdMarketCap":10196.42,
+        "holdMarketCap":10469.04,
         "holdNetValue":1.4562,
         "holdShareCount":6798.52,
-        "holdTotalGain":296.42
+        "holdTotalGain":569.04
     },
     {
         "appSource":"天天基金",
@@ -839,10 +956,10 @@
         "category4":"143",
         "fundCode":"001064",
         "fundName":"广发中证环保ETF联接A",
-        "holdMarketCap":7864.08,
+        "holdMarketCap":8038.33,
         "holdNetValue":0.4775,
         "holdShareCount":13403.92,
-        "holdTotalGain":1463.71
+        "holdTotalGain":1637.96
     },
     {
         "appSource":"天天基金",
@@ -852,10 +969,10 @@
         "category4":"512",
         "fundCode":"519977",
         "fundName":"长信可转债债券A",
-        "holdMarketCap":7579.43,
+        "holdMarketCap":7684.4,
         "holdNetValue":1.2011,
         "holdShareCount":5328.62,
-        "holdTotalGain":1179.22
+        "holdTotalGain":1284.2
     },
     {
         "appSource":"天天基金",
@@ -865,10 +982,10 @@
         "category4":"521",
         "fundCode":"001061",
         "fundName":"华夏收益债券(QDII)A",
-        "holdMarketCap":7679.8,
+        "holdMarketCap":7707.85,
         "holdNetValue":0.9172,
         "holdShareCount":5609.79,
-        "holdTotalGain":2534.5
+        "holdTotalGain":2562.55
     },
     {
         "appSource":"天天基金",
@@ -878,10 +995,10 @@
         "category4":"121",
         "fundCode":"000478",
         "fundName":"建信中证500指数增强A",
-        "holdMarketCap":6483.79,
+        "holdMarketCap":6656.03,
         "holdNetValue":1.9397,
         "holdShareCount":3299.64,
-        "holdTotalGain":83.48
+        "holdTotalGain":255.72
     },
     {
         "appSource":"天天基金",
@@ -891,10 +1008,10 @@
         "category4":"144",
         "fundCode":"004752",
         "fundName":"广发中证传媒ETF联接A",
-        "holdMarketCap":6653.84,
+        "holdMarketCap":7004.08,
         "holdNetValue":0.815,
         "holdShareCount":7852.99,
-        "holdTotalGain":253.65
+        "holdTotalGain":603.89
     },
     {
         "appSource":"天天基金",
@@ -904,10 +1021,10 @@
         "category4":"121",
         "fundCode":"002903",
         "fundName":"广发中证500ETF联接C",
-        "holdMarketCap":3475.11,
+        "holdMarketCap":3576.62,
         "holdNetValue":0.8548,
         "holdShareCount":3889.32,
-        "holdTotalGain":150.52
+        "holdTotalGain":252.03
     },
     {
         "appSource":"现金账户父母",
@@ -917,178 +1034,9 @@
         "category4":"999",
         "fundCode":"999999",
         "fundName":"货币基金综合",
-        "holdMarketCap":12042.3,
+        "holdMarketCap":1000.0,
         "holdNetValue":1.0,
-        "holdShareCount":12042.3,
-        "holdTotalGain":41.35
-    },
-    {
-        "appSource":"螺丝钉父",
-        "category1":"A 股",
-        "category2":"大盘股",
-        "category3":"300价值",
-        "category4":"114",
-        "fundCode":"519671",
-        "fundName":"银河沪深300价值指数",
-        "holdMarketCap":1623.5,
-        "holdNetValue":1.4347,
-        "holdShareCount":1182.45,
-        "holdTotalGain":-72.96
-    },
-    {
-        "appSource":"螺丝钉父",
-        "category1":"A 股",
-        "category2":"红利价值",
-        "category3":"中证红利",
-        "category4":"131",
-        "fundCode":"090010",
-        "fundName":"大成中证红利指数A",
-        "holdMarketCap":1581.61,
-        "holdNetValue":1.6574,
-        "holdShareCount":1013.85,
-        "holdTotalGain":-98.75
-    },
-    {
-        "appSource":"螺丝钉父",
-        "category1":"A 股",
-        "category2":"中小盘股",
-        "category3":"500低波动",
-        "category4":"122",
-        "fundCode":"003318",
-        "fundName":"景顺长城中证500低波动",
-        "holdMarketCap":1439.67,
-        "holdNetValue":0.9386,
-        "holdShareCount":1548.03,
-        "holdTotalGain":-13.31
-    },
-    {
-        "appSource":"螺丝钉父",
-        "category1":"海外新兴",
-        "category2":"香港",
-        "category3":"香港中小",
-        "category4":"213",
-        "fundCode":"501021",
-        "fundName":"华宝香港中小",
-        "holdMarketCap":1319.22,
-        "holdNetValue":1.3485,
-        "holdShareCount":898.04,
-        "holdTotalGain":108.21
-    },
-    {
-        "appSource":"螺丝钉父",
-        "category1":"A 股",
-        "category2":"大盘股",
-        "category3":"基本面120",
-        "category4":"116",
-        "fundCode":"070023",
-        "fundName":"嘉实深证基本面120联接",
-        "holdMarketCap":911.37,
-        "holdNetValue":1.7966,
-        "holdShareCount":492.58,
-        "holdTotalGain":26.4
-    },
-    {
-        "appSource":"螺丝钉父",
-        "category1":"A 股",
-        "category2":"大盘股",
-        "category3":"基本面60",
-        "category4":"115",
-        "fundCode":"530015",
-        "fundName":"建信深证基本面60ETF联接A",
-        "holdMarketCap":909.43,
-        "holdNetValue":2.1277,
-        "holdShareCount":421.99,
-        "holdTotalGain":11.56
-    },
-    {
-        "appSource":"螺丝钉父",
-        "category1":"A 股",
-        "category2":"行业股",
-        "category3":"养老产业",
-        "category4":"141",
-        "fundCode":"000968",
-        "fundName":"广发中证养老",
-        "holdMarketCap":389.26,
-        "holdNetValue":0.9599,
-        "holdShareCount":390.82,
-        "holdTotalGain":14.11
-    },
-    {
-        "appSource":"螺丝钉父",
-        "category1":"A 股",
-        "category2":"红利价值",
-        "category3":"标普红利",
-        "category4":"132",
-        "fundCode":"501029",
-        "fundName":"华宝红利基金",
-        "holdMarketCap":200.28,
-        "holdNetValue":0.9829,
-        "holdShareCount":214.89,
-        "holdTotalGain":-10.94
-    },
-    {
-        "appSource":"螺丝钉父",
-        "category1":"A 股",
-        "category2":"行业股",
-        "category3":"中证银行",
-        "category4":"146",
-        "fundCode":"001594",
-        "fundName":"天弘中证银行指数A",
-        "holdMarketCap":197.55,
-        "holdNetValue":1.2538,
-        "holdShareCount":171.26,
-        "holdTotalGain":-17.18
-    },
-    {
-        "appSource":"螺丝钉父",
-        "category1":"A 股",
-        "category2":"行业股",
-        "category3":"全指医药",
-        "category4":"142",
-        "fundCode":"001550",
-        "fundName":"天弘中证医药100A",
-        "holdMarketCap":189.0,
-        "holdNetValue":0.6708,
-        "holdShareCount":212.74,
-        "holdTotalGain":46.29
-    },
-    {
-        "appSource":"螺丝钉父",
-        "category1":"A 股",
-        "category2":"大盘股",
-        "category3":"50AH",
-        "category4":"112",
-        "fundCode":"501050",
-        "fundName":"华夏上证50AH优选指数",
-        "holdMarketCap":79.91,
-        "holdNetValue":1.2891,
-        "holdShareCount":62.09,
-        "holdTotalGain":-0.13
-    },
-    {
-        "appSource":"螺丝钉父",
-        "category1":"A 股",
-        "category2":"大盘股",
-        "category3":"300价值",
-        "category4":"114",
-        "fundCode":"310398",
-        "fundName":"申万菱信沪深300价值指数",
-        "holdMarketCap":33.4,
-        "holdNetValue":1.4372,
-        "holdShareCount":25.8,
-        "holdTotalGain":-3.68
-    },
-    {
-        "appSource":"螺丝钉父",
-        "category1":"债券",
-        "category2":"国内债券",
-        "category3":"纯债",
-        "category4":"511",
-        "fundCode":"002086",
-        "fundName":"大成景安短融债券E",
-        "holdMarketCap":0.0,
-        "holdNetValue":1.2258,
-        "holdShareCount":0.0,
+        "holdShareCount":1000.0,
         "holdTotalGain":0.0
     },
     {
@@ -1099,10 +1047,10 @@
         "category4":"131",
         "fundCode":"090010",
         "fundName":"大成中证红利指数A",
-        "holdMarketCap":1760.96,
-        "holdNetValue":1.6607,
-        "holdShareCount":1128.82,
-        "holdTotalGain":-113.67
+        "holdMarketCap":1827.46,
+        "holdNetValue":1.6577,
+        "holdShareCount":1158.82,
+        "holdTotalGain":-93.52
     },
     {
         "appSource":"螺丝钉母",
@@ -1112,10 +1060,10 @@
         "category4":"114",
         "fundCode":"519671",
         "fundName":"银河沪深300价值指数",
-        "holdMarketCap":1681.97,
-        "holdNetValue":1.4346,
-        "holdShareCount":1225.03,
-        "holdTotalGain":-75.46
+        "holdMarketCap":1744.34,
+        "holdNetValue":1.4328,
+        "holdShareCount":1259.45,
+        "holdTotalGain":-60.2
     },
     {
         "appSource":"螺丝钉母",
@@ -1125,10 +1073,10 @@
         "category4":"122",
         "fundCode":"003318",
         "fundName":"景顺长城中证500低波动",
-        "holdMarketCap":1532.37,
-        "holdNetValue":0.9393,
-        "holdShareCount":1647.71,
-        "holdTotalGain":-15.32
+        "holdMarketCap":1615.35,
+        "holdNetValue":0.9385,
+        "holdShareCount":1692.71,
+        "holdTotalGain":26.74
     },
     {
         "appSource":"螺丝钉母",
@@ -1138,23 +1086,10 @@
         "category4":"213",
         "fundCode":"501021",
         "fundName":"华宝香港中小",
-        "holdMarketCap":1345.56,
+        "holdMarketCap":1375.24,
         "holdNetValue":1.3514,
         "holdShareCount":915.97,
-        "holdTotalGain":107.72
-    },
-    {
-        "appSource":"螺丝钉母",
-        "category1":"A 股",
-        "category2":"大盘股",
-        "category3":"基本面120",
-        "category4":"116",
-        "fundCode":"070023",
-        "fundName":"嘉实深证基本面120联接",
-        "holdMarketCap":978.74,
-        "holdNetValue":1.7992,
-        "holdShareCount":528.99,
-        "holdTotalGain":26.98
+        "holdTotalGain":137.4
     },
     {
         "appSource":"螺丝钉母",
@@ -1164,10 +1099,23 @@
         "category4":"115",
         "fundCode":"530015",
         "fundName":"建信深证基本面60ETF联接A",
-        "holdMarketCap":973.2,
-        "holdNetValue":2.142,
-        "holdShareCount":451.58,
-        "holdTotalGain":5.92
+        "holdMarketCap":1030.36,
+        "holdNetValue":2.1418,
+        "holdShareCount":469.05,
+        "holdTotalGain":25.75
+    },
+    {
+        "appSource":"螺丝钉母",
+        "category1":"A 股",
+        "category2":"大盘股",
+        "category3":"基本面120",
+        "category4":"116",
+        "fundCode":"070023",
+        "fundName":"嘉实深证基本面120联接",
+        "holdMarketCap":997.25,
+        "holdNetValue":1.7992,
+        "holdShareCount":528.99,
+        "holdTotalGain":45.49
     },
     {
         "appSource":"螺丝钉母",
@@ -1177,10 +1125,10 @@
         "category4":"141",
         "fundCode":"000968",
         "fundName":"广发中证养老",
-        "holdMarketCap":425.26,
+        "holdMarketCap":439.95,
         "holdNetValue":0.9588,
         "holdShareCount":426.97,
-        "holdTotalGain":15.88
+        "holdTotalGain":30.57
     },
     {
         "appSource":"螺丝钉母",
@@ -1190,36 +1138,10 @@
         "category4":"146",
         "fundCode":"001594",
         "fundName":"天弘中证银行指数A",
-        "holdMarketCap":254.57,
-        "holdNetValue":1.2512,
-        "holdShareCount":220.69,
-        "holdTotalGain":-21.56
-    },
-    {
-        "appSource":"螺丝钉母",
-        "category1":"A 股",
-        "category2":"红利价值",
-        "category3":"标普红利",
-        "category4":"132",
-        "fundCode":"501029",
-        "fundName":"华宝红利基金",
-        "holdMarketCap":212.05,
-        "holdNetValue":0.9824,
-        "holdShareCount":227.52,
-        "holdTotalGain":-11.47
-    },
-    {
-        "appSource":"螺丝钉母",
-        "category1":"A 股",
-        "category2":"大盘股",
-        "category3":"50AH",
-        "category4":"112",
-        "fundCode":"501050",
-        "fundName":"华夏上证50AH优选指数",
-        "holdMarketCap":182.88,
-        "holdNetValue":1.284,
-        "holdShareCount":142.1,
-        "holdTotalGain":0.43
+        "holdMarketCap":300.22,
+        "holdNetValue":1.2371,
+        "holdShareCount":258.65,
+        "holdTotalGain":-19.76
     },
     {
         "appSource":"螺丝钉母",
@@ -1229,10 +1151,36 @@
         "category4":"142",
         "fundCode":"001550",
         "fundName":"天弘中证医药100A",
-        "holdMarketCap":189.0,
+        "holdMarketCap":194.64,
         "holdNetValue":0.6708,
         "holdShareCount":212.74,
-        "holdTotalGain":46.29
+        "holdTotalGain":51.93
+    },
+    {
+        "appSource":"螺丝钉母",
+        "category1":"A 股",
+        "category2":"大盘股",
+        "category3":"50AH",
+        "category4":"112",
+        "fundCode":"501050",
+        "fundName":"华夏上证50AH优选指数",
+        "holdMarketCap":187.15,
+        "holdNetValue":1.284,
+        "holdShareCount":142.1,
+        "holdTotalGain":4.69
+    },
+    {
+        "appSource":"螺丝钉母",
+        "category1":"海外新兴",
+        "category2":"海外互联",
+        "category3":"海外互联网",
+        "category4":"221",
+        "fundCode":"006327",
+        "fundName":"易方达中概互联50ETF联接人民币A",
+        "holdMarketCap":36.55,
+        "holdNetValue":1.1843,
+        "holdShareCount":31.09,
+        "holdTotalGain":-0.27
     },
     {
         "appSource":"螺丝钉母",
@@ -1242,10 +1190,10 @@
         "category4":"114",
         "fundCode":"310398",
         "fundName":"申万菱信沪深300价值指数",
-        "holdMarketCap":33.4,
+        "holdMarketCap":33.74,
         "holdNetValue":1.4372,
         "holdShareCount":25.8,
-        "holdTotalGain":-3.68
+        "holdTotalGain":-3.34
     },
     {
         "appSource":"螺丝钉母",
@@ -1261,6 +1209,305 @@
         "holdTotalGain":0.0
     },
     {
+        "appSource":"螺丝钉母",
+        "category1":"A 股",
+        "category2":"红利价值",
+        "category3":"标普红利",
+        "category4":"132",
+        "fundCode":"501029",
+        "fundName":"华宝红利基金",
+        "holdMarketCap":0.0,
+        "holdNetValue":0.9824,
+        "holdShareCount":0.0,
+        "holdTotalGain":-0.0
+    },
+    {
+        "appSource":"钉钉宝90母",
+        "category1":"债券",
+        "category2":"国内债券",
+        "category3":"纯债",
+        "category4":"511",
+        "fundCode":"519153",
+        "fundName":"新华纯债C",
+        "holdMarketCap":1926.45,
+        "holdNetValue":1.1711,
+        "holdShareCount":1639.53,
+        "holdTotalGain":6.39
+    },
+    {
+        "appSource":"钉钉宝90母",
+        "category1":"债券",
+        "category2":"国内债券",
+        "category3":"纯债",
+        "category4":"511",
+        "fundCode":"002086",
+        "fundName":"大成景安短融债券E",
+        "holdMarketCap":1447.3,
+        "holdNetValue":1.2567,
+        "holdShareCount":1146.1,
+        "holdTotalGain":6.99
+    },
+    {
+        "appSource":"钉钉宝90母",
+        "category1":"债券",
+        "category2":"国内债券",
+        "category3":"纯债",
+        "category4":"511",
+        "fundCode":"006320",
+        "fundName":"易方达安瑞短债C",
+        "holdMarketCap":1445.14,
+        "holdNetValue":1.0047,
+        "holdShareCount":1432.82,
+        "holdTotalGain":5.59
+    },
+    {
+        "appSource":"螺丝钉父",
+        "category1":"A 股",
+        "category2":"大盘股",
+        "category3":"300价值",
+        "category4":"114",
+        "fundCode":"519671",
+        "fundName":"银河沪深300价值指数",
+        "holdMarketCap":1685.36,
+        "holdNetValue":1.4328,
+        "holdShareCount":1216.87,
+        "holdTotalGain":-58.17
+    },
+    {
+        "appSource":"螺丝钉父",
+        "category1":"A 股",
+        "category2":"红利价值",
+        "category3":"中证红利",
+        "category4":"131",
+        "fundCode":"090010",
+        "fundName":"大成中证红利指数A",
+        "holdMarketCap":1646.15,
+        "holdNetValue":1.6542,
+        "holdShareCount":1043.85,
+        "holdTotalGain":-80.59
+    },
+    {
+        "appSource":"螺丝钉父",
+        "category1":"A 股",
+        "category2":"中小盘股",
+        "category3":"500低波动",
+        "category4":"122",
+        "fundCode":"003318",
+        "fundName":"景顺长城中证500低波动",
+        "holdMarketCap":1520.23,
+        "holdNetValue":0.9378,
+        "holdShareCount":1593.03,
+        "holdTotalGain":26.28
+    },
+    {
+        "appSource":"螺丝钉父",
+        "category1":"海外新兴",
+        "category2":"香港",
+        "category3":"香港中小",
+        "category4":"213",
+        "fundCode":"501021",
+        "fundName":"华宝香港中小",
+        "holdMarketCap":1348.32,
+        "holdNetValue":1.3485,
+        "holdShareCount":898.04,
+        "holdTotalGain":137.31
+    },
+    {
+        "appSource":"螺丝钉父",
+        "category1":"A 股",
+        "category2":"大盘股",
+        "category3":"基本面60",
+        "category4":"115",
+        "fundCode":"530015",
+        "fundName":"建信深证基本面60ETF联接A",
+        "holdMarketCap":965.36,
+        "holdNetValue":2.128,
+        "holdShareCount":439.46,
+        "holdTotalGain":30.19
+    },
+    {
+        "appSource":"螺丝钉父",
+        "category1":"A 股",
+        "category2":"大盘股",
+        "category3":"基本面120",
+        "category4":"116",
+        "fundCode":"070023",
+        "fundName":"嘉实深证基本面120联接",
+        "holdMarketCap":928.61,
+        "holdNetValue":1.7966,
+        "holdShareCount":492.58,
+        "holdTotalGain":43.64
+    },
+    {
+        "appSource":"螺丝钉父",
+        "category1":"A 股",
+        "category2":"行业股",
+        "category3":"养老产业",
+        "category4":"141",
+        "fundCode":"000968",
+        "fundName":"广发中证养老",
+        "holdMarketCap":402.7,
+        "holdNetValue":0.9599,
+        "holdShareCount":390.82,
+        "holdTotalGain":27.55
+    },
+    {
+        "appSource":"螺丝钉父",
+        "category1":"A 股",
+        "category2":"行业股",
+        "category3":"中证银行",
+        "category4":"146",
+        "fundCode":"001594",
+        "fundName":"天弘中证银行指数A",
+        "holdMarketCap":242.84,
+        "holdNetValue":1.2359,
+        "holdShareCount":209.22,
+        "holdTotalGain":-15.73
+    },
+    {
+        "appSource":"螺丝钉父",
+        "category1":"A 股",
+        "category2":"行业股",
+        "category3":"全指医药",
+        "category4":"142",
+        "fundCode":"001550",
+        "fundName":"天弘中证医药100A",
+        "holdMarketCap":194.64,
+        "holdNetValue":0.6708,
+        "holdShareCount":212.74,
+        "holdTotalGain":51.93
+    },
+    {
+        "appSource":"螺丝钉父",
+        "category1":"A 股",
+        "category2":"大盘股",
+        "category3":"50AH",
+        "category4":"112",
+        "fundCode":"501050",
+        "fundName":"华夏上证50AH优选指数",
+        "holdMarketCap":81.77,
+        "holdNetValue":1.2891,
+        "holdShareCount":62.09,
+        "holdTotalGain":1.73
+    },
+    {
+        "appSource":"螺丝钉父",
+        "category1":"海外新兴",
+        "category2":"海外互联",
+        "category3":"海外互联网",
+        "category4":"221",
+        "fundCode":"006327",
+        "fundName":"易方达中概互联50ETF联接人民币A",
+        "holdMarketCap":36.55,
+        "holdNetValue":1.1843,
+        "holdShareCount":31.09,
+        "holdTotalGain":-0.27
+    },
+    {
+        "appSource":"螺丝钉父",
+        "category1":"A 股",
+        "category2":"大盘股",
+        "category3":"300价值",
+        "category4":"114",
+        "fundCode":"310398",
+        "fundName":"申万菱信沪深300价值指数",
+        "holdMarketCap":33.74,
+        "holdNetValue":1.4372,
+        "holdShareCount":25.8,
+        "holdTotalGain":-3.34
+    },
+    {
+        "appSource":"螺丝钉父",
+        "category1":"债券",
+        "category2":"国内债券",
+        "category3":"纯债",
+        "category4":"511",
+        "fundCode":"002086",
+        "fundName":"大成景安短融债券E",
+        "holdMarketCap":0.0,
+        "holdNetValue":1.2258,
+        "holdShareCount":0.0,
+        "holdTotalGain":0.0
+    },
+    {
+        "appSource":"螺丝钉父",
+        "category1":"A 股",
+        "category2":"红利价值",
+        "category3":"标普红利",
+        "category4":"132",
+        "fundCode":"501029",
+        "fundName":"华宝红利基金",
+        "holdMarketCap":0.0,
+        "holdNetValue":0.9829,
+        "holdShareCount":0.0,
+        "holdTotalGain":-0.0
+    },
+    {
+        "appSource":"钉钉宝365父",
+        "category1":"混合型",
+        "category2":"股债混合",
+        "category3":"偏债",
+        "category4":"412",
+        "fundCode":"002147",
+        "fundName":"长安鑫益增强混合C",
+        "holdMarketCap":3801.25,
+        "holdNetValue":1.2112,
+        "holdShareCount":3137.38,
+        "holdTotalGain":1.25
+    },
+    {
+        "appSource":"钉钉宝365父",
+        "category1":"混合型",
+        "category2":"股债混合",
+        "category3":"偏债",
+        "category4":"412",
+        "fundCode":"007749",
+        "fundName":"民生加银鹏程混合C",
+        "holdMarketCap":1911.85,
+        "holdNetValue":1.0582,
+        "holdShareCount":1795.5,
+        "holdTotalGain":11.85
+    },
+    {
+        "appSource":"钉钉宝365父",
+        "category1":"混合型",
+        "category2":"股债混合",
+        "category3":"偏债",
+        "category4":"412",
+        "fundCode":"006060",
+        "fundName":"鹏扬泓利债券C",
+        "holdMarketCap":1906.66,
+        "holdNetValue":1.0826,
+        "holdShareCount":1755.03,
+        "holdTotalGain":6.67
+    },
+    {
+        "appSource":"钉钉宝365父",
+        "category1":"混合型",
+        "category2":"股债混合",
+        "category3":"偏债",
+        "category4":"412",
+        "fundCode":"485011",
+        "fundName":"工银双利债券B",
+        "holdMarketCap":953.06,
+        "holdNetValue":1.55,
+        "holdShareCount":612.9,
+        "holdTotalGain":3.06
+    },
+    {
+        "appSource":"钉钉宝365父",
+        "category1":"混合型",
+        "category2":"股债混合",
+        "category3":"偏债",
+        "category4":"412",
+        "fundCode":"001338",
+        "fundName":"安信稳健增值混合C",
+        "holdMarketCap":951.0,
+        "holdNetValue":1.3414,
+        "holdShareCount":708.22,
+        "holdTotalGain":0.99
+    },
+    {
         "appSource":"稳稳的幸福父",
         "category1":"债券",
         "category2":"国内债券",
@@ -1268,10 +1515,10 @@
         "category4":"512",
         "fundCode":"006793",
         "fundName":"交银稳鑫短债债券A",
-        "holdMarketCap":80344.77,
+        "holdMarketCap":80352.59,
         "holdNetValue":1.0286,
         "holdShareCount":78202.03,
-        "holdTotalGain":-93.84
+        "holdTotalGain":-86.02
     },
     {
         "appSource":"稳稳的幸福父",
@@ -1294,10 +1541,10 @@
         "category4":"411",
         "fundCode":"519700",
         "fundName":"交银主题优选",
-        "holdMarketCap":18232.97,
+        "holdMarketCap":18604.12,
         "holdNetValue":1.4657,
         "holdShareCount":11598.58,
-        "holdTotalGain":1232.93
+        "holdTotalGain":1604.08
     },
     {
         "appSource":"稳稳的幸福父",
@@ -1320,10 +1567,10 @@
         "category4":"512",
         "fundCode":"519723",
         "fundName":"交银双轮动A/B",
-        "holdMarketCap":144404.63,
+        "holdMarketCap":144538.71,
         "holdNetValue":1.0674,
         "holdShareCount":134080.44,
-        "holdTotalGain":1287.17
+        "holdTotalGain":1421.25
     },
     {
         "appSource":"稳稳的幸福父",
@@ -1333,10 +1580,10 @@
         "category4":"411",
         "fundCode":"519738",
         "fundName":"交银周期回报灵活配置混合A",
-        "holdMarketCap":78647.2,
+        "holdMarketCap":78851.47,
         "holdNetValue":1.1791,
         "holdShareCount":68092.81,
-        "holdTotalGain":-1641.04
+        "holdTotalGain":-1436.76
     },
     {
         "appSource":"稳稳的幸福父",
@@ -1346,10 +1593,10 @@
         "category4":"412",
         "fundCode":"519752",
         "fundName":"交银新回报灵活配置混合A",
-        "holdMarketCap":75083.76,
+        "holdMarketCap":75262.81,
         "holdNetValue":1.2439,
         "holdShareCount":59685.02,
-        "holdTotalGain":841.56
+        "holdTotalGain":1020.61
     },
     {
         "appSource":"稳稳的幸福父",
@@ -1359,10 +1606,10 @@
         "category4":"412",
         "fundCode":"519755",
         "fundName":"交银多策略回报灵活配置混合A",
-        "holdMarketCap":100669.13,
+        "holdMarketCap":100900.03,
         "holdNetValue":1.2894,
         "holdShareCount":76964.17,
-        "holdTotalGain":1431.53
+        "holdTotalGain":1662.43
     },
     {
         "appSource":"天天基金母",
@@ -1372,10 +1619,10 @@
         "category4":"121",
         "fundCode":"162711",
         "fundName":"广发中证500ETF联接A",
-        "holdMarketCap":10849.64,
+        "holdMarketCap":11166.75,
         "holdNetValue":1.0519,
         "holdShareCount":9697.57,
-        "holdTotalGain":648.77
+        "holdTotalGain":965.88
     },
     {
         "appSource":"天天基金母",
@@ -1385,10 +1632,10 @@
         "category4":"131",
         "fundCode":"100032",
         "fundName":"富国中证红利指数增强",
-        "holdMarketCap":9259.0,
+        "holdMarketCap":9371.81,
         "holdNetValue":1.0142,
         "holdShareCount":8677.6,
-        "holdTotalGain":458.18
+        "holdTotalGain":570.99
     },
     {
         "appSource":"天天基金母",
@@ -1398,10 +1645,10 @@
         "category4":"141",
         "fundCode":"000968",
         "fundName":"广发养老指数A",
-        "holdMarketCap":6071.83,
+        "holdMarketCap":6281.53,
         "holdNetValue":0.853,
         "holdShareCount":6096.21,
-        "holdTotalGain":871.76
+        "holdTotalGain":1081.47
     },
     {
         "appSource":"天天基金母",
@@ -1411,10 +1658,10 @@
         "category4":"142",
         "fundCode":"001180",
         "fundName":"广发医药卫生联接A",
-        "holdMarketCap":6295.99,
+        "holdMarketCap":6493.09,
         "holdNetValue":0.7111,
         "holdShareCount":6750.28,
-        "holdTotalGain":1495.86
+        "holdTotalGain":1692.97
     },
     {
         "appSource":"天天基金母",
@@ -1424,10 +1671,10 @@
         "category4":"113",
         "fundCode":"100038",
         "fundName":"富国沪深300指数增强",
-        "holdMarketCap":4405.15,
+        "holdMarketCap":4476.91,
         "holdNetValue":1.3043,
         "holdShareCount":2760.12,
-        "holdTotalGain":805.13
+        "holdTotalGain":876.89
     },
     {
         "appSource":"天天基金母",
@@ -1437,10 +1684,10 @@
         "category4":"144",
         "fundCode":"004752",
         "fundName":"广发中证传媒ETF联接A",
-        "holdMarketCap":3748.01,
+        "holdMarketCap":3945.3,
         "holdNetValue":0.7235,
         "holdShareCount":4423.48,
-        "holdTotalGain":547.63
+        "holdTotalGain":744.91
     },
     {
         "appSource":"天天基金母",
@@ -1450,10 +1697,10 @@
         "category4":"143",
         "fundCode":"001064",
         "fundName":"广发中证环保ETF联接A",
-        "holdMarketCap":3490.73,
+        "holdMarketCap":3568.08,
         "holdNetValue":0.5379,
         "holdShareCount":5949.77,
-        "holdTotalGain":290.35
+        "holdTotalGain":367.7
     },
     {
         "appSource":"天天基金母",
@@ -1463,10 +1710,10 @@
         "category4":"121",
         "fundCode":"161017",
         "fundName":"富国中证500指数(LOF)",
-        "holdMarketCap":3443.0,
+        "holdMarketCap":3539.21,
         "holdNetValue":1.325,
         "holdShareCount":2046.97,
-        "holdTotalGain":730.77
+        "holdTotalGain":826.98
     },
     {
         "appSource":"天天基金母",
@@ -1476,10 +1723,10 @@
         "category4":"512",
         "fundCode":"110027",
         "fundName":"易方达安心回报债券A",
-        "holdMarketCap":3493.98,
+        "holdMarketCap":3517.77,
         "holdNetValue":1.6102,
         "holdShareCount":1981.84,
-        "holdTotalGain":302.83
+        "holdTotalGain":326.61
     },
     {
         "appSource":"天天基金母",
@@ -1489,10 +1736,10 @@
         "category4":"124",
         "fundCode":"110026",
         "fundName":"易方达创业板ETF联接A",
-        "holdMarketCap":2409.56,
+        "holdMarketCap":2494.23,
         "holdNetValue":1.319,
         "holdShareCount":1213.09,
-        "holdTotalGain":809.49
+        "holdTotalGain":894.17
     },
     {
         "appSource":"天天基金母",
@@ -1502,10 +1749,10 @@
         "category4":"321",
         "fundCode":"000614",
         "fundName":"华安德国30(DAX)联接",
-        "holdMarketCap":2263.57,
+        "holdMarketCap":2293.73,
         "holdNetValue":1.0612,
         "holdShareCount":1884.74,
-        "holdTotalGain":263.49
+        "holdTotalGain":293.64
     },
     {
         "appSource":"天天基金母",
@@ -1515,10 +1762,10 @@
         "category4":"221",
         "fundCode":"164906",
         "fundName":"交银中证海外中国互联网指数",
-        "holdMarketCap":2013.83,
+        "holdMarketCap":1992.72,
         "holdNetValue":1.137,
         "holdShareCount":1407.29,
-        "holdTotalGain":413.74
+        "holdTotalGain":392.63
     },
     {
         "appSource":"天天基金母",
@@ -1528,10 +1775,10 @@
         "category4":"512",
         "fundCode":"340001",
         "fundName":"兴全可转债混合",
-        "holdMarketCap":1959.85,
+        "holdMarketCap":1984.79,
         "holdNetValue":0.9816,
         "holdShareCount":1630.08,
-        "holdTotalGain":359.76
+        "holdTotalGain":384.7
     },
     {
         "appSource":"天天基金母",
@@ -1541,10 +1788,10 @@
         "category4":"111",
         "fundCode":"001051",
         "fundName":"华夏上证50ETF联接A",
-        "holdMarketCap":1290.28,
+        "holdMarketCap":1309.01,
         "holdNetValue":0.8966,
         "holdShareCount":1338.46,
-        "holdTotalGain":90.21
+        "holdTotalGain":108.95
     },
     {
         "appSource":"天天基金母",
@@ -1554,10 +1801,10 @@
         "category4":"123",
         "fundCode":"162413",
         "fundName":"华宝中证1000指数分级",
-        "holdMarketCap":1228.01,
+        "holdMarketCap":1263.89,
         "holdNetValue":0.776,
         "holdShareCount":1546.42,
-        "holdTotalGain":27.99
+        "holdTotalGain":63.87
     },
     {
         "appSource":"天天基金母",
@@ -1567,10 +1814,10 @@
         "category4":"613",
         "fundCode":"162411",
         "fundName":"华宝标普油气上游股票人民币A",
-        "holdMarketCap":1212.95,
+        "holdMarketCap":1246.46,
         "holdNetValue":0.4776,
         "holdShareCount":3350.7,
-        "holdTotalGain":-387.34
+        "holdTotalGain":-353.83
     },
     {
         "appSource":"天天基金母",
@@ -1580,10 +1827,10 @@
         "category4":"147",
         "fundCode":"001469",
         "fundName":"广发中证全指金融地产联接A",
-        "holdMarketCap":928.44,
+        "holdMarketCap":939.25,
         "holdNetValue":0.8886,
         "holdShareCount":900.35,
-        "holdTotalGain":128.39
+        "holdTotalGain":139.19
     },
     {
         "appSource":"天天基金母",
@@ -1593,10 +1840,10 @@
         "category4":"611",
         "fundCode":"000216",
         "fundName":"华安黄金易ETF联接A",
-        "holdMarketCap":943.43,
+        "holdMarketCap":937.27,
         "holdNetValue":1.0903,
         "holdShareCount":733.79,
-        "holdTotalGain":143.38
+        "holdTotalGain":137.22
     },
     {
         "appSource":"天天基金母",
@@ -1606,10 +1853,10 @@
         "category4":"145",
         "fundCode":"502010",
         "fundName":"易方达证券公司分级",
-        "holdMarketCap":485.51,
+        "holdMarketCap":497.72,
         "holdNetValue":0.8063,
         "holdShareCount":496.13,
-        "holdTotalGain":85.48
+        "holdTotalGain":97.69
     },
     {
         "appSource":"天天基金母",
@@ -1619,10 +1866,10 @@
         "category4":"512",
         "fundCode":"519977",
         "fundName":"长信可转债债券A",
-        "holdMarketCap":473.72,
+        "holdMarketCap":480.28,
         "holdNetValue":1.2011,
         "holdShareCount":333.04,
-        "holdTotalGain":73.7
+        "holdTotalGain":80.26
     },
     {
         "appSource":"天天基金母",
@@ -1632,10 +1879,10 @@
         "category4":"113",
         "fundCode":"000051",
         "fundName":"华夏沪深300ETF联接A",
-        "holdMarketCap":418.08,
+        "holdMarketCap":425.57,
         "holdNetValue":1.2285,
         "holdShareCount":325.61,
-        "holdTotalGain":18.07
+        "holdTotalGain":25.56
     },
     {
         "appSource":"天天基金母",
@@ -1645,10 +1892,10 @@
         "category4":"121",
         "fundCode":"000478",
         "fundName":"建信中证500指数增强A",
-        "holdMarketCap":405.24,
+        "holdMarketCap":416.01,
         "holdNetValue":1.9396,
         "holdShareCount":206.23,
-        "holdTotalGain":5.24
+        "holdTotalGain":16.0
     },
     {
         "appSource":"天天基金母",
@@ -1658,9 +1905,9 @@
         "category4":"211",
         "fundCode":"000071",
         "fundName":"华夏恒生ETF联接A",
-        "holdMarketCap":413.18,
+        "holdMarketCap":424.23,
         "holdNetValue":1.452,
         "holdShareCount":275.49,
-        "holdTotalGain":13.17
+        "holdTotalGain":24.22
     }
 ]

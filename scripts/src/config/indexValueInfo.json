@@ -19,7 +19,7 @@
         "category3":"50AH",
         "categoryID":"112",
         "result":{
-            "close":5419.63,
+            "close":5427.53,
             "pb":0.97,
             "pe":8.42,
             "roe":0.1148
@@ -48,9 +48,9 @@
         "categoryID":"114",
         "result":{
             "close":4661.26,
-            "pb":0.92,
-            "pe":8.69,
-            "roe":0.106
+            "pb":0.93,
+            "pe":8.8,
+            "roe":0.1055
         },
         "valueSymbol":"SH000919",
         "valueType":"xueqiu"
@@ -62,9 +62,9 @@
         "categoryID":"115",
         "result":{
             "close":7926.08,
-            "pb":2.15,
-            "pe":16.88,
-            "roe":0.1271
+            "pb":2.19,
+            "pe":17.22,
+            "roe":0.127
         },
         "valueSymbol":"SZ399701",
         "valueType":"xueqiu"
@@ -76,9 +76,9 @@
         "categoryID":"116",
         "result":{
             "close":7046.36,
-            "pb":2.13,
-            "pe":18.3,
-            "roe":0.1167
+            "pb":2.18,
+            "pe":18.68,
+            "roe":0.1166
         },
         "valueSymbol":"SZ399702",
         "valueType":"xueqiu"
@@ -118,9 +118,9 @@
         "categoryID":"122",
         "result":{
             "close":12411.13,
-            "pb":1.41,
-            "pe":22.55,
-            "roe":0.0624
+            "pb":1.45,
+            "pe":23.22,
+            "roe":0.0623
         },
         "valueSymbol":"CSI930782",
         "valueType":"xueqiu"
@@ -174,9 +174,9 @@
         "categoryID":"132",
         "result":{
             "close":7976.35,
-            "pb":1.45,
-            "pe":12.44,
-            "roe":0.1166
+            "pb":1.47,
+            "pe":12.65,
+            "roe":0.1162
         },
         "valueSymbol":".CSPSADRP",
         "valueType":"xueqiu"
@@ -314,8 +314,8 @@
         "categoryID":"212",
         "result":{
             "close":10764.34,
-            "pb":1,
-            "pe":8.4,
+            "pb":1.03,
+            "pe":8.64,
             "roe":0.1189
         },
         "valueSymbol":"HKHSCEI",
@@ -328,9 +328,9 @@
         "categoryID":"213",
         "result":{
             "close":3214.36,
-            "pb":1.5,
-            "pe":12.71,
-            "roe":0.118
+            "pb":1.53,
+            "pe":12.98,
+            "roe":0.1179
         },
         "valueSymbol":".SPHCMSHP",
         "valueType":"xueqiu"
@@ -355,7 +355,7 @@
         "category3":"德国30",
         "categoryID":"321",
         "result":{
-            "close":13545.5,
+            "close":13571.29,
             "pb":0.0,
             "pe":0.0,
             "roe":0.0
@@ -383,7 +383,7 @@
         "category3":"黄金",
         "categoryID":"611",
         "result":{
-            "close":1569.4,
+            "close":1570.0,
             "pb":0.0,
             "pe":0.0,
             "roe":0.0
@@ -397,7 +397,7 @@
         "category3":"原油",
         "categoryID":"613",
         "result":{
-            "close":3038.24,
+            "close":2977.35,
             "pb":0.0,
             "pe":0.0,
             "roe":0.0

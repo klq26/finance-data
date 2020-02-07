@@ -162,8 +162,41 @@ class accountManager:
         accounts.append(account.__dict__)
 
         account = accountModel()
-        account.accountName = u'螺丝钉母'
+        account.accountName = u'钉钉宝90'
         account.sortId = 402
+        account.owner = u'klq'
+        account.appSource = u'danjuan'
+        account.marketcap = 0.00
+        account.gain = 0.00
+        account.gainRate = 0.00
+        account.recommendColor = '#' + self.colorManager.getFundColorByAppSourceName(account.accountName)
+        accounts.append(account.__dict__)
+
+        account = accountModel()
+        account.accountName = u'钉钉宝365'
+        account.sortId = 403
+        account.owner = u'klq'
+        account.appSource = u'danjuan'
+        account.marketcap = 0.00
+        account.gain = 0.00
+        account.gainRate = 0.00
+        account.recommendColor = '#' + self.colorManager.getFundColorByAppSourceName(account.accountName)
+        accounts.append(account.__dict__)
+
+        account = accountModel()
+        account.accountName = u'螺丝钉母'
+        account.sortId = 404
+        account.owner = u'parent'
+        account.appSource = u'danjuan'
+        account.marketcap = 0.00
+        account.gain = 0.00
+        account.gainRate = 0.00
+        account.recommendColor = '#' + self.colorManager.getFundColorByAppSourceName(account.accountName)
+        accounts.append(account.__dict__)
+
+        account = accountModel()
+        account.accountName = u'钉钉宝90母'
+        account.sortId = 405
         account.owner = u'parent'
         account.appSource = u'danjuan'
         account.marketcap = 0.00
@@ -174,7 +207,18 @@ class accountManager:
 
         account = accountModel()
         account.accountName = u'螺丝钉父'
-        account.sortId = 403
+        account.sortId = 406
+        account.owner = u'parent'
+        account.appSource = u'danjuan'
+        account.marketcap = 0.00
+        account.gain = 0.00
+        account.gainRate = 0.00
+        account.recommendColor = '#' + self.colorManager.getFundColorByAppSourceName(account.accountName)
+        accounts.append(account.__dict__)
+
+        account = accountModel()
+        account.accountName = u'钉钉宝365父'
+        account.sortId = 407
         account.owner = u'parent'
         account.appSource = u'danjuan'
         account.marketcap = 0.00
@@ -234,7 +278,7 @@ class accountManager:
 
 if __name__ == "__main__":
     manager = accountManager()
-    # manager.generateJsonFile()
+    manager.generateJsonFile()
     # print(manager.getAccountByName('康力泉整体'))
     manager.allAccounts.sort(key=lambda x : x['sortId'])
     for i in manager.allAccounts:

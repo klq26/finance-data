@@ -180,7 +180,9 @@ class assetAllocationEstimateHtmlParser:
             fundDict['estimateRate'] = '{:.2f}%'.format(
                 fundModel.estimateRate * 100)
             fundDict['changeValue'] = '{:.2f}'.format(fundDict['changeValue'])
-            data.append(fundDict)
+            # 如果估值大于 0 才是有效估值，否则就不计入系统了吧
+            if float(fundDict['estimateNetValue']) > 0:
+                data.append(fundDict)
         # 将估值数据写入缓存，30 分钟之内都有效
         manager.saveCache(fundModelArray)
         # 按收益降序排序

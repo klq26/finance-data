@@ -7,7 +7,7 @@ Sec-Fetch-User	?1
 Accept	text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
 Sec-Fetch-Site	same-origin
 Sec-Fetch-Mode	navigate
-Referer	https://www.sui.com/tally/new.do
+Referer	https://www.sui.com/report_index.do
 Accept-Encoding	gzip, deflate, br
 Accept-Language	zh-CN,zh;q=0.9
-Cookie	__vistor=C2FC974E1dkc2f30k; __nick=klq26%40163.com; SESSION_COOKIE=a8e14a3d3446b0d7b8155ae885f316e7; __utmc=121176714; __utmz=121176714.1572313309.44.20.utmcsr=login.sui.com|utmccn=(referral)|utmcmd=referral|utmcct=/auth.do; __jsluid_s=5bfc79c54390dcec87595cffb3de5ed3; Hm_lvt_3db4e52bb5797afe0faaa2fde5c96ea4=1579834180; _bookTabSwitchList=05d9c1d88a4bc09f1e6a4ccc3fa3f033|1|0&; __spm_bid=a5b88c836e8cs25bp39d630015m2c080; SESSION=a6a62bd6-4d56-4333-a54b-1043fcdeeebd; __utma=121176714.1274987167.1566994582.1580213472.1580526154.94; __utmt=1; Hm_lpvt_3db4e52bb5797afe0faaa2fde5c96ea4=1580526300; __utmb=121176714.14.9.1580526326913
+Cookie	__vistor=C2FC974E1dkc2f30k; __nick=klq26%40163.com; SESSION_COOKIE=a8e14a3d3446b0d7b8155ae885f316e7; __utmc=121176714; __utmz=121176714.1572313309.44.20.utmcsr=login.sui.com|utmccn=(referral)|utmcmd=referral|utmcct=/auth.do; __jsluid_s=5bfc79c54390dcec87595cffb3de5ed3; Hm_lvt_3db4e52bb5797afe0faaa2fde5c96ea4=1579834180; __spm_bid=59f9a9bbe929sca7p0c87d553em8fedd; _bookTabSwitchList=05d9c1d88a4bc09f1e6a4ccc3fa3f033|1|0&; SESSION=6ab10dac-b323-4c12-b66f-52677c3904c5; __utma=121176714.1274987167.1566994582.1580986118.1581031095.101; __utmt=1; Hm_lpvt_3db4e52bb5797afe0faaa2fde5c96ea4=1581031108; __utmb=121176714.2.10.1581031095
