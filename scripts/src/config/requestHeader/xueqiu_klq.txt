@@ -1,12 +1,11 @@
 	GET /v5/stock/batch/quote.json?symbol=SH000001,SZ399001,SZ399006,HKHSI,HKHSCEI,HKHSCCI,.DJI,.IXIC,.INX HTTP/1.1
-Host	stock.xueqiu.com
-Connection	keep-alive
-Accept	application/json, text/plain, */*
 Origin	https://xueqiu.com
-User-Agent	Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36
-Sec-Fetch-Site	same-site
-Sec-Fetch-Mode	cors
 Referer	https://xueqiu.com/
+User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.18363
+Cache-Control	max-age=0
+Accept	application/json, text/plain, */*
+Accept-Language	zh-Hans-CN,zh-Hans;q=0.7,ja;q=0.3
 Accept-Encoding	gzip, deflate, br
-Accept-Language	zh-CN,zh;q=0.9
-Cookie	cookiesu=781578972643442; Hm_lvt_1db88642e346389874251b5a1eded6e3=1578972646; device_id=24700f9f1986800ab4fcc880530dd0ed; remember=1; xq_a_token=1447f52cd57a34f3a933bee2992f9407e63ddfb5; xqat=1447f52cd57a34f3a933bee2992f9407e63ddfb5; xq_r_token=5376f57bfd5e731301745172ca6aff7d8846d541; xq_is_login=1; u=2812376209; snbim_minify=true; Hm_lpvt_1db88642e346389874251b5a1eded6e3=1578988793
+Host	stock.xueqiu.com
+Connection	Keep-Alive
+Cookie	xq_a_token=95589e6c5f5d66a22065c20519064fa43fd7c6f3; xqat=95589e6c5f5d66a22065c20519064fa43fd7c6f3; xq_r_token=43b5a2218147b0a737d3f77a4f5e4485d4310e7d; xq_id_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1aWQiOjI4MTIzNzYyMDksImlzcyI6InVjIiwiZXhwIjoxNTg0MTY4ODgyLCJjdG0iOjE1ODE2Mzg4NjE1NTAsImNpZCI6ImQ5ZDBuNEFadXAifQ.oa1TXObjoYghei5UtpQ7ETSPB8oPBgLygJNAbniWTrPxge-acG5YUBYFX3gxFjejiRCC20KoB-9H8JGgrPxN4K9f3DFSTqf4gzfQg3irc-Dhob7F73C-QavpKDUG2C2qZnjNu5FGKtsoE_tJR-YhScCGD1saSC_VUsydizjqsxCZ3ZsInjKaaBbCTWKubPvVKsRgsi8DroZ3zT-bgax3l_tihhd6eL6gcKEG-pLWBBu7iOO44MzYXeq4zvHdhT-iEUajwXL84CRaYHGI6MRJGLbwyBBgzaP0OoBeGcOHk3DcfmLj5G76JcNJMMVM4rXA6tMYIYWJG4fVPHBaWUdjNQ; u=2812376209; Hm_lpvt_1db88642e346389874251b5a1eded6e3=1581638837; device_id=24700f9f1986800ab4fcc880530dd0ed; cookiesu=231581638836882; Hm_lvt_1db88642e346389874251b5a1eded6e3=1581638837; remember=1; xq_is_login=1
