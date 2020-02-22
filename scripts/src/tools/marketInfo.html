@@ -4,17 +4,73 @@
     <meta http-equiv="Content-Language" content="zh-cn">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <style>
-        h1 {
+        /* 指数 */
+        .index {
             color: #FFFFFF;
-            margin: 8px;
+            font-size: 36px;
+            margin: 4px;
         }
 
+        .indexTitle {
+            color: #FFFFFF;
+            display: inline-block;
+            text-align: center;
+            background-color: gray;
+            width: 240px;
+            font-size: 36;
+            margin: 4px;
+        }
+
+        .indexValue {
+            color: #FFFFFF;
+            display: inline-block;
+            text-align: right;
+            background-color: gray;
+            padding-right: 4px;
+            width: 200px;
+            font-size: 36;
+            margin: 4px;
+        }
+
+        .indexUpDown {
+            color: #FFFFFF;
+            display: inline-block;
+            text-align: center;
+            background-color: gray;
+            width: 200px;
+            font-size: 36;
+            margin: 4px;
+        }
+
+        /* 时间戳 */
+        #timestamp {
+            color: #FFFFFF;
+            font-size: 36px;
+            margin: 4px;
+        }
+
+        /* 涨跌平区 */
+        .zdpBarArea {
+            color: #FFFFFF;
+            font-size: 36px;
+            margin-top: 4px;
+            margin-left: 4px;
+        }
+
+        /* 涨跌平条 */
+        .zdpBar {
+            display: inline-block;
+            margin-left: -8px;
+        }
+
+        /* 涨跌平条 - 涨 */
         .barUp {
             display: inline-block;
-            background-color: red;
+            background-color: #DD2200;
             text-align: center;
         }
 
+        /* 涨跌平条 - 平 */
         .barEqual {
             display: inline-block;
             background-color: gray;
@@ -22,9 +78,10 @@
             margin-left: 25px;
         }
 
+        /* 涨跌平条 - 跌 */
         .barDown {
             display: inline-block;
-            background-color: green;
+            background-color: #009933;
             text-align: center;
             margin-left: 25px;
         }
@@ -33,12 +90,13 @@
     <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
     <!-- 自定义脚本 -->
     <script type="text/javascript">
+
         // 全局变量：中国股市是否开盘（注释：第一次给 true 是为了能拿到昨天最后收盘的数据，如果现在休市，showTime 函数会关闭这个变量）
         var isChinaMarketChanging = true;
         var isMoneyFlowChanging = true;
         var isWeekend = false;
-        var moneyFlowTotalHeight = 0;
-
+        // 涨跌平柱状条宽度
+        var zdpBarWidth = 606-50;
 
         // 请求中国开盘数据（含香港）
         function requestChinaData() {
@@ -46,7 +104,13 @@
             if (isWeekend || !isChinaMarketChanging) {
                 return;
             }
-            $.ajax({ url: "https://api.money.126.net/data/feed/0000001,1399001,1399006,0000015,0000016,1399300,1399905,0000852,1399005,0000991,0000992,0000993,1399975,1399986,1399812,1399971,1000827,0000827,hkHSI?callback=updateIndexInfos", type: "GET", contentType: "application/x-javascript", dataType: "script", async: false });
+            $.ajax({
+                url: "http://10.push2.eastmoney.com/api/qt/clist/get?cb=updateIndexInfos&pn=1&pz=30&fs=i:1.000832,i:1.000001,i:0.399001,i:0.399006,i:1.000015,i:1.000922,i:1.000016,i:1.000300,i:0.399905,i:1.000852,i:0.399005,i:1.000991,i:1.000992,i:0.399975,i:0.399986,i:0.399812,i:0.399971,i:1.000827,i:100.HSI,i:100.HSCEI,i:124.HSCCI&fields=f14,f12,f2,f4,f3,f18,f6",
+                type: "GET",
+                contentType: "application/x-javascript",
+                dataType: "script",
+                async: true
+            });
         }
 
         // 请求指数的涨跌平盘分布情况
@@ -172,7 +236,12 @@
             if (isWeekend || isChinaMarketChanging) {
                 return;
             }
-            $.ajax({ url: "https://api.money.126.net/data/feed/hkHSI,hkHSCEI,hkHSCCI,US_DOWJONES,US_NASDAQ,US_SP500,US_XOP,FG_yingguo,FG_deguo,FG_faguo?callback=updateIndexInfos", type: "GET", contentType: "application/x-javascript", dataType: "script", async: false });
+            $.ajax({ 
+                url: "http://87.push2.eastmoney.com/api/qt/ulist.np/get?cb=updateIndexInfos&np=1&pi=0&pz=40&po=1&secids=100.FTSE%2C100.FCHI%2C100.GDAXI%2C100.TWII%2C100.N225%2C100.KS11%2C100.RTS%2C100.DJIA%2C100.NDX%2C100.SPX&fields=f14,f12,f2,f4,f3,f18,f6", 
+                type: "GET", 
+                contentType: "application/x-javascript", 
+                dataType: "script", 
+                async: true });
         }
 
         // 请求商品，外汇数据（始终请求）
@@ -229,37 +298,21 @@
 
         // 更新各国指数数据
         function updateIndexInfos(data) {
-            // 遍历所有的 key
-            for (var key in data) {
-                // console.log(key, data[key])
-                // id
-                elementId = "#" + key;
-                // 代码
-                code = data[key]["symbol"];
-                // 名称
-                name = data[key]["name"];
-                // 简化名称
-                if (name == '恒生中国企业指数') {
-                    name = "国企指数";
-                }
-                if (name == '道琼斯指数') {
-                    name = "道琼斯";
-                }
-                // 当前价
-                current = parseFloat(data[key]["price"]);
-                // 前收盘
-                if (key.indexOf('FG_') >= 0 || key.indexOf('FU_') >= 0) {
-                    lastClose = current - parseFloat(data[key]["updown"]);
-                } else {
-                    lastClose = data[key]["yestclose"];
-                }
-                // 汇率价保留小数点后 4 位
-                if (key.indexOf('FX_USDCNY') >= 0) {
-                    current = current.toFixed(4);
-                } else {
-                    current = current.toFixed(2);
-                }
 
+            var diff = data['data']['diff'];
+            for (var key in diff) {
+                // 指数数据
+                var item = diff[key];
+                // id
+                elementId = "#" + item['f12'];
+                // 代码
+                code = item['f12'];
+                // 名称
+                name = item['f14'];
+                // 当前价
+                current = (parseFloat(item['f2']) / 100).toFixed(2);
+                // 前收盘
+                lastClose = current - parseFloat(item['f4']) / 100;
                 // 上次更新的值
                 lastValue = $(elementId).val();
                 // 如果没有上次值，则说明是第一次进入页面，不计算涨跌
@@ -281,39 +334,69 @@
                     raisedTagColor = "#FFFFFF";
                 }
                 // 日间升降指标（和昨天收盘比较，决定整条数据的整体颜色）
+                changedColor = "";
                 if (current > lastClose) {
                     // console.log('上涨');
-                    $(elementId).css("color", "#DD2200");
+                    changedColor = "#DD2200";
+                    
                 } else if (current < lastClose) {
                     // console.log('下跌');
-                    $(elementId).css("color", "#009933");
+                    changedColor = "#009933";
                 } else {
-                    $(elementId).css("color", "#FFFFFF");
+                    changedColor = "#FFFFFF";
                 }
-
-
-                $(elementId).html(name + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + current + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + ((current / lastClose - 1) * 100).toFixed(2) + '%' + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + '\<span style=\"color: ' + raisedTagColor + '\">' + raisedTag + '\</span\>');
-
-
+                // 取出 index 元素
+                var indexElement = document.getElementById(item['f12']);
+                indexElement.innerHTML = "";
+                // 标题
+                var title = document.createElement('div');
+                title.className = "indexTitle";
+                title.innerText = name;
+                indexElement.appendChild(title);
+                // 点数
+                var indexValue = document.createElement('div');
+                indexValue.className = "indexValue";
+                indexValue.innerText = current;
+                indexValue.style.setProperty('background-color',changedColor);
+                indexElement.appendChild(indexValue);
+                // 点数
+                var changeRate = document.createElement('div');
+                changeRate.className = "indexValue";
+                changeRate.innerText = ((current / lastClose - 1) * 100).toFixed(2) + '%';
+                changeRate.style.setProperty('background-color',changedColor);
+                indexElement.appendChild(changeRate);
+                // 变化方向
+                var upDown = document.createElement('div');
+                upDown.className = "indexUpDown";
+                upDown.innerText = raisedTag;
+                upDown.style.setProperty('color',raisedTagColor);
+                indexElement.appendChild(upDown);
                 // 保存本次数值
                 $(elementId).val(current);
+                // 更新动画
+                $(upDown).fadeOut({duration : 300});
+                $(upDown).fadeIn({duration : 300});
+                $(upDown).fadeOut({duration : 300});
+                $(upDown).fadeIn({duration : 300});
+                
             }
+
+
         }
 
         // 更新涨跌 bar
         function updateZDPBar(idKey, up, equal, down) {
             screenWidth = document.body.clientWidth;
-            barWidth = screenWidth * 0.6;
             var bar = document.getElementById(idKey);
             all = up + equal + down;
             var upStocks = bar.getElementsByClassName("barUp")[0];
-            $(upStocks).css('width', up / all * barWidth);
+            $(upStocks).css('width', up / all * zdpBarWidth);
             upStocks.innerHTML = up;
             var equalStocks = bar.getElementsByClassName("barEqual")[0];
-            $(equalStocks).css('width', equal / all * barWidth);
+            $(equalStocks).css('width', equal / all * zdpBarWidth);
             equalStocks.innerHTML = equal;
             var downStocks = bar.getElementsByClassName("barDown")[0];
-            $(downStocks).css('width', down / all * barWidth);
+            $(downStocks).css('width', down / all * zdpBarWidth);
             downStocks.innerHTML = down;
         }
 
@@ -407,18 +490,50 @@
                 raisedTagColor = "#FFFFFF";
             }
             // 日间升降指标（和昨天收盘比较，决定整条数据的整体颜色）
+            changedColor = "";
             if (current > lastClose) {
                 // console.log('上涨');
-                $(elementId).css("color", "#DD2200");
+                changedColor = "#DD2200";
             } else if (current < lastClose) {
                 // console.log('下跌');
-                $(elementId).css("color", "#009933");
+                changedColor = "#009933";
             } else {
-                $(elementId).css("color", "#FFFFFF");
+                changedColor = "#FFFFFF";
             }
 
-
-            $(elementId).html(name + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + current + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + ((current / lastClose - 1) * 100).toFixed(2) + '%' + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + '\<span style=\"color: ' + raisedTagColor + '\">' + raisedTag + '\</span\>');
+            // 取出 index 元素
+            var indexElement = document.getElementById(key);
+                indexElement.innerHTML = "";
+                // 标题
+                var title = document.createElement('div');
+                title.className = "indexTitle";
+                title.innerText = name;
+                indexElement.appendChild(title);
+                // 点数
+                var indexValue = document.createElement('div');
+                indexValue.className = "indexValue";
+                indexValue.innerText = current;
+                indexValue.style.setProperty('background-color',changedColor);
+                indexElement.appendChild(indexValue);
+                // 点数
+                var changeRate = document.createElement('div');
+                changeRate.className = "indexValue";
+                changeRate.innerText = ((current / lastClose - 1) * 100).toFixed(2) + '%';
+                changeRate.style.setProperty('background-color',changedColor);
+                indexElement.appendChild(changeRate);
+                // 变化方向
+                var upDown = document.createElement('div');
+                upDown.className = "indexUpDown";
+                upDown.innerText = raisedTag;
+                upDown.style.setProperty('color',raisedTagColor);
+                indexElement.appendChild(upDown);
+                // 保存本次数值
+                $(elementId).val(current);
+                // 更新动画
+                $(upDown).fadeOut({duration : 300});
+                $(upDown).fadeIn({duration : 300});
+                $(upDown).fadeOut({duration : 300});
+                $(upDown).fadeIn({duration : 300});
 
 
             // 保存本次数值
@@ -478,7 +593,7 @@
             var todayStr = year + '/' + month + '/' + day;
             if (dayTag == '日' || dayTag == '六') {
                 status = "休市";
-                isWeekend = true;
+                isWeiswekend = true;
                 isChinaMarketChanging = false;
                 isMoneyFlowChanging = false;
                 statusColor = "#FFFF00";
@@ -509,6 +624,7 @@
             $("#timestamp").html(year + "-" + month + "-" + day + " " + hh + ":" + mi + ":" + ss + " " + wk + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + 'A股' + '\<span style=\"color: ' + statusColor + '\">' + status + '\</span\>');
         }
 
+        // 隐藏资金流向区域
         function hideArea(element) {
             $(element).hide();
         }
@@ -539,104 +655,123 @@
 </head>
 
 <body>
-    <h4 id="timestamp" style="font-size: 36; color: #FAFAFA;">时间</h4>
+    <!-- 时间区 -->
+    <p id="timestamp" style="font-size: 36; color: #FAFAFA;">时间</p>
     <hr />
-    <hr />
+    <!-- 资金流向区 -->
     <div id="moneyFlow" style="color: #fff;" onclick="hideArea(this)">
         <div id="inlandDealMoney" style="color: #fff;"></div>
         <div id="inlandMoneyFlow" style="color: #fff; margin-top: 20px;"></div>
         <div id="hkMoneyFlow" style="color: #fff; margin-top: 20px;"></div>
     </div>
     <hr />
+    <!-- 涨跌平盘条形区 -->
+    <div id="zdp">
+        <div class="zdpBarArea" id="allStockBar">
+            <div class="indexTitle">全市场</div>
+            <div class="zdpBar">
+                <div class="barUp">0</div>
+                <div class="barEqual">0</div>
+                <div class="barDown">0</div>
+            </div>
+        </div>
+        <div class="zdpBarArea" id="ccyBar">
+            <div class="indexTitle">创业综</div>
+            <div class="zdpBar">
+                <div class="barUp">0</div>
+                <div class="barEqual">0</div>
+                <div class="barDown">0</div>
+            </div>
+        </div>
+        <div class="zdpBarArea" id="sz50Bar">
+            <div class="indexTitle">上证50</div>
+            <div class="zdpBar">
+                <div class="barUp">0</div>
+                <div class="barEqual">0</div>
+                <div class="barDown">0</div>
+            </div>
+        </div>
+        <div class="zdpBarArea" id="hs300Bar">
+            <div class="indexTitle">沪深300</div>
+            <div class="zdpBar">
+                <div class="barUp">0</div>
+                <div class="barEqual">0</div>
+                <div class="barDown">0</div>
+            </div>
+        </div>
+        <div class="zdpBarArea" id="zz500Bar">
+            <div class="indexTitle">中证500</div>
+            <div class="zdpBar">
+                <div class="barUp">0</div>
+                <div class="barEqual">0</div>
+                <div class="barDown">0</div>
+            </div>
+        </div>
+        <div class="zdpBarArea" id="zz1000Bar">
+            <div class="indexTitle">中证1000</div>
+            <div class="zdpBar">
+                <div class="barUp">0</div>
+                <div class="barEqual">0</div>
+                <div class="barDown">0</div>
+            </div>
+        </div>
+    </div>
     <hr />
-    <h1 id="allStockBar" style="color: white; margin: 0px;">
-        全市场&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="barUp">0</div>
-        <div class="barEqual">0</div>
-        <div class="barDown">0</div>
-    </h1>
-    <h1 id="ccyBar" style="color: white; margin: 0px;">
-        创业综&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="barUp">0</div>
-        <div class="barEqual">0</div>
-        <div class="barDown">0</div>
-    </h1>
-    <h1 id="sz50Bar" style="color: white; margin: 0px;">
-        上证50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="barUp">0</div>
-        <div class="barEqual">0</div>
-        <div class="barDown">0</div>
-    </h1>
-    <h1 id="hs300Bar" style="color: white; margin: 0px;">
-        沪深300&nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="barUp">0</div>
-        <div class="barEqual">0</div>
-        <div class="barDown">0</div>
-    </h1>
-    <h1 id="zz500Bar" style="color: white; margin: 0px;">
-        中证500&nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="barUp">0</div>
-        <div class="barEqual">0</div>
-        <div class="barDown">0</div>
-    </h1>
-    <h1 id="zz1000Bar" style="color: white; margin: 0px;">
-        中证1000&nbsp;&nbsp;
-        <div class="barUp">0</div>
-        <div class="barEqual">0</div>
-        <div class="barDown">0</div>
-    </h1>
-    <hr />
-    <hr />
-    <!-- A 股 -->
-    <!-- 0000001,1399001,1399006,0000015,0000016,1399300,1399905,0000852,1399005,0000991,0000992,0000993,1399975,1399986,1399812,1399971,0000827,100807 -->
-    <h1 id="0000001" style="font-size: 45;">0000001</h1>
-    <h1 id="1399001" style="font-size: 45;">1399001</h1>
-    <h1 id="1399006" style="font-size: 45;">1399006</h1>
-    <h1 id="0000015" style="font-size: 45;">0000015</h1>
-    <h1 id="0000016" style="font-size: 45;">0000016</h1>
-    <h1 id="1399300" style="font-size: 45;">1399300</h1>
-    <h1 id="1399905" style="font-size: 45;">1399905</h1>
-    <h1 id="0000852" style="font-size: 45;">0000852</h1>
-    <h1 id="1399005" style="font-size: 45;">1399005</h1>
-    <h1 id="0000991" style="font-size: 45;">0000991</h1>
-    <h1 id="0000992" style="font-size: 45;">0000992</h1>
-    <!-- <h1 id="0000993" style="font-size: 45;">0000993</h1> -->
-    <h1 id="1399975" style="font-size: 45;">1399975</h1>
-    <h1 id="1399986" style="font-size: 45;">1399986</h1>
-    <h1 id="1399812" style="font-size: 45;">1399812</h1>
-    <h1 id="1399971" style="font-size: 45;">1399971</h1>
-    <h1 id="0000827" style="font-size: 45;">0000827</h1>
-    <hr />
-    <hr />
-    <!-- 海外 -->
-    <!-- hkHSI,US_DOWJONES,US_NASDAQ,US_SP500,US_XOP,FG_yingguo,FG_deguo,FG_faguo -->
-    <h1 id="hkHSI" style="font-size: 45;">hkHSI</h1>
-    <h1 id="hkHSCEI" style="font-size: 45;">hkHSCEI</h1>
-    <h1 id="hkHSCCI" style="font-size: 45;">hkHSCCI</h1>
-    <h1 id="US_DOWJONES" style="font-size: 45;">US_DOWJONES</h1>
-    <h1 id="US_NASDAQ" style="font-size: 45;">US_NASDAQ</h1>
-    <h1 id="US_SP500" style="font-size: 45;">US_SP500</h1>
-    <h1 id="US_XOP" style="font-size: 45;">US_XOP</h1>
-    <h1 id="FG_yingguo" style="font-size: 45;">FG_yingguo</h1>
-    <h1 id="FG_faguo" style="font-size: 45;">FG_faguo</h1>
-    <h1 id="FG_deguo" style="font-size: 45;">FG_deguo</h1>
-    <hr />
-    <hr />
-    <!-- 期货 -->
-    <!-- hq_str_hf_CHA50CFD,hq_str_hf_GC,hq_str_hf_SI, hq_str_hf_CL -->
-    <h1 id="hq_str_hf_CHA50CFD" style="font-size: 45;">hq_str_hf_CHA50CFD</h1>
-    <h1 id="hq_str_hf_GC" style="font-size: 45;">hq_str_hf_GC</h1>
-    <h1 id="hq_str_hf_SI" style="font-size: 45;">hq_str_hf_SI</h1>
-    <h1 id="hq_str_hf_CL" style="font-size: 45;">hq_str_hf_CL</h1>
-    <hr />
-    <hr />
-    <!-- 外汇 -->
-    <!-- hq_str_USDCNY,hq_str_GBPCNY,hq_str_EURCNY,hq_str_HKDCNY,hq_str_CNYJPY -->
-    <h1 id="hq_str_USDCNY" style="font-size: 45;">hq_str_USDCNY</h1>
-    <h1 id="hq_str_GBPCNY" style="font-size: 45;">hq_str_GBPCNY</h1>
-    <h1 id="hq_str_EURCNY" style="font-size: 45;">hq_str_EURCNY</h1>
-    <h1 id="hq_str_HKDCNY" style="font-size: 45;">hq_str_HKDCNY</h1>
-    <h1 id="hq_str_CNYJPY" style="font-size: 45;">hq_str_CNYJPY</h1>
+    <!-- 指数区 -->
+    <div id="index">
+        <!-- 中国 -->
+        <!-- i:1.000832,i:1.000001,i:0.399001,i:0.399006,i:1.000015,i:1.000922,i:1.000016,i:1.000300,i:0.399905,i:1.000852,i:0.399005,i:1.000991,i:1.000992,i:0.399975,i:0.399986,i:0.399812,i:0.399971,i:1.000827,i:100.HSI,i:100.HSCEI,i:124.HSCCI -->
+        <p class="index" id="000832">000832</p>
+        <p class="index" id="000001">000001</p>
+        <p class="index" id="399001">399001</p>
+        <p class="index" id="399006">399006</p>
+        <p class="index" id="000015">000015</p>
+        <p class="index" id="000922">000922</p>
+        <p class="index" id="000016">000016</p>
+        <p class="index" id="000300">000300</p>
+        <p class="index" id="399905">399905</p>
+        <p class="index" id="000852">000852</p>
+        <p class="index" id="399005">399005</p>
+        <p class="index" id="000991">000991</p>
+        <p class="index" id="000992">000992</p>
+        <p class="index" id="399975">399975</p>
+        <p class="index" id="399986">399986</p>
+        <p class="index" id="399812">399812</p>
+        <p class="index" id="399971">399971</p>
+        <p class="index" id="000827">000827</p>
+        <!-- 中国香港 -->
+        <p class="index" id="HSI">HSI</p>
+        <p class="index" id="HSCEI">HSCEI</p>
+        <p class="index" id="HSCCI">HSCCI</p>
+        <hr />
+        <!-- 亚洲新兴 & 欧洲，美洲 -->
+        <!-- FTSE FCHI GDAXI TWII N225 KS11 RTS DJIA NDX SPX -->
+        <p class="index" id="TWII">TWII</p>
+        <p class="index" id="N225">N225</p>
+        <p class="index" id="FTSE">FTSE</p>
+        <p class="index" id="FCHI">FCHI</p>
+        <p class="index" id="GDAXI">GDAXI</p>
+        <p class="index" id="KS11">KS11</p>
+        <p class="index" id="RTS">RTS</p>
+        <p class="index" id="DJIA">DJIA</p>
+        <p class="index" id="NDX">NDX</p>
+        <p class="index" id="SPX">SPX</p>
+        <hr />
+        <!-- 期货 -->
+        <!-- hq_str_hf_CHA50CFD,hq_str_hf_GC,hq_str_hf_SI, hq_str_hf_CL -->
+        <p class="index" id="hq_str_hf_CHA50CFD">hq_str_hf_CHA50CFD</p>
+        <p class="index" id="hq_str_hf_GC">hq_str_hf_GC</p>
+        <p class="index" id="hq_str_hf_SI">hq_str_hf_SI</p>
+        <p class="index" id="hq_str_hf_CL">hq_str_hf_CL</p>
+        <hr />
+        <!-- 外汇 -->
+        <!-- hq_str_USDCNY,hq_str_GBPCNY,hq_str_EURCNY,hq_str_HKDCNY,hq_str_CNYJPY -->
+        <p class="index" id="hq_str_USDCNY">hq_str_USDCNY</p>
+        <p class="index" id="hq_str_GBPCNY">hq_str_GBPCNY</p>
+        <p class="index" id="hq_str_EURCNY">hq_str_EURCNY</p>
+        <p class="index" id="hq_str_HKDCNY">hq_str_HKDCNY</p>
+        <p class="index" id="hq_str_CNYJPY">hq_str_CNYJPY</p>
+    </div>
 </body>
 
 </html>
