@@ -18,6 +18,16 @@
             font-size: 36;
             margin: 4px;
         }
+        /* 基金标题 */
+        .fundTitle {
+            color: #FF9900;
+            display: inline-block;
+            text-align: center;
+            background-color: gray;
+            width: 240px;
+            font-size: 36;
+            margin: 4px;
+        }
 
         /* 指数 */
         .index {
@@ -51,7 +61,7 @@
             color: #FFFFFF;
             display: inline-block;
             text-align: center;
-            background-color: gray;
+            background-color: #333333;
             width: 200px;
             font-size: 36;
             margin: 4px;
@@ -121,6 +131,14 @@
             }
             $.ajax({
                 url: "http://10.push2.eastmoney.com/api/qt/clist/get?cb=updateIndexInfos&pn=1&pz=30&fs=i:1.000012,i:1.000013,i:1.000832,i:1.000001,i:0.399001,i:0.399006,i:1.000015,i:1.000922,i:1.000016,i:1.000300,i:0.399905,i:1.000852,i:0.399005,i:1.000991,i:1.000992,i:0.399975,i:0.399986,i:0.399812,i:0.399971,i:1.000827,i:100.HSI,i:100.HSCEI,i:124.HSCCI&fields=f14,f12,f2,f4,f3,f18,f6",
+                type: "GET",
+                contentType: "application/x-javascript",
+                dataType: "script",
+                async: true
+            });
+            // 取基金
+            $.ajax({
+                url: "http://push2.eastmoney.com/api/qt/stock/details/get?secid=0.162411&fields1=f1,f2,f3,f4&fields2=f51,f52,f53,f54,f55&pos=-11&cb=updateInnerMarketFunds",
                 type: "GET",
                 contentType: "application/x-javascript",
                 dataType: "script",
@@ -406,6 +424,77 @@
             }
 
 
+        }
+
+        // 更新关心的场内基金
+        function updateInnerMarketFunds(data) {
+            console.log(data);
+            // 取出 index 元素
+            var indexElement = document.getElementById(data['data']['code']);
+                indexElement.innerHTML = "";
+                // 标题
+                var title = document.createElement('div');
+                title.className = "fundTitle";
+                title.innerText = "华宝油气";
+                indexElement.appendChild(title);
+                // 点数
+                
+                var details = data['data']['details'];
+                current = details[details.length - 1].split(',')[1];
+                // 上次更新的值
+                lastValue = $(elementId).val();
+                // 如果没有上次值，则说明是第一次进入页面，不计算涨跌
+                if (lastValue == 0) {
+                    lastValue = current;
+                }
+                changedColor = "";
+                if (current > lastClose) {
+                    // console.log('上涨');
+                    changedColor = "#DD2200";
+                    
+                } else if (current < lastClose) {
+                    // console.log('下跌');
+                    changedColor = "#009933";
+                } else {
+                    changedColor = "#FFFFFF";
+                }
+                var indexValue = document.createElement('div');
+                indexValue.className = "indexValue";
+                indexValue.innerText = current;
+                indexValue.style.setProperty('background-color',changedColor);
+                indexElement.appendChild(indexValue);
+                // 点数
+                lastClose = data['data']['prePrice'];
+                var changeRate = document.createElement('div');
+                changeRate.className = "indexValue";
+                changeRate.innerText = ((current / lastClose - 1) * 100).toFixed(2) + '%';
+                changeRate.style.setProperty('background-color',changedColor);
+                indexElement.appendChild(changeRate);
+                // 变化方向
+                var upDown = document.createElement('div');
+                var raisedTag = "-";
+                var raisedTagColor = "#FFFFFF";
+                if (current > lastValue) {
+                    raisedTag = "↑";
+                    raisedTagColor = "#DD2200";
+                } else if (current < lastValue && current != 0) {
+                    raisedTag = "↓";
+                    raisedTagColor = "#009933";
+                } else {
+                    raisedTag = "-";
+                    raisedTagColor = "#FFFFFF";
+                }
+                upDown.className = "indexUpDown";
+                upDown.innerText = raisedTag;
+                upDown.style.setProperty('color',raisedTagColor);
+                indexElement.appendChild(upDown);
+                // 保存本次数值
+                $(elementId).val(current);
+                // 更新动画
+                $(upDown).fadeOut({duration : 300});
+                $(upDown).fadeIn({duration : 300});
+                $(upDown).fadeOut({duration : 300});
+                $(upDown).fadeIn({duration : 300});
         }
 
         // 更新涨跌 bar
@@ -846,6 +935,7 @@
         <p class="index" id="399812">399812</p>
         <p class="index" id="399971">399971</p>
         <p class="index" id="000827">000827</p>
+        <p class="index" id="162411">162411</p>
         <!-- 中国香港 -->
         <p class="index" id="HSI">HSI</p>
         <p class="index" id="HSCEI">HSCEI</p>
