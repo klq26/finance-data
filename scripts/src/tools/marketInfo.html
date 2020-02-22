@@ -4,6 +4,21 @@
     <meta http-equiv="Content-Language" content="zh-cn">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <style>
+
+        .moneyValueBox {
+            display: inline-block;
+            max-width: 624;
+        }
+        .moneyValue {
+            color: #FFFFFF;
+            display: inline-block;
+            text-align: center;
+            background-color: gray;
+            width: 200px;
+            font-size: 36;
+            margin: 4px;
+        }
+
         /* 指数 */
         .index {
             color: #FFFFFF;
@@ -105,7 +120,7 @@
                 return;
             }
             $.ajax({
-                url: "http://10.push2.eastmoney.com/api/qt/clist/get?cb=updateIndexInfos&pn=1&pz=30&fs=i:1.000832,i:1.000001,i:0.399001,i:0.399006,i:1.000015,i:1.000922,i:1.000016,i:1.000300,i:0.399905,i:1.000852,i:0.399005,i:1.000991,i:1.000992,i:0.399975,i:0.399986,i:0.399812,i:0.399971,i:1.000827,i:100.HSI,i:100.HSCEI,i:124.HSCCI&fields=f14,f12,f2,f4,f3,f18,f6",
+                url: "http://10.push2.eastmoney.com/api/qt/clist/get?cb=updateIndexInfos&pn=1&pz=30&fs=i:1.000012,i:1.000013,i:1.000832,i:1.000001,i:0.399001,i:0.399006,i:1.000015,i:1.000922,i:1.000016,i:1.000300,i:0.399905,i:1.000852,i:0.399005,i:1.000991,i:1.000992,i:0.399975,i:0.399986,i:0.399812,i:0.399971,i:1.000827,i:100.HSI,i:100.HSCEI,i:124.HSCCI&fields=f14,f12,f2,f4,f3,f18,f6",
                 type: "GET",
                 contentType: "application/x-javascript",
                 dataType: "script",
@@ -216,17 +231,26 @@
                     // 更新
                     var moneyFlow = document.getElementById("inlandDealMoney");
                     moneyFlow.innerHTML = "";
-                    moneyFlow.innerText = "沪深两市成交额（亿）";
-                    moneyFlow.style.setProperty('font-size', 36);
-                    moneyFlow.appendChild(document.createElement("br"));
-                    var info = document.createElement('div');
-                    info.style.setProperty('font-size', 36);
-                    info.setAttribute('color', '#fff');
-                    info.innerHTML =
-                        '沪 ' + addUpDownColoredText(shanghaiDealMoney.toFixed(1)) +
-                        ' 深 ' + addUpDownColoredText(shenzhenDealMoney.toFixed(1)) +
-                        ' 总 ' + addUpDownColoredText(totalDealMoney.toFixed(1));
-                    moneyFlow.appendChild(info);
+                    // 标题
+                    var title = document.createElement('div');
+                    title.className = "indexTitle";
+                    title.innerText = "沪深两市成交额（亿）";
+                    moneyFlow.appendChild(title);
+                    // 沪
+                    var shMoney = document.createElement('div');
+                    shMoney.className = "moneyValue";
+                    shMoney.innerText = '沪 ' + shanghaiDealMoney.toFixed(1);
+                    moneyFlow.appendChild(shMoney);
+                    // 深
+                    var szMoney = document.createElement('div');
+                    szMoney.className = "moneyValue";
+                    szMoney.innerText = '深 ' + shenzhenDealMoney.toFixed(1);
+                    moneyFlow.appendChild(szMoney);
+                    // 总
+                    var totalMoney = document.createElement('div');
+                    totalMoney.className = "moneyValue";
+                    totalMoney.innerText = '总 ' + totalDealMoney.toFixed(1);
+                    moneyFlow.appendChild(totalMoney);
                 }
             });
         }
@@ -411,18 +435,50 @@
             // 更新
             var moneyFlow = document.getElementById("inlandMoneyFlow");
             moneyFlow.innerHTML = "";
-            moneyFlow.innerText = "沪深资金净流入（亿）";
-            moneyFlow.style.setProperty('font-size', 36);
-            moneyFlow.appendChild(document.createElement("br"));
-            var info = document.createElement('div');
-            info.style.setProperty('font-size', 36);
-            info.setAttribute('color', '#fff');
-            info.innerHTML =
-                '小 ' + addUpDownColoredText((parseFloat(lastestData[2]) / 100000000).toFixed(1)) +
-                ' 中 ' + addUpDownColoredText((parseFloat(lastestData[3]) / 100000000).toFixed(1)) +
-                ' 大 ' + addUpDownColoredText((parseFloat(lastestData[4]) / 100000000).toFixed(1)) + '\<br\>' + ' 特 ' + addUpDownColoredText((parseFloat(lastestData[5]) / 100000000).toFixed(1)) +
-                ' 主 ' + addUpDownColoredText((parseFloat(lastestData[1]) / 100000000).toFixed(1));
-            moneyFlow.appendChild(info);
+            // 标题
+            var title = document.createElement('div');
+            title.className = "indexTitle";
+            title.innerText = "沪深资金净流入（亿）";
+            moneyFlow.appendChild(title);
+            // 数值区
+            var box = document.createElement('div');
+            box.className = "moneyValueBox";
+            moneyFlow.appendChild(box);
+            // 小
+            var smallDeal = document.createElement('div');
+            smallDeal.className = "moneyValue";
+            var num = (parseFloat(lastestData[2]) / 100000000).toFixed(1);
+            smallDeal.innerText = '小 ' + num;
+            smallDeal.style.setProperty('background-color',getUpDownColoredText(num));
+            box.appendChild(smallDeal);
+            // 中
+            var middleDeal = document.createElement('div');
+            middleDeal.className = "moneyValue";
+            var num = (parseFloat(lastestData[3]) / 100000000).toFixed(1);
+            middleDeal.innerText = '中 ' + num;
+            middleDeal.style.setProperty('background-color',getUpDownColoredText(num));
+            box.appendChild(middleDeal);
+            // 大
+            var bigDeal = document.createElement('div');
+            bigDeal.className = "moneyValue";
+            var num = (parseFloat(lastestData[4]) / 100000000).toFixed(1);
+            bigDeal.innerText = '大 ' + num;
+            bigDeal.style.setProperty('background-color',getUpDownColoredText(num));
+            box.appendChild(bigDeal);
+            // 特大
+            var extraDeal = document.createElement('div');
+            extraDeal.className = "moneyValue";
+            var num = (parseFloat(lastestData[5]) / 100000000).toFixed(1);
+            extraDeal.innerText = '特 ' + num;
+            extraDeal.style.setProperty('background-color',getUpDownColoredText(num));
+            box.appendChild(extraDeal);
+            // 主力（等于大单 与 特大单之和）
+            var mainPowerDeal = document.createElement('div');
+            mainPowerDeal.className = "moneyValue";
+            var num = (parseFloat(lastestData[1]) / 100000000).toFixed(1);
+            mainPowerDeal.innerText = '主 ' + num;
+            mainPowerDeal.style.setProperty('background-color',getUpDownColoredText(num));
+            box.appendChild(mainPowerDeal);
         }
 
         // 更新沪港通，深港通资金流向
@@ -442,20 +498,69 @@
             // 更新
             var moneyFlow = document.getElementById("hkMoneyFlow");
             moneyFlow.innerHTML = "";
-            moneyFlow.innerText = "沪港通，深港通资金净流入（亿）";
-            moneyFlow.style.setProperty('font-size', 36);
-            moneyFlow.appendChild(document.createElement("br"));
-            var info = document.createElement('div');
-            info.setAttribute('color', '#fff');
-            info.style.setProperty('font-size', 36);
-            info.innerHTML =
-                '北向 沪 ' + addUpDownColoredText((parseFloat(lastestS2N[1]) / 10000).toFixed(1)) +
-                ' 深 ' + addUpDownColoredText((parseFloat(lastestS2N[3]) / 10000).toFixed(1)) +
-                ' 总 ' + addUpDownColoredText((parseFloat(lastestS2N[5]) / 10000).toFixed(1)) + '\<br\>' +
-                '南向 沪 ' + addUpDownColoredText((parseFloat(lastestN2S[1]) / 10000).toFixed(1)) +
-                ' 深 ' + addUpDownColoredText((parseFloat(lastestN2S[3]) / 10000).toFixed(1)) +
-                ' 总 ' + addUpDownColoredText((parseFloat(lastestN2S[5]) / 10000).toFixed(1));
-            moneyFlow.appendChild(info);
+            // 标题
+            var title = document.createElement('div');
+            title.className = "indexTitle";
+            title.innerText = "北向资金净流入（亿）";
+            moneyFlow.appendChild(title);
+            // 数值区
+            var box = document.createElement('div');
+            box.className = "moneyValueBox";
+            moneyFlow.appendChild(box);
+            // 沪
+            var shMoney = document.createElement('div');
+            shMoney.className = "moneyValue";
+            var num = (parseFloat(lastestS2N[1]) / 10000).toFixed(1);
+            shMoney.innerText = '沪 ' + num;
+            shMoney.style.setProperty('background-color',getUpDownColoredText(num));
+            box.appendChild(shMoney);
+            // 深
+            var szMoney = document.createElement('div');
+            szMoney.className = "moneyValue";
+            var num = (parseFloat(lastestS2N[3]) / 10000).toFixed(1);
+            szMoney.innerText = '深 ' + num;
+            szMoney.style.setProperty('background-color',getUpDownColoredText(num));
+            box.appendChild(szMoney);
+            // 总
+            var totalMoney = document.createElement('div');
+            totalMoney.className = "moneyValue";
+            var num = (parseFloat(lastestS2N[5]) / 10000).toFixed(1);
+            totalMoney.innerText = '总 '  + num;
+            totalMoney.style.setProperty('background-color',getUpDownColoredText(num));
+            box.appendChild(totalMoney);
+            moneyFlow.appendChild(box);
+
+            // 标题
+            var title = document.createElement('div');
+            title.className = "indexTitle";
+            title.innerText = "南向资金净流入（亿）";
+            moneyFlow.appendChild(title);
+            // 数值区
+            var box = document.createElement('div');
+            box.className = "moneyValueBox";
+            moneyFlow.appendChild(box);
+            // 沪
+            var shMoney = document.createElement('div');
+            shMoney.className = "moneyValue";
+            var num = (parseFloat(lastestN2S[1]) / 10000).toFixed(1)
+            shMoney.innerText = '沪 ' + (parseFloat(lastestN2S[1]) / 10000).toFixed(1);
+            shMoney.style.setProperty('background-color',getUpDownColoredText(num));
+            box.appendChild(shMoney);
+            // 深
+            var szMoney = document.createElement('div');
+            szMoney.className = "moneyValue";
+            var num = (parseFloat(lastestN2S[3]) / 10000).toFixed(1);
+            szMoney.innerText = '深 ' + num;
+            szMoney.style.setProperty('background-color',getUpDownColoredText(num));
+            box.appendChild(szMoney);
+            // 总
+            var totalMoney = document.createElement('div');
+            totalMoney.className = "moneyValue";
+            var num = (parseFloat(lastestN2S[5]) / 10000).toFixed(1);
+            totalMoney.innerText = '总 '  + num;
+            totalMoney.style.setProperty('background-color',getUpDownColoredText(num));
+            box.appendChild(totalMoney);
+            moneyFlow.appendChild(box);
         }
 
         // 更新期货，外汇数据
@@ -552,13 +657,13 @@
         }
 
         // 显示涨跌红绿色字符
-        function addUpDownColoredText(num, color) {
+        function getUpDownColoredText(num) {
             if (num > 0) {
-                return addColoredText(num, '#DD2200');
+                return '#DD2200';
             } else if (num < 0) {
-                return addColoredText(num, '#009933');
+                return '#009933';
             } else {
-                return addColoredText(num, '#FFFFFF');
+                return '#FFFFFF';
             }
         }
 
@@ -660,9 +765,9 @@
     <hr />
     <!-- 资金流向区 -->
     <div id="moneyFlow" style="color: #fff;" onclick="hideArea(this)">
-        <div id="inlandDealMoney" style="color: #fff;"></div>
-        <div id="inlandMoneyFlow" style="color: #fff; margin-top: 20px;"></div>
-        <div id="hkMoneyFlow" style="color: #fff; margin-top: 20px;"></div>
+        <div id="inlandDealMoney"></div>
+        <div id="inlandMoneyFlow"></div>
+        <div id="hkMoneyFlow"></div>
     </div>
     <hr />
     <!-- 涨跌平盘条形区 -->
@@ -676,7 +781,7 @@
             </div>
         </div>
         <div class="zdpBarArea" id="ccyBar">
-            <div class="indexTitle">创业综</div>
+            <div class="indexTitle">创业板综</div>
             <div class="zdpBar">
                 <div class="barUp">0</div>
                 <div class="barEqual">0</div>
@@ -720,7 +825,9 @@
     <!-- 指数区 -->
     <div id="index">
         <!-- 中国 -->
-        <!-- i:1.000832,i:1.000001,i:0.399001,i:0.399006,i:1.000015,i:1.000922,i:1.000016,i:1.000300,i:0.399905,i:1.000852,i:0.399005,i:1.000991,i:1.000992,i:0.399975,i:0.399986,i:0.399812,i:0.399971,i:1.000827,i:100.HSI,i:100.HSCEI,i:124.HSCCI -->
+        <!-- i:1.000012,i:1.000013,i:1.000832,i:1.000001,i:0.399001,i:0.399006,i:1.000015,i:1.000922,i:1.000016,i:1.000300,i:0.399905,i:1.000852,i:0.399005,i:1.000991,i:1.000992,i:0.399975,i:0.399986,i:0.399812,i:0.399971,i:1.000827,i:100.HSI,i:100.HSCEI,i:124.HSCCI -->
+        <p class="index" id="000012">000012</p>
+        <p class="index" id="000013">000013</p>
         <p class="index" id="000832">000832</p>
         <p class="index" id="000001">000001</p>
         <p class="index" id="399001">399001</p>
@@ -743,16 +850,19 @@
         <p class="index" id="HSI">HSI</p>
         <p class="index" id="HSCEI">HSCEI</p>
         <p class="index" id="HSCCI">HSCCI</p>
-        <hr />
-        <!-- 亚洲新兴 & 欧洲，美洲 -->
-        <!-- FTSE FCHI GDAXI TWII N225 KS11 RTS DJIA NDX SPX -->
+        <!-- 中国台湾 -->
         <p class="index" id="TWII">TWII</p>
+        <hr />
+        <!-- 亚洲新兴 & 欧洲，美洲等 -->
+        <!-- FTSE FCHI GDAXI TWII N225 KS11 RTS DJIA NDX SPX -->
         <p class="index" id="N225">N225</p>
+        <p class="index" id="KS11">KS11</p>
+        <hr />
         <p class="index" id="FTSE">FTSE</p>
         <p class="index" id="FCHI">FCHI</p>
         <p class="index" id="GDAXI">GDAXI</p>
-        <p class="index" id="KS11">KS11</p>
         <p class="index" id="RTS">RTS</p>
+        <hr />
         <p class="index" id="DJIA">DJIA</p>
         <p class="index" id="NDX">NDX</p>
         <p class="index" id="SPX">SPX</p>
