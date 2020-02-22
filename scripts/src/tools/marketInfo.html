@@ -1,0 +1,642 @@
+<html style="background: #000;">
+
+<head>
+    <meta http-equiv="Content-Language" content="zh-cn">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+        h1 {
+            color: #FFFFFF;
+            margin: 8px;
+        }
+
+        .barUp {
+            display: inline-block;
+            background-color: red;
+            text-align: center;
+        }
+
+        .barEqual {
+            display: inline-block;
+            background-color: gray;
+            text-align: center;
+            margin-left: 25px;
+        }
+
+        .barDown {
+            display: inline-block;
+            background-color: green;
+            text-align: center;
+            margin-left: 25px;
+        }
+    </style>
+    <!-- 百度压缩版 jQuery -->
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <!-- 自定义脚本 -->
+    <script type="text/javascript">
+        // 全局变量：中国股市是否开盘（注释：第一次给 true 是为了能拿到昨天最后收盘的数据，如果现在休市，showTime 函数会关闭这个变量）
+        var isChinaMarketChanging = true;
+        var isMoneyFlowChanging = true;
+        var isWeekend = false;
+        var moneyFlowTotalHeight = 0;
+
+
+        // 请求中国开盘数据（含香港）
+        function requestChinaData() {
+            // 收盘和午间休息时间不做处理
+            if (isWeekend || !isChinaMarketChanging) {
+                return;
+            }
+            $.ajax({ url: "https://api.money.126.net/data/feed/0000001,1399001,1399006,0000015,0000016,1399300,1399905,0000852,1399005,0000991,0000992,0000993,1399975,1399986,1399812,1399971,1000827,0000827,hkHSI?callback=updateIndexInfos", type: "GET", contentType: "application/x-javascript", dataType: "script", async: false });
+        }
+
+        // 请求指数的涨跌平盘分布情况
+        function requestZDPData() {
+            // 收盘和午间休息时间不做处理
+            if (isWeekend || !isChinaMarketChanging) {
+                return;
+            }
+            var timestamp = new Date().getTime();
+            $.ajax({
+                url: "https://hq.sinajs.cn/?_=" + timestamp + "&list=sh000002_zdp,sz399107_zdp,sh000003_zdp,sz399108_zdp,sz399102_zdp,sh000016_zdp,sh000300_zdp,sz399905_zdp,sh000852_zdp",
+                type: "GET",
+                contentType: "application/javascript",
+                dataType: "script",
+                async: false,
+                success: function (data) {
+                    // e.g.
+                    // var hq_str_sh000002_zdp="865,535,97";    沪A
+                    // var hq_str_sz399107_zdp="1396,702,95";   深A
+                    // var hq_str_sh000003_zdp="26,14,9";       沪B
+                    // var hq_str_sz399108_zdp="13,26,7";       深B
+                    // var hq_str_sz399102_zdp="559,217,15";    创业
+                    // var hq_str_sz399905_zdp="309,162,29";    中证 500
+                    shanghaiA = hq_str_sh000002_zdp.split(',');
+                    shanghaiB = hq_str_sh000003_zdp.split(',');
+                    shenzhenA = hq_str_sz399107_zdp.split(',');
+                    shenzhenB = hq_str_sz399108_zdp.split(',');
+                    // 创业板综
+                    chuangyeban = hq_str_sz399102_zdp.split(',');
+                    // 上证50
+                    sz50 = hq_str_sh000016_zdp.split(',');
+                    // 沪深300
+                    hs300 = hq_str_sh000300_zdp.split(',');
+                    // 中证500
+                    zz500 = hq_str_sz399905_zdp.split(',');
+                    // 中证1000
+                    zz1000 = hq_str_sh000852_zdp.split(',');
+                    // 统计
+                    allUp = parseInt(shanghaiA[0]) + parseInt(shanghaiB[0]) + parseInt(shenzhenA[0]) + parseInt(shenzhenB[0]);
+                    allEqual = parseInt(shanghaiA[2]) + parseInt(shanghaiB[2]) + parseInt(shenzhenA[2]) + parseInt(shenzhenB[2]);
+                    allDown = parseInt(shanghaiA[1]) + parseInt(shanghaiB[1]) + parseInt(shenzhenA[1]) + parseInt(shenzhenB[1]);
+                    // 全市场
+                    updateZDPBar("allStockBar", allUp, allEqual, allDown);
+                    // 创业板综
+                    updateZDPBar("ccyBar", parseInt(chuangyeban[0]), parseInt(chuangyeban[2]), parseInt(chuangyeban[1]));
+                    // 上证50
+                    updateZDPBar("sz50Bar", parseInt(sz50[0]), parseInt(sz50[2]), parseInt(sz50[1]));
+                    // 沪深300
+                    updateZDPBar("hs300Bar", parseInt(hs300[0]), parseInt(hs300[2]), parseInt(hs300[1]));
+                    // 中证500
+                    updateZDPBar("zz500Bar", parseInt(zz500[0]), parseInt(zz500[2]), parseInt(zz500[1]));
+                    // 中证1000
+                    updateZDPBar("zz1000Bar", parseInt(zz1000[0]), parseInt(zz1000[2]), parseInt(zz1000[1]));
+                }
+            });
+        }
+
+        // 请求资金流向数据
+        function requestMoneyFlow() {
+            if (isWeekend || !isMoneyFlowChanging) {
+                return;
+            }
+            // 沪深两市资金情况. http://data.eastmoney.com/zjlx/
+            $.ajax({
+                url: "http://push2.eastmoney.com/api/qt/stock/fflow/kline/get?lmt=0&klt=1&secid=1.000001&secid2=0.399001&fields1=f1,f2,f3,f7&fields2=f51,f52,f53,f54,f55,f56,f57,f58,f59,f60,f61,f62,f63&cb=updateMoneyFlow",
+                type: "GET",
+                contentType: "application/javascript",
+                dataType: "script",
+                async: false
+            });
+
+            // 沪港通，深港通南北向资金情况 http://data.eastmoney.com/hsgt/index.html
+            $.ajax({
+                url: "http://push2.eastmoney.com/api/qt/kamt.rtmin/get?fields1=f1,f2,f3,f4&fields2=f51,f52,f53,f54,f55,f56&cb=updateHKMoneyFlow",
+                type: "GET",
+                contentType: "application/javascript",
+                dataType: "script",
+                async: false
+            });
+        }
+
+        // 请求中国沪深两市日成交额
+        function requestChinaDealMoney() {
+            if (isWeekend || !isMoneyFlowChanging) {
+                return;
+            }
+            var timestamp = new Date().getTime();
+            $.ajax({
+                url: "https://hq.sinajs.cn/?_=" + timestamp + "&list=sh000002,sz399107",
+                type: "GET",
+                contentType: "application/javascript",
+                dataType: "script",
+                async: false,
+                success: function (data) {
+                    // e.g.
+                    // var hq_str_sh000002="Ａ股指数,3167.0565,3175.3586,3185.3286,3205.4942,3164.8660,0,0,364236640,444905796225,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2020-02-21,15:01:59,00,";
+                    // var hq_str_sz399107="深证Ａ指,1971.898,1973.376,1995.617,2009.953,1969.840,0.000,0.000,60000890970,725835755525.050,0,0.000,0,0.000,0,0.000,0,0.000,0,0.000,0,0.000,0,0.000,0,0.000,0,0.000,0,0.000,2020-02-21,15:00:03,00";
+                    shanghaiA = hq_str_sh000002.split(',');
+                    shenzhenA = hq_str_sz399107.split(',');
+                    shanghaiDealMoney = shanghaiA[9] / 100000000;
+                    shenzhenDealMoney = shenzhenA[9] / 100000000;
+                    totalDealMoney = shanghaiDealMoney + shenzhenDealMoney;
+                    // 更新
+                    var moneyFlow = document.getElementById("inlandDealMoney");
+                    moneyFlow.innerHTML = "";
+                    moneyFlow.innerText = "沪深两市成交额（亿）";
+                    moneyFlow.style.setProperty('font-size', 36);
+                    moneyFlow.appendChild(document.createElement("br"));
+                    var info = document.createElement('div');
+                    info.style.setProperty('font-size', 36);
+                    info.setAttribute('color', '#fff');
+                    info.innerHTML =
+                        '沪 ' + addUpDownColoredText(shanghaiDealMoney.toFixed(1)) +
+                        ' 深 ' + addUpDownColoredText(shenzhenDealMoney.toFixed(1)) +
+                        ' 总 ' + addUpDownColoredText(totalDealMoney.toFixed(1));
+                    moneyFlow.appendChild(info);
+                }
+            });
+        }
+
+        // 请求外国开盘数据（中国收盘了之后再开始运行）
+        function requestForeignData() {
+            if (isWeekend || isChinaMarketChanging) {
+                return;
+            }
+            $.ajax({ url: "https://api.money.126.net/data/feed/hkHSI,hkHSCEI,hkHSCCI,US_DOWJONES,US_NASDAQ,US_SP500,US_XOP,FG_yingguo,FG_deguo,FG_faguo?callback=updateIndexInfos", type: "GET", contentType: "application/x-javascript", dataType: "script", async: false });
+        }
+
+        // 请求商品，外汇数据（始终请求）
+        function requestOtherData() {
+            if (isWeekend) {
+                return;
+            }
+            var timestamp = new Date().getTime();
+            $.ajax({
+                url: "https://hq.sinajs.cn/?_=" + timestamp + "&list=hf_GC,hf_CL,hf_SI,hf_CHA50CFD,USDCNY,GBPCNY,EURCNY,HKDCNY,CNYJPY",
+                type: "GET",
+                contentType: "application/javascript",
+                dataType: "script",
+                async: false,
+                success: function (data) {
+                    //e.g. 直接给回 4 个变量，直接用变量即可
+                    // var hq_str_hf_GC="1635.800,,1635.300,1635.400,1639.400,1621.600,16:51:10,1620.500,1623.600,535563.000,19,5,2020-02-21,纽约黄金";
+                    // var hq_str_hf_CL="53.295,,53.320,53.330,53.860,53.070,16:51:08,53.880,53.740,416164.000,28,14,2020-02-21,纽约原油";
+                    // var hq_str_hf_SI="18.494,,18.485,18.490,18.570,18.335,16:51:08,18.319,18.360,88100.000,25,22,2020-02-21,纽约白银";
+                    // var hq_str_USDCNY="16:50:21,7.0376,7.0373,7.0230,147,7.0292,7.0429,7.0282,7.0373,美元人民币,2020-02-21";
+                    // var hq_str_GBPCNY="16:49:18,9.0862,9.0882,9.0458,411,9.0472,9.0862,9.0451,9.0862,英镑人民币,2020-02-21";
+                    // var hq_str_EURCNY="16:50:49,7.6086,7.6115,7.5720,502,7.5724,7.6120,7.5618,7.6086,欧元人民币,2020-02-21";
+                    // var hq_str_HKDCNY="16:49:18,0.9031,0.9039,0.9023,17,0.9022,0.9036,0.9019,0.9031,港元人民币,2020-02-21";
+                    // var hq_str_CNYJPY="16:49:18,15.84,15.88,15.94,1200,15.94,15.94,15.82,15.84,人民币日元,2020-02-21";
+                    // 富时 A50 期货
+                    indexInfos = hq_str_hf_CHA50CFD.split(',');
+                    updateOtherInfos("hq_str_hf_CHA50CFD", "富时 A50", parseFloat(indexInfos[0]), parseFloat(indexInfos[7]));
+                    // 黄金
+                    goldInfos = hq_str_hf_GC.split(',');
+                    updateOtherInfos("hq_str_hf_GC", goldInfos[13], parseFloat(goldInfos[0]), parseFloat(goldInfos[7]));
+                    // 白银
+                    silverInfos = hq_str_hf_SI.split(',');
+                    updateOtherInfos("hq_str_hf_SI", silverInfos[13], parseFloat(silverInfos[0]), parseFloat(silverInfos[7]));
+                    // 原油
+                    oilInfos = hq_str_hf_CL.split(',');
+                    updateOtherInfos("hq_str_hf_CL", oilInfos[13], parseFloat(oilInfos[0]), parseFloat(oilInfos[7]));
+                    // 外汇
+                    moneyInfos = hq_str_USDCNY.split(',');
+                    updateOtherInfos("hq_str_USDCNY", moneyInfos[9], parseFloat(moneyInfos[2]), parseFloat(moneyInfos[3]));
+                    moneyInfos = hq_str_GBPCNY.split(',');
+                    updateOtherInfos("hq_str_GBPCNY", moneyInfos[9], parseFloat(moneyInfos[2]), parseFloat(moneyInfos[3]));
+                    moneyInfos = hq_str_EURCNY.split(',');
+                    updateOtherInfos("hq_str_EURCNY", moneyInfos[9], parseFloat(moneyInfos[2]), parseFloat(moneyInfos[3]));
+                    moneyInfos = hq_str_HKDCNY.split(',');
+                    updateOtherInfos("hq_str_HKDCNY", moneyInfos[9], parseFloat(moneyInfos[2]), parseFloat(moneyInfos[3]));
+                    moneyInfos = hq_str_CNYJPY.split(',');
+                    updateOtherInfos("hq_str_CNYJPY", moneyInfos[9], parseFloat(moneyInfos[2]), parseFloat(moneyInfos[3]));
+                },
+                error: function () {
+                    console.log('error');
+                }
+            });
+        }
+
+        // 更新各国指数数据
+        function updateIndexInfos(data) {
+            // 遍历所有的 key
+            for (var key in data) {
+                // console.log(key, data[key])
+                // id
+                elementId = "#" + key;
+                // 代码
+                code = data[key]["symbol"];
+                // 名称
+                name = data[key]["name"];
+                // 简化名称
+                if (name == '恒生中国企业指数') {
+                    name = "国企指数";
+                }
+                if (name == '道琼斯指数') {
+                    name = "道琼斯";
+                }
+                // 当前价
+                current = parseFloat(data[key]["price"]);
+                // 前收盘
+                if (key.indexOf('FG_') >= 0 || key.indexOf('FU_') >= 0) {
+                    lastClose = current - parseFloat(data[key]["updown"]);
+                } else {
+                    lastClose = data[key]["yestclose"];
+                }
+                // 汇率价保留小数点后 4 位
+                if (key.indexOf('FX_USDCNY') >= 0) {
+                    current = current.toFixed(4);
+                } else {
+                    current = current.toFixed(2);
+                }
+
+                // 上次更新的值
+                lastValue = $(elementId).val();
+                // 如果没有上次值，则说明是第一次进入页面，不计算涨跌
+                if (lastValue == 0) {
+                    lastValue = current;
+                }
+
+                // 和上次查询进行比较（非和昨天收盘价比较，而是和上次日内查询进行比较）
+                raisedTag = "-";
+                raisedTagColor = "#FFFFFF";
+                if (current > lastValue) {
+                    raisedTag = "↑";
+                    raisedTagColor = "#DD2200";
+                } else if (current < lastValue && current != 0) {
+                    raisedTag = "↓";
+                    raisedTagColor = "#009933";
+                } else {
+                    raisedTag = "-";
+                    raisedTagColor = "#FFFFFF";
+                }
+                // 日间升降指标（和昨天收盘比较，决定整条数据的整体颜色）
+                if (current > lastClose) {
+                    // console.log('上涨');
+                    $(elementId).css("color", "#DD2200");
+                } else if (current < lastClose) {
+                    // console.log('下跌');
+                    $(elementId).css("color", "#009933");
+                } else {
+                    $(elementId).css("color", "#FFFFFF");
+                }
+
+
+                $(elementId).html(name + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + current + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + ((current / lastClose - 1) * 100).toFixed(2) + '%' + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + '\<span style=\"color: ' + raisedTagColor + '\">' + raisedTag + '\</span\>');
+
+
+                // 保存本次数值
+                $(elementId).val(current);
+            }
+        }
+
+        // 更新涨跌 bar
+        function updateZDPBar(idKey, up, equal, down) {
+            screenWidth = document.body.clientWidth;
+            barWidth = screenWidth * 0.6;
+            var bar = document.getElementById(idKey);
+            all = up + equal + down;
+            var upStocks = bar.getElementsByClassName("barUp")[0];
+            $(upStocks).css('width', up / all * barWidth);
+            upStocks.innerHTML = up;
+            var equalStocks = bar.getElementsByClassName("barEqual")[0];
+            $(equalStocks).css('width', equal / all * barWidth);
+            equalStocks.innerHTML = equal;
+            var downStocks = bar.getElementsByClassName("barDown")[0];
+            $(downStocks).css('width', down / all * barWidth);
+            downStocks.innerHTML = down;
+        }
+
+        // 更新沪深两市资金净流向
+        function updateMoneyFlow(data) {
+            // 沪深两市资金情况. http://data.eastmoney.com/zjlx/
+            var klines = data["data"]["klines"];
+            // ["2020-02-21 15:00", "-25845607550.0", "27224361803.0", "-1378753893.0", "-18919648215.0", "-6925959335.0"]
+            // 时间，主力净流入（亿），小单净流入（亿），中单净流入（亿），大单净流入（亿），超大单净流入（亿）,都要除以 100000000
+            var lastestData = klines[klines.length - 1].split(",");
+
+            // 更新
+            var moneyFlow = document.getElementById("inlandMoneyFlow");
+            moneyFlow.innerHTML = "";
+            moneyFlow.innerText = "沪深资金净流入（亿）";
+            moneyFlow.style.setProperty('font-size', 36);
+            moneyFlow.appendChild(document.createElement("br"));
+            var info = document.createElement('div');
+            info.style.setProperty('font-size', 36);
+            info.setAttribute('color', '#fff');
+            info.innerHTML =
+                '小 ' + addUpDownColoredText((parseFloat(lastestData[2]) / 100000000).toFixed(1)) +
+                ' 中 ' + addUpDownColoredText((parseFloat(lastestData[3]) / 100000000).toFixed(1)) +
+                ' 大 ' + addUpDownColoredText((parseFloat(lastestData[4]) / 100000000).toFixed(1)) + '\<br\>' + ' 特 ' + addUpDownColoredText((parseFloat(lastestData[5]) / 100000000).toFixed(1)) +
+                ' 主 ' + addUpDownColoredText((parseFloat(lastestData[1]) / 100000000).toFixed(1));
+            moneyFlow.appendChild(info);
+        }
+
+        // 更新沪港通，深港通资金流向
+        function updateHKMoneyFlow(data) {
+            // 沪港通，深港通南北向资金情况 http://data.eastmoney.com/hsgt/index.html
+            // 北向资金
+            var S2N = data["data"]["s2n"];
+            // ["15:00", "-88205.65", "5288205.65", "273623.63", "4926376.37", "185417.98"]
+            // 时间，沪股通净流入（万），余额（万），深股通净流入（万），余额（万），两市净流入（万）
+            var lastestS2N = S2N[S2N.length - 1].split(",");
+            // 南向资金
+            var N2S = data["data"]["n2s"];
+            // ["16:10", "90440.80", "4109559.20", "16760.73", "4183239.27", "107201.53"]
+            // 时间，港股通（沪）净流入（万），余额（万），港股通（深）净流入（万），余额（万），两市净流入（万）
+            var lastestN2S = N2S[N2S.length - 1].split(",");
+
+            // 更新
+            var moneyFlow = document.getElementById("hkMoneyFlow");
+            moneyFlow.innerHTML = "";
+            moneyFlow.innerText = "沪港通，深港通资金净流入（亿）";
+            moneyFlow.style.setProperty('font-size', 36);
+            moneyFlow.appendChild(document.createElement("br"));
+            var info = document.createElement('div');
+            info.setAttribute('color', '#fff');
+            info.style.setProperty('font-size', 36);
+            info.innerHTML =
+                '北向 沪 ' + addUpDownColoredText((parseFloat(lastestS2N[1]) / 10000).toFixed(1)) +
+                ' 深 ' + addUpDownColoredText((parseFloat(lastestS2N[3]) / 10000).toFixed(1)) +
+                ' 总 ' + addUpDownColoredText((parseFloat(lastestS2N[5]) / 10000).toFixed(1)) + '\<br\>' +
+                '南向 沪 ' + addUpDownColoredText((parseFloat(lastestN2S[1]) / 10000).toFixed(1)) +
+                ' 深 ' + addUpDownColoredText((parseFloat(lastestN2S[3]) / 10000).toFixed(1)) +
+                ' 总 ' + addUpDownColoredText((parseFloat(lastestN2S[5]) / 10000).toFixed(1));
+            moneyFlow.appendChild(info);
+        }
+
+        // 更新期货，外汇数据
+        function updateOtherInfos(key, name, current, lastClose) {
+            // id
+            elementId = "#" + key;
+            // 汇率价保留小数点后 4 位
+            if (key.indexOf('CNY') >= 0) {
+                current = current.toFixed(4);
+            } else {
+                current = current.toFixed(2);
+            }
+
+            // 上次更新的值
+            lastValue = $(elementId).val();
+            // 如果没有上次值，则说明是第一次进入页面，不计算涨跌
+            if (lastValue == 0) {
+                lastValue = current;
+            }
+
+            // 和上次查询进行比较（非和昨天收盘价比较，而是和上次日内查询进行比较）
+            raisedTag = "-";
+            raisedTagColor = "#FFFFFF";
+            if (current > lastValue) {
+                raisedTag = "↑";
+                raisedTagColor = "#DD2200";
+            } else if (current < lastValue && current != 0) {
+                raisedTag = "↓";
+                raisedTagColor = "#009933";
+            } else {
+                raisedTag = "-";
+                raisedTagColor = "#FFFFFF";
+            }
+            // 日间升降指标（和昨天收盘比较，决定整条数据的整体颜色）
+            if (current > lastClose) {
+                // console.log('上涨');
+                $(elementId).css("color", "#DD2200");
+            } else if (current < lastClose) {
+                // console.log('下跌');
+                $(elementId).css("color", "#009933");
+            } else {
+                $(elementId).css("color", "#FFFFFF");
+            }
+
+
+            $(elementId).html(name + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + current + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + ((current / lastClose - 1) * 100).toFixed(2) + '%' + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + '\<span style=\"color: ' + raisedTagColor + '\">' + raisedTag + '\</span\>');
+
+
+            // 保存本次数值
+            $(elementId).val(current);
+        }
+
+        // 判断是否在某一时间段之内
+        function isDuringDate(beginDateStr, endDateStr) {
+            var curDate = new Date(),
+                beginDate = new Date(beginDateStr),
+                endDate = new Date(endDateStr);
+            if (curDate >= beginDate && curDate <= endDate) {
+                return true;
+            }
+            return false;
+        }
+
+        // 显示涨跌红绿色字符
+        function addUpDownColoredText(num, color) {
+            if (num > 0) {
+                return addColoredText(num, '#DD2200');
+            } else if (num < 0) {
+                return addColoredText(num, '#009933');
+            } else {
+                return addColoredText(num, '#FFFFFF');
+            }
+        }
+
+        // 返回带颜色的 span
+        function addColoredText(text, color) {
+            // var element = document.createElement('span');
+            // element.style.setProperty('color',color);
+            // // element.setAttribute('color',color);
+            // element.innerText = text;
+            // return element;
+            return '\<span style=\"color: ' + color + '\">' + text + '\</span\>';
+        }
+
+        // 时间前置补 0
+        function prefixInteger(num, length) {
+            return (Array(length).join('0') + num).slice(-length);
+        }
+
+        // 显示时间
+        function showtime() {
+            var date = new Date();
+            var year = date.getFullYear();
+            var month = prefixInteger(date.getMonth() + 1, 2);
+            var day = prefixInteger(date.getDate(), 2);
+            var hh = prefixInteger(date.getHours(), 2);
+            var mi = prefixInteger(date.getMinutes(), 2);
+            var ss = prefixInteger(date.getSeconds(), 2);
+            var dayTag = "日一二三四五六".charAt(date.getDay());
+            var wk = "周" + dayTag;
+            var status = "";
+            var statusColor = "#FFFF00";
+            var todayStr = year + '/' + month + '/' + day;
+            if (dayTag == '日' || dayTag == '六') {
+                status = "休市";
+                isWeekend = true;
+                isChinaMarketChanging = false;
+                isMoneyFlowChanging = false;
+                statusColor = "#FFFF00";
+            } else {
+                isWeekend = false;
+                // 判断开盘（15:00 之后再更新 1 分钟，防止没有拿到15:00 之后的准确数据。11:31 也是同样意思）
+                if (isDuringDate(todayStr + ' 9:30', todayStr + ' 11:31') || isDuringDate(todayStr + ' 13:00', todayStr + ' 15:01')) {
+                    status = "开盘";
+                    statusColor = "#337799";
+                    isChinaMarketChanging = true;
+                } else if (isDuringDate(todayStr + ' 11:30', todayStr + ' 13:00')) {
+                    status = "午休";
+                    isChinaMarketChanging = false;
+                    statusColor = "#FFFF00";
+                } else {
+                    status = "收盘";
+                    isChinaMarketChanging = false;
+                    statusColor = "#FFFF00";
+                }
+                // 是否可以查询资金流向
+                if (isDuringDate(todayStr + ' 9:00', todayStr + ' 11:31') || isDuringDate(todayStr + ' 13:00', todayStr + ' 16:11')) {
+                    isMoneyFlowChanging = true;
+                } else {
+                    isMoneyFlowChanging = false;
+                }
+            }
+
+            $("#timestamp").html(year + "-" + month + "-" + day + " " + hh + ":" + mi + ":" + ss + " " + wk + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + 'A股' + '\<span style=\"color: ' + statusColor + '\">' + status + '\</span\>');
+        }
+
+        function hideArea(element) {
+            $(element).hide();
+        }
+
+        // 初始化
+        $(document).ready(function () {
+            // 初始化先抓取一下数据（第一次先让 China 和 Foreign 都拉到至少一次数据，之后 showtime 函数负责确定 isChinaMarketChanging 的值）
+            isChinaMarketChanging = true;
+            requestChinaData();
+            requestZDPData();
+            requestMoneyFlow();
+            requestChinaDealMoney();
+            isChinaMarketChanging = false;
+            requestForeignData();
+            requestOtherData();
+            showtime();
+            // 显示时间
+            setInterval(showtime, 1000);
+            // 每 10 秒更新一下数据
+            setInterval(requestChinaData, 10 * 1000);
+            setInterval(requestZDPData, 10 * 1000);
+            setInterval(requestForeignData, 10 * 1000);
+            setInterval(requestOtherData, 10 * 1000);
+            setInterval(requestChinaDealMoney, 60 * 1000);
+            setInterval(requestMoneyFlow, 60 * 1000);
+        });
+    </script>
+</head>
+
+<body>
+    <h4 id="timestamp" style="font-size: 36; color: #FAFAFA;">时间</h4>
+    <hr />
+    <hr />
+    <div id="moneyFlow" style="color: #fff;" onclick="hideArea(this)">
+        <div id="inlandDealMoney" style="color: #fff;"></div>
+        <div id="inlandMoneyFlow" style="color: #fff; margin-top: 20px;"></div>
+        <div id="hkMoneyFlow" style="color: #fff; margin-top: 20px;"></div>
+    </div>
+    <hr />
+    <hr />
+    <h1 id="allStockBar" style="color: white; margin: 0px;">
+        全市场&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="barUp">0</div>
+        <div class="barEqual">0</div>
+        <div class="barDown">0</div>
+    </h1>
+    <h1 id="ccyBar" style="color: white; margin: 0px;">
+        创业综&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="barUp">0</div>
+        <div class="barEqual">0</div>
+        <div class="barDown">0</div>
+    </h1>
+    <h1 id="sz50Bar" style="color: white; margin: 0px;">
+        上证50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="barUp">0</div>
+        <div class="barEqual">0</div>
+        <div class="barDown">0</div>
+    </h1>
+    <h1 id="hs300Bar" style="color: white; margin: 0px;">
+        沪深300&nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="barUp">0</div>
+        <div class="barEqual">0</div>
+        <div class="barDown">0</div>
+    </h1>
+    <h1 id="zz500Bar" style="color: white; margin: 0px;">
+        中证500&nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="barUp">0</div>
+        <div class="barEqual">0</div>
+        <div class="barDown">0</div>
+    </h1>
+    <h1 id="zz1000Bar" style="color: white; margin: 0px;">
+        中证1000&nbsp;&nbsp;
+        <div class="barUp">0</div>
+        <div class="barEqual">0</div>
+        <div class="barDown">0</div>
+    </h1>
+    <hr />
+    <hr />
+    <!-- A 股 -->
+    <!-- 0000001,1399001,1399006,0000015,0000016,1399300,1399905,0000852,1399005,0000991,0000992,0000993,1399975,1399986,1399812,1399971,0000827,100807 -->
+    <h1 id="0000001" style="font-size: 45;">0000001</h1>
+    <h1 id="1399001" style="font-size: 45;">1399001</h1>
+    <h1 id="1399006" style="font-size: 45;">1399006</h1>
+    <h1 id="0000015" style="font-size: 45;">0000015</h1>
+    <h1 id="0000016" style="font-size: 45;">0000016</h1>
+    <h1 id="1399300" style="font-size: 45;">1399300</h1>
+    <h1 id="1399905" style="font-size: 45;">1399905</h1>
+    <h1 id="0000852" style="font-size: 45;">0000852</h1>
+    <h1 id="1399005" style="font-size: 45;">1399005</h1>
+    <h1 id="0000991" style="font-size: 45;">0000991</h1>
+    <h1 id="0000992" style="font-size: 45;">0000992</h1>
+    <!-- <h1 id="0000993" style="font-size: 45;">0000993</h1> -->
+    <h1 id="1399975" style="font-size: 45;">1399975</h1>
+    <h1 id="1399986" style="font-size: 45;">1399986</h1>
+    <h1 id="1399812" style="font-size: 45;">1399812</h1>
+    <h1 id="1399971" style="font-size: 45;">1399971</h1>
+    <h1 id="0000827" style="font-size: 45;">0000827</h1>
+    <hr />
+    <hr />
+    <!-- 海外 -->
+    <!-- hkHSI,US_DOWJONES,US_NASDAQ,US_SP500,US_XOP,FG_yingguo,FG_deguo,FG_faguo -->
+    <h1 id="hkHSI" style="font-size: 45;">hkHSI</h1>
+    <h1 id="hkHSCEI" style="font-size: 45;">hkHSCEI</h1>
+    <h1 id="hkHSCCI" style="font-size: 45;">hkHSCCI</h1>
+    <h1 id="US_DOWJONES" style="font-size: 45;">US_DOWJONES</h1>
+    <h1 id="US_NASDAQ" style="font-size: 45;">US_NASDAQ</h1>
+    <h1 id="US_SP500" style="font-size: 45;">US_SP500</h1>
+    <h1 id="US_XOP" style="font-size: 45;">US_XOP</h1>
+    <h1 id="FG_yingguo" style="font-size: 45;">FG_yingguo</h1>
+    <h1 id="FG_faguo" style="font-size: 45;">FG_faguo</h1>
+    <h1 id="FG_deguo" style="font-size: 45;">FG_deguo</h1>
+    <hr />
+    <hr />
+    <!-- 期货 -->
+    <!-- hq_str_hf_CHA50CFD,hq_str_hf_GC,hq_str_hf_SI, hq_str_hf_CL -->
+    <h1 id="hq_str_hf_CHA50CFD" style="font-size: 45;">hq_str_hf_CHA50CFD</h1>
+    <h1 id="hq_str_hf_GC" style="font-size: 45;">hq_str_hf_GC</h1>
+    <h1 id="hq_str_hf_SI" style="font-size: 45;">hq_str_hf_SI</h1>
+    <h1 id="hq_str_hf_CL" style="font-size: 45;">hq_str_hf_CL</h1>
+    <hr />
+    <hr />
+    <!-- 外汇 -->
+    <!-- hq_str_USDCNY,hq_str_GBPCNY,hq_str_EURCNY,hq_str_HKDCNY,hq_str_CNYJPY -->
+    <h1 id="hq_str_USDCNY" style="font-size: 45;">hq_str_USDCNY</h1>
+    <h1 id="hq_str_GBPCNY" style="font-size: 45;">hq_str_GBPCNY</h1>
+    <h1 id="hq_str_EURCNY" style="font-size: 45;">hq_str_EURCNY</h1>
+    <h1 id="hq_str_HKDCNY" style="font-size: 45;">hq_str_HKDCNY</h1>
+    <h1 id="hq_str_CNYJPY" style="font-size: 45;">hq_str_CNYJPY</h1>
+</body>
+
+</html>
