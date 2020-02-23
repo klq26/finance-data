@@ -4,11 +4,20 @@
     <meta http-equiv="Content-Language" content="zh-cn">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <style>
+        /* 分区标题 */
+        .sectionTitle {
+            color: #FFFFFF;
+            font-size: 46px;
+            margin: 4px;
+        }
 
+        /* 资金流向值区域 */
         .moneyValueBox {
             display: inline-block;
             max-width: 624;
         }
+
+        /* 资金流向值 */
         .moneyValue {
             color: #FFFFFF;
             display: inline-block;
@@ -16,7 +25,7 @@
             background-color: gray;
             width: 200px;
             font-size: 36;
-            margin: 4px;
+            margin: 0px 4px 1px 4px;
         }
 
         /* 指数 */
@@ -26,6 +35,7 @@
             margin: 4px;
         }
 
+        /* 指数标题 */
         .indexTitle {
             color: #FFFFFF;
             display: inline-block;
@@ -36,6 +46,7 @@
             margin: 4px;
         }
 
+        /* 指数值 */
         .indexValue {
             color: #FFFFFF;
             display: inline-block;
@@ -47,6 +58,7 @@
             margin: 4px;
         }
 
+        /* 指数涨跌方向（及额度？） */
         .indexUpDown {
             color: #FFFFFF;
             display: inline-block;
@@ -70,6 +82,8 @@
             font-size: 36px;
             margin-top: 4px;
             margin-left: 4px;
+            margin-right: 0px;
+            margin-bottom: 0px;
         }
 
         /* 涨跌平条 */
@@ -83,6 +97,7 @@
             display: inline-block;
             background-color: #DD2200;
             text-align: center;
+            min-width: min-content;
         }
 
         /* 涨跌平条 - 平 */
@@ -90,7 +105,7 @@
             display: inline-block;
             background-color: gray;
             text-align: center;
-            margin-left: 25px;
+            min-width: min-content;
         }
 
         /* 涨跌平条 - 跌 */
@@ -98,7 +113,7 @@
             display: inline-block;
             background-color: #009933;
             text-align: center;
-            margin-left: 25px;
+            min-width: min-content;
         }
     </style>
     <!-- 百度压缩版 jQuery -->
@@ -111,7 +126,7 @@
         var isMoneyFlowChanging = true;
         var isWeekend = false;
         // 涨跌平柱状条宽度
-        var zdpBarWidth = 606-50;
+        var zdpBarWidth = 610;
 
         // 请求中国开盘数据（含香港）
         function requestChinaData() {
@@ -260,12 +275,13 @@
             if (isWeekend || isChinaMarketChanging) {
                 return;
             }
-            $.ajax({ 
-                url: "http://87.push2.eastmoney.com/api/qt/ulist.np/get?cb=updateIndexInfos&np=1&pi=0&pz=40&po=1&secids=100.FTSE%2C100.FCHI%2C100.GDAXI%2C100.TWII%2C100.N225%2C100.KS11%2C100.RTS%2C100.DJIA%2C100.NDX%2C100.SPX&fields=f14,f12,f2,f4,f3,f18,f6", 
-                type: "GET", 
-                contentType: "application/x-javascript", 
-                dataType: "script", 
-                async: true });
+            $.ajax({
+                url: "http://87.push2.eastmoney.com/api/qt/ulist.np/get?cb=updateIndexInfos&np=1&pi=0&pz=40&po=1&secids=100.FTSE%2C100.FCHI%2C100.GDAXI%2C100.TWII%2C100.N225%2C100.KS11%2C100.RTS%2C100.DJIA%2C100.NDX%2C100.SPX%2C100.SENSEX&fields=f14,f12,f2,f4,f3,f18,f6",
+                type: "GET",
+                contentType: "application/x-javascript",
+                dataType: "script",
+                async: true
+            });
         }
 
         // 请求商品，外汇数据（始终请求）
@@ -275,7 +291,7 @@
             }
             var timestamp = new Date().getTime();
             $.ajax({
-                url: "https://hq.sinajs.cn/?_=" + timestamp + "&list=hf_GC,hf_CL,hf_SI,hf_CHA50CFD,USDCNY,GBPCNY,EURCNY,HKDCNY,CNYJPY",
+                url: "https://hq.sinajs.cn/?_=" + timestamp + "&list=hf_GC,hf_CL,hf_SI,hf_CHA50CFD,USDCNY,GBPCNY,EURCNY,HKDCNY,TWDCNY,fx_sjpycny,fx_skrwcny,AUDCNY,CADCNY",
                 type: "GET",
                 contentType: "application/javascript",
                 dataType: "script",
@@ -289,7 +305,7 @@
                     // var hq_str_GBPCNY="16:49:18,9.0862,9.0882,9.0458,411,9.0472,9.0862,9.0451,9.0862,英镑人民币,2020-02-21";
                     // var hq_str_EURCNY="16:50:49,7.6086,7.6115,7.5720,502,7.5724,7.6120,7.5618,7.6086,欧元人民币,2020-02-21";
                     // var hq_str_HKDCNY="16:49:18,0.9031,0.9039,0.9023,17,0.9022,0.9036,0.9019,0.9031,港元人民币,2020-02-21";
-                    // var hq_str_CNYJPY="16:49:18,15.84,15.88,15.94,1200,15.94,15.94,15.82,15.84,人民币日元,2020-02-21";
+                    // var hq_str_JPYCNY="16:49:18,15.84,15.88,15.94,1200,15.94,15.94,15.82,15.84,人民币日元,2020-02-21";
                     // 富时 A50 期货
                     indexInfos = hq_str_hf_CHA50CFD.split(',');
                     updateOtherInfos("hq_str_hf_CHA50CFD", "富时 A50", parseFloat(indexInfos[0]), parseFloat(indexInfos[7]));
@@ -305,14 +321,22 @@
                     // 外汇
                     moneyInfos = hq_str_USDCNY.split(',');
                     updateOtherInfos("hq_str_USDCNY", moneyInfos[9], parseFloat(moneyInfos[2]), parseFloat(moneyInfos[3]));
+                    moneyInfos = hq_str_CADCNY.split(',');
+                    updateOtherInfos("hq_str_CADCNY", moneyInfos[9], parseFloat(moneyInfos[2]), parseFloat(moneyInfos[3]));
                     moneyInfos = hq_str_GBPCNY.split(',');
                     updateOtherInfos("hq_str_GBPCNY", moneyInfos[9], parseFloat(moneyInfos[2]), parseFloat(moneyInfos[3]));
                     moneyInfos = hq_str_EURCNY.split(',');
                     updateOtherInfos("hq_str_EURCNY", moneyInfos[9], parseFloat(moneyInfos[2]), parseFloat(moneyInfos[3]));
                     moneyInfos = hq_str_HKDCNY.split(',');
                     updateOtherInfos("hq_str_HKDCNY", moneyInfos[9], parseFloat(moneyInfos[2]), parseFloat(moneyInfos[3]));
-                    moneyInfos = hq_str_CNYJPY.split(',');
-                    updateOtherInfos("hq_str_CNYJPY", moneyInfos[9], parseFloat(moneyInfos[2]), parseFloat(moneyInfos[3]));
+                    moneyInfos = hq_str_TWDCNY.split(',');
+                    updateOtherInfos("hq_str_TWDCNY", moneyInfos[9], parseFloat(moneyInfos[2]), parseFloat(moneyInfos[3]));
+                    moneyInfos = hq_str_fx_sjpycny.split(',');
+                    updateOtherInfos("hq_str_JPYCNY", "日元人民币", parseFloat(moneyInfos[2]), parseFloat(moneyInfos[3]));
+                    moneyInfos = hq_str_fx_skrwcny.split(',');
+                    updateOtherInfos("hq_str_KRWCNY", "韩元人民币", parseFloat(moneyInfos[2]), parseFloat(moneyInfos[3]));
+                    moneyInfos = hq_str_AUDCNY.split(',');
+                    updateOtherInfos("hq_str_AUDCNY", moneyInfos[9], parseFloat(moneyInfos[2]), parseFloat(moneyInfos[3]));
                 },
                 error: function () {
                     console.log('error');
@@ -333,6 +357,9 @@
                 code = item['f12'];
                 // 名称
                 name = item['f14'];
+                if (name == "印度孟买SENSEX") {
+                    name = "印度SENSEX";
+                }
                 // 当前价
                 current = (parseFloat(item['f2']) / 100).toFixed(2);
                 // 前收盘
@@ -362,7 +389,7 @@
                 if (current > lastClose) {
                     // console.log('上涨');
                     changedColor = "#DD2200";
-                    
+
                 } else if (current < lastClose) {
                     // console.log('下跌');
                     changedColor = "#009933";
@@ -381,28 +408,28 @@
                 var indexValue = document.createElement('div');
                 indexValue.className = "indexValue";
                 indexValue.innerText = current;
-                indexValue.style.setProperty('background-color',changedColor);
+                indexValue.style.setProperty('background-color', changedColor);
                 indexElement.appendChild(indexValue);
                 // 点数
                 var changeRate = document.createElement('div');
                 changeRate.className = "indexValue";
                 changeRate.innerText = ((current / lastClose - 1) * 100).toFixed(2) + '%';
-                changeRate.style.setProperty('background-color',changedColor);
+                changeRate.style.setProperty('background-color', changedColor);
                 indexElement.appendChild(changeRate);
                 // 变化方向
                 var upDown = document.createElement('div');
                 upDown.className = "indexUpDown";
                 upDown.innerText = raisedTag;
-                upDown.style.setProperty('color',raisedTagColor);
+                upDown.style.setProperty('color', raisedTagColor);
                 indexElement.appendChild(upDown);
                 // 保存本次数值
                 $(elementId).val(current);
                 // 更新动画
-                $(upDown).fadeOut({duration : 300});
-                $(upDown).fadeIn({duration : 300});
-                $(upDown).fadeOut({duration : 300});
-                $(upDown).fadeIn({duration : 300});
-                
+                $(upDown).fadeOut({ duration: 300 });
+                $(upDown).fadeIn({ duration: 300 });
+                $(upDown).fadeOut({ duration: 300 });
+                $(upDown).fadeIn({ duration: 300 });
+
             }
 
 
@@ -410,18 +437,100 @@
 
         // 更新涨跌 bar
         function updateZDPBar(idKey, up, equal, down) {
-            screenWidth = document.body.clientWidth;
             var bar = document.getElementById(idKey);
-            all = up + equal + down;
-            var upStocks = bar.getElementsByClassName("barUp")[0];
-            $(upStocks).css('width', up / all * zdpBarWidth);
-            upStocks.innerHTML = up;
+            var all = up + equal + down;
             var equalStocks = bar.getElementsByClassName("barEqual")[0];
-            $(equalStocks).css('width', equal / all * zdpBarWidth);
-            equalStocks.innerHTML = equal;
+            var upStocks = bar.getElementsByClassName("barUp")[0];
             var downStocks = bar.getElementsByClassName("barDown")[0];
-            $(downStocks).css('width', down / all * zdpBarWidth);
+            // console.log(idKey);
+            equalStocks.innerHTML = equal;
+            var equalMinWidth = parseFloat($(equalStocks).css('width')).toFixed(2);
+            var equalRecommendWidth = equal / all * zdpBarWidth;
+            upStocks.innerHTML = up;
+            var upMinWidth = parseFloat($(upStocks).css('width')).toFixed(2);
+            var upRecommendWidth = up / all * zdpBarWidth;
             downStocks.innerHTML = down;
+            var downMinWidth = parseFloat($(downStocks).css('width')).toFixed(2);
+            var downRecommendWidth = down / all * zdpBarWidth;
+
+            // 三者排出大中小
+            var small, middle, big;
+            var smallRecW, middleRecW, bigRecW;
+            {
+                if (equalRecommendWidth > upRecommendWidth) {
+                    // e > up
+                    if (upRecommendWidth > downRecommendWidth) {
+                        // up > down
+                        // upSequence = 2, equalSequence = 1, downSequence = 3;
+                        small = downStocks, middle = upStocks, big = equalStocks;
+                        smallRecW = downRecommendWidth, middleRecW = upRecommendWidth, bigRecW = equalRecommendWidth;
+                    } else {
+                        // up <= down
+                        if (equalRecommendWidth > downRecommendWidth) {
+                            // upSequence = 3, equalSequence = 1, downSequence = 2;
+                            small = upStocks, middle = downStocks, big = equalStocks;
+                            smallRecW = upRecommendWidth, middleRecW = downRecommendWidth, bigRecW = equalRecommendWidth;
+                        } else {
+                            // upSequence = 3, equalSequence = 2, downSequence = 1;
+                            small = upStocks, middle = equalStocks, big = downStocks;
+                            smallRecW = upRecommendWidth, middleRecW = equalRecommendWidth, bigRecW = downRecommendWidth;
+                        }
+                    }
+                } else {
+                    // e <= up
+                    if (equalRecommendWidth > downRecommendWidth) {
+                        // e > down
+                        // upSequence = 1, equalSequence = 2, downSequence = 3;
+                        small = downStocks, middle = equalStocks, big = upStocks;
+                        smallRecW = downRecommendWidth, middleRecW = equalRecommendWidth, bigRecW = upRecommendWidth;
+                    } else {
+                        // e <= down
+                        if (upRecommendWidth > downRecommendWidth) {
+                            // upSequence = 1, equalSequence = 3, downSequence = 2;
+                            small = equalStocks, middle = downStocks, big = upStocks;
+                            smallRecW = equalRecommendWidth, middleRecW = downRecommendWidth, bigRecW = upRecommendWidth;
+                        } else {
+                            // upSequence = 2, equalSequence = 3, downSequence = 1;
+                            small = equalStocks, middle = upStocks, big = downStocks;
+                            smallRecW = equalRecommendWidth, middleRecW = upRecommendWidth, bigRecW = downRecommendWidth;
+                        }
+                    }
+                }
+            }
+            // console.log(equalMinWidth,equalRecommendWidth.toFixed(2));
+            var leftWidth = zdpBarWidth;
+            var smallMinW = parseFloat($(small).css('width')).toFixed(2);
+            var middleMinW = parseFloat($(middle).css('width')).toFixed(2);
+            var bigMinW = parseFloat($(big).css('width')).toFixed(2);
+            smallRecW = smallRecW.toFixed(2), middleRecW = middleRecW.toFixed(2), bigRecW = bigRecW.toFixed(2);
+            // console.log(small,middle,big);
+            // console.log(smallMinW,middleMinW,bigMinW);
+            // console.log(smallRecW,middleRecW,bigRecW);
+            if (smallMinW > smallRecW) {
+                // 不改变 small 的宽
+                // console.log('不改变 small 的宽');
+                leftWidth = leftWidth - smallMinW;
+                if (middleMinW < middleRecW) {
+                    // 不改变 middle 的宽
+                    // console.log('不改变 middle 的宽');
+                    leftWidth = leftWidth - middleMinW;
+                    $(big).css('width', leftWidth);
+                } else {
+                    var middleCount = parseInt(middle.innerHTML);
+                    var bigCount = parseInt(big.innerHTML);
+                    var totalCount = middleCount + bigCount;
+                    $(middle).css('width', leftWidth * (middleCount / totalCount));
+                    $(big).css('width', leftWidth * (bigCount / totalCount));
+                }
+            } else {
+                var smallCount = parseInt(small.innerHTML);
+                var middleCount = parseInt(middle.innerHTML);
+                var bigCount = parseInt(big.innerHTML);
+                var totalCount = smallCount + middleCount + bigCount;
+                $(small).css('width', leftWidth * (smallCount / totalCount));
+                $(middle).css('width', leftWidth * (middleCount / totalCount));
+                $(big).css('width', leftWidth * (bigCount / totalCount));
+            }
         }
 
         // 更新沪深两市资金净流向
@@ -449,35 +558,35 @@
             smallDeal.className = "moneyValue";
             var num = (parseFloat(lastestData[2]) / 100000000).toFixed(1);
             smallDeal.innerText = '小 ' + num;
-            smallDeal.style.setProperty('background-color',getUpDownColoredText(num));
+            smallDeal.style.setProperty('background-color', getUpDownColoredText(num));
             box.appendChild(smallDeal);
             // 中
             var middleDeal = document.createElement('div');
             middleDeal.className = "moneyValue";
             var num = (parseFloat(lastestData[3]) / 100000000).toFixed(1);
             middleDeal.innerText = '中 ' + num;
-            middleDeal.style.setProperty('background-color',getUpDownColoredText(num));
+            middleDeal.style.setProperty('background-color', getUpDownColoredText(num));
             box.appendChild(middleDeal);
             // 大
             var bigDeal = document.createElement('div');
             bigDeal.className = "moneyValue";
             var num = (parseFloat(lastestData[4]) / 100000000).toFixed(1);
             bigDeal.innerText = '大 ' + num;
-            bigDeal.style.setProperty('background-color',getUpDownColoredText(num));
+            bigDeal.style.setProperty('background-color', getUpDownColoredText(num));
             box.appendChild(bigDeal);
             // 特大
             var extraDeal = document.createElement('div');
             extraDeal.className = "moneyValue";
             var num = (parseFloat(lastestData[5]) / 100000000).toFixed(1);
             extraDeal.innerText = '特 ' + num;
-            extraDeal.style.setProperty('background-color',getUpDownColoredText(num));
+            extraDeal.style.setProperty('background-color', getUpDownColoredText(num));
             box.appendChild(extraDeal);
             // 主力（等于大单 与 特大单之和）
             var mainPowerDeal = document.createElement('div');
             mainPowerDeal.className = "moneyValue";
             var num = (parseFloat(lastestData[1]) / 100000000).toFixed(1);
             mainPowerDeal.innerText = '主 ' + num;
-            mainPowerDeal.style.setProperty('background-color',getUpDownColoredText(num));
+            mainPowerDeal.style.setProperty('background-color', getUpDownColoredText(num));
             box.appendChild(mainPowerDeal);
         }
 
@@ -512,21 +621,21 @@
             shMoney.className = "moneyValue";
             var num = (parseFloat(lastestS2N[1]) / 10000).toFixed(1);
             shMoney.innerText = '沪 ' + num;
-            shMoney.style.setProperty('background-color',getUpDownColoredText(num));
+            shMoney.style.setProperty('background-color', getUpDownColoredText(num));
             box.appendChild(shMoney);
             // 深
             var szMoney = document.createElement('div');
             szMoney.className = "moneyValue";
             var num = (parseFloat(lastestS2N[3]) / 10000).toFixed(1);
             szMoney.innerText = '深 ' + num;
-            szMoney.style.setProperty('background-color',getUpDownColoredText(num));
+            szMoney.style.setProperty('background-color', getUpDownColoredText(num));
             box.appendChild(szMoney);
             // 总
             var totalMoney = document.createElement('div');
             totalMoney.className = "moneyValue";
             var num = (parseFloat(lastestS2N[5]) / 10000).toFixed(1);
-            totalMoney.innerText = '总 '  + num;
-            totalMoney.style.setProperty('background-color',getUpDownColoredText(num));
+            totalMoney.innerText = '总 ' + num;
+            totalMoney.style.setProperty('background-color', getUpDownColoredText(num));
             box.appendChild(totalMoney);
             moneyFlow.appendChild(box);
 
@@ -544,21 +653,21 @@
             shMoney.className = "moneyValue";
             var num = (parseFloat(lastestN2S[1]) / 10000).toFixed(1)
             shMoney.innerText = '沪 ' + (parseFloat(lastestN2S[1]) / 10000).toFixed(1);
-            shMoney.style.setProperty('background-color',getUpDownColoredText(num));
+            shMoney.style.setProperty('background-color', getUpDownColoredText(num));
             box.appendChild(shMoney);
             // 深
             var szMoney = document.createElement('div');
             szMoney.className = "moneyValue";
             var num = (parseFloat(lastestN2S[3]) / 10000).toFixed(1);
             szMoney.innerText = '深 ' + num;
-            szMoney.style.setProperty('background-color',getUpDownColoredText(num));
+            szMoney.style.setProperty('background-color', getUpDownColoredText(num));
             box.appendChild(szMoney);
             // 总
             var totalMoney = document.createElement('div');
             totalMoney.className = "moneyValue";
             var num = (parseFloat(lastestN2S[5]) / 10000).toFixed(1);
-            totalMoney.innerText = '总 '  + num;
-            totalMoney.style.setProperty('background-color',getUpDownColoredText(num));
+            totalMoney.innerText = '总 ' + num;
+            totalMoney.style.setProperty('background-color', getUpDownColoredText(num));
             box.appendChild(totalMoney);
             moneyFlow.appendChild(box);
         }
@@ -608,37 +717,37 @@
 
             // 取出 index 元素
             var indexElement = document.getElementById(key);
-                indexElement.innerHTML = "";
-                // 标题
-                var title = document.createElement('div');
-                title.className = "indexTitle";
-                title.innerText = name;
-                indexElement.appendChild(title);
-                // 点数
-                var indexValue = document.createElement('div');
-                indexValue.className = "indexValue";
-                indexValue.innerText = current;
-                indexValue.style.setProperty('background-color',changedColor);
-                indexElement.appendChild(indexValue);
-                // 点数
-                var changeRate = document.createElement('div');
-                changeRate.className = "indexValue";
-                changeRate.innerText = ((current / lastClose - 1) * 100).toFixed(2) + '%';
-                changeRate.style.setProperty('background-color',changedColor);
-                indexElement.appendChild(changeRate);
-                // 变化方向
-                var upDown = document.createElement('div');
-                upDown.className = "indexUpDown";
-                upDown.innerText = raisedTag;
-                upDown.style.setProperty('color',raisedTagColor);
-                indexElement.appendChild(upDown);
-                // 保存本次数值
-                $(elementId).val(current);
-                // 更新动画
-                $(upDown).fadeOut({duration : 300});
-                $(upDown).fadeIn({duration : 300});
-                $(upDown).fadeOut({duration : 300});
-                $(upDown).fadeIn({duration : 300});
+            indexElement.innerHTML = "";
+            // 标题
+            var title = document.createElement('div');
+            title.className = "indexTitle";
+            title.innerText = name;
+            indexElement.appendChild(title);
+            // 点数
+            var indexValue = document.createElement('div');
+            indexValue.className = "indexValue";
+            indexValue.innerText = current;
+            indexValue.style.setProperty('background-color', changedColor);
+            indexElement.appendChild(indexValue);
+            // 点数
+            var changeRate = document.createElement('div');
+            changeRate.className = "indexValue";
+            changeRate.innerText = ((current / lastClose - 1) * 100).toFixed(2) + '%';
+            changeRate.style.setProperty('background-color', changedColor);
+            indexElement.appendChild(changeRate);
+            // 变化方向
+            var upDown = document.createElement('div');
+            upDown.className = "indexUpDown";
+            upDown.innerText = raisedTag;
+            upDown.style.setProperty('color', raisedTagColor);
+            indexElement.appendChild(upDown);
+            // 保存本次数值
+            $(elementId).val(current);
+            // 更新动画
+            $(upDown).fadeOut({ duration: 300 });
+            $(upDown).fadeIn({ duration: 300 });
+            $(upDown).fadeOut({ duration: 300 });
+            $(upDown).fadeIn({ duration: 300 });
 
 
             // 保存本次数值
@@ -730,8 +839,14 @@
         }
 
         // 隐藏资金流向区域
-        function hideArea(element) {
-            $(element).hide();
+        function showHideArea(element) {
+            if ($(element).is(':hidden')) {
+                $(element).show({ duration: 300 })
+                
+            } else {
+                $(element).hide({ duration: 300 });
+                
+            }
         }
 
         // 初始化
@@ -759,18 +874,20 @@
     </script>
 </head>
 
-<body>
+<body style="width: 900px;">
     <!-- 时间区 -->
     <p id="timestamp" style="font-size: 36; color: #FAFAFA;">时间</p>
     <hr />
     <!-- 资金流向区 -->
-    <div id="moneyFlow" style="color: #fff;" onclick="hideArea(this)">
+    <p class="sectionTitle" onclick="showHideArea(moneyFlow)">大陆及沪港通资金流向</p>
+    <div id="moneyFlow" style="color: #fff;">
         <div id="inlandDealMoney"></div>
         <div id="inlandMoneyFlow"></div>
         <div id="hkMoneyFlow"></div>
     </div>
     <hr />
     <!-- 涨跌平盘条形区 -->
+    <p class="sectionTitle" onclick="showHideArea(zdp)">指数涨跌分布</p>
     <div id="zdp">
         <div class="zdpBarArea" id="allStockBar">
             <div class="indexTitle">全市场</div>
@@ -826,61 +943,85 @@
     <div id="index">
         <!-- 中国 -->
         <!-- i:1.000012,i:1.000013,i:1.000832,i:1.000001,i:0.399001,i:0.399006,i:1.000015,i:1.000922,i:1.000016,i:1.000300,i:0.399905,i:1.000852,i:0.399005,i:1.000991,i:1.000992,i:0.399975,i:0.399986,i:0.399812,i:0.399971,i:1.000827,i:100.HSI,i:100.HSCEI,i:124.HSCCI -->
-        <p class="index" id="000012">000012</p>
-        <p class="index" id="000013">000013</p>
-        <p class="index" id="000832">000832</p>
-        <p class="index" id="000001">000001</p>
-        <p class="index" id="399001">399001</p>
-        <p class="index" id="399006">399006</p>
-        <p class="index" id="000015">000015</p>
-        <p class="index" id="000922">000922</p>
-        <p class="index" id="000016">000016</p>
-        <p class="index" id="000300">000300</p>
-        <p class="index" id="399905">399905</p>
-        <p class="index" id="000852">000852</p>
-        <p class="index" id="399005">399005</p>
-        <p class="index" id="000991">000991</p>
-        <p class="index" id="000992">000992</p>
-        <p class="index" id="399975">399975</p>
-        <p class="index" id="399986">399986</p>
-        <p class="index" id="399812">399812</p>
-        <p class="index" id="399971">399971</p>
-        <p class="index" id="000827">000827</p>
-        <!-- 中国香港 -->
-        <p class="index" id="HSI">HSI</p>
-        <p class="index" id="HSCEI">HSCEI</p>
-        <p class="index" id="HSCCI">HSCCI</p>
-        <!-- 中国台湾 -->
-        <p class="index" id="TWII">TWII</p>
+        <p class="sectionTitle" onclick="showHideArea(chinaIndexs)">中国大陆及港台地区</p>
+        <div id="chinaIndexs">
+            <p class="index" id="000012">000012</p>
+            <p class="index" id="000013">000013</p>
+            <p class="index" id="000832">000832</p>
+            <p class="index" id="000001">000001</p>
+            <p class="index" id="399001">399001</p>
+            <p class="index" id="399006">399006</p>
+            <p class="index" id="000015">000015</p>
+            <p class="index" id="000922">000922</p>
+            <p class="index" id="000016">000016</p>
+            <p class="index" id="000300">000300</p>
+            <p class="index" id="399905">399905</p>
+            <p class="index" id="000852">000852</p>
+            <p class="index" id="399005">399005</p>
+            <p class="index" id="000991">000991</p>
+            <p class="index" id="000992">000992</p>
+            <p class="index" id="399975">399975</p>
+            <p class="index" id="399986">399986</p>
+            <p class="index" id="399812">399812</p>
+            <p class="index" id="399971">399971</p>
+            <p class="index" id="000827">000827</p>
+            <!-- 中国香港 -->
+            <p class="index" id="HSI">HSI</p>
+            <p class="index" id="HSCEI">HSCEI</p>
+            <p class="index" id="HSCCI">HSCCI</p>
+            <!-- 中国台湾 -->
+            <p class="index" id="TWII">TWII</p>
+        </div>
         <hr />
         <!-- 亚洲新兴 & 欧洲，美洲等 -->
         <!-- FTSE FCHI GDAXI TWII N225 KS11 RTS DJIA NDX SPX -->
-        <p class="index" id="N225">N225</p>
-        <p class="index" id="KS11">KS11</p>
-        <hr />
+        <p class="sectionTitle" onclick="showHideArea(asianIndexs)">亚洲地区</p>
+        <div id="asianIndexs">
+            <p class="index" id="N225">N225</p>
+            <p class="index" id="KS11">KS11</p>
+            <p class="index" id="SENSEX">SENSEX</p>
+        </div>
+    </div>
+    <hr />
+    <p class="sectionTitle" onclick="showHideArea(euroIndexs)">欧洲地区</p>
+    <div id="euroIndexs">
         <p class="index" id="FTSE">FTSE</p>
         <p class="index" id="FCHI">FCHI</p>
         <p class="index" id="GDAXI">GDAXI</p>
         <p class="index" id="RTS">RTS</p>
-        <hr />
+    </div>
+    <hr />
+    <p class="sectionTitle" onclick="showHideArea(AmericaIndexs)">美洲地区</p>
+    <div id="AmericaIndexs">
         <p class="index" id="DJIA">DJIA</p>
         <p class="index" id="NDX">NDX</p>
         <p class="index" id="SPX">SPX</p>
-        <hr />
-        <!-- 期货 -->
-        <!-- hq_str_hf_CHA50CFD,hq_str_hf_GC,hq_str_hf_SI, hq_str_hf_CL -->
+    </div>
+    <hr />
+    <!-- 期货 -->
+    <!-- hq_str_hf_CHA50CFD,hq_str_hf_GC,hq_str_hf_SI, hq_str_hf_CL -->
+    <p class="sectionTitle" onclick="showHideArea(funds)">股指及商品期货</p>
+    <div id="funds">
         <p class="index" id="hq_str_hf_CHA50CFD">hq_str_hf_CHA50CFD</p>
         <p class="index" id="hq_str_hf_GC">hq_str_hf_GC</p>
         <p class="index" id="hq_str_hf_SI">hq_str_hf_SI</p>
         <p class="index" id="hq_str_hf_CL">hq_str_hf_CL</p>
-        <hr />
-        <!-- 外汇 -->
-        <!-- hq_str_USDCNY,hq_str_GBPCNY,hq_str_EURCNY,hq_str_HKDCNY,hq_str_CNYJPY -->
+    </div>
+    <hr />
+    <!-- 外汇 -->
+    <!-- hq_str_USDCNY,hq_str_GBPCNY,hq_str_EURCNY,hq_str_HKDCNY,hq_str_TWDCNY,hq_str_JPYCNY -->
+    <p class="sectionTitle" onclick="showHideArea(moneyExchange)">外汇牌价</p>
+    <div id="moneyExchange">
         <p class="index" id="hq_str_USDCNY">hq_str_USDCNY</p>
+        <p class="index" id="hq_str_CADCNY">hq_str_CADCNY</p>
         <p class="index" id="hq_str_GBPCNY">hq_str_GBPCNY</p>
         <p class="index" id="hq_str_EURCNY">hq_str_EURCNY</p>
+        <p class="index" id="hq_str_AUDCNY">hq_str_AUDCNY</p>
         <p class="index" id="hq_str_HKDCNY">hq_str_HKDCNY</p>
-        <p class="index" id="hq_str_CNYJPY">hq_str_CNYJPY</p>
+        <p class="index" id="hq_str_TWDCNY">hq_str_TWDCNY</p>
+        <p class="index" id="hq_str_JPYCNY">hq_str_JPYCNY</p>
+        <p class="index" id="hq_str_KRWCNY">hq_str_KRWCNY</p>
+    </div>
     </div>
 </body>
 
