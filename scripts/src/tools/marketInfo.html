@@ -292,6 +292,9 @@
                     // 更新
                     var moneyFlow = document.getElementById("inlandDealMoney");
                     moneyFlow.innerHTML = "";
+                    // 数值区
+                    var box = document.createElement('div');
+                    box.className = "moneyValueBox";
                     // 标题
                     var title = document.createElement('div');
                     title.className = "indexTitle";
@@ -301,17 +304,24 @@
                     var shMoney = document.createElement('div');
                     shMoney.className = "moneyValue";
                     shMoney.innerText = '沪 ' + shanghaiDealMoney.toFixed(1);
-                    moneyFlow.appendChild(shMoney);
+                    box.appendChild(shMoney);
                     // 深
                     var szMoney = document.createElement('div');
                     szMoney.className = "moneyValue";
                     szMoney.innerText = '深 ' + shenzhenDealMoney.toFixed(1);
-                    moneyFlow.appendChild(szMoney);
+                    box.appendChild(szMoney);
                     // 总
                     var totalMoney = document.createElement('div');
                     totalMoney.className = "moneyValue";
                     totalMoney.innerText = '总 ' + totalDealMoney.toFixed(1);
-                    moneyFlow.appendChild(totalMoney);
+                    box.appendChild(totalMoney);
+                    moneyFlow.appendChild(box);
+
+                    // 更新动画
+                    $(box).fadeOut({ duration: 300 });
+                    $(box).fadeIn({ duration: 300 });
+                    $(box).fadeOut({ duration: 300 });
+                    $(box).fadeIn({ duration: 300 });
                 }
             });
         }
@@ -633,14 +643,14 @@
             // console.log(idKey);
             equalStocks.innerHTML = equal;
             var equalMinWidth = parseFloat($(equalStocks).css('width')).toFixed(2);
-            var equalRecommendWidth = equal / all * zdpBarWidth;
+            var equalRecommendWidth = (equal / all * zdpBarWidth).toFixed(2);
             upStocks.innerHTML = up;
             var upMinWidth = parseFloat($(upStocks).css('width')).toFixed(2);
-            var upRecommendWidth = up / all * zdpBarWidth;
+            var upRecommendWidth = (up / all * zdpBarWidth).toFixed(2);
             downStocks.innerHTML = down;
             var downMinWidth = parseFloat($(downStocks).css('width')).toFixed(2);
-            var downRecommendWidth = down / all * zdpBarWidth;
-
+            var downRecommendWidth = (down / all * zdpBarWidth).toFixed(2);
+            // console.log(equalMinWidth,equalRecommendWidth,upMinWidth,upRecommendWidth,downMinWidth,downRecommendWidth);
             // 三者排出大中小
             var small, middle, big;
             var smallRecW, middleRecW, bigRecW;
@@ -650,7 +660,7 @@
                     if (upRecommendWidth > downRecommendWidth) {
                         // up > down
                         // upSequence = 2, equalSequence = 1, downSequence = 3;
-                        small = downStocks, middle = upStocks, big = equalStocks;
+                        small = equalStocks, middle = downStocks, big = upStocks;
                         smallRecW = downRecommendWidth, middleRecW = upRecommendWidth, bigRecW = equalRecommendWidth;
                     } else {
                         // up <= down
@@ -690,10 +700,9 @@
             var smallMinW = parseFloat($(small).css('width')).toFixed(2);
             var middleMinW = parseFloat($(middle).css('width')).toFixed(2);
             var bigMinW = parseFloat($(big).css('width')).toFixed(2);
-            smallRecW = smallRecW.toFixed(2), middleRecW = middleRecW.toFixed(2), bigRecW = bigRecW.toFixed(2);
-            // console.log(small,middle,big);
-            // console.log(smallMinW,middleMinW,bigMinW);
-            // console.log(smallRecW,middleRecW,bigRecW);
+            // console.log('数据',small.innerHTML,middle.innerHTML,big.innerHTML);
+            // console.log('最小',zdpBarWidth, smallMinW,middleMinW,bigMinW);
+            // console.log('推荐',zdpBarWidth, smallRecW,middleRecW,bigRecW);
             if (smallMinW > smallRecW) {
                 // 不改变 small 的宽
                 // console.log('不改变 small 的宽');
@@ -715,10 +724,20 @@
                 var middleCount = parseInt(middle.innerHTML);
                 var bigCount = parseInt(big.innerHTML);
                 var totalCount = smallCount + middleCount + bigCount;
-                $(small).css('width', leftWidth * (smallCount / totalCount));
-                $(middle).css('width', leftWidth * (middleCount / totalCount));
-                $(big).css('width', leftWidth * (bigCount / totalCount));
+                $(small).css('width', (leftWidth * (smallCount / totalCount)).toFixed(2));
+                $(middle).css('width', (leftWidth * (middleCount / totalCount)).toFixed(2));
+                $(big).css('width', (leftWidth * (bigCount / totalCount)).toFixed(2));
             }
+            // var smallResult = parseFloat($(small).css('width')).toFixed(2);
+            // var middleResult = parseFloat($(middle).css('width')).toFixed(2);
+            // var bigResult = parseFloat($(big).css('width')).toFixed(2);
+            // console.log('结果',zdpBarWidth,smallResult,middleResult,bigResult);
+            // 更新动画
+            var zdpBar = bar.getElementsByClassName('zdpBar')[0];
+            $(zdpBar).fadeOut({ duration: 300 });
+            $(zdpBar).fadeIn({ duration: 300 });
+            $(zdpBar).fadeOut({ duration: 300 });
+            $(zdpBar).fadeIn({ duration: 300 });
         }
 
         // 更新沪深两市资金净流向
@@ -755,6 +774,13 @@
             middleDeal.innerText = '中 ' + num;
             middleDeal.style.setProperty('background-color', getUpDownColoredText(num));
             box.appendChild(middleDeal);
+            // 主力（等于大单 与 特大单之和）
+            var mainPowerDeal = document.createElement('div');
+            mainPowerDeal.className = "moneyValue";
+            var num = (parseFloat(lastestData[1]) / 100000000).toFixed(1);
+            mainPowerDeal.innerText = '主 ' + num;
+            mainPowerDeal.style.setProperty('background-color', getUpDownColoredText(num));
+            box.appendChild(mainPowerDeal);
             // 大
             var bigDeal = document.createElement('div');
             bigDeal.className = "moneyValue";
@@ -769,13 +795,11 @@
             extraDeal.innerText = '特 ' + num;
             extraDeal.style.setProperty('background-color', getUpDownColoredText(num));
             box.appendChild(extraDeal);
-            // 主力（等于大单 与 特大单之和）
-            var mainPowerDeal = document.createElement('div');
-            mainPowerDeal.className = "moneyValue";
-            var num = (parseFloat(lastestData[1]) / 100000000).toFixed(1);
-            mainPowerDeal.innerText = '主 ' + num;
-            mainPowerDeal.style.setProperty('background-color', getUpDownColoredText(num));
-            box.appendChild(mainPowerDeal);
+            // 更新动画
+            $(box).fadeOut({ duration: 300 });
+            $(box).fadeIn({ duration: 300 });
+            $(box).fadeOut({ duration: 300 });
+            $(box).fadeIn({ duration: 300 });
         }
 
         // 更新沪港通，深港通资金流向
@@ -849,36 +873,46 @@
             title.innerText = "南向资金净流入（亿）";
             moneyFlow.appendChild(title);
             // 数值区
-            var box = document.createElement('div');
-            box.className = "moneyValueBox";
-            moneyFlow.appendChild(box);
+            var box2 = document.createElement('div');
+            box2.className = "moneyValuebox";
+            moneyFlow.appendChild(box2);
             // 沪
             var shMoney = document.createElement('div');
             shMoney.className = "moneyValue";
             var num = (parseFloat(lastestN2S[1]) / 10000).toFixed(1)
             shMoney.innerText = '沪 ' + (parseFloat(lastestN2S[1]) / 10000).toFixed(1);
             shMoney.style.setProperty('background-color', getUpDownColoredText(num));
-            box.appendChild(shMoney);
+            box2.appendChild(shMoney);
             // 深
             var szMoney = document.createElement('div');
             szMoney.className = "moneyValue";
             var num = (parseFloat(lastestN2S[3]) / 10000).toFixed(1);
             szMoney.innerText = '深 ' + num;
             szMoney.style.setProperty('background-color', getUpDownColoredText(num));
-            box.appendChild(szMoney);
+            box2.appendChild(szMoney);
             // 总
             var totalMoney = document.createElement('div');
             totalMoney.className = "moneyValue";
             var num = (parseFloat(lastestN2S[5]) / 10000).toFixed(1);
             totalMoney.innerText = '总 ' + num;
             totalMoney.style.setProperty('background-color', getUpDownColoredText(num));
-            box.appendChild(totalMoney);
-            moneyFlow.appendChild(box);
+            box2.appendChild(totalMoney);
+            moneyFlow.appendChild(box2);
+            // 更新动画
+            $(box).fadeOut({ duration: 300 });
+            $(box).fadeIn({ duration: 300 });
+            $(box).fadeOut({ duration: 300 });
+            $(box).fadeIn({ duration: 300 });
+
+            $(box2).fadeOut({ duration: 300 });
+            $(box2).fadeIn({ duration: 300 });
+            $(box2).fadeOut({ duration: 300 });
+            $(box2).fadeIn({ duration: 300 });
         }
 
         // 更新期货，外汇数据
         function updateOtherInfos(key, name, current, lastClose) {
-            var symbol = key.replace("hq_str_","").replace("hf_","");
+            var symbol = key.replace("hq_str_", "").replace("hf_", "");
             // 与昨日收盘对比
             var dailyChangedValue = (current - lastClose);
             var dailyChangedRate = ((current / lastClose - 1) * 100).toFixed(2) + '%';
