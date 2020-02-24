@@ -17,6 +17,18 @@
             max-width: 624;
         }
 
+        #inlandDealMoney {
+            margin-left: 4px;
+        }
+
+        #inlandMoneyFlow {
+            margin-left: 4px;
+        }
+
+        #hkMoneyFlow {
+            margin-left: 4px;
+        }
+
         /* 资金流向值 */
         .moneyValue {
             color: #FFFFFF;
@@ -27,6 +39,7 @@
             font-size: 36;
             margin: 0px 4px 1px 4px;
         }
+
         /* 基金标题 */
         .fundTitle {
             color: #FF9900;
@@ -68,6 +81,18 @@
             margin: 4px;
         }
 
+        /* 指数日变化值 */
+        .indexDailyChangeValue {
+            color: #FFFFFF;
+            display: inline-block;
+            text-align: right;
+            background-color: gray;
+            padding-right: 4px;
+            width: 200px;
+            font-size: 36;
+            margin: 4px;
+        }
+
         /* 指数涨跌方向（及额度？） */
         .indexUpDown {
             color: #FFFFFF;
@@ -77,6 +102,7 @@
             width: 200px;
             font-size: 36;
             margin: 4px;
+
         }
 
         /* 时间戳 */
@@ -135,8 +161,10 @@
         var isChinaMarketChanging = true;
         var isMoneyFlowChanging = true;
         var isWeekend = false;
-        // 涨跌平柱状条宽度
         var zdpBarWidth = 610;
+        var dataList = new Array();
+        // 显示类型
+        var showType = 1;
 
         // 请求中国开盘数据（含香港）
         function requestChinaData() {
@@ -290,7 +318,7 @@
 
         // 请求外国开盘数据（中国收盘了之后再开始运行）
         function requestForeignData() {
-            if (isWeekend || isChinaMarketChanging) {
+            if (isWeekend) {
                 return;
             }
             $.ajax({
@@ -356,9 +384,6 @@
                     moneyInfos = hq_str_AUDCNY.split(',');
                     updateOtherInfos("hq_str_AUDCNY", moneyInfos[9], parseFloat(moneyInfos[2]), parseFloat(moneyInfos[3]));
                 },
-                error: function () {
-                    console.log('error');
-                }
             });
         }
 
@@ -370,38 +395,44 @@
                 // 指数数据
                 var item = diff[key];
                 // id
-                elementId = "#" + item['f12'];
+                var elementId = "#" + item['f12'];
                 // 代码
-                code = item['f12'];
+                var code = item['f12'];
+                var symbol = code;
                 // 名称
-                name = item['f14'];
+                var name = item['f14'];
                 if (name == "印度孟买SENSEX") {
                     name = "印度SENSEX";
                 }
                 // 当前价
-                current = (parseFloat(item['f2']) / 100).toFixed(2);
+                var current = (parseFloat(item['f2']) / 100).toFixed(2);
                 // 前收盘
-                lastClose = current - parseFloat(item['f4']) / 100;
+                var lastClose = current - parseFloat(item['f4']) / 100;
+
+                // 与昨日收盘对比
+                var dailyChangedValue = (current - lastClose);
+                var dailyChangedRate = ((current / lastClose - 1) * 100).toFixed(2) + '%';
                 // 上次更新的值
                 lastValue = $(elementId).val();
                 // 如果没有上次值，则说明是第一次进入页面，不计算涨跌
                 if (lastValue == 0) {
                     lastValue = current;
                 }
-
                 // 和上次查询进行比较（非和昨天收盘价比较，而是和上次日内查询进行比较）
-                raisedTag = "-";
-                raisedTagColor = "#FFFFFF";
+                refreshChangedTag = "-";
+                refreshChangedColor = "#FFFFFF";
+                refreshChangedValue = 0.00;
                 if (current > lastValue) {
-                    raisedTag = "↑";
-                    raisedTagColor = "#DD2200";
+                    refreshChangedTag = "↑";
+                    refreshChangedColor = "#DD2200";
                 } else if (current < lastValue && current != 0) {
-                    raisedTag = "↓";
-                    raisedTagColor = "#009933";
+                    refreshChangedTag = "↓";
+                    refreshChangedColor = "#009933";
                 } else {
-                    raisedTag = "-";
-                    raisedTagColor = "#FFFFFF";
+                    refreshChangedTag = "-";
+                    refreshChangedColor = "#FFFFFF";
                 }
+                refreshChangedValue = current - lastValue;
                 // 日间升降指标（和昨天收盘比较，决定整条数据的整体颜色）
                 changedColor = "";
                 if (current > lastClose) {
@@ -412,15 +443,21 @@
                     // console.log('下跌');
                     changedColor = "#009933";
                 } else {
-                    changedColor = "#FFFFFF";
+                    changedColor = "#808080";
                 }
+                dailyChangedValue = dailyChangedValue.toFixed(3);
+                refreshChangedValue = refreshChangedValue.toFixed(3);
+                if (refreshChangedValue > 0) {
+                    refreshChangedValue = "+" + refreshChangedValue;
+                }
+
                 // 取出 index 元素
                 var indexElement = document.getElementById(item['f12']);
                 indexElement.innerHTML = "";
                 // 标题
                 var title = document.createElement('div');
                 title.className = "indexTitle";
-                title.innerText = name;
+                title.innerText = showType == 1 ? name : symbol;
                 indexElement.appendChild(title);
                 // 点数
                 var indexValue = document.createElement('div');
@@ -430,15 +467,21 @@
                 indexElement.appendChild(indexValue);
                 // 点数
                 var changeRate = document.createElement('div');
-                changeRate.className = "indexValue";
-                changeRate.innerText = ((current / lastClose - 1) * 100).toFixed(2) + '%';
+                changeRate.className = "indexDailyChangeValue";
+                changeRate.innerText = showType == 1 ? dailyChangedRate : dailyChangedValue;
                 changeRate.style.setProperty('background-color', changedColor);
                 indexElement.appendChild(changeRate);
                 // 变化方向
                 var upDown = document.createElement('div');
                 upDown.className = "indexUpDown";
-                upDown.innerText = raisedTag;
-                upDown.style.setProperty('color', raisedTagColor);
+                upDown.innerText = showType == 1 ? refreshChangedTag : refreshChangedValue;
+                upDown.style.setProperty('color', refreshChangedColor);
+                if (showType == 1) {
+                    upDown.style.setProperty('text-align', 'center');
+                } else {
+                    upDown.style.setProperty('text-align', 'right');
+                    upDown.style.setProperty('padding-right', '4px');
+                }
                 indexElement.appendChild(upDown);
                 // 保存本次数值
                 $(elementId).val(current);
@@ -448,6 +491,25 @@
                 $(upDown).fadeOut({ duration: 300 });
                 $(upDown).fadeIn({ duration: 300 });
 
+                var isExist = false;
+                for (var item in dataList) {
+                    if (dataList[item]['symbol'] == symbol) {
+                        isExist = true;
+                        // 更新
+                        dataList[item] = {
+                            'name': name, 'symbol': symbol, 'changeValue': dailyChangedValue, 'changeRate': dailyChangedRate, 'refreshChangedValue': refreshChangedValue, 'refreshChangedTag': refreshChangedTag
+                        };
+                        // console.log(dataList[item]);
+                        break;
+                    }
+                }
+
+                // 存入内存
+                if (!isExist) {
+                    dataList.push({
+                        'name': name, 'symbol': symbol, 'changeValue': dailyChangedValue, 'changeRate': dailyChangedRate, 'refreshChangedValue': refreshChangedValue, 'refreshChangedTag': refreshChangedTag
+                    });
+                }
             }
 
 
@@ -455,74 +517,110 @@
 
         // 更新关心的场内基金
         function updateInnerMarketFunds(data) {
-            console.log(data);
+
+            var name = '华宝油气';
+            var symbol = data['data']['code'];
             // 取出 index 元素
-            var indexElement = document.getElementById(data['data']['code']);
-                indexElement.innerHTML = "";
-                // 标题
-                var title = document.createElement('div');
-                title.className = "fundTitle";
-                title.innerText = "华宝油气";
-                indexElement.appendChild(title);
-                // 点数
-                
-                var details = data['data']['details'];
+            var indexElement = document.getElementById(symbol);
+            indexElement.innerHTML = "";
+            // 标题
+            var title = document.createElement('div');
+            title.className = "fundTitle";
+            title.innerText = showType == 1 ? name : symbol;
+            indexElement.appendChild(title);
+            // 点数
+            var details = data['data']['details'];
+            var lastClose = data['data']['prePrice'];
+            if (details.length <= 0) {
+                current = lastClose;
+            } else {
                 current = details[details.length - 1].split(',')[1];
-                lastClose = data['data']['prePrice'];
-                // 上次更新的值
-                lastValue = $(elementId).val();
-                // 如果没有上次值，则说明是第一次进入页面，不计算涨跌
-                if (lastValue == 0) {
-                    lastValue = current;
+            }
+            var elementId = "#" + symbol;
+            // 上次更新的值
+            lastValue = $(elementId).val();
+            // 如果没有上次值，则说明是第一次进入页面，不计算涨跌
+            if (lastValue == 0) {
+                lastValue = current;
+            }
+            // 与昨日收盘对比
+            var dailyChangedValue = (current - lastClose).toFixed(3);
+            var dailyChangedRate = ((current / lastClose - 1) * 100).toFixed(2) + '%';
+            changedColor = "";
+            if (current > lastClose) {
+                // console.log('上涨');
+                changedColor = "#DD2200";
+
+            } else if (current < lastClose) {
+                // console.log('下跌');
+                changedColor = "#009933";
+            } else {
+                changedColor = gray;
+            }
+
+            var indexValue = document.createElement('div');
+            indexValue.className = "indexValue";
+            indexValue.innerText = current;
+            indexValue.style.setProperty('background-color', changedColor);
+            indexElement.appendChild(indexValue);
+            // 点数
+            var changeRate = document.createElement('div');
+            changeRate.className = "indexDailyChangeValue";
+            changeRate.innerText = showType == 1 ? dailyChangedRate : dailyChangedValue;
+            changeRate.style.setProperty('background-color', changedColor);
+            indexElement.appendChild(changeRate);
+            // 变化方向
+            var upDown = document.createElement('div');
+            var refreshChangedTag = "-";
+            var refreshChangedColor = "#FFFFFF";
+            var refreshChangedValue = "0.00";
+            if (current > lastValue) {
+                refreshChangedTag = "↑";
+                refreshChangedColor = "#DD2200";
+            } else if (current < lastValue && current != 0) {
+                refreshChangedTag = "↓";
+                refreshChangedColor = "#009933";
+            } else {
+                refreshChangedTag = "-";
+                refreshChangedColor = "#FFFFFF";
+            }
+            refreshChangedValue = (current - lastValue).toFixed(3);
+            upDown.className = "indexUpDown";
+            upDown.innerText = showType == 1 ? refreshChangedTag : refreshChangedValue;
+            upDown.style.setProperty('color', refreshChangedColor);
+            if (showType == 1) {
+                upDown.style.setProperty('text-align', 'center');
+            } else {
+                upDown.style.setProperty('text-align', 'right');
+                upDown.style.setProperty('padding-right', '4px');
+            }
+            indexElement.appendChild(upDown);
+            // 保存本次数值
+            $(elementId).val(current);
+            // 更新动画
+            $(upDown).fadeOut({ duration: 300 });
+            $(upDown).fadeIn({ duration: 300 });
+            $(upDown).fadeOut({ duration: 300 });
+            $(upDown).fadeIn({ duration: 300 });
+            var isExist = false;
+            for (var item in dataList) {
+                if (dataList[item]['symbol'] == symbol) {
+                    isExist = true;
+                    // 更新
+                    dataList[item] = {
+                        'name': name, 'symbol': symbol, 'changeValue': dailyChangedValue, 'changeRate': dailyChangedRate, 'refreshChangedValue': refreshChangedValue, 'refreshChangedTag': refreshChangedTag
+                    };
+                    // console.log(dataList[item]);
+                    break;
                 }
-                changedColor = "";
-                if (current > lastClose) {
-                    // console.log('上涨');
-                    changedColor = "#DD2200";
-                    
-                } else if (current < lastClose) {
-                    // console.log('下跌');
-                    changedColor = "#009933";
-                } else {
-                    changedColor = "#FFFFFF";
-                }
-                var indexValue = document.createElement('div');
-                indexValue.className = "indexValue";
-                indexValue.innerText = current;
-                indexValue.style.setProperty('background-color',changedColor);
-                indexElement.appendChild(indexValue);
-                // 点数
-                
-                var changeRate = document.createElement('div');
-                changeRate.className = "indexValue";
-                changeRate.innerText = ((current / lastClose - 1) * 100).toFixed(2) + '%';
-                changeRate.style.setProperty('background-color',changedColor);
-                indexElement.appendChild(changeRate);
-                // 变化方向
-                var upDown = document.createElement('div');
-                var raisedTag = "-";
-                var raisedTagColor = "#FFFFFF";
-                if (current > lastValue) {
-                    raisedTag = "↑";
-                    raisedTagColor = "#DD2200";
-                } else if (current < lastValue && current != 0) {
-                    raisedTag = "↓";
-                    raisedTagColor = "#009933";
-                } else {
-                    raisedTag = "-";
-                    raisedTagColor = "#FFFFFF";
-                }
-                upDown.className = "indexUpDown";
-                upDown.innerText = raisedTag;
-                upDown.style.setProperty('color',raisedTagColor);
-                indexElement.appendChild(upDown);
-                // 保存本次数值
-                $(elementId).val(current);
-                // 更新动画
-                $(upDown).fadeOut({duration : 300});
-                $(upDown).fadeIn({duration : 300});
-                $(upDown).fadeOut({duration : 300});
-                $(upDown).fadeIn({duration : 300});
+            }
+
+            // 存入内存
+            if (!isExist) {
+                dataList.push({
+                    'name': name, 'symbol': symbol, 'changeValue': dailyChangedValue, 'changeRate': dailyChangedRate, 'refreshChangedValue': refreshChangedValue, 'refreshChangedTag': refreshChangedTag
+                });
+            }
         }
 
         // 更新涨跌 bar
@@ -687,12 +785,28 @@
             var S2N = data["data"]["s2n"];
             // ["15:00", "-88205.65", "5288205.65", "273623.63", "4926376.37", "185417.98"]
             // 时间，沪股通净流入（万），余额（万），深股通净流入（万），余额（万），两市净流入（万）
-            var lastestS2N = S2N[S2N.length - 1].split(",");
+            var lastestS2N = 0;
+            for (var idx in S2N) {
+                var item = S2N[idx];
+                var dataInfo = item.split(",");
+                if (dataInfo[1] == '-') {
+                    break;
+                }
+                lastestS2N = dataInfo;
+            }
             // 南向资金
             var N2S = data["data"]["n2s"];
             // ["16:10", "90440.80", "4109559.20", "16760.73", "4183239.27", "107201.53"]
             // 时间，港股通（沪）净流入（万），余额（万），港股通（深）净流入（万），余额（万），两市净流入（万）
-            var lastestN2S = N2S[N2S.length - 1].split(",");
+            var lastestN2S = 0;
+            for (var idx in N2S) {
+                var item = N2S[idx];
+                var dataInfo = item.split(",");
+                if (dataInfo[1] == '-') {
+                    break;
+                }
+                lastestN2S = dataInfo;
+            }
 
             // 更新
             var moneyFlow = document.getElementById("hkMoneyFlow");
@@ -764,35 +878,35 @@
 
         // 更新期货，外汇数据
         function updateOtherInfos(key, name, current, lastClose) {
+            var symbol = key.replace("hq_str_","").replace("hf_","");
+            // 与昨日收盘对比
+            var dailyChangedValue = (current - lastClose);
+            var dailyChangedRate = ((current / lastClose - 1) * 100).toFixed(2) + '%';
             // id
-            elementId = "#" + key;
-            // 汇率价保留小数点后 4 位
-            if (key.indexOf('CNY') >= 0) {
-                current = current.toFixed(4);
-            } else {
-                current = current.toFixed(2);
-            }
+            var elementId = "#" + key;
 
             // 上次更新的值
-            lastValue = $(elementId).val();
+            var lastValue = $(elementId).val();
             // 如果没有上次值，则说明是第一次进入页面，不计算涨跌
             if (lastValue == 0) {
                 lastValue = current;
             }
 
             // 和上次查询进行比较（非和昨天收盘价比较，而是和上次日内查询进行比较）
-            raisedTag = "-";
-            raisedTagColor = "#FFFFFF";
+            var refreshChangedTag = "-";
+            var refreshChangedValue = "0.00";
+            var refreshChangedColor = "#FFFFFF";
             if (current > lastValue) {
-                raisedTag = "↑";
-                raisedTagColor = "#DD2200";
+                refreshChangedTag = "↑";
+                refreshChangedColor = "#DD2200";
             } else if (current < lastValue && current != 0) {
-                raisedTag = "↓";
-                raisedTagColor = "#009933";
+                refreshChangedTag = "↓";
+                refreshChangedColor = "#009933";
             } else {
-                raisedTag = "-";
-                raisedTagColor = "#FFFFFF";
+                refreshChangedTag = "-";
+                refreshChangedColor = "#FFFFFF";
             }
+            refreshChangedValue = current - lastValue;
             // 日间升降指标（和昨天收盘比较，决定整条数据的整体颜色）
             changedColor = "";
             if (current > lastClose) {
@@ -802,7 +916,21 @@
                 // console.log('下跌');
                 changedColor = "#009933";
             } else {
-                changedColor = "#FFFFFF";
+                changedColor = "#808080";
+            }
+
+            // 汇率价保留小数点后 4 位
+            if (key.indexOf('CNY') >= 0) {
+                current = current.toFixed(4);
+                dailyChangedValue = dailyChangedValue.toFixed(4);
+                refreshChangedValue = refreshChangedValue.toFixed(4);
+            } else {
+                current = current.toFixed(3);
+                dailyChangedValue = dailyChangedValue.toFixed(3);
+                refreshChangedValue = refreshChangedValue.toFixed(3);
+            }
+            if (refreshChangedValue > 0) {
+                refreshChangedValue = "+" + refreshChangedValue;
             }
 
             // 取出 index 元素
@@ -811,7 +939,7 @@
             // 标题
             var title = document.createElement('div');
             title.className = "indexTitle";
-            title.innerText = name;
+            title.innerText = showType == 1 ? name : symbol;
             indexElement.appendChild(title);
             // 点数
             var indexValue = document.createElement('div');
@@ -821,15 +949,22 @@
             indexElement.appendChild(indexValue);
             // 点数
             var changeRate = document.createElement('div');
-            changeRate.className = "indexValue";
-            changeRate.innerText = ((current / lastClose - 1) * 100).toFixed(2) + '%';
+            changeRate.className = "indexDailyChangeValue";
+            changeRate.innerText = showType == 1 ? dailyChangedRate : dailyChangedValue;
             changeRate.style.setProperty('background-color', changedColor);
             indexElement.appendChild(changeRate);
             // 变化方向
             var upDown = document.createElement('div');
             upDown.className = "indexUpDown";
-            upDown.innerText = raisedTag;
-            upDown.style.setProperty('color', raisedTagColor);
+            upDown.innerText = showType == 1 ? refreshChangedTag : refreshChangedValue;
+            upDown.style.setProperty('color', refreshChangedColor);
+            if (showType == 1) {
+                upDown.style.setProperty('text-align', 'center');
+            } else {
+                upDown.style.setProperty('text-align', 'right');
+                upDown.style.setProperty('padding-right', '4px');
+            }
+
             indexElement.appendChild(upDown);
             // 保存本次数值
             $(elementId).val(current);
@@ -839,9 +974,26 @@
             $(upDown).fadeOut({ duration: 300 });
             $(upDown).fadeIn({ duration: 300 });
 
+            var isExist = false;
+            for (var item in dataList) {
+                if (dataList[item]['symbol'] == symbol) {
+                    isExist = true;
+                    // 更新
+                    dataList[item] = {
+                        'name': name, 'symbol': symbol, 'changeValue': dailyChangedValue, 'changeRate': dailyChangedRate, 'refreshChangedValue': refreshChangedValue, 'refreshChangedTag': refreshChangedTag
+                    };
+                    // console.log(dataList[item]);
+                    break;
+                }
+            }
 
-            // 保存本次数值
-            $(elementId).val(current);
+            // 存入内存
+            if (!isExist) {
+                dataList.push({
+                    'name': name, 'symbol': symbol, 'changeValue': dailyChangedValue, 'changeRate': dailyChangedRate, 'refreshChangedValue': refreshChangedValue, 'refreshChangedTag': refreshChangedTag
+                });
+            }
+
         }
 
         // 判断是否在某一时间段之内
@@ -862,7 +1014,7 @@
             } else if (num < 0) {
                 return '#009933';
             } else {
-                return '#FFFFFF';
+                return '#808080';
             }
         }
 
@@ -904,7 +1056,7 @@
             } else {
                 isWeekend = false;
                 // 判断开盘（15:00 之后再更新 1 分钟，防止没有拿到15:00 之后的准确数据。11:31 也是同样意思）
-                if (isDuringDate(todayStr + ' 9:30', todayStr + ' 11:31') || isDuringDate(todayStr + ' 13:00', todayStr + ' 15:01')) {
+                if (isDuringDate(todayStr + ' 9:25', todayStr + ' 11:31') || isDuringDate(todayStr + ' 13:00', todayStr + ' 15:01')) {
                     status = "开盘";
                     statusColor = "#337799";
                     isChinaMarketChanging = true;
@@ -932,11 +1084,42 @@
         function showHideArea(element) {
             if ($(element).is(':hidden')) {
                 $(element).show({ duration: 300 })
-                
+
             } else {
                 $(element).hide({ duration: 300 });
-                
+
             }
+        }
+
+        // 切换显示信息类型
+        function changeShowType() {
+            if (showType == 1) {
+                showType = 2;
+            } else {
+                showType = 1;
+            }
+            // var indexs = $('.index');
+            $('.index').each(function () {
+                var title = this.getElementsByClassName("indexTitle")[0];
+                var dailyChange = this.getElementsByClassName("indexDailyChangeValue")[0];
+                var upDown = this.getElementsByClassName("indexUpDown")[0];
+                for (var i in dataList) {
+                    var data = dataList[i];
+                    if (this['id'] == data.symbol) {
+                        // 显示名称
+                        title.innerText = showType == 1 ? data["name"] : data["symbol"];
+                        // 日变化
+                        dailyChange.innerText = showType == 1 ? data["changeRate"] : data["changeValue"];
+                        // 与上次刷新的变化
+                        upDown.innerText = showType == 1 ? data["refreshChangedTag"] : data["refreshChangedValue"];
+                        if (showType == 1) {
+                            upDown.style.setProperty('text-align', 'center');
+                        } else {
+                            upDown.style.setProperty('text-align', 'right');
+                        }
+                    }
+                }
+            });
         }
 
         // 初始化
@@ -1034,7 +1217,7 @@
         <!-- 中国 -->
         <!-- i:1.000012,i:1.000013,i:1.000832,i:1.000001,i:0.399001,i:0.399006,i:1.000015,i:1.000922,i:1.000016,i:1.000300,i:0.399905,i:1.000852,i:0.399005,i:1.000991,i:1.000992,i:0.399975,i:0.399986,i:0.399812,i:0.399971,i:1.000827,i:100.HSI,i:100.HSCEI,i:124.HSCCI -->
         <p class="sectionTitle" onclick="showHideArea(chinaIndexs)">中国大陆及港台地区</p>
-        <div id="chinaIndexs">
+        <div id="chinaIndexs" onclick="changeShowType()">
             <p class="index" id="000012">000012</p>
             <p class="index" id="000013">000013</p>
             <p class="index" id="000832">000832</p>
@@ -1067,7 +1250,7 @@
         <!-- 亚洲新兴 & 欧洲，美洲等 -->
         <!-- FTSE FCHI GDAXI TWII N225 KS11 RTS DJIA NDX SPX -->
         <p class="sectionTitle" onclick="showHideArea(asianIndexs)">亚洲地区</p>
-        <div id="asianIndexs">
+        <div id="asianIndexs" onclick="changeShowType()">
             <p class="index" id="N225">N225</p>
             <p class="index" id="KS11">KS11</p>
             <p class="index" id="SENSEX">SENSEX</p>
@@ -1075,7 +1258,7 @@
     </div>
     <hr />
     <p class="sectionTitle" onclick="showHideArea(euroIndexs)">欧洲地区</p>
-    <div id="euroIndexs">
+    <div id="euroIndexs" onclick="changeShowType()">
         <p class="index" id="FTSE">FTSE</p>
         <p class="index" id="FCHI">FCHI</p>
         <p class="index" id="GDAXI">GDAXI</p>
@@ -1083,7 +1266,7 @@
     </div>
     <hr />
     <p class="sectionTitle" onclick="showHideArea(AmericaIndexs)">美洲地区</p>
-    <div id="AmericaIndexs">
+    <div id="AmericaIndexs" onclick="changeShowType()">
         <p class="index" id="DJIA">DJIA</p>
         <p class="index" id="NDX">NDX</p>
         <p class="index" id="SPX">SPX</p>
@@ -1092,7 +1275,7 @@
     <!-- 期货 -->
     <!-- hq_str_hf_CHA50CFD,hq_str_hf_GC,hq_str_hf_SI, hq_str_hf_CL -->
     <p class="sectionTitle" onclick="showHideArea(funds)">股指及商品期货</p>
-    <div id="funds">
+    <div id="funds" onclick="changeShowType()">
         <p class="index" id="hq_str_hf_CHA50CFD">hq_str_hf_CHA50CFD</p>
         <p class="index" id="hq_str_hf_GC">hq_str_hf_GC</p>
         <p class="index" id="hq_str_hf_SI">hq_str_hf_SI</p>
@@ -1102,7 +1285,7 @@
     <!-- 外汇 -->
     <!-- hq_str_USDCNY,hq_str_GBPCNY,hq_str_EURCNY,hq_str_HKDCNY,hq_str_TWDCNY,hq_str_JPYCNY -->
     <p class="sectionTitle" onclick="showHideArea(moneyExchange)">外汇牌价</p>
-    <div id="moneyExchange">
+    <div id="moneyExchange" onclick="changeShowType()">
         <p class="index" id="hq_str_USDCNY">hq_str_USDCNY</p>
         <p class="index" id="hq_str_CADCNY">hq_str_CADCNY</p>
         <p class="index" id="hq_str_GBPCNY">hq_str_GBPCNY</p>
