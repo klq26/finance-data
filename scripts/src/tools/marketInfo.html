@@ -33,12 +33,23 @@
         .moneyValue {
             color: #FFFFFF;
             display: inline-block;
-            text-align: center;
+            /* text-align: center; */
             background-color: gray;
             width: 200px;
             font-size: 36;
-            padding:0px 0px 0px 2px;
+            padding: 0px 0px 0px 2px;
             margin: 0px 4px 1px 4px;
+        }
+
+        .moneySubTitle {
+            text-align: left;
+            margin-left: 2px;
+        }
+
+        .moneySubValue {
+            text-align: right;
+            float: right;
+            margin-right: 2px;
         }
 
         /* 基金标题 */
@@ -314,17 +325,41 @@
                     // 沪
                     var shMoney = document.createElement('div');
                     shMoney.className = "moneyValue";
-                    shMoney.innerText = '沪 ' + shanghaiDealMoney.toFixed(1);
+                    var num = shanghaiDealMoney.toFixed(1);
+                    var subTitle = document.createElement('span');
+                    subTitle.className = "moneySubTitle";
+                    subTitle.innerText = "沪";
+                    var subValue = document.createElement('span');
+                    subValue.className = "moneySubValue";
+                    subValue.innerText = num;
+                    shMoney.appendChild(subTitle);
+                    shMoney.appendChild(subValue);
                     box.appendChild(shMoney);
                     // 深
                     var szMoney = document.createElement('div');
                     szMoney.className = "moneyValue";
-                    szMoney.innerText = '深 ' + shenzhenDealMoney.toFixed(1);
+                    var num = shenzhenDealMoney.toFixed(1);
+                    var subTitle = document.createElement('span');
+                    subTitle.className = "moneySubTitle";
+                    subTitle.innerText = "深";
+                    var subValue = document.createElement('span');
+                    subValue.className = "moneySubValue";
+                    subValue.innerText = num;
+                    szMoney.appendChild(subTitle);
+                    szMoney.appendChild(subValue);
                     box.appendChild(szMoney);
                     // 总
                     var totalMoney = document.createElement('div');
+                    var num = totalDealMoney.toFixed(1);
                     totalMoney.className = "moneyValue";
-                    totalMoney.innerText = '总 ' + totalDealMoney.toFixed(1);
+                    var subTitle = document.createElement('span');
+                    subTitle.className = "moneySubTitle";
+                    subTitle.innerText = "总";
+                    var subValue = document.createElement('span');
+                    subValue.className = "moneySubValue";
+                    subValue.innerText = num;
+                    totalMoney.appendChild(subTitle);
+                    totalMoney.appendChild(subValue);
                     box.appendChild(totalMoney);
                     moneyFlow.appendChild(box);
 
@@ -343,7 +378,7 @@
                 return;
             }
             $.ajax({
-                url: "http://87.push2.eastmoney.com/api/qt/ulist.np/get?cb=updateIndexInfos&np=1&pi=0&pz=40&po=1&secids=100.FTSE%2C100.FCHI%2C100.GDAXI%2C100.TWII%2C100.N225%2C100.KS11%2C100.RTS%2C100.DJIA%2C100.NDX%2C100.SPX%2C100.SENSEX&fields=f14,f12,f2,f4,f3,f18,f6",
+                url: "http://87.push2.eastmoney.com/api/qt/ulist.np/get?cb=updateIndexInfos&np=1&pi=0&pz=40&po=1&secids=100.FTSE%2C100.FCHI%2C100.GDAXI%2C100.TWII%2C100.N225%2C100.KS11%2C100.STI%2C100.SENSEX%2C100.RTS%2C100.DJIA%2C100.NDX%2C100.SPX%2C107.XOP%2C133.USDCNH&fields=f14,f12,f2,f4,f3,f18,f6",
                 type: "GET",
                 contentType: "application/x-javascript",
                 dataType: "script",
@@ -420,16 +455,30 @@
                 // 代码
                 var code = item['f12'];
                 var symbol = code;
-                // 名称
-                var name = item['f14'];
-                if (name == "印度孟买SENSEX") {
-                    name = "印度SENSEX";
-                }
+
                 // 当前价
                 var current = (parseFloat(item['f2']) / 100).toFixed(2);
                 // 前收盘
                 var lastClose = current - parseFloat(item['f4']) / 100;
-
+                // 名称
+                var name = item['f14'];
+                // 特殊处理
+                if (name == "印度孟买SENSEX") {
+                    name = "印度SENSEX";
+                }
+                if (name.indexOf("新加坡") > 0) {
+                    name = "新加坡STI";
+                }
+                if (name.indexOf('S&P') > 0) {
+                    name = "油气XOP";
+                }
+                if (name.indexOf('离岸') > 0) {
+                    name = "离岸人民币";
+                }
+                if (symbol.indexOf('CNH') > 0) {
+                    current = (parseFloat(item['f2']) / 10000).toFixed(4);
+                    lastClose = current - parseFloat(item['f4']) / 10000;
+                }
                 // 与昨日收盘对比
                 var dailyChangedValue = (current - lastClose);
                 var dailyChangedRate = ((current / lastClose - 1) * 100).toFixed(2) + '%';
@@ -466,8 +515,14 @@
                 } else {
                     changedColor = "#808080";
                 }
-                dailyChangedValue = dailyChangedValue.toFixed(3);
-                refreshChangedValue = refreshChangedValue.toFixed(3);
+
+                if (symbol.indexOf('CNH') > 0) {
+                    dailyChangedValue = dailyChangedValue.toFixed(4);
+                    refreshChangedValue = refreshChangedValue.toFixed(4);
+                } else {
+                    dailyChangedValue = dailyChangedValue.toFixed(3);
+                    refreshChangedValue = refreshChangedValue.toFixed(3);
+                }
                 if (refreshChangedValue > 0) {
                     refreshChangedValue = "+" + refreshChangedValue;
                 }
@@ -540,9 +595,9 @@
         function updateInnerMarketFunds(data) {
             var symbol = data['data']['code'];
             var name = '';
-            if(symbol == '162411') {
+            if (symbol == '162411') {
                 name = '华宝油气';
-            } else if(symbol == '513050') {
+            } else if (symbol == '513050') {
                 name = '中概互联';
             }
             // 取出 index 元素
@@ -746,35 +801,70 @@
             var smallDeal = document.createElement('div');
             smallDeal.className = "moneyValue";
             var num = (parseFloat(lastestData[2]) / 100000000).toFixed(1);
-            smallDeal.innerText = '小 ' + num;
+            var subTitle = document.createElement('span');
+            subTitle.className = "moneySubTitle";
+            subTitle.innerText = "小";
+            var subValue = document.createElement('span');
+            subValue.className = "moneySubValue";
+            subValue.innerText = num > 0 ? '+' + num : num;
+            smallDeal.appendChild(subTitle);
+            smallDeal.appendChild(subValue);
             smallDeal.style.setProperty('background-color', getUpDownColoredText(num));
             box.appendChild(smallDeal);
             // 中
             var middleDeal = document.createElement('div');
             middleDeal.className = "moneyValue";
             var num = (parseFloat(lastestData[3]) / 100000000).toFixed(1);
-            middleDeal.innerText = '中 ' + num;
+            var subTitle = document.createElement('span');
+            subTitle.className = "moneySubTitle";
+            subTitle.innerText = "中";
+            var subValue = document.createElement('span');
+            subValue.className = "moneySubValue";
+            subValue.innerText = num > 0 ? '+' + num : num;
+            middleDeal.appendChild(subTitle);
+            middleDeal.appendChild(subValue);
             middleDeal.style.setProperty('background-color', getUpDownColoredText(num));
             box.appendChild(middleDeal);
             // 主力（等于大单 与 特大单之和）
             var mainPowerDeal = document.createElement('div');
             mainPowerDeal.className = "moneyValue";
             var num = (parseFloat(lastestData[1]) / 100000000).toFixed(1);
-            mainPowerDeal.innerText = '主 ' + num;
+            var subTitle = document.createElement('span');
+            subTitle.className = "moneySubTitle";
+            subTitle.innerText = "主";
+            var subValue = document.createElement('span');
+            subValue.className = "moneySubValue";
+            subValue.innerText = num > 0 ? '+' + num : num;
+            mainPowerDeal.appendChild(subTitle);
+            mainPowerDeal.appendChild(subValue);
             mainPowerDeal.style.setProperty('background-color', getUpDownColoredText(num));
             box.appendChild(mainPowerDeal);
             // 大
             var bigDeal = document.createElement('div');
             bigDeal.className = "moneyValue";
             var num = (parseFloat(lastestData[4]) / 100000000).toFixed(1);
-            bigDeal.innerText = '大 ' + num;
+            var subTitle = document.createElement('span');
+            subTitle.className = "moneySubTitle";
+            subTitle.innerText = "大";
+            var subValue = document.createElement('span');
+            subValue.className = "moneySubValue";
+            subValue.innerText = num > 0 ? '+' + num : num;
+            bigDeal.appendChild(subTitle);
+            bigDeal.appendChild(subValue);
             bigDeal.style.setProperty('background-color', getUpDownColoredText(num));
             box.appendChild(bigDeal);
             // 特大
             var extraDeal = document.createElement('div');
             extraDeal.className = "moneyValue";
             var num = (parseFloat(lastestData[5]) / 100000000).toFixed(1);
-            extraDeal.innerText = '特 ' + num;
+            var subTitle = document.createElement('span');
+            subTitle.className = "moneySubTitle";
+            subTitle.innerText = "特";
+            var subValue = document.createElement('span');
+            subValue.className = "moneySubValue";
+            subValue.innerText = num > 0 ? '+' + num : num;
+            extraDeal.appendChild(subTitle);
+            extraDeal.appendChild(subValue);
             extraDeal.style.setProperty('background-color', getUpDownColoredText(num));
             box.appendChild(extraDeal);
             // 更新动画
@@ -830,21 +920,42 @@
             var shMoney = document.createElement('div');
             shMoney.className = "moneyValue";
             var num = (parseFloat(lastestS2N[1]) / 10000).toFixed(1);
-            shMoney.innerText = '沪 ' + num;
+            var subTitle = document.createElement('span');
+            subTitle.className = "moneySubTitle";
+            subTitle.innerText = "沪";
+            var subValue = document.createElement('span');
+            subValue.className = "moneySubValue";
+            subValue.innerText = num > 0 ? '+' + num : num;
+            shMoney.appendChild(subTitle);
+            shMoney.appendChild(subValue);
             shMoney.style.setProperty('background-color', getUpDownColoredText(num));
             box.appendChild(shMoney);
             // 深
             var szMoney = document.createElement('div');
             szMoney.className = "moneyValue";
             var num = (parseFloat(lastestS2N[3]) / 10000).toFixed(1);
-            szMoney.innerText = '深 ' + num;
+            var subTitle = document.createElement('span');
+            subTitle.className = "moneySubTitle";
+            subTitle.innerText = "深";
+            var subValue = document.createElement('span');
+            subValue.className = "moneySubValue";
+            subValue.innerText = num > 0 ? '+' + num : num;
+            szMoney.appendChild(subTitle);
+            szMoney.appendChild(subValue);
             szMoney.style.setProperty('background-color', getUpDownColoredText(num));
             box.appendChild(szMoney);
             // 总
             var totalMoney = document.createElement('div');
             totalMoney.className = "moneyValue";
             var num = (parseFloat(lastestS2N[5]) / 10000).toFixed(1);
-            totalMoney.innerText = '总 ' + num;
+            var subTitle = document.createElement('span');
+            subTitle.className = "moneySubTitle";
+            subTitle.innerText = "总";
+            var subValue = document.createElement('span');
+            subValue.className = "moneySubValue";
+            subValue.innerText = num > 0 ? '+' + num : num;
+            totalMoney.appendChild(subTitle);
+            totalMoney.appendChild(subValue);
             totalMoney.style.setProperty('background-color', getUpDownColoredText(num));
             box.appendChild(totalMoney);
             moneyFlow.appendChild(box);
@@ -862,21 +973,42 @@
             var shMoney = document.createElement('div');
             shMoney.className = "moneyValue";
             var num = (parseFloat(lastestN2S[1]) / 10000).toFixed(1)
-            shMoney.innerText = '沪 ' + (parseFloat(lastestN2S[1]) / 10000).toFixed(1);
+            var subTitle = document.createElement('span');
+            subTitle.className = "moneySubTitle";
+            subTitle.innerText = "沪";
+            var subValue = document.createElement('span');
+            subValue.className = "moneySubValue";
+            subValue.innerText = num > 0 ? '+' + num : num;
+            shMoney.appendChild(subTitle);
+            shMoney.appendChild(subValue);
             shMoney.style.setProperty('background-color', getUpDownColoredText(num));
             box2.appendChild(shMoney);
             // 深
             var szMoney = document.createElement('div');
             szMoney.className = "moneyValue";
             var num = (parseFloat(lastestN2S[3]) / 10000).toFixed(1);
-            szMoney.innerText = '深 ' + num;
+            var subTitle = document.createElement('span');
+            subTitle.className = "moneySubTitle";
+            subTitle.innerText = "深";
+            var subValue = document.createElement('span');
+            subValue.className = "moneySubValue";
+            subValue.innerText = num > 0 ? '+' + num : num;
+            szMoney.appendChild(subTitle);
+            szMoney.appendChild(subValue);
             szMoney.style.setProperty('background-color', getUpDownColoredText(num));
             box2.appendChild(szMoney);
             // 总
             var totalMoney = document.createElement('div');
             totalMoney.className = "moneyValue";
             var num = (parseFloat(lastestN2S[5]) / 10000).toFixed(1);
-            totalMoney.innerText = '总 ' + num;
+            var subTitle = document.createElement('span');
+            subTitle.className = "moneySubTitle";
+            subTitle.innerText = "总";
+            var subValue = document.createElement('span');
+            subValue.className = "moneySubValue";
+            subValue.innerText = num > 0 ? '+' + num : num;
+            totalMoney.appendChild(subTitle);
+            totalMoney.appendChild(subValue);
             totalMoney.style.setProperty('background-color', getUpDownColoredText(num));
             box2.appendChild(totalMoney);
             moneyFlow.appendChild(box2);
@@ -1264,6 +1396,7 @@
         <div id="asianIndexs" onclick="changeShowType(this)">
             <p class="index" id="N225">N225</p>
             <p class="index" id="KS11">KS11</p>
+            <p class="index" id="STI">STI</p>
             <p class="index" id="SENSEX">SENSEX</p>
         </div>
     </div>
@@ -1281,6 +1414,7 @@
         <p class="index" id="DJIA">DJIA</p>
         <p class="index" id="NDX">NDX</p>
         <p class="index" id="SPX">SPX</p>
+        <p class="index" id="XOP">XOP</p>
     </div>
     <hr />
     <!-- 期货 -->
@@ -1297,6 +1431,7 @@
     <!-- hq_str_USDCNY,hq_str_GBPCNY,hq_str_EURCNY,hq_str_HKDCNY,hq_str_TWDCNY,hq_str_JPYCNY -->
     <p class="sectionTitle" onclick="showHideArea(moneyExchange)">外汇牌价</p>
     <div id="moneyExchange" onclick="changeShowType(this)">
+        <p class="index" id="USDCNH">USDCNH</p>
         <p class="index" id="hq_str_USDCNY">hq_str_USDCNY</p>
         <p class="index" id="hq_str_CADCNY">hq_str_CADCNY</p>
         <p class="index" id="hq_str_GBPCNY">hq_str_GBPCNY</p>
