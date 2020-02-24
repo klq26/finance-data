@@ -125,7 +125,7 @@
         /* 涨跌平条 */
         .zdpBar {
             display: inline-block;
-            margin-left: -8px;
+            margin-left: 0px;
         }
 
         /* 涨跌平条 - 涨 */
@@ -133,7 +133,6 @@
             display: inline-block;
             background-color: #DD2200;
             text-align: center;
-            min-width: min-content;
         }
 
         /* 涨跌平条 - 平 */
@@ -141,7 +140,6 @@
             display: inline-block;
             background-color: gray;
             text-align: center;
-            min-width: min-content;
         }
 
         /* 涨跌平条 - 跌 */
@@ -149,7 +147,6 @@
             display: inline-block;
             background-color: #009933;
             text-align: center;
-            min-width: min-content;
         }
     </style>
     <!-- 百度压缩版 jQuery -->
@@ -165,6 +162,7 @@
         var dataList = new Array();
         // 显示类型
         var showType = 1;
+        var sections = ["moneyFlow", "zdp", "chinaIndexs", "asianIndexs", "euroIndexs", "americaIndexs", "goods", "moneyExchange"];
 
         // 请求中国开盘数据（含香港）
         function requestChinaData() {
@@ -644,114 +642,66 @@
             var equalStocks = bar.getElementsByClassName("barEqual")[0];
             var upStocks = bar.getElementsByClassName("barUp")[0];
             var downStocks = bar.getElementsByClassName("barDown")[0];
-            // console.log(idKey);
             equalStocks.innerHTML = equal;
-            var equalMinWidth = parseFloat($(equalStocks).css('width')).toFixed(2);
-            var equalRecommendWidth = parseFloat((equal / all * zdpBarWidth)).toFixed(2);
             upStocks.innerHTML = up;
-            var upMinWidth = parseFloat($(upStocks).css('width')).toFixed(2);
-            var upRecommendWidth = parseFloat((up / all * zdpBarWidth)).toFixed(2);
             downStocks.innerHTML = down;
-            var downMinWidth = parseFloat($(downStocks).css('width')).toFixed(2);
-            var downRecommendWidth = parseFloat((down / all * zdpBarWidth)).toFixed(2);
-            // console.log(equalMinWidth,equalRecommendWidth,typeof(equalRecommendWidth),upMinWidth,upRecommendWidth,typeof(upRecommendWidth),downMinWidth,downRecommendWidth,typeof(downRecommendWidth));
-            // 三者排出大中小
-            var small, middle, big;
-            var smallRecW, middleRecW, bigRecW;
-            {
-                if (parseFloat(equalRecommendWidth) > parseFloat(upRecommendWidth)) {
-                    // e > up
-                    if (parseFloat(upRecommendWidth) > parseFloat(downRecommendWidth)) {
-                        // up > down
-                        // D < U < E
-                        // console.log('D < U < E');
-                        // upSequence = 2, equalSequence = 1, downSequence = 3;
-                        small = downStocks, middle = upStocks, big = equalStocks;
-                        smallRecW = downRecommendWidth, middleRecW = upRecommendWidth, bigRecW = equalRecommendWidth;
-                    } else {
-                        // up <= down
-                        if (parseFloat(equalRecommendWidth) > parseFloat(downRecommendWidth)) {
-                            // e > down
-                            // U < D < E
-                            // console.log('U < D < E');
-                            // upSequence = 3, equalSequence = 1, downSequence = 2;
-                            small = upStocks, middle = downStocks, big = equalStocks;
-                            smallRecW = upRecommendWidth, middleRecW = downRecommendWidth, bigRecW = equalRecommendWidth;
-                        } else {
-                            // U < E < D
-                            // console.log('U < E < D');
-                            // upSequence = 3, equalSequence = 2, downSequence = 1;
-                            small = upStocks, middle = equalStocks, big = downStocks;
-                            smallRecW = upRecommendWidth, middleRecW = equalRecommendWidth, bigRecW = downRecommendWidth;
-                        }
-                    }
-                } else {
-                    // e <= up
-                    if (parseFloat(equalRecommendWidth) > parseFloat(downRecommendWidth)) {
-                        // e > down
-                        // D < E < U
-                        // console.log('D < E < U');
-                        // upSequence = 1, equalSequence = 2, downSequence = 3;
-                        small = downStocks, middle = equalStocks, big = upStocks;
-                        smallRecW = downRecommendWidth, middleRecW = equalRecommendWidth, bigRecW = upRecommendWidth;
-                    } else {
-                        // e <= down
-                        if (parseFloat(upRecommendWidth) > parseFloat(downRecommendWidth)) {
-                            // up > down
-                            // E < D < U
-                            // console.log('E < D < U');
-                            // upSequence = 1, equalSequence = 3, downSequence = 2;
-                            small = equalStocks, middle = downStocks, big = upStocks;
-                            smallRecW = equalRecommendWidth, middleRecW = downRecommendWidth, bigRecW = upRecommendWidth;
-                        } else {
-                            // E < U < D
-                            // console.log('E < U < D');
-                            // upSequence = 2, equalSequence = 3, downSequence = 1;
-                            small = equalStocks, middle = upStocks, big = downStocks;
-                            smallRecW = equalRecommendWidth, middleRecW = upRecommendWidth, bigRecW = downRecommendWidth;
-                        }
-                    }
-                }
-            }
-            // console.log(equalMinWidth,equalRecommendWidth.toFixed(2));
+            // console.log(idKey);
+            // 生成涨跌平条的全面数据
+            var upDict = {
+                "count": up,
+                "calW": parseInt(up / all * zdpBarWidth),
+                "minW": parseInt($(upStocks).css('width')),
+                "isCalTooSmall": parseInt(up / all * zdpBarWidth) < parseInt($(upStocks).css('width')) ? true : false,
+                "finalW": parseInt(up / all * zdpBarWidth) > parseInt($(upStocks).css('width')) ? parseInt(up / all * zdpBarWidth) : parseInt($(upStocks).css('width'))
+            };
+            var equalDict = {
+                "count": equal,
+                "calW": parseInt(equal / all * zdpBarWidth),
+                "minW": parseInt($(equalStocks).css('width')),
+                "isCalTooSmall": parseInt(equal / all * zdpBarWidth) < parseInt($(equalStocks).css('width')) ? true : false,
+                "finalW": parseInt(equal / all * zdpBarWidth) > parseInt($(equalStocks).css('width')) ? parseInt(equal / all * zdpBarWidth) : parseInt($(equalStocks).css('width'))
+            };
+            var downDict = {
+                "count": down,
+                "calW": parseInt(down / all * zdpBarWidth),
+                "minW": parseInt($(downStocks).css('width')),
+                "isCalTooSmall": parseInt(down / all * zdpBarWidth) < parseInt($(downStocks).css('width')) ? true : false,
+                "finalW": parseInt(down / all * zdpBarWidth) > parseInt($(downStocks).css('width')) ? parseInt(down / all * zdpBarWidth) : parseInt($(downStocks).css('width'))
+            };
+            var dictArray = [upDict, equalDict, downDict];
+            var leftCount = 0;
             var leftWidth = zdpBarWidth;
-            var smallMinW = parseFloat($(small).css('width')).toFixed(2);
-            var middleMinW = parseFloat($(middle).css('width')).toFixed(2);
-            var bigMinW = parseFloat($(big).css('width')).toFixed(2);
-            // console.log('顺序',small,middle,big);
-            // console.log('数据',small.innerHTML,middle.innerHTML,big.innerHTML);
-            // console.log('最小',zdpBarWidth, smallMinW,middleMinW,bigMinW);
-            // console.log('推荐',zdpBarWidth, smallRecW,middleRecW,bigRecW);
-            if (smallMinW > smallRecW) {
-                // 不改变 small 的宽
-                // console.log('不改变 small 的宽');
-                leftWidth = leftWidth - smallMinW;
-                if (middleMinW < middleRecW) {
-                    // 不改变 middle 的宽
-                    // console.log('不改变 middle 的宽');
-                    leftWidth = leftWidth - middleMinW;
-                    $(big).css('width', leftWidth);
+            // 如果原比例计算的宽度不足以显示内容，则保留字段的最小视觉宽度，放弃之前的三者共同计算比例
+            // 每去掉一个比例条，就要相应剪掉其对应的宽度，剩下的条重新计算比例，重新共享宽度
+            for (var idx in dictArray) {
+                var currentBar = dictArray[idx];
+                if (!currentBar['isCalTooSmall']) {
+                    leftCount = leftCount + currentBar['count'];
                 } else {
-                    var middleCount = parseInt(middle.innerHTML);
-                    var bigCount = parseInt(big.innerHTML);
-                    var totalCount = middleCount + bigCount;
-                    $(middle).css('width', leftWidth * (middleCount / totalCount));
-                    $(big).css('width', leftWidth * (bigCount / totalCount));
+                    leftWidth = leftWidth - currentBar['finalW'];
                 }
-            } else {
-                var smallCount = parseInt(small.innerHTML);
-                var middleCount = parseInt(middle.innerHTML);
-                var bigCount = parseInt(big.innerHTML);
-                var totalCount = smallCount + middleCount + bigCount;
-                $(small).css('width', (leftWidth * (smallCount / totalCount)).toFixed(2));
-                $(middle).css('width', (leftWidth * (middleCount / totalCount)).toFixed(2));
-                $(big).css('width', (leftWidth * (bigCount / totalCount)).toFixed(2));
             }
-            // var smallResult = parseFloat($(small).css('width')).toFixed(2);
-            // var middleResult = parseFloat($(middle).css('width')).toFixed(2);
-            // var bigResult = parseFloat($(big).css('width')).toFixed(2);
-            // console.log('结果',zdpBarWidth,smallResult,middleResult,bigResult);
-            // 更新动画
+            // 根据是最小宽度还是计算宽度，来决定每个元素的最终绘制宽度
+            if (upDict['isCalTooSmall']) {
+                $(upStocks).css('width', parseInt(upDict['finalW']));
+            } else {
+                $(upStocks).css('width', parseInt(upDict['count']) / leftCount * leftWidth);
+            }
+
+            if (equalDict['isCalTooSmall']) {
+                $(equalStocks).css('width', parseInt(equalDict['finalW']));
+            } else {
+                $(equalStocks).css('width', parseInt(equalDict['count']) / leftCount * leftWidth);
+            }
+
+            if (downDict['isCalTooSmall']) {
+                $(downStocks).css('width', parseInt(downDict['finalW']));
+            } else {
+                $(downStocks).css('width', parseInt(downDict['count']) / leftCount * leftWidth);
+            }
+            // console.log(upStocks,equalStocks,downStocks);
+            // console.log(upDict,equalDict,downDict);
+            // // 更新动画
             var zdpBar = bar.getElementsByClassName('zdpBar')[0];
             $(zdpBar).fadeOut({ duration: 300 });
             $(zdpBar).fadeIn({ duration: 300 });
@@ -1145,34 +1095,18 @@
         }
 
         // 切换显示信息类型
-        function changeShowType() {
+        function changeShowType(element) {
             if (showType == 1) {
                 showType = 2;
             } else {
                 showType = 1;
             }
-            // var indexs = $('.index');
-            $('.index').each(function () {
-                var title = this.getElementsByClassName("indexTitle")[0];
-                var dailyChange = this.getElementsByClassName("indexDailyChangeValue")[0];
-                var upDown = this.getElementsByClassName("indexUpDown")[0];
-                for (var i in dataList) {
-                    var data = dataList[i];
-                    if (this['id'] == data.symbol) {
-                        // 显示名称
-                        title.innerText = showType == 1 ? data["name"] : data["symbol"];
-                        // 日变化
-                        dailyChange.innerText = showType == 1 ? data["changeRate"] : data["changeValue"];
-                        // 与上次刷新的变化
-                        upDown.innerText = showType == 1 ? data["refreshChangedTag"] : data["refreshChangedValue"];
-                        if (showType == 1) {
-                            upDown.style.setProperty('text-align', 'center');
-                        } else {
-                            upDown.style.setProperty('text-align', 'right');
-                        }
-                    }
-                }
-            });
+            // 强制刷新数据，曲线解决问题
+            isChinaMarketChanging = true;
+            requestChinaData();
+            isChinaMarketChanging = false;
+            requestForeignData();
+            requestOtherData();
         }
 
         // 初始化
@@ -1218,58 +1152,58 @@
         <div class="zdpBarArea" id="allStockBar">
             <div class="indexTitle">全市场</div>
             <div class="zdpBar">
-                <div class="barUp">0</div>
-                <div class="barEqual">0</div>
-                <div class="barDown">0</div>
+                <span class="barUp">0</span>
+                <span class="barEqual">0</span>
+                <span class="barDown">0</span>
             </div>
         </div>
         <div class="zdpBarArea" id="ccyBar">
             <div class="indexTitle">创业板综</div>
             <div class="zdpBar">
-                <div class="barUp">0</div>
-                <div class="barEqual">0</div>
-                <div class="barDown">0</div>
+                <span class="barUp">0</span>
+                <span class="barEqual">0</span>
+                <span class="barDown">0</span>
             </div>
         </div>
         <div class="zdpBarArea" id="sz50Bar">
             <div class="indexTitle">上证50</div>
             <div class="zdpBar">
-                <div class="barUp">0</div>
-                <div class="barEqual">0</div>
-                <div class="barDown">0</div>
+                <span class="barUp">0</span>
+                <span class="barEqual">0</span>
+                <span class="barDown">0</span>
             </div>
         </div>
         <div class="zdpBarArea" id="hs300Bar">
             <div class="indexTitle">沪深300</div>
             <div class="zdpBar">
-                <div class="barUp">0</div>
-                <div class="barEqual">0</div>
-                <div class="barDown">0</div>
+                <span class="barUp">0</span>
+                <span class="barEqual">0</span>
+                <span class="barDown">0</span>
             </div>
         </div>
         <div class="zdpBarArea" id="zz500Bar">
             <div class="indexTitle">中证500</div>
             <div class="zdpBar">
-                <div class="barUp">0</div>
-                <div class="barEqual">0</div>
-                <div class="barDown">0</div>
+                <span class="barUp">0</span>
+                <span class="barEqual">0</span>
+                <span class="barDown">0</span>
             </div>
         </div>
 
         <div class="zdpBarArea" id="zz1000Bar">
             <div class="indexTitle">中证1000</div>
             <div class="zdpBar">
-                <div class="barUp">0</div>
-                <div class="barEqual">0</div>
-                <div class="barDown">0</div>
+                <span class="barUp">0</span>
+                <span class="barEqual">0</span>
+                <span class="barDown">0</span>
             </div>
         </div>
         <div class="zdpBarArea" id="dq800Bar">
             <div class="indexTitle">等权800</div>
             <div class="zdpBar">
-                <div class="barUp">0</div>
-                <div class="barEqual">0</div>
-                <div class="barDown">0</div>
+                <span class="barUp">0</span>
+                <span class="barEqual">0</span>
+                <span class="barDown">0</span>
             </div>
         </div>
     </div>
@@ -1279,7 +1213,7 @@
         <!-- 中国 -->
         <!-- i:1.000012,i:1.000013,i:1.000832,i:1.000001,i:0.399001,i:0.399006,i:1.000015,i:1.000922,i:1.000016,i:1.000300,i:0.399905,i:1.000852,i:0.399005,i:1.000991,i:1.000992,i:0.399975,i:0.399986,i:0.399812,i:0.399971,i:1.000827,i:100.HSI,i:100.HSCEI,i:124.HSCCI -->
         <p class="sectionTitle" onclick="showHideArea(chinaIndexs)">中国大陆及港台地区</p>
-        <div id="chinaIndexs" onclick="changeShowType()">
+        <div id="chinaIndexs" onclick="changeShowType(this)">
             <p class="index" id="000012">000012</p>
             <p class="index" id="000013">000013</p>
             <p class="index" id="000832">000832</p>
@@ -1313,7 +1247,7 @@
         <!-- 亚洲新兴 & 欧洲，美洲等 -->
         <!-- FTSE FCHI GDAXI TWII N225 KS11 RTS DJIA NDX SPX -->
         <p class="sectionTitle" onclick="showHideArea(asianIndexs)">亚洲地区</p>
-        <div id="asianIndexs" onclick="changeShowType()">
+        <div id="asianIndexs" onclick="changeShowType(this)">
             <p class="index" id="N225">N225</p>
             <p class="index" id="KS11">KS11</p>
             <p class="index" id="SENSEX">SENSEX</p>
@@ -1321,15 +1255,15 @@
     </div>
     <hr />
     <p class="sectionTitle" onclick="showHideArea(euroIndexs)">欧洲地区</p>
-    <div id="euroIndexs" onclick="changeShowType()">
+    <div id="euroIndexs" onclick="changeShowType(this)">
         <p class="index" id="FTSE">FTSE</p>
         <p class="index" id="FCHI">FCHI</p>
         <p class="index" id="GDAXI">GDAXI</p>
         <p class="index" id="RTS">RTS</p>
     </div>
     <hr />
-    <p class="sectionTitle" onclick="showHideArea(AmericaIndexs)">美洲地区</p>
-    <div id="AmericaIndexs" onclick="changeShowType()">
+    <p class="sectionTitle" onclick="showHideArea(americaIndexs)">美洲地区</p>
+    <div id="americaIndexs" onclick="changeShowType(this)">
         <p class="index" id="DJIA">DJIA</p>
         <p class="index" id="NDX">NDX</p>
         <p class="index" id="SPX">SPX</p>
@@ -1337,8 +1271,8 @@
     <hr />
     <!-- 期货 -->
     <!-- hq_str_hf_CHA50CFD,hq_str_hf_GC,hq_str_hf_SI, hq_str_hf_CL -->
-    <p class="sectionTitle" onclick="showHideArea(funds)">股指及商品期货</p>
-    <div id="funds" onclick="changeShowType()">
+    <p class="sectionTitle" onclick="showHideArea(goods)">股指及商品期货</p>
+    <div id="goods" onclick="changeShowType(this)">
         <p class="index" id="hq_str_hf_CHA50CFD">hq_str_hf_CHA50CFD</p>
         <p class="index" id="hq_str_hf_GC">hq_str_hf_GC</p>
         <p class="index" id="hq_str_hf_SI">hq_str_hf_SI</p>
@@ -1348,7 +1282,7 @@
     <!-- 外汇 -->
     <!-- hq_str_USDCNY,hq_str_GBPCNY,hq_str_EURCNY,hq_str_HKDCNY,hq_str_TWDCNY,hq_str_JPYCNY -->
     <p class="sectionTitle" onclick="showHideArea(moneyExchange)">外汇牌价</p>
-    <div id="moneyExchange" onclick="changeShowType()">
+    <div id="moneyExchange" onclick="changeShowType(this)">
         <p class="index" id="hq_str_USDCNY">hq_str_USDCNY</p>
         <p class="index" id="hq_str_CADCNY">hq_str_CADCNY</p>
         <p class="index" id="hq_str_GBPCNY">hq_str_GBPCNY</p>
