@@ -611,6 +611,7 @@
             // 点数
             var details = data['data']['details'];
             var lastClose = data['data']['prePrice'];
+            var current = 0;
             if (details.length <= 0) {
                 current = lastClose;
             } else {
@@ -1204,7 +1205,7 @@
             } else {
                 isWeekend = false;
                 // 判断开盘（15:00 之后再更新 1 分钟，防止没有拿到15:00 之后的准确数据。11:31 也是同样意思）
-                if (isDuringDate(todayStr + ' 9:25', todayStr + ' 11:31') || isDuringDate(todayStr + ' 13:00', todayStr + ' 15:01')) {
+                if (isDuringDate(todayStr + ' 9:00', todayStr + ' 11:31') || isDuringDate(todayStr + ' 13:00', todayStr + ' 15:01')) {
                     status = "开盘";
                     statusColor = "#337799";
                     isChinaMarketChanging = true;
