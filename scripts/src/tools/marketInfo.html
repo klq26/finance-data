@@ -203,7 +203,7 @@
         .zdpValueBox {
             display: inline-block;
             flex-wrap: nowrap;
-            width: 40px;
+            width: 48px;
             justify-content: space-between;
             align-items: flex-end;
         }
@@ -212,7 +212,8 @@
         .zdpValue {
             display: inline-flex;
             color: #fff;
-            width: 40px;
+            width: 48px;
+            font-size: 36px;
             justify-content: center;
         }
 
@@ -220,7 +221,7 @@
         .zdpValueBar {
             display: inline-flex;
             color: #fff;
-            width: 40px;
+            width: 48px;
             justify-content: center;
             background-color: pink;
         }
@@ -228,7 +229,7 @@
         /* 分割线 */
         #zdpSplitLine {
             height: 2px;
-            width: 852px;
+            width: 892px;
             background-color: #fff;
         }
 
@@ -245,6 +246,7 @@
             display: inline-flex;
             color: #fff;
             width: 40px;
+            font-size: 30px;
             justify-content: center;
         }
     </style>
@@ -930,7 +932,7 @@
             // value bar
             var zdpValueBarArea = document.getElementById('zdpValueBarArea');
             zdpValueBarArea.innerHTML = "";
-            var values = data['zdfb_data']['zdfb'];
+            var values = data['zdfb_data']['zdfb'].reverse();
             var index = 0;
             var maxCount = 0;
             values.forEach(element => {
@@ -939,7 +941,7 @@
                     maxCount = count;
                 }
                 var barColor = "";
-                if (index < 5) {
+                if (index >= 5) {
                     barColor = "#009933";
                 } else {
                     barColor = "#DD2200";
@@ -965,7 +967,7 @@
             // title bar
             var zdpTitleBarArea = document.getElementById('zdpTitleBarArea');
             zdpTitleBarArea.innerHTML = "";
-            var titles = ['-10%', '-8%', '-6%', '-4%', '-2%', '0', '2%', '4%', '6%', '8%', '10%'];
+            var titles = ['-10%', '-8%', '-6%', '-4%', '-2%', '0', '2%', '4%', '6%', '8%', '10%'].reverse();
             titles.forEach(element => {
                 var title = document.createElement('div');
                 title.className = 'zdpTitle';
@@ -974,7 +976,12 @@
             });
             var zdfbArea = document.getElementById('zdfb');
             // 用不着太高的时候就别站太大空间
-            zdfbArea.style.setProperty('height',maxCount / 10 + 80);
+            zdfbArea.style.setProperty('height',maxCount / 10 + 110);
+            // 更新动画
+            $(zdpValueBarArea).fadeOut({ duration: 300 });
+            $(zdpValueBarArea).fadeIn({ duration: 300 });
+            $(zdpValueBarArea).fadeOut({ duration: 300 });
+            $(zdpValueBarArea).fadeIn({ duration: 300 });
         }
 
         // 更新沪深两市资金净流向
