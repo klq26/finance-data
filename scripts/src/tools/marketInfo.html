@@ -362,13 +362,16 @@
 
         // 请求涨跌分布数据（爬虫）
         function requestZDChartData() {
+            if (isWeekend || !isChinaMarketChanging) {
+                return;
+            }
             $.ajax({
                 url: "http://112.125.25.230/stock/market/zdfb.json",
                 type: "GET",
                 contentType: "application/json",
                 dataType: "json",
                 async: true,
-                success: function(data) {
+                success: function (data) {
                     updateZDChart(data);
                 }
             });
@@ -927,8 +930,58 @@
             $(zdpBar).fadeIn({ duration: 300 });
         }
 
-        // 更新涨跌分布
+        // 更新涨跌停板 & 涨跌分布
         function updateZDChart(data) {
+            // 涨跌停
+            var zdtData = data['zdt_data']['last_zdt'];
+            var zdtBar = document.getElementById("zdt");
+            zdtBar.className = "index";
+            zdtBar.innerHTML = "";
+            // 标题
+            var title = document.createElement('div');
+            title.className = "indexTitle";
+            title.innerText = "涨跌停板";
+            title.style.setProperty('height', 48);
+            zdtBar.appendChild(title);
+            // 涨停
+            var box = document.createElement('div');
+            box.className = "moneyValueBox";
+            box.style.setProperty('margin-top', 4);
+            moneyFlow.appendChild(box);
+
+            var up10 = document.createElement('div');
+            up10.className = "moneyValue";
+            var num = parseFloat(zdtData['ztzs']);
+            var subTitle = document.createElement('span');
+            subTitle.className = "moneySubTitle";
+            subTitle.innerText = "涨停";
+            var subValue = document.createElement('span');
+            subValue.className = "moneySubValue";
+            subValue.innerText = num;
+            up10.appendChild(subTitle);
+            up10.appendChild(subValue);
+            up10.style.setProperty('background-color', "#DD2200");
+            box.appendChild(up10);
+            // 跌停
+            var down10 = document.createElement('div');
+            down10.className = "moneyValue";
+            var num = parseFloat(zdtData['dtzs']);
+            var subTitle = document.createElement('span');
+            subTitle.className = "moneySubTitle";
+            subTitle.innerText = "跌停";
+            var subValue = document.createElement('span');
+            subValue.className = "moneySubValue";
+            subValue.innerText = num;
+            down10.appendChild(subTitle);
+            down10.appendChild(subValue);
+            down10.style.setProperty('background-color', "#009933");
+            box.appendChild(down10);
+            zdtBar.appendChild(box);
+            // // 更新动画
+            // $(zdtBar).fadeOut({ duration: 300 });
+            // $(zdtBar).fadeIn({ duration: 300 });
+            // $(zdtBar).fadeOut({ duration: 300 });
+            // $(zdtBar).fadeIn({ duration: 300 });
             // value bar
             var zdpValueBarArea = document.getElementById('zdpValueBarArea');
             zdpValueBarArea.innerHTML = "";
@@ -976,7 +1029,7 @@
             });
             var zdfbArea = document.getElementById('zdfb');
             // 用不着太高的时候就别站太大空间
-            zdfbArea.style.setProperty('height',maxCount / 10 + 110);
+            zdfbArea.style.setProperty('height', maxCount / 10 + 110);
             // 更新动画
             $(zdpValueBarArea).fadeOut({ duration: 300 });
             $(zdpValueBarArea).fadeIn({ duration: 300 });
@@ -1428,7 +1481,7 @@
             } else {
                 isWeekend = false;
                 // 判断开盘（15:00 之后再更新 1 分钟，防止没有拿到15:00 之后的准确数据。11:31 也是同样意思）
-                if (isDuringDate(todayStr + ' 9:00', todayStr + ' 11:31') || isDuringDate(todayStr + ' 13:00', todayStr + ' 15:01')) {
+                if (isDuringDate(todayStr + ' 9:00', todayStr + ' 11:35') || isDuringDate(todayStr + ' 13:00', todayStr + ' 15:05')) {
                     status = "开盘";
                     statusColor = "#337799";
                     isChinaMarketChanging = true;
@@ -1519,6 +1572,7 @@
     <hr />
     <!-- 涨跌平盘条形区 -->
     <p class="sectionTitle" onclick="showHideArea(zdp)">指数涨跌分布</p>
+    <!-- 指数涨跌平条 -->
     <div id="zdp">
         <div class="zdpBarArea" id="allStockBar">
             <div class="indexTitle">全市场</div>
@@ -1560,7 +1614,6 @@
                 <span class="barDown">0</span>
             </div>
         </div>
-
         <div class="zdpBarArea" id="zz1000Bar">
             <div class="indexTitle">中证1000</div>
             <div class="zdpBar">
@@ -1577,6 +1630,9 @@
                 <span class="barDown">0</span>
             </div>
         </div>
+        <!-- 涨跌停板 -->
+        <div id="zdt"></div>
+        <!-- 涨跌分布 -->
         <div id="zdfb">
             <div id="zdpValueBarArea"></div>
             <div id="zdpSplitLine"></div>
