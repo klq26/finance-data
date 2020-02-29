@@ -293,7 +293,7 @@
                         // 沪深两市成交额（亿）
                         updateMoneyFlowV2(data['data'][0], 'inlandDealMoney', false);
                         // 融资融券余额（亿）
-                        updateMoneyFlowV2(data['data'][1], 'inlandLeverMoney', true);
+                        updateMoneyFlowV2(data['data'][1], 'inlandLeverMoney', false);
                         // 沪深资金净流入（亿）
                         updateMoneyFlowV2(data['data'][2], 'inlandMoneyFlow', true);
                         // 北向资金净流入（亿）
@@ -536,7 +536,12 @@
                 // 点数
                 var indexValue = document.createElement('div');
                 indexValue.className = "indexValue";
-                indexValue.innerText = current;
+                var value = undefined;
+                if(typeof item['current'] == 'string') {
+                    indexValue.innerText = item['current'];
+                } else {
+                    indexValue.innerText = current;
+                }
                 indexValue.style.setProperty('background-color', changedColor);
                 indexElement.appendChild(indexValue);
                 // 点数
@@ -830,7 +835,12 @@
                 item = data['value'][idx];
                 var value = document.createElement('div');
                 value.className = "moneyValue";
-                var num = item['value'];
+                var num = undefined;
+                if(typeof item['value'] == 'string') {
+                    var num = item['value'];
+                } else {
+                    var num = parseFloat(item['value']).toFixed(1);
+                }
                 var subTitle = document.createElement('span');
                 subTitle.className = "moneySubTitle";
                 subTitle.innerText = item['name'];
