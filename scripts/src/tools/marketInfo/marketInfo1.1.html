@@ -479,6 +479,9 @@
                 // }
                 // 与昨日收盘对比
                 var dailyChangedValue = parseFloat(item['dailyChangValue']).toFixed(demical);
+                if(isNaN(dailyChangedValue)) {
+                    dailyChangedValue = 0.0.toFixed(demical);
+                }
                 var dailyChangedRate = item['dailyChangRate']
                 // 上次更新的值
                 lastValue = $(elementId).val();
