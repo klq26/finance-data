@@ -630,7 +630,24 @@ def dayType():
     url = "http://www.easybots.cn/api/holiday.php?d=" + today
     response = requests.get(url, headers=headers, verify=False)
     jsonData = json.loads(response.text)
-    
+    dayType = jsonData[today]
+    print(dayType, jsonData)
+    weekday = '0'
+    weekend = '0'
+    holiday = '0'
+    if dayType == '0':
+        weekday = '1'
+        weekend = '0'
+        holiday = '0'
+    elif dayType == '1':
+        weekday = '0'
+        weekend = '1'
+        holiday = '0'
+    elif dayType == '2':
+        weekday = '0'
+        weekend = '0'
+        holiday = '1'
+    jsonData = {'weekday' : weekday, 'weekend' : weekend, 'holiday' : holiday }
     # 结束时间
     endTS = time.time()
     endTime = time.strftime(timeFormat, time.localtime(endTS))

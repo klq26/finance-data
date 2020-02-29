@@ -390,7 +390,8 @@
         // 请求欧洲指数
         function requestEuroIndexsV2(isForce=false) {
             var todayStr = todayString('/');
-            if (isForce || isWorkingDay && (isDuringDate(todayStr + ' 16:00', todayStr + ' 23:59'))) {
+            // 16:00 - 24:00 后，从 00:01 开始，todayString 已经是第二天凌晨了，所以直接计算 00:00 ~ 2:30 间隔即可
+            if (isForce || isWorkingDay && (isDuringDate(todayStr + ' 16:00', todayStr + ' 23:59') || isDuringDate(todayStr + ' 00:00', todayStr + ' 2:30'))) {
                 $.ajax({
                     url: "http://112.125.25.230/api/indexs?area=euro",
                     type: "GET",
@@ -406,8 +407,8 @@
         // 请求美洲指数
         function requestAmericaIndexsV2(isForce=false) {
             var todayStr = todayString('/');
-            var tomorrowStr = tomorrowString('/');
-            if (isForce || isWorkingDay && (isDuringDate(todayStr + ' 16:00', tomorrowStr + '5:00'))) {
+            // 22:00 - 24:00 后，从 00:01 开始，todayString 已经是第二天凌晨了，所以直接计算 00:00 ~ 5:30 间隔即可
+            if (isForce || isWorkingDay && (isDuringDate(todayStr + ' 22:00', tomorrowStr + '23:59') || isDuringDate(todayStr + ' 00:00', tomorrowStr + '5:30'))) {
                 $.ajax({
                     url: "http://112.125.25.230/api/indexs?area=america",
                     type: "GET",
@@ -867,6 +868,7 @@
 
         // 判断是否在某一时间段之内
         function isDuringDate(beginDateStr, endDateStr) {
+            console.log(beginDateStr, endDateStr);
             var curDate = new Date(),
                 beginDate = new Date(beginDateStr),
                 endDate = new Date(endDateStr);
@@ -899,9 +901,9 @@
                 dataType: "json",
                 async: false,
                 success: function (data) {
-                    // 0 工作日 1 周末 2 节假日
-                    dayType = data['data'][todayStr];
-                    if(dayType == 0) {
+                    // weekday weekend holiday
+                    dayType = data['data']['weekday'];
+                    if(dayType == '1') {
                         isWorkingDay = true;
                     } else {
                         isWorkingDay = false;
@@ -915,14 +917,10 @@
         // 今天日期字符串(2020/01/01 或 20200101)
         function todayString(sep='') {
             var date = new Date();
-            var year = date.getFullYear();
-            var month = prefixInteger(date.getMonth() + 1, 2);
-            var day = prefixInteger(date.getDate(), 2);
-            return todayStr = year + sep + month + sep + day;
-        }
-        // 明天日期字符串(2020/01/01 或 20200101)
-        function tomorrowString(sep='') {
-            var date = new Date();
+            // yesterdayString
+            // date.setTime(date.getTime() - 24*60*60*1000);
+            // tomorrowString
+            // date.setTime(date.getTime() + 24*60*60*1000);
             var year = date.getFullYear();
             var month = prefixInteger(date.getMonth() + 1, 2);
             var day = prefixInteger(date.getDate(), 2);
@@ -941,38 +939,7 @@
             var wk = "周" + dayTag;
             var status = "";
             var statusColor = "#FFFF00";
-            var todayStr = year + '/' + month + '/' + day;
-            // if (dayTag == '日' || dayTag == '六') {
-            //     status = "休市";
-            //     isWeiswekend = true;
-            //     isChinaMarketChanging = false;
-            //     isMoneyFlowChanging = false;
-            //     statusColor = "#FFFF00";
-            // } else {
-            //     isWeekend = false;
-            //     // 判断开盘（15:00 之后再更新 1 分钟，防止没有拿到15:00 之后的准确数据。11:31 也是同样意思）
-            //     if (isDuringDate(todayStr + ' 9:00', todayStr + ' 11:35') || isDuringDate(todayStr + ' 13:00', todayStr + ' 15:05')) {
-            //         status = "开盘";
-            //         statusColor = "#337799";
-            //         isChinaMarketChanging = true;
-            //     } else if (isDuringDate(todayStr + ' 11:30', todayStr + ' 13:00')) {
-            //         status = "午休";
-            //         isChinaMarketChanging = false;
-            //         statusColor = "#FFFF00";
-            //     } else {
-            //         status = "收盘";
-            //         isChinaMarketChanging = false;
-            //         statusColor = "#FFFF00";
-            //     }
-            //     // 是否可以查询资金流向
-            //     if (isDuringDate(todayStr + ' 9:00', todayStr + ' 11:31') || isDuringDate(todayStr + ' 13:00', todayStr + ' 16:11')) {
-            //         isMoneyFlowChanging = true;
-            //     } else {
-            //         isMoneyFlowChanging = false;
-            //     }
-            // }
-
-            $("#timestamp").html(year + "-" + month + "-" + day + " " + hh + ":" + mi + ":" + ss + " " + wk + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + 'A股' + '\<span style=\"color: ' + statusColor + '\">' + status + '\</span\>');
+            $("#timestamp").html(year + "-" + month + "-" + day + " " + hh + ":" + mi + ":" + ss + " " + wk);
         }
         // 显隐对应区域
         function showHideArea(element) {
