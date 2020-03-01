@@ -1,15 +1,12 @@
-	POST /do.aspx/CheckLogin HTTP/1.1
-Host	trade.1234567.com.cn
+	GET /djapi/account/user_info_check HTTP/1.1
+Host	danjuanapp.com
 Connection	keep-alive
-Content-Length	0
-Accept	application/json, text/javascript, */*; q=0.01
-X-Requested-With	XMLHttpRequest
-User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36
-Content-Type	application/json; charset=utf-8
-Origin	https://trade.1234567.com.cn
+Accept	application/json, text/plain, */*
+Sec-Fetch-Dest	empty
+User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.122 Safari/537.36
 Sec-Fetch-Site	same-origin
 Sec-Fetch-Mode	cors
-Referer	https://trade.1234567.com.cn/MyAssets/default
+Referer	https://danjuanapp.com/
 Accept-Encoding	gzip, deflate, br
 Accept-Language	zh-CN,zh;q=0.9
-Cookie	ASP.NET_SessionId=xveljgkyx4b0p5ki23l0zrpj; st_si=67319759859114; st_asi=delete; FundTradeLoginTab=0; FundTradeLoginCard=0; st_pvi=18161887090912; st_inirUrl=http%3A%2F%2F1234567.com.cn%2F; st_sp=2019-11-01%2006%3A42%3A57; st_sn=78; st_psi=20200130142047859-112200304021-6157104799; cp_token=e0afd895f0754a2795c4015f0653bbbf; FundTradeLoginUser=s49DDaMFS9gHspIm/Lxmyw8stbiCmzLJL16Qk2OMEdQzWEX1aP51iQ8kn00WXZKGKnmnyjgQ; fund_trade_cn=reS8DRmNRZsPae3l+VtBQzH4hTy/jzK9vkmpMmpqLbg46AaqV8j3kl/Ske/jiEP1GhKHAsYQrcva+n1arB8+KoqX8a1PqHQBqGFkYpEQWC4AKEycjJU=; fund_trade_name=r5w1KbQwb3ePuXxFyTjptaScwLYg0xZ9p88Dkf07OBma4YhxN4JOlmK5hQXi/zlFEUr14saO; fund_trade_visitor=r24+pLjrl3FP91OVmvjHYwHYe3vgdVh6fDUzkHLP3Yov4YqeMK+rdbKr9o9IAIDFZb8A6n2T; fund_trade_risk=riXgz1OhB3c8NTZsPijp72oOyBYgQb2YXhDqks738q+n+YgeYQfh9WKpkSVXeFPFOViniK7b; fund_trade_gps=6; VipLevel=1; TradeLoginToken=486cdf05b1e4405ebd71b1407eeea5f4; UTOKEN=reS8DRmNRZsPae3l+VtBQzH4hTy/jzK9vkmpMmpqLbg46AaqV8j3kl/Ske/jiEP1GhKHAuYmX/myxnqp+wXbKGEp/v+SVaCzkWFZOtzBhUUXLqKHfC0=; LToken=88e9351046104f829a90835b150c7034; fund_trade_trackid=U9uLgjZ2BaOJ5SCE9tDYu5tuVAO5PzU1IHvJ8BdMQ/LYAcYPG7ABkZkVbfRIqfMVL1At1axqRDVI6dFt7IVqFw==
+Cookie	device_id=web_ByL9-IyHH; _ga=GA1.2.1578122713.1566691726; gr_user_id=07a8b8b8-e04f-4bfa-b6bd-3492bb42b3a6; thirdparty_token=; thirdparty_source=; thirdparty_nickname=; thirdparty_avatar=; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%22203274561%22%2C%22%24device_id%22%3A%2216cc61a9198303-0a4b8d7e767657-7373e61-3686400-16cc61a9199311%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_referrer%22%3A%22%22%2C%22%24latest_referrer_host%22%3A%22%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%7D%2C%22first_id%22%3A%2216cc61a9198303-0a4b8d7e767657-7373e61-3686400-16cc61a9199311%22%7D; xq_a_token=14937cd42df3405f3edb2a463bbc762b21bf22de; channel=1300100141; accesstoken=2400200003f67a5d8529dc72490a4120205d081c0596633fe; refreshtoken=2400200008076cc9f34c243ace0052b329753dab3dc9466b2; uid=203274561; Hm_lvt_b53ede02df3afea0608038748f4c9f36=1583019769; _gid=GA1.2.387790935.1583019769; Hm_lpvt_b53ede02df3afea0608038748f4c9f36=1583020925; timestamp=1583020926566

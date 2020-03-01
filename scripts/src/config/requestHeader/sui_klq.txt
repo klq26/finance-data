@@ -1,15 +1,14 @@
-GET /account/account.do HTTP/1.1
+	GET /account/account.do HTTP/1.1
 Host	www.sui.com
 Connection	keep-alive
-Pragma	no-cache
-Cache-Control	no-cache
 Upgrade-Insecure-Requests	1
-User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36
-Sec-Fetch-User	?1
+User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.122 Safari/537.36
+Sec-Fetch-Dest	document
 Accept	text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
 Sec-Fetch-Site	same-origin
 Sec-Fetch-Mode	navigate
+Sec-Fetch-User	?1
 Referer	https://www.sui.com/report_index.do
 Accept-Encoding	gzip, deflate, br
 Accept-Language	zh-CN,zh;q=0.9
-Cookie	__vistor=C2FC974E1dkc2f30k; __nick=klq26%40163.com; SESSION_COOKIE=a8e14a3d3446b0d7b8155ae885f316e7; __utmc=121176714; __utmz=121176714.1572313309.44.20.utmcsr=login.sui.com|utmccn=(referral)|utmcmd=referral|utmcct=/auth.do; __jsluid_s=5bfc79c54390dcec87595cffb3de5ed3; Hm_lvt_3db4e52bb5797afe0faaa2fde5c96ea4=1579834180; _bookTabSwitchList=05d9c1d88a4bc09f1e6a4ccc3fa3f033|1|0&; __spm_bid=0939aa960ff7s301pf1ee6590dm109a2; SESSION=f20f2120-72a4-40d1-aedf-eaa80c54a78d; __utma=121176714.1274987167.1566994582.1581490183.1581498493.106; __utmt=1; Hm_lpvt_3db4e52bb5797afe0faaa2fde5c96ea4=1581498526; __utmb=121176714.2.10.1581498493
+Cookie	__vistor=C2FC974E1dkc2f30k; __nick=klq26%40163.com; SESSION_COOKIE=a8e14a3d3446b0d7b8155ae885f316e7; __utmc=121176714; __utmz=121176714.1572313309.44.20.utmcsr=login.sui.com|utmccn=(referral)|utmcmd=referral|utmcct=/auth.do; __jsluid_s=5bfc79c54390dcec87595cffb3de5ed3; _bookTabSwitchList=05d9c1d88a4bc09f1e6a4ccc3fa3f033|1|0&; Hm_lvt_3db4e52bb5797afe0faaa2fde5c96ea4=1582693910; __spm_bid=5233beb1b7d1s55bpa99d89dd2m15140; SESSION=4edda152-e85f-462f-b356-8d756743353c; __utma=121176714.1274987167.1566994582.1582693901.1583020991.111; __utmt=1; Hm_lpvt_3db4e52bb5797afe0faaa2fde5c96ea4=1583020995; __utmb=121176714.2.10.1583020991

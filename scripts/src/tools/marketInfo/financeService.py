@@ -576,16 +576,52 @@ def getBondInfo():
     ssl._create_default_https_context = ssl._create_unverified_context
     requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
-    # 债券指数（国债，企业债，可转债）
-    url = "http://10.push2.eastmoney.com/api/qt/clist/get?cb=updateIndexInfos&pn=1&pz=30&fs=i:1.000012,i:1.000013&fields=f14,f12,f2,f4,f3,f18,f6"
+    # # 债券指数（国债，企业债）
+    # url = "http://10.push2.eastmoney.com/api/qt/clist/get?cb=updateIndexInfos&pn=1&pz=30&fs=i:1.000012,i:1.000013&fields=f14,f12,f2,f4,f3,f18,f6"
+    # response = requests.get(url, headers=headers, verify=False)
+    # if response.status_code == 200:
+    #     # print(response.text)
+    #     result = response.text.replace(
+    #         'updateIndexInfos(', '').replace(');', '')
+    #     # 清洗&重组数据
+    #     indexs = purgeEastmoney100Data(json.loads(result),u'债券')
+    #     finalResult.append({'name': '债券指数', 'symbol' : 'bondIndex', 'value' : indexs})
+
+    # 货币基金
+    url = "https://danjuanapp.com/djapi/fund/003474"
     response = requests.get(url, headers=headers, verify=False)
     if response.status_code == 200:
         # print(response.text)
-        result = response.text.replace(
-            'updateIndexInfos(', '').replace(');', '')
+        data = json.loads(response.text)['data']
         # 清洗&重组数据
-        indexs = purgeEastmoney100Data(json.loads(result),u'债券')
-        finalResult.append({'name': '债券指数', 'symbol' : 'bondIndex', 'value' : indexs})
+        current = '{0}%'.format(round(float(data['fund_derived']['annual_yield7d']),2))
+        value = { 'indexName' : u'天天利B', 'indexCode' : '003474','indexArea' : '货基', 'sequence' : 0, 'current' : current, 'lastClose' : current,'dailyChangeValue' : 0.000, 'dealMoney' : 0.000, 'dailyChangRate' : '0.00%'}
+        finalResult.append({'name': '货币基金', 'symbol' : 'fund', 'value' : [value]})
+
+    # 钉钉宝90 钉钉宝365 稳稳的幸福
+    urlPrefix = u'https://danjuanapp.com/djapi/plan/'
+    urls = ['CSI1021','CSI1019','CSI1014']
+    plans = []
+    count = 0
+    for code in urls:
+        url = urlPrefix + code
+        response = requests.get(url, headers=headers, verify=False)
+        if response.status_code == 200:
+            # print(response.text)
+            data = json.loads(response.text)['data']
+            # index = indexModel()
+            name = data['plan_name']
+            if u'稳稳' in name:
+                name = '稳稳的幸福'
+            if u'90' in name:
+                name = '钉钉宝90'
+            if u'365' in name:
+                name = '钉钉宝365'
+            current = '{0}%'.format(round(float(round(float(data['yield_middle']),2)),2))
+            value = { 'indexName' : name, 'indexCode' : data['plan_code'],'indexArea' : '组合', 'sequence' : count, 'current' : current, 'lastClose' : current,'dailyChangeValue' : 0.000, 'dealMoney' : 0.000, 'dailyChangRate' : '0.00%'}
+            count = count + 1
+            plans.append(value)
+    finalResult.append({'name': '混合债券', 'symbol' : 'plan', 'value' : plans})
 
     # 财政部国债债券信息
     url = u'http://yield.chinabond.com.cn/cbweb-czb-web/czb/czbChartSearch'
@@ -610,13 +646,13 @@ def getBondInfo():
         result7year = { 'indexName' : u'7年期国债', 'indexCode' : '7YEAR','indexArea' : '债券', 'sequence' : 1, 'current' : bond7year, 'lastClose' : bond7year,'dailyChangeValue' : 0.000, 'dealMoney' : 0.000, 'dailyChangRate' : '0.00%', 'year' : 7}
         result10year = { 'indexName' : u'10年期国债', 'indexCode' : '10YEAR','indexArea' : '债券', 'sequence' : 2, 'current' : bond10year, 'lastClose' : bond10year,'dailyChangeValue' : 0.000, 'dealMoney' : 0.000, 'dailyChangRate' : '0.00%', 'year' : 10}
 
-        finalResult.append({'name': '中国国债收益率', 'symbol' : 'bondReturn', 'value' : [result5year, result7year, result10year]})
-        # 结束时间
-        endTS = time.time()
-        endTime = time.strftime(timeFormat, time.localtime(endTS))
-        duration = round(endTS - startTS, 4)
-        result = {'code': 0, 'msg': 'success', 'data': finalResult, 'aliyun_date': endTime, 'duration': duration}
-        return Response(json.dumps(result, ensure_ascii=False, indent=4, sort_keys=True), status=200, mimetype='application/json')
+        finalResult.append({'name': '国债', 'symbol' : 'bond', 'value' : [result5year, result7year, result10year]})
+    # 结束时间
+    endTS = time.time()
+    endTime = time.strftime(timeFormat, time.localtime(endTS))
+    duration = round(endTS - startTS, 4)
+    result = {'code': 0, 'msg': 'success', 'data': finalResult, 'aliyun_date': endTime, 'duration': duration}
+    return Response(json.dumps(result, ensure_ascii=False, indent=4, sort_keys=True), status=200, mimetype='application/json')
     pass
 
 @app.route('/api/today', methods=['GET'])

@@ -447,8 +447,12 @@
                 dataType: "json",
                 async: true,
                 success: function (data) {
-                    updateIndexInfosV2(data['data'][0]['value'], 'bonds', 2);
+                    // 货币基金
+                    updateIndexInfosV2(data['data'][0]['value'], 'bonds', 3);
+                    // 二级债券组合
                     updateIndexInfosV2(data['data'][1]['value'], 'bonds', 3);
+                    // 国债收益率
+                    updateIndexInfosV2(data['data'][2]['value'], 'bonds', 3);
                 }
             });
         }
