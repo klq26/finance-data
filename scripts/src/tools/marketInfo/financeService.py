@@ -86,7 +86,9 @@ def purgeChinaIndexs(jsonData):
 
 # 请求亚洲
 def requestAsianIndexs():
-    url = "http://87.push2.eastmoney.com/api/qt/ulist.np/get?cb=updateIndexInfos&np=1&pi=0&pz=40&po=1&secids=100.TWII%2C100.N225%2C100.KS11%2C100.STI%2C100.SENSEX&fields=f14,f12,f2,f4,f3,f18,f6"
+    # 根据 2019.12 最新 GDP 排名降序请求
+    # http://www.southmoney.com/paihangbang/201912/4612448.html
+    url = "http://87.push2.eastmoney.com/api/qt/ulist.np/get?cb=updateIndexInfos&np=1&pi=0&pz=40&po=1&secids=100.N225%2C100.SENSEX%2C100.KS11%2C100.JKSE%2C100.TWII%2C100.SET%2C100.KLSE%2C100.STI%2C100.PSI%2C100.VNINDEX&fields=f14,f12,f2,f4,f3,f18,f6"
     requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
     response = requests.get(url, headers=headers, verify=False)
     if response.status_code == 200:
@@ -105,7 +107,9 @@ def purgeAsianIndexs(jsonData):
 
 # 请求欧洲
 def requestEuroIndexs():
-    url = "http://87.push2.eastmoney.com/api/qt/ulist.np/get?cb=updateIndexInfos&np=1&pi=0&pz=40&po=1&secids=100.FTSE%2C100.FCHI%2C100.GDAXI%2C100.RTS&fields=f14,f12,f2,f4,f3,f18,f6"
+    # 根据 2019.12 最新 GDP 排名降序请求
+    # http://www.southmoney.com/paihangbang/201912/4612514.html
+    url = "http://87.push2.eastmoney.com/api/qt/ulist.np/get?cb=updateIndexInfos&np=1&pi=0&pz=40&po=1&secids=100.GDAXI%2C100.FTSE%2C100.FCHI%2C100.MIB%2C100.RTS%2C100.IBEX%2C100.AEX%2C100.SSMI%2C100.WIG%2C100.OMXSPI&fields=f14,f12,f2,f4,f3,f18,f6"
     requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
     response = requests.get(url, headers=headers, verify=False)
     if response.status_code == 200:
@@ -124,7 +128,7 @@ def purgeEuroIndexs(jsonData):
 
 # 请求美洲
 def requestAmericaIndexs():
-    url = "http://87.push2.eastmoney.com/api/qt/ulist.np/get?cb=updateIndexInfos&np=1&pi=0&pz=40&po=1&secids=100.DJIA%2C100.NDX%2C100.SPX%2C107.XOP&fields=f14,f12,f2,f4,f3,f18,f6"
+    url = "http://87.push2.eastmoney.com/api/qt/ulist.np/get?cb=updateIndexInfos&np=1&pi=0&pz=40&po=1&secids=100.DJIA%2C100.NDX%2C100.SPX%2C107.XOP%2C100.TSX%2C100.MXX%2C100.BVSP&fields=f14,f12,f2,f4,f3,f18,f6"
     requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
     response = requests.get(url, headers=headers, verify=False)
     if response.status_code == 200:
@@ -177,7 +181,7 @@ def purgeEastmoney87Data(jsonData, indexArea):
             index.indexName = '新加坡STI'
         if index.indexName == "印度孟买SENSEX":
             index.indexName = '印度SENSEX'
-        if index.indexName.find(u'S&P') > 0:
+        if index.indexName.find(u'ETF') > 0:
             index.indexName = '油气XOP'
         if index.indexName.find(u'离岸') > 0:
             index.indexName = u'离岸人民币'

@@ -515,10 +515,10 @@
                 refreshChangedValue = (current - lastValue).toFixed(demical);
                 // 日间升降指标（和昨天收盘比较，决定整条数据的整体颜色）
                 changedColor = "";
-                if (current > lastClose) {
+                if (parseFloat(current) > parseFloat(lastClose)) {
                     changedColor = getUpDownColoredText(1);//"#DD2200";
 
-                } else if (current < lastClose) {
+                } else if (parseFloat(current) < parseFloat(lastClose)) {
                     changedColor = getUpDownColoredText(-1);//"#009933";
                 } else {
                     changedColor = "#808080";
@@ -744,6 +744,7 @@
             up10.appendChild(subTitle);
             up10.appendChild(subValue);
             up10.style.setProperty('background-color', getUpDownColoredText(1));//"#DD2200");
+            up10.style.setProperty('width','48%');
             box.appendChild(up10);
             // 跌停
             var down10 = document.createElement('div');
@@ -758,6 +759,7 @@
             down10.appendChild(subTitle);
             down10.appendChild(subValue);
             down10.style.setProperty('background-color', getUpDownColoredText(-1));//"#009933");
+            down10.style.setProperty('width','48%');
             box.appendChild(down10);
             zdtBar.appendChild(box);
 
@@ -1070,14 +1072,14 @@
     <div id="goods" onclick="changeShowType(this)">
     </div>
     <hr />
-    <!-- 固收债券 -->
-    <p class="sectionTitle" onclick="showHideArea(bonds)">固定收益债券</p>
-    <div id="bonds" onclick="changeShowType(this)">
-    </div>
-    <hr />
     <!-- 外汇 -->
     <p class="sectionTitle" onclick="showHideArea(exchanges)">外汇牌价</p>
     <div id="exchanges" onclick="changeShowType(this)">
+    </div>
+    <hr />
+    <!-- 固收债券 -->
+    <p class="sectionTitle" onclick="showHideArea(bonds)">固定收益债券</p>
+    <div id="bonds" onclick="changeShowType(this)">
     </div>
     </div>
 </body>
