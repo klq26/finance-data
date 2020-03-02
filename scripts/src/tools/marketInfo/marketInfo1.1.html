@@ -15,6 +15,13 @@
             margin: 4px;
         }
 
+        /* 分区状态 */
+        .sectionStatus {
+            float: right;
+            margin-right: 16px;
+            font-size: 46px;
+        }
+
         /* 资金流向值区域 */
         .moneyValueBox {
             display: inline-block;
@@ -282,7 +289,15 @@
         // 请求资金流向数据
         function requestMoneyFlowV2(isForce=false) {
             var todayStr = todayString('/');
-            if (isForce || isWorkingDay && (isDuringDate(todayStr + ' 9:00', todayStr + ' 11:35') || isDuringDate(todayStr + ' 13:00', todayStr + ' 16:20'))) {
+            var openning = isWorkingDay && (isDuringDate(todayStr + ' 9:00', todayStr + ' 11:35') || isDuringDate(todayStr + ' 13:00', todayStr + ' 16:20'));
+            var status = document.getElementById('moneyStatus');
+            if (openning) {
+                status.innerHTML = "开盘";status.style.setProperty('color',getUpDownColoredText(1));
+            } else {
+                status.innerHTML = "收盘";
+                status.style.setProperty('color','#808080');
+            }
+            if (isForce || openning) {
                 $.ajax({
                     url: "http://112.125.25.230/api/moneyinfo",
                     type: "GET",
@@ -307,7 +322,15 @@
         // 请求指数的涨跌平盘分布情况
         function requestZDPDataV2(isForce=false) {
             var todayStr = todayString('/');
-            if (isForce || isWorkingDay && (isDuringDate(todayStr + ' 9:25', todayStr + ' 11:35') || isDuringDate(todayStr + ' 13:00', todayStr + ' 15:05'))) {
+            var openning = isWorkingDay && (isDuringDate(todayStr + ' 9:25', todayStr + ' 11:35') || isDuringDate(todayStr + ' 13:00', todayStr + ' 15:05'));
+            var status = document.getElementById('zdpStatus');
+            if (openning) {
+                status.innerHTML = "开盘";status.style.setProperty('color',getUpDownColoredText(1));
+            } else {
+                status.innerHTML = "收盘";
+                status.style.setProperty('color','#808080');
+            }
+            if (isForce || openning) {
                 $.ajax({
                     url: "http://112.125.25.230/api/zdpinfo",
                     type: "GET",
@@ -342,7 +365,16 @@
         // 请求中国指数（含香港）
         function requestChinaIndexsV2(isForce=false) {
             var todayStr = todayString('/');
-            if (isForce || isWorkingDay && (isDuringDate(todayStr + ' 9:00', todayStr + ' 11:35') || isDuringDate(todayStr + ' 13:00', todayStr + ' 16:20'))) {
+            var openning = isWorkingDay && (isDuringDate(todayStr + ' 9:00', todayStr + ' 11:35') || isDuringDate(todayStr + ' 13:00', todayStr + ' 16:20'));
+            var status = document.getElementById('chinaStatus');
+            if (openning) {
+                status.innerHTML = "开盘";
+                status.style.setProperty('color',getUpDownColoredText(1));
+            } else {
+                status.innerHTML = "收盘";
+                status.style.setProperty('color','#808080');
+            }
+            if (isForce || openning) {
                 $.ajax({
                 url: "http://112.125.25.230/api/indexs?area=china",
                 type: "GET",
@@ -374,7 +406,15 @@
         // 请求亚洲指数
         function requestAsianIndexsV2(isForce=false) {
             var todayStr = todayString('/');
-            if (isForce || isWorkingDay && (isDuringDate(todayStr + ' 9:00', todayStr + ' 11:35') || isDuringDate(todayStr + ' 13:00', todayStr + ' 16:20'))) {
+            var openning = isWorkingDay && (isDuringDate(todayStr + ' 9:00', todayStr + ' 11:35') || isDuringDate(todayStr + ' 13:00', todayStr + ' 16:20'));
+            var status = document.getElementById('asianStatus');
+            if (openning) {
+                status.innerHTML = "开盘";status.style.setProperty('color',getUpDownColoredText(1));
+            } else {
+                status.innerHTML = "收盘";
+                status.style.setProperty('color','#808080');
+            }
+            if (isForce || openning) {
                 $.ajax({
                     url: "http://112.125.25.230/api/indexs?area=asian",
                     type: "GET",
@@ -391,7 +431,16 @@
         function requestEuroIndexsV2(isForce=false) {
             var todayStr = todayString('/');
             // 16:00 - 24:00 后，从 00:01 开始，todayString 已经是第二天凌晨了，所以直接计算 00:00 ~ 2:30 间隔即可
-            if (isForce || isWorkingDay && (isDuringDate(todayStr + ' 16:00', todayStr + ' 23:59') || isDuringDate(todayStr + ' 00:00', todayStr + ' 2:30'))) {
+            var openning = isWorkingDay && (isDuringDate(todayStr + ' 16:00', todayStr + ' 23:59') || isDuringDate(todayStr + ' 00:00', todayStr + ' 2:30'));
+            var status = document.getElementById('euroStatus');
+            if (openning) {
+                status.innerHTML = "开盘";
+                status.style.setProperty('color',getUpDownColoredText(1));
+            } else {
+                status.innerHTML = "收盘";
+                status.style.setProperty('color','#808080');
+            }
+            if (isForce || openning) {
                 $.ajax({
                     url: "http://112.125.25.230/api/indexs?area=euro",
                     type: "GET",
@@ -407,8 +456,17 @@
         // 请求美洲指数
         function requestAmericaIndexsV2(isForce=false) {
             var todayStr = todayString('/');
-            // 22:00 - 24:00 后，从 00:01 开始，todayString 已经是第二天凌晨了，所以直接计算 00:00 ~ 5:30 间隔即可
-            if (isForce || isWorkingDay && (isDuringDate(todayStr + ' 22:00', tomorrowStr + '23:59') || isDuringDate(todayStr + ' 00:00', tomorrowStr + '5:30'))) {
+            // 16:00 - 24:00 后，从 00:01 开始，todayString 已经是第二天凌晨了，所以直接计算 00:00 ~ 2:30 间隔即可
+            var openning = isWorkingDay && (isDuringDate(todayStr + ' 22:00', todayStr + '23:59') || isDuringDate(todayStr + ' 00:00', todayStr + '5:30'));
+            var status = document.getElementById('americaStatus');
+            if (openning) {
+                status.innerHTML = "开盘";
+                status.style.setProperty('color',getUpDownColoredText(1));
+            } else {
+                status.innerHTML = "收盘";
+                status.style.setProperty('color','#808080');
+            }
+            if (isForce || openning) {
                 $.ajax({
                     url: "http://112.125.25.230/api/indexs?area=america",
                     type: "GET",
@@ -424,6 +482,19 @@
         }
         // 请求期货&外汇
         function requestGoodsAndExchangesV2(isForce=false) {
+            var status1 = document.getElementById('goodStatus');
+            var status2 = document.getElementById('exchangeStatus');
+            if (isWorkingDay) {
+                status1.innerHTML = "开盘";
+                status1.style.setProperty('color',getUpDownColoredText(1));
+                status2.innerHTML = "开盘";
+                status2.style.setProperty('color',getUpDownColoredText(1));
+            } else {
+                status1.innerHTML = "收盘";
+                status1.style.setProperty('color','#808080');
+                status2.innerHTML = "收盘";
+                status2.style.setProperty('color','#808080');
+            }
             if (isForce || isWorkingDay) {
                 $.ajax({
                     url: "http://112.125.25.230/api/goods_and_exchanges",
@@ -1019,7 +1090,7 @@
     <p id="timestamp" style="font-size: 36; color: #FAFAFA;">时间</p>
     <hr />
     <!-- 资金流向区 -->
-    <p class="sectionTitle" onclick="showHideArea(moneyFlow)">大陆及沪港通资金流向</p>
+    <p class="sectionTitle" onclick="showHideArea(moneyFlow)">大陆及沪港通资金流向<span id="moneyStatus" class="sectionStatus"></span></p>
     <div id="moneyFlow" style="color: #fff;">
         <div id="inlandDealMoney"></div>
         <div id="inlandLeverMoney"></div>
@@ -1029,7 +1100,7 @@
     </div>
     <hr />
     <!-- 涨跌平盘条形区 -->
-    <p class="sectionTitle" onclick="showHideArea(zdp)">指数涨跌分布</p>
+    <p class="sectionTitle" onclick="showHideArea(zdp)">指数涨跌分布<span id="zdpStatus" class="sectionStatus"></span></p>
     <!-- 指数涨跌平条 -->
     <div id="zdp">
         <!-- 涨跌平条 -->
@@ -1047,38 +1118,38 @@
     <!-- 指数区 -->
     <div id="index">
         <!-- 中国 -->
-        <p class="sectionTitle" onclick="showHideArea(chinaIndexs)">中国大陆及港台地区</p>
+        <p class="sectionTitle" onclick="showHideArea(chinaIndexs)">中国大陆及港台地区<span id="chinaStatus" class="sectionStatus"></span></p>
         <div id="chinaIndexs" onclick="changeShowType(this)">
         </div>
         <hr />
         <!-- 中国台湾，亚洲新兴 & 欧洲，美洲等 -->
-        <p class="sectionTitle" onclick="showHideArea(asianIndexs)">亚洲地区</p>
+        <p class="sectionTitle" onclick="showHideArea(asianIndexs)">亚洲地区<span id="asianStatus" class="sectionStatus"></span></p>
         <div id="asianIndexs" onclick="changeShowType(this)">
         </div>
         <hr />
         <!-- 欧洲 -->
-        <p class="sectionTitle" onclick="showHideArea(euroIndexs)">欧洲地区</p>
+        <p class="sectionTitle" onclick="showHideArea(euroIndexs)">欧洲地区<span id="euroStatus" class="sectionStatus"></span></p>
         <div id="euroIndexs" onclick="changeShowType(this)">
         </div>
         <hr />
         <!-- 美洲 -->
-        <p class="sectionTitle" onclick="showHideArea(americaIndexs)">美洲地区</p>
+        <p class="sectionTitle" onclick="showHideArea(americaIndexs)">美洲地区<span id="americaStatus" class="sectionStatus"></span></p>
         <div id="americaIndexs" onclick="changeShowType(this)">
         </div>
     </div>
     <hr />
     <!-- 期货 -->
-    <p class="sectionTitle" onclick="showHideArea(goods)">股指及商品期货</p>
+    <p class="sectionTitle" onclick="showHideArea(goods)">股指及商品期货<span id="goodStatus" class="sectionStatus"></span></p>
     <div id="goods" onclick="changeShowType(this)">
     </div>
     <hr />
     <!-- 外汇 -->
-    <p class="sectionTitle" onclick="showHideArea(exchanges)">外汇牌价</p>
+    <p class="sectionTitle" onclick="showHideArea(exchanges)">外汇牌价<span id="exchangeStatus" class="sectionStatus"></span></p>
     <div id="exchanges" onclick="changeShowType(this)">
     </div>
     <hr />
     <!-- 固收债券 -->
-    <p class="sectionTitle" onclick="showHideArea(bonds)">固定收益债券</p>
+    <p class="sectionTitle" onclick="showHideArea(bonds)">固定收益债券<span id="bondStatus" class="sectionStatus"></span></p>
     <div id="bonds" onclick="changeShowType(this)">
     </div>
     </div>
