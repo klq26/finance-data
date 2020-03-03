@@ -1956,10 +1956,10 @@
         "estimateTime":"估算时间",
         "fundCode":"002147",
         "fundName":"长安鑫益增强混合C",
-        "holdMarketCap":139179.84,
-        "holdNetValue":1.2149,
-        "holdShareCount":114494.77,
-        "holdTotalGain":80.15
+        "holdMarketCap":303153.84,
+        "holdNetValue":1.2153,
+        "holdShareCount":249386.18,
+        "holdTotalGain":74.82
     },
     {
         "appSource":"钉钉宝365父",
@@ -1974,10 +1974,10 @@
         "estimateTime":"估算时间",
         "fundCode":"007749",
         "fundName":"民生加银鹏程混合C",
-        "holdMarketCap":69553.19,
-        "holdNetValue":1.0891,
-        "holdShareCount":63804.41,
-        "holdTotalGain":63.8
+        "holdMarketCap":151972.07,
+        "holdNetValue":1.0896,
+        "holdShareCount":139411.13,
+        "holdTotalGain":69.71
     },
     {
         "appSource":"钉钉宝365父",
@@ -1992,28 +1992,10 @@
         "estimateTime":"估算时间",
         "fundCode":"006060",
         "fundName":"鹏扬泓利债券C",
-        "holdMarketCap":69546.18,
-        "holdNetValue":1.0966,
-        "holdShareCount":63402.48,
-        "holdTotalGain":19.02
-    },
-    {
-        "appSource":"钉钉宝365父",
-        "category1":"混合型",
-        "category2":"股债混合",
-        "category3":"偏债",
-        "category4":"412",
-        "currentNetValue":1.577,
-        "currentNetValueDate":"2020-03-02",
-        "estimateNetValue":0.0,
-        "estimateRate":0.0,
-        "estimateTime":"估算时间",
-        "fundCode":"485011",
-        "fundName":"工银双利债券B",
-        "holdMarketCap":34816.67,
-        "holdNetValue":1.5745,
-        "holdShareCount":22077.79,
-        "holdTotalGain":55.19
+        "holdMarketCap":151859.08,
+        "holdNetValue":1.0968,
+        "holdShareCount":138443.87,
+        "holdTotalGain":13.84
     },
     {
         "appSource":"钉钉宝365父",
@@ -2028,10 +2010,28 @@
         "estimateTime":"估算时间",
         "fundCode":"001338",
         "fundName":"安信稳健增值混合C",
-        "holdMarketCap":34825.74,
-        "holdNetValue":1.3542,
-        "holdShareCount":25673.23,
-        "holdTotalGain":59.05
+        "holdMarketCap":75905.72,
+        "holdNetValue":1.3555,
+        "holdShareCount":55957.04,
+        "holdTotalGain":55.96
+    },
+    {
+        "appSource":"钉钉宝365父",
+        "category1":"混合型",
+        "category2":"股债混合",
+        "category3":"偏债",
+        "category4":"412",
+        "currentNetValue":1.577,
+        "currentNetValueDate":"2020-03-02",
+        "estimateNetValue":0.0,
+        "estimateRate":0.0,
+        "estimateTime":"估算时间",
+        "fundCode":"485011",
+        "fundName":"工银双利债券B",
+        "holdMarketCap":76030.86,
+        "holdNetValue":1.5745,
+        "holdShareCount":48212.34,
+        "holdTotalGain":120.53
     },
     {
         "appSource":"天天基金母",
