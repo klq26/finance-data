@@ -41,7 +41,7 @@ class assetAllocationCombine:
         self.indexValueInfo.update()
         # 根据策略生成对于的变量配置参数
         if self.strategy == 'a':
-            self.filenames = [u'danjuan_螺丝钉.txt',u'danjuan_钉钉宝90.txt',u'danjuan_钉钉宝365.txt',u'qieman_10万补充ETF计划.txt',u'qieman_我的S定投计划.txt', u'tiantian_康力泉.txt',u'huatai_康力泉.txt',u'huabao_康力泉.txt',u'guangfa_支付宝.txt']
+            self.filenames = [u'danjuan_螺丝钉.txt',u'danjuan_钉钉宝365.txt',u'qieman_10万补充ETF计划.txt',u'qieman_我的S定投计划.txt', u'tiantian_康力泉.txt',u'huatai_康力泉.txt',u'huabao_康力泉.txt',u'guangfa_支付宝.txt']
             self.excelFilePathExt = u'康力泉权益类'
             self.echartsJSFilePathExt = u'康力泉'
             self.pm = pathManager(strategyName=u'康力泉')
@@ -52,7 +52,7 @@ class assetAllocationCombine:
                     if name in self.filenames:
                         self.filepaths.append(os.path.join(root,name))
         elif self.strategy == 'b':
-            self.filenames = [u'danjuan_母螺丝钉.txt',u'danjuan_父螺丝钉.txt',u'danjuan_母钉钉宝90.txt',u'danjuan_父钉钉宝365.txt',u'tiantian_李淑云.txt','cash_父母.txt','qieman_父稳稳的幸福.txt']
+            self.filenames = [u'danjuan_母螺丝钉.txt',u'danjuan_父螺丝钉.txt',u'danjuan_父钉钉宝365.txt',u'tiantian_李淑云.txt','cash_父母.txt']
             self.excelFilePathExt = u'父母'
             self.echartsJSFilePathExt = u'父母'
             self.pm = pathManager(strategyName=u'父母')
@@ -63,7 +63,7 @@ class assetAllocationCombine:
                     if name in self.filenames:
                         self.filepaths.append(os.path.join(root,name))
         elif self.strategy == 'c':
-            self.filenames = [u'danjuan_螺丝钉.txt',u'danjuan_钉钉宝90.txt',u'danjuan_钉钉宝365.txt',u'qieman_10万补充ETF计划.txt',u'qieman_我的S定投计划.txt', u'tiantian_康力泉.txt',u'huatai_康力泉.txt',u'huabao_康力泉.txt',u'guangfa_支付宝.txt',u'cash_康力泉.txt',u'freeze_康力泉.txt']
+            self.filenames = [u'danjuan_螺丝钉.txt',u'danjuan_钉钉宝365.txt',u'qieman_10万补充ETF计划.txt',u'qieman_我的S定投计划.txt', u'tiantian_康力泉.txt',u'huatai_康力泉.txt',u'huabao_康力泉.txt',u'guangfa_支付宝.txt',u'cash_康力泉.txt',u'freeze_康力泉.txt']
             self.excelFilePathExt = u'康力泉整体'
             self.echartsJSFilePathExt = u'康力泉'
             self.pm = pathManager(strategyName=u'康力泉')
@@ -74,8 +74,8 @@ class assetAllocationCombine:
                     if name in self.filenames:
                         self.filepaths.append(os.path.join(root,name))
         elif self.strategy == 'd':
-            self.filenames = [u'danjuan_螺丝钉.txt',u'danjuan_钉钉宝90.txt',u'danjuan_钉钉宝365.txt',u'qieman_10万补充ETF计划.txt',u'qieman_我的S定投计划.txt', u'tiantian_康力泉.txt',u'huatai_康力泉.txt',u'huabao_康力泉.txt',u'guangfa_支付宝.txt',u'cash_康力泉.txt',u'freeze_康力泉.txt'\
-                ,u'danjuan_母螺丝钉.txt',u'danjuan_父螺丝钉.txt',u'danjuan_母钉钉宝90.txt',u'danjuan_父钉钉宝365.txt',u'tiantian_李淑云.txt','cash_父母.txt','qieman_父稳稳的幸福.txt']
+            self.filenames = [u'danjuan_螺丝钉.txt',u'danjuan_钉钉宝365.txt',u'qieman_10万补充ETF计划.txt',u'qieman_我的S定投计划.txt', u'tiantian_康力泉.txt',u'huatai_康力泉.txt',u'huabao_康力泉.txt',u'guangfa_支付宝.txt',u'cash_康力泉.txt',u'freeze_康力泉.txt'\
+                ,u'danjuan_母螺丝钉.txt',u'danjuan_父螺丝钉.txt',u'danjuan_父钉钉宝365.txt',u'tiantian_李淑云.txt','cash_父母.txt']
             self.excelFilePathExt = u'全家整体'
             self.echartsJSFilePathExt = u'全家'
             self.pm = pathManager(strategyName=u'全家')

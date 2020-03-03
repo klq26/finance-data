@@ -1,14 +1,10 @@
 	GET /account/account.do HTTP/1.1
-Host	www.sui.com
-Connection	keep-alive
+Referer	https://www.sui.com/account/account.do
+Accept	text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language	zh-Hans-CN,zh-Hans;q=0.8,en-US;q=0.6,en;q=0.4,ja;q=0.2
 Upgrade-Insecure-Requests	1
-User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.122 Safari/537.36
-Sec-Fetch-Dest	document
-Accept	text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
-Sec-Fetch-Site	same-origin
-Sec-Fetch-Mode	navigate
-Sec-Fetch-User	?1
-Referer	https://www.sui.com/report_index.do
+User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/18.17763
 Accept-Encoding	gzip, deflate, br
-Accept-Language	zh-CN,zh;q=0.9
-Cookie	__vistor=C2FC974E1dkc2f30k; __nick=klq26%40163.com; SESSION_COOKIE=a8e14a3d3446b0d7b8155ae885f316e7; __utmc=121176714; __utmz=121176714.1572313309.44.20.utmcsr=login.sui.com|utmccn=(referral)|utmcmd=referral|utmcct=/auth.do; __jsluid_s=5bfc79c54390dcec87595cffb3de5ed3; _bookTabSwitchList=05d9c1d88a4bc09f1e6a4ccc3fa3f033|1|0&; Hm_lvt_3db4e52bb5797afe0faaa2fde5c96ea4=1582693910; __spm_bid=5233beb1b7d1s55bpa99d89dd2m15140; SESSION=4edda152-e85f-462f-b356-8d756743353c; __utma=121176714.1274987167.1566994582.1582693901.1583020991.111; __utmt=1; Hm_lpvt_3db4e52bb5797afe0faaa2fde5c96ea4=1583020995; __utmb=121176714.2.10.1583020991
+Host	www.sui.com
+Connection	Keep-Alive
+Cookie	Hm_lpvt_3db4e52bb5797afe0faaa2fde5c96ea4=1583203722; __utmc=121176714; __utmz=121176714.1574295963.24.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utma=121176714.1152311422.1552132033.1577365344.1583203700.27; __spm_bid=71a9aab79de8s92dpf8fc83d8bm3ef87; __utmb=121176714.3.10.1583203700; __utmt=1; Hm_lvt_3db4e52bb5797afe0faaa2fde5c96ea4=1583203700; __nick=klq26%40163.com; __vistor=85CBB08A1d5h4ek1z; _bookTabSwitchList=05d9c1d88a4bc09f1e6a4ccc3fa3f033|1|0&; SESSION=49501205-2706-4da7-b17f-a2cc8f814293; SESSION_COOKIE=a8e14a3d3446b0d7b8155ae885f316e7

@@ -171,19 +171,20 @@ class cashSpider:
         # totalCash = totalCash + result[0]
         # totalGain = totalGain + result[1]
 
+        # 蛋卷
         result = self.getDanjuan(True, '003474',headers=requestHeaderManager().getDanjuanKLQ())
         totalCash = totalCash + result[0]
         totalGain = totalGain + result[1]
 
-        # 天天现金宝之后不会在存现金，历史收益已收录
-        # result = self.getTianTianHuoQiBao(u'https://trade.1234567.com.cn/xjb/index', self.requestHeaderManager.getTiantianKLQ())
-        # totalCash = totalCash + result[0]
-        # totalGain = totalGain + result[1]
+        # 天天现金
+        result = self.getTianTianHuoQiBao(u'https://trade.1234567.com.cn/xjb/index', self.requestHeaderManager.getTiantianKLQ())
+        totalCash = totalCash + result[0]
+        totalGain = totalGain + result[1]
 
         # 华宝证券，现在是手动更新
-        totalCash = totalCash + 10003.74
-        totalGain = totalGain + 3.74
-        print(u'华宝证券：10003.74 元，累计收益：3.74 元')
+        totalCash = totalCash + 7561.53
+        totalGain = totalGain + 20.71
+        print(u'华宝证券：7561.53 元，累计收益：20.71 元')
 
         totalCash = round(totalCash,2)
         totalGain = round(totalGain,2)

@@ -1,12 +1,14 @@
-	GET /djapi/account/user_info_check HTTP/1.1
-Host	danjuanapp.com
-Connection	keep-alive
-Accept	application/json, text/plain, */*
-Sec-Fetch-Dest	empty
-User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.122 Safari/537.36
-Sec-Fetch-Site	same-origin
-Sec-Fetch-Mode	cors
-Referer	https://danjuanapp.com/
+	POST /do.aspx/CheckLogin HTTP/1.1
+Origin	https://trade.1234567.com.cn
+Referer	https://trade.1234567.com.cn/myAssets/hold
+User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/18.17763
+Accept	application/json, text/javascript, */*; q=0.01
+Accept-Language	zh-Hans-CN,zh-Hans;q=0.8,en-US;q=0.6,en;q=0.4,ja;q=0.2
+Content-Type	application/json; charset=utf-8
+X-Requested-With	XMLHttpRequest
 Accept-Encoding	gzip, deflate, br
-Accept-Language	zh-CN,zh;q=0.9
-Cookie	device_id=web_ByL9-IyHH; _ga=GA1.2.1578122713.1566691726; gr_user_id=07a8b8b8-e04f-4bfa-b6bd-3492bb42b3a6; thirdparty_token=; thirdparty_source=; thirdparty_nickname=; thirdparty_avatar=; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%22203274561%22%2C%22%24device_id%22%3A%2216cc61a9198303-0a4b8d7e767657-7373e61-3686400-16cc61a9199311%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_referrer%22%3A%22%22%2C%22%24latest_referrer_host%22%3A%22%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%7D%2C%22first_id%22%3A%2216cc61a9198303-0a4b8d7e767657-7373e61-3686400-16cc61a9199311%22%7D; xq_a_token=14937cd42df3405f3edb2a463bbc762b21bf22de; channel=1300100141; accesstoken=2400200003f67a5d8529dc72490a4120205d081c0596633fe; refreshtoken=2400200008076cc9f34c243ace0052b329753dab3dc9466b2; uid=203274561; Hm_lvt_b53ede02df3afea0608038748f4c9f36=1583019769; _gid=GA1.2.387790935.1583019769; Hm_lpvt_b53ede02df3afea0608038748f4c9f36=1583020925; timestamp=1583020926566
+Host	trade.1234567.com.cn
+Content-Length	0
+Connection	Keep-Alive
+Cache-Control	no-cache
+Cookie	FundTradeLoginCard=0; cp_token=3a5c7acfc5924cbfbfdde80e1d92b9cb; st_inirUrl=http%3A%2F%2Fwww.1234567.com.cn%2F; st_sp=2019-11-04%2012%3A30%3A51; FundTradeLoginUser=9E5vFmk2Mt+p99tc84IKcMeAS8YRJoEij8JYwiX7hDL297RN7mgiRwJlGVLPVdp2zewafQzI; FundTradeLoginTab=0; st_pvi=39534940810836; TradeLoginToken=e8cb1885001045e3b26bd942a0752fad; st_si=46349988161074; fund_trade_cn=9oncS3LPM0KVCotxvQZqtQ7hHmQgI2IlQQFVJVV7C8R/bkCM1xPqU88rwn0m6N0i3n2vOH7Ia1poHG6EMhY0J9Mpj0kyz8yBUH2p78UZGvxe50WCAiM=; fund_trade_name=9ZDz1KX5Ftz1oD2/jlIKiXu9IRMRhMYXaTD8wbkDNxOBO7ho76rFVgJlpWR4whL24ZG0oeew; fund_trade_visitor=9VRl16jPXtQrdExN9QIPkNw8dYrReC+TMNoQw/Jnm2kcZ7z9Mut4GSJyDNA8z0b2xfHDU2nd; fund_trade_risk=9X2CXWtHFtx7yjokHtIaadBVpSRRnTcdu0iww92XmcK+k74PAPxfqrJSmc8GpTJ2dC1viUhy; fund_trade_gps=6; VipLevel=1; UTOKEN=9oncS3LPM0KVCotxvQZqtQ7hHmQgI2IlQQFVJVV7C8R/bkCM1xPqU88rwn0m6N0i3n2vOD71W1EDTplp/YYyJjdtfSqa5n3frv29aEiKH7g6eN5mPQ4=; LToken=0e48476b2afe435ba0fd6d56a02e845d; fund_trade_trackid=b06smkp5WWLvXmsBeoJ9woOUNAgPq2tNX8EoEUviMMOO7Mut7QrbV4vuUSu+qUBWgJeUndK0Loe4nvXBtbNWwg==; ASP.NET_SessionId=jbeujj3vquq33cmhblxvxaqr
