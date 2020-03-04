@@ -346,6 +346,8 @@ def getMoneyInfo():
     inlandMoneyFlow_url = "http://push2.eastmoney.com/api/qt/stock/fflow/kline/get?lmt=0&klt=1&secid=1.000001&secid2=0.399001&fields1=f1,f2,f3,f7&fields2=f51,f52,f53,f54,f55,f56,f57,f58,f59,f60,f61,f62,f63&cb=updateMoneyFlow"
     # 沪港通，深港通南北向资金情况 http://data.eastmoney.com/hsgt/index.html
     hongkongMoneyFlow_url = "http://push2.eastmoney.com/api/qt/kamt.rtmin/get?fields1=f1,f2,f3,f4&fields2=f51,f52,f53,f54,f55,f56&cb=updateHKMoneyFlow"
+    # 行业资金净流入净流出
+    industyMoneyFlow_url = 'http://push2.eastmoney.com/api/qt/clist/get?pn=1&pz=500&fields=f12,f14,f62&fid=f62&fs=m:90+t:2&cb=callback'
 
     # 各部分数据
     inlandDealMoneyData = []
@@ -481,6 +483,35 @@ def getMoneyInfo():
             nameIdx = nameIdx + 1
         # print(hongkongN2SFlowData)
         finalResult.append({'name':'南向资金净流入（亿）','symbol':'nxzjjlr', 'value':hongkongN2SFlowData})
+    
+    # 行业资金净流入净流出（亿）
+    response = requests.get(industyMoneyFlow_url, verify=False)
+    if response.status_code == 200:
+        jsonResult = response.text.replace('callback(', '').replace(');', '')
+        jsonData = json.loads(jsonResult)
+        # print(jsonData)
+        count = jsonData['data']['total']
+        datalist = jsonData['data']['diff']
+        nameKey = 'f14'
+        valueKey = 'f62'
+        moneyOuts = []
+        # 升序 -100，-90
+        # {'f12': 'BK0473', 'f14': '券商信托', 'f62': 2857139456.0}
+        moneyOuts.append({ 'name' : datalist['0'][nameKey], 'value' : round(float(datalist['0'][valueKey])/100000000,1)})
+        moneyOuts.append({ 'name' : datalist['1'][nameKey], 'value' : round(float(datalist['1'][valueKey])/100000000,1)})
+        moneyOuts.append({ 'name' : datalist['2'][nameKey], 'value' : round(float(datalist['2'][valueKey])/100000000,1)})
+        moneyOuts.append({ 'name' : datalist['3'][nameKey], 'value' : round(float(datalist['3'][valueKey])/100000000,1)})
+        moneyOuts.append({ 'name' : datalist['4'][nameKey], 'value' : round(float(datalist['4'][valueKey])/100000000,1)})
+        moneyIns = []
+        # 降序 100 90
+        moneyIns.append({ 'name' : datalist['{0}'.format(count-1)][nameKey], 'value' : round(float(datalist['{0}'.format(count-1)][valueKey])/100000000,1)})
+        moneyIns.append({ 'name' : datalist['{0}'.format(count-2)][nameKey], 'value' : round(float(datalist['{0}'.format(count-2)][valueKey])/100000000,1)})
+        moneyIns.append({ 'name' : datalist['{0}'.format(count-3)][nameKey], 'value' : round(float(datalist['{0}'.format(count-3)][valueKey])/100000000,1)})
+        moneyIns.append({ 'name' : datalist['{0}'.format(count-4)][nameKey], 'value' : round(float(datalist['{0}'.format(count-4)][valueKey])/100000000,1)})
+        moneyIns.append({ 'name' : datalist['{0}'.format(count-5)][nameKey], 'value' : round(float(datalist['{0}'.format(count-5)][valueKey])/100000000,1)})
+
+        finalResult.append({'name':'行业资金净流入（亿）','symbol':'hyzjjlr', 'value': {'money_in' : moneyIns, 'money_out' : moneyOuts}})
+
     # 结束时间
     endTS = time.time()
     endTime = time.strftime(timeFormat, time.localtime(endTS))
