@@ -69,9 +69,13 @@
             margin-right: 2px;
         }
 
+        #inout_value_area {
+            width: 630px;
+        }
+
         .inoutBar {
                 display: inline-flex;
-                width: 890px;
+                width: 100%;
                 /* margin-top: 4px; */
         }
         .money_out_bar {
@@ -103,6 +107,7 @@
             color: #fff;
             float: left;
             height: 48px;
+            margin-left: 8px;
             min-width: min-content;
         }
         .money_in_title {
@@ -120,6 +125,7 @@
             color: #fff;
             float: right;
             height: 48px;
+            margin-right: 8px;
             min-width: min-content;
         }
 
@@ -432,7 +438,7 @@
             }
             if (isForce || openning) {
                 $.ajax({
-                url: "http://112.125.25.230/api/indexs?area=china",
+                url: "http://112.125.25.230/api/indexs/china",
                 type: "GET",
                 contentType: "application/json",
                 dataType: "json",
@@ -472,7 +478,7 @@
             }
             if (isForce || openning) {
                 $.ajax({
-                    url: "http://112.125.25.230/api/indexs?area=asian",
+                    url: "http://112.125.25.230/api/indexs/asian",
                     type: "GET",
                     contentType: "application/json",
                     dataType: "json",
@@ -498,7 +504,7 @@
             }
             if (isForce || openning) {
                 $.ajax({
-                    url: "http://112.125.25.230/api/indexs?area=euro",
+                    url: "http://112.125.25.230/api/indexs/euro",
                     type: "GET",
                     contentType: "application/json",
                     dataType: "json",
@@ -524,7 +530,7 @@
             }
             if (isForce || openning) {
                 $.ajax({
-                    url: "http://112.125.25.230/api/indexs?area=america",
+                    url: "http://112.125.25.230/api/indexs/america",
                     type: "GET",
                     contentType: "application/json",
                     dataType: "json",
@@ -1001,11 +1007,33 @@
         function updateIndustryMoneyFlowV2(data, divId) {
             // 更新
             var divElement = document.getElementById(divId);
+            divElement.style.setProperty('display','inline-flex');
+            // 标题
+            var title = document.getElementById('inout_title');
+            if(title == null) {
+                var title = document.createElement('div');
+                title.className = "indexTitle";
+                title.id = 'inout_title';
+                title.style.setProperty('height', 288);
+                title.style.setProperty('width',240);
+                divElement.appendChild(title);
+            }
+            title.innerText = data['name'];
+            // 数值区
+            var valueBox = document.getElementById('inout_value_area');
+            if(valueBox == null) {
+                valueBox = document.createElement('div');
+                valueBox.id = 'inout_value_area';
+                valueBox.style.setProperty('width', 630);
+                // valueBox.style.setProperty('background-color','#0000ff');
+                divElement.appendChild(valueBox);
+            }
+            
             // 数据
             moneyIns = data['value']['money_in'];
             moneyOuts = data['value']['money_out'];
             // 最长条长
-            var maxBarWidth = 250;
+            var maxBarWidth = 180;
             // 算一个最大值做长度最长的比例。最大是 1.0
             var maxAbsValue = 0;
             for (var idx in moneyIns) {
@@ -1028,44 +1056,43 @@
                     inoutBarElement = document.createElement('div');
                     inoutBarElement.id = ('inoutBar_' + i);
                     inoutBarElement.className = 'inoutBar';
-                    divElement.appendChild(inoutBarElement);
+                    valueBox.appendChild(inoutBarElement);
                 }
                 // 净流入
                 var inAreaElement = document.getElementById('inoutBarInArea_' + i);
                 if (inAreaElement == null) {
                     inAreaElement = document.createElement('div');
                     inAreaElement.id = ('inoutBarInArea_' + i);
-                    inAreaElement.style.setProperty('width','50%');
                     inoutBarElement.appendChild(inAreaElement);
                 }
+                inAreaElement.style.setProperty('width','50%');
                 // 流出标题
                 var titleElement = document.getElementById('inTitle_' + i);
                 if (titleElement == null) {
                     titleElement = document.createElement('div');
                     titleElement.id = ('inTitle_' + i);
                     titleElement.className = 'money_in_title';
-                    titleElement.innerHTML = moneyIn['name'];
                     inAreaElement.appendChild(titleElement);
                 }
+                titleElement.innerHTML = moneyIn['name'];
                 // 流出条
                 var barElement = document.getElementById('inBar_' + i);
                 if (barElement == null) {
                     barElement = document.createElement('div');
                     barElement.id = ('inBar_' + i);
                     barElement.className = 'money_in_bar';
-                    barElement.style.setProperty('width', Math.abs(moneyIn['value']) / maxAbsValue * maxBarWidth);
                     inAreaElement.appendChild(barElement);
                 }
+                barElement.style.setProperty('width', Math.abs(moneyIn['value']) / maxAbsValue * maxBarWidth);
                 // 流出数值
                 var valueElement = document.getElementById('inValue_' + i);
                 if (valueElement == null) {
                     valueElement = document.createElement('div');
                     valueElement.id = ('inValue_' + i);
                     valueElement.className = 'money_in_value';
-                    valueElement.innerHTML = moneyIn['value'];
                     inAreaElement.appendChild(valueElement);
                 }
-
+                valueElement.innerHTML = parseFloat(moneyIn['value']).toFixed(1);
 
                 // 净流出
                 var outAreaElement = document.getElementById('inoutBarOutArea_' + i);
@@ -1081,33 +1108,33 @@
                     titleElement = document.createElement('div');
                     titleElement.id = ('outTitle_' + i);
                     titleElement.className = 'money_out_title';
-                    titleElement.innerHTML = moneyOut['name'];
                     outAreaElement.appendChild(titleElement);
                 }
+                titleElement.innerHTML = moneyOut['name'];
                 // 流出条
                 var barElement = document.getElementById('outBar_' + i);
                 if (barElement == null) {
                     barElement = document.createElement('div');
                     barElement.id = ('outBar_' + i);
                     barElement.className = 'money_out_bar';
-                    barElement.style.setProperty('width', Math.abs(moneyOut['value']) / maxAbsValue * maxBarWidth);
                     outAreaElement.appendChild(barElement);
                 }
+                barElement.style.setProperty('width', Math.abs(moneyOut['value']) / maxAbsValue * maxBarWidth);
                 // 流出数值
                 var valueElement = document.getElementById('outValue_' + i);
                 if (valueElement == null) {
                     valueElement = document.createElement('div');
                     valueElement.id = ('outValue_' + i);
                     valueElement.className = 'money_out_value';
-                    valueElement.innerHTML = moneyOut['value'];
                     outAreaElement.appendChild(valueElement);
                 }
+                valueElement.innerHTML = parseFloat(moneyOut['value']).toFixed(1);
             }
             // 更新动画
-            $(divElement).fadeOut({ duration: 300 });
-            $(divElement).fadeIn({ duration: 300 });
-            $(divElement).fadeOut({ duration: 300 });
-            $(divElement).fadeIn({ duration: 300 });
+            $(valueBox).fadeOut({ duration: 300 });
+            $(valueBox).fadeIn({ duration: 300 });
+            $(valueBox).fadeOut({ duration: 300 });
+            $(valueBox).fadeIn({ duration: 300 });
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////

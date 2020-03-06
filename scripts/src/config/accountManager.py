@@ -195,7 +195,7 @@ class accountManager:
         accounts.append(account.__dict__)
 
         account = accountModel()
-        account.accountName = u'钉钉宝90母'
+        account.accountName = u'钉钉宝365母'
         account.sortId = 405
         account.owner = u'parent'
         account.appSource = u'danjuan'
