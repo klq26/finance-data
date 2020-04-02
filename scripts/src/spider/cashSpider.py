@@ -182,9 +182,9 @@ class cashSpider:
         totalGain = totalGain + result[1]
 
         # 华宝证券，现在是手动更新
-        totalCash = totalCash + 7561.53
-        totalGain = totalGain + 20.71
-        print(u'华宝证券：7561.53 元，累计收益：20.71 元')
+        totalCash = totalCash + 52607.78
+        totalGain = totalGain + 38.3
+        print(u'华宝证券：52607.78 元，累计收益：38.3 元')
 
         totalCash = round(totalCash,2)
         totalGain = round(totalGain,2)

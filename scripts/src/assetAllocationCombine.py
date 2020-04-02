@@ -15,6 +15,7 @@ from config.pathManager import pathManager
 from config.requestHeaderManager import requestHeaderManager
 from config.indexValueInfo import indexValueInfo
 from config.historyProfitManager import  historyProfitManager
+from config.assetCategoryManager import assetCategoryManager
 # 多种统计输出
 from analytics.assetAllocationExcelParser import assetAllocationExcelParser               # 输出资产配置信息到 Excel 表
 from analytics.assetAllocationHtmlParser import assetAllocationHtmlParser               # 输出资产配置信息到 Html
@@ -35,6 +36,8 @@ class assetAllocationCombine:
         self.strategy = strategy # 默认 A 策略，即康力泉（不含现金和冻结资金）
         # 拿取最新基金净值
         self.navManager = fundNavManager()
+        # 拿一下最新的资产分类配置
+        assetCategoryManager().generateFundCategoryJsonFile()
         # 拿取最新指数值
         self.headerManager = requestHeaderManager()
         self.indexValueInfo = indexValueInfo()
@@ -135,6 +138,12 @@ class assetAllocationCombine:
                         fund.holdMarketCap = round(fund.currentNetValue * fund.holdShareCount,2)
                         fund.holdTotalGain = round((fund.currentNetValue - fund.holdNetValue) * fund.holdShareCount,2)   # 自己计算出来的持仓盈亏
                     category = self.getFundCategoryByCode(fund.fundCode)
+                    if category == '':
+                        print('[ERROR] {0} {1} 不在资产配置列表中. 请添加'.format(fund.fundCode, fund.fundName))
+                        if sys.platform.startswith('win'):
+                            os.startfile('https://qieman.com/funds/{0}'.format(fund.fundCode))
+                            os.startfile(os.path.join(self.pm.configPath, '资产配置分类表.xlsx'))
+                        exit(1)
                     fund.category1 = category[u'category1']                    # 一级分类
                     fund.category2 = category[u'category2']                    # 二级分类
                     fund.category3 = category[u'category3']                    # 三级分类

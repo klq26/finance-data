@@ -76,7 +76,13 @@ class requestHeaderManager:
                     cookieValue = cookieValue + '; {0}'.format(cookies[i][7:len(cookies[i])].replace('\n',''))
             for i in range(1,len(lines)):
                 line = lines[i].strip('\n')
-                values = line.split('\t')
+                values = []
+                if '\t' in line:
+                    values = line.split('\t')
+                elif ': ' in line:
+                    values = line.split(': ')
+                else:
+                    values = []
                 headers[values[0].replace(':','')] = values[1]
             if cookieValue != '':
                 headers['cookie'] = cookieValue

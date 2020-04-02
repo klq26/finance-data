@@ -441,6 +441,22 @@
             "category4":"221"
         },
         {
+            "name":"华安纳斯达克100指数",
+            "code":"040046",
+            "category1":"海外成熟",
+            "category2":"美国",
+            "category3":"纳斯达克",
+            "category4":"312"
+        },
+        {
+            "name":"博时标普500ETF联接A",
+            "code":"050025",
+            "category1":"海外成熟",
+            "category2":"美国",
+            "category3":"标普500",
+            "category4":"313"
+        },
+        {
             "name":"广发美国房地产指数",
             "code":"000179",
             "category1":"海外成熟",
@@ -465,6 +481,22 @@
             "category4":"321"
         },
         {
+            "name":"日经ETF",
+            "code":"513520",
+            "category1":"海外成熟",
+            "category2":"日本",
+            "category3":"日经225",
+            "category4":"331"
+        },
+        {
+            "name":"东方红中国优势混合",
+            "code":"001112",
+            "category1":"混合型",
+            "category2":"股债混合",
+            "category3":"偏股",
+            "category4":"411"
+        },
+        {
             "name":"交银主题优选",
             "code":"519700",
             "category1":"混合型",
@@ -475,6 +507,22 @@
         {
             "name":"交银周期回报灵活配置混合A",
             "code":"519738",
+            "category1":"混合型",
+            "category2":"股债混合",
+            "category3":"偏债",
+            "category4":"411"
+        },
+        {
+            "name":"广发趋势优选混合C",
+            "code":"008127",
+            "category1":"混合型",
+            "category2":"股债混合",
+            "category3":"偏债",
+            "category4":"411"
+        },
+        {
+            "name":"南方宝元债券C",
+            "code":"006585",
             "category1":"混合型",
             "category2":"股债混合",
             "category3":"偏债",
@@ -723,6 +771,14 @@
         {
             "name":"南方原油",
             "code":"501018",
+            "category1":"商品",
+            "category2":"商品",
+            "category3":"原油",
+            "category4":"613"
+        },
+        {
+            "name":"华安标普石油指数",
+            "code":"160416",
             "category1":"商品",
             "category2":"商品",
             "category3":"原油",

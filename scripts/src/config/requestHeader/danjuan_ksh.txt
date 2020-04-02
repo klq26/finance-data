@@ -1,9 +1,8 @@
-	GET /djapi/account/user_info_check HTTP/1.1
-Referer	https://danjuanapp.com/
-User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/18.17763
-Accept	application/json, text/plain, */*
-Accept-Language	zh-CN
-Accept-Encoding	gzip, deflate, br
-Host	danjuanapp.com
-Connection	Keep-Alive
-Cookie	device_id=web_ryf6FL95r; _gid=GA1.2.1512306274.1572657590; _gat_gtag_UA_16079156_7=1; _ga=GA1.2.1505159496.1572657590; Hm_lvt_b53ede02df3afea0608038748f4c9f36=1572657590; timestamp=1572657637960; channel=1300100141; xq_a_token=489a94320ff7bc390513c200bc41187b51db60d2; Hm_lpvt_b53ede02df3afea0608038748f4c9f36=1572657634; gr_user_id=3b74c212-64ff-460b-b1c2-91a1d9e80d79; gr_session_id_94b96c7a661bf17a=efd2aeb5-7b52-41a8-ab90-fb9d91589bfb; gr_session_id_94b96c7a661bf17a_efd2aeb5-7b52-41a8-ab90-fb9d91589bfb=true; accesstoken=240020000d176abe5f5153802ff08f4dc9a1b43462cc8ea53; uid=576923716; refreshtoken=2400200009298cd46784d85ceb8cf6aaecb19c333aee9e001
+Accept: application/json, text/plain, */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-Hans-CN, zh-Hans; q=0.7, ja; q=0.3
+Connection: Keep-Alive
+Cookie: device_id=web_HJN3j9DCS; _gid=GA1.2.1751003238.1585637403; gr_user_id=782f9836-fb38-47a2-a5c0-b5d9b4747d17; _gat_gtag_UA_16079156_7=1; _ga=GA1.2.1416370597.1576672173; Hm_lvt_b53ede02df3afea0608038748f4c9f36=1584598877,1585637403; timestamp=1585637418507; channel=1300100141; xq_a_token=d258de53c574ba0b7aeddd72eec426cda09edace; Hm_lpvt_b53ede02df3afea0608038748f4c9f36=1585637415; gr_session_id_94b96c7a661bf17a=ede181d7-1c3d-45f5-9e0a-f11597be29c9; gr_session_id_94b96c7a661bf17a_ede181d7-1c3d-45f5-9e0a-f11597be29c9=true; accesstoken=240020000d176abe5f5153802ff08f4dc9a1b43462cc8ea53; uid=576923716; u=576923716; refreshtoken=2400200009298cd46784d85ceb8cf6aaecb19c333aee9e001
+Host: danjuanapp.com
+Referer: https://danjuanapp.com/
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.18363

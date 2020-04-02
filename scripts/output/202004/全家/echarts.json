@@ -1,6 +1,4 @@
-function getData()
-{
-	return [
+[
     {
         "children":[
             {
@@ -497,4 +495,3 @@ function getData()
         "value":2.91
     }
 ]
-}

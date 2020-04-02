@@ -1,80 +1,89 @@
 {
     "data":[
         {
-            "currentNetValue":1.698,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.6788,
-            "estimateRate":-0.0113,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"090010",
-            "fundName":"大成中证红利指数A"
+            "currentNetValue":0.0,
+            "currentNetValueDate":"",
+            "estimateNetValue":0.0,
+            "estimateRate":0.0,
+            "estimateTime":"估算时间",
+            "fundCode":"999999",
+            "fundName":"货币基金综合"
         },
         {
-            "currentNetValue":1.465,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.438,
-            "estimateRate":-0.0184,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":1.302,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.2968,
+            "estimateRate":-0.004,
+            "estimateTime":"2020-04-02 10:04",
             "fundCode":"519671",
             "fundName":"银河沪深300价值指数"
         },
         {
-            "currentNetValue":1.0308,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.0222,
-            "estimateRate":-0.0084,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":1.513,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.5085,
+            "estimateRate":-0.0029,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"090010",
+            "fundName":"大成中证红利指数A"
+        },
+        {
+            "currentNetValue":0.9228,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.9254,
+            "estimateRate":0.0029,
+            "estimateTime":"2020-04-02 10:06",
             "fundCode":"003318",
             "fundName":"景顺长城中证500低波动"
         },
         {
-            "currentNetValue":1.5094,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.4765,
-            "estimateRate":-0.0218,
-            "estimateTime":"2020-03-06 16:00",
+            "currentNetValue":1.2914,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.281,
+            "estimateRate":-0.0081,
+            "estimateTime":"2020-04-02 10:05",
             "fundCode":"501021",
             "fundName":"华宝香港中小"
         },
         {
-            "currentNetValue":2.075,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":2.0435,
-            "estimateRate":-0.0152,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"070023",
-            "fundName":"嘉实深证基本面120联接"
-        },
-        {
-            "currentNetValue":2.4001,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":2.3613,
-            "estimateRate":-0.0162,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":2.044,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":2.0341,
+            "estimateRate":-0.0048,
+            "estimateTime":"2020-04-02 10:04",
             "fundCode":"530015",
             "fundName":"建信深证基本面60ETF联接A"
         },
         {
-            "currentNetValue":1.1952,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.1776,
-            "estimateRate":-0.0147,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":1.768,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.7611,
+            "estimateRate":-0.0039,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"070023",
+            "fundName":"嘉实深证基本面120联接"
+        },
+        {
+            "currentNetValue":1.0838,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.0809,
+            "estimateRate":-0.0027,
+            "estimateTime":"2020-04-02 10:05",
             "fundCode":"001594",
             "fundName":"天弘中证银行指数A"
         },
         {
-            "currentNetValue":1.0807,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.0741,
-            "estimateRate":-0.0061,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":0.9746,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.9674,
+            "estimateRate":-0.0074,
+            "estimateTime":"2020-04-02 10:05",
             "fundCode":"000968",
             "fundName":"广发中证养老"
         },
         {
-            "currentNetValue":1.1448,
-            "currentNetValueDate":"2020-03-04",
+            "currentNetValue":1.0825,
+            "currentNetValueDate":"2020-03-31",
             "estimateNetValue":0,
             "estimateRate":0.0,
             "estimateTime":"NA",
@@ -82,101 +91,128 @@
             "fundName":"易方达中概互联50ETF联接人民币A"
         },
         {
-            "currentNetValue":1.361,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.3366,
-            "estimateRate":-0.018,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":1.281,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":1.2405,
+            "estimateRate":-0.0316,
+            "estimateTime":"2020-04-02 04:00",
+            "fundCode":"164906",
+            "fundName":"交银中证海外中国互联网指数"
+        },
+        {
+            "currentNetValue":2.5,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":2.3953,
+            "estimateRate":-0.0419,
+            "estimateTime":"2020-04-02 04:00",
+            "fundCode":"040046",
+            "fundName":"华安纳斯达克100指数"
+        },
+        {
+            "currentNetValue":1.218,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.2151,
+            "estimateRate":-0.0024,
+            "estimateTime":"2020-04-02 10:04",
             "fundCode":"501050",
             "fundName":"华夏上证50AH优选指数"
         },
         {
-            "currentNetValue":1.3891,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.3635,
-            "estimateRate":-0.0184,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"310398",
-            "fundName":"申万菱信沪深300价值指数"
+            "currentNetValue":0.8806,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.88,
+            "estimateRate":-0.0007,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"161725",
+            "fundName":"招商中证白酒指数"
         },
         {
-            "currentNetValue":1.8419,
-            "currentNetValueDate":"2020-03-04",
-            "estimateNetValue":1.7815,
-            "estimateRate":-0.0328,
-            "estimateTime":"2020-03-06 05:00",
+            "currentNetValue":1.6211,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":1.5529,
+            "estimateRate":-0.0421,
+            "estimateTime":"2020-04-02 04:00",
             "fundCode":"161128",
             "fundName":"易方达标普信息科技"
         },
         {
-            "currentNetValue":0.9114,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":0.9172,
-            "estimateRate":0.0064,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":1.2307,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.2258,
+            "estimateRate":-0.004,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"310398",
+            "fundName":"申万菱信沪深300价值指数"
+        },
+        {
+            "currentNetValue":0.8527,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.8452,
+            "estimateRate":-0.0088,
+            "estimateTime":"2020-04-02 10:05",
             "fundCode":"001550",
             "fundName":"天弘中证医药100A"
         },
         {
-            "currentNetValue":1.2692,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.2698,
-            "estimateRate":0.0005,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":1.2734,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.2735,
+            "estimateRate":0.0001,
+            "estimateTime":"2020-04-02 10:06",
             "fundCode":"002086",
             "fundName":"大成景安短融债券E"
         },
         {
-            "currentNetValue":1.0246,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.0128,
-            "estimateRate":-0.0115,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":0.9112,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.9098,
+            "estimateRate":-0.0015,
+            "estimateTime":"2020-04-02 10:04",
             "fundCode":"501029",
             "fundName":"华宝红利基金"
         },
         {
-            "currentNetValue":1.2174,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.2169,
-            "estimateRate":-0.0004,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":1.2207,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.2207,
+            "estimateRate":0.0,
+            "estimateTime":"2020-04-02 10:06",
             "fundCode":"002147",
             "fundName":"长安鑫益增强混合C"
         },
         {
-            "currentNetValue":1.0941,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.0919,
-            "estimateRate":-0.002,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":1.0718,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.0717,
+            "estimateRate":-0.0001,
+            "estimateTime":"2020-04-02 10:06",
             "fundCode":"007749",
             "fundName":"民生加银鹏程混合C"
         },
         {
-            "currentNetValue":1.1024,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.1031,
-            "estimateRate":0.0007,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"006060",
-            "fundName":"鹏扬泓利债券C"
-        },
-        {
-            "currentNetValue":1.586,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.5858,
-            "estimateRate":-0.0001,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":1.547,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.547,
+            "estimateRate":0.0,
+            "estimateTime":"2020-04-02 10:04",
             "fundCode":"485011",
             "fundName":"工银双利债券B"
         },
         {
-            "currentNetValue":1.3602,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.357,
-            "estimateRate":-0.0023,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":1.0844,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.084,
+            "estimateRate":-0.0004,
+            "estimateTime":"2020-04-02 10:06",
+            "fundCode":"006060",
+            "fundName":"鹏扬泓利债券C"
+        },
+        {
+            "currentNetValue":1.3467,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.3466,
+            "estimateRate":-0.0001,
+            "estimateTime":"2020-04-02 10:05",
             "fundCode":"001338",
             "fundName":"安信稳健增值混合C"
         },
@@ -190,251 +226,242 @@
             "fundName":"住房公积金"
         },
         {
-            "currentNetValue":0.6595,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":0.657,
-            "estimateRate":-0.0038,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":0.0,
+            "currentNetValueDate":"",
+            "estimateNetValue":0.0,
+            "estimateRate":0.0,
+            "estimateTime":"估算时间",
+            "fundCode":"999988",
+            "fundName":"外借款"
+        },
+        {
+            "currentNetValue":0.5567,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.5586,
+            "estimateRate":0.0034,
+            "estimateTime":"2020-04-02 10:05",
             "fundCode":"001064",
             "fundName":"广发中证环保ETF联接基金A"
         },
         {
-            "currentNetValue":0.326,
-            "currentNetValueDate":"2020-03-04",
-            "estimateNetValue":0.319,
-            "estimateRate":-0.0215,
-            "estimateTime":"2020-03-06 15:04",
-            "fundCode":"162411",
-            "fundName":"华宝油气"
+            "currentNetValue":0.692,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":0.702,
+            "estimateRate":0.0145,
+            "estimateTime":"2020-04-02 10:07",
+            "fundCode":"160416",
+            "fundName":"石油基金"
         },
         {
-            "currentNetValue":1.034,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.024,
-            "estimateRate":-0.0097,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":0.918,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.917,
+            "estimateRate":-0.0011,
+            "estimateTime":"2020-04-02 10:07",
             "fundCode":"515180",
-            "fundName":"中证红利"
+            "fundName":"100红利"
         },
         {
-            "currentNetValue":1.472,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.441,
-            "estimateRate":-0.0211,
-            "estimateTime":"2020-03-06 15:04",
+            "currentNetValue":1.288,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.287,
+            "estimateRate":-0.0008,
+            "estimateTime":"2020-04-02 10:07",
             "fundCode":"159920",
             "fundName":"恒生ETF"
         },
         {
-            "currentNetValue":3.004,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":2.951,
-            "estimateRate":-0.0176,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":0.872,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.875,
+            "estimateRate":0.0034,
+            "estimateTime":"2020-04-02 10:07",
+            "fundCode":"513520",
+            "fundName":"日经ETF"
+        },
+        {
+            "currentNetValue":2.671,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":2.67,
+            "estimateRate":-0.0004,
+            "estimateTime":"2020-04-02 10:07",
             "fundCode":"510050",
             "fundName":"50ETF"
         },
         {
-            "currentNetValue":4.2,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":4.121,
-            "estimateRate":-0.0188,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":3.673,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":3.663,
+            "estimateRate":-0.0027,
+            "estimateTime":"2020-04-02 10:07",
             "fundCode":"510300",
             "fundName":"300ETF"
         },
         {
-            "currentNetValue":6.263,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":6.227,
-            "estimateRate":-0.0057,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":5.428,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":5.454,
+            "estimateRate":0.0048,
+            "estimateTime":"2020-04-02 10:07",
             "fundCode":"510500",
             "fundName":"500ETF"
         },
         {
-            "currentNetValue":0.887,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":0.884,
-            "estimateRate":-0.0034,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":0.739,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.742,
+            "estimateRate":0.0041,
+            "estimateTime":"2020-04-02 10:07",
             "fundCode":"512580",
             "fundName":"环保ETF"
         },
         {
-            "currentNetValue":1.108,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.067,
-            "estimateRate":-0.037,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":0.922,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.926,
+            "estimateRate":0.0043,
+            "estimateTime":"2020-04-02 10:07",
             "fundCode":"512880",
             "fundName":"证券ETF"
         },
         {
-            "currentNetValue":0.929,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":0.917,
-            "estimateRate":-0.0129,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":0.785,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.788,
+            "estimateRate":0.0038,
+            "estimateTime":"2020-04-02 10:06",
             "fundCode":"512980",
             "fundName":"传媒ETF"
         },
         {
-            "currentNetValue":3.611,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":3.686,
-            "estimateRate":0.0208,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":3.528,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":3.535,
+            "estimateRate":0.002,
+            "estimateTime":"2020-04-02 10:07",
             "fundCode":"518880",
             "fundName":"黄金ETF"
         },
         {
-            "currentNetValue":2.121,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":2.111,
-            "estimateRate":-0.0047,
-            "estimateTime":"2020-03-06 15:04",
+            "currentNetValue":1.792,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.794,
+            "estimateRate":0.0011,
+            "estimateTime":"2020-04-02 10:07",
             "fundCode":"159915",
             "fundName":"创业板"
         },
         {
-            "currentNetValue":1.574,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.583,
-            "estimateRate":0.0057,
-            "estimateTime":"2020-03-06 15:04",
+            "currentNetValue":1.469,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.458,
+            "estimateRate":-0.0075,
+            "estimateTime":"2020-04-02 10:07",
             "fundCode":"159938",
             "fundName":"广发医药"
         },
         {
-            "currentNetValue":2.208,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":2.1946,
-            "estimateRate":-0.0061,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":1.9321,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.9371,
+            "estimateRate":0.0026,
+            "estimateTime":"2020-04-02 10:05",
             "fundCode":"000478",
             "fundName":"建信中证500指数增强A"
         },
         {
-            "currentNetValue":0.6595,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":0.657,
-            "estimateRate":-0.0038,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":0.5567,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.5586,
+            "estimateRate":0.0034,
+            "estimateTime":"2020-04-02 10:05",
             "fundCode":"001064",
             "fundName":"广发中证环保ETF联接A"
         },
         {
-            "currentNetValue":1.0807,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.0741,
-            "estimateRate":-0.0061,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":0.9746,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.9674,
+            "estimateRate":-0.0074,
+            "estimateTime":"2020-04-02 10:05",
             "fundCode":"000968",
             "fundName":"广发养老指数A"
         },
         {
-            "currentNetValue":0.639,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":0.6351,
-            "estimateRate":-0.0061,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":0.5563,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.5577,
+            "estimateRate":0.0026,
+            "estimateTime":"2020-04-02 10:05",
             "fundCode":"001052",
             "fundName":"华夏中证500ETF联接A"
         },
         {
-            "currentNetValue":1.049,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.0371,
-            "estimateRate":-0.0113,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":0.938,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.9352,
+            "estimateRate":-0.0029,
+            "estimateTime":"2020-04-02 10:04",
             "fundCode":"100032",
-            "fundName":"富国中证红利指数增强"
+            "fundName":"富国中证红利指数增强A"
         },
         {
-            "currentNetValue":0.9177,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":0.9066,
-            "estimateRate":-0.0121,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":0.7828,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.7838,
+            "estimateRate":0.0013,
+            "estimateTime":"2020-04-02 10:03",
             "fundCode":"004752",
             "fundName":"广发中证传媒ETF联接A"
         },
         {
-            "currentNetValue":2.2372,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":2.2213,
-            "estimateRate":-0.0071,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":0.91,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.9029,
+            "estimateRate":-0.0078,
+            "estimateTime":"2020-04-02 10:05",
+            "fundCode":"001180",
+            "fundName":"广发医药卫生联接A"
+        },
+        {
+            "currentNetValue":0.99,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.988,
+            "estimateRate":-0.002,
+            "estimateTime":"2020-04-02 10:05",
+            "fundCode":"001469",
+            "fundName":"广发中证全指金融地产联接A"
+        },
+        {
+            "currentNetValue":1.004,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.0074,
+            "estimateRate":0.0034,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"502010",
+            "fundName":"易方达证券公司分级"
+        },
+        {
+            "currentNetValue":1.9035,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.9053,
+            "estimateRate":0.001,
+            "estimateTime":"2020-04-02 10:04",
             "fundCode":"110026",
             "fundName":"易方达创业板ETF联接A"
         },
         {
-            "currentNetValue":1.2069,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.1983,
-            "estimateRate":-0.0071,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":1.0275,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.0288,
+            "estimateRate":0.0012,
+            "estimateTime":"2020-04-02 10:06",
             "fundCode":"003765",
             "fundName":"广发创业板ETF联接A"
         },
         {
-            "currentNetValue":0.9729,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":0.9785,
-            "estimateRate":0.0058,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"001180",
-            "fundName":"广发医药卫生联接A"
-        },
-        {
-            "currentNetValue":1.1305,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.1055,
-            "estimateRate":-0.0221,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"001469",
-            "fundName":"广发中证全指金融地产联接A"
-        },
-        {
-            "currentNetValue":1.1897,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.1504,
-            "estimateRate":-0.0331,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"502010",
-            "fundName":"易方达证券公司分级"
-        },
-        {
-            "currentNetValue":0.326,
-            "currentNetValueDate":"2020-03-04",
-            "estimateNetValue":0.319,
-            "estimateRate":-0.0215,
-            "estimateTime":"2020-03-06 15:04",
-            "fundCode":"162411",
-            "fundName":"华宝标普石油指数A"
-        },
-        {
-            "currentNetValue":1.4,
-            "currentNetValueDate":"2020-03-04",
-            "estimateNetValue":1.3655,
-            "estimateRate":-0.0247,
-            "estimateTime":"2020-03-06 05:00",
-            "fundCode":"164906",
-            "fundName":"交银中证海外中国互联网指数"
-        },
-        {
-            "currentNetValue":1.4922,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.4593,
-            "estimateRate":-0.022,
-            "estimateTime":"2020-03-06 16:00",
-            "fundCode":"000071",
-            "fundName":"华夏恒生ETF联接A"
-        },
-        {
-            "currentNetValue":1.108,
-            "currentNetValueDate":"2020-03-04",
+            "currentNetValue":0.997,
+            "currentNetValueDate":"2020-03-31",
             "estimateNetValue":0,
             "estimateRate":0.0,
             "estimateTime":"NA",
@@ -442,833 +469,977 @@
             "fundName":"华安德国30(DAX)联接"
         },
         {
-            "currentNetValue":2.208,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":2.1946,
-            "estimateRate":-0.0061,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":2.0922,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":2.0895,
+            "estimateRate":-0.0013,
+            "estimateTime":"2020-04-02 04:00",
+            "fundCode":"050025",
+            "fundName":"博时标普500ETF联接A"
+        },
+        {
+            "currentNetValue":1.3237,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.3133,
+            "estimateRate":-0.0079,
+            "estimateTime":"2020-04-02 10:06",
+            "fundCode":"000071",
+            "fundName":"华夏恒生ETF联接A"
+        },
+        {
+            "currentNetValue":1.281,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":1.2405,
+            "estimateRate":-0.0316,
+            "estimateTime":"2020-04-02 04:00",
+            "fundCode":"164906",
+            "fundName":"交银中证海外中国互联网指数"
+        },
+        {
+            "currentNetValue":0.246,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":0.247,
+            "estimateRate":0.0041,
+            "estimateTime":"2020-04-02 10:07",
+            "fundCode":"162411",
+            "fundName":"华宝标普石油指数A"
+        },
+        {
+            "currentNetValue":0.692,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":0.702,
+            "estimateRate":0.0145,
+            "estimateTime":"2020-04-02 10:07",
+            "fundCode":"160416",
+            "fundName":"华安标普石油指数"
+        },
+        {
+            "currentNetValue":0.789,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":0.798,
+            "estimateRate":0.0114,
+            "estimateTime":"2020-04-02 10:07",
+            "fundCode":"501018",
+            "fundName":"南方原油A"
+        },
+        {
+            "currentNetValue":1.9321,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.9371,
+            "estimateRate":0.0026,
+            "estimateTime":"2020-04-02 10:05",
             "fundCode":"000478",
             "fundName":"建信中证500指数增强A"
         },
         {
-            "currentNetValue":1.049,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.0371,
-            "estimateRate":-0.0113,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":0.938,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.9352,
+            "estimateRate":-0.0029,
+            "estimateTime":"2020-04-02 10:04",
             "fundCode":"100032",
-            "fundName":"富国中证红利指数增强"
+            "fundName":"富国中证红利指数增强A"
         },
         {
-            "currentNetValue":0.639,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":0.6351,
-            "estimateRate":-0.0061,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":0.5563,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.5577,
+            "estimateRate":0.0026,
+            "estimateTime":"2020-04-02 10:05",
             "fundCode":"001052",
             "fundName":"华夏中证500ETF联接A"
         },
         {
-            "currentNetValue":0.9177,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":0.9066,
-            "estimateRate":-0.0121,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"004752",
-            "fundName":"广发中证传媒ETF联接A"
-        },
-        {
-            "currentNetValue":1.031,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.0138,
-            "estimateRate":-0.0167,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":0.9221,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.9209,
+            "estimateRate":-0.0013,
+            "estimateTime":"2020-04-02 10:05",
             "fundCode":"001051",
             "fundName":"华夏上证50ETF联接A"
         },
         {
-            "currentNetValue":1.1305,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.1055,
-            "estimateRate":-0.0221,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":0.99,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.988,
+            "estimateRate":-0.002,
+            "estimateTime":"2020-04-02 10:05",
             "fundCode":"001469",
             "fundName":"广发中证全指金融地产联接A"
         },
         {
-            "currentNetValue":1.3385,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.3601,
-            "estimateRate":0.0161,
-            "estimateTime":"2020-03-06 15:30",
-            "fundCode":"000216",
-            "fundName":"华安黄金易ETF联接A"
+            "currentNetValue":0.7828,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.7838,
+            "estimateRate":0.0013,
+            "estimateTime":"2020-04-02 10:03",
+            "fundCode":"004752",
+            "fundName":"广发中证传媒ETF联接A"
         },
         {
-            "currentNetValue":1.4,
-            "currentNetValueDate":"2020-03-04",
-            "estimateNetValue":1.3655,
-            "estimateRate":-0.0247,
-            "estimateTime":"2020-03-06 05:00",
-            "fundCode":"164906",
-            "fundName":"交银中证海外中国互联网指数"
-        },
-        {
-            "currentNetValue":1.4922,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.4593,
-            "estimateRate":-0.022,
-            "estimateTime":"2020-03-06 16:00",
+            "currentNetValue":1.3237,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.3133,
+            "estimateRate":-0.0079,
+            "estimateTime":"2020-04-02 10:06",
             "fundCode":"000071",
             "fundName":"华夏恒生ETF联接A"
         },
         {
-            "currentNetValue":0.326,
-            "currentNetValueDate":"2020-03-04",
-            "estimateNetValue":0.319,
-            "estimateRate":-0.0215,
-            "estimateTime":"2020-03-06 15:04",
+            "currentNetValue":1.281,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":1.2405,
+            "estimateRate":-0.0316,
+            "estimateTime":"2020-04-02 04:00",
+            "fundCode":"164906",
+            "fundName":"交银中证海外中国互联网指数"
+        },
+        {
+            "currentNetValue":0.997,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":0,
+            "estimateRate":0.0,
+            "estimateTime":"NA",
+            "fundCode":"000614",
+            "fundName":"华安德国30(DAX)联接"
+        },
+        {
+            "currentNetValue":2.0922,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":2.0895,
+            "estimateRate":-0.0013,
+            "estimateTime":"2020-04-02 04:00",
+            "fundCode":"050025",
+            "fundName":"博时标普500ETF联接A"
+        },
+        {
+            "currentNetValue":0.246,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":0.247,
+            "estimateRate":0.0041,
+            "estimateTime":"2020-04-02 10:07",
             "fundCode":"162411",
             "fundName":"华宝标普石油指数A"
         },
         {
-            "currentNetValue":1.844,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.8391,
-            "estimateRate":-0.0026,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"110027",
-            "fundName":"易方达安心债券A"
-        },
-        {
-            "currentNetValue":1.108,
-            "currentNetValueDate":"2020-03-04",
-            "estimateNetValue":0,
-            "estimateRate":0.0,
-            "estimateTime":"NA",
-            "fundCode":"000614",
-            "fundName":"华安德国30(DAX)联接"
-        },
-        {
-            "currentNetValue":1.049,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.0371,
-            "estimateRate":-0.0113,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"100032",
-            "fundName":"富国中证红利指数增强"
-        },
-        {
-            "currentNetValue":1.0807,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.0741,
-            "estimateRate":-0.0061,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"000968",
-            "fundName":"广发养老指数A"
-        },
-        {
-            "currentNetValue":1.295,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.2873,
-            "estimateRate":-0.0059,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"340001",
-            "fundName":"兴全可转债混合"
-        },
-        {
-            "currentNetValue":0.9729,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":0.9785,
-            "estimateRate":0.0058,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"001180",
-            "fundName":"广发医药卫生联接A"
-        },
-        {
-            "currentNetValue":1.844,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.8391,
-            "estimateRate":-0.0026,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"110027",
-            "fundName":"易方达安心回报债券A"
-        },
-        {
-            "currentNetValue":1.1305,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.1055,
-            "estimateRate":-0.0221,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"001469",
-            "fundName":"广发中证全指金融地产联接A"
-        },
-        {
-            "currentNetValue":1.736,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.7093,
-            "estimateRate":-0.0154,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"100038",
-            "fundName":"富国沪深300指数增强"
-        },
-        {
-            "currentNetValue":1.4,
-            "currentNetValueDate":"2020-03-04",
-            "estimateNetValue":1.3655,
-            "estimateRate":-0.0247,
-            "estimateTime":"2020-03-06 05:00",
-            "fundCode":"164906",
-            "fundName":"交银中证海外中国互联网指数"
-        },
-        {
-            "currentNetValue":1.108,
-            "currentNetValueDate":"2020-03-04",
-            "estimateNetValue":0,
-            "estimateRate":0.0,
-            "estimateTime":"NA",
-            "fundCode":"000614",
-            "fundName":"华安德国30(DAX)联接"
-        },
-        {
-            "currentNetValue":1.917,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.9053,
-            "estimateRate":-0.0061,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"161017",
-            "fundName":"富国中证500指数(LOF)"
-        },
-        {
-            "currentNetValue":0.326,
-            "currentNetValueDate":"2020-03-04",
-            "estimateNetValue":0.319,
-            "estimateRate":-0.0215,
-            "estimateTime":"2020-03-06 15:04",
-            "fundCode":"162411",
-            "fundName":"华宝标普油气上游股票人民币A"
-        },
-        {
-            "currentNetValue":1.4922,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.4593,
-            "estimateRate":-0.022,
-            "estimateTime":"2020-03-06 16:00",
-            "fundCode":"000071",
-            "fundName":"华夏恒生ETF联接A"
-        },
-        {
-            "currentNetValue":0.6595,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":0.657,
-            "estimateRate":-0.0038,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"001064",
-            "fundName":"广发中证环保ETF联接A"
-        },
-        {
-            "currentNetValue":1.5429,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.5402,
-            "estimateRate":-0.0018,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"519977",
-            "fundName":"长信可转债债券A"
-        },
-        {
-            "currentNetValue":1.37,
-            "currentNetValueDate":"2020-03-04",
-            "estimateNetValue":0,
-            "estimateRate":0.0,
-            "estimateTime":"NA",
-            "fundCode":"001061",
-            "fundName":"华夏收益债券(QDII)A"
-        },
-        {
-            "currentNetValue":2.208,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":2.1946,
-            "estimateRate":-0.0061,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"000478",
-            "fundName":"建信中证500指数增强A"
-        },
-        {
-            "currentNetValue":0.9177,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":0.9066,
-            "estimateRate":-0.0121,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"004752",
-            "fundName":"广发中证传媒ETF联接A"
-        },
-        {
-            "currentNetValue":1.698,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.6788,
-            "estimateRate":-0.0113,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"090010",
-            "fundName":"大成中证红利指数A"
-        },
-        {
-            "currentNetValue":1.465,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.438,
-            "estimateRate":-0.0184,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"519671",
-            "fundName":"银河沪深300价值指数"
-        },
-        {
-            "currentNetValue":1.0308,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.0222,
-            "estimateRate":-0.0084,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"003318",
-            "fundName":"景顺长城中证500低波动"
-        },
-        {
-            "currentNetValue":1.5094,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.4765,
-            "estimateRate":-0.0218,
-            "estimateTime":"2020-03-06 16:00",
-            "fundCode":"501021",
-            "fundName":"华宝香港中小"
-        },
-        {
-            "currentNetValue":2.4001,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":2.3613,
-            "estimateRate":-0.0162,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"530015",
-            "fundName":"建信深证基本面60ETF联接A"
-        },
-        {
-            "currentNetValue":2.075,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":2.0435,
-            "estimateRate":-0.0152,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"070023",
-            "fundName":"嘉实深证基本面120联接"
-        },
-        {
-            "currentNetValue":1.1952,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.1776,
-            "estimateRate":-0.0147,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"001594",
-            "fundName":"天弘中证银行指数A"
-        },
-        {
-            "currentNetValue":1.0807,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.0741,
-            "estimateRate":-0.0061,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"000968",
-            "fundName":"广发中证养老"
-        },
-        {
-            "currentNetValue":1.1448,
-            "currentNetValueDate":"2020-03-04",
-            "estimateNetValue":0,
-            "estimateRate":0.0,
-            "estimateTime":"NA",
-            "fundCode":"006327",
-            "fundName":"易方达中概互联50ETF联接人民币A"
-        },
-        {
-            "currentNetValue":1.361,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.3366,
-            "estimateRate":-0.018,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"501050",
-            "fundName":"华夏上证50AH优选指数"
-        },
-        {
-            "currentNetValue":1.3891,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.3635,
-            "estimateRate":-0.0184,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"310398",
-            "fundName":"申万菱信沪深300价值指数"
-        },
-        {
-            "currentNetValue":1.8419,
-            "currentNetValueDate":"2020-03-04",
-            "estimateNetValue":1.7815,
-            "estimateRate":-0.0328,
-            "estimateTime":"2020-03-06 05:00",
-            "fundCode":"161128",
-            "fundName":"易方达标普信息科技"
-        },
-        {
-            "currentNetValue":0.9114,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":0.9172,
-            "estimateRate":0.0064,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"001550",
-            "fundName":"天弘中证医药100A"
-        },
-        {
-            "currentNetValue":1.2692,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.2698,
-            "estimateRate":0.0005,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"002086",
-            "fundName":"大成景安短融债券E"
-        },
-        {
-            "currentNetValue":1.0246,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.0128,
-            "estimateRate":-0.0115,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"501029",
-            "fundName":"华宝红利基金"
-        },
-        {
-            "currentNetValue":1.2174,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.2169,
-            "estimateRate":-0.0004,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"002147",
-            "fundName":"长安鑫益增强混合C"
-        },
-        {
-            "currentNetValue":1.1024,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.1031,
-            "estimateRate":0.0007,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"006060",
-            "fundName":"鹏扬泓利债券C"
-        },
-        {
-            "currentNetValue":1.0941,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.0919,
-            "estimateRate":-0.002,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"007749",
-            "fundName":"民生加银鹏程混合C"
-        },
-        {
-            "currentNetValue":1.586,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.5858,
-            "estimateRate":-0.0001,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"485011",
-            "fundName":"工银双利债券B"
-        },
-        {
-            "currentNetValue":1.3602,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.357,
-            "estimateRate":-0.0023,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"001338",
-            "fundName":"安信稳健增值混合C"
-        },
-        {
-            "currentNetValue":1.465,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.438,
-            "estimateRate":-0.0184,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"519671",
-            "fundName":"银河沪深300价值指数"
-        },
-        {
-            "currentNetValue":1.698,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.6788,
-            "estimateRate":-0.0113,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"090010",
-            "fundName":"大成中证红利指数A"
-        },
-        {
-            "currentNetValue":1.0308,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.0222,
-            "estimateRate":-0.0084,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"003318",
-            "fundName":"景顺长城中证500低波动"
-        },
-        {
-            "currentNetValue":1.5094,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.4765,
-            "estimateRate":-0.0218,
-            "estimateTime":"2020-03-06 16:00",
-            "fundCode":"501021",
-            "fundName":"华宝香港中小"
-        },
-        {
-            "currentNetValue":2.4001,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":2.3613,
-            "estimateRate":-0.0162,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"530015",
-            "fundName":"建信深证基本面60ETF联接A"
-        },
-        {
-            "currentNetValue":2.075,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":2.0435,
-            "estimateRate":-0.0152,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"070023",
-            "fundName":"嘉实深证基本面120联接"
-        },
-        {
-            "currentNetValue":1.1952,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.1776,
-            "estimateRate":-0.0147,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"001594",
-            "fundName":"天弘中证银行指数A"
-        },
-        {
-            "currentNetValue":1.0807,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.0741,
-            "estimateRate":-0.0061,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"000968",
-            "fundName":"广发中证养老"
-        },
-        {
-            "currentNetValue":1.1448,
-            "currentNetValueDate":"2020-03-04",
-            "estimateNetValue":0,
-            "estimateRate":0.0,
-            "estimateTime":"NA",
-            "fundCode":"006327",
-            "fundName":"易方达中概互联50ETF联接人民币A"
-        },
-        {
-            "currentNetValue":1.361,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.3366,
-            "estimateRate":-0.018,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"501050",
-            "fundName":"华夏上证50AH优选指数"
-        },
-        {
-            "currentNetValue":1.3891,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.3635,
-            "estimateRate":-0.0184,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"310398",
-            "fundName":"申万菱信沪深300价值指数"
-        },
-        {
-            "currentNetValue":1.8419,
-            "currentNetValueDate":"2020-03-04",
-            "estimateNetValue":1.7815,
-            "estimateRate":-0.0328,
-            "estimateTime":"2020-03-06 05:00",
-            "fundCode":"161128",
-            "fundName":"易方达标普信息科技"
-        },
-        {
-            "currentNetValue":0.9114,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":0.9172,
-            "estimateRate":0.0064,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"001550",
-            "fundName":"天弘中证医药100A"
-        },
-        {
-            "currentNetValue":1.2692,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.2698,
-            "estimateRate":0.0005,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"002086",
-            "fundName":"大成景安短融债券E"
-        },
-        {
-            "currentNetValue":1.0246,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.0128,
-            "estimateRate":-0.0115,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"501029",
-            "fundName":"华宝红利基金"
-        },
-        {
-            "currentNetValue":1.2174,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.2169,
-            "estimateRate":-0.0004,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"002147",
-            "fundName":"长安鑫益增强混合C"
-        },
-        {
-            "currentNetValue":1.1024,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.1031,
-            "estimateRate":0.0007,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"006060",
-            "fundName":"鹏扬泓利债券C"
-        },
-        {
-            "currentNetValue":1.0941,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.0919,
-            "estimateRate":-0.002,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"007749",
-            "fundName":"民生加银鹏程混合C"
-        },
-        {
-            "currentNetValue":1.586,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.5858,
-            "estimateRate":-0.0001,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"485011",
-            "fundName":"工银双利债券B"
-        },
-        {
-            "currentNetValue":1.3602,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.357,
-            "estimateRate":-0.0023,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"001338",
-            "fundName":"安信稳健增值混合C"
-        },
-        {
-            "currentNetValue":1.2594,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.2517,
-            "estimateRate":-0.0061,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"162711",
-            "fundName":"广发中证500ETF联接A"
-        },
-        {
-            "currentNetValue":1.049,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.0371,
-            "estimateRate":-0.0113,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"100032",
-            "fundName":"富国中证红利指数增强"
-        },
-        {
-            "currentNetValue":1.0807,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.0741,
-            "estimateRate":-0.0061,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"000968",
-            "fundName":"广发养老指数A"
-        },
-        {
-            "currentNetValue":0.9729,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":0.9785,
-            "estimateRate":0.0058,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"001180",
-            "fundName":"广发医药卫生联接A"
-        },
-        {
-            "currentNetValue":1.736,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.7093,
-            "estimateRate":-0.0154,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"100038",
-            "fundName":"富国沪深300指数增强"
-        },
-        {
-            "currentNetValue":0.9177,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":0.9066,
-            "estimateRate":-0.0121,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"004752",
-            "fundName":"广发中证传媒ETF联接A"
-        },
-        {
-            "currentNetValue":1.917,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.9053,
-            "estimateRate":-0.0061,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"161017",
-            "fundName":"富国中证500指数(LOF)"
-        },
-        {
-            "currentNetValue":0.6595,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":0.657,
-            "estimateRate":-0.0038,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"001064",
-            "fundName":"广发中证环保ETF联接A"
-        },
-        {
-            "currentNetValue":1.844,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.8391,
-            "estimateRate":-0.0026,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"110027",
-            "fundName":"易方达安心回报债券A"
-        },
-        {
-            "currentNetValue":1.295,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.2873,
-            "estimateRate":-0.0059,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"340001",
-            "fundName":"兴全可转债混合"
-        },
-        {
-            "currentNetValue":1.108,
-            "currentNetValueDate":"2020-03-04",
-            "estimateNetValue":0,
-            "estimateRate":0.0,
-            "estimateTime":"NA",
-            "fundCode":"000614",
-            "fundName":"华安德国30(DAX)联接"
-        },
-        {
-            "currentNetValue":2.2372,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":2.2213,
-            "estimateRate":-0.0071,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"110026",
-            "fundName":"易方达创业板ETF联接A"
-        },
-        {
-            "currentNetValue":1.4,
-            "currentNetValueDate":"2020-03-04",
-            "estimateNetValue":1.3655,
-            "estimateRate":-0.0247,
-            "estimateTime":"2020-03-06 05:00",
-            "fundCode":"164906",
-            "fundName":"交银中证海外中国互联网指数"
-        },
-        {
-            "currentNetValue":0.9299,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":0.9272,
-            "estimateRate":-0.0029,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"162413",
-            "fundName":"华宝中证1000指数分级"
-        },
-        {
-            "currentNetValue":1.1305,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.1055,
-            "estimateRate":-0.0221,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"001469",
-            "fundName":"广发中证全指金融地产联接A"
-        },
-        {
-            "currentNetValue":1.031,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.0138,
-            "estimateRate":-0.0167,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"001051",
-            "fundName":"华夏上证50ETF联接A"
-        },
-        {
-            "currentNetValue":0.326,
-            "currentNetValueDate":"2020-03-04",
-            "estimateNetValue":0.319,
-            "estimateRate":-0.0215,
-            "estimateTime":"2020-03-06 15:04",
-            "fundCode":"162411",
-            "fundName":"华宝标普油气上游股票人民币A"
-        },
-        {
-            "currentNetValue":1.3385,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.3601,
-            "estimateRate":0.0161,
-            "estimateTime":"2020-03-06 15:30",
+            "currentNetValue":0.789,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":0.798,
+            "estimateRate":0.0114,
+            "estimateTime":"2020-04-02 10:07",
+            "fundCode":"501018",
+            "fundName":"南方原油A"
+        },
+        {
+            "currentNetValue":1.3165,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.3125,
+            "estimateRate":-0.0031,
+            "estimateTime":"2020-04-02 10:04",
             "fundCode":"000216",
             "fundName":"华安黄金易ETF联接A"
         },
         {
-            "currentNetValue":2.208,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":2.1946,
-            "estimateRate":-0.0061,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":1.746,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.7496,
+            "estimateRate":0.0021,
+            "estimateTime":"2020-04-02 10:06",
+            "fundCode":"110027",
+            "fundName":"易方达安心债券A"
+        },
+        {
+            "currentNetValue":0.938,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.9352,
+            "estimateRate":-0.0029,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"100032",
+            "fundName":"富国中证红利指数增强A"
+        },
+        {
+            "currentNetValue":0.9746,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.9674,
+            "estimateRate":-0.0074,
+            "estimateTime":"2020-04-02 10:05",
+            "fundCode":"000968",
+            "fundName":"广发养老指数A"
+        },
+        {
+            "currentNetValue":0.997,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":0,
+            "estimateRate":0.0,
+            "estimateTime":"NA",
+            "fundCode":"000614",
+            "fundName":"华安德国30(DAX)联接"
+        },
+        {
+            "currentNetValue":1.2039,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.204,
+            "estimateRate":0.0001,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"340001",
+            "fundName":"兴全可转债混合"
+        },
+        {
+            "currentNetValue":0.91,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.9029,
+            "estimateRate":-0.0078,
+            "estimateTime":"2020-04-02 10:05",
+            "fundCode":"001180",
+            "fundName":"广发医药卫生联接A"
+        },
+        {
+            "currentNetValue":1.746,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.7496,
+            "estimateRate":0.0021,
+            "estimateTime":"2020-04-02 10:06",
+            "fundCode":"110027",
+            "fundName":"易方达安心回报债券A"
+        },
+        {
+            "currentNetValue":0.99,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.988,
+            "estimateRate":-0.002,
+            "estimateTime":"2020-04-02 10:05",
+            "fundCode":"001469",
+            "fundName":"广发中证全指金融地产联接A"
+        },
+        {
+            "currentNetValue":1.534,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.5309,
+            "estimateRate":-0.002,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"100038",
+            "fundName":"富国沪深300指数增强"
+        },
+        {
+            "currentNetValue":1.3237,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.3133,
+            "estimateRate":-0.0079,
+            "estimateTime":"2020-04-02 10:06",
+            "fundCode":"000071",
+            "fundName":"华夏恒生ETF联接A"
+        },
+        {
+            "currentNetValue":1.281,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":1.2405,
+            "estimateRate":-0.0316,
+            "estimateTime":"2020-04-02 04:00",
+            "fundCode":"164906",
+            "fundName":"交银中证海外中国互联网指数"
+        },
+        {
+            "currentNetValue":1.67,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.6732,
+            "estimateRate":0.0019,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"161017",
+            "fundName":"富国中证500指数(LOF)"
+        },
+        {
+            "currentNetValue":0.5567,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.5586,
+            "estimateRate":0.0034,
+            "estimateTime":"2020-04-02 10:05",
+            "fundCode":"001064",
+            "fundName":"广发中证环保ETF联接A"
+        },
+        {
+            "currentNetValue":2.0922,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":2.0895,
+            "estimateRate":-0.0013,
+            "estimateTime":"2020-04-02 04:00",
+            "fundCode":"050025",
+            "fundName":"博时标普500ETF联接A"
+        },
+        {
+            "currentNetValue":0.246,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":0.247,
+            "estimateRate":0.0041,
+            "estimateTime":"2020-04-02 10:07",
+            "fundCode":"162411",
+            "fundName":"华宝标普油气上游股票人民币A"
+        },
+        {
+            "currentNetValue":1.9321,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.9371,
+            "estimateRate":0.0026,
+            "estimateTime":"2020-04-02 10:05",
             "fundCode":"000478",
             "fundName":"建信中证500指数增强A"
         },
         {
-            "currentNetValue":1.1897,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.1504,
-            "estimateRate":-0.0331,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":0.789,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":0.798,
+            "estimateRate":0.0114,
+            "estimateTime":"2020-04-02 10:07",
+            "fundCode":"501018",
+            "fundName":"南方原油A"
+        },
+        {
+            "currentNetValue":0.0,
+            "currentNetValueDate":"",
+            "estimateNetValue":0.0,
+            "estimateRate":0.0,
+            "estimateTime":"估算时间",
+            "fundCode":"999999",
+            "fundName":"货币基金综合"
+        },
+        {
+            "currentNetValue":1.302,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.2968,
+            "estimateRate":-0.004,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"519671",
+            "fundName":"银河沪深300价值指数"
+        },
+        {
+            "currentNetValue":1.513,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.5085,
+            "estimateRate":-0.0029,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"090010",
+            "fundName":"大成中证红利指数A"
+        },
+        {
+            "currentNetValue":0.9228,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.9254,
+            "estimateRate":0.0029,
+            "estimateTime":"2020-04-02 10:06",
+            "fundCode":"003318",
+            "fundName":"景顺长城中证500低波动"
+        },
+        {
+            "currentNetValue":1.2914,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.281,
+            "estimateRate":-0.0081,
+            "estimateTime":"2020-04-02 10:05",
+            "fundCode":"501021",
+            "fundName":"华宝香港中小"
+        },
+        {
+            "currentNetValue":2.044,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":2.0341,
+            "estimateRate":-0.0048,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"530015",
+            "fundName":"建信深证基本面60ETF联接A"
+        },
+        {
+            "currentNetValue":1.768,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.7611,
+            "estimateRate":-0.0039,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"070023",
+            "fundName":"嘉实深证基本面120联接"
+        },
+        {
+            "currentNetValue":1.0838,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.0809,
+            "estimateRate":-0.0027,
+            "estimateTime":"2020-04-02 10:05",
+            "fundCode":"001594",
+            "fundName":"天弘中证银行指数A"
+        },
+        {
+            "currentNetValue":0.9746,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.9674,
+            "estimateRate":-0.0074,
+            "estimateTime":"2020-04-02 10:05",
+            "fundCode":"000968",
+            "fundName":"广发中证养老"
+        },
+        {
+            "currentNetValue":1.0825,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":0,
+            "estimateRate":0.0,
+            "estimateTime":"NA",
+            "fundCode":"006327",
+            "fundName":"易方达中概互联50ETF联接人民币A"
+        },
+        {
+            "currentNetValue":2.5,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":2.3953,
+            "estimateRate":-0.0419,
+            "estimateTime":"2020-04-02 04:00",
+            "fundCode":"040046",
+            "fundName":"华安纳斯达克100指数"
+        },
+        {
+            "currentNetValue":1.281,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":1.2405,
+            "estimateRate":-0.0316,
+            "estimateTime":"2020-04-02 04:00",
+            "fundCode":"164906",
+            "fundName":"交银中证海外中国互联网指数"
+        },
+        {
+            "currentNetValue":1.218,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.2151,
+            "estimateRate":-0.0024,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"501050",
+            "fundName":"华夏上证50AH优选指数"
+        },
+        {
+            "currentNetValue":0.8806,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.88,
+            "estimateRate":-0.0007,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"161725",
+            "fundName":"招商中证白酒指数"
+        },
+        {
+            "currentNetValue":1.6211,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":1.5529,
+            "estimateRate":-0.0421,
+            "estimateTime":"2020-04-02 04:00",
+            "fundCode":"161128",
+            "fundName":"易方达标普信息科技"
+        },
+        {
+            "currentNetValue":1.2307,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.2258,
+            "estimateRate":-0.004,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"310398",
+            "fundName":"申万菱信沪深300价值指数"
+        },
+        {
+            "currentNetValue":0.8527,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.8452,
+            "estimateRate":-0.0088,
+            "estimateTime":"2020-04-02 10:05",
+            "fundCode":"001550",
+            "fundName":"天弘中证医药100A"
+        },
+        {
+            "currentNetValue":1.2734,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.2735,
+            "estimateRate":0.0001,
+            "estimateTime":"2020-04-02 10:06",
+            "fundCode":"002086",
+            "fundName":"大成景安短融债券E"
+        },
+        {
+            "currentNetValue":0.9112,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.9098,
+            "estimateRate":-0.0015,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"501029",
+            "fundName":"华宝红利基金"
+        },
+        {
+            "currentNetValue":1.2207,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.2207,
+            "estimateRate":0.0,
+            "estimateTime":"2020-04-02 10:06",
+            "fundCode":"002147",
+            "fundName":"长安鑫益增强混合C"
+        },
+        {
+            "currentNetValue":1.0844,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.084,
+            "estimateRate":-0.0004,
+            "estimateTime":"2020-04-02 10:06",
+            "fundCode":"006060",
+            "fundName":"鹏扬泓利债券C"
+        },
+        {
+            "currentNetValue":1.0718,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.0717,
+            "estimateRate":-0.0001,
+            "estimateTime":"2020-04-02 10:06",
+            "fundCode":"007749",
+            "fundName":"民生加银鹏程混合C"
+        },
+        {
+            "currentNetValue":1.3467,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.3466,
+            "estimateRate":-0.0001,
+            "estimateTime":"2020-04-02 10:05",
+            "fundCode":"001338",
+            "fundName":"安信稳健增值混合C"
+        },
+        {
+            "currentNetValue":1.547,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.547,
+            "estimateRate":0.0,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"485011",
+            "fundName":"工银双利债券B"
+        },
+        {
+            "currentNetValue":1.302,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.2968,
+            "estimateRate":-0.004,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"519671",
+            "fundName":"银河沪深300价值指数"
+        },
+        {
+            "currentNetValue":1.513,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.5085,
+            "estimateRate":-0.0029,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"090010",
+            "fundName":"大成中证红利指数A"
+        },
+        {
+            "currentNetValue":0.9228,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.9254,
+            "estimateRate":0.0029,
+            "estimateTime":"2020-04-02 10:06",
+            "fundCode":"003318",
+            "fundName":"景顺长城中证500低波动"
+        },
+        {
+            "currentNetValue":1.2914,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.281,
+            "estimateRate":-0.0081,
+            "estimateTime":"2020-04-02 10:05",
+            "fundCode":"501021",
+            "fundName":"华宝香港中小"
+        },
+        {
+            "currentNetValue":2.044,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":2.0341,
+            "estimateRate":-0.0048,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"530015",
+            "fundName":"建信深证基本面60ETF联接A"
+        },
+        {
+            "currentNetValue":1.768,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.7611,
+            "estimateRate":-0.0039,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"070023",
+            "fundName":"嘉实深证基本面120联接"
+        },
+        {
+            "currentNetValue":1.0838,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.0809,
+            "estimateRate":-0.0027,
+            "estimateTime":"2020-04-02 10:05",
+            "fundCode":"001594",
+            "fundName":"天弘中证银行指数A"
+        },
+        {
+            "currentNetValue":1.0825,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":0,
+            "estimateRate":0.0,
+            "estimateTime":"NA",
+            "fundCode":"006327",
+            "fundName":"易方达中概互联50ETF联接人民币A"
+        },
+        {
+            "currentNetValue":0.9746,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.9674,
+            "estimateRate":-0.0074,
+            "estimateTime":"2020-04-02 10:05",
+            "fundCode":"000968",
+            "fundName":"广发中证养老"
+        },
+        {
+            "currentNetValue":1.281,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":1.2405,
+            "estimateRate":-0.0316,
+            "estimateTime":"2020-04-02 04:00",
+            "fundCode":"164906",
+            "fundName":"交银中证海外中国互联网指数"
+        },
+        {
+            "currentNetValue":2.5,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":2.3953,
+            "estimateRate":-0.0419,
+            "estimateTime":"2020-04-02 04:00",
+            "fundCode":"040046",
+            "fundName":"华安纳斯达克100指数"
+        },
+        {
+            "currentNetValue":1.6211,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":1.5529,
+            "estimateRate":-0.0421,
+            "estimateTime":"2020-04-02 04:00",
+            "fundCode":"161128",
+            "fundName":"易方达标普信息科技"
+        },
+        {
+            "currentNetValue":1.218,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.2151,
+            "estimateRate":-0.0024,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"501050",
+            "fundName":"华夏上证50AH优选指数"
+        },
+        {
+            "currentNetValue":0.8806,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.88,
+            "estimateRate":-0.0007,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"161725",
+            "fundName":"招商中证白酒指数"
+        },
+        {
+            "currentNetValue":1.2307,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.2258,
+            "estimateRate":-0.004,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"310398",
+            "fundName":"申万菱信沪深300价值指数"
+        },
+        {
+            "currentNetValue":0.8527,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.8452,
+            "estimateRate":-0.0088,
+            "estimateTime":"2020-04-02 10:05",
+            "fundCode":"001550",
+            "fundName":"天弘中证医药100A"
+        },
+        {
+            "currentNetValue":1.2734,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.2735,
+            "estimateRate":0.0001,
+            "estimateTime":"2020-04-02 10:06",
+            "fundCode":"002086",
+            "fundName":"大成景安短融债券E"
+        },
+        {
+            "currentNetValue":0.9112,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.9098,
+            "estimateRate":-0.0015,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"501029",
+            "fundName":"华宝红利基金"
+        },
+        {
+            "currentNetValue":1.2207,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.2207,
+            "estimateRate":0.0,
+            "estimateTime":"2020-04-02 10:06",
+            "fundCode":"002147",
+            "fundName":"长安鑫益增强混合C"
+        },
+        {
+            "currentNetValue":1.0844,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.084,
+            "estimateRate":-0.0004,
+            "estimateTime":"2020-04-02 10:06",
+            "fundCode":"006060",
+            "fundName":"鹏扬泓利债券C"
+        },
+        {
+            "currentNetValue":1.0718,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.0717,
+            "estimateRate":-0.0001,
+            "estimateTime":"2020-04-02 10:06",
+            "fundCode":"007749",
+            "fundName":"民生加银鹏程混合C"
+        },
+        {
+            "currentNetValue":1.3467,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.3466,
+            "estimateRate":-0.0001,
+            "estimateTime":"2020-04-02 10:05",
+            "fundCode":"001338",
+            "fundName":"安信稳健增值混合C"
+        },
+        {
+            "currentNetValue":1.547,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.547,
+            "estimateRate":0.0,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"485011",
+            "fundName":"工银双利债券B"
+        },
+        {
+            "currentNetValue":2.1905,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":2.1905,
+            "estimateRate":0.0,
+            "estimateTime":"2020-04-02 10:06",
+            "fundCode":"006585",
+            "fundName":"南方宝元债券C"
+        },
+        {
+            "currentNetValue":1.5783,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.577,
+            "estimateRate":-0.0008,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"008127",
+            "fundName":"广发趋势优选混合C"
+        },
+        {
+            "currentNetValue":1.1007,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.1038,
+            "estimateRate":0.0029,
+            "estimateTime":"2020-04-02 10:06",
+            "fundCode":"162711",
+            "fundName":"广发中证500ETF联接A"
+        },
+        {
+            "currentNetValue":0.938,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.9352,
+            "estimateRate":-0.0029,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"100032",
+            "fundName":"富国中证红利指数增强A"
+        },
+        {
+            "currentNetValue":0.9746,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.9674,
+            "estimateRate":-0.0074,
+            "estimateTime":"2020-04-02 10:05",
+            "fundCode":"000968",
+            "fundName":"广发养老指数A"
+        },
+        {
+            "currentNetValue":0.91,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.9029,
+            "estimateRate":-0.0078,
+            "estimateTime":"2020-04-02 10:05",
+            "fundCode":"001180",
+            "fundName":"广发医药卫生联接A"
+        },
+        {
+            "currentNetValue":1.534,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.5309,
+            "estimateRate":-0.002,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"100038",
+            "fundName":"富国沪深300指数增强"
+        },
+        {
+            "currentNetValue":1.746,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.7496,
+            "estimateRate":0.0021,
+            "estimateTime":"2020-04-02 10:06",
+            "fundCode":"110027",
+            "fundName":"易方达安心回报债券A"
+        },
+        {
+            "currentNetValue":1.67,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.6732,
+            "estimateRate":0.0019,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"161017",
+            "fundName":"富国中证500指数(LOF)"
+        },
+        {
+            "currentNetValue":0.5567,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.5586,
+            "estimateRate":0.0034,
+            "estimateTime":"2020-04-02 10:05",
+            "fundCode":"001064",
+            "fundName":"广发中证环保ETF联接A"
+        },
+        {
+            "currentNetValue":0.7828,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.7838,
+            "estimateRate":0.0013,
+            "estimateTime":"2020-04-02 10:03",
+            "fundCode":"004752",
+            "fundName":"广发中证传媒ETF联接A"
+        },
+        {
+            "currentNetValue":0.997,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":0,
+            "estimateRate":0.0,
+            "estimateTime":"NA",
+            "fundCode":"000614",
+            "fundName":"华安德国30(DAX)联接"
+        },
+        {
+            "currentNetValue":1.2039,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.204,
+            "estimateRate":0.0001,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"340001",
+            "fundName":"兴全可转债混合"
+        },
+        {
+            "currentNetValue":1.281,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":1.2405,
+            "estimateRate":-0.0316,
+            "estimateTime":"2020-04-02 04:00",
+            "fundCode":"164906",
+            "fundName":"交银中证海外中国互联网指数"
+        },
+        {
+            "currentNetValue":0.99,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.988,
+            "estimateRate":-0.002,
+            "estimateTime":"2020-04-02 10:05",
+            "fundCode":"001469",
+            "fundName":"广发中证全指金融地产联接A"
+        },
+        {
+            "currentNetValue":0.8041,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.8029,
+            "estimateRate":-0.0015,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"162413",
+            "fundName":"华宝中证1000指数分级"
+        },
+        {
+            "currentNetValue":0.9221,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":0.9209,
+            "estimateRate":-0.0013,
+            "estimateTime":"2020-04-02 10:05",
+            "fundCode":"001051",
+            "fundName":"华夏上证50ETF联接A"
+        },
+        {
+            "currentNetValue":1.3237,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.3133,
+            "estimateRate":-0.0079,
+            "estimateTime":"2020-04-02 10:06",
+            "fundCode":"000071",
+            "fundName":"华夏恒生ETF联接A"
+        },
+        {
+            "currentNetValue":0.246,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":0.247,
+            "estimateRate":0.0041,
+            "estimateTime":"2020-04-02 10:07",
+            "fundCode":"162411",
+            "fundName":"华宝标普油气上游股票人民币A"
+        },
+        {
+            "currentNetValue":1.9321,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.9371,
+            "estimateRate":0.0026,
+            "estimateTime":"2020-04-02 10:05",
+            "fundCode":"000478",
+            "fundName":"建信中证500指数增强A"
+        },
+        {
+            "currentNetValue":2.0922,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":2.0895,
+            "estimateRate":-0.0013,
+            "estimateTime":"2020-04-02 04:00",
+            "fundCode":"050025",
+            "fundName":"博时标普500ETF联接A"
+        },
+        {
+            "currentNetValue":1.004,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.0074,
+            "estimateRate":0.0034,
+            "estimateTime":"2020-04-02 10:04",
             "fundCode":"502010",
             "fundName":"易方达证券公司分级"
         },
         {
-            "currentNetValue":1.5429,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.5402,
-            "estimateRate":-0.0018,
-            "estimateTime":"2020-03-06 15:00",
-            "fundCode":"519977",
-            "fundName":"长信可转债债券A"
+            "currentNetValue":1.3165,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.3125,
+            "estimateRate":-0.0031,
+            "estimateTime":"2020-04-02 10:04",
+            "fundCode":"000216",
+            "fundName":"华安黄金易ETF联接A"
         },
         {
-            "currentNetValue":1.404,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.3824,
-            "estimateRate":-0.0154,
-            "estimateTime":"2020-03-06 15:00",
+            "currentNetValue":1.2338,
+            "currentNetValueDate":"2020-04-01",
+            "estimateNetValue":1.2319,
+            "estimateRate":-0.0015,
+            "estimateTime":"2020-04-02 10:05",
             "fundCode":"000051",
             "fundName":"华夏沪深300ETF联接A"
         },
         {
-            "currentNetValue":1.4922,
-            "currentNetValueDate":"2020-03-05",
-            "estimateNetValue":1.4593,
-            "estimateRate":-0.022,
-            "estimateTime":"2020-03-06 16:00",
-            "fundCode":"000071",
-            "fundName":"华夏恒生ETF联接A"
+            "currentNetValue":0.789,
+            "currentNetValueDate":"2020-03-31",
+            "estimateNetValue":0.798,
+            "estimateRate":0.0114,
+            "estimateTime":"2020-04-02 10:07",
+            "fundCode":"501018",
+            "fundName":"南方原油A"
         }
     ],
-    "updateTime":"2020-03-06 19:13:33"
+    "updateTime":"2020-04-02 10:07:33"
 }

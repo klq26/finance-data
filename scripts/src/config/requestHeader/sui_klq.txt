@@ -1,10 +1,29 @@
-	GET /account/account.do HTTP/1.1
-Referer	https://www.sui.com/account/account.do
-Accept	text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language	zh-Hans-CN,zh-Hans;q=0.8,en-US;q=0.6,en;q=0.4,ja;q=0.2
-Upgrade-Insecure-Requests	1
-User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/18.17763
-Accept-Encoding	gzip, deflate, br
-Host	www.sui.com
-Connection	Keep-Alive
-Cookie	Hm_lpvt_3db4e52bb5797afe0faaa2fde5c96ea4=1583203722; __utmc=121176714; __utmz=121176714.1574295963.24.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utma=121176714.1152311422.1552132033.1577365344.1583203700.27; __spm_bid=71a9aab79de8s92dpf8fc83d8bm3ef87; __utmb=121176714.3.10.1583203700; __utmt=1; Hm_lvt_3db4e52bb5797afe0faaa2fde5c96ea4=1583203700; __nick=klq26%40163.com; __vistor=85CBB08A1d5h4ek1z; _bookTabSwitchList=05d9c1d88a4bc09f1e6a4ccc3fa3f033|1|0&; SESSION=49501205-2706-4da7-b17f-a2cc8f814293; SESSION_COOKIE=a8e14a3d3446b0d7b8155ae885f316e7
+:method	GET
+:authority	www.sui.com
+:scheme	https
+:path	/account/account.do
+cache-control	max-age=0
+upgrade-insecure-requests	1
+user-agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.162 Safari/537.36
+sec-fetch-dest	document
+accept	text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+sec-fetch-site	same-origin
+sec-fetch-mode	navigate
+sec-fetch-user	?1
+referer	https://www.sui.com/report_index.do
+accept-encoding	gzip, deflate, br
+accept-language	zh-CN,zh;q=0.9
+cookie	__vistor=C2FC974E1dkc2f30k
+cookie	__nick=klq26%40163.com
+cookie	SESSION_COOKIE=a8e14a3d3446b0d7b8155ae885f316e7
+cookie	__utmc=121176714
+cookie	__utmz=121176714.1572313309.44.20.utmcsr=login.sui.com|utmccn=(referral)|utmcmd=referral|utmcct=/auth.do
+cookie	__jsluid_s=5bfc79c54390dcec87595cffb3de5ed3
+cookie	Hm_lvt_3db4e52bb5797afe0faaa2fde5c96ea4=1585393780
+cookie	__spm_bid=586980be35afs8e7p4dbfec89dm70fdc
+cookie	_bookTabSwitchList=05d9c1d88a4bc09f1e6a4ccc3fa3f033|1|0&
+cookie	__utma=121176714.1274987167.1566994582.1585721032.1585788574.120
+cookie	__utmt=1
+cookie	SESSION=01e78352-ec0e-4c78-85b8-57d14d77123d
+cookie	Hm_lpvt_3db4e52bb5797afe0faaa2fde5c96ea4=1585788610
+cookie	__utmb=121176714.7.9.1585788933531

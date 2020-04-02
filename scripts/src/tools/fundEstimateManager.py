@@ -76,7 +76,7 @@ class fundEstimateManager:
         requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
         ssl._create_default_https_context = ssl._create_unverified_context
         marketSign = ''
-        if code.startswith(u'15') or code == '162411':
+        if code.startswith(u'15') or code.startswith(u'16'):
             marketSign = u'SZ'
         else:
             marketSign = u'SH'
