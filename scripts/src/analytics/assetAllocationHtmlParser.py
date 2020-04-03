@@ -5,6 +5,7 @@ import json
 import shutil
 from operator import itemgetter
 import pandas as pd
+import numpy as np
 # html template
 import jinja2
 from jinja2 import Environment, FileSystemLoader
@@ -132,6 +133,15 @@ class assetAllocationHtmlParser:
                 marketCapByAppSource[assetModel['appSource']] = round(
                     holdMarketCapOfCurrentAppSource + round(float(assetModel.holdMarketCap),2), 2)
             fundData.append(assetDict)
+        # 对基金进行排序（先按账户升序，再按分类Id 升序）
+        fund_df = pd.DataFrame(fundData)
+        fundData = []
+        fund_df = fund_df.sort_values(['appSource', 'category4'], ascending=[True, True])
+        fundKeys = fund_df.columns
+        print(fund_df)
+        fundValues = np.array(fund_df).tolist()
+        for values in fundValues:
+            fundData.append(dict(zip(fundKeys, values)))
         # 生产 account
         for key in gainByAppSource.keys():
             rate = '{0:.2f}%'.format(float(gainByAppSource[key]) / (float(marketCapByAppSource[key]) - float(gainByAppSource[key])) * 100)
