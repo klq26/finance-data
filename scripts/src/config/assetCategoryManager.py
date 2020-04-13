@@ -60,11 +60,12 @@ class assetCategoryManager:
                             '白银', '无息外借款', '住房公积金', '民间借贷', '企业借贷', '货币基金']
         # unEstimable_df = self.category_df[self.category_df['三级分类'].isin(unEstimableCodes)]
         # unEstimable_df = unEstimable_df.reset_index(drop=True)
-        marketStr = u'场内'
+        marketStr = u'场外'
         if not isInnerMarket:
-            marketStr = u'场外'
-        # & 指定多条件时，多个条件之间的 () 不能省略，即：() & ()
-        estimableCodes_df = self.category_df[(~self.category_df['三级分类'].isin(unEstimableCodes)) & (self.category_df['市场'] == marketStr)]
+            # & 指定多条件时，多个条件之间的 () 不能省略，即：() & ()
+            estimableCodes_df = self.category_df[(~self.category_df['三级分类'].isin(unEstimableCodes)) & (self.category_df['市场'] == marketStr)]
+        else:
+            estimableCodes_df = self.category_df[(~self.category_df['三级分类'].isin(unEstimableCodes)) & (self.category_df['市场'].isin([u'沪市', u'深市']))]
         estimableCodes_df = estimableCodes_df.reset_index(drop=True)
         results = dict(zip(list(estimableCodes_df.基金名称.unique()), list(estimableCodes_df.基金代码.unique())))
         return results

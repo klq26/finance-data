@@ -17,6 +17,14 @@
             "category4":"111"
         },
         {
+            "name":"易方达上证50指数A",
+            "code":"110003",
+            "category1":"A 股",
+            "category2":"大盘股",
+            "category3":"上证50",
+            "category4":"111"
+        },
+        {
             "name":"华夏上证50AH优选指数",
             "code":"501050",
             "category1":"A 股",
@@ -43,6 +51,14 @@
         {
             "name":"华夏沪深300ETF联接A",
             "code":"000051",
+            "category1":"A 股",
+            "category2":"大盘股",
+            "category3":"沪深300",
+            "category4":"113"
+        },
+        {
+            "name":"兴全沪深300指数(LOF)A",
+            "code":"163407",
             "category1":"A 股",
             "category2":"大盘股",
             "category3":"沪深300",
@@ -497,6 +513,22 @@
             "category4":"411"
         },
         {
+            "name":"南方宝元债券C",
+            "code":"006585",
+            "category1":"混合型",
+            "category2":"股债混合",
+            "category3":"偏股",
+            "category4":"411"
+        },
+        {
+            "name":"广发趋势优选灵活配置混合C",
+            "code":"008127",
+            "category1":"混合型",
+            "category2":"股债混合",
+            "category3":"偏股",
+            "category4":"411"
+        },
+        {
             "name":"交银主题优选",
             "code":"519700",
             "category1":"混合型",
@@ -507,22 +539,6 @@
         {
             "name":"交银周期回报灵活配置混合A",
             "code":"519738",
-            "category1":"混合型",
-            "category2":"股债混合",
-            "category3":"偏债",
-            "category4":"411"
-        },
-        {
-            "name":"广发趋势优选混合C",
-            "code":"008127",
-            "category1":"混合型",
-            "category2":"股债混合",
-            "category3":"偏债",
-            "category4":"411"
-        },
-        {
-            "name":"南方宝元债券C",
-            "code":"006585",
             "category1":"混合型",
             "category2":"股债混合",
             "category3":"偏债",
@@ -651,14 +667,6 @@
         {
             "name":"国债ETF",
             "code":"511010",
-            "category1":"债券",
-            "category2":"国内债券",
-            "category3":"纯债",
-            "category4":"511"
-        },
-        {
-            "name":"交银裕盈纯债债券A",
-            "code":"519776",
             "category1":"债券",
             "category2":"国内债券",
             "category3":"纯债",
