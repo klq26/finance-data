@@ -3,13 +3,13 @@ Host: stock.xueqiu.com
 Connection: keep-alive
 Pragma: no-cache
 Cache-Control: no-cache
-Accept: application/json, text/plain, */*
-Sec-Fetch-Dest: empty
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.162 Safari/537.36
-Origin: https://xueqiu.com
-Sec-Fetch-Site: same-site
-Sec-Fetch-Mode: cors
-Referer: https://xueqiu.com/
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36
+Sec-Fetch-Dest: document
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Sec-Fetch-Site: none
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
 Accept-Encoding: gzip, deflate, br
 Accept-Language: zh-CN,zh;q=0.9
-Cookie: device_id=24700f9f1986800ab4fcc880530dd0ed; s=bu12f52zv3; bid=6e97accacf189cc998bcde7951604689_k04m5ssh; snbim_minify=true; cookiesu=371584413578051; remember=1; xq_a_token=91a184536449783117a53b74d40bf7d7b03d4c41; xq_id_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1aWQiOjI4MTIzNzYyMDksImlzcyI6InVjIiwiZXhwIjoxNTg3MDA1NTg3LCJjdG0iOjE1ODQ0MTM1ODcwOTcsImNpZCI6ImQ5ZDBuNEFadXAifQ.fTT1FAUteYhN2O2p0i7WNG4Zse4DHP5ien5LfyBGjdBgPvyWHsKl1EbsZf9n2jfSQuPWZoU0mR4gIBGNqzYtyt_iOkROczSG6FHSeMvgt1bn9wZM0M9NIyGhswqv8q3tqY_4vT7vDU8U-f_1djKKavgtVXm0HB-4Bbwz6qwcoiHNPHvAIXtudNVSbKj3F60j_dTfaJENurZCQKGhnD2CB938uBvP02kPAzJ9YNKCkFGpm3NkE6YPCXnzUhUMq61J5fa_5q4vCuQcwY-Hoo2oQhReAiESOs5hADrS74PtWJ-J9L2iJ0vgKBBAH2x0igSGOHLGeaLLRoZaD_TbwFg7vA; xqat=91a184536449783117a53b74d40bf7d7b03d4c41; xq_r_token=c7ab832936d280324e230baa02317cb7703e1376; xq_is_login=1; u=2812376209; Hm_lvt_1db88642e346389874251b5a1eded6e3=1584513325; Hm_lpvt_1db88642e346389874251b5a1eded6e3=1585789067; is_overseas=0
+Cookie: device_id=24700f9f1986800ab4fcc880530dd0ed; s=bu12f52zv3; bid=6e97accacf189cc998bcde7951604689_k04m5ssh; snbim_minify=true; Hm_lvt_1db88642e346389874251b5a1eded6e3=1584513325; xq_a_token=2ee68b782d6ac072e2a24d81406dd950aacaebe3; xqat=2ee68b782d6ac072e2a24d81406dd950aacaebe3; xq_r_token=f9a2c4e43ce1340d624c8b28e3634941c48f1052; xq_id_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1aWQiOi0xLCJpc3MiOiJ1YyIsImV4cCI6MTU4NzUyMjY2MSwiY3RtIjoxNTg3MDc2ODM2MTg2LCJjaWQiOiJkOWQwbjRBWnVwIn0.Hi5QBPhgUIvH1wBPeLZZgCgkkW6FTLqxSNaVbfsIMo9bvdVdmOfaB4WuBxXMLRz9JVHq-T0y8dHexsSToSOuXXehGbQd_DOhMs68Lf9pLPgCmI_bdcdRAXzscI7YwGTYoogyPavFScKGro2Y6DttbvzroSBZfco6eiNhFvw8ImuT2J7yhPl_4HCpiUTQrn7HDwpSOMjVDYu8mnJc6di_UZfoxI4-fABwQw4UiWgNaBaHQa4sLYaKJ9g7TB_y6BSxefb1pOXR757TUl0k2h-fAKvShYxRcHKVDSIVXs_ru-puOcqrxvZiCICj4cmT7w8KZ5Gxsz6XQEIoEP6SQEcOLQ; u=461587076850343; Hm_lpvt_1db88642e346389874251b5a1eded6e3=1587076854
