@@ -195,7 +195,7 @@ class accountManager:
         accounts.append(account.__dict__)
 
         account = accountModel()
-        account.accountName = u'钉钉宝365母'
+        account.accountName = u'钉钉宝90母'
         account.sortId = 405
         account.owner = u'parent'
         account.appSource = u'danjuan'
@@ -206,7 +206,7 @@ class accountManager:
         accounts.append(account.__dict__)
 
         account = accountModel()
-        account.accountName = u'螺丝钉父'
+        account.accountName = u'钉钉宝365母'
         account.sortId = 406
         account.owner = u'parent'
         account.appSource = u'danjuan'
@@ -217,8 +217,30 @@ class accountManager:
         accounts.append(account.__dict__)
 
         account = accountModel()
-        account.accountName = u'钉钉宝365父'
+        account.accountName = u'螺丝钉父'
         account.sortId = 407
+        account.owner = u'parent'
+        account.appSource = u'danjuan'
+        account.marketcap = 0.00
+        account.gain = 0.00
+        account.gainRate = 0.00
+        account.recommendColor = '#' + self.colorManager.getFundColorByAppSourceName(account.accountName)
+        accounts.append(account.__dict__)
+
+        account = accountModel()
+        account.accountName = u'钉钉宝90父'
+        account.sortId = 408
+        account.owner = u'parent'
+        account.appSource = u'danjuan'
+        account.marketcap = 0.00
+        account.gain = 0.00
+        account.gainRate = 0.00
+        account.recommendColor = '#' + self.colorManager.getFundColorByAppSourceName(account.accountName)
+        accounts.append(account.__dict__)
+
+        account = accountModel()
+        account.accountName = u'钉钉宝365父'
+        account.sortId = 409
         account.owner = u'parent'
         account.appSource = u'danjuan'
         account.marketcap = 0.00

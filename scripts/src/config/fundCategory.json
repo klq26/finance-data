@@ -345,6 +345,14 @@
             "category4":"148"
         },
         {
+            "name":"富国中证消费50ETF联接A",
+            "code":"008975",
+            "category1":"A 股",
+            "category2":"行业股",
+            "category3":"全指消费",
+            "category4":"148"
+        },
+        {
             "name":"招商中证白酒指数分级",
             "code":"161725",
             "category1":"A 股",
@@ -667,6 +675,30 @@
         {
             "name":"国债ETF",
             "code":"511010",
+            "category1":"债券",
+            "category2":"国内债券",
+            "category3":"纯债",
+            "category4":"511"
+        },
+        {
+            "name":"新华纯债添利B",
+            "code":"009104",
+            "category1":"债券",
+            "category2":"国内债券",
+            "category3":"纯债",
+            "category4":"511"
+        },
+        {
+            "name":"国金及第中短债债券",
+            "code":"003002",
+            "category1":"债券",
+            "category2":"国内债券",
+            "category3":"纯债",
+            "category4":"511"
+        },
+        {
+            "name":"南方初元中短债C",
+            "code":"007150",
             "category1":"债券",
             "category2":"国内债券",
             "category3":"纯债",

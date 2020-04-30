@@ -1,15 +1,15 @@
-GET /v5/stock/batch/quote.json?symbol=SH000001,SZ399001,SZ399006,HKHSI,HKHSCEI,HKHSCCI,.DJI,.IXIC,.INX HTTP/1.1
+GET /v5/stock/realtime/quotec.json?symbol=SH000001,SZ399001,SZ399006&_=1588226505116 HTTP/1.1
 Host: stock.xueqiu.com
 Connection: keep-alive
 Pragma: no-cache
 Cache-Control: no-cache
-Upgrade-Insecure-Requests: 1
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36
-Sec-Fetch-Dest: document
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
-Sec-Fetch-Site: none
-Sec-Fetch-Mode: navigate
-Sec-Fetch-User: ?1
+Accept: application/json, text/plain, */*
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36
+Origin: https://xueqiu.com
+Sec-Fetch-Site: same-site
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: https://xueqiu.com/
 Accept-Encoding: gzip, deflate, br
 Accept-Language: zh-CN,zh;q=0.9
-Cookie: device_id=24700f9f1986800ab4fcc880530dd0ed; s=bu12f52zv3; bid=6e97accacf189cc998bcde7951604689_k04m5ssh; snbim_minify=true; Hm_lvt_1db88642e346389874251b5a1eded6e3=1584513325; xq_a_token=2ee68b782d6ac072e2a24d81406dd950aacaebe3; xqat=2ee68b782d6ac072e2a24d81406dd950aacaebe3; xq_r_token=f9a2c4e43ce1340d624c8b28e3634941c48f1052; xq_id_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1aWQiOi0xLCJpc3MiOiJ1YyIsImV4cCI6MTU4NzUyMjY2MSwiY3RtIjoxNTg3MDc2ODM2MTg2LCJjaWQiOiJkOWQwbjRBWnVwIn0.Hi5QBPhgUIvH1wBPeLZZgCgkkW6FTLqxSNaVbfsIMo9bvdVdmOfaB4WuBxXMLRz9JVHq-T0y8dHexsSToSOuXXehGbQd_DOhMs68Lf9pLPgCmI_bdcdRAXzscI7YwGTYoogyPavFScKGro2Y6DttbvzroSBZfco6eiNhFvw8ImuT2J7yhPl_4HCpiUTQrn7HDwpSOMjVDYu8mnJc6di_UZfoxI4-fABwQw4UiWgNaBaHQa4sLYaKJ9g7TB_y6BSxefb1pOXR757TUl0k2h-fAKvShYxRcHKVDSIVXs_ru-puOcqrxvZiCICj4cmT7w8KZ5Gxsz6XQEIoEP6SQEcOLQ; u=461587076850343; Hm_lpvt_1db88642e346389874251b5a1eded6e3=1587076854
+Cookie: device_id=24700f9f1986800ab4fcc880530dd0ed; s=bu12f52zv3; bid=6e97accacf189cc998bcde7951604689_k04m5ssh; snbim_minify=true; Hm_lvt_1db88642e346389874251b5a1eded6e3=1587127740,1587691250; remember=1; xq_a_token=374efd3959645c21028b85e44b734a86cdb66965; xq_id_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1aWQiOjI4MTIzNzYyMDksImlzcyI6InVjIiwiZXhwIjoxNTkwODEzMTkwLCJjdG0iOjE1ODgyMjExOTAxOTIsImNpZCI6ImQ5ZDBuNEFadXAifQ.AZOELVrb9vZf40BHRLafXASdDSnR6fBPwy0geds6zodyvSlIGx5uo16AcZsnZK5cv7hnanllnwOEJQ7qkAsoSsCrE8sT__6eXhBjzg8eBRIeshOattv4QVjmN2Hm9FAz5FNOymM71WSrf1OKcekJOpmoda76z3wTSjwQv3PossLqBOCP00o85PT7Co3JAP7Sb_Bjix-JeHX0L5AnvNxlZXf3ukBD00h1EfAtTSQPgVovFYYmOg3crsonJ31H5V7edI6Aimz9H8DWGiEoZazEKGzrNTtV91w7mgzCgiBRmdux4mCcp49hfL77i7HJ3LHhZigXp1Q-2O9oatJmtRHBjQ; xqat=374efd3959645c21028b85e44b734a86cdb66965; xq_r_token=c82fd3514f1270cbb361c993e6fe6101034a006d; xq_is_login=1; u=2812376209; is_overseas=0; Hm_lpvt_1db88642e346389874251b5a1eded6e3=1588226499

@@ -1,8 +1,14 @@
-Accept: application/json, text/plain, */*
-Accept-Encoding: gzip, deflate, br
-Accept-Language: zh-Hans-CN, zh-Hans; q=0.7, ja; q=0.3
-Connection: Keep-Alive
-Cookie: device_id=web_HJN3j9DCS; _gid=GA1.2.1751003238.1585637403; gr_user_id=782f9836-fb38-47a2-a5c0-b5d9b4747d17; _gat_gtag_UA_16079156_7=1; _ga=GA1.2.1416370597.1576672173; Hm_lvt_b53ede02df3afea0608038748f4c9f36=1584598877,1585637403; timestamp=1585637418507; channel=1300100141; xq_a_token=d258de53c574ba0b7aeddd72eec426cda09edace; Hm_lpvt_b53ede02df3afea0608038748f4c9f36=1585637415; gr_session_id_94b96c7a661bf17a=ede181d7-1c3d-45f5-9e0a-f11597be29c9; gr_session_id_94b96c7a661bf17a_ede181d7-1c3d-45f5-9e0a-f11597be29c9=true; accesstoken=240020000d176abe5f5153802ff08f4dc9a1b43462cc8ea53; uid=576923716; u=576923716; refreshtoken=2400200009298cd46784d85ceb8cf6aaecb19c333aee9e001
+GET /djapi/account HTTP/1.1
 Host: danjuanapp.com
+Connection: keep-alive
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: application/json, text/plain, */*
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
 Referer: https://danjuanapp.com/
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.18363
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: device_id=web_ByL9-IyHH; _ga=GA1.2.1578122713.1566691726; gr_user_id=07a8b8b8-e04f-4bfa-b6bd-3492bb42b3a6; thirdparty_token=; thirdparty_source=; thirdparty_nickname=; thirdparty_avatar=; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%22203274561%22%2C%22%24device_id%22%3A%2216cc61a9198303-0a4b8d7e767657-7373e61-3686400-16cc61a9199311%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_referrer%22%3A%22%22%2C%22%24latest_referrer_host%22%3A%22%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%7D%2C%22first_id%22%3A%2216cc61a9198303-0a4b8d7e767657-7373e61-3686400-16cc61a9199311%22%7D; Hm_lvt_b53ede02df3afea0608038748f4c9f36=1585637093; xq_a_token=fb68ed48b811c70b83b00e678c1b61c62aa59ead; channel=1300100141; _gid=GA1.2.26478004.1588226689; _gat_gtag_UA_16079156_7=1; gr_session_id_94b96c7a661bf17a=4cca4b5f-4801-4cb4-9d05-fb6e5f579923; gr_session_id_94b96c7a661bf17a_4cca4b5f-4801-4cb4-9d05-fb6e5f579923=true; accesstoken=2400200002c8af89f8f7d20e1768c43d9556931fc6fe8631a; uid=576923716; u=576923716; refreshtoken=2400200006324b804363685f8af7b583a4aa6630cbe2596fa; timestamp=1588226703191; Hm_lpvt_b53ede02df3afea0608038748f4c9f36=1588226703

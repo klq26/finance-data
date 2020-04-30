@@ -55,7 +55,7 @@ class assetAllocationCombine:
                     if name in self.filenames:
                         self.filepaths.append(os.path.join(root,name))
         elif self.strategy == 'b':
-            self.filenames = [u'danjuan_母螺丝钉.txt',u'danjuan_父螺丝钉.txt',u'danjuan_母钉钉宝365.txt',u'danjuan_父钉钉宝365.txt',u'tiantian_李淑云.txt','cash_父母.txt']
+            self.filenames = [u'danjuan_母螺丝钉.txt',u'danjuan_父螺丝钉.txt','danjuan_母钉钉宝90.txt',u'danjuan_母钉钉宝365.txt',u'danjuan_父钉钉宝90.txt',u'danjuan_父钉钉宝365.txt',u'tiantian_李淑云.txt','cash_父母.txt']
             self.excelFilePathExt = u'父母'
             self.echartsJSFilePathExt = u'父母'
             self.pm = pathManager(strategyName=u'父母')
@@ -78,7 +78,7 @@ class assetAllocationCombine:
                         self.filepaths.append(os.path.join(root,name))
         elif self.strategy == 'd':
             self.filenames = [u'danjuan_螺丝钉.txt',u'danjuan_钉钉宝365.txt',u'qieman_10万补充ETF计划.txt',u'qieman_我的S定投计划.txt', u'tiantian_康力泉.txt',u'huatai_康力泉.txt',u'huabao_康力泉.txt',u'guangfa_支付宝.txt',u'cash_康力泉.txt',u'freeze_康力泉.txt'\
-                ,u'danjuan_母螺丝钉.txt',u'danjuan_父螺丝钉.txt',u'danjuan_母钉钉宝365.txt',u'danjuan_父钉钉宝365.txt',u'tiantian_李淑云.txt','cash_父母.txt']
+                ,u'danjuan_母螺丝钉.txt',u'danjuan_父螺丝钉.txt','danjuan_母钉钉宝90.txt',u'danjuan_母钉钉宝365.txt',u'danjuan_父钉钉宝90.txt',u'danjuan_父钉钉宝365.txt',u'tiantian_李淑云.txt','cash_父母.txt']
             self.excelFilePathExt = u'全家整体'
             self.echartsJSFilePathExt = u'全家'
             self.pm = pathManager(strategyName=u'全家')
@@ -203,9 +203,13 @@ class assetAllocationCombine:
             return u'螺丝钉母'
         elif u'danjuan_父螺丝钉' in filepath:
             return u'螺丝钉父'
-        if u'danjuan_母钉钉宝365' in filepath:
+        elif u'danjuan_母钉钉宝90' in filepath:
+            return u'钉钉宝90母'
+        elif u'danjuan_父钉钉宝90' in filepath:
+            return u'钉钉宝90父'
+        elif u'danjuan_母钉钉宝365' in filepath:
             return u'钉钉宝365母'
-        if u'danjuan_父钉钉宝365' in filepath:
+        elif u'danjuan_父钉钉宝365' in filepath:
             return u'钉钉宝365父'
         elif u'10万补充ETF计划' in filepath:
             return u'且慢 150 份'
@@ -249,10 +253,13 @@ class assetAllocationCombine:
             contentList = json.loads(assetJsonFile.read(),object_hook=assetModel)
             return contentList
 
-if len(sys.argv) <= 1:
-    print(u'[ERROR] 参数不足。需要键入策略编号。a：康力泉股票情况 b：父母 c：康力泉整体资产配置情况 d: 全家整体情况')
-    exit()
-strategy = sys.argv[1]
+if len(sys.argv) > 1:
+    # print(u'[ERROR] 参数不足。需要键入策略编号。a：康力泉股票情况 b：父母 c：康力泉整体资产配置情况 d: 全家整体情况')
+    # exit()
+    strategy = sys.argv[1]
+else:
+    strategy = 'd'
+
 combine = None
 history_df = None
 historyManager = historyProfitManager()

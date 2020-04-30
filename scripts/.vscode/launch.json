@@ -5,7 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: assetAllocationCombine",
+            "name": "Python: param: b ",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": [
+                "b",
+            ],
+        },
+        {
+            "name": "Python: param: d",
             "type": "python",
             "request": "launch",
             "program": "${file}",

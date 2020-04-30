@@ -38,11 +38,12 @@ class danjuanSpider:
     
     def getLSY(self):
         self.requestWithName(self.luosidingUrl, '母螺丝钉',self.headerManager.getDanjuanLSY())
-        # self.requestWithName(self.dingdingbao90, '母钉钉宝90',self.headerManager.getDanjuanLSY())
+        self.requestWithName(self.dingdingbao90, '母钉钉宝90',self.headerManager.getDanjuanLSY())
         self.requestWithName(self.dingdingbao365, '母钉钉宝365',self.headerManager.getDanjuanLSY())
         
     def getKSH(self):
         self.requestWithName(self.luosidingUrl, '父螺丝钉',self.headerManager.getDanjuanKSH())
+        self.requestWithName(self.dingdingbao90, '父钉钉宝90',self.headerManager.getDanjuanKSH())
         self.requestWithName(self.dingdingbao365, '父钉钉宝365',self.headerManager.getDanjuanKSH())
         
     def requestWithName(self, url, name, header):
